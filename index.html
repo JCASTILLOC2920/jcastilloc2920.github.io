@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JC PATH LAB - Laboratorio de Anatomía Patológica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- RESET Y ESTILOS BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0056b3;
+            --secondary: #003366;
+            --accent: #007bff;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --text: #212529;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+            --card-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background-color: #f5f7fa;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER STYLES --- */
+        .header {
+            background-color: var(--white);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 0 5%;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px 0;
+        }
+
+        /* Logo Styles */
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            height: 60px;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        /* Navigation Styles */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-left: 30px;
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 10px 0;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Hamburger Menu Icon */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 10px;
+        }
+
+        .hamburger .line {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background-color: var(--secondary);
+            margin: 6px 0;
+            transition: var(--transition);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(0, 86, 179, 0.8) 0%, rgba(0, 51, 102, 0.9) 100%), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3') no-repeat center/cover;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 90px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(0, 51, 102, 0.7) 0%, rgba(0, 51, 102, 0.2) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            width: 90%;
+            margin: 0 auto;
+            padding: 0 20px;
+            color: var(--white);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+            max-width: 700px;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Stats Section */
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+        }
+
+        .stat-content h3 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-content p {
+            font-size: 1rem;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        /* --- SERVICES SECTION --- */
+        .services-section {
+            padding: 100px 5%;
+            background-color: var(--white);
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 70px;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--dark);
+            font-weight: 400;
+            line-height: 1.8;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border: 1px solid rgba(0, 86, 179, 0.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 86, 179, 0.15);
+        }
+
+        .service-icon {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3.5rem;
+        }
+
+        .service-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-title {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .service-description {
+            color: var(--dark);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: auto;
+            transition: var(--transition);
+        }
+
+        .service-link i {
+            margin-left: 8px;
+            transition: var(--transition);
+        }
+
+        .service-link:hover {
+            color: var(--primary);
+        }
+
+        .service-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* --- ABOUT SECTION (QUIÉNES SOMOS) --- */
+        .about-section {
+            padding: 100px 5%;
+            background-color: #f9fbfd;
+            position: relative;
+        }
+
+        .about-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .about-header .section-title {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .about-header .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 300px;
+            height: 300px;
+            margin: 0 auto 40px;
+            border: 5px solid var(--accent);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .personal-info {
+            background: linear-gradient(135deg, rgba(0, 86, 179, 0.05) 0%, rgba(0, 51, 102, 0.03) 100%);
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .personal-info p {
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .call-to-action {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 86, 179, 0.25);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .call-to-action p {
+            font-size: 1.4rem;
+            font-style: italic;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .call-to-action .btn {
+            padding: 12px 35px;
+            font-size: 1.1rem;
+            background-color: var(--white);
+            color: var(--primary);
+            border: 2px solid var(--white);
+            font-weight: 700;
+        }
+
+        .call-to-action .btn:hover {
+            background-color: transparent;
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .cv-content {
+            margin-top: 30px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .cv-section {
+            margin-bottom: 35px;
+            padding-bottom: 35px;
+            border-bottom: 1px solid rgba(0, 86, 179, 0.1);
+        }
+
+        .cv-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .cv-section h3 {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cv-section h3 i {
+            color: var(--accent);
+        }
+
+        .cv-section p {
+            color: var(--dark);
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        .cv-section ul {
+            padding-left: 25px;
+            margin-top: 10px;
+        }
+
+        .cv-section ul li {
+            margin-bottom: 15px;
+            line-height: 1.7;
+            color: var(--dark);
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .cv-section ul li::before {
+            content: "•";
+            color: var(--accent);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .skills-grid li {
+            background: rgba(0, 86, 179, 0.05);
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: var(--transition);
+            border-left: 3px solid var(--accent);
+        }
+
+        .skills-grid li:hover {
+            background: rgba(0, 86, 179, 0.1);
+            transform: translateX(5px);
+        }
+
+        /* --- NEW CONTACT SECTION --- */
+        .contact-section {
+            padding: 100px 5%;
+            background-color: var(--white);
+            position: relative;
+        }
+
+        .contact-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .contact-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 40px 30px;
+            transition: var(--transition);
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            border: 1px solid rgba(0, 86, 179, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 86, 179, 0.1);
+        }
+
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(0, 86, 179, 0.1) 0%, rgba(0, 51, 102, 0.05) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .contact-title {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .contact-details {
+            font-size: 1.1rem;
+            color: var(--dark);
+            line-height: 1.7;
+        }
+
+        .contact-details a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-details a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .map-container {
+            margin-top: 60px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            height: 400px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 30px;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .about-header .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .call-to-action p {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media screen and (max-width: 860px) {
+            .hamburger {
+                display: block;
+                z-index: 1001;
+            }
+            
+            .hamburger.active .line:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+            
+            .hamburger.active .line:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active .line:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding: 100px 0 50px;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .nav-item {
+                margin: 20px 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-link {
+                font-size: 18px;
+                display: block;
+                padding: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .hero-stats {
+                gap: 20px;
+            }
+            
+            .services-section, .about-section, .contact-section {
+                padding: 70px 5%;
+            }
+            
+            .section-header {
+                margin-bottom: 50px;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .map-container {
+                height: 350px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .about-image {
+                width: 250px;
+                height: 250px;
+            }
+
+            .contact-grid {
+                gap: 25px;
+            }
+
+            .contact-card {
+                padding: 30px 20px;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .map-container {
+                height: 300px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .logo {
+                height: 50px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .stat-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .stat-icon {
+                font-size: 2rem;
+            }
+            
+            .stat-content h3 {
+                font-size: 1.8rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .service-icon {
+                height: 100px;
+                font-size: 3rem;
+            }
+            
+            .service-title {
+                font-size: 1.6rem;
+            }
+            
+            .about-header .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .personal-info p {
+                font-size: 0.95rem;
+            }
+            
+            .call-to-action p {
+                font-size: 1.1rem;
+            }
+            
+            .cv-section h3 {
+                font-size: 1.3rem;
+            }
+            
+            .cv-section p, .cv-section ul li {
+                font-size: 0.95rem;
+            }
+            
+            /* Ocultar la imagen en dispositivos móviles */
+            .about-image {
+                display: none;
+            }
+
+            .contact-title {
+                font-size: 1.3rem;
+            }
+
+            .contact-details {
+                font-size: 1rem;
+            }
+
+            .map-container {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="header-container">
+            <!-- Logo -->
+            <div class="logo-container">
+                <img src="logo-jcpathlab.png" alt="JC PATH LAB Logo" class="logo">
+            </div>
+            
+            <!-- Navigation Menu -->
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#" class="nav-link active">Inicio</a></li>
+                    <li class="nav-item"><a href="#servicios" class="nav-link">Servicios</a></li>
+                    <li class="nav-item"><a href="#quienes-somos" class="nav-link">Quiénes Somos</a></li>
+                    <li class="nav-item"><a href="#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Hamburger Menu -->
+            <button class="hamburger">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Excelencia en Diagnóstico Patológico</h1>
+            <p>En JC PATH LAB combinamos tecnología de vanguardia con experiencia médica para ofrecer diagnósticos precisos y confiables.</p>
+            
+            <div class="hero-buttons">
+                <a href="#contacto" class="btn btn-primary">Solicitar Servicios</a>
+                <a href="#servicios" class="btn btn-secondary">Conocer Más</a>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>35+</h3>
+                        <p>Años de Experiencia</p>
+                    </div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Especialista Certificado</h3>
+                    </div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>50K+</h3>
+                        <p>Estudios Realizados</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section id="servicios" class="services-section">
+        <div class="section-header">
+            <h2 class="section-title">Nuestros Servicios Especializados</h2>
+            <p class="section-subtitle">Ofrecemos una gama completa de servicios de anatomía patológica con tecnología de punta y profesionales altamente capacitados para garantizar resultados precisos y confiables.</p>
+        </div>
+        
+        <div class="services-grid">
+            <!-- Service 1 -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-microscope"></i>
+                </div>
+                <div class="service-content">
+                    <h3 class="service-title">Diagnóstico de biopsias</h3>
+                    <p class="service-description">Análisis microscópico de tejidos obtenidos por cirugía o procedimientos médicos para identificar la presencia y tipo de enfermedades como tumores o inflamaciones. Este proceso orienta el diagnóstico y el tratamiento médico adecuado.</p>
+                    <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Service 2 -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-vial"></i>
+                </div>
+                <div class="service-content">
+                    <h3 class="service-title">Estudios citológicos</h3>
+                    <p class="service-description">Evaluación de células individuales o en pequeños grupos, como en el Papanicolaou, para detectar infecciones, alteraciones premalignas o malignas, ayudando a la prevención y diagnóstico temprano.</p>
+                    <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Service 3 -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-dna"></i>
+                </div>
+                <div class="service-content">
+                    <h3 class="service-title">Inmunohistoquímica</h3>
+                    <p class="service-description">Utilización de anticuerpos específicos para identificar proteínas en los tejidos, permitiendo distinguir tipos específicos de tumores, infecciones o enfermedades autoinmunes con gran precisión.</p>
+                    <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Service 4 -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-snowflake"></i>
+                </div>
+                <div class="service-content">
+                    <h3 class="service-title">Biopsia intraoperatoria</h3>
+                    <p class="service-description">Análisis rápido de una muestra durante la cirugía para ayudar a tomar decisiones inmediatas sobre el tratamiento quirúrgico, proporcionando resultados en pocos minutos.</p>
+                    <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <!-- Service 5 -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-scalpel"></i>
+                </div>
+                <div class="service-content">
+                    <h3 class="service-title">Análisis de piezas quirúrgicas</h3>
+                    <p class="service-description">Estudio detallado de órganos o partes del cuerpo removidos en cirugía para evaluar la extensión de una enfermedad o confirmar un diagnóstico previo.</p>
+                    <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section - Quiénes Somos -->
+    <section id="quienes-somos" class="about-section">
+        <div class="container">
+            <div class="about-header">
+                <h2 class="section-title">Dr. Josehp Christopher Castillo Cuenca</h2>
+                <p class="subtitle">Especialista en Anatomía Patológica</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="fotojosehpcastillo.png" alt="Dr. Josehp Christopher Castillo Cuenca">
+                </div>
+                
+                <div class="personal-info">
+                    <p><strong>DNI:</strong> 41457466 | <strong>Edad:</strong> 43 años | <strong>Fecha de nacimiento:</strong> 20/07/1982</p>
+                    <p><strong>Dirección:</strong> Mz M2 Lt13 Asociación de Vivienda "Los Jardines de Chillón", Pte. Piedra</p>
+                    <p><strong>Teléfono:</strong> 986396733 | <strong>Email:</strong> grupopatologia2012@gmail.com</p>
+                    <p><strong>Colegio Médico del Perú Nº:</strong> 56435</p>
+                </div>
+                
+                <div class="call-to-action">
+                    <p>"Comprometido con la excelencia diagnóstica y la formación de futuros patólogos"</p>
+                    <a href="#contacto" class="btn btn-primary">Contactar</a>
+                </div>
+                
+                <div class="cv-content">
+                    <div class="cv-section">
+                        <h3><i class="fas fa-user-md"></i> PERFIL PROFESIONAL</h3>
+                        <p>Médico cirujano especializado en Anatomía Patológica, con experiencia en diagnóstico histopatológico, patología molecular, investigación clínica y docencia universitaria. Orientado a la excelencia diagnóstica, actualización continua y trabajo multidisciplinario. Destaca por su capacidad analítica, liderazgo y compromiso con la formación médica.</p>
+                    </div>
+                    
+                    <div class="cv-section">
+                        <h3><i class="fas fa-graduation-cap"></i> EDUCACIÓN</h3>
+                        <ul>
+                            <li><strong>Secundaria:</strong> Técnico en Computación e Informática - Colegio Nacional Politécnico de Varones del Callao, Dulanto-Callao, 1998</li>
+                            <li><strong>Educación Superior:</strong> Médico Cirujano - Universidad Nacional Mayor de San Marcos (UNMSM), Lima, Perú – 2010</li>
+                            <li><strong>Especialización:</strong> Residentado Médico en Anatomía Patológica - UNMSM – 2012 a 2015 (Hospital Nacional Daniel Alcides Carrión)</li>
+                            <li>Rotación en Patología Neonatal (Hospital Nacional Docente Madre Niño San Bartolomé, Nov 2013)</li>
+                            <li>Rotación en Patología Oncológica (INEN, Junio - Julio 2015)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-section">
+                        <h3><i class="fas fa-briefcase"></i> EXPERIENCIA LABORAL</h3>
+                        <ul>
+                            <li><strong>Hospital Nacional Daniel Alcides Carrión – Callao</strong><br>
+                                Médico Asistente del Servicio de Anatomía Patológica (Dic 2016 – Presente)<br>
+                                Tutor de médicos residentes, responsable de diagnósticos integrales en biopsias, citologías, necrópsias y estudios intraoperatorios.</li>
+                            <li><strong>Universidad Nacional Mayor de San Marcos</strong><br>
+                                Docente Auxiliar en Anatomía Patológica (Ene 2016 – Presente)<br>
+                                Tutor de residentes en interpretación de láminas histopatológicas, macroscopía e inmunohistoquímica.</li>
+                            <li><strong>Instituto de Anatomía Patológica y Patología Molecular Arias Stella</strong><br>
+                                Anatomo patólogo área Microscopia (Jul 2015 – Presente, Tiempo completo)<br>
+                                Encargado área Macroscopía (Jun 2014 – Jun 2015)</li>
+                            <li><strong>Hospital Nacional Daniel Alcides Carrión – Callao</strong><br>
+                                Médico Residente en Anatomía Patológica (Jul 2012 – Jun 2015)<br>
+                                Jefe de residentes (2013-2015)</li>
+                            <li><strong>Centro de Salud Santa Clara, Sihuas – Huaraz</strong><br>
+                                Médico SERUMS (May 2010 – Abr 2011)<br>
+                                Atención en medicina general, promoción preventiva, jefe de puesto y encargado de zoonosis.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-section">
+                        <h3><i class="fas fa-certificate"></i> CURSOS Y ACTUALIZACIONES DESTACADAS</h3>
+                        <ul>
+                            <li>Curso Internacional de Actualización en Patología Genitourinaria (2014)</li>
+                            <li>I Convención Nacional de Anatomía Patológica – ESSALUD (2014)</li>
+                            <li>V Jornada Peruana de Patología Oncológica, Trujillo (2018), Segundo premio caso clínico</li>
+                            <li>Curso Internacional de Patología Gastrointestinal (2018)</li>
+                            <li>Pathologist Training Workshop, Laboratorios Roche Argentina (2019)</li>
+                            <li>IX Congreso Internacional de Patología Uro-Oncológica (2019)</li>
+                            <li>XXXII Congreso Latinoamericano de Patología – SLAP (2019)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-section">
+                        <h3><i class="fas fa-book"></i> PRODUCCIÓN ACADÉMICA</h3>
+                        <ul>
+                            <li>Coautor artículo: "Percepción de estudiantes de medicina sobre la virtualización de la educación médica durante la pandemia de COVID-19", Revista Acta Médica Peruana.</li>
+                            <li>Ponente en casos clínicos destacados: "Nevo de Spitz Atípico" y "Histoplasmosis diseminada aguda en paciente VIH/SIDA".</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-section">
+                        <h3><i class="fas fa-star"></i> HABILIDADES</h3>
+                        <ul class="skills-grid">
+                            <li>Diagnóstico morfológico e inmunohistoquímico integral</li>
+                            <li>Análisis molecular de tejidos y células</li>
+                            <li>Experiencia en necropsias, biopsias intraoperatorias y estudios citológicos</li>
+                            <li>Capacitación docencia y tutoría en anatomía patológica pregrado y postgrado</li>
+                            <li>Manejo avanzado de plataformas académicas virtuales y presenciales</li>
+                            <li>Liderazgo y trabajo multidisciplinario</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="cv-section">
+                        <h3><i class="fas fa-user"></i> DATOS PERSONALES Y CARACTERÍSTICAS</h3>
+                        <p>Responsable, dinámico, asertivo, con alta capacidad analítica, rapidez de aprendizaje, solidario y colaborativo en equipos de trabajo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contáctenos</h2>
+                <p class="section-subtitle">Estamos aquí para atender sus consultas y necesidades de diagnóstico patológico</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3 class="contact-title">Teléfono</h3>
+                    <div class="contact-details">
+                        <p>986396733</p>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="contact-title">Correo Electrónico</h3>
+                    <div class="contact-details">
+                        <p><a href="mailto:jclab@56gmail.com">jclab@56gmail.com</a></p>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 class="contact-title">Dirección</h3>
+                    <div class="contact-details">
+                        <p>Mz M2 lote 13 Jardines de Chillón<br>Puente Piedra, Lima</p>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="contact-title">Horario de Atención</h3>
+                    <div class="contact-details">
+                        <p>Lunes a Viernes<br>9:00 AM - 6:00 PM</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="map-container">
+                <!-- Actualizado: Ubicación de Chavito Fishing Store -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.011943169808!2d-77.07650372439296!3d-12.112337288121854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDA2JzQ0LjQiUyA3N8KwMDQnMjcuOCJX!5e0!3m2!1ses!2spe!4v1690826791258!5m2!1ses!2spe" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            
+            // Cerrar menú al hacer clic en un enlace
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    
+                    // Marcar enlace como activo
+                    navLinks.forEach(item => item.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Smooth scrolling para enlaces
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 90,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
