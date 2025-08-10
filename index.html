@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -670,6 +670,75 @@
             border: none;
         }
 
+        /* --- CLASSROOM SECTION --- */
+        .classroom-section {
+            padding: 100px 5%;
+            background-color: #f0f8ff;
+            position: relative;
+        }
+
+        .classroom-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-content {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            margin-top: 30px;
+        }
+
+        .section-content h3 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-content h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        .section-content ul {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .section-content ul li {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .subsection {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .subsection-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        /* Secciones independientes */
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
         /* Animation */
         @keyframes fadeInUp {
             from {
@@ -767,7 +836,7 @@
                 gap: 20px;
             }
             
-            .services-section, .about-section, .contact-section {
+            .services-section, .about-section, .contact-section, .classroom-section {
                 padding: 70px 5%;
             }
             
@@ -805,6 +874,10 @@
             .contact-card {
                 padding: 30px 20px;
             }
+
+            .section-content {
+                padding: 25px;
+            }
         }
 
         @media screen and (max-width: 600px) {
@@ -814,6 +887,14 @@
 
             .map-container {
                 height: 300px;
+            }
+
+            .section-content {
+                padding: 20px;
+            }
+
+            .section-content h3 {
+                font-size: 1.6rem;
             }
         }
 
@@ -900,6 +981,10 @@
             .map-container {
                 height: 250px;
             }
+
+            .section-content {
+                padding: 15px;
+            }
         }
     </style>
 </head>
@@ -915,9 +1000,10 @@
             <!-- Navigation Menu -->
             <nav>
                 <ul class="nav-menu">
-                    <li class="nav-item"><a href="#" class="nav-link active">Inicio</a></li>
+                    <li class="nav-item"><a href="#inicio" class="nav-link active">Inicio</a></li>
                     <li class="nav-item"><a href="#servicios" class="nav-link">Servicios</a></li>
                     <li class="nav-item"><a href="#quienes-somos" class="nav-link">Quiénes Somos</a></li>
+                    <li class="nav-item"><a href="#classroom" class="nav-link">Classroom</a></li>
                     <li class="nav-item"><a href="#contacto" class="nav-link">Contacto</a></li>
                 </ul>
             </nav>
@@ -931,8 +1017,9 @@
         </div>
     </header>
     
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Secciones independientes -->
+    <!-- Inicio Section -->
+    <section id="inicio" class="hero page-section active">
         <div class="hero-content">
             <h1>Excelencia en Diagnóstico Patológico</h1>
             <p>En JC PATH LAB combinamos tecnología de vanguardia con experiencia médica para ofrecer diagnósticos precisos y confiables.</p>
@@ -976,7 +1063,7 @@
     </section>
     
     <!-- Services Section -->
-    <section id="servicios" class="services-section">
+    <section id="servicios" class="services-section page-section">
         <div class="section-header">
             <h2 class="section-title">Nuestros Servicios Especializados</h2>
             <p class="section-subtitle">Ofrecemos una gama completa de servicios de anatomía patológica con tecnología de punta y profesionales altamente capacitados para garantizar resultados precisos y confiables.</p>
@@ -1046,7 +1133,7 @@
     </section>
     
     <!-- About Section - Quiénes Somos -->
-    <section id="quienes-somos" class="about-section">
+    <section id="quienes-somos" class="about-section page-section">
         <div class="container">
             <div class="about-header">
                 <h2 class="section-title">Dr. Josehp Christopher Castillo Cuenca</h2>
@@ -1150,8 +1237,97 @@
         </div>
     </section>
 
+    <!-- Classroom Section -->
+    <section id="classroom" class="classroom-section page-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Classroom</h2>
+                <p class="section-subtitle">Anatomía Patológica del Aparato Respiratorio</p>
+            </div>
+            
+            <div class="section-content">
+                <p>La introducción a la anatomía patológica respiratoria es fundamental para que los médicos en formación comprendan el rol crucial que esta disciplina tiene en el diagnóstico y tratamiento de las enfermedades pulmonares. A continuación, se desarrolla el tema en tres apartados claves: la importancia de la anatomía patológica, la revisión de la anatomía macroscópica y microscópica normal del sistema respiratorio, y los conceptos básicos junto con las patologías pulmonares más comunes desde la perspectiva anatomopatológica.</p>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">Importancia de la anatomía patológica para el diagnóstico y tratamiento de enfermedades pulmonares</h3>
+                    <p>La anatomía patológica es la rama de la medicina que estudia las alteraciones estructurales y funcionales de los tejidos y órganos causadas por enfermedades. En el sistema respiratorio, el anatomopatólogo analiza muestras de tejidos pulmonares (biopsias, citologías, piezas quirúrgicas o necropsias) para identificar cambios morfológicos que explican la enfermedad.</p>
+                    
+                    <ul>
+                        <li><strong>Diagnóstico preciso:</strong> La observación de patrones histopatológicos permite precisar la naturaleza de la enfermedad (inflamatoria, infecciosa, neoplásica, etc.) lo cual es vital para un diagnóstico certero.</li>
+                        <li><strong>Clasificación de enfermedades:</strong> Ayuda a clasificar las patologías pulmonar según su severidad, extensión y tipo celular afectado, facilitando un tratamiento adecuado.</li>
+                        <li><strong>Pronóstico y manejo:</strong> Los hallazgos anatomopatológicos correlacionados con la clínica y las imágenes permiten prever el comportamiento de la enfermedad y ajustar las opciones terapéuticas.</li>
+                        <li><strong>Investigación y medicina personalizada:</strong> Contribuye a descubrir nuevos mecanismos patogénicos y a elegir terapias dirigidas basadas en hallazgos moleculares.</li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">Anatomía macroscópica y microscópica normal del sistema respiratorio</h3>
+                    <p>Para interpretar adecuadamente las alteraciones patológicas, es esencial conocer la estructura normal:</p>
+                    
+                    <h4>Anatomía macroscópica</h4>
+                    <p>El sistema respiratorio comprende:</p>
+                    <ul>
+                        <li><strong>Vías aéreas superiores:</strong> nariz, faringe y laringe.</li>
+                        <li><strong>Vías aéreas inferiores:</strong> tráquea, bronquios principales, bronquios secundarios y terciarios.</li>
+                        <li><strong>Parénquima pulmonar:</strong> estructuras involucradas en la respiración, principalmente los alvéolos.</li>
+                        <li><strong>Pleura:</strong> membrana que recubre los pulmones y la cavidad torácica.</li>
+                    </ul>
+                    <p>Macroscópicamente, los pulmones son órganos esponjosos, de color rosado-pálido, con una superficie segmentada. La tráquea y bronquios son tubos cartilaginosos revestidos por mucosa.</p>
+                    
+                    <h4>Anatomía microscópica</h4>
+                    <p>Microscópicamente, las estructuras normales claves son:</p>
+                    <ul>
+                        <li><strong>Epitelio respiratorio:</strong> predominantemente epitelio cilíndrico ciliado con células caliciformes productoras de moco en vías aéreas.</li>
+                        <li><strong>Mucosa y submucosa:</strong> contienen glándulas seromucosas, tejido conectivo y vasos sanguíneos.</li>
+                        <li><strong>Cartílago y músculo liso:</strong> principal soporte estructural en tráquea y bronquios.</li>
+                        <li><strong>Alvéolos:</strong> formados por una lámina basal cubierta por neumocitos tipo I (intercambio gaseoso) y tipo II (producción de surfactante).</li>
+                        <li><strong>Capilares alveolares:</strong> estrechamente asociados a la pared alveolar, permiten el intercambio de gases.</li>
+                    </ul>
+                </div>
+                
+                <div class="subsection">
+                    <h3 class="subsection-title">Conceptos básicos y patologías pulmonares más comunes desde el punto de vista anatomopatológico</h3>
+                    
+                    <h4>Conceptos básicos</h4>
+                    <ul>
+                        <li><strong>Inflamación:</strong> respuesta tisular frente a agresiones, que puede ser aguda (exudativa con neutrófilos) o crónica (mononucleares, fibrosis).</li>
+                        <li><strong>Necrosis y degeneración celular:</strong> muerte o daño estructural de células que indican daño tisular.</li>
+                        <li><strong>Formación de granulomas:</strong> respuesta inmune específica con macrófagos y linfocitos, común en infecciones y enfermedades autoinmunes.</li>
+                        <li><strong>Proliferación celular:</strong> aumento anormal de células, puede ser benigna o neoplásica.</li>
+                    </ul>
+                    
+                    <h4>Patologías pulmonares más comunes</h4>
+                    <ol>
+                        <li>
+                            <strong>Enfermedades inflamatorias e infecciosas</strong>
+                            <ul>
+                                <li><strong>Neumonía:</strong> inflamación aguda con exudado alveolar rico en leucocitos neutrófilos.</li>
+                                <li><strong>Tuberculosis:</strong> formación de granulomas con necrosis caseosa.</li>
+                                <li><strong>Bronquitis:</strong> inflamación de las vías aéreas con infiltrado inflamatorio en mucosa y submucosa.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Enfermedades neoplásicas</strong>
+                            <ul>
+                                <li><strong>Carcinoma pulmonar:</strong> proliferación maligna de células epiteliales, con variantes como adenocarcinoma, carcinoma escamoso y carcinoma de células pequeñas.</li>
+                                <li><strong>Tumores benignos como hamartomas:</strong> constituidos por tejido pulmonar normal desorganizado.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Enfermedades intersticiales pulmonares</strong>
+                            <ul>
+                                <li><strong>Fibrosis pulmonar:</strong> aumento de tejido fibroso con pérdida de estructura alveolar y disminución de la capacidad respiratoria.</li>
+                                <li><strong>Neumonitis por hipersensibilidad:</strong> inflamación intersticial con células mononucleares.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
-    <section id="contacto" class="contact-section">
+    <section id="contacto" class="contact-section page-section">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Contáctenos</h2>
@@ -1175,7 +1351,7 @@
                     </div>
                     <h3 class="contact-title">Correo Electrónico</h3>
                     <div class="contact-details">
-                        <p><a href="mailto:jclab@56gmail.com">jclab@56gmail.com</a></p>
+                        <p><a href="mailto:jclab56@gmail.com">jclab56@gmail.com</a></p>
                     </div>
                 </div>
                 
@@ -1211,39 +1387,83 @@
         document.addEventListener('DOMContentLoaded', function() {
             const hamburger = document.querySelector('.hamburger');
             const navMenu = document.querySelector('.nav-menu');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pageSections = document.querySelectorAll('.page-section');
             
+            // Función para mostrar una sección específica
+            function showSection(sectionId) {
+                // Ocultar todas las secciones
+                pageSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Mostrar la sección solicitada
+                const targetSection = document.getElementById(sectionId);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                }
+                
+                // Actualizar enlace activo
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+                
+                // Guardar estado en el historial
+                history.pushState(null, null, `#${sectionId}`);
+            }
+            
+            // Manejar clics en enlaces de navegación
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href').substring(1);
+                    showSection(targetId);
+                    
+                    // Cerrar menú móvil si está abierto
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+            
+            // Manejar clics en botones de la página
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = href.substring(1);
+                        showSection(targetId);
+                    }
+                });
+            });
+            
+            // Manejar botón de menú hamburguesa
             hamburger.addEventListener('click', function() {
                 hamburger.classList.toggle('active');
                 navMenu.classList.toggle('active');
             });
             
-            // Cerrar menú al hacer clic en un enlace
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                    
-                    // Marcar enlace como activo
-                    navLinks.forEach(item => item.classList.remove('active'));
-                    this.classList.add('active');
-                });
+            // Manejar cambios en el historial (botones atrás/adelante)
+            window.addEventListener('popstate', function() {
+                const hash = window.location.hash.substring(1);
+                if (hash) {
+                    showSection(hash);
+                } else {
+                    showSection('inicio');
+                }
             });
             
-            // Smooth scrolling para enlaces
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        window.scrollTo({
-                            top: target.offsetTop - 90,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
+            // Inicializar página según hash de URL
+            const initialHash = window.location.hash.substring(1);
+            if (initialHash && document.getElementById(initialHash)) {
+                showSection(initialHash);
+            } else {
+                showSection('inicio');
+            }
         });
     </script>
 </body>
