@@ -1,0 +1,3064 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JC PATH LAB - Laboratorio de Anatomía Patológica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- RESET Y ESTILOS BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0056b3;
+            --secondary: #003366;
+            --accent: #007bff;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --text: #212529;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+            --card-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background-color: #f5f7fa;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER STYLES --- */
+        .header {
+            background-color: var(--white);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 0 5%;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 15px 0;
+        }
+
+        /* Logo Styles */
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            height: 60px;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        /* Navigation Styles */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            background: linear-gradient(135deg, #f8f4ff 0%, #e8f4f8 50%, #f0f8f4 100%);
+            border-radius: 50px;
+            padding: 8px 15px;
+            box-shadow: 0 4px 15px rgba(0, 86, 179, 0.1);
+        }
+
+        .nav-item {
+            margin-left: 10px;
+            position: relative;
+        }
+
+        .nav-item:first-child {
+            margin-left: 0;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 12px 20px;
+            position: relative;
+            transition: var(--transition);
+            border-radius: 30px;
+            background: transparent;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+            background: rgba(255, 255, 255, 0.7);
+            transform: translateY(-2px);
+        }
+
+        .nav-link:hover::after {
+            width: 60%;
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 10px rgba(0, 86, 179, 0.2);
+        }
+
+        .nav-link.active::after {
+            width: 60%;
+        }
+
+        /* Hamburger Menu Icon */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 10px;
+        }
+
+        .hamburger .line {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background-color: var(--secondary);
+            margin: 6px 0;
+            transition: var(--transition);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(0, 86, 179, 0.8) 0%, rgba(0, 51, 102, 0.9) 100%), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3') no-repeat center/cover;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 90px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(0, 51, 102, 0.7) 0%, rgba(0, 51, 102, 0.2) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: clamp(1000px, 90vw, 1600px);
+            width: 90%;
+            margin: 0 auto;
+            padding: 0 20px;
+            color: var(--white);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+            max-width: clamp(600px, 70vw, 1000px);
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2.5vw, 1.8rem);
+            margin-bottom: 40px;
+            max-width: clamp(500px, 60vw, 800px);
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Stats Section */
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+        }
+
+        .stat-content h3 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-content p {
+            font-size: 1rem;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        /* --- SERVICES SECTION --- */
+        .services-section {
+            padding: 100px 5%;
+            background-color: var(--white);
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto 70px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            color: var(--secondary);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            color: var(--dark);
+            font-weight: 400;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .services-accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .service-accordion-item {
+            border: 1px solid rgba(0, 86, 179, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 86, 179, 0.05);
+        }
+
+        .service-accordion-item:hover {
+            box-shadow: 0 8px 25px rgba(0, 86, 179, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .service-accordion-header {
+            background: linear-gradient(135deg, rgba(0, 86, 179, 0.05) 0%, rgba(0, 51, 102, 0.03) 100%);
+            padding: 25px 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            width: 100%;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .service-accordion-header:hover {
+            background: linear-gradient(135deg, rgba(0, 86, 179, 0.08) 0%, rgba(0, 51, 102, 0.05) 100%);
+        }
+
+        .service-title-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .service-title {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: var(--secondary);
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .service-accordion-icon {
+            font-size: 1.2rem;
+            color: var(--accent);
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .service-accordion-icon.rotated {
+            transform: rotate(180deg);
+        }
+
+        .service-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .service-accordion-content.active {
+            max-height: 300px;
+        }
+
+        .service-accordion-content-inner {
+            padding: 0 30px 25px;
+        }
+
+        .service-description {
+            color: var(--dark);
+            line-height: 1.7;
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            margin-bottom: 20px;
+        }
+
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+        }
+
+        .service-link i {
+            margin-left: 8px;
+            transition: var(--transition);
+        }
+
+        .service-link:hover {
+            color: var(--primary);
+        }
+
+        .service-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* --- ABOUT SECTION (QUIÉNES SOMOS) --- */
+        .about-section {
+            padding: 100px 5%;
+            background-color: #f9fbfd;
+            position: relative;
+        }
+
+        .about-section .container {
+            max-width: clamp(1000px, 90vw, 1600px);
+            margin: 0 auto;
+        }
+
+        .about-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .about-header .section-title {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            color: var(--secondary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .about-header .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 300px;
+            height: 300px;
+            margin: 0 auto 40px;
+            border: 5px solid var(--accent);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .personal-info {
+            background: linear-gradient(135deg, rgba(0, 86, 179, 0.05) 0%, rgba(0, 51, 102, 0.03) 100%);
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .personal-info p {
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .call-to-action {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 86, 179, 0.25);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .call-to-action p {
+            font-size: 1.4rem;
+            font-style: italic;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .call-to-action .btn {
+            padding: 12px 35px;
+            font-size: 1.1rem;
+            background-color: var(--white);
+            color: var(--primary);
+            border: 2px solid var(--white);
+            font-weight: 700;
+        }
+
+        .call-to-action .btn:hover {
+            background-color: transparent;
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .cv-content {
+            margin-top: 30px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .cv-section {
+            margin-bottom: 35px;
+            padding-bottom: 35px;
+            border-bottom: 1px solid rgba(0, 86, 179, 0.1);
+        }
+
+        .cv-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .cv-section h3 {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cv-section h3 i {
+            color: var(--accent);
+        }
+
+        .cv-section p {
+            color: var(--dark);
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        .cv-section ul {
+            padding-left: 25px;
+            margin-top: 10px;
+        }
+
+        .cv-section ul li {
+            margin-bottom: 15px;
+            line-height: 1.7;
+            color: var(--dark);
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .cv-section ul li::before {
+            content: "•";
+            color: var(--accent);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .skills-grid li {
+            background: rgba(0, 86, 179, 0.05);
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: var(--transition);
+            border-left: 3px solid var(--accent);
+        }
+
+        .skills-grid li:hover {
+            background: rgba(0, 86, 179, 0.1);
+            transform: translateX(5px);
+        }
+
+        /* --- NEW CONTACT SECTION --- */
+        .contact-section {
+            padding: 100px 5%;
+            background-color: var(--white);
+            position: relative;
+        }
+
+        .contact-section .container {
+            max-width: clamp(1000px, 90vw, 1600px);
+            margin: 0 auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .contact-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 40px 30px;
+            transition: var(--transition);
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            border: 1px solid rgba(0, 86, 179, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 86, 179, 0.1);
+        }
+
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(0, 86, 179, 0.1) 0%, rgba(0, 51, 102, 0.05) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .contact-title {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .contact-details {
+            font-size: 1.1rem;
+            color: var(--dark);
+            line-height: 1.7;
+        }
+
+        .contact-details a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-details a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+
+        .map-container {
+            margin-top: 60px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            height: 400px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* --- CLASSROOM SECTION --- */
+        .classroom-section {
+            padding: 100px 5%;
+            background-color: #f0f8ff;
+            position: relative;
+        }
+
+        .classroom-section .container {
+            max-width: clamp(1000px, 90vw, 1600px);
+            margin: 0 auto;
+        }
+
+        .classroom-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .classroom-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border: 1px solid rgba(0, 86, 179, 0.1);
+            text-align: center;
+        }
+
+        .classroom-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 86, 179, 0.15);
+        }
+
+        .classroom-icon {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3.5rem;
+        }
+
+        .classroom-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .classroom-title {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .classroom-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent);
+            color: var(--white);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-top: 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .classroom-btn:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Classroom Tabs and Content Styles */
+        .classroom-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: linear-gradient(135deg, rgba(0, 86, 179, 0.1) 0%, rgba(0, 51, 102, 0.05) 100%);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 86, 179, 0.2);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .topic-accordion-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .topic-accordion-item {
+            border: 1px solid rgba(0, 86, 179, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 86, 179, 0.05);
+        }
+
+        .topic-accordion-item:hover {
+            box-shadow: 0 8px 25px rgba(0, 86, 179, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .topic-accordion-header {
+            background: linear-gradient(135deg, rgba(0, 86, 179, 0.05) 0%, rgba(0, 51, 102, 0.03) 100%);
+            padding: 20px 25px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            width: 100%;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topic-accordion-header:hover {
+            background: linear-gradient(135deg, rgba(0, 86, 179, 0.08) 0%, rgba(0, 51, 102, 0.05) 100%);
+        }
+
+        .topic-title-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+
+        .topic-number {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .topic-title {
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            color: var(--secondary);
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .topic-accordion-icon {
+            font-size: 1.2rem;
+            color: var(--accent);
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .topic-accordion-icon.rotated {
+            transform: rotate(180deg);
+        }
+
+        .topic-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .topic-accordion-content.active {
+            max-height: 1000px;
+        }
+
+        .topic-accordion-content-inner {
+            padding: 0 25px 25px;
+        }
+
+        .topic-accordion-content-inner p {
+            color: var(--dark);
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+        }
+
+        .topic-accordion-content-inner ul {
+            padding-left: 25px;
+            margin-top: 10px;
+        }
+
+        .topic-accordion-content-inner ul li {
+            margin-bottom: 12px;
+            line-height: 1.7;
+            color: var(--dark);
+            position: relative;
+            padding-left: 20px;
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+        }
+
+        .topic-accordion-content-inner ul li::before {
+            content: "▪";
+            color: var(--accent);
+            font-size: 1.2rem;
+            position: absolute;
+            left: 0;
+            top: 2px;
+        }
+
+        .topic-note {
+            background: linear-gradient(135deg, rgba(0, 86, 179, 0.05) 0%, rgba(0, 51, 102, 0.02) 100%);
+            border-left: 4px solid var(--accent);
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 20px;
+        }
+
+        .topic-note p {
+            margin: 0;
+            font-style: italic;
+            color: var(--secondary);
+        }
+
+        /* Secciones independientes */
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Styles */
+        @media screen and (min-width: 1921px) {
+            .hero h1 {
+                font-size: 4.5rem;
+                max-width: 1000px;
+            }
+            
+            .hero p {
+                font-size: 1.8rem;
+                max-width: 800px;
+            }
+            
+            .section-title {
+                font-size: 4rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1.6rem;
+            }
+            
+            .services-container {
+                max-width: 1600px;
+            }
+            
+            .service-accordion-header {
+                padding: 35px 40px;
+            }
+            
+            .service-accordion-content-inner {
+                padding: 0 40px 35px;
+            }
+            
+            .about-section .container {
+                max-width: 1600px;
+            }
+            
+            .contact-section .container {
+                max-width: 1600px;
+            }
+        }
+        
+        @media screen and (min-width: 1441px) and (max-width: 1920px) {
+            .hero h1 {
+                font-size: 4rem;
+                max-width: 900px;
+            }
+            
+            .hero p {
+                font-size: 1.6rem;
+                max-width: 700px;
+            }
+            
+            .services-container {
+                max-width: 1400px;
+            }
+        }
+
+        @media screen and (max-width: 1024px) {
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .about-header .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .call-to-action p {
+                font-size: 1.2rem;
+            }
+
+            .classroom-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 25px;
+            }
+            
+            .classroom-tabs {
+                gap: 15px;
+                margin-bottom: 30px;
+            }
+            
+            .tab-btn {
+                padding: 12px 25px;
+                font-size: 0.95rem;
+            }
+            
+            .service-title-container {
+                gap: 15px;
+            }
+            
+            .service-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+        }
+
+        @media screen and (max-width: 860px) {
+            .hamburger {
+                display: block;
+                z-index: 1001;
+            }
+            
+            .hamburger.active .line:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+            }
+            
+            .hamburger.active .line:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active .line:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
+                background: linear-gradient(135deg, #f8f4ff 0%, #e8f4f8 50%, #f0f8f4 100%);
+                flex-direction: column;
+                align-items: center;
+                padding: 100px 20px 50px;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+                border-radius: 0;
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .nav-item {
+                margin: 20px 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-item:first-child {
+                margin-top: 20px;
+            }
+            
+            .nav-link {
+                font-size: 18px;
+                display: block;
+                padding: 15px 20px;
+                border-radius: 30px;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.7);
+                margin-bottom: 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .hero-stats {
+                gap: 20px;
+            }
+            
+            .services-section, .about-section, .contact-section, .classroom-section {
+                padding: 70px 5%;
+            }
+            
+            .section-header {
+                margin-bottom: 50px;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .service-accordion-header {
+                padding: 20px 25px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .service-title-container {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .service-accordion-icon {
+                position: absolute;
+                top: 25px;
+                right: 25px;
+            }
+            
+            .service-accordion-content-inner {
+                padding: 0 25px 20px;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .map-container {
+                height: 350px;
+            }
+
+            .classroom-grid {
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                gap: 20px;
+            }
+            
+            .contact-accordion-container {
+                gap: 15px;
+            }
+            
+            .contact-accordion-header {
+                padding: 20px 25px;
+            }
+            
+            .contact-accordion-content-inner {
+                padding: 0 25px 20px;
+            }
+            
+            .cv-accordion-header {
+                padding: 20px 25px;
+            }
+            
+            .cv-accordion-content-inner {
+                padding: 0 25px 20px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .about-image {
+                width: 250px;
+                height: 250px;
+            }
+
+            .contact-accordion-container {
+                gap: 15px;
+                max-width: 95vw;
+            }
+
+            .contact-accordion-header {
+                padding: 20px 25px;
+            }
+
+            .contact-accordion-content-inner {
+                padding: 0 25px 20px;
+            }
+
+            .cv-accordion-header {
+                padding: 20px 25px;
+            }
+
+            .cv-accordion-content-inner {
+                padding: 0 25px 20px;
+            }
+
+            .service-accordion-header {
+                padding: 20px 25px;
+            }
+
+            .service-accordion-content-inner {
+                padding: 0 25px 20px;
+            }
+
+            .classroom-title {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .contact-accordion-container {
+                max-width: 100%;
+                gap: 12px;
+            }
+
+            .service-accordion-header {
+                padding: 15px 20px;
+                position: relative;
+            }
+
+            .service-title-container {
+                gap: 10px;
+                padding-right: 30px;
+            }
+
+            .service-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .service-title {
+                font-size: 1.1rem;
+            }
+
+            .service-accordion-content-inner {
+                padding: 0 20px 15px;
+            }
+
+            .map-container {
+                height: 300px;
+            }
+
+            .classroom-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .logo {
+                height: 50px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .stat-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .stat-icon {
+                font-size: 2rem;
+            }
+            
+            .stat-content h3 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .service-accordion-header {
+                padding: 15px 20px;
+                position: relative;
+            }
+            
+            .service-title-container {
+                gap: 10px;
+                padding-right: 30px;
+            }
+            
+            .service-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .service-title {
+                font-size: 1.2rem;
+            }
+            
+            .service-accordion-content-inner {
+                padding: 0 20px 15px;
+            }
+            
+            .about-header .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .personal-info p {
+                font-size: 0.95rem;
+            }
+            
+            .call-to-action p {
+                font-size: 1.1rem;
+            }
+            
+            .cv-section h3 {
+                font-size: 1.3rem;
+            }
+            
+            .cv-section p, .cv-section ul li {
+                font-size: 0.95rem;
+            }
+            
+            /* Ocultar la imagen en dispositivos móviles */
+            .about-image {
+                display: none;
+            }
+
+            .contact-title {
+                font-size: 1.3rem;
+            }
+
+            .contact-details {
+                font-size: 1rem;
+            }
+
+            .map-container {
+                height: 250px;
+            }
+
+            .classroom-icon {
+                height: 100px;
+                font-size: 2.8rem;
+            }
+
+            .classroom-title {
+                font-size: 1.3rem;
+            }
+            
+            .classroom-tabs {
+                flex-direction: column;
+                gap: 10px;
+                margin-bottom: 25px;
+            }
+            
+            .tab-btn {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .topic-accordion-header {
+                padding: 15px 20px;
+            }
+            
+            .topic-accordion-content-inner {
+                padding: 0 20px 20px;
+            }
+            
+            .topic-title-container {
+                gap: 10px;
+            }
+            
+            .topic-number {
+                width: 30px;
+                height: 30px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Estilos para menús desplegables de contacto */
+        .contact-accordion-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 50px;
+            max-width: clamp(600px, 80vw, 1000px);
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .contact-accordion-item {
+            margin-bottom: 20px;
+            border: 1px solid rgba(0, 86, 179, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+            background: var(--white);
+        }
+
+        .contact-accordion-item:hover {
+            box-shadow: 0 8px 25px rgba(0, 86, 179, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .contact-accordion-header {
+            background: linear-gradient(135deg, rgba(0, 86, 179, 0.05) 0%, rgba(0, 51, 102, 0.03) 100%);
+            padding: 25px 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            width: 100%;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .contact-accordion-header:hover {
+            background: linear-gradient(135deg, rgba(0, 86, 179, 0.08) 0%, rgba(0, 51, 102, 0.05) 100%);
+        }
+
+        .contact-accordion-header .contact-title {
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 700;
+        }
+
+        .contact-accordion-header .contact-icon {
+            margin-bottom: 0;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+        }
+
+        .contact-accordion-icon {
+            font-size: 1.2rem;
+            color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .contact-accordion-icon.rotated {
+            transform: rotate(180deg);
+        }
+
+        .contact-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .contact-accordion-content.active {
+            max-height: 200px;
+        }
+
+        .contact-accordion-content-inner {
+            padding: 0 30px 25px;
+        }
+
+        .contact-accordion-content .contact-details {
+            font-size: 1.1rem;
+            color: var(--dark);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .contact-accordion-content .contact-details a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-accordion-content .contact-details a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+        
+        /* Estilos para menús desplegables del CV */
+        .cv-accordion-item {
+            margin-bottom: 20px;
+            border: 1px solid rgba(0, 86, 179, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 86, 179, 0.05);
+        }
+
+        .cv-accordion-item:hover {
+            box-shadow: 0 8px 25px rgba(0, 86, 179, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .cv-accordion-header {
+            background: linear-gradient(135deg, rgba(0, 86, 179, 0.05) 0%, rgba(0, 51, 102, 0.03) 100%);
+            padding: 25px 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            width: 100%;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cv-accordion-header:hover {
+            background: linear-gradient(135deg, rgba(0, 86, 179, 0.08) 0%, rgba(0, 51, 102, 0.05) 100%);
+        }
+
+        .cv-title-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .cv-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(0, 86, 179, 0.1) 0%, rgba(0, 51, 102, 0.05) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .cv-accordion-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        .cv-accordion-icon {
+            font-size: 1.2rem;
+            color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .cv-accordion-icon.rotated {
+            transform: rotate(180deg);
+        }
+
+        .cv-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .cv-accordion-content.active {
+            max-height: 800px;
+        }
+
+        .cv-accordion-content-inner {
+            padding: 0 30px 25px;
+        }
+
+        .cv-accordion-content-inner p {
+            color: var(--dark);
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        .cv-accordion-content-inner ul {
+            padding-left: 25px;
+            margin-top: 10px;
+        }
+
+        .cv-accordion-content-inner ul li {
+            margin-bottom: 15px;
+            line-height: 1.7;
+            color: var(--dark);
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .cv-accordion-content-inner ul li::before {
+            content: "•";
+            color: var(--accent);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="header-container">
+            <!-- Logo -->
+            <div class="logo-container">
+                <img src="logo-jcpathlab.png" alt="JC PATH LAB Logo" class="logo">
+            </div>
+            
+            <!-- Navigation Menu -->
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#inicio" class="nav-link active">Inicio</a></li>
+                    <li class="nav-item"><a href="#servicios" class="nav-link">Servicios</a></li>
+                    <li class="nav-item"><a href="#quienes-somos" class="nav-link">Quiénes Somos</a></li>
+                    <li class="nav-item"><a href="#classroom" class="nav-link">Classroom</a></li>
+                    <li class="nav-item"><a href="#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Hamburger Menu -->
+            <button class="hamburger">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Secciones independientes -->
+    <!-- Inicio Section -->
+    <section id="inicio" class="hero page-section active">
+        <div class="hero-content">
+            <h1>Excelencia en Diagnóstico Patológico</h1>
+            <p>En JC PATH LAB combinamos tecnología de vanguardia con experiencia médica para ofrecer diagnósticos precisos y confiables.</p>
+            
+            <div class="hero-buttons">
+                <a href="#contacto" class="btn btn-primary">Solicitar Servicios</a>
+                <a href="#servicios" class="btn btn-secondary">Conocer Más</a>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>35+</h3>
+                        <p>Años de Experiencia</p>
+                    </div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Especialista Certificado</h3>
+                    </div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>50K+</h3>
+                        <p>Estudios Realizados</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section id="servicios" class="services-section page-section">
+        <div class="section-header">
+            <h2 class="section-title">Nuestros Servicios Especializados</h2>
+            <p class="section-subtitle">Ofrecemos una gama completa de servicios de anatomía patológica con tecnología de punta y profesionales altamente capacitados para garantizar resultados precisos y confiables.</p>
+        </div>
+        
+        <div class="services-container">
+            <div class="services-accordion">
+                <!-- Service 1 -->
+                <div class="service-accordion-item">
+                    <button class="service-accordion-header">
+                        <div class="service-title-container">
+                            <div class="service-icon">
+                                <i class="fas fa-microscope"></i>
+                            </div>
+                            <h3 class="service-title">Diagnóstico de biopsias</h3>
+                        </div>
+                        <i class="fas fa-chevron-down service-accordion-icon"></i>
+                    </button>
+                    <div class="service-accordion-content">
+                        <div class="service-accordion-content-inner">
+                            <p class="service-description">Análisis microscópico de tejidos obtenidos por cirugía o procedimientos médicos para identificar la presencia y tipo de enfermedades como tumores o inflamaciones. Este proceso orienta el diagnóstico y el tratamiento médico adecuado.</p>
+                            <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-accordion-item">
+                    <button class="service-accordion-header">
+                        <div class="service-title-container">
+                            <div class="service-icon">
+                                <i class="fas fa-vial"></i>
+                            </div>
+                            <h3 class="service-title">Estudios citológicos</h3>
+                        </div>
+                        <i class="fas fa-chevron-down service-accordion-icon"></i>
+                    </button>
+                    <div class="service-accordion-content">
+                        <div class="service-accordion-content-inner">
+                            <p class="service-description">Evaluación de células individuales o en pequeños grupos, como en el Papanicolaou, para detectar infecciones, alteraciones premalignas o malignas, ayudando a la prevención y diagnóstico temprano.</p>
+                            <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-accordion-item">
+                    <button class="service-accordion-header">
+                        <div class="service-title-container">
+                            <div class="service-icon">
+                                <i class="fas fa-dna"></i>
+                            </div>
+                            <h3 class="service-title">Inmunohistoquímica</h3>
+                        </div>
+                        <i class="fas fa-chevron-down service-accordion-icon"></i>
+                    </button>
+                    <div class="service-accordion-content">
+                        <div class="service-accordion-content-inner">
+                            <p class="service-description">Utilización de anticuerpos específicos para identificar proteínas en los tejidos, permitiendo distinguir tipos específicos de tumores, infecciones o enfermedades autoinmunes con gran precisión.</p>
+                            <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-accordion-item">
+                    <button class="service-accordion-header">
+                        <div class="service-title-container">
+                            <div class="service-icon">
+                                <i class="fas fa-snowflake"></i>
+                            </div>
+                            <h3 class="service-title">Biopsia intraoperatoria</h3>
+                        </div>
+                        <i class="fas fa-chevron-down service-accordion-icon"></i>
+                    </button>
+                    <div class="service-accordion-content">
+                        <div class="service-accordion-content-inner">
+                            <p class="service-description">Análisis rápido de una muestra durante la cirugía para ayudar a tomar decisiones inmediatas sobre el tratamiento quirúrgico, proporcionando resultados en pocos minutos.</p>
+                            <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-accordion-item">
+                    <button class="service-accordion-header">
+                        <div class="service-title-container">
+                            <div class="service-icon">
+                                <i class="fas fa-scalpel"></i>
+                            </div>
+                            <h3 class="service-title">Análisis de piezas quirúrgicas</h3>
+                        </div>
+                        <i class="fas fa-chevron-down service-accordion-icon"></i>
+                    </button>
+                    <div class="service-accordion-content">
+                        <div class="service-accordion-content-inner">
+                            <p class="service-description">Estudio detallado de órganos o partes del cuerpo removidos en cirugía para evaluar la extensión de una enfermedad o confirmar un diagnóstico previo.</p>
+                            <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section - Quiénes Somos -->
+    <section id="quienes-somos" class="about-section page-section">
+        <div class="container">
+            <div class="about-header">
+                <h2 class="section-title">Dr. Josehp Christopher Castillo Cuenca</h2>
+                <p class="subtitle">Especialista en Anatomía Patológica</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="fotojosehpcastillo.png" alt="Dr. Josehp Christopher Castillo Cuenca">
+                </div>
+                
+                <div class="personal-info">
+                    <p><strong>DNI:</strong> 41457466 | <strong>Edad:</strong> 43 años | <strong>Fecha de nacimiento:</strong> 20/07/1982</p>
+                    <p><strong>Dirección:</strong> Mz M2 Lt13 Asociación de Vivienda "Los Jardines de Chillón", Pte. Piedra</p>
+                    <p><strong>Teléfono:</strong> 986396733 | <strong>Email:</strong> grupopatologia2012@gmail.com</p>
+                    <p><strong>Colegio Médico del Perú Nº:</strong> 56435</p>
+                </div>
+                
+                <div class="call-to-action">
+                    <p>"Comprometido con la excelencia diagnóstica y la formación de futuros patólogos"</p>
+                    <a href="#contacto" class="btn btn-primary">Contactar</a>
+                </div>
+                
+                <div class="cv-content">
+                    <!-- Perfil Profesional -->
+                    <div class="cv-accordion-item">
+                        <button class="cv-accordion-header">
+                            <div class="cv-title-container">
+                                <div class="cv-icon">
+                                    <i class="fas fa-user-md"></i>
+                                </div>
+                                <h3>PERFIL PROFESIONAL</h3>
+                            </div>
+                            <i class="fas fa-chevron-down cv-accordion-icon"></i>
+                        </button>
+                        <div class="cv-accordion-content">
+                            <div class="cv-accordion-content-inner">
+                                <p>Médico cirujano especializado en Anatomía Patológica, con experiencia en diagnóstico histopatológico, patología molecular, investigación clínica và docencia universitaria. Orientado a la excelencia diagnóstica, actualización continua y trabajo multidisciplinario. Destaca por su capacidad analítica, liderazgo y compromiso con la formación médica.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Educación -->
+                    <div class="cv-accordion-item">
+                        <button class="cv-accordion-header">
+                            <div class="cv-title-container">
+                                <div class="cv-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <h3>EDUCACIÓN</h3>
+                            </div>
+                            <i class="fas fa-chevron-down cv-accordion-icon"></i>
+                        </button>
+                        <div class="cv-accordion-content">
+                            <div class="cv-accordion-content-inner">
+                                <ul>
+                                    <li><strong>Secundaria:</strong> Técnico en Computación e Informática - Colegio Nacional Politécnico de Varones del Callao, Dulanto-Callao, 1998</li>
+                                    <li><strong>Educación Superior:</strong> Médico Cirujano - Universidad Nacional Mayor de San Marcos (UNMSM), Lima, Perú – 2010</li>
+                                    <li><strong>Especialización:</strong> Residentado Médico en Anatomía Patológica - UNMSM – 2012 a 2015 (Hospital Nacional Daniel Alcides Carrión)</li>
+                                    <li>Rotación en Patología Neonatal (Hospital Nacional Docente Madre Niño San Bartolomé, Nov 2013)</li>
+                                    <li>Rotación en Patología Oncológica (INEN, Junio - Julio 2015)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Experiencia Laboral -->
+                    <div class="cv-accordion-item">
+                        <button class="cv-accordion-header">
+                            <div class="cv-title-container">
+                                <div class="cv-icon">
+                                    <i class="fas fa-briefcase"></i>
+                                </div>
+                                <h3>EXPERIENCIA LABORAL</h3>
+                            </div>
+                            <i class="fas fa-chevron-down cv-accordion-icon"></i>
+                        </button>
+                        <div class="cv-accordion-content">
+                            <div class="cv-accordion-content-inner">
+                                <ul>
+                                    <li><strong>Hospital Nacional Daniel Alcides Carrión – Callao</strong><br>
+                                        Médico Asistente del Servicio de Anatomía Patológica (Dic 2016 – Presente)<br>
+                                        Tutor de médicos residentes, responsable de diagnósticos integrales en biopsias, citologías, necrópsias y estudios intraoperatorios.</li>
+                                    <li><strong>Universidad Nacional Mayor de San Marcos</strong><br>
+                                        Docente Auxiliar en Anatomía Patológica (Ene 2016 – Presente)<br>
+                                        Tutor de residentes en interpretación de láminas histopatológicas, macroscopía e inmunohistoquímica.</li>
+                                    <li><strong>Instituto de Anatomía Patológica y Patología Molecular Arias Stella</strong><br>
+                                        Anatomo patólogo área Microscopia (Jul 2015 – Presente, Tiempo completo)<br>
+                                        Encargado área Macroscopía (Jun 2014 – Jun 2015)</li>
+                                    <li><strong>Hospital Nacional Daniel Alcides Carrión – Callao</strong><br>
+                                        Médico Residente en Anatomía Patológica (Jul 2012 – Jun 2015)<br>
+                                        Jefe de residentes (2013-2015)</li>
+                                    <li><strong>Centro de Salud Santa Clara, Sihuas – Huaraz</strong><br>
+                                        Médico SERUMS (May 2010 – Abr 2011)<br>
+                                        Atención en medicina general, promoción preventiva, jefe de puesto y encargado de zoonosis.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cursos y Actualizaciones -->
+                    <div class="cv-accordion-item">
+                        <button class="cv-accordion-header">
+                            <div class="cv-title-container">
+                                <div class="cv-icon">
+                                    <i class="fas fa-certificate"></i>
+                                </div>
+                                <h3>CURSOS Y ACTUALIZACIONES DESTACADAS</h3>
+                            </div>
+                            <i class="fas fa-chevron-down cv-accordion-icon"></i>
+                        </button>
+                        <div class="cv-accordion-content">
+                            <div class="cv-accordion-content-inner">
+                                <ul>
+                                    <li>Curso Internacional de Actualización en Patología Genitourinaria (2014)</li>
+                                    <li>I Convención Nacional de Anatomía Patológica – ESSALUD (2014)</li>
+                                    <li>V Jornada Peruana de Patología Oncológica, Trujillo (2018), Segundo premio caso clínico</li>
+                                    <li>Curso Internacional de Patología Gastrointestinal (2018)</li>
+                                    <li>Pathologist Training Workshop, Laboratorios Roche Argentina (2019)</li>
+                                    <li>IX Congreso Internacional de Patología Uro-Oncológica (2019)</li>
+                                    <li>XXXII Congreso Latinoamericano de Patología – SLAP (2019)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Producción Académica -->
+                    <div class="cv-accordion-item">
+                        <button class="cv-accordion-header">
+                            <div class="cv-title-container">
+                                <div class="cv-icon">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                                <h3>PRODUCCIÓN ACADÉMICA</h3>
+                            </div>
+                            <i class="fas fa-chevron-down cv-accordion-icon"></i>
+                        </button>
+                        <div class="cv-accordion-content">
+                            <div class="cv-accordion-content-inner">
+                                <ul>
+                                    <li>Coautor artículo: "Percepción de estudiantes de medicina sobre la virtualización de la educación médica durante la pandemia de COVID-19", Revista Acta Médica Peruana.</li>
+                                    <li>Ponente en casos clínicos destacados: "Nevo de Spitz Atípico" y "Histoplasmosis diseminada aguda en paciente VIH/SIDA".</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Habilidades -->
+                    <div class="cv-accordion-item">
+                        <button class="cv-accordion-header">
+                            <div class="cv-title-container">
+                                <div class="cv-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h3>HABILIDADES</h3>
+                            </div>
+                            <i class="fas fa-chevron-down cv-accordion-icon"></i>
+                        </button>
+                        <div class="cv-accordion-content">
+                            <div class="cv-accordion-content-inner">
+                                <ul class="skills-grid">
+                                    <li>Diagnóstico morfológico e inmunohistoquímico integral</li>
+                                    <li>Análisis molecular de tejidos y células</li>
+                                    <li>Experiencia en necropsias, biopsias intraoperatorias y estudios citológicos</li>
+                                    <li>Capacitación docencia y tutoría en anatomía patológica pregrado y postgrado</li>
+                                    <li>Manejo avanzado de plataformas académicas virtuales y presenciales</li>
+                                    <li>Liderazgo y trabajo multidisciplinario</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Datos Personales -->
+                    <div class="cv-accordion-item">
+                        <button class="cv-accordion-header">
+                            <div class="cv-title-container">
+                                <div class="cv-icon">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <h3>DATOS PERSONALES Y CARACTERÍSTICAS</h3>
+                            </div>
+                            <i class="fas fa-chevron-down cv-accordion-icon"></i>
+                        </button>
+                        <div class="cv-accordion-content">
+                            <div class="cv-accordion-content-inner">
+                                <p>Responsable, dinámico, asertivo, con alta capacidad analítica, rapidez de aprendizaje, solidario y colaborativo en equipos de trabajo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Classroom Section -->
+    <section id="classroom" class="classroom-section page-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Classroom</h2>
+                <p class="section-subtitle">Recursos educativos de Anatomía Patológica</p>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <div class="classroom-tabs">
+                <button class="tab-btn active" onclick="showTab('dermatologia')">Dermatopatología</button>
+                <button class="tab-btn" onclick="showTab('neuropatologia')">Neuropatología</button>
+                <button class="tab-btn" onclick="showTab('tumores-partes-blandas')">Tumores de Partes Blandas</button>
+                <button class="tab-btn" onclick="showTab('citopatologia')">Citopatología</button>
+                <button class="tab-btn" onclick="showTab('patologia-gastrointestinal')">Patología Gastrointestinal</button>
+                <button class="tab-btn" onclick="showTab('patologia-genitourinaria')">Patología Genitourinaria</button>
+                <button class="tab-btn" onclick="showTab('patologia-ginecologica')">Patología Ginecológica</button>
+                <button class="tab-btn" onclick="showTab('patologia-cabeza-cuello')">Patología de Cabeza y Cuello</button>
+                <button class="tab-btn" onclick="showTab('patologia-hepatobiliar')">Patología Hepatobiliar y Pancreática</button>
+                <button class="tab-btn" onclick="showTab('patologia-ganglio-linfatico')">Patología de Ganglio Linfático</button>
+                <button class="tab-btn" onclick="showTab('histologia-normal')">Histología Normal</button>
+                <button class="tab-btn" onclick="showTab('placenta')">Placenta</button>
+                <button class="tab-btn" onclick="showTab('patologia-toracica')">Patología Torácica</button>
+            </div>
+
+            <!-- Dermatopathology Content -->
+            <div id="dermatologia" class="tab-content active">
+                <div class="topic-accordion-container">
+                    <!-- Topic 1: Carcinoma Basocelular -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">1</div>
+                                <h3 class="topic-title">Carcinoma Basocelular (CBC)</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Descripción:</strong> Es el cáncer de piel más común en humanos. De crecimiento lento y con una capacidad de metastatizar extremadamente rara, pero con potencial destructivo local si no se trata.</p>
+                                <p><strong>Hallazgos histológicos clave:</strong> Nidos de células basaloides (de núcleos oscuros y escaso citoplasma) en la dermis. Las células periféricas del nido suelen disponerse en "empalizada". Es característica la retracción del estroma que rodea los nidos, creando unos espacios claros o hendiduras artificiales.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 2: Carcinoma Espinocelular -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">2</div>
+                                <h3 class="topic-title">Carcinoma Espinocelular o Escamocelular (CEC)</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Descripción:</strong> El segundo cáncer de piel más común. Surge de los queratinocitos de la epidermis y tiene un riesgo bajo pero significativo de metástasis, especialmente en casos de mayor grosor o en pacientes inmunodeprimidos.</p>
+                                <p><strong>Hallazgos histológicos clave:</strong> Proliferación de células epiteliales atípicas que se extienden desde la epidermis hacia la dermis. Se busca la presencia de "perlas córneas" (queratinización anormal) y puentes intercelulares (desmosomas). El grado de atipia (bien, moderadamente o pobremente diferenciado) es crucial.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 3: Queratosis Seborreica -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">3</div>
+                                <h3 class="topic-title">Queratosis Seborreica</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Descripción:</strong> Una lesión benigna, extremadamente común, que a menudo se confunde clínicamente con melanoma o otras lesiones pigmentadas. No tiene potencial maligno.</p>
+                                <p><strong>Hallazgos histológicos clave:</strong> Hiperplasia epidérmica benigna ("engrosamiento") con hiperqueratosis (aumento de la capa córnea) y pseudoquistes córneos (pequeñas inclusiones redondas de queratina dentro de la lesión). La base de la lesión es recta y no infiltra la dermis profunda.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 4: Nevus Melanocítico -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">4</div>
+                                <h3 class="topic-title">Nevus Melanocítico (Lunares)</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Descripción:</strong> Proliferaciones benignas de melanocitos (células que producen pigmento). Son omnipresentes y se presentan en una gran variedad de formas (junctional, compuesto, dérmico).</p>
+                                <p><strong>Hallazgos histológicos clave:</strong> Se caracterizan por nidos (theques) de melanocitos benignos. Su localización define el tipo:</p>
+                                <ul>
+                                    <li><strong>Junctional:</strong> los nidos están confinados en la unión dermo-epidérmica.</li>
+                                    <li><strong>Compuesto:</strong> los nidos están en la unión y dentro de la dermis.</li>
+                                    <li><strong>Dérmico:</strong> los nidos están solo en la dermis, con melanocitos que a menudo se vuelven más pequeños y "maduran" hacia la profundidad.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 5: Dermatitis Espongiótica -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">5</div>
+                                <h3 class="topic-title">Dermatitis Espongiótica (Eccema)</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Descripción:</strong> Un patrón histológico de inflamación aguda o subaguda que se observa en una variedad de condiciones, como dermatitis atópica, de contacto o eccema.</p>
+                                <p><strong>Hallazgos histológicos clave:</strong> El hallazgo principal es el edema intercelular dentro de la epidermis (espongiosis), que puede formar vesículas llenas de líquido. Suele ir acompañado de un infiltrado inflamatorio de linfocitos y eosinófilos en la dermis superficial.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 6: Psoriasis Vulgaris -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">6</div>
+                                <h3 class="topic-title">Psoriasis Vulgaris</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Descripción:</strong> Enfermedad inflamatoria crónica de la piel con una base autoinmune.</p>
+                                <p><strong>Hallazgos histológicos clave:</strong></p>
+                                <ul>
+                                    <li>Hiperqueratosis paraqueratótica (capa córnea con núcleos retenidos).</li>
+                                    <li>Acantosis regular (engrosamiento epidérmico uniforme) con elongación de las crestas interpapilares.</li>
+                                    <li>Papilomatosis y capilares dilatados y tortuosos en las papilas dérmicas.</li>
+                                    <li>Microabscesos de Munro (acúmulos de neutrófilos en la capa córnea) y Abscesos de Pautrier (en la epidermis).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 7: Quiste Epidérmico -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">7</div>
+                                <h3 class="topic-title">Quiste Epidérmico</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Descripción:</strong> La lesión quística subcutánea más común. Se forma por la inclusión de epidermis dentro de la dermis, que continúa produciendo queratina.</p>
+                                <p><strong>Hallazgos histológicos clave:</strong> Quiste revestido por un epitelio escamoso estratificado normal (similar a la epidermis) y lleno de material queratínico laminado. Si se rompe, provoca una intensa reacción inflamatoria de cuerpo extraño con células gigantes.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 8: Melanoma Maligno -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">8</div>
+                                <h3 class="topic-title">Melanoma Maligno</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Descripción:</strong> El cáncer de piel más mortífero, que surge de los melanocitos. Su diagnóstico temprano es crucial. Aunque no es tan común como los carcinomas baso o escamocelulares, es una de las patologías más importantes y frecuentemente biopsiada por sospecha.</p>
+                                <p><strong>Hallazgos histológicos clave:</strong> Proliferación atípica de melanocitos que muestran atipia citológica, pérdida de maduración con la profundidad, y actividad mitótica. Características como ulceración, regresión y nivel de invasión (índice de Breslow) son críticas para el pronóstico.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 9: Liquen Plano -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">9</div>
+                                <h3 class="topic-title">Liquen Plano</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Descripción:</strong> Enfermedad inflamatoria crónica que afecta la piel y las mucosas.</p>
+                                <p><strong>Hallazgos histológicos clave:</strong></p>
+                                <ul>
+                                    <li>Infiltrado linfo-histiocítico en banda ("en empedrado" o liquenoide) en la unión dermo-epidérmica.</li>
+                                    <li>Degeneración vacuolar de la capa basal de la epidermis.</li>
+                                    <li>Hiperqueratosis e hipergranulosis (engrosamiento de la capa granulosa).</li>
+                                    <li>Cuerpos coloides o de Civatte (células apoptóticas eosinófílicas en la dermis).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 10: Verruga Vulgaris -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">10</div>
+                                <h3 class="topic-title">Verruga Vulgaris</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Descripción:</strong> Lesión cutánea benigna causada por el virus del papiloma humano (VPH).</p>
+                                <p><strong>Hallazgos histológicos clave:</strong> Marcada hiperqueratosis y papilomatosis. Presencia de coilocitos en la capa granulosa (queratinocitos con halo claro perinuclear y núcleos picnóticos/arrugados, que es el efecto citopático del VPH). También suele haber acantosis y elongación de las crestas epidérmicas.</p>
+                                <div class="topic-note">
+                                    <p><strong>Nota importante:</strong> Esta lista representa patrones de diagnóstico comunes, pero el campo de la dermatopatología es vasto y complejo. El diagnóstico definitivo siempre debe correlacionar los hallazgos histológicos con la presentación clínica del paciente.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Neuropathology Content -->
+            <div id="neuropatologia" class="tab-content">
+                <div class="topic-accordion-container">
+                    <!-- Topic 1: Glioblastoma -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">1</div>
+                                <h3 class="topic-title">Glioblastoma (GBM), IDH-wildtype</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Grado de la OMS:</strong> Grado 4</p>
+                                <p><strong>Frecuencia:</strong> El tumor primario del SNC más común y agresivo en adultos. Representa aproximadamente el 15% de todos los tumores cerebrales y el 45-50% de todos los gliomas malignos.</p>
+                                <p><strong>Características clave:</strong> Neoplasia glial de alta malignidad. Morfológicamente se caracteriza por necrosis serpenteante y proliferación microvascular ("proliferación endothelial"). Es el "grado 4" por definición. El subtipo IDH-wildtype (que representa más del 90% de los GBM) es más común en pacientes mayores de 55 años y tiene un peor pronóstico.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 2: Meningioma -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">2</div>
+                                <h3 class="topic-title">Meningioma</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Grado de la OMS:</strong> Mayoría Grado 1, pero existen Grados 2 y 3.</p>
+                                <p><strong>Frecuencia:</strong> El tumor intracraneal primario más común en general. Representa alrededor del 38% de todos los tumores cerebrales primarios. Son tumores extraaxiales (surgen de las células aracnoideas).</p>
+                                <p><strong>Características clave:</strong> Tumores generalmente benignos y de crecimiento lento. Existen múltiples subtipos histológicos (p.ej., meningotelial, fibroblástico, transicional). La mayoría son Grado 1. Los atípicos (Grado 2) y anaplásicos (Grado 3) son menos comunes pero con mayor tendencia a recurrir.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 3: Schwannoma -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">3</div>
+                                <h3 class="topic-title">Schwannoma (Neurilemoma)</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Grado de la OMS:</strong> Grado 1</p>
+                                <p><strong>Frecuencia:</strong> Muy común, representando aproximadamente el 8% de todos los tumores intracraneales y es el tumor más común de los nervios periféricos.</p>
+                                <p><strong>Características clave:</strong> Tumor benigno que surge de las células de Schwann. El ejemplo clásico es el Schwannoma Vestibular (también llamado neuroma acústico), que se localiza en el ángulo pontocerebeloso y afecta el nervio vestibulococ lear (VIII par craneal). Histológicamente muestra áreas Antoni A (células ordenadas) y Antoni B (áreas mixoides).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 4: Astrocitoma difuso -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">4</div>
+                                <h3 class="topic-title">Astrocitoma difuso, IDH-mutante</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Grado de la OMS:</strong> Grado 2, 3 o 4 (dependiendo de hallazgos histopatológicos).</p>
+                                <p><strong>Frecuencia:</strong> Común entre los gliomas en adultos jóvenes y de mediana edad.</p>
+                                <p><strong>Características clave:</strong> Tumor infiltrativo con mutación en el gen IDH1 o IDH2. Su pronóstico es significativamente mejor que el del glioblastoma IDH-wildtype. Incluye:</p>
+                                <ul>
+                                    <li>Astrocitoma difuso (Grado 2)</li>
+                                    <li>Astrocitoma anaplásico (Grado 3)</li>
+                                    <li>Glioblastoma, IDH-mutante (Grado 4) (menos común que el IDH-wildtype).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 5: Metastasis Sistémicas -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">5</div>
+                                <h3 class="topic-title">Metástasis Sistémicas al Cerebro</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Frecuencia:</strong> Muy comunes. De hecho, las metástasis cerebrales son los tumores intracraneales más frecuentes en general, superando a los tumores primarios. Provienen con mayor frecuencia de cáncer de pulmón, mama, melanoma, riñón y colon.</p>
+                                <p><strong>Características clave:</strong> Su apariencia histológica depende del tumor primario. El estudio inmunohistoquímico es crucial para identificar el origen.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 6: Linfoma del SNC -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">6</div>
+                                <h3 class="topic-title">Linfoma del Sistema Nervioso Central (CNSL)</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Frecuencia:</strong> Representa alrededor del 4-5% de todos los tumores cerebrales primarios. Su incidencia ha aumentado, especialmente en pacientes inmunodeprimidos (p.ej., asociado al VIH o trasplantes).</p>
+                                <p><strong>Características clave:</strong> La gran mayoría (más del 90%) son Linfomas Difusos de Células B Grandes (DLBCL). Las células tumorales típicamente se disponen alrededor de los vasos sanguíneos y infiltran el parénquima cerebral.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 7: Tumor Hipofisario -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">7</div>
+                                <h3 class="topic-title">Tumor Hipofisario (Adenoma Hipofisario)</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Grado de la OMS:</strong> La mayoría son benignos.</p>
+                                <p><strong>Frecuencia:</strong> Muy comunes, representando alrededor del 10-15% de todos los tumores intracraneales. Muchos son hallazgos incidentales ("incidentalomas").</p>
+                                <p><strong>Características clave:</strong> Tumores benignos que surgen de las células adenohipofisarias. Se clasifican funcionalmente (productores de prolactina, GH, ACTH, etc.) o como no funcionantes, y por tamaño (microadenoma <1 cm, macroadenoma >1 cm).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 8: Meduloblastoma -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">8</div>
+                                <h3 class="topic-title">Meduloblastoma</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Grado de la OMS:</strong> Grado 4</p>
+                                <p><strong>Frecuencia:</strong> Es el tumor maligno del SNC más común en niños (fosa posterior). Raro en adultos.</p>
+                                <p><strong>Características clave:</strong> Tumor embrionario de alto grado localizado típicamente en el vermis cerebeloso. Histológicamente clásico con células de núcleo hipercromático y escaso citoplasma ("células en roseta"). La clasificación molecular actual define 4 subgrupos principales (WNT-activado, SHH-activado, Grupo 3, Grupo 4) con pronósticos distintos.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 9: Ependimoma -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">9</div>
+                                <h3 class="topic-title">Ependimoma</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Grado de la OMS:</strong> Grado 2 y 3</p>
+                                <p><strong>Frecuencia:</strong> Común en niños y adultos jóvenes. Representa el 5-6% de los gliomas.</p>
+                                <p><strong>Características clave:</strong> Tumor que surge de las células ependimarias que revisten los ventrículos y el canal central. Localización clásica: fosa posterior (4to ventrículo) en niños y médula espinal en adultos. Hallazgo histológico característico: las pseudorrosetas perivasculares.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 10: Oligodendroglioma -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">10</div>
+                                <h3 class="topic-title">Oligodendroglioma, IDH-mutante y con codeleción 1p/19q</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Grado de la OMS:</strong> Grado 2 o 3.</p>
+                                <p><strong>Frecuencia:</strong> Menos común que el astrocitoma y el GBM, pero representa un subgrupo importante de gliomas (alrededor del 5-10%).</p>
+                                <p><strong>Características clave:</strong> Glioma infiltrativo definido molecularmente por la codeleción de los brazos cromosómicos 1p y 19q y la mutación en IDH. Tiene un pronóstico más favorable que los astrocitomas de grado equivalente. Histología clásica: células redondas con núcleo central ("huevo frito") y red capilar ramificada ("alambre de pollo").</p>
+                                <div class="topic-note">
+                                    <p><strong>Nota importante:</strong> El orden de frecuencia puede variar ligeramente según las series de estudio y la población (pediátrica vs. adulta). Esta lista proporciona una visión general sólida de las entidades más prevalentes que un neuropatólogo encuentra en la práctica diaria. La integración del diagnóstico histológico con la caracterización molecular es hoy en día el estándar de oro en la neurooncología.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soft Tissue Tumors Content -->
+            <div id="tumores-partes-blandas" class="tab-content">
+                <div class="topic-accordion-container">
+                    <!-- Topic 1: Lipoma -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">1</div>
+                                <h3 class="topic-title">Lipoma</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Qué es:</strong> El tumor de partes blandas benigno más común. Es una proliferación benigna de adipocitos (células grasas) maduros.</p>
+                                <p><strong>Características:</strong> Suele ser blando, móvil e indoloro. Se localiza con frecuencia en el subcutáneo de cuello, hombros, espalda y muslos.</p>
+                                <p><strong>Importancia:</strong> Es una lesión absolutamente benigna sin potencial de transformación maligna. Su extirpación es por motivos estéticos o si causa molestias por su tamaño.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 2: Tumor Fibroso Solitario -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">2</div>
+                                <h3 class="topic-title">Tumor Fibroso Solitario (TFS)</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Qué es:</strong> Un tumor mesenquimal muy común, compuesto por células fusadas (en forma de huso) que se disponen en un patrón "en empalizada" y sobre un estroma colágeno.</p>
+                                <p><strong>Características:</strong> Típicamente se presenta como una masa pequeña, firme y no dolorosa en el subcutáneo o tejidos profundos de las extremidades (es muy común en el antebrazo).</p>
+                                <p><strong>Importancia:</strong> Mayormente benigno. Existe una variante maligna (rara) y una variante gigante de células de la vaina del nervio.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 3: Schwannoma -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">3</div>
+                                <h3 class="topic-title">Schwannoma (Neurilemoma)</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Qué es:</strong> Un tumor benigno que surge de las células de Schwann, que forman la vaina de los nervios periféricos.</p>
+                                <p><strong>Características:</strong> Crece lentamente y suele ser encapsulado. Clínicamente, puede ser doloroso a la palpación (signo de Tinel). Es común en la cabeza, el cuello y las extremidades.</p>
+                                <p><strong>Importancia:</strong> Benigno y de excelente pronóstico tras su escisión quirúrgica.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 4: Hemangioma -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">4</div>
+                                <h3 class="topic-title">Hemangioma</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Qué es:</strong> Una malformación o tumoración benigna compuesta por vasos sanguíneos.</p>
+                                <p><strong>Características:</strong> Puede ser capilar, cavernoso, venoso, etc. A menudo está presente desde el nacimiento o la infancia. Puede ser blando y compresible, y a veces se asocia a cambios en la piel.</p>
+                                <p><strong>Importancia:</strong> Generalmente benigno. Su tratamiento depende de la localización, el tamaño y los síntomas.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 5: Fibromatosis -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">5</div>
+                                <h3 class="topic-title">Fibromatosis (Tumor Desmoide)</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Qué es:</strong> Un tumor localmente agresivo que se sitúa en la frontera entre lo benigno y lo maligno. No hace metástasis a distancia, pero tiene una alta tendencia a recidivar localmente de forma infiltrativa.</p>
+                                <p><strong>Características:</strong> Se compone de fibroblastos y una abundante cantidad de colágeno. Suele aparecer en el abdomen (asociado a embarazos), la pared abdominal o las extremidades.</p>
+                                <p><strong>Importancia:</strong> Su manejo es complejo y requiere cirugía con márgenes amplios y, a menudo, tratamientos adyuvantes (radioterapia, terapia sistémica).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 6: Liposarcoma -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">6</div>
+                                <h3 class="topic-title">Liposarcoma</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Qué es:</strong> El sarcoma de partes blandas más común en adultos. Surge de células lipoblásticas primitivas, no de la transformación de un lipoma.</p>
+                                <p><strong>Características:</strong> Suele localizarse en muslos, retroperitoneo y región inguinal. Tiene varios subtipos con pronóstico muy diferente:</p>
+                                <ul>
+                                    <li><strong>Bien diferenciado:</strong> Bajo grado, no metastatiza.</li>
+                                    <li><strong>Desdiferenciado:</strong> Puede surgir de uno bien diferenciado y es de alto grado.</li>
+                                    <li><strong>Mixoides:</strong> Grado intermedio, sensible a la quimioterapia.</li>
+                                    <li><strong>Pleomórfico:</strong> Alto grado, muy agresivo.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 7: Leiomiosarcoma -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">7</div>
+                                <h3 class="topic-title">Leiomiosarcoma</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Qué es:</strong> Un sarcoma que se origina en el músculo liso.</p>
+                                <p><strong>Características:</strong> Es común en el útero, pero en partes blandas se localiza con frecuencia en retroperitoneo, vasos sanguíneos grandes (como la vena cava) y en extremidades. Afecta más a adultos de mediana edad y ancianos.</p>
+                                <p><strong>Importancia:</strong> Es un tumor de alto grado con potencial metastásico, especialmente a pulmones.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 8: Sarcoma Pleomórfico Indiferenciado -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">8</div>
+                                <h3 class="topic-title">Sarcoma Pleomórfico Indiferenciado (SPI)</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Qué es:</strong> Un diagnóstico de exclusión. Es un sarcoma de alto grado cuyas células no muestran diferenciación específica hacia ningún linaje (grasa, músculo, etc.) bajo el microscopio.</p>
+                                <p><strong>Características:</strong> Es uno de los sarcomas más comunes en adultos mayores, típicamente en las extremidades (piernas).</p>
+                                <p><strong>Importancia:</strong> Su diagnóstico requiere descartar otros sarcomas específicos mediante técnicas de inmunohistoquímica. Tiene un comportamiento agresivo.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 9: Rabdomiosarcoma -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">9</div>
+                                <h3 class="topic-title">Rabdomiosarcoma</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Qué es:</strong> Un sarcoma que muestra diferenciación hacia el músculo esquelético.</p>
+                                <p><strong>Características:</strong> Es el sarcoma de partes blandas más común en niños y adolescentes. Raro en adultos. Puede aparecer en cabeza y cuello, tracto genitourinario, extremidades.</p>
+                                <p><strong>Importancia:</strong> Muy agresivo, pero con un pronóstico que ha mejorado drásticamente con la quimioterapia multimodal. Tiene subtipos embrionario, alveolar y pleomórfico.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 10: Sarcoma Sinovial -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">10</div>
+                                <h3 class="topic-title">Sarcoma Sinovial</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Qué es:</strong> Un sarcoma de células fusadas y epitelioides que no se origina en la sinovia articular, sino en los tejidos periarticulares.</p>
+                                <p><strong>Características:</strong> Afecta predominantemente a adultos jóvenes (15-40 años). Es común alrededor de la rodilla y el tobillo. Tiene una translocación cromosómica característica (X;18).</p>
+                                <p><strong>Importancia:</strong> De alto grado y con potencial metastásico. El pronóstico ha mejorado con tratamientos dirigidos.</p>
+                                <div class="topic-note">
+                                    <p><strong>Nota crucial:</strong> La gran mayoría de las masas en partes blandas (>95%) son benignas, siendo el lipoma el rey indiscutible. Sin embargo, cualquier masa que sea profunda, grande (>5 cm), de crecimiento rápido, dolorosa o que reaparezca después de una extirpación, debe ser evaluada por un especialista para descartar un sarcoma. El diagnóstico definitivo casi siempre requiere una biopsia y su análisis por un patólogo.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Citopatología Content -->
+            <div id="citopatologia" class="tab-content">
+                <div class="topic-accordion-container">
+                    <!-- Content will be added for Cytopathology -->
+                    <div class="topic-note">
+                        <p><strong>Contenido próximamente:</strong> Esta sección contendrá temas especializados en Citopatología.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Patología Gastrointestinal Content -->
+            <div id="patologia-gastrointestinal" class="tab-content">
+                <div class="topic-accordion-container">
+                    <!-- Content will be added for Gastrointestinal Pathology -->
+                    <div class="topic-note">
+                        <p><strong>Contenido próximamente:</strong> Esta sección contendrá temas especializados en Patología Gastrointestinal.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Patología Genitourinaria Content -->
+            <div id="patologia-genitourinaria" class="tab-content">
+                <div class="topic-accordion-container">
+                    <!-- Content will be added for Genitourinary Pathology -->
+                    <div class="topic-note">
+                        <p><strong>Contenido próximamente:</strong> Esta sección contendrá temas especializados en Patología Genitourinaria.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Patología Ginecológica Content -->
+            <div id="patologia-ginecologica" class="tab-content">
+                <div class="topic-accordion-container">
+                    <!-- Content will be added for Gynecological Pathology -->
+                    <div class="topic-note">
+                        <p><strong>Contenido próximamente:</strong> Esta sección contendrá temas especializados en Patología Ginecológica.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Patología de Cabeza y Cuello Content -->
+            <div id="patologia-cabeza-cuello" class="tab-content">
+                <div class="topic-accordion-container">
+                    <!-- Content will be added for Head and Neck Pathology -->
+                    <div class="topic-note">
+                        <p><strong>Contenido próximamente:</strong> Esta sección contendrá temas especializados en Patología de Cabeza y Cuello.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Patología Hepatobiliar y Pancreática Content -->
+            <div id="patologia-hepatobiliar" class="tab-content">
+                <div class="topic-accordion-container">
+                    <!-- Content will be added for Hepatobiliary and Pancreatic Pathology -->
+                    <div class="topic-note">
+                        <p><strong>Contenido próximamente:</strong> Esta sección contendrá temas especializados en Patología Hepatobiliar y Pancreática.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Patología de Ganglio Linfático Content -->
+            <div id="patologia-ganglio-linfatico" class="tab-content">
+                <div class="topic-accordion-container">
+                    <!-- Content will be added for Lymph Node Pathology -->
+                    <div class="topic-note">
+                        <p><strong>Contenido próximamente:</strong> Esta sección contendrá temas especializados en Patología de Ganglio Linfático.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Histología Normal Content -->
+            <div id="histologia-normal" class="tab-content">
+                <div class="topic-accordion-container">
+                    <!-- Content will be added for Normal Histology -->
+                    <div class="topic-note">
+                        <p><strong>Contenido próximamente:</strong> Esta sección contendrá temas especializados en Histología Normal.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Placenta Content -->
+            <div id="placenta" class="tab-content">
+                <div class="topic-accordion-container">
+                    <!-- Content will be added for Placental Pathology -->
+                    <div class="topic-note">
+                        <p><strong>Contenido próximamente:</strong> Esta sección contendrá temas especializados en Patología Placentaria.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Patología Torácica Content -->
+            <div id="patologia-toracica" class="tab-content">
+                <div class="topic-accordion-container">
+                    <!-- Content will be added for Thoracic Pathology -->
+                    <div class="topic-note">
+                        <p><strong>Contenido próximamente:</strong> Esta sección contendrá temas especializados en Patología Torácica.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="contact-section page-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contáctenos</h2>
+                <p class="section-subtitle">Estamos aquí para atender sus consultas y necesidades de diagnóstico patológico</p>
+            </div>
+            
+            <div class="contact-accordion-container">
+                <!-- Teléfono -->
+                <div class="contact-accordion-item">
+                    <button class="contact-accordion-header">
+                        <div class="contact-title">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            Teléfono
+                        </div>
+                        <i class="fas fa-chevron-down contact-accordion-icon"></i>
+                    </button>
+                    <div class="contact-accordion-content">
+                        <div class="contact-accordion-content-inner">
+                            <div class="contact-details">
+                                <p>986396733</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Correo Electrónico -->
+                <div class="contact-accordion-item">
+                    <button class="contact-accordion-header">
+                        <div class="contact-title">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            Correo Electrónico
+                        </div>
+                        <i class="fas fa-chevron-down contact-accordion-icon"></i>
+                    </button>
+                    <div class="contact-accordion-content">
+                        <div class="contact-accordion-content-inner">
+                            <div class="contact-details">
+                                <p><a href="mailto:jclab56@gmail.com">jclab56@gmail.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dirección -->
+                <div class="contact-accordion-item">
+                    <button class="contact-accordion-header">
+                        <div class="contact-title">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            Dirección
+                        </div>
+                        <i class="fas fa-chevron-down contact-accordion-icon"></i>
+                    </button>
+                    <div class="contact-accordion-content">
+                        <div class="contact-accordion-content-inner">
+                            <div class="contact-details">
+                                <p>Mz M2 lote 13 Jardines de Chillón<br>Puente Piedra, Lima</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Horario de Atención -->
+                <div class="contact-accordion-item">
+                    <button class="contact-accordion-header">
+                        <div class="contact-title">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            Horario de Atención
+                        </div>
+                        <i class="fas fa-chevron-down contact-accordion-icon"></i>
+                    </button>
+                    <div class="contact-accordion-content">
+                        <div class="contact-accordion-content-inner">
+                            <div class="contact-details">
+                                <p>Lunes a Viernes<br>9:00 AM - 6:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="map-container">
+                <!-- Ubicación del Laboratorio -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3902.632048392849!2d-77.08730908440896!3d-11.932890000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDU1JzU4LjQiUyA3N8KwMDUnMDQuNyJX!5e0!3m2!1ses!2spe!4v1690826791259!5m2!1ses!2spe" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pageSections = document.querySelectorAll('.page-section');
+            
+            // Función para mostrar una sección específica
+            function showSection(sectionId) {
+                // Ocultar todas las secciones
+                pageSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Mostrar la sección solicitada
+                const targetSection = document.getElementById(sectionId);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                }
+                
+                // Actualizar enlace activo
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+                
+                // Guardar estado en el historial
+                history.pushState(null, null, `#${sectionId}`);
+            }
+            
+            // Manejar clics en enlaces de navegación
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href').substring(1);
+                    showSection(targetId);
+                    
+                    // Cerrar menú móvil si está abierto
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+            
+            // Manejar clics en botones de la página
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = href.substring(1);
+                        showSection(targetId);
+                    }
+                });
+            });
+            
+            // Manejar botón de menú hamburguesa
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            
+            // Manejar cambios en el historial (botones atrás/adelante)
+            window.addEventListener('popstate', function() {
+                const hash = window.location.hash.substring(1);
+                if (hash) {
+                    showSection(hash);
+                } else {
+                    showSection('inicio');
+                }
+            });
+            
+            // Inicializar página según hash de URL
+            const initialHash = window.location.hash.substring(1);
+            if (initialHash && document.getElementById(initialHash)) {
+                showSection(initialHash);
+            } else {
+                showSection('inicio');
+            }
+            
+            // Funcionalidad de acordeones para servicios
+            const serviceAccordionHeaders = document.querySelectorAll('.service-accordion-header');
+            serviceAccordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const accordionItem = this.parentElement;
+                    const content = accordionItem.querySelector('.service-accordion-content');
+                    const icon = this.querySelector('.service-accordion-icon');
+                    
+                    // Alternar el estado del acordeón
+                    const isActive = content.classList.contains('active');
+                    
+                    if (isActive) {
+                        content.classList.remove('active');
+                        icon.classList.remove('rotated');
+                    } else {
+                        content.classList.add('active');
+                        icon.classList.add('rotated');
+                    }
+                });
+            });
+            
+            // Funcionalidad de acordeones para CV
+            const cvAccordionHeaders = document.querySelectorAll('.cv-accordion-header');
+            cvAccordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const accordionItem = this.parentElement;
+                    const content = accordionItem.querySelector('.cv-accordion-content');
+                    const icon = this.querySelector('.cv-accordion-icon');
+                    
+                    // Alternar el estado del acordeón
+                    const isActive = content.classList.contains('active');
+                    
+                    if (isActive) {
+                        content.classList.remove('active');
+                        icon.classList.remove('rotated');
+                    } else {
+                        content.classList.add('active');
+                        icon.classList.add('rotated');
+                    }
+                });
+            });
+            
+            // Funcionalidad de acordeones para contacto
+            const contactAccordionHeaders = document.querySelectorAll('.contact-accordion-header');
+            contactAccordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const accordionItem = this.parentElement;
+                    const content = accordionItem.querySelector('.contact-accordion-content');
+                    const icon = this.querySelector('.contact-accordion-icon');
+                    
+                    // Alternar el estado del acordeón
+                    const isActive = content.classList.contains('active');
+                    
+                    if (isActive) {
+                        content.classList.remove('active');
+                        icon.classList.remove('rotated');
+                    } else {
+                        content.classList.add('active');
+                        icon.classList.add('rotated');
+                    }
+                });
+            });
+
+            // Funcionalidad de acordeones para temas (topics)
+            const topicAccordionHeaders = document.querySelectorAll('.topic-accordion-header');
+            topicAccordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const accordionItem = this.parentElement;
+                    const content = accordionItem.querySelector('.topic-accordion-content');
+                    const icon = this.querySelector('.topic-accordion-icon');
+                    
+                    // Alternar el estado del acordeón
+                    const isActive = content.classList.contains('active');
+                    
+                    if (isActive) {
+                        content.classList.remove('active');
+                        icon.classList.remove('rotated');
+                    } else {
+                        content.classList.add('active');
+                        icon.classList.add('rotated');
+                    }
+                });
+            });
+
+        });
+        
+        // Función para cambiar entre tabs de classroom
+        function showTab(tabId) {
+            // Ocultar todos los contenidos de tabs
+            const allTabContents = document.querySelectorAll('.tab-content');
+            allTabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Desactivar todos los botones de tabs
+            const allTabBtns = document.querySelectorAll('.tab-btn');
+            allTabBtns.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Mostrar el contenido del tab seleccionado
+            const targetTab = document.getElementById(tabId);
+            if (targetTab) {
+                targetTab.classList.add('active');
+            }
+            
+            // Activar el botón del tab correspondiente
+            const targetBtn = document.querySelector(`[onclick="showTab('${tabId}')"]`);
+            if (targetBtn) {
+                targetBtn.classList.add('active');
+            }
+        }
+
+    </script>
+</body>
+</html>

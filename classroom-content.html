@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classroom - JC PATH LAB</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- RESET Y ESTILOS BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0056b3;
+            --secondary: #003366;
+            --accent: #007bff;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --text: #212529;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+            --card-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background-color: #f5f7fa;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- CLASSROOM SECTIONS STYLES --- */
+        .classroom-section {
+            padding: 100px 5%;
+            background-color: #f0f8ff;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: clamp(1000px, 90vw, 1600px);
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            color: var(--secondary);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            color: var(--dark);
+            font-weight: 400;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .back-to-main-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin: 20px auto;
+            font-size: 1rem;
+            display: block;
+            text-decoration: none;
+        }
+
+        .back-to-main-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 86, 179, 0.3);
+        }
+
+        .classroom-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: linear-gradient(135deg, rgba(0, 86, 179, 0.1) 0%, rgba(0, 51, 102, 0.05) 100%);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 86, 179, 0.2);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .topic-accordion-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .topic-accordion-item {
+            border: 1px solid rgba(0, 86, 179, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 86, 179, 0.05);
+        }
+
+        .topic-accordion-item:hover {
+            box-shadow: 0 8px 25px rgba(0, 86, 179, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .topic-accordion-header {
+            background: linear-gradient(135deg, rgba(0, 86, 179, 0.05) 0%, rgba(0, 51, 102, 0.03) 100%);
+            padding: 20px 25px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            width: 100%;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topic-accordion-header:hover {
+            background: linear-gradient(135deg, rgba(0, 86, 179, 0.08) 0%, rgba(0, 51, 102, 0.05) 100%);
+        }
+
+        .topic-title-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+        }
+
+        .topic-number {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .topic-title {
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            color: var(--secondary);
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .topic-accordion-icon {
+            font-size: 1.2rem;
+            color: var(--accent);
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .topic-accordion-icon.rotated {
+            transform: rotate(180deg);
+        }
+
+        .topic-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .topic-accordion-content.active {
+            max-height: 1000px;
+        }
+
+        .topic-accordion-content-inner {
+            padding: 0 25px 25px;
+        }
+
+        .topic-accordion-content-inner p {
+            color: var(--dark);
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+        }
+
+        .topic-accordion-content-inner ul {
+            padding-left: 25px;
+            margin-top: 10px;
+        }
+
+        .topic-accordion-content-inner ul li {
+            margin-bottom: 12px;
+            line-height: 1.7;
+            color: var(--dark);
+            position: relative;
+            padding-left: 20px;
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+        }
+
+        .topic-accordion-content-inner ul li::before {
+            content: "▪";
+            color: var(--accent);
+            font-size: 1.2rem;
+            position: absolute;
+            left: 0;
+            top: 2px;
+        }
+
+        .topic-note {
+            background: linear-gradient(135deg, rgba(0, 86, 179, 0.05) 0%, rgba(0, 51, 102, 0.02) 100%);
+            border-left: 4px solid var(--accent);
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 20px;
+        }
+
+        .topic-note p {
+            margin: 0;
+            font-style: italic;
+            color: var(--secondary);
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .classroom-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tab-btn {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+
+            .topic-accordion-header {
+                padding: 15px 20px;
+            }
+
+            .topic-accordion-content-inner {
+                padding: 0 20px 20px;
+            }
+
+            .topic-title-container {
+                gap: 10px;
+            }
+
+            .topic-number {
+                width: 30px;
+                height: 30px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="classroom-section">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-title">Recursos Educativos</h1>
+                <p class="section-subtitle">Contenido especializado en Anatomía Patológica</p>
+                <a href="index.html" class="back-to-main-btn">← Volver al Inicio</a>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <div class="classroom-tabs">
+                <button class="tab-btn active" onclick="showTab('dermatologia')">Dermatopatología</button>
+                <button class="tab-btn" onclick="showTab('neuropatologia')">Neuropatología</button>
+                <button class="tab-btn" onclick="showTab('tumores-partes-blandas')">Tumores de Partes Blandas</button>
+            </div>
+
+            <!-- Dermatopathology Content -->
+            <div id="dermatologia" class="tab-content active">
+                <div class="topic-accordion-container">
+                    <!-- Topic 1: Carcinoma Basocelular -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">1</div>
+                                <h3 class="topic-title">Carcinoma Basocelular (CBC)</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Descripción:</strong> Es el cáncer de piel más común en humanos. De crecimiento lento y con una capacidad de metastatizar extremadamente rara, pero con potencial destructivo local si no se trata.</p>
+                                <p><strong>Hallazgos histológicos clave:</strong> Nidos de células basaloides (de núcleos oscuros y escaso citoplasma) en la dermis. Las células periféricas del nido suelen disponerse en "empalizada". Es característica la retracción del estroma que rodea los nidos, creando unos espacios claros o hendiduras artificiales.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 2: Carcinoma Espinocelular -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">2</div>
+                                <h3 class="topic-title">Carcinoma Espinocelular o Escamocelular (CEC)</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Descripción:</strong> El segundo cáncer de piel más común. Surge de los queratinocitos de la epidermis y tiene un riesgo bajo pero significativo de metástasis, especialmente en casos de mayor grosor o en pacientes inmunodeprimidos.</p>
+                                <p><strong>Hallazgos histológicos clave:</strong> Proliferación de células epiteliales atípicas que se extienden desde la epidermis hacia la dermis. Se busca la presencia de "perlas córneas" (queratinización anormal) y puentes intercelulares (desmosomas). El grado de atipia (bien, moderadamente o pobremente diferenciado) es crucial.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 3: Queratosis Seborreica -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">3</div>
+                                <h3 class="topic-title">Queratosis Seborreica</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Descripción:</strong> Una lesión benigna, extremadamente común, que a menudo se confunde clínicamente con melanoma o otras lesiones pigmentadas. No tiene potencial maligno.</p>
+                                <p><strong>Hallazgos histológicos clave:</strong> Hiperplasia epidérmica benigna ("engrosamiento") con hiperqueratosis (aumento de la capa córnea) y pseudoquistes córneos (pequeñas inclusiones redondas de queratina dentro de la lesión). La base de la lesión es recta y no infiltra la dermis profunda.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 4: Nevus Melanocítico -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">4</div>
+                                <h3 class="topic-title">Nevus Melanocítico (Lunares)</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Descripción:</strong> Proliferaciones benignas de melanocitos (células que producen pigmento). Son omnipresentes y se presentan en una gran variedad de formas (junctional, compuesto, dérmico).</p>
+                                <p><strong>Hallazgos histológicos clave:</strong> Se caracterizan por nidos (theques) de melanocitos benignos. Su localización define el tipo:</p>
+                                <ul>
+                                    <li><strong>Junctional:</strong> los nidos están confinados en la unión dermo-epidérmica.</li>
+                                    <li><strong>Compuesto:</strong> los nidos están en la unión y dentro de la dermis.</li>
+                                    <li><strong>Dérmico:</strong> los nidos están solo en la dermis, con melanocitos que a menudo se vuelven más pequeños y "maduran" hacia la profundidad.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 5: Dermatitis Espongiótica -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">5</div>
+                                <h3 class="topic-title">Dermatitis Espongiótica (Eccema)</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Descripción:</strong> Un patrón histológico de inflamación aguda o subaguda que se observa en una variedad de condiciones, como dermatitis atópica, de contacto o eccema.</p>
+                                <p><strong>Hallazgos histológicos clave:</strong> El hallazgo principal es el edema intercelular dentro de la epidermis (espongiosis), que puede formar vesículas llenas de líquido. Suele ir acompañado de un infiltrado inflamatorio de linfocitos y eosinófilos en la dermis superficial.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 6: Psoriasis Vulgaris -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">6</div>
+                                <h3 class="topic-title">Psoriasis Vulgaris</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Descripción:</strong> Enfermedad inflamatoria crónica de la piel con una base autoinmune.</p>
+                                <p><strong>Hallazgos histológicos clave:</strong></p>
+                                <ul>
+                                    <li>Hiperqueratosis paraqueratótica (capa córnea con núcleos retenidos).</li>
+                                    <li>Acantosis regular (engrosamiento epidérmico uniforme) con elongación de las crestas interpapilares.</li>
+                                    <li>Papilomatosis y capilares dilatados y tortuosos en las papilas dérmicas.</li>
+                                    <li>Microabscesos de Munro (acúmulos de neutrófilos en la capa córnea) y Abscesos de Pautrier (en la epidermis).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 7: Quiste Epidérmico -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">7</div>
+                                <h3 class="topic-title">Quiste Epidérmico</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Descripción:</strong> La lesión quística subcutánea más común. Se forma por la inclusión de epidermis dentro de la dermis, que continúa produciendo queratina.</p>
+                                <p><strong>Hallazgos histológicos clave:</strong> Quiste revestido por un epitelio escamoso estratificado normal (similar a la epidermis) y lleno de material queratínico laminado. Si se rompe, provoca una intensa reacción inflamatoria de cuerpo extraño con células gigantes.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 8: Melanoma Maligno -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">8</div>
+                                <h3 class="topic-title">Melanoma Maligno</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Descripción:</strong> El cáncer de piel más mortífero, que surge de los melanocitos. Su diagnóstico temprano es crucial. Aunque no es tan común como los carcinomas baso o escamocelulares, es una de las patologías más importantes y frecuentemente biopsiada por sospecha.</p>
+                                <p><strong>Hallazgos histológicos clave:</strong> Proliferación atípica de melanocitos que muestran atipia citológica, pérdida de maduración con la profundidad, y actividad mitótica. Características como ulceración, regresión y nivel de invasión (índice de Breslow) son críticas para el pronóstico.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 9: Liquen Plano -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">9</div>
+                                <h3 class="topic-title">Liquen Plano</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Descripción:</strong> Enfermedad inflamatoria crónica que afecta la piel y las mucosas.</p>
+                                <p><strong>Hallazgos histológicos clave:</strong></p>
+                                <ul>
+                                    <li>Infiltrado linfo-histiocítico en banda ("en empedrado" o liquenoide) en la unión dermo-epidérmica.</li>
+                                    <li>Degeneración vacuolar de la capa basal de la epidermis.</li>
+                                    <li>Hiperqueratosis e hipergranulosis (engrosamiento de la capa granulosa).</li>
+                                    <li>Cuerpos coloides o de Civatte (células apoptóticas eosinófílicas en la dermis).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 10: Verruga Vulgaris -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">10</div>
+                                <h3 class="topic-title">Verruga Vulgaris</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Descripción:</strong> Lesión cutánea benigna causada por el virus del papiloma humano (VPH).</p>
+                                <p><strong>Hallazgos histológicos clave:</strong> Marcada hiperqueratosis y papilomatosis. Presencia de coilocitos en la capa granulosa (queratinocitos con halo claro perinuclear y núcleos picnóticos/arrugados, que es el efecto citopático del VPH). También suele haber acantosis y elongación de las crestas epidérmicas.</p>
+                                <div class="topic-note">
+                                    <p><strong>Nota importante:</strong> Esta lista representa patrones de diagnóstico comunes, pero el campo de la dermatopatología es vasto y complejo. El diagnóstico definitivo siempre debe correlacionar los hallazgos histológicos con la presentación clínica del paciente.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soft Tissue Tumors Content -->
+            <div id="tumores-partes-blandas" class="tab-content">
+                <div class="topic-accordion-container">
+                    <!-- Topic 1: Lipoma -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">1</div>
+                                <h3 class="topic-title">Lipoma</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Qué es:</strong> El tumor de partes blandas benigno más común. Es una proliferación benigna de adipocitos (células grasas) maduros.</p>
+                                <p><strong>Características:</strong> Suele ser blando, móvil e indoloro. Se localiza con frecuencia en el subcutáneo de cuello, hombros, espalda y muslos.</p>
+                                <p><strong>Importancia:</strong> Es una lesión absolutamente benigna sin potencial de transformación maligna. Su extirpación es por motivos estéticos o si causa molestias por su tamaño.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 2: Tumor Fibroso Solitario -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">2</div>
+                                <h3 class="topic-title">Tumor Fibroso Solitario (TFS)</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Qué es:</strong> Un tumor mesenquimal muy común, compuesto por células fusadas (en forma de huso) que se disponen en un patrón "en empalizada" y sobre un estroma colágeno.</p>
+                                <p><strong>Características:</strong> Típicamente se presenta como una masa pequeña, firme y no dolorosa en el subcutáneo o tejidos profundos de las extremidades (es muy común en el antebrazo).</p>
+                                <p><strong>Importancia:</strong> Mayormente benigno. Existe una variante maligna (rara) y una variante gigante de células de la vaina del nervio.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 3: Schwannoma -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">3</div>
+                                <h3 class="topic-title">Schwannoma (Neurilemoma)</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Qué es:</strong> Un tumor benigno que surge de las células de Schwann, que forman la vaina de los nervios periféricos.</p>
+                                <p><strong>Características:</strong> Crece lentamente y suele ser encapsulado. Clínicamente, puede ser doloroso a la palpación (signo de Tinel). Es común en la cabeza, el cuello y las extremidades.</p>
+                                <p><strong>Importancia:</strong> Benigno y de excelente pronóstico tras su escisión quirúrgica.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 4: Hemangioma -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">4</div>
+                                <h3 class="topic-title">Hemangioma</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Qué es:</strong> Una malformación o tumoración benigna compuesta por vasos sanguíneos.</p>
+                                <p><strong>Características:</strong> Puede ser capilar, cavernoso, venoso, etc. A menudo está presente desde el nacimiento o la infancia. Puede ser blando y compresible, y a veces se asocia a cambios en la piel.</p>
+                                <p><strong>Importancia:</strong> Generalmente benigno. Su tratamiento depende de la localización, el tamaño y los síntomas.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 5: Fibromatosis -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">5</div>
+                                <h3 class="topic-title">Fibromatosis (Tumor Desmoide)</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Qué es:</strong> Un tumor localmente agresivo que se sitúa en la frontera entre lo benigno y lo maligno. No hace metástasis a distancia, pero tiene una alta tendencia a recidivar localmente de forma infiltrativa.</p>
+                                <p><strong>Características:</strong> Se compone de fibroblastos y una abundante cantidad de colágeno. Suele aparecer en el abdomen (asociado a embarazos), la pared abdominal o las extremidades.</p>
+                                <p><strong>Importancia:</strong> Su manejo es complejo y requiere cirugía con márgenes amplios y, a menudo, tratamientos adyuvantes (radioterapia, terapia sistémica).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 6: Liposarcoma -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">6</div>
+                                <h3 class="topic-title">Liposarcoma</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Qué es:</strong> El sarcoma de partes blandas más común en adultos. Surge de células lipoblásticas primitivas, no de la transformación de un lipoma.</p>
+                                <p><strong>Características:</strong> Suele localizarse en muslos, retroperitoneo y región inguinal. Tiene varios subtipos con pronóstico muy diferente:</p>
+                                <ul>
+                                    <li><strong>Bien diferenciado:</strong> Bajo grado, no metastatiza.</li>
+                                    <li><strong>Desdiferenciado:</strong> Puede surgir de uno bien diferenciado y es de alto grado.</li>
+                                    <li><strong>Mixoides:</strong> Grado intermedio, sensible a la quimioterapia.</li>
+                                    <li><strong>Pleomórfico:</strong> Alto grado, muy agresivo.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 7: Leiomiosarcoma -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">7</div>
+                                <h3 class="topic-title">Leiomiosarcoma</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Qué es:</strong> Un sarcoma que se origina en el músculo liso.</p>
+                                <p><strong>Características:</strong> Es común en el útero, pero en partes blandas se localiza con frecuencia en retroperitoneo, vasos sanguíneos grandes (como la vena cava) y en extremidades. Afecta más a adultos de mediana edad y ancianos.</p>
+                                <p><strong>Importancia:</strong> Es un tumor de alto grado con potencial metastásico, especialmente a pulmones.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 8: Sarcoma Pleomórfico Indiferenciado -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">8</div>
+                                <h3 class="topic-title">Sarcoma Pleomórfico Indiferenciado (SPI)</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Qué es:</strong> Un diagnóstico de exclusión. Es un sarcoma de alto grado cuyas células no muestran diferenciación específica hacia ningún linaje (grasa, músculo, etc.) bajo el microscopio.</p>
+                                <p><strong>Características:</strong> Es uno de los sarcomas más comunes en adultos mayores, típicamente en las extremidades (piernas).</p>
+                                <p><strong>Importancia:</strong> Su diagnóstico requiere descartar otros sarcomas específicos mediante técnicas de inmunohistoquímica. Tiene un comportamiento agresivo.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 9: Rabdomiosarcoma -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">9</div>
+                                <h3 class="topic-title">Rabdomiosarcoma</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Qué es:</strong> Un sarcoma que muestra diferenciación hacia el músculo esquelético.</p>
+                                <p><strong>Características:</strong> Es el sarcoma de partes blandas más común en niños y adolescentes. Raro en adultos. Puede aparecer en cabeza y cuello, tracto genitourinario, extremidades.</p>
+                                <p><strong>Importancia:</strong> Muy agresivo, pero con un pronóstico que ha mejorado drásticamente con la quimioterapia multimodal. Tiene subtipos embrionario, alveolar y pleomórfico.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 10: Sarcoma Sinovial -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">10</div>
+                                <h3 class="topic-title">Sarcoma Sinovial</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Qué es:</strong> Un sarcoma de células fusadas y epitelioides que no se origina en la sinovia articular, sino en los tejidos periarticulares.</p>
+                                <p><strong>Características:</strong> Afecta predominantemente a adultos jóvenes (15-40 años). Es común alrededor de la rodilla y el tobillo. Tiene una translocación cromosómica característica (X;18).</p>
+                                <p><strong>Importancia:</strong> De alto grado y con potencial metastásico. El pronóstico ha mejorado con tratamientos dirigidos.</p>
+                                <div class="topic-note">
+                                    <p><strong>Nota crucial:</strong> La gran mayoría de las masas en partes blandas (>95%) son benignas, siendo el lipoma el rey indiscutible. Sin embargo, cualquier masa que sea profunda, grande (>5 cm), de crecimiento rápido, dolorosa o que reaparezca después de una extirpación, debe ser evaluada por un especialista para descartar un sarcoma. El diagnóstico definitivo casi siempre requiere una biopsia y su análisis por un patólogo.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Funcionalidad de acordeones para temas (topics)
+            const topicAccordionHeaders = document.querySelectorAll('.topic-accordion-header');
+            topicAccordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const accordionItem = this.parentElement;
+                    const content = accordionItem.querySelector('.topic-accordion-content');
+                    const icon = this.querySelector('.topic-accordion-icon');
+                    
+                    // Alternar el estado del acordeón
+                    const isActive = content.classList.contains('active');
+                    
+                    if (isActive) {
+                        content.classList.remove('active');
+                        icon.classList.remove('rotated');
+                    } else {
+                        content.classList.add('active');
+                        icon.classList.add('rotated');
+                    }
+                });
+            });
+        });
+        
+        // Función para cambiar entre tabs
+        function showTab(tabId) {
+            // Ocultar todos los contenidos de tabs
+            const allTabContents = document.querySelectorAll('.tab-content');
+            allTabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Desactivar todos los botones de tabs
+            const allTabBtns = document.querySelectorAll('.tab-btn');
+            allTabBtns.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Mostrar el contenido del tab seleccionado
+            const targetTab = document.getElementById(tabId);
+            if (targetTab) {
+                targetTab.classList.add('active');
+            }
+            
+            // Activar el botón del tab correspondiente
+            const targetBtn = document.querySelector(`[onclick="showTab('${tabId}')"]`);
+            if (targetBtn) {
+                targetBtn.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
+
+            <!-- Neuropathology Content -->
+            <div id="neuropatologia" class="tab-content">
+                <div class="topic-accordion-container">
+                    <!-- Topic 1: Glioblastoma -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">1</div>
+                                <h3 class="topic-title">Glioblastoma (GBM), IDH-wildtype</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Grado de la OMS:</strong> Grado 4</p>
+                                <p><strong>Frecuencia:</strong> El tumor primario del SNC más común y agresivo en adultos. Representa aproximadamente el 15% de todos los tumores cerebrales y el 45-50% de todos los gliomas malignos.</p>
+                                <p><strong>Características clave:</strong> Neoplasia glial de alta malignidad. Morfológicamente se caracteriza por necrosis serpenteante y proliferación microvascular ("proliferación endothelial"). Es el "grado 4" por definición. El subtipo IDH-wildtype (que representa más del 90% de los GBM) es más común en pacientes mayores de 55 años y tiene un peor pronóstico.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 2: Meningioma -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">2</div>
+                                <h3 class="topic-title">Meningioma</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Grado de la OMS:</strong> Mayoría Grado 1, pero existen Grados 2 y 3.</p>
+                                <p><strong>Frecuencia:</strong> El tumor intracraneal primario más común en general. Representa alrededor del 38% de todos los tumores cerebrales primarios. Son tumores extraaxiales (surgen de las células aracnoideas).</p>
+                                <p><strong>Características clave:</strong> Tumores generalmente benignos y de crecimiento lento. Existen múltiples subtipos histológicos (p.ej., meningotelial, fibroblástico, transicional). La mayoría son Grado 1. Los atípicos (Grado 2) y anaplásicos (Grado 3) son menos comunes pero con mayor tendencia a recurrir.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 3: Schwannoma -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">3</div>
+                                <h3 class="topic-title">Schwannoma (Neurilemoma)</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Grado de la OMS:</strong> Grado 1</p>
+                                <p><strong>Frecuencia:</strong> Muy común, representando aproximadamente el 8% de todos los tumores intracraneales y es el tumor más común de los nervios periféricos.</p>
+                                <p><strong>Características clave:</strong> Tumor benigno que surge de las células de Schwann. El ejemplo clásico es el Schwannoma Vestibular (también llamado neuroma acústico), que se localiza en el ángulo pontocerebeloso y afecta el nervio vestibulococlear (VIII par craneal). Histológicamente muestra áreas Antoni A (células ordenadas) y Antoni B (áreas mixoides).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 4: Astrocitoma difuso -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">4</div>
+                                <h3 class="topic-title">Astrocitoma difuso, IDH-mutante</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Grado de la OMS:</strong> Grado 2, 3 o 4 (dependiendo de hallazgos histopatológicos).</p>
+                                <p><strong>Frecuencia:</strong> Común entre los gliomas en adultos jóvenes y de mediana edad.</p>
+                                <p><strong>Características clave:</strong> Tumor infiltrativo con mutación en el gen IDH1 o IDH2. Su pronóstico es significativamente mejor que el del glioblastoma IDH-wildtype. Incluye:</p>
+                                <ul>
+                                    <li>Astrocitoma difuso (Grado 2)</li>
+                                    <li>Astrocitoma anaplásico (Grado 3)</li>
+                                    <li>Glioblastoma, IDH-mutante (Grado 4) (menos común que el IDH-wildtype).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 5: Metástasis Sistémicas -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">5</div>
+                                <h3 class="topic-title">Metástasis Sistémicas al Cerebro</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Frecuencia:</strong> Muy comunes. De hecho, las metástasis cerebrales son los tumores intracraneales más frecuentes en general, superando a los tumores primarios. Provienen con mayor frecuencia de cáncer de pulmón, mama, melanoma, riñón y colon.</p>
+                                <p><strong>Características clave:</strong> Su apariencia histológica depende del tumor primario. El estudio inmunohistoquímico es crucial para identificar el origen.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 6: Linfoma del SNC -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">6</div>
+                                <h3 class="topic-title">Linfoma del Sistema Nervioso Central (CNSL)</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Frecuencia:</strong> Representa alrededor del 4-5% de todos los tumores cerebrales primarios. Su incidencia ha aumentado, especialmente en pacientes inmunodeprimidos (p.ej., asociado al VIH o trasplantes).</p>
+                                <p><strong>Características clave:</strong> La gran mayoría (más del 90%) son Linfomas Difusos de Células B Grandes (DLBCL). Las células tumorales típicamente se disponen alrededor de los vasos sanguíneos e infiltran el parénquima cerebral.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 7: Tumor Hipofisario -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">7</div>
+                                <h3 class="topic-title">Tumor Hipofisario (Adenoma Hipofisario)</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Grado de la OMS:</strong> La mayoría son benignos.</p>
+                                <p><strong>Frecuencia:</strong> Muy comunes, representando alrededor del 10-15% de todos los tumores intracraneales. Muchos son hallazgos incidentales ("incidentalomas").</p>
+                                <p><strong>Características clave:</strong> Tumores benignos que surgen de las células adenohipofisarias. Se clasifican funcionalmente (productores de prolactina, GH, ACTH, etc.) o como no funcionantes, y por tamaño (microadenoma <1 cm, macroadenoma >1 cm).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 8: Meduloblastoma -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">8</div>
+                                <h3 class="topic-title">Meduloblastoma</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Grado de la OMS:</strong> Grado 4</p>
+                                <p><strong>Frecuencia:</strong> Es el tumor maligno del SNC más común en niños (fosa posterior). Raro en adultos.</p>
+                                <p><strong>Características clave:</strong> Tumor embrionario de alto grado localizado típicamente en el vermis cerebeloso. Histológicamente clásico con células de núcleo hipercromático y escaso citoplasma ("células en roseta"). La clasificación molecular actual define 4 subgrupos principales (WNT-activado, SHH-activado, Grupo 3, Grupo 4) con pronósticos distintos.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 9: Ependimoma -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">9</div>
+                                <h3 class="topic-title">Ependimoma</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Grado de la OMS:</strong> Grado 2 y 3</p>
+                                <p><strong>Frecuencia:</strong> Común en niños y adultos jóvenes. Representa el 5-6% de los gliomas.</p>
+                                <p><strong>Características clave:</strong> Tumor que surge de las células ependimarias que revisten los ventrículos y el canal central. Localización clásica: fosa posterior (4to ventrículo) en niños y médula espinal en adultos. Hallazgo histológico característico: las pseudorrosetas perivasculares.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Topic 10: Oligodendroglioma -->
+                    <div class="topic-accordion-item">
+                        <button class="topic-accordion-header">
+                            <div class="topic-title-container">
+                                <div class="topic-number">10</div>
+                                <h3 class="topic-title">Oligodendroglioma, IDH-mutante y con codelección 1p/19q</h3>
+                            </div>
+                            <i class="fas fa-chevron-down topic-accordion-icon"></i>
+                        </button>
+                        <div class="topic-accordion-content">
+                            <div class="topic-accordion-content-inner">
+                                <p><strong>Grado de la OMS:</strong> Grado 2 o 3.</p>
+                                <p><strong>Frecuencia:</strong> Menos común que el astrocitoma y el GBM, pero representa un subgrupo importante de gliomas (alrededor del 5-10%).</p>
+                                <p><strong>Características clave:</strong> Glioma infiltrativo definido molecularmente por la codelección de los brazos cromosómicos 1p y 19q y la mutación en IDH. Tiene un pronóstico más favorable que los astrocitomas de grado equivalente. Histología clásica: células redondas con núcleo central ("huevo frito") y red capilar ramificada ("alambre de pollo").</p>
+                                <div class="topic-note">
+                                    <p><strong>Nota importante:</strong> El orden de frecuencia puede variar ligeramente según las series de estudio y la población (pediátrica vs. adulta). Esta lista proporciona una visión general sólida de las entidades más prevalentes que un neuropatólogo encuentra en la práctica diaria. La integración del diagnóstico histológico con la caracterización molecular es hoy en día el estándar de oro en la neurooncología.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
