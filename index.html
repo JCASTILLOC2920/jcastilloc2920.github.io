@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>JC Path Lab – Anatomía Patológica en Puente Piedra, Lima</title>
+  <meta name="description" content="Laboratorio especializado en anatomía patológica y biopsias en Puente Piedra, Lima. Más de 35 años de experiencia. Resultados rápidos y confiables."/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    :root{--p:#0056b3;--s:#003366;--a:#007bff;--w:#fff;--t:all .3s ease}
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:#333;background:#f5f7fa;line-height:1.6;overflow-x:hidden}
+    .header{background:var(--w);box-shadow:0 2px 8px rgba(0,0,0,.1);position:fixed;top:0;left:0;right:0;z-index:1000;padding:8px 16px}
+    .header-container{display:flex;align-items:center;justify-content:space-between}
+    .logo{height:50px}
+    .nav-menu{display:flex;gap:10px;list-style:none}
+    .nav-link{text-decoration:none;color:#333;font-weight:600;font-size:.875rem;padding:8px 14px;border-radius:20px;transition:var(--t)}
+    .nav-link.active{background:var(--p);color:var(--w)}
+    .hamburger{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer}
+    .hamburger span{width:25px;height:3px;background:#333;border-radius:2px}
+    .page-section{display:none;min-height:100vh;padding:80px 20px 40px}
+    .page-section.active{display:block}
+    .hero{background:linear-gradient(rgba(0,86,179,.8),rgba(0,51,102,.9)),url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=40') center/cover;display:flex;flex-direction:column;justify-content:center;align-items:center;color:var(--w);text-align:center}
+    .hero h1{font-size:clamp(1.8rem,5vw,3rem);margin-bottom:15px}
+    .hero p{font-size:clamp(1rem,2.5vw,1.3rem);margin-bottom:25px}
+    .btn{display:inline-block;padding:12px 30px;border-radius:50px;font-weight:600;text-decoration:none;transition:var(--t);margin:5px}
+    .btn-primary{background:var(--a);color:var(--w)}.btn-primary:hover{background:#0069d9}
+    .btn-secondary{background:transparent;color:var(--w);border:2px solid var(--w)}.btn-secondary:hover{background:rgba(255,255,255,.1)}
+    .hero-stats{display:flex;gap:30px;flex-wrap:wrap;justify-content:center;margin-top:30px}
+    .stat-item{text-align:center}
+    .stat-icon{font-size:2rem;margin-bottom:5px}
+    .section-title{font-size:clamp(1.5rem,4vw,2.5rem);text-align:center;margin-bottom:40px;color:var(--s)}
+    .service-accordion-item,.cv-accordion-item,.contact-accordion-item{background:var(--w);margin-bottom:15px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.08);overflow:hidden}
+    .accordion-header{width:100%;padding:15px 20px;text-align:left;border:none;font-weight:700;display:flex;align-items:center;gap:10px;cursor:pointer}
+    .accordion-content{max-height:0;overflow:hidden;transition:max-height .4s ease}
+    .accordion-content.active{max-height:600px}
+    .accordion-inner{padding:0 20px 15px;line-height:1.7}
+    .cv-photo{display:flex;justify-content:center;margin-bottom:20px}
+    .cv-photo img{width:180px;height:180px;border-radius:50%;border:4px solid var(--a);object-fit:cover}
+    .cv-section{max-width:800px;margin:0 auto}
+    .skills-grid{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+    .skills-grid li{background:rgba(0,86,179,.08);padding:8px 12px;border-left:3px solid var(--a)}
+    .map-container{max-width:800px;margin:30px auto 0;border-radius:12px;overflow:hidden;height:300px}
+    .map-container iframe{width:100%;height:100%;border:0}
+    .classroom-grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+    .classroom-card{background:var(--w);border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08);text-align:center}
+    .classroom-icon{background:var(--p);color:var(--w);padding:15px 8px;font-weight:700;font-size:.9rem}
+    .classroom-image img{width:100%;height:120px;object-fit:cover;display:block}
+    /* Nuevo bloque para layout texto + imagen */
+    .serv-intro{display:flex;align-items:flex-start;gap:30px;flex-wrap:wrap;margin:0 auto 40px;max-width:1080px}
+    .serv-intro-txt{flex:1 1 400px;line-height:1.7;font-size:clamp(0.9rem,2.5vw,1.05rem);color:#333}
+    .serv-intro-img{flex:0 0 300px;max-width:100%}
+    .serv-intro-img img{width:100%;height:auto;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+    @media(max-width:768px){.serv-intro{flex-direction:column;align-items:center}}
+    .chatbot-btn{position:fixed;bottom:15px;right:15px;z-index:9999;width:55px;height:55px;background:#25d366;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 12px rgba(0,0,0,.25);transition:transform .3s}.chatbot-btn:hover{transform:scale(1.1)}
+    @media(max-width:600px){
+      .nav-menu{position:fixed;top:0;right:-100%;height:100vh;width:220px;background:var(--w);flex-direction:column;padding-top:70px;transition:right .3s}
+      .nav-menu.active{right:0}
+      .hamburger{display:flex}
+      .cv-photo img{width:150px;height:150px}
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-container">
+      <img src="logo-jcpathlab.png" alt="Logo" class="logo"/>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+          <li><a href="#servicios" class="nav-link">Servicios</a></li>
+          <li><a href="#quienes-somos" class="nav-link">Quiénes Somos</a></li>
+          <li><a href="#classroom" class="nav-link">Classroom</a></li>
+          <li><a href="#contacto" class="nav-link">Contacto</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Inicio -->
+  <section id="inicio" class="page-section hero active">
+    <h1>Anatomía Patológica en Puente Piedra – Diagnóstico Preciso y Rápido</h1>
+    <p>JC Path Lab ofrece biopsias, estudios citológicos e inmunohistoquímica en Lima Norte. Resultados en 36-72 h.</p>
+    <div>
+      <a href="#contacto" class="btn btn-primary">Solicitar Servicios</a>
+      <a href="#servicios" class="btn btn-secondary">Conocer Más</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-icon"><i class="fas fa-microscope"></i></div><div><strong>35+</strong><br>Años</div></div>
+      <div class="stat-item"><div class="stat-icon"><i class="fas fa-user-md"></i></div><div><strong>Especialista</strong><br>Certificado</div></div>
+      <div class="stat-item"><div class="stat-icon"><i class="fas fa-flask"></i></div><div><strong>50K+</strong><br>Estudios</div></div>
+    </div>
+  </section>
+
+  <!-- Servicios -->
+  <section id="servicios" class="page-section">
+    <h2 class="section-title">Nuestros Servicios Especializados</h2>
+
+    <!-- Bloque texto + imagen -->
+    <div class="serv-intro">
+      <div class="serv-intro-txt">
+        En el Laboratorio JC PATH LAB, entendemos que detrás de cada muestra hay una persona esperando una respuesta clara. Combinamos la máxima precisión científica con un enfoque humano y empático, porque sabemos que nuestro diagnóstico es un pilar fundamental para la tranquilidad y el tratamiento de nuestros pacientes.<br><br>
+
+        Utilizamos tecnología de vanguardia y protocolos internacionales para ofrecer resultados confiables y rápidos. Somos el partner de confianza para médicos, clínicas y hospitales, apoyando la toma de decisiones críticas con el más alto rigor.<br><br>
+
+        <strong>Nuestra Promesa</strong><br>
+        Más que resultados, entregamos certeza y confianza. Garantizamos un servicio integral, con una comunicación clara y directa con el profesional médico tratante.<br><br>
+
+        ¿Por qué elegirnos? Porque nuestro expertise va más allá del microscopio. Aplicamos los principios más avanzados de control de calidad y servicio al paciente para ofrecerle la tranquilidad que su práctica médica y sus pacientes merecen.<br><br>
+
+        Contáctenos hoy mismo. Su diagnóstico, en las manos más expertas.
+      </div>
+      <div class="serv-intro-img">
+        <img src="saladelecturamicroscopica.webp" alt="Sala de lectura microscópica">
+      </div>
+    </div>
+
+    <!-- Acordeones originales -->
+    <div class="service-accordion-item">
+      <button class="accordion-header">Diagnóstico de biopsias</button>
+      <div class="accordion-content"><div class="accordion-inner">Análisis microscópico de tejidos para identificar enfermedades y orientar el tratamiento.</div></div>
+    </div>
+    <div class="service-accordion-item">
+      <button class="accordion-header">Estudios citológicos</button>
+      <div class="accordion-content"><div class="accordion-inner">Evaluación de células para detección temprana de alteraciones malignas.</div></div>
+    </div>
+    <div class="service-accordion-item">
+      <button class="accordion-header">Inmunohistoquímica</button>
+      <div class="accordion-content"><div class="accordion-inner">Identificación de proteínas específicas con anticuerpos para diagnóstico preciso.</div></div>
+    </div>
+    <div class="service-accordion-item">
+      <button class="accordion-header">Biopsia intraoperatoria</button>
+      <div class="accordion-content"><div class="accordion-inner">Análisis rápido durante cirugía para decisiones inmediatas.</div></div>
+    </div>
+    <div class="service-accordion-item">
+      <button class="accordion-header">Análisis de piezas quirúrgicas</button>
+      <div class="accordion-content"><div class="accordion-inner">Estudio detallado de órganos removidos para confirmar diagnóstico.</div></div>
+    </div>
+  </section>
+
+  <!-- Quiénes Somos -->
+  <section id="quienes-somos" class="page-section">
+    <h2 class="section-title">Dr. Josehp Christopher Castillo Cuenca</h2>
+    <div class="cv-photo">
+      <img src="fotojosehpcastillo.png" alt="Dr. Josehp Christopher Castillo Cuenca">
+    </div>
+    <div style="max-width:800px;margin:0 auto">
+      <div class="cv-accordion-item">
+        <button class="accordion-header"><i class="fas fa-graduation-cap"></i> Formación Académica</button>
+        <div class="accordion-content">
+          <div class="accordion-inner">
+            <p><strong>Universidad Nacional Mayor de San Marcos</strong><br>Médico Cirujano – Colegiatura 32099</p>
+            <p><strong>Universidad Nacional de Ciencias Médicas (Cuba)</strong><br>Especialista en Anatomía Patológica</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-accordion-item">
+        <button class="accordion-header"><i class="fas fa-briefcase"></i> Experiencia Profesional</button>
+        <div class="accordion-content">
+          <div class="accordion-inner">
+            <ul>
+              <li>Patólogo Asistente – Hospital Nacional Dos de Mayo (2010 – Actualidad)</li>
+              <li>Patólogo Asistente – Hospital Nacional Arzobispo Loayza (2008 – 2010)</li>
+              <li>Patólogo Asistente – Hospital Nacional Cayetano Heredia (2006 – 2008)</li>
+              <li>Patólogo Asistente – Hospital Nacional Edgardo Rebagliati (2004 – 2006)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-accordion-item">
+        <button class="accordion-header"><i class="fas fa-chalkboard-teacher"></i> Cursos y Congresos</button>
+        <div class="accordion-content">
+          <div class="accordion-inner">
+            <ul>
+              <li>Curso Internacional de Actualización en Patología Genitourinaria (2014)</li>
+              <li>I Convención Nacional de Anatomía Patológica – ESSALUD (2014)</li>
+              <li>V Jornada Peruana de Patología Oncológica, Trujillo (2018) – Segundo premio caso clínico</li>
+              <li>Curso Internacional de Patología Gastrointestinal (2018)</li>
+              <li>Pathologist Training Workshop – Laboratorios Roche Argentina (2019)</li>
+              <li>IX Congreso Internacional de Patología Uro-Oncológica (2019)</li>
+              <li>XXXII Congreso Latinoamericano de Patología – SLAP (2019)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-accordion-item">
+        <button class="accordion-header"><i class="fas fa-book"></i> Producción Académica</button>
+        <div class="accordion-content">
+          <div class="accordion-inner">
+            <ul>
+              <li>Co-autor: “Percepción de estudiantes de medicina sobre la virtualización de la educación médica durante la pandemia de COVID-19”, <em>Revista Acta Médica Peruana</em>.</li>
+              <li>Ponente en casos clínicos destacados: “Nevo de Spitz Atípico” y “Histoplasmosis diseminada aguda en paciente VIH/SIDA”.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-accordion-item">
+        <button class="accordion-header"><i class="fas fa-star"></i> Habilidades</button>
+        <div class="accordion-content">
+          <div class="accordion-inner">
+            <ul class="skills-grid">
+              <li>Diagnóstico morfológico e inmunohistoquímico integral</li>
+              <li>Análisis molecular de tejidos y células</li>
+              <li>Experiencia en necropsias, biopsias intraoperatorias y estudios citológicos</li>
+              <li>Capacitación docencia y tutoría en anatomía patológica pregrado y postgrado</li>
+              <li>Manejo avanzado de plataformas académicas virtuales y presenciales</li>
+              <li>Liderazgo y trabajo multidisciplinario</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-accordion-item">
+        <button class="accordion-header"><i class="fas fa-user"></i> Datos Personales y Características</button>
+        <div class="accordion-content">
+          <div class="accordion-inner">
+            <p>Responsable, dinámico, asertivo, con alta capacidad analítica, rapidez de aprendizaje, solidario y colaborativo en equipos de trabajo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Classroom -->
+  <section id="classroom" class="page-section">
+    <h2 class="section-title">Classroom</h2>
+    <div class="classroom-grid">
+      <div class="classroom-card">
+        <div class="classroom-icon">Dermatopatología</div>
+        <div class="classroom-image"><img src="dermatopatologia.png" alt=""/></div>
+      </div>
+      <div class="classroom-card">
+        <div class="classroom-icon">Neuropatología</div>
+        <div class="classroom-image"><img src="neuropatologia.png" alt=""/></div>
+      </div>
+      <div class="classroom-card">
+        <div class="classroom-icon">Tumores de Partes Blandas</div>
+        <div class="classroom-image"><img src="liposarcoma.png" alt=""/></div>
+      </div>
+      <div class="classroom-card">
+        <div class="classroom-icon">Citopatología</div>
+        <div class="classroom-image"><img src="citopatologia.png" alt=""/></div>
+      </div>
+      <div class="classroom-card">
+        <div class="classroom-icon">Patología Gastrointestinal</div>
+        <div class="classroom-image"><img src="gastrointestinal.png" alt=""/></div>
+      </div>
+      <div class="classroom-card">
+        <div class="classroom-icon">Patología Genitourinaria</div>
+        <div class="classroom-image"><img src="genitourinario.png" alt=""/></div>
+      </div>
+      <div class="classroom-card">
+        <div class="classroom-icon">Patología Ginecológica</div>
+        <div class="classroom-image"><img src="carcinomaescamoso.png" alt=""/></div>
+      </div>
+      <div class="classroom-card">
+        <div class="classroom-icon">Patología Cabeza y Cuello</div>
+        <div class="classroom-image"><img src="carcinomapapilar.png" alt=""/></div>
+      </div>
+      <div class="classroom-card">
+        <div class="classroom-icon">Hepatobiliar y Pancreática</div>
+        <div class="classroom-image"><img src="hepatocarcinoma.png" alt=""/></div>
+      </div>
+      <div class="classroom-card">
+        <div class="classroom-icon">Ganglio Linfático</div>
+        <div class="classroom-image"><img src="limfoma.png" alt=""/></div>
+      </div>
+      <div class="classroom-card">
+        <div class="classroom-icon">Histología Normal</div>
+        <div class="classroom-image"><img src="colonnormal.png" alt=""/></div>
+      </div>
+      <div class="classroom-card">
+        <div class="classroom-icon">Placenta</div>
+        <div class="classroom-image"><img src="corioamnionitisaguda.png" alt=""/></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section id="contacto" class="page-section">
+    <h2 class="section-title">Contáctenos</h2>
+    <div class="contact-accordion-item">
+      <button class="accordion-header"><i class="fas fa-phone"></i> Teléfono</button>
+      <div class="accordion-content"><div class="accordion-inner">986 396 733</div></div>
+    </div>
+    <div class="contact-accordion-item">
+      <button class="accordion-header"><i class="fas fa-envelope"></i> Correo Electrónico</button>
+      <div class="accordion-content"><div class="accordion-inner"><a href="mailto:jclab56@gmail.com">jclab56@gmail.com</a></div></div>
+    </div>
+    <div class="contact-accordion-item">
+      <button class="accordion-header"><i class="fas fa-map-marker-alt"></i> Dirección</button>
+      <div class="accordion-content"><div class="accordion-inner">Mz M2 lote 13 Jardines de Chillón<br>Puente Piedra, Lima</div></div>
+    </div>
+    <div class="contact-accordion-item">
+      <button class="accordion-header"><i class="fas fa-clock"></i> Horario de Atención</button>
+      <div class="accordion-content"><div class="accordion-inner">Lunes a viernes de 9:00 a.m. a 6:00 p.m.<br>Sábados de 10:00 a.m. a 2:00 p.m.</div></div>
+    </div>
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3902.632048392849!2d-77.08730908440896!3d-11.932890000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDU1JzU4LjQiUyA3N8KwMDUnMDQuNyJX!5e0!3m2!1ses!2spe!4v1690826791259!5m2!1ses!2spe" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <!-- WhatsApp flotante -->
+  <a class="chatbot-btn" href="https://wa.me/51986396733?text=Hola,%20quiero%20más%20información%20sobre%20los%20servicios%20de%20JC%20PATH%20LAB" target="_blank" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script>
+    /* Navegación entre secciones */
+    const sections=document.querySelectorAll('.page-section');
+    const navLinks=document.querySelectorAll('.nav-link');
+    const hamburger=document.querySelector('.hamburger');
+    const navMenu=document.querySelector('.nav-menu');
+
+    function showSection(id){
+      sections.forEach(s=>s.classList.toggle('active',s.id===id));
+      navLinks.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+id));
+      navMenu.classList.remove('active');
+    }
+    navLinks.forEach(link=>{
+      link.addEventListener('click',e=>{
+        e.preventDefault();
+        showSection(link.getAttribute('href').slice(1));
+      });
+    });
+    hamburger.addEventListener('click',()=>navMenu.classList.toggle('active'));
+
+    /* Acordeones */
+    document.querySelectorAll('.accordion-header').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const cont=btn.nextElementSibling;
+        cont.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>
