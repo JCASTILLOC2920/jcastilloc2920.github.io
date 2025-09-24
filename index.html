@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JC PATH LAB - Laboratorio de Anatomía Patológica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chatbot.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="header-container">
+            <!-- Logo -->
+            <div class="logo-container">
+                <img src="logo-jcpathlab.png" alt="JC PATH LAB Logo" class="logo">
+            </div>
+            
+            <!-- Navigation Menu -->
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#inicio" class="nav-link active">Inicio</a></li>
+                    <li class="nav-item"><a href="#servicios" class="nav-link">Servicios</a></li>
+                    <li class="nav-item"><a href="#quienes-somos" class="nav-link">Quiénes Somos</a></li>
+                    <li class="nav-item"><a href="#classroom" class="nav-link">Classroom</a></li>
+                    <li class="nav-item"><a href="#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Hamburger Menu -->
+            <button class="hamburger">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Secciones independientes -->
+    <!-- Inicio Section -->
+    <section id="inicio" class="hero page-section active">
+        <div class="hero-content">
+            <h1>Excelencia en Diagnóstico Patológico</h1>
+            
+            <div class="hero-buttons">
+                <a href="#contacto" class="btn btn-primary">Solicitar Servicios</a>
+                <a href="#servicios" class="btn btn-secondary">Conocer Más</a>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>35+</h3>
+                        <p>Años de Experiencia</p>
+                    </div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Especialista Certificado</h3>
+                    </div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>50K+</h3>
+                        <p>Estudios Realizados</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section id="servicios" class="services-section page-section">
+        <div class="section-header">
+            <h2 class="section-title">Nuestros Servicios Especializados</h2>
+        </div>
+        
+        <div class="services-container">
+            <div class="services-accordion">
+                <!-- Service 1 -->
+                <div class="service-accordion-item">
+                    <button class="service-accordion-header">
+                        <div class="service-title-container">
+                            <div class="service-icon">
+                                <i class="fas fa-microscope"></i>
+                            </div>
+                            <h3 class="service-title">Diagnóstico de biopsias</h3>
+                        </div>
+                        <i class="fas fa-chevron-down service-accordion-icon"></i>
+                    </button>
+                    <div class="service-accordion-content">
+                        <div class="service-accordion-content-inner">
+                            <p class="service-description">Análisis microscópico de tejidos obtenidos por cirugía o procedimientos médicos para identificar la presencia y tipo de enfermedades como tumores o inflamaciones. Este proceso orienta el diagnóstico y el tratamiento médico adecuado.</p>
+                            <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-accordion-item">
+                    <button class="service-accordion-header">
+                        <div class="service-title-container">
+                            <div class="service-icon">
+                                <i class="fas fa-vial"></i>
+                            </div>
+                            <h3 class="service-title">Estudios citológicos</h3>
+                        </div>
+                        <i class="fas fa-chevron-down service-accordion-icon"></i>
+                    </button>
+                    <div class="service-accordion-content">
+                        <div class="service-accordion-content-inner">
+                            <p class="service-description">Evaluación de células individuales o en pequeños grupos, como en el Papanicolaou, para detectar infecciones, alteraciones premalignas o malignas, ayudando a la prevención y diagnóstico temprano.</p>
+                            <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-accordion-item">
+                    <button class="service-accordion-header">
+                        <div class="service-title-container">
+                            <div class="service-icon">
+                                <i class="fas fa-dna"></i>
+                            </div>
+                            <h3 class="service-title">Inmunohistoquímica</h3>
+                        </div>
+                        <i class="fas fa-chevron-down service-accordion-icon"></i>
+                    </button>
+                    <div class="service-accordion-content">
+                        <div class="service-accordion-content-inner">
+                            <p class="service-description">Utilización de anticuerpos específicos para identificar proteínas en los tejidos, permitiendo distinguir tipos específicos de tumores, infecciones o enfermedades autoinmunes con gran precisión.</p>
+                            <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-accordion-item">
+                    <button class="service-accordion-header">
+                        <div class="service-title-container">
+                            <div class="service-icon">
+                                <i class="fas fa-snowflake"></i>
+                            </div>
+                            <h3 class="service-title">Biopsia intraoperatoria</h3>
+                        </div>
+                        <i class="fas fa-chevron-down service-accordion-icon"></i>
+                    </button>
+                    <div class="service-accordion-content">
+                        <div class="service-accordion-content-inner">
+                            <p class="service-description">Análisis rápido de una muestra durante la cirugía para ayudar a tomar decisiones inmediatas sobre el tratamiento quirúrgico, proporcionando resultados en pocos minutos.</p>
+                            <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-accordion-item">
+                    <button class="service-accordion-header">
+                        <div class="service-title-container">
+                            <div class="service-icon">
+                                <i class="fas fa-scalpel"></i>
+                            </div>
+                            <h3 class="service-title">Análisis de piezas quirúrgicas</h3>
+                        </div>
+                        <i class="fas fa-chevron-down service-accordion-icon"></i>
+                    </button>
+                    <div class="service-accordion-content">
+                        <div class="service-accordion-content-inner">
+                            <p class="service-description">Estudio detallado de órganos o partes del cuerpo removidos en cirugía para evaluar la extensión de una enfermedad o confirmar un diagnóstico previo.</p>
+                            <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section - Quiénes Somos -->
+    <section id="quienes-somos" class="about-section page-section">
+        <div class="container">
+            <div class="about-header">
+                <h2 class="section-title">Dr. Josehp Christopher Castillo Cuenca</h2>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="fotojosehpcastillo.png" alt="Dr. Josehp Christopher Castillo Cuenca">
+                </div>
+                
+                <div class="personal-info">
+                    <p><strong>Patólogo Especialista</strong></p>
+                    <p>Universidad Nacional Mayor de San Marcos</p>
+                    <p>Colegiatura: 32099</p>
+                    <p>Especialista en Anatomía Patológica</p>
+                    <p>Universidad Nacional de Ciencias Médicas - Cuba</p>
+                </div>
+                
+                <div class="call-to-action">
+                    <p>"El diagnóstico patológico es el pilar fundamental para una medicina precisa y personalizada"</p>
+                    <a href="#contacto" class="btn">Contáctame</a>
+                </div>
+                
+                <div class="cv-content">
+                    <!-- Formación Académica -->
+                    <div class="cv-section">
+                        <h3><i class="fas fa-graduation-cap"></i> FORMACIÓN ACADÉMICA</h3>
+                        <p><strong>Universidad Nacional Mayor de San Marcos</strong></p>
+                        <p>Médico Cirujano, Colegiatura 32099</p>
+                        <p><strong>Universidad Nacional de Ciencias Médicas - Cuba</strong></p>
+                        <p>Especialista en Anatomía Patológica</p>
+                    </div>
+                    
+                    <!-- Experiencia Profesional -->
+                    <div class="cv-section">
+                        <h3><i class="fas fa-briefcase"></i> EXPERIENCIA PROFESIONAL</h3>
+                        <ul>
+                            <li>Patólogo Asistente - Hospital Nacional Dos de Mayo (2010 - Actualidad)</li>
+                            <li>Patólogo Asistente - Hospital Nacional Arzobispo Loayza (2008 - 2010)</li>
+                            <li>Patólogo Asistente - Hospital Nacional Cayetano Heredia (2006 - 2008)</li>
+                            <li>Patólogo Asistente - Hospital Nacional Edgardo Rebagliati (2004 - 2006)</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Cursos y Congresos -->
+                    <div class="cv-section">
+                        <h3><i class="fas fa-chalkboard-teacher"></i> CURSOS Y CONGRESOS</h3>
+                        <ul>
+                            <li>Curso Internacional de Actualización en Patología Genitourinaria (2014)</li>
+                            <li>I Convención Nacional de Anatomía Patológica – ESSALUD (2014)</li>
+                            <li>V Jornada Peruana de Patología Oncológica, Trujillo (2018), Segundo premio caso clínico</li>
+                            <li>Curso Internacional de Patología Gastrointestinal (2018)</li>
+                            <li>Pathologist Training Workshop, Laboratorios Roche Argentina (2019)</li>
+                            <li>IX Congreso Internacional de Patología Uro-Oncológica (2019)</li>
+                            <li>XXXII Congreso Latinoamericano de Patología – SLAP (2019)</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Producción Académica -->
+                    <div class="cv-section">
+                        <h3><i class="fas fa-book"></i> PRODUCCIÓN ACADÉMICA</h3>
+                        <ul>
+                            <li>Coautor artículo: "Percepción de estudiantes de medicina sobre la virtualización de la educación médica durante la pandemia de COVID-19", Revista Acta Médica Peruana.</li>
+                            <li>Ponente en casos clínicos destacados: "Nevo de Spitz Atípico" y "Histoplasmosis diseminada aguda en paciente VIH/SIDA".</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Habilidades -->
+                    <div class="cv-section">
+                        <h3><i class="fas fa-star"></i> HABILIDADES</h3>
+                        <ul class="skills-grid">
+                            <li>Diagnóstico morfológico e inmunohistoquímico integral</li>
+                            <li>Análisis molecular de tejidos y células</li>
+                            <li>Experiencia en necropsias, biopsias intraoperatorias y estudios citológicos</li>
+                            <li>Capacitación docencia y tutoría en anatomía patológica pregrado y postgrado</li>
+                            <li>Manejo avanzado de plataformas académicas virtuales y presenciales</li>
+                            <li>Liderazgo y trabajo multidisciplinario</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Datos Personales -->
+                    <div class="cv-section">
+                        <h3><i class="fas fa-user"></i> DATOS PERSONALES Y CARACTERÍSTICAS</h3>
+                        <p>Responsable, dinámico, asertivo, con alta capacidad analítica, rapidez de aprendizaje, solidario y colaborativo en equipos de trabajo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Classroom Section -->
+    <section id="classroom" class="classroom-section page-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Classroom</h2>
+            </div>
+
+            <!-- Classroom Cards in Columns -->
+            <div class="classroom-grid">
+                <div class="classroom-card">
+                    <div class="classroom-icon">
+                        Dermatopatología
+                    </div>
+                    <div class="classroom-image">
+                        <img src="dermatopatologia.png" alt="Dermatopatología">
+                    </div>
+                    <div class="classroom-content">
+                    </div>
+                </div>
+                
+                <div class="classroom-card">
+                    <div class="classroom-icon">
+                        Neuropatología
+                    </div>
+                    <div class="classroom-image">
+                        <img src="neuropatologia.png" alt="Neuropatología">
+                    </div>
+                    <div class="classroom-content">
+                    </div>
+                </div>
+                
+                <div class="classroom-card">
+                    <div class="classroom-icon">
+                        Tumores de Partes Blandas
+                    </div>
+                    <div class="classroom-image">
+                        <img src="liposarcoma.png" alt="Tumores de Partes Blandas">
+                    </div>
+                    <div class="classroom-content">
+                    </div>
+                </div>
+                
+                <div class="classroom-card">
+                    <div class="classroom-icon">
+                        Citopatología
+                    </div>
+                    <div class="classroom-image">
+                        <img src="citopatologia.png" alt="Citopatología">
+                    </div>
+                    <div class="classroom-content">
+                    </div>
+                </div>
+                
+                <div class="classroom-card">
+                    <div class="classroom-icon">
+                        Patología Gastrointestinal
+                    </div>
+                    <div class="classroom-image">
+                        <img src="gastrointestinal.png" alt="Patología Gastrointestinal">
+                    </div>
+                    <div class="classroom-content">
+                    </div>
+                </div>
+                
+                <div class="classroom-card">
+                    <div class="classroom-icon">
+                        Patología Genitourinaria
+                    </div>
+                    <div class="classroom-image">
+                        <img src="genitourinario.png" alt="Patología Genitourinaria">
+                    </div>
+                    <div class="classroom-content">
+                    </div>
+                </div>
+                
+                <div class="classroom-card">
+                    <div class="classroom-icon">
+                        Patología Ginecológica
+                    </div>
+                    <div class="classroom-image">
+                        <img src="carcinomaescamoso.png" alt="Patología Ginecológica">
+                    </div>
+                    <div class="classroom-content">
+                    </div>
+                </div>
+                
+                <div class="classroom-card">
+                    <div class="classroom-icon">
+                        Patología de Cabeza y Cuello
+                    </div>
+                    <div class="classroom-image">
+                        <img src="carcinomapapilar.png" alt="Patología de Cabeza y Cuello">
+                    </div>
+                    <div class="classroom-content">
+                    </div>
+                </div>
+                
+                <div class="classroom-card">
+                    <div class="classroom-icon">
+                        Patología Hepatobiliar y Pancreática
+                    </div>
+                    <div class="classroom-image">
+                        <img src="hepatocarcinoma.png" alt="Patología Hepatobiliar y Pancreática">
+                    </div>
+                    <div class="classroom-content">
+                    </div>
+                </div>
+                
+                <div class="classroom-card">
+                    <div class="classroom-icon">
+                        Patología de Ganglio Linfático
+                    </div>
+                    <div class="classroom-image">
+                        <img src="limfoma.png" alt="Patología de Ganglio Linfático">
+                    </div>
+                    <div class="classroom-content">
+                    </div>
+                </div>
+                
+                <div class="classroom-card">
+                    <div class="classroom-icon">
+                        Histología Normal
+                    </div>
+                    <div class="classroom-image">
+                        <img src="colonnormal.png" alt="Histología Normal">
+                    </div>
+                    <div class="classroom-content">
+                    </div>
+                </div>
+                
+                <div class="classroom-card">
+                    <div class="classroom-icon">
+                        Placenta
+                    </div>
+                    <div class="classroom-image">
+                        <img src="corioamnionitisaguda.png" alt="Placenta">
+                    </div>
+                    <div class="classroom-content">
+                    </div>
+                </div>
+                
+                <div class="classroom-card">
+                    <div class="classroom-icon">
+                        Patología Torácica
+                    </div>
+                    <div class="classroom-image">
+                        <img src="adenocarcinomapulmon.png" alt="Patología Torácica">
+                    </div>
+                    <div class="classroom-content">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="contact-section page-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contáctenos</h2>
+            </div>
+            
+            <div class="contact-accordion-container">
+                <!-- Teléfono -->
+                <div class="contact-accordion-item">
+                    <button class="contact-accordion-header">
+                        <div class="contact-title">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            Teléfono
+                        </div>
+                    </button>
+                    <div class="contact-accordion-content">
+                        <div class="contact-accordion-content-inner">
+                            <div class="contact-details">
+                                <p>986396733</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Correo Electrónico -->
+                <div class="contact-accordion-item">
+                    <button class="contact-accordion-header">
+                        <div class="contact-title">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            Correo Electrónico
+                        </div>
+                    </button>
+                    <div class="contact-accordion-content">
+                        <div class="contact-accordion-content-inner">
+                            <div class="contact-details">
+                                <p><a href="mailto:jclab56@gmail.com">jclab56@gmail.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dirección -->
+                <div class="contact-accordion-item">
+                    <button class="contact-accordion-header">
+                        <div class="contact-title">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            Dirección
+                        </div>
+                    </button>
+                    <div class="contact-accordion-content">
+                        <div class="contact-accordion-content-inner">
+                            <div class="contact-details">
+                                <p>Mz M2 lote 13 Jardines de Chillón<br>Puente Piedra, Lima</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Horario de Atención -->
+                <div class="contact-accordion-item">
+                    <button class="contact-accordion-header">
+                        <div class="contact-title">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            Horario de Atención
+                        </div>
+                    </button>
+                    <div class="contact-accordion-content">
+                        <div class="contact-accordion-content-inner">
+                            <div class="contact-details">
+                                <p>Lunes a Viernes<br>9:00 AM - 6:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="map-container">
+                <!-- Ubicación del Laboratorio -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3902.632048392849!2d-77.08730908440896!3d-11.932890000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDU1JzU4LjQiUyA3N8KwMDUnMDQuNyJX!5e0!3m2!1ses!2spe!4v1690826791259!5m2!1ses!2spe" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chatbot HTML Structure -->
+    <div id="chat-container">
+        <div id="chat-header">
+            <span>Asistente Virtual JC Path Lab</span>
+            <span class="close-btn">&times;</span>
+        </div>
+        <div id="chat-messages"></div>
+        <div id="bot-options"></div>
+        <div id="chat-input-container" style="display: none;">
+            <input type="text" id="chat-input" placeholder="Escribe tu nombre...">
+            <button id="send-btn">&#10148;</button>
+        </div>
+    </div>
+    <button id="chat-toggle">
+        <i class="fas fa-comment-dots"></i>
+    </button>
+
+    <script src="main.js"></script>
+    <script src="chatbot.js"></script>
+</body>
+</html>
