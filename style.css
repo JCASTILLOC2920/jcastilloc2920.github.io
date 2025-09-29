@@ -395,7 +395,7 @@ body {
 }
 
 .service-accordion-content.active {
-    max-height: 300px;
+    max-height: 1000px;
 }
 
 .service-accordion-content-inner {
@@ -1466,4 +1466,24 @@ body {
         height: 30px;
         font-size: 0.9rem;
     }
+}
+
+.protocol-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.protocol-table th, .protocol-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.protocol-table th {
+    background-color: #f2f2f2;
+}
+
+.service-accordion-content.active {
+    max-height: none; /* Allow content to expand freely */
 }
