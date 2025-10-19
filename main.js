@@ -30,31 +30,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Manejar clics en enlaces de navegación
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href').substring(1);
-            showSection(targetId);
-            
-            // Cerrar menú móvil si está abierto
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        });
-    });
-    
-    // Manejar clics en botones de la página
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
             if (href.startsWith('#')) {
                 e.preventDefault();
                 const targetId = href.substring(1);
+                // Cerrar menú móvil si está abierto
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
                 showSection(targetId);
             }
         });
     });
-    
+
     // Manejar botón de menú hamburguesa
     hamburger.addEventListener('click', function() {
         hamburger.classList.toggle('active');

@@ -785,6 +785,11 @@ body {
     cursor: pointer;
 }
 
+.classroom-card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
 .classroom-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 15px 30px rgba(0, 86, 179, 0.15);
@@ -1040,6 +1045,118 @@ body {
     display: block;
 }
 
+/* --- TOPIC DETAIL SECTION (e.g., Tumores) --- */
+.topic-detail-section {
+    padding: 100px 5%;
+    background-color: #f9fbfd;
+}
+
+.topic-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+}
+
+.topic-subsection {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(0, 86, 179, 0.1);
+}
+
+.topic-subsection:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.topic-subsection-title {
+    font-size: 1.8rem;
+    color: var(--secondary);
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.topic-subsection-title i {
+    color: var(--accent);
+}
+
+.topic-subsection h4 {
+    font-size: 1.4rem;
+    color: var(--primary);
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.topic-subsection ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.topic-subsection ul li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+    line-height: 1.7;
+}
+
+.topic-subsection ul li::before {
+    content: "•";
+    color: var(--accent);
+    position: absolute;
+    left: 0;
+    font-size: 1.5rem;
+    top: -4px;
+}
+
+.summary-section {
+    margin-top: 50px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(0, 86, 179, 0.1);
+}
+
+.summary-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.summary-column h4 {
+    font-size: 1.3rem;
+    color: var(--primary);
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.summary-column h5 {
+    font-size: 1.1rem;
+    color: var(--secondary);
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.summary-column ul, .summary-column ol {
+    padding-left: 20px;
+}
+
+.summary-column ul li, .summary-column ol li {
+    margin-bottom: 10px;
+}
+
+.summary-conclusion {
+    margin-top: 30px;
+    font-weight: bold;
+    color: var(--secondary);
+    font-style: italic;
+    border-left: 3px solid var(--accent);
+    padding-left: 15px;
+}
+
 /* Animation */
 @keyframes fadeInUp {
     from {
@@ -1262,6 +1379,11 @@ body {
     
     .skills-grid {
         grid-template-columns: 1fr;
+    }
+
+    .summary-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
     }
 
     .map-container {
