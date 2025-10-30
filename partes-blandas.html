@@ -6,6 +6,125 @@
     <title>Tumores de Partes Blandas - JC PATH LAB</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .elemento-desplegable {
+            margin-bottom: 15px;
+            border: 1px solid #e0e5ec;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 86, 179, 0.05);
+        }
+
+        .boton-desplegable {
+            background-color: #f8f9fa;
+            color: var(--secondary, #003366);
+            cursor: pointer;
+            padding: 18px 25px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .boton-desplegable:hover, .boton-desplegable.activo {
+            background-color: #e9ecef;
+        }
+
+        .boton-desplegable.activo {
+            background-color: #e2e9f1;
+            color: var(--primary, #0056b3);
+        }
+
+        .boton-desplegable::after {
+            content: '+';
+            font-size: 1.8rem;
+            color: var(--accent, #007bff);
+            font-weight: 300;
+            transition: transform 0.3s ease;
+        }
+
+        .boton-desplegable.activo::after {
+            content: '−';
+            transform: rotate(180deg);
+        }
+
+        .contenido-desplegable {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.3s ease;
+            background-color: #ffffff;
+        }
+
+        .tabla-tumores {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .tabla-tumores th {
+            background-color: #2c3e50;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: bold;
+            border: none;
+        }
+
+        .tabla-tumores td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+            vertical-align: top;
+        }
+
+        .tabla-tumores tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .tabla-tumores tbody tr:hover {
+            background-color: #e8f4f8;
+            transition: background-color 0.3s ease;
+        }
+
+        .enlaces-casos {
+          margin-top: 8px;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        .enlace-caso {
+          display: inline-block;
+          background-color: #e8f4f8;
+          color: #2c3e50;
+          text-decoration: none;
+          padding: 6px 10px;
+          border-radius: 4px;
+          font-size: 0.85em;
+          border: 1px solid #b8d8e8;
+          transition: all 0.3s ease;
+        }
+
+        .enlace-caso:hover {
+          background-color: #2c3e50;
+          color: white;
+          text-decoration: none;
+          transform: translateY(-1px);
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+
+    </style>
 </head>
 <body>
     <!-- Header Section -->
@@ -46,218 +165,267 @@
             </div>
 
             <div class="topic-content">
-                <div class="topic-subsection">
-                    <h3>SECCIÓN 2: Enfoque Diagnóstico</h3>
-                    <ul>
-                        <li>Descripción General: Biopsia y Resección de Tumores de Partes Blandas</li>
-                        <li>Enfoque Clínico: Basado en la Edad y la Localización</li>
-                        <li>Enfoque Histológico: Basado en Patrones y Características</li>
-                    </ul>
-                </div>
-
-                <div class="topic-subsection">
-                    <h3 class="topic-subsection-title"><i class="fas fa-microscope"></i> Biopsia y Resección de Tumores de Partes Blandas</h3>
-                    
-                    <h4>DESCRIPCIÓN GENERAL</h4>
-                    <h5>Puntos Generales</h5>
-                    <ul>
-                        <li>Actualmente hay disponibles una variedad de procedimientos diagnósticos para que los cirujanos y clínicos evalúen los tumores de partes blandas.</li>
-                        <li>Los tumores que parecen probablemente benignos a menudo se extirpan quirúrgicamente sin toma de muestra, o se siguen clínicamente.</li>
-                        <li>Los tumores que parecen probablemente malignos o potencialmente malignos usualmente se muestrean preoperatoriamente.</li>
-                        <li>Con frecuencia creciente, los tumores de partes blandas se muestrean inicialmente mediante biopsia con aguja gruesa, aspiración con aguja fina (PAAF) o biopsia limitada, debido a la morbilidad mínima para el paciente.</li>
-                        <li>Un diagnóstico exitoso generalmente conduce a la escisión local, resección amplia con márgenes, o quimioterapia adyuvante preoperatoria y/o radioterapia.</li>
-                        <li>Las muestras más pequeñas son generalmente más difíciles de evaluar debido a problemas de muestreo y problemas relacionados con la inmunohistoquímica.</li>
-                    </ul>
-
-                    <h5>Tipos de Muestras</h5>
-                    <ul>
-                        <li><strong>Biopsia con aguja gruesa:</strong> Muestra muy pequeña. Popular por su riesgo mínimo.</li>
-                        <li><strong>Aspiración con aguja fina (PAAF):</strong> Permite evaluación inmediata de la adecuación. Mínima morbilidad.</li>
-                        <li><strong>Biopsia quirúrgica abierta:</strong> Muestra más grande y tejido más intacto. Menor riesgo de subdiagnóstico.</li>
-                        <li><strong>Escisión local:</strong> Remoción completa del tumor sin buscar márgenes amplios. Estándar para tumores benignos superficiales.</li>
-                        <li><strong>Resección con márgenes:</strong> Incluye resección amplia y radical. Estándar para tumores agresivos, profundos y sarcomas.</li>
-                    </ul>
-
-                    <h4>MUESTRAS DE BIOPSIA</h4>
-                    <h5>Enfoque Histológico General</h5>
-                    <ul>
-                        <li>Asegurar que esté presente tejido lesional.</li>
-                        <li>Evaluar el patrón de crecimiento y las características citológicas.</li>
-                        <li>Buscar pistas histológicas que sugieran una diferenciación específica (ej., lipoblastos).</li>
-                        <li>Evaluar la actividad mitótica y la presencia o ausencia de necrosis.</li>
-                        <li>Utilizar estudios auxiliares (IHQ, molecular) según sea necesario.</li>
-                    </ul>
-
-                    <h5>Advertencias</h5>
-                    <ul>
-                        <li>Siempre excluir carcinoma, melanoma, linfoma y mesotelioma.</li>
-                        <li>Cuidado con los problemas de muestreo: un tumor de bajo grado en biopsia puede tener áreas de alto grado en la resección.</li>
-                        <li>El diagnóstico de "sarcoma pleomórfico indiferenciado" no debe hacerse en la biopsia, ya que es un diagnóstico de exclusión.</li>
-                        <li>Algunos sarcomas pueden parecer benignos (ej., sarcoma fibromixoide de bajo grado) y algunos tumores benignos pueden parecer malignos (ej., fascitis nodular).</li>
-                        <li>Un diagnóstico conservador en la biopsia sirve mejor al paciente.</li>
-                    </ul>
-
-                    <h5>Informe</h5>
-                    <ul>
-                        <li>Hacer todo lo posible por establecer un diagnóstico claro y el grado.</li>
-                        <li>Si no es posible, un diagnóstico descriptivo ayuda a guiar la planificación (ej., "neoplasia mixoide de bajo grado, sugestiva de benigna").</li>
-                        <li>Se recomienda un comentario para discutir el diagnóstico diferencial.</li>
-                    </ul>
-
-                    <h4>MUESTRAS DE RESECCIÓN</h4>
-                    <h5>Enfoque Histológico General</h5>
-                    <ul>
-                        <li><strong>Sin terapia neoadyuvante:</strong> Revisar la biopsia original, confirmar el diagnóstico y el grado, y evaluar los márgenes.</li>
-                        <li><strong>Con terapia neoadyuvante:</strong> Confirmar el diagnóstico original. El cuadro histológico puede cambiar drásticamente (necrosis, fibrosis, atipia). Documentar el porcentaje de viabilidad tumoral residual y evaluar los márgenes.</li>
-                    </ul>
-
-                    <h5>Advertencias</h5>
-                    <ul>
-                        <li>Un pequeño porcentaje de tumores desafía la clasificación. El objetivo es distinguir entre benigno, bajo grado y alto grado.</li>
-                        <li>La clasificación de un tumor tratado es difícil. Las células pueden volverse pleomórficas y las técnicas auxiliares no son confiables.</li>
-                    </ul>
-
-                    <h4>TEMAS ESPECIALES</h4>
-                    <h5>Consulta Intraoperatoria por Congelación</h5>
-                    <ul>
-                        <li>Se solicita para confirmar un diagnóstico o cuando no hay biopsia previa.</li>
-                        <li>La información más útil que el patólogo puede proporcionar es si el tumor parece benigno, de bajo grado o de alto grado.</li>
-                        <li>Se recomienda precaución al calificar un tumor como "benigno" en congelación.</li>
-                    </ul>
-
-                    <h5>Evaluación mediante Pruebas Auxiliares</h5>
-                    <ul>
-                        <li><strong>Inmunohistoquímica (IHQ):</strong> Un panel de screening (ej., Queratina, S100, SMA, Desmina, CD34) es útil.</li>
-                        <li><strong>Análisis molecular:</strong> Pruebas como FISH o RT-PCR pueden ser cruciales.</li>
-                    </ul>
-
-                    <h5>Consulta con un Experto</h5>
-                    <ul>
-                        <li>Recomendada en casos difíciles, raros o cuando el diagnóstico histológico no concuerda con la clínica.</li>
-                    </ul>
-                </div>
-
-                <div class="topic-subsection">
-                    <h3 class="topic-subsection-title"><i class="fas fa-user-md"></i> Enfoque Diagnóstico Basado en la Edad y la Localización</h3>
-                    
-                    <h4>ENFOQUE BASADO EN LA EDAD</h4>
-                    <ul>
-                        <li><strong>Lactancia (&lt; 3 Años):</strong> Hamartoma fibroso, Fibromatosis de cuerpos de inclusión, Fibrosarcoma infantil, Lipoblastoma.</li>
-                        <li><strong>Lactantes, Niños o Adolescentes (&lt; 20 Años):</strong> Angiomatosis, Rabdomiosarcoma embrionario, Tumor rabdoide extrarenal.</li>
-                        <li><strong>Adolescentes a Adultos Jóvenes (~ 10 a 35 Años):</strong> Rabdomiosarcoma alveolar, Sarcoma de partes blandas alveolar, Sarcoma epiteloide, Liposarcoma mixoide, Sarcoma sinovial.</li>
-                        <li><strong>Adultos Jóvenes a de Mediana Edad (~ 20 a 50 Años):</strong> Sarcoma de células claras, Dermatofibrosarcoma protuberans, Leiomiosarcoma, Fascitis nodular.</li>
-                        <li><strong>Adultos de Mediana Edad a Mayores (~ 45 a 60 Años):</strong> Liposarcoma bien diferenciado/desdiferenciado, Condrosarcoma mixoide extraesquelético.</li>
-                        <li><strong>Adultos Mayores y Ancianos (&gt; 50 Años):</strong> Fibroxantoma atípico, Mixofibrosarcoma, Liposarcoma pleomórfico, Sarcoma pleomórfico indiferenciado.</li>
-                    </ul>
-
-                    <h4>ENFOQUE BASADO EN LA LOCALIZACIÓN</h4>
-                    <ul>
-                        <li><strong>Extremidades Distales (Acrales):</strong> Sarcoma de células claras, Sarcoma epiteloide, Fibromatosis palmar/plantar.</li>
-                        <li><strong>Dedos de Manos y Pies:</strong> Fibromixoma acral, Tumor glómico, Tumor de células gigantes tenosinovial.</li>
-                        <li><strong>Región Genital e Ingle:</strong> Angiomiofibroblastoma, Angiomixoma profundo, Rabdomiosarcoma de células fusiformes.</li>
-                        <li><strong>Mesenterio/Epiplón/Peritoneo:</strong> Fibromatosis desmoide, GIST, Tumor miofibroblástico inflamatorio.</li>
-                        <li><strong>Cabeza y Cuello:</strong> Rabdomiosarcoma embrionario, Rabdomioma, Neurotequeoma celular.</li>
-                        <li><strong>Retroperitoneo:</strong> Liposarcoma (desdiferenciado y bien diferenciado), Leiomiosarcoma, Schwannoma.</li>
-                        <li><strong>Tronco, Hombros y Espalda:</strong> Dermatofibrosarcoma protuberans, Elastofibroma, Lipoma de células fusiformes/pleomórfico.</li>
-                    </ul>
-                </div>
-
-                <div class="topic-subsection">
-                    <h3 class="topic-subsection-title"><i class="fas fa-project-diagram"></i> Enfoque Diagnóstico Basado en Patrones</h3>
-                    
-                    <h4>PATRONES DE CÉLULAS FUSIFORMES MONOMÓRFICAS</h4>
-                    <ul>
-                        <li><strong>Dispuestas en Láminas:</strong> Sarcoma sinovial, Tumor fibroso solitario.</li>
-                        <li><strong>Con Áreas Hipo e Hipercelulares:</strong> Sarcoma fibromixoide de bajo grado, MPNST, Schwannoma.</li>
-                        <li><strong>Dispuestas en Haces o Fascículos:</strong> Leiomioma, Fibromatosis, Leiomiosarcoma, Schwannoma.</li>
-                        <li><strong>Dispuestas en Fascículos "Espina de Pescado":</strong> Fibrosarcoma, Sarcoma sinovial.</li>
-                        <li><strong>Arquitectura Estoriforme o en Remolino:</strong> Dermatofibrosarcoma protuberans, Fascitis nodular, Perineurioma.</li>
-                        <li><strong>Dentro de Estroma Mixoide:</strong> Mixoma intramuscular, Liposarcoma mixoide, Neurofibroma, Fascitis nodular.</li>
-                    </ul>
-
-                    <h4>PATRONES DE CÉLULAS FUSIFORMES PLEOMÓRFICAS</h4>
-                    <ul>
-                        <li><strong>Dispuestas en Láminas:</strong> Sarcoma pleomórfico indiferenciado, Liposarcoma desdiferenciado/pleomórfico.</li>
-                        <li><strong>Dispuestas en Fascículos:</strong> Leiomiosarcoma, MPNST.</li>
-                        <li><strong>Dentro de Estroma Mixoide:</strong> Mixofibrosarcoma.</li>
-                    </ul>
-
-                    <h4>PATRONES DE CÉLULAS EPITELIOIDES</h4>
-                    <ul>
-                        <li><strong>Dispuestas en Nidos o Lóbulos:</strong> Sarcoma de partes blandas alveolar, Sarcoma de células claras, Sarcoma epiteloide, Tumor glómico, PEComa.</li>
-                        <li><strong>Dispuestas en Láminas (Citoplasma Abundante):</strong> Sarcoma epiteloide (tipo proximal), Tumor rabdoide extrarenal.</li>
-                        <li><strong>Dispuestas en Láminas (Citoplasma Mínimo/Escaso - "Células Azules"):</strong> Sarcoma de Ewing, Rabdomiosarcoma alveolar, Sarcoma sinovial pobremente diferenciado.</li>
-                        <li><strong>Con Estroma Mixoide:</strong> Mioepitelioma, Condrosarcoma mixoide extraesquelético.</li>
-                    </ul>
-                </div>
-
-                <div class="topic-subsection">
-                    <h3 class="topic-subsection-title"><i class="fas fa-dna"></i> Enfoque Diagnóstico Basado en Características</h3>
-
-                    <h4>CARACTERÍSTICAS CITOLÓGICAS</h4>
-                    <ul>
-                        <li><strong>Células Claras:</strong> Sarcoma de células claras, Mioepitelioma, PEComa.</li>
-                        <li><strong>Células Granulares:</strong> Tumor de células granulares, Hibernoma, Rabdomioma adulto.</li>
-                        <li><strong>Células en Clavo de Dedo (Hobnail):</strong> Varios hemangioendoteliomas.</li>
-                        <li><strong>Células Rabdoides:</strong> Sarcoma epiteloide, Tumor rabdoide extrarenal, Carcinoma mioepitelial.</li>
-                    </ul>
-                </div>
-
-                <!-- RESUMEN SECTION -->
-                <div class="summary-section">
-                    <div class="section-header">
-                        <h2 class="section-title">Resumen del Dr. Valenzuela</h2>
-                        <p class="section-subtitle">Una perspectiva desde la experiencia.</p>
+                <div class="elemento-desplegable">
+                    <button class="boton-desplegable">SECCIÓN 2: Enfoque Diagnóstico</button>
+                    <div class="contenido-desplegable" style="padding-top: 20px; padding-bottom: 20px;">
+                        <ul>
+                            <li>Descripción General: Biopsia y Resección de Tumores de Partes Blandas</li>
+                            <li>Enfoque Clínico: Basado en la Edad y la Localización</li>
+                            <li>Enfoque Histológico: Basado en Patrones y Características</li>
+                        </ul>
                     </div>
-                    <div class="summary-content">
-                        <div class="summary-column">
-                            <p>¡Por supuesto! Tome asiento, joven. Soy el Dr. Valenzuela, Jefe de Patología de Partes Blandas aquí en el MD Anderson. Usted tiene 16 años y esa curiosidad es lo más valioso que tiene. Voy a contarle cómo es *realmente* este oficio de detective de células.</p>
-                            <p>Olvídese de los libros por un momento. Esto es como una guerra contra la incertidumbre, y cada tumor es un campo de batalla.</p>
+                </div>
 
-                            <h4>El Arte de la Muestra: No Es Solo Pinchar</h4>
-                            <p>Cuando ese cirujano viene a mi laboratorio, no me trae un tumor, me trae una <strong>pregunta</strong>: "¿Qué es esto y qué hacemos con ello?".</p>
-                            <ul>
-                                <li><strong>La Biopsia con Aguja (Core Needle):</strong> Es nuestro francotirador. Rápido y limpio, pero es solo una foto de una calle. El riesgo es que esa calle no represente a toda la ciudad.</li>
-                                <li><strong>La Escisión/Resección:</strong> Esto es el mapa completo. Aquí diagnosticamos, estadificamos y damos pronóstico. Lo más crucial: <strong>analizamos los márgenes</strong>. Si el tumor toca el borde, es como dejar raíces de una mala hierba. Va a volver.</li>
-                            </ul>
-
-                            <h4>Los Tres Pilares del Diagnóstico: La Santísima Trinidad</h4>
-                            <p>Usamos los TRES enfoques a la vez. Es como tener un filtro de Instagram, un buscador de Google y un test de ADN para identificar a alguien.</p>
-                            
-                            <h5>1. El Contexto: ¿QUIÉN es el paciente y DÓNDE está el problema?</h5>
-                            <p>Un tumor en el pie de un adolescente NO es lo mismo que en un anciano. Es simple.</p>
-                            <ul>
-                                <li><strong>Un bebé con un bulto:</strong> Pienso en <strong>Lipoblastoma</strong> o <strong>Fibrosarcoma Infantil</strong>.</li>
-                                <li><strong>Un joven de 20 años:</strong> Mi radar se enfoca en el <strong>Sarcoma Sinovial</strong>.</li>
-                                <li><strong>Un adulto mayor:</strong> Pienso en <strong>Mixofibrosarcoma</strong>.</li>
-                            </ul>
+                <div class="elemento-desplegable">
+                    <button class="boton-desplegable"><i class="fas fa-microscope" style="margin-right: 10px; color: var(--accent);"></i> Biopsia y Resección de Tumores de Partes Blandas</button>
+                    <div class="contenido-desplegable" style="padding-top: 20px; padding-bottom: 20px;">
+                        <div class="elemento-desplegable">
+                            <button class="boton-desplegable" style="font-size: 1.1rem; background-color: #fdfdff;">DESCRIPCIÓN GENERAL</button>
+                            <div class="contenido-desplegable" style="padding-top: 20px; padding-bottom: 20px;">
+                                <h5>Puntos Generales</h5>
+                                <ul>
+                                    <li>Actualmente hay disponibles una variedad de procedimientos diagnósticos para que los cirujanos y clínicos evalúen los tumores de partes blandas.</li>
+                                    <li>Los tumores que parecen probablemente benignos a menudo se extirpan quirúrgicamente sin toma de muestra, o se siguen clínicamente.</li>
+                                    <li>Los tumores que parecen probablemente malignos o potencialmente malignos usualmente se muestrean preoperatoriamente.</li>
+                                    <li>Con frecuencia creciente, los tumores de partes blandas se muestrean inicialmente mediante biopsia con aguja gruesa, aspiración con aguja fina (PAAF) o biopsia limitada, debido a la morbilidad mínima para el paciente.</li>
+                                    <li>Un diagnóstico exitoso generalmente conduce a la escisión local, resección amplia con márgenes, o quimioterapia adyuvante preoperatoria y/o radioterapia.</li>
+                                    <li>Las muestras más pequeñas son generalmente más difíciles de evaluar debido a problemas de muestreo y problemas relacionados con la inmunohistoquímica.</li>
+                                </ul>
+                                <h5>Tipos de Muestras</h5>
+                                <ul>
+                                    <li><strong>Biopsia con aguja gruesa:</strong> Muestra muy pequeña. Popular por su riesgo mínimo.</li>
+                                    <li><strong>Aspiración con aguja fina (PAAF):</strong> Permite evaluación inmediata de la adecuación. Mínima morbilidad.</li>
+                                    <li><strong>Biopsia quirúrgica abierta:</strong> Muestra más grande y tejido más intacto. Menor riesgo de subdiagnóstico.</li>
+                                    <li><strong>Escisión local:</strong> Remoción completa del tumor sin buscar márgenes amplios. Estándar para tumores benignos superficiales.</li>
+                                    <li><strong>Resección con márgenes:</strong> Incluye resección amplia y radical. Estándar para tumores agresivos, profundos y sarcomas.</li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="summary-column">
-                            <h5>2. El Patrón: La "Cara" del Tumor bajo el Microscopio</h5>
-                            <p>Es leer el lenguaje de las células.</p>
-                            <ul>
-                                <li><strong>Células alargadas (fusiformes) ordenadas:</strong> Suena a <strong>Leiomiosarcoma</strong>.</li>
-                                <li><strong>Células redondas y grandes (epitelioides):</strong> Me hace pensar en <strong>Carcinoma</strong>, <strong>Melanoma</strong>, o <strong>Sarcoma de Células Claras</strong>.</li>
-                                <li><strong>Parece gelatina con células flotando (mixoide):</strong> Firma del <strong>Liposarcoma Mixoide</strong>.</li>
-                                <li><strong>Monstruos (células pleomórficas):</strong> Un <strong>Sarcoma Pleomórfico Indiferenciado</strong>.</li>
-                            </ul>
+                        <div class="elemento-desplegable">
+                            <button class="boton-desplegable" style="font-size: 1.1rem; background-color: #fdfdff;">MUESTRAS DE BIOPSIA</button>
+                            <div class="contenido-desplegable" style="padding-top: 20px; padding-bottom: 20px;">
+                                <h5>Enfoque Histológico General</h5>
+                                <ul>
+                                    <li>Asegurar que esté presente tejido lesional.</li>
+                                    <li>Evaluar el patrón de crecimiento y las características citológicas.</li>
+                                    <li>Buscar pistas histológicas que sugieran una diferenciación específica (ej., lipoblastos).</li>
+                                    <li>Evaluar la actividad mitótica y la presencia o ausencia de necrosis.</li>
+                                    <li>Utilizar estudios auxiliares (IHQ, molecular) según sea necesario.</li>
+                                </ul>
+                                <h5>Advertencias</h5>
+                                <ul>
+                                    <li>Siempre excluir carcinoma, melanoma, linfoma y mesotelioma.</li>
+                                    <li>Cuidado con los problemas de muestreo: un tumor de bajo grado en biopsia puede tener áreas de alto grado en la resección.</li>
+                                    <li>El diagnóstico de "sarcoma pleomórfico indiferenciado" no debe hacerse en la biopsia, ya que es un diagnóstico de exclusión.</li>
+                                    <li>Algunos sarcomas pueden parecer benignos (ej., sarcoma fibromixoide de bajo grado) y algunos tumores benignos pueden parecer malignos (ej., fascitis nodular).</li>
+                                    <li>Un diagnóstico conservador en la biopsia sirve mejor al paciente.</li>
+                                </ul>
+                                <h5>Informe</h5>
+                                <ul>
+                                    <li>Hacer todo lo posible por establecer un diagnóstico claro y el grado.</li>
+                                    <li>Si no es posible, un diagnóstico descriptivo ayuda a guiar la planificación (ej., "neoplasia mixoide de bajo grado, sugestiva de benigna").</li>
+                                    <li>Se recomienda un comentario para discutir el diagnóstico diferencial.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="elemento-desplegable">
+                            <button class="boton-desplegable" style="font-size: 1.1rem; background-color: #fdfdff;">MUESTRAS DE RESECCIÓN</button>
+                            <div class="contenido-desplegable" style="padding-top: 20px; padding-bottom: 20px;">
+                                <h5>Enfoque Histológico General</h5>
+                                <ul>
+                                    <li><strong>Sin terapia neoadyuvante:</strong> Revisar la biopsia original, confirmar el diagnóstico y el grado, y evaluar los márgenes.</li>
+                                    <li><strong>Con terapia neoadyuvante:</strong> Confirmar el diagnóstico original. El cuadro histológico puede cambiar drásticamente (necrosis, fibrosis, atipia). Documentar el porcentaje de viabilidad tumoral residual y evaluar los márgenes.</li>
+                                </ul>
+                                <h5>Advertencias</h5>
+                                <ul>
+                                    <li>Un pequeño porcentaje de tumores desafía la clasificación. El objetivo es distinguir entre benigno, bajo grado y alto grado.</li>
+                                    <li>La clasificación de un tumor tratado es difícil. Las células pueden volverse pleomórficas y las técnicas auxiliares no son confiables.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="elemento-desplegable">
+                            <button class="boton-desplegable" style="font-size: 1.1rem; background-color: #fdfdff;">TEMAS ESPECIALES</button>
+                            <div class="contenido-desplegable" style="padding-top: 20px; padding-bottom: 20px;">
+                                <h5>Consulta Intraoperatoria por Congelación</h5>
+                                <ul>
+                                    <li>Se solicita para confirmar un diagnóstico o cuando no hay biopsia previa.</li>
+                                    <li>La información más útil que el patólogo puede proporcionar es si el tumor parece benigno, de bajo grado o de alto grado.</li>
+                                    <li>Se recomienda precaución al calificar un tumor como "benigno" en congelación.</li>
+                                </ul>
+                                <h5>Evaluación mediante Pruebas Auxiliares</h5>
+                                <ul>
+                                    <li><strong>Inmunohistoquímica (IHQ):</strong> Un panel de screening (ej., Queratina, S100, SMA, Desmina, CD34) es útil.</li>
+                                    <li><strong>Análisis molecular:</strong> Pruebas como FISH o RT-PCR pueden ser cruciales.</li>
+                                </ul>
+                                <h5>Consulta con un Experto</h5>
+                                <ul>
+                                    <li>Recomendada en casos difíciles, raros o cuando el diagnóstico histológico no concuerda con la clínica.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                            <h5>3. Las Marcas: La "Huella Dactilar" Molecular</h5>
-                            <p>Cuando la morfología no basta, sacamos la artillería pesada.</p>
-                            <ul>
-                                <li><strong>Inmunohistoquímica (IHQ):</strong> "Pruebas de embarazo" para células. ¿Se tiñe con <strong>Desmina</strong>? Es músculo. ¿Con <strong>S100</strong>? Es nervioso o grasa.</li>
-                                <li><strong>Genética Molecular (FISH, PCR):</strong> Nivel NASA. Buscamos fallos en el código genético. El <strong>Sarcoma Sinovial</strong> tiene una translocación X;18. Es su DNI. El <strong>Liposarcoma Bien Diferenciado</strong> tiene una amplificación de <strong>MDM2</strong>. Diagnóstico seguro.</li>
-                            </ul>
+                <div class="elemento-desplegable">
+                    <button class="boton-desplegable"><i class="fas fa-user-md" style="margin-right: 10px; color: var(--accent);"></i> Enfoque Diagnóstico Basado en la Edad y la Localización</button>
+                    <div class="contenido-desplegable" style="padding-top: 20px; padding-bottom: 20px;">
+                        <h4>ENFOQUE BASADO EN LA EDAD</h4>
+                        <ul>
+                            <li><strong>Lactancia (&lt; 3 Años):</strong> Hamartoma fibroso, Fibromatosis de cuerpos de inclusión, Fibrosarcoma infantil, Lipoblastoma.
+                                <table class="tabla-tumores">
+                                  <thead>
+                                    <tr>
+                                      <th>Tumor</th>
+                                      <th>Frecuencia en &lt;3 años</th>
+                                      <th>Características Anatomopatológicas Clave</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td><strong>Rabdomiosarcoma (Embrional)</strong></td>
+                                      <td class="tipo-maligno"><strong>MÁS FRECUENTE (Maligno)</strong></td>
+                                      <td>
+                                        Células pequeñas y redondas. Positivo para Desmina, Miogenina, Actina.
+                                        <div class="enlaces-casos">
+                                          <a href="https://pathpresenter.net/public/display?token=1eaf6493" target="_blank" class="enlace-caso">
+                                            📋 Ver caso 1 en PathPresenter
+                                          </a>
+                                          <a href="https://pathpresenter.net/public/display?token=f96016f1" target="_blank" class="enlace-caso">
+                                            📋 Ver caso 2 en PathPresenter
+                                          </a>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td><strong>Hemangioma Infantil</strong></td>
+                                      <td class="tipo-benigno">Muy Frecuente (Benigno)</td>
+                                      <td>Proliferación lobulada de capilares maduros.</td>
+                                    </tr>
+                                    <tr>
+                                      <td><strong>Tumor de Células Granulares</strong></td>
+                                      <td class="tipo-maligno">Poco Frecuente (Maligno)</td>
+                                      <td>Células con núcleo vesiculoso, nucléolo prominente y citoplasma eosinófilo. Pérdida de INI1 (SMARCB1).</td>
+                                    </tr>
+                                    <tr>
+                                      <td><strong>Sarcoma de Ewing Extraóseo</strong></td>
+                                      <td class="tipo-maligno">Poco Frecuente (Maligno)</td>
+                                      <td>Células redondas monótonas, positividad membranosa difusa para CD99. Confirmar con genética (FISH para EWSR1).</td>
+                                    </tr>
+                                    <tr>
+                                      <td><strong>Fibromatosis</strong></td>
+                                      <td class="tipo-benigno">Poco Frecuente (Benigna/Localmente agresiva)</td>
+                                      <td>Proliferación de fibroblastos/miofibroblastos en haces, de bajo grado. Infiltración de tejidos adyacentes.</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                            </li>
+                            <li><strong>Lactantes, Niños o Adolescentes (&lt; 20 Años):</strong> Angiomatosis, Rabdomiosarcoma embrionario, Tumor rabdoide extrarenal.</li>
+                            <li><strong>Adolescentes a Adultos Jóvenes (~ 10 a 35 Años):</strong> Rabdomiosarcoma alveolar, Sarcoma de partes blandas alveolar, Sarcoma epiteloide, Liposarcoma mixoide, Sarcoma sinovial.</li>
+                            <li><strong>Adultos Jóvenes a de Mediana Edad (~ 20 a 50 Años):</strong> Sarcoma de células claras, Dermatofibrosarcoma protuberans, Leiomiosarcoma, Fascitis nodular.</li>
+                            <li><strong>Adultos de Mediana Edad a Mayores (~ 45 a 60 Años):</strong> Liposarcoma bien diferenciado/desdiferenciado, Condrosarcoma mixoide extraesquelético.</li>
+                            <li><strong>Adultos Mayores y Ancianos (&gt; 50 Años):</strong> Fibroxantoma atípico, Mixofibrosarcoma, Liposarcoma pleomórfico, Sarcoma pleomórfico indiferenciado.</li>
+                        </ul>
+                        <h4>ENFOQUE BASADO EN LA LOCALIZACIÓN</h4>
+                        <ul>
+                            <li><strong>Extremidades Distales (Acrales):</strong> Sarcoma de células claras, Sarcoma epiteloide, Fibromatosis palmar/plantar.</li>
+                            <li><strong>Dedos de Manos y Pies:</strong> Fibromixoma acral, Tumor glómico, Tumor de células gigantes tenosinovial.</li>
+                            <li><strong>Región Genital e Ingle:</strong> Angiomiofibroblastoma, Angiomixoma profundo, Rabdomiosarcoma de células fusiformes.</li>
+                            <li><strong>Mesenterio/Epiplón/Peritoneo:</strong> Fibromatosis desmoide, GIST, Tumor miofibroblástico inflamatorio.</li>
+                            <li><strong>Cabeza y Cuello:</strong> Rabdomiosarcoma embrionario, Rabdomioma, Neurotequeoma celular.</li>
+                            <li><strong>Retroperitoneo:</strong> Liposarcoma (desdiferenciado y bien diferenciado), Leiomiosarcoma, Schwannoma.</li>
+                            <li><strong>Tronco, Hombros y Espalda:</strong> Dermatofibrosarcoma protuberans, Elastofibroma, Lipoma de células fusiformes/pleomórfico.</li>
+                        </ul>
+                    </div>
+                </div>
 
-                            <h4>Los Secretos del Oficio</h4>
-                            <ol>
-                                <li><strong>La Regla de Oro:</strong> NUNCA digas que es un tumor de partes blandas sin antes descartar <strong>Carcinoma, Melanoma o Linfoma</strong>.</li>
-                                <li><strong>Los "Imitadores Benignos":</strong> La <strong>Fascitis Nodular</strong> parece un sarcoma pero no lo es. Una pesadilla para novatos.</li>
-                                <li><strong>Los "Asesinos de Bajo Perfil":</strong> Tumores como el <strong>Sarcoma Fibromixoide de Bajo Grado</strong> se ven aburridos, pero son traicioneros y metastatizan años después.</li>
-                                <li><strong>La Humildad:</strong> Si no estoy seguro, lo digo. La arrogancia en esta especialidad mata.</li>
-                            </ol>
+                <div class="elemento-desplegable">
+                    <button class="boton-desplegable"><i class="fas fa-project-diagram" style="margin-right: 10px; color: var(--accent);"></i> Enfoque Diagnóstico Basado en Patrones</button>
+                    <div class="contenido-desplegable" style="padding-top: 20px; padding-bottom: 20px;">
+                        <h4>PATRONES DE CÉLULAS FUSIFORMES MONOMÓRFICAS</h4>
+                        <ul>
+                            <li><strong>Dispuestas en Láminas:</strong> Sarcoma sinovial, Tumor fibroso solitario.</li>
+                            <li><strong>Con Áreas Hipo e Hipercelulares:</strong> Sarcoma fibromixoide de bajo grado, MPNST, Schwannoma.</li>
+                            <li><strong>Dispuestas en Haces o Fascículos:</strong> Leiomioma, Fibromatosis, Leiomiosarcoma, Schwannoma.</li>
+                            <li><strong>Dispuestas en Fascículos "Espina de Pescado":</strong> Fibrosarcoma, Sarcoma sinovial.</li>
+                            <li><strong>Arquitectura Estoriforme o en Remolino:</strong> Dermatofibrosarcoma protuberans, Fascitis nodular, Perineurioma.</li>
+                            <li><strong>Dentro de Estroma Mixoide:</strong> Mixoma intramuscular, Liposarcoma mixoide, Neurofibroma, Fascitis nodular.</li>
+                        </ul>
+                        <h4>PATRONES DE CÉLULAS FUSIFORMES PLEOMÓRFICAS</h4>
+                        <ul>
+                            <li><strong>Dispuestas en Láminas:</strong> Sarcoma pleomórfico indiferenciado, Liposarcoma desdiferenciado/pleomórfico.</li>
+                            <li><strong>Dispuestas en Fascículos:</strong> Leiomiosarcoma, MPNST.</li>
+                            <li><strong>Dentro de Estroma Mixoide:</strong> Mixofibrosarcoma.</li>
+                        </ul>
+                        <h4>PATRONES DE CÉLULAS EPITELIOIDES</h4>
+                        <ul>
+                            <li><strong>Dispuestas en Nidos o Lóbulos:</strong> Sarcoma de partes blandas alveolar, Sarcoma de células claras, Sarcoma epiteloide, Tumor glómico, PEComa.</li>
+                            <li><strong>Dispuestas en Láminas (Citoplasma Abundante):</strong> Sarcoma epiteloide (tipo proximal), Tumor rabdoide extrarenal.</li>
+                            <li><strong>Dispuestas en Láminas (Citoplasma Mínimo/Escaso - "Células Azules"):</strong> Sarcoma de Ewing, Rabdomiosarcoma alveolar, Sarcoma sinovial pobremente diferenciado.</li>
+                            <li><strong>Con Estroma Mixoide:</strong> Mioepitelioma, Condrosarcoma mixoide extraesquelético.</li>
+                        </ul>
+                    </div>
+                </div>
 
-                            <p class="summary-conclusion">Joven, lo que hace un patólogo de partes blandas no es poner un nombre bonito a una enfermedad. Es <strong>guiar el tratamiento</strong>. Cada diapositiva que miro es una vida. Y mi trabajo es descifrar su historia para darle el mejor final posible.</p>
+                <div class="elemento-desplegable">
+                    <button class="boton-desplegable"><i class="fas fa-dna" style="margin-right: 10px; color: var(--accent);"></i> Enfoque Diagnóstico Basado en Características</button>
+                    <div class="contenido-desplegable" style="padding-top: 20px; padding-bottom: 20px;">
+                        <h4>CARACTERÍSTICAS CITOLÓGICAS</h4>
+                        <ul>
+                            <li><strong>Células Claras:</strong> Sarcoma de células claras, Mioepitelioma, PEComa.</li>
+                            <li><strong>Células Granulares:</strong> Tumor de células granulares, Hibernoma, Rabdomioma adulto.</li>
+                            <li><strong>Células en Clavo de Dedo (Hobnail):</strong> Varios hemangioendoteliomas.</li>
+                            <li><strong>Células Rabdoides:</strong> Sarcoma epiteloide, Tumor rabdoide extrarenal, Carcinoma mioepitelial.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="elemento-desplegable">
+                    <button class="boton-desplegable">Resumen del Dr. Valenzuela: Una perspectiva desde la experiencia.</button>
+                    <div class="contenido-desplegable" style="padding-top: 20px; padding-bottom: 20px;">
+                        <div class="summary-content">
+                            <div class="summary-column">
+                                <p>¡Por supuesto! Tome asiento, joven. Soy el Dr. Valenzuela, Jefe de Patología de Partes Blandas aquí en el MD Anderson. Usted tiene 16 años y esa curiosidad es lo más valioso que tiene. Voy a contarle cómo es *realmente* este oficio de detective de células.</p>
+                                <p>Olvídese de los libros por un momento. Esto es como una guerra contra la incertidumbre, y cada tumor es un campo de batalla.</p>
+                                <h4>El Arte de la Muestra: No Es Solo Pinchar</h4>
+                                <p>Cuando ese cirujano viene a mi laboratorio, no me trae un tumor, me trae una <strong>pregunta</strong>: "¿Qué es esto y qué hacemos con ello?".</p>
+                                <ul>
+                                    <li><strong>La Biopsia con Aguja (Core Needle):</strong> Es nuestro francotirador. Rápido y limpio, pero es solo una foto de una calle. El riesgo es que esa calle no represente a toda la ciudad.</li>
+                                    <li><strong>La Escisión/Resección:</strong> Esto es el mapa completo. Aquí diagnosticamos, estadificamos y damos pronóstico. Lo más crucial: <strong>analizamos los márgenes</strong>. Si el tumor toca el borde, es como dejar raíces de una mala hierba. Va a volver.</li>
+                                </ul>
+                                <h4>Los Tres Pilares del Diagnóstico: La Santísima Trinidad</h4>
+                                <p>Usamos los TRES enfoques a la vez. Es como tener un filtro de Instagram, un buscador de Google y un test de ADN para identificar a alguien.</p>
+                                <h5>1. El Contexto: ¿QUIÉN es el paciente y DÓNDE está el problema?</h5>
+                                <p>Un tumor en el pie de un adolescente NO es lo mismo que en un anciano. Es simple.</p>
+                                <ul>
+                                    <li><strong>Un bebé con un bulto:</strong> Pienso en <strong>Lipoblastoma</strong> o <strong>Fibrosarcoma Infantil</strong>.</li>
+                                    <li><strong>Un joven de 20 años:</strong> Mi radar se enfoca en el <strong>Sarcoma Sinovial</strong>.</li>
+                                    <li><strong>Un adulto mayor:</strong> Pienso en <strong>Mixofibrosarcoma</strong>.</li>
+                                </ul>
+                            </div>
+                            <div class="summary-column">
+                                <h5>2. El Patrón: La "Cara" del Tumor bajo el Microscopio</h5>
+                                <p>Es leer el lenguaje de las células.</p>
+                                <ul>
+                                    <li><strong>Células alargadas (fusiformes) ordenadas:</strong> Suena a <strong>Leiomiosarcoma</strong>.</li>
+                                    <li><strong>Células redondas y grandes (epitelioides):</strong> Me hace pensar en <strong>Carcinoma</strong>, <strong>Melanoma</strong>, o <strong>Sarcoma de Células Claras</strong>.</li>
+                                    <li><strong>Parece gelatina con células flotando (mixoide):</strong> Firma del <strong>Liposarcoma Mixoide</strong>.</li>
+                                    <li><strong>Monstruos (células pleomórficas):</strong> Un <strong>Sarcoma Pleomórfico Indiferenciado</strong>.</li>
+                                </ul>
+                                <h5>3. Las Marcas: La "Huella Dactilar" Molecular</h5>
+                                <p>Cuando la morfología no basta, sacamos la artillería pesada.</p>
+                                <ul>
+                                    <li><strong>Inmunohistoquímica (IHQ):</strong> "Pruebas de embarazo" para células. ¿Se tiñe con <strong>Desmina</strong>? Es músculo. ¿Con <strong>S100</strong>? Es nervioso o grasa.</li>
+                                    <li><strong>Genética Molecular (FISH, PCR):</strong> Nivel NASA. Buscamos fallos en el código genético. El <strong>Sarcoma Sinovial</strong> tiene una translocación X;18. Es su DNI. El <strong>Liposarcoma Bien Diferenciado</strong> tiene una amplificación de <strong>MDM2</strong>. Diagnóstico seguro.</li>
+                                </ul>
+                                <h4>Los Secretos del Oficio</h4>
+                                <ol>
+                                    <li><strong>La Regla de Oro:</strong> NUNCA digas que es un tumor de partes blandas sin antes descartar <strong>Carcinoma, Melanoma o Linfoma</strong>.</li>
+                                    <li><strong>Los "Imitadores Benignos":</strong> La <strong>Fascitis Nodular</strong> parece un sarcoma pero no lo es. Una pesadilla para novatos.</li>
+                                    <li><strong>Los "Asesinos de Bajo Perfil":</strong> Tumores como el <strong>Sarcoma Fibromixoide de Bajo Grado</strong> se ven aburridos, pero son traicioneros y metastatizan años después.</li>
+                                    <li><strong>La Humildad:</strong> Si no estoy seguro, lo digo. La arrogancia en esta especialidad mata.</li>
+                                </ol>
+                                <p class="summary-conclusion">Joven, lo que hace un patólogo de partes blandas no es poner un nombre bonito a una enfermedad. Es <strong>guiar el tratamiento</strong>. Cada diapositiva que miro es una vida. Y mi trabajo es descifrar su historia para darle el mejor final posible.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -266,5 +434,27 @@
     </section>
 
     <script src="page.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const botones = document.querySelectorAll('.boton-desplegable');
+
+            botones.forEach(boton => {
+                boton.addEventListener('click', function() {
+                    this.classList.toggle('activo');
+                    const contenido = this.nextElementSibling;
+
+                    if (contenido.style.maxHeight) {
+                        contenido.style.maxHeight = null;
+                        contenido.style.paddingTop = null;
+                        contenido.style.paddingBottom = null;
+                    } else {
+                        contenido.style.paddingTop = '20px';
+                        contenido.style.paddingBottom = '20px';
+                        contenido.style.maxHeight = contenido.scrollHeight + 40 + 'px';
+                    } 
+                });
+            });
+        });
+    </script>
 </body>
 </html>
