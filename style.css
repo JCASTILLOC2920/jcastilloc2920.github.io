@@ -1609,3 +1609,45 @@ body {
 .service-accordion-content.active {
     max-height: none; /* Allow content to expand freely */
 }
+
+/* canceraspectopatologicos.html styles */
+.cancer-section {
+    padding: 100px 5%;
+    background-color: #f9fbfd;
+}
+
+.cancer-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+}
+
+.cancer-section h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--secondary);
+    margin-bottom: 50px;
+}
+
+.cancer-section section {
+    margin-bottom: 40px;
+}
+
+.cancer-section h2 {
+    font-size: 1.8rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+.cancer-section iframe {
+    width: 100%;
+    max-width: 800px;
+    height: 450px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+}
