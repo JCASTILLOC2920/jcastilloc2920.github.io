@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tumores de Partes Blandas</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .slide h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        
+        .prev {
+            left: 0;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .slide-number {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 16px;
+            color: #ccc;
+            background-color: rgba(0,0,0,0.5);
+            padding: 5px 10px;
+            border-radius: 10px;
+        }
+
+        /* Estilos para la tabla */
+        .slide-table-container {
+            width: 95%;
+            max-height: 80vh;
+            overflow: auto;
+            border: 1px solid #555;
+            background-color: #34495e;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+        th, td {
+            border: 1px solid #555;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #2c3e50;
+            position: sticky;
+            top: 0;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #2c3e50;
+        }
+
+        /* Estilos para el contenido de las otras diapositivas */
+        .slide-content {
+            text-align: left;
+            width: 80%;
+            max-width: 900px;
+            font-size: 1.2em;
+        }
+        .slide-content ul {
+            list-style-position: outside;
+            padding-left: 20px;
+        }
+        .slide-content li {
+            margin-bottom: 1.2em;
+            line-height: 1.5;
+        }
+        .reference {
+            margin-top: 40px;
+            font-size: 0.8em;
+            font-style: italic;
+            color: #ccc;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slideshow-container">
+        
+        <!-- Diapositiva 1: Tabla -->
+        <div class="slide active">
+            <div class="slide-table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Categoría OMS 2020</th>
+                            <th>Subtipo</th>
+                            <th>% Dentro de Tumores Adiposos</th>
+                            <th>% Dentro de Sarcomas de Tejidos Blandos (STS)</th>
+                            <th>Incidencia Anual (EE.UU.)</th>
+                            <th>Pico de Incidencia</th>
+                            <th>Comentarios Clínicos (MD Anderson Experience)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>BENIGNOS</strong></td>
+                            <td>Lipoma</td>
+                            <td>50-55%</td>
+                            <td>No aplica</td>
+                            <td>~1 caso/1,000 habitantes</td>
+                            <td>40-60 años</td>
+                            <td>Más frecuente en extremidades superficiales. Diagnóstico excisional definitivo.</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Variantes lipomatosis (espinal, mediastínica)</td>
+                            <td>&lt;5%</td>
+                            <td>No aplica</td>
+                            <td>&lt;0.1/100,000</td>
+                            <td>Variable</td>
+                            <td>Asociados a síndromes específicos. Requieren correlación clínico-radiológica.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>INTERMEDIOS (Localmente Agresivos)</strong></td>
+                            <td>Tumor Lipomatoso Atípico (ALT) / Liposarcoma Bien Diferenciado (WDLS)</td>
+                            <td>40-45%</td>
+                            <td>15-18% de todos los liposarcomas</td>
+                            <td>0.4-0.5/100,000</td>
+                            <td>40-60 años</td>
+                            <td><strong>Entidad más frecuente en retroperitoneo</strong>. En MD Anderson representa ~40% de liposarcomas. Identidad morfológica/cariotípica. Diferencia ALT (extremidades) vs WDLS (retroperitoneo) basada en ubicación y resecabilidad.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>MALIGNOS</strong></td>
+                            <td>Liposarcoma Dediferenciado</td>
+                            <td>10-15%</td>
+                            <td>5-10%</td>
+                            <td>~0.15/100,000</td>
+                            <td>&gt;50 años</td>
+                            <td>Progresión de ALT/WDLS, riesgo ↑ en retroperitoneo. Supervivencia reducida tras dediferenciación.</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Liposarcoma Mixinoides</td>
+                            <td>20-25%</td>
+                            <td>5-8%</td>
+                            <td>~0.2/100,000</td>
+                            <td>30-50 años</td>
+                            <td>Segundo subtipo más frecuente. Fusión FUS-DDIT3 característica. Predilección por muslo.</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Liposarcoma Pleomórfico</td>
+                            <td>5-7%</td>
+                            <td>&lt;5%</td>
+                            <td>&lt;0.05/100,000</td>
+                            <td>&gt;50 años</td>
+                            <td>Alto grado, pronóstico desfavorable. Distinción morfológica crítica en biopsias.</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Liposarcoma de Células Redondas</td>
+                            <td>&lt;2%</td>
+                            <td>&lt;1%</td>
+                            <td>&lt;0.01/100,000</td>
+                            <td>Jóvenes</td>
+                            <td>Variante agresiva de mixinoides. Requiere estudios moleculares.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>TOTAL SARCOMAS ADIPOCÍTICOS</strong></td>
+                            <td></td>
+                            <td>100%</td>
+                            <td><strong>18-25% de todos los STS</strong></td>
+                            <td><strong>~1.2/100,000 (EE.UU.)</strong></td>
+                            <td>40-60 años</td>
+                            <td><strong>Principal subgrupo de sarcomas en adultos</strong>. En MD Anderson, constituyen ~20% de consultas de STS.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="slide-number">1 / 4</div>
+        </div>
+
+        <!-- Diapositiva 2: Lista -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Relevancia clínica:</h2>
+                <ul>
+                    <li><strong>Retroperitoneo:</strong> ~70% de WDLS se presentan aquí; requieren planificación quirúrgica multidisciplinaria por alta tasa de recurrencia local.</li>
+                    <li><strong>Extremidades:</strong> Predominan ALT; margen quirúrgico de 2-4 cm con base en componente no lipomatoso.</li>
+                    <li><strong>Biopsia percutánea:</strong> Suficiente para subtipos de alto grado; para ALT/WDLS, la resección quirúrgica con muestreo amplio es el diagnóstico gold standard.</li>
+                </ul>
+            </div>
+            <div class="slide-number">2 / 4</div>
+        </div>
+
+        <!-- Diapositiva 3: Párrafo -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Recomendación para práctica oncológica:</h2>
+                <p>
+                    Dado que los tumores adiposos constituyen casi la mitad de los tumores de tejidos blandos y los liposarcomas son el sarcoma más común, la correlación clínico-radiológico-patológica preoperatoria es esencial para diferenciar lipomas de ALT/WDLS y planificar un margen quirúrgico adecuado.
+                </p>
+                <p class="reference">
+                    Referencia bibliográfica principal: Fletcher CDM, Bridge JA, Hogendoorn PCW, Mertens F. WHO Classification of Tumours of Soft Tissue and Bone. 5th ed. Lyon: IARC Press; 2020.
+                </p>
+            </div>
+            <div class="slide-number">3 / 4</div>
+        </div>
+
+        <!-- Diapositiva 4: Enlaces a Tumores Benignos -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>Tumores Adiposos</h2>
+                <ul>
+                    <li><a href="hibernoma.html" style="color: white;">Hibernoma</a></li>
+                    <li><a href="lipomaatipico.html" style="color: white;">Lipoma Atípico</a></li>
+                    <!-- Agrega más enlaces aquí si es necesario -->
+                </ul>
+            </div>
+            <div class="slide-number">4 / 4</div>
+        </div>
+
+        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+        <a class="next" onclick="changeSlide(1)">&#10095;</a>
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const slideNumberTexts = document.querySelectorAll('.slide-number');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+            updateSlideNumbers();
+        }
+
+        function updateSlideNumbers() {
+            slideNumberTexts.forEach(text => {
+                text.textContent = `${currentSlideIndex + 1} / ${slides.length}`;
+            });
+        }
+
+        function changeSlide(n) {
+            currentSlideIndex += n;
+            if (currentSlideIndex >= slides.length) {
+                currentSlideIndex = 0;
+            }
+            if (currentSlideIndex < 0) {
+                currentSlideIndex = slides.length - 1;
+            }
+            showSlide(currentSlideIndex);
+        }
+
+        showSlide(currentSlideIndex);
+    </script>
+
+</body>
+</html>

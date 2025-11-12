@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hibernoma</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background-color: white;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row; /* Cambiado a row */
+            padding: 40px;
+            box-sizing: border-box;
+            gap: 20px; /* Espacio entre imagen y texto */
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .slide-image {
+            flex: 2; /* La imagen ocupa más espacio */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .slide-image img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .slide-text {
+            flex: 1; /* El texto ocupa menos espacio */
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-sizing: border-box;
+            height: fit-content;
+            max-height: 90vh;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+        }
+
+        .slide-text p {
+            font-size: 1.2em;
+            text-align: left;
+            margin: 0;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        
+        .prev {
+            left: 0;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .slide-number {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 12px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slideshow-container">
+        
+        <div class="slide active">
+            <div class="slide-image">
+                <img src="TUMORES DE PARTES BLANDAS/IMAGENES HIBERNOMA/image_1.jpg" alt="Diapositiva 1">
+            </div>
+            <div class="slide-text">
+                <p>El hibernoma es una neoplasia lipomatosa benigna compuesta por células con diferenciación de grasa parda.Este caso clásico muestra una mezcla de células granulares eosinófilas (flecha negra sólida), células multivacuoladas (flecha abierta cian) y adipocitos maduros univacuolados dispersos (flecha curva cian).</p>
+            </div>
+            <div class="slide-number">1 / 22</div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-image">
+                <img src="TUMORES DE PARTES BLANDAS/IMAGENES HIBERNOMA/image (1)_1.jpg" alt="Diapositiva 2">
+            </div>
+            <div class="slide-text">
+                <p>Las células multivacuoladas (flecha negra continua) suelen contener innumerables gotitas de lípidos y se parecen a los lipoblastos multivacuolados;sin embargo, estos últimos tienen núcleos agrandados, hipercromáticos y festoneados.Las células eosinófilas (flecha abierta cian) obtienen su coloración de numerosas mitocondrias.</p>
+            </div>
+            <div class="slide-number">2 / 22</div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-image">
+                <img src="TUMORES DE PARTES BLANDAS/IMAGENES HIBERNOMA/image (2)_1.jpg" alt="Diapositiva 3">
+            </div>
+            <div class="slide-text">
+                <p>Las células multivacuoladas pueden ser prominentes y difusas en algunos casos de hibernoma.Estos casos a menudo se parecen a los lipoblastos multivacuolados de un tumor lipomatoso atípico/liposarcoma bien diferenciado.Sin embargo, en el hibernoma no hay núcleos agrandados y festoneados.</p>
+            </div>
+            <div class="slide-number">3 / 22</div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-image">
+                <img src="TUMORES DE PARTES BLANDAS/IMAGENES HIBERNOMA/image (3)_1.jpg" alt="Diapositiva 4">
+            </div>
+            <div class="slide-text">
+                <p>Los casos ocasionales de hibernoma muestran predominantemente células grasas blancas univacuoladas con sólo células granulares eosinófilas y multivacuoladas dispersas (flecha abierta cian).Estos tumores pueden clasificarse erróneamente fácilmente como lipomas convencionales.</p>
+            </div>
+            <div class="slide-number">4 / 22</div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-image">
+                <img src="TUMORES DE PARTES BLANDAS/IMAGENES HIBERNOMA/image (4)_1.jpg" alt="Diapositiva 5">
+            </div>
+            <div class="slide-text">
+                <p>El hibernoma con láminas de células eosinófilas puede parecerse a un tumor de células granulares o incluso a un oncocitoma.En algunos casos también se puede observar focalmente material intracitoplasmático (flecha curva cian) que se asemeja a la mucina.</p>
+            </div>
+            <div class="slide-number">5 / 22</div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-image">
+                <img src="TUMORES DE PARTES BLANDAS/IMAGENES HIBERNOMA/image (5)_1.jpg" alt="Diapositiva 6">
+            </div>
+            <div class="slide-text">
+                <p>El hibernoma clásicamente presenta una rica red vascular capilar, pero también se pueden observar vasos sanguíneos más grandes, de paredes delgadas o gruesas (flecha curva negra).También pueden estar presentes pequeños agregados linfoides (flecha abierta cian).</p>
+            </div>
+            <div class="slide-number">6 / 22</div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-image">
+                <img src="TUMORES DE PARTES BLANDAS/IMAGENES HIBERNOMA/image (6)_1.jpg" alt="Diapositiva 7">
+            </div>
+            <div class="slide-text">
+                <p>En ocasiones, el hibernoma puede mostrar áreas con aparente hipervascularidad, produciendo la apariencia de grupos de células flotando dentro de espacios abiertos.En algunos casos se puede apreciar un revestimiento endotelial.</p>
+            </div>
+            <div class="slide-number">7 / 22</div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-image">
+                <img src="TUMORES DE PARTES BLANDAS/IMAGENES HIBERNOMA/image (7)_1.jpg" alt="Diapositiva 8">
+            </div>
+            <div class="slide-text">
+                <p>Una variante rara de hibernoma presenta cambios estromales mixoides que pueden ser difusos.Se pueden identificar células multivacuoladas dispersas (flecha negra sólida) y adipocitos maduros.Es útil la identificación de otras áreas más típicas de hibernoma.</p>
+            </div>
+            <div class="slide-number">8 / 22</div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-image">
+                <img src="TUMORES DE PARTES BLANDAS/IMAGENES HIBERNOMA/image (8)_1.jpg" alt="Diapositiva 9">
+            </div>
+            <div class="slide-text">
+                <p>En algunos casos de hibernoma mixoide, el estroma es menos azul y mixoide y más pálido y edematoso.Observe las células tumorales dispersas (flecha sólida cian).</p>
+            </div>
+            <div class="slide-number">9 / 22</div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-image">
+                <img src="TUMORES DE PARTES BLANDAS/IMAGENES HIBERNOMA/image (9)_1.jpg" alt="Diapositiva 10">
+            </div>
+            <div class="slide-text">
+                <p>Se han descrito tumores híbridos con características de hibernoma y lipoma de células fusiformes, y la mayoría surge en la región posterior del cuello y el hombro.Como era de esperar, las células fusiformes en tales lesiones suelen ser CD34(+).</p>
+            </div>
+            <div class="slide-number">10 / 22</div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-image">
+                <img src="TUMORES DE PARTES BLANDAS/IMAGENES HIBERNOMA/image (10)_1.jpg" alt="Diapositiva 11">
+            </div>
+            <div class="slide-text">
+                <p>La mayoría de los casos de hibernoma surgen dentro de la grasa subcutánea de la extremidad o el cuello;sin embargo, los tumores ocasionales están ubicados más profundamente y pueden afectar el músculo esquelético (flecha curva cian).</p>
+            </div>
+            <div class="slide-number">11 / 22</div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-image">
+                <img src="TUMORES DE PARTES BLANDAS/IMAGENES HIBERNOMA/image (11)_1.jpg" alt="Diapositiva 12">
+            </div>
+            <div class="slide-text">
+                <p>En algunos casos, los grupos de células de hibernoma (flecha curva cian) pueden retraerse entre sí, asemejándose a un patrón que se observa a menudo en los tumores epiteliales mucinosos.Obsérvese los espacios vasculares abiertos (flecha negra sólida), una característica común del hibernoma.</p>
+            </div>
+            <div class="slide-number">12 / 22</div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-image">
+                <img src="TUMORES DE PARTES BLANDAS/IMAGENES HIBERNOMA/image (12)_1.jpg" alt="Diapositiva 13">
+            </div>
+            <div class="slide-text">
+                <p>A diferencia de la grasa blanca, que es muy difícil de congelar y seccionar adecuadamente, las células de grasa parda con abundantes mitocondrias a menudo se pueden visualizar en la sección congelada, lo que hace posible un diagnóstico preliminar.</p>
+            </div>
+            <div class="slide-number">13 / 22</div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-image">
+                <img src="TUMORES DE PARTES BLANDAS/IMAGENES HIBERNOMA/image (13)_1.jpg" alt="Diapositiva 14">
+            </div>
+            <div class="slide-text">
+                <p>El hibernoma grande muestra una zona centralizada de infarto.En algunas de las áreas de interfaz, la apariencia densa eosinófila recuerda algo a las zonas hialinizadas en el lipoma condroide.</p>
+            </div>
+            <div class="slide-number">14 / 22</div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-image">
+                <img src="TUMORES DE PARTES BLANDAS/IMAGENES HIBERNOMA/image (14)_1.jpg" alt="Diapositiva 15">
+            </div>
+            <div class="slide-text">
+                <p>Como en otros tumores grasos, la calcificación (flecha cian sólida) puede estar presente en el hibernoma, en particular en el contexto de un traumatismo local, pero es poco común.Rara vez también se puede observar necrosis grasa y una reacción de células gigantes multinucleadas.</p>
+            </div>
+            <div class="slide-number">15 / 22</div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-image">
+                <img src="TUMORES DE PARTES BLANDAS/IMAGENES HIBERNOMA/image (15)_1.jpg" alt="Diapositiva 16">
+            </div>
+            <div class="slide-text">
+                <p>La micrografía electrónica de un hibernoma muestra numerosas mitocondrias muy compactas que muestran crestas transversales (flecha abierta cian).También hay lisosomas pequeños y densos en electrones (flecha curva cian) y gotitas de lípidos (flecha blanca sólida).</p>
+            </div>
+            <div class="slide-number">16 / 22</div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-image">
+                <img src="TUMORES DE PARTES BLANDAS/IMAGENES HIBERNOMA/image (16)_1.jpg" alt="Diapositiva 17">
+            </div>
+            <div class="slide-text">
+                <p>El hibernoma se compone de lóbulos bien definidos de células poligonales claras a eosinófilas, estas últimas pueden mostrar citoplasma granular.No hay atipia presente.</p>
+            </div>
+            <div class="slide-number">17 / 22</div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-image">
+                <img src="TUMORES DE PARTES BLANDAS/IMAGENES HIBERNOMA/image (17)_1.jpg" alt="Diapositiva 18">
+            </div>
+            <div class="slide-text">
+                <p>El hibernoma a menudo muestra una mezcla de células granulares eosinófilas (flecha sólida cian), células altamente multivacuoladas (flecha negra abierta) y adipocitos maduros univacuolados dispersos (flecha negra curva).</p>
+            </div>
+            <div class="slide-number">18 / 22</div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-image">
+                <img src="TUMORES DE PARTES BLANDAS/IMAGENES HIBERNOMA/image (18)_1.jpg" alt="Diapositiva 19">
+            </div>
+            <div class="slide-text">
+                <p>Las células del hibernoma muestran bordes bien definidos y un citoplasma abundante que contiene citoplasma eosinófilo finamente granular o numerosas pequeñas vacuolas lipídicas.</p>
+            </div>
+            <div class="slide-number">19 / 22</div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-image">
+                <img src="TUMORES DE PARTES BLANDAS/IMAGENES HIBERNOMA/image (19)_1.jpg" alt="Diapositiva 20">
+            </div>
+            <div class="slide-text">
+                <p>El caso típico de hibernoma muestra una mezcla de células granulares eosinófilas, células altamente multivacuoladas y adipocitos maduros univacuolados dispersos.</p>
+            </div>
+            <div class="slide-number">20 / 22</div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-image">
+                <img src="TUMORES DE PARTES BLANDAS/IMAGENES HIBERNOMA/image (20)_1.jpg" alt="Diapositiva 21">
+            </div>
+            <div class="slide-text">
+                <p>Algunos casos de hibernoma carecen de una población prominente de células granulares eosinófilas y consisten principalmente en células multivacuoladas y adipocitos grandes y maduros.Esta morfología puede simular un tumor lipomatoso atípico/liposarcoma bien diferenciado.</p>
+            </div>
+            <div class="slide-number">21 / 22</div>
+        </div>
+
+        <div class="slide">
+            <div class="slide-image">
+                <img src="TUMORES DE PARTES BLANDAS/IMAGENES HIBERNOMA/image (21)_1.jpg" alt="Diapositiva 22">
+            </div>
+            <div class="slide-text">
+                <p>Algunos hibernomas se parecen al lipoma convencional debido a la abundante grasa blanca madura.Sin embargo, se encuentran células focales de grasa parda multivacuoladas (flecha curva negra) dispersas por toda la lesión.</p>
+            </div>
+            <div class="slide-number">22 / 22</div>
+        </div>
+
+        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+        <a class="next" onclick="changeSlide(1)">&#10095;</a>
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+        }
+
+        function changeSlide(n) {
+            currentSlideIndex += n;
+            if (currentSlideIndex >= slides.length) {
+                currentSlideIndex = 0;
+            }
+            if (currentSlideIndex < 0) {
+                currentSlideIndex = slides.length - 1;
+            }
+            showSlide(currentSlideIndex);
+        }
+
+        // Mostrar la primera diapositiva al cargar
+        showSlide(currentSlideIndex);
+    </script>
+
+</body>
+</html>
