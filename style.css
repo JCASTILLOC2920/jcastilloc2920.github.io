@@ -1757,3 +1757,155 @@ body {
     position: relative;
     z-index: 1;
 }
+
+/* --- IHQ SPECIALIZED STYLES --- */
+.ihq-container {
+    padding: 20px;
+    background: #fdfdff;
+    border-radius: 12px;
+}
+
+.ihq-subtitle {
+    font-size: 1.4rem;
+    color: var(--primary);
+    margin: 25px 0 15px;
+    font-weight: 700;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ihq-subtitle i {
+    font-size: 1.2rem;
+    color: var(--accent);
+}
+
+.ihq-text {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--dark);
+    margin-bottom: 15px;
+}
+
+.ihq-table-container {
+    overflow-x: auto;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eee;
+}
+
+.ihq-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    font-size: 0.9rem;
+}
+
+.ihq-table th {
+    background: var(--secondary);
+    color: white;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.ihq-table td {
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    color: var(--text);
+}
+
+.ihq-table tr:nth-child(even) {
+    background-color: #f9fbff;
+}
+
+.ihq-table tr:hover {
+    background-color: #f0f7ff;
+}
+
+.ihq-highlight-box {
+    background: linear-gradient(135deg, #eef7ff 0%, #e3f2fd 100%);
+    border-left: 5px solid var(--accent);
+    padding: 25px;
+    margin: 25px 0;
+    border-radius: 0 15px 15px 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.ihq-highlight-box h5 {
+    color: var(--primary);
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.ihq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.ihq-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 86, 179, 0.1);
+    transition: var(--transition);
+}
+
+.ihq-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 86, 179, 0.12);
+}
+
+.ihq-card h4 {
+    color: var(--secondary);
+    margin: 0 0 15px 0;
+    font-size: 1.15rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ihq-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.ihq-card li {
+    padding: 5px 0;
+    font-size: 0.95rem;
+    color: var(--dark);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.ihq-card li::before {
+    content: "\f00c";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: var(--accent);
+    font-size: 0.8rem;
+    margin-top: 4px;
+}
+
+/* Page style for the content */
+.ihq-page {
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+}
+
+/* Fix for deep accordion content */
+.service-accordion-content.active {
+    max-height: 10000px !important;
+}

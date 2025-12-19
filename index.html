@@ -1542,7 +1542,329 @@
                     </button>
                     <div class="service-accordion-content">
                         <div class="service-accordion-content-inner">
-                            <p class="service-description">Contenido del protocolo de inmunohistoquímica...</p>
+                            <div class="ihq-page">
+                                <p class="ihq-text">La Inmunohistoquímica (IHQ) es una herramienta diagnóstica
+                                    fundamental que combina técnicas histológicas, inmunológicas y químicas para
+                                    identificar componentes tisulares específicos a través de la interacción
+                                    antígeno-anticuerpo.</p>
+
+                                <!-- Sub-Accordion 1: Fundamentos y Metodología -->
+                                <div class="service-accordion-item">
+                                    <button class="service-accordion-header">
+                                        <h5 class="service-title">1. Fundamentos y Metodología</h5>
+                                        <i class="fas fa-chevron-down service-accordion-icon"></i>
+                                    </button>
+                                    <div class="service-accordion-content">
+                                        <div class="service-accordion-content-inner">
+                                            <div class="ihq-highlight-box">
+                                                <h5>¿Cómo funciona la IHQ?</h5>
+                                                <p class="ihq-text">La IHQ detecta antígenos específicos
+                                                    (proteínas/carbohidratos) mediante el reconocimiento
+                                                    antígeno-anticuerpo, permitiendo visualizar la localización celular
+                                                    de marcadores específicos.</p>
+                                            </div>
+
+                                            <h4 class="ihq-subtitle"><i class="fas fa-vial"></i> Tipos de Anticuerpos
+                                            </h4>
+                                            <div class="ihq-grid" style="margin-bottom: 20px;">
+                                                <div class="ihq-card">
+                                                    <h4>Monoclonales</h4>
+                                                    <p>Reconocen un único epítopo (clon único). Son altamente
+                                                        específicos. Fabricados mediante hibridomas.</p>
+                                                </div>
+                                                <div class="ihq-card">
+                                                    <h4>Policlonales</h4>
+                                                    <p>Reconocen múltiples epítopos. Más sensibles pero menos
+                                                        específicos. Mayor tinción de fondo.</p>
+                                                </div>
+                                            </div>
+
+                                            <h4 class="ihq-subtitle"><i class="fas fa-project-diagram"></i> Sistemas de
+                                                Detección</h4>
+                                            <div class="ihq-grid" style="margin-bottom: 20px;">
+                                                <div class="ihq-card">
+                                                    <h4>Método Directo</h4>
+                                                    <p>El anticuerpo primario está marcado. Rápido pero requiere más
+                                                        anticuerpo (caro).</p>
+                                                </div>
+                                                <div class="ihq-card">
+                                                    <h4>Método Indirecto</h4>
+                                                    <p>Se utiliza un anticuerpo secundario marcado. Más versátil,
+                                                        sensible y económico.</p>
+                                                </div>
+                                            </div>
+
+                                            <h4 class="ihq-subtitle"><i class="fas fa-microscope"></i> Localización de
+                                                Marcadores</h4>
+                                            <div class="ihq-grid">
+                                                <div class="ihq-card">
+                                                    <h4>Membranoso</h4>
+                                                    <ul>
+                                                        <li>CD20, CD3, CD45</li>
+                                                        <li>HER2, PD-L1</li>
+                                                        <li>E-cadherina, BerEP4</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="ihq-card">
+                                                    <h4>Nuclear</h4>
+                                                    <ul>
+                                                        <li>Factores de Transcripción</li>
+                                                        <li>TTF-1, p53, p40</li>
+                                                        <li>PAX8, GATA3, SOX10</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="ihq-card">
+                                                    <h4>Citoplasmático</h4>
+                                                    <ul>
+                                                        <li>Citoqueratinas (AE1/AE3)</li>
+                                                        <li>Vimentina, Desmina</li>
+                                                        <li>S100 (Nuclear y Citopl)</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Sub-Accordion 2: Algoritmos Diagnósticos -->
+                                <div class="service-accordion-item">
+                                    <button class="service-accordion-header">
+                                        <h5 class="service-title">2. Algoritmos Diagnósticos</h5>
+                                        <i class="fas fa-chevron-down service-accordion-icon"></i>
+                                    </button>
+                                    <div class="service-accordion-content">
+                                        <div class="service-accordion-content-inner">
+                                            <h4 class="ihq-subtitle"><i class="fas fa-project-diagram"></i> Enfoque en
+                                                Neoplasias Indiferenciadas</h4>
+                                            <p class="ihq-text">Ante un tumor de origen desconocido, se utiliza un panel
+                                                de cribado inicial (Screening Panel) para determinar el linaje:</p>
+
+                                            <div class="ihq-table-container">
+                                                <table class="ihq-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Resultado IHQ</th>
+                                                            <th>Linaje Probable</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><strong>CK+ / CD45- / S100-</strong></td>
+                                                            <td>Epitelial (Carcinoma)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>CD45+ / CK- / S100-</strong></td>
+                                                            <td>Linfoide (Linfoma)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>S100+ / SOX10+ / CK-</strong></td>
+                                                            <td>Melanocítico / Neurogénico</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Vimentina+ / CK- / CD45-</strong></td>
+                                                            <td>Mesenquimal (Sarcoma)</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <h4 class="ihq-subtitle"><i class="fas fa-route"></i> El "Curso del
+                                                Intestino" (The Gut Course)</h4>
+                                            <p class="ihq-text">Este algoritmo orienta la búsqueda del primario basado
+                                                en la frecuencia estadística y el sitio de metástasis:</p>
+                                            <div class="ihq-grid">
+                                                <div class="ihq-card">
+                                                    <h4>Demografía Clave</h4>
+                                                    <ul>
+                                                        <li><strong>Hombres:</strong> Próstata, Pulmón, Colon</li>
+                                                        <li><strong>Mujeres:</strong> Mama, Pulmón, Colon, GYN</li>
+                                                        <li><strong>Jóvenes:</strong> Células Germinales, Tiroides</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="ihq-card">
+                                                    <h4>Sitio de Metástasis</h4>
+                                                    <ul>
+                                                        <li><strong>Hueso:</strong> Mama, Pulmón, Próstata, Riñón</li>
+                                                        <li><strong>Hígado:</strong> Colon, Páncreas, Mama, Pulmón</li>
+                                                        <li><strong>Cerebro:</strong> Pulmón, Mama, Melanoma, Renal</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <div class="ihq-highlight-box">
+                                                <h5>Reglas de Oro del Patólogo</h5>
+                                                <ul>
+                                                    <li><strong>No interpretes IHQ sin morfología previa:</strong> La
+                                                        IHQ debe confirmar o refinar una sospecha morfológica.</li>
+                                                    <li><strong>La IHQ es estadística, no absoluta:</strong> Existen
+                                                        expresiones aberrantes (ej. CK+ en sarcomas).</li>
+                                                    <li><strong>Confía en Paneles, no en tinciones aisladas:</strong> Un
+                                                        solo marcador puede fallar o ser inespecífico.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Sub-Accordion 3: Guía de Marcadores Específicos -->
+                                <div class="service-accordion-item">
+                                    <button class="service-accordion-header">
+                                        <h5 class="service-title">3. Guía de Marcadores por Diferenciación</h5>
+                                        <i class="fas fa-chevron-down service-accordion-icon"></i>
+                                    </button>
+                                    <div class="service-accordion-content">
+                                        <div class="service-accordion-content-inner">
+                                            <h4 class="ihq-subtitle"><i class="fas fa-dna"></i> Marcadores de Linaje
+                                            </h4>
+                                            <div class="ihq-table-container">
+                                                <table class="ihq-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Diferenciación</th>
+                                                            <th>Marcadores Clave</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><strong>Epitelial</strong></td>
+                                                            <td>AE1/AE3, CAM5.2, BerEP4, Claudina-4, EMA</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Mesotelial</strong></td>
+                                                            <td>Calretinina, WT1 (Nuclear), D2-40, CK5/6</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Músculo Liso/Mioepitelial</strong></td>
+                                                            <td>SMA, Calponina, Desmina, H-Caldesmón</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Neuroendocrino</strong></td>
+                                                            <td>Sinaptofisina, Cromogranina, CD56, INSM1</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Melanocítico</strong></td>
+                                                            <td>SOX10, S100, Melan-A, HMB45</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Germinal</strong></td>
+                                                            <td>SALL4, PLAP, OCT4, CD117</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Endotelial</strong></td>
+                                                            <td>ERG (Nuclear), CD31, CD34</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <h4 class="ihq-subtitle"><i class="fas fa-map-marker-alt"></i> Sitios
+                                                Primarios Comunes</h4>
+                                            <div class="ihq-grid">
+                                                <div class="ihq-card">
+                                                    <h4>Tórax y Abdomen</h4>
+                                                    <ul>
+                                                        <li><strong>Pulmón (Adeno):</strong> TTF-1, Napsina A</li>
+                                                        <li><strong>Mama:</strong> GATA3, RE, GCDFP-15</li>
+                                                        <li><strong>GI (Colon):</strong> SATB2, CDX2, CK20</li>
+                                                        <li><strong>Hígado (CHC):</strong> Arginasa-1, HepPar-1</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="ihq-card">
+                                                    <h4>Urogenital y Otros</h4>
+                                                    <ul>
+                                                        <li><strong>Riñón (CCR):</strong> PAX8, RCCma, pVHL</li>
+                                                        <li><strong>Próstata:</strong> NKX3.1, PSA, PSAP</li>
+                                                        <li><strong>Tiroides:</strong> PAX8, TTF-1, Tiroglobulina</li>
+                                                        <li><strong>Urotelio:</strong> GATA3, Uroplakina II, p40</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Sub-Accordion 4: Interpretación y Trampas Diagnósticas -->
+                                <div class="service-accordion-item">
+                                    <button class="service-accordion-header">
+                                        <h5 class="service-title">4. Interpretación y "Trampas"</h5>
+                                        <i class="fas fa-chevron-down service-accordion-icon"></i>
+                                    </button>
+                                    <div class="service-accordion-content">
+                                        <div class="service-accordion-content-inner">
+                                            <h4 class="ihq-subtitle"><i class="fas fa-exclamation-triangle"></i> ¿Eso es
+                                                Positivo?</h4>
+                                            <p class="ihq-text">La interpretación requiere evaluar la intensidad y el
+                                                porcentaje de células teñidas, comparando con controles externos e
+                                                internos.</p>
+
+                                            <div class="ihq-grid">
+                                                <div class="ihq-card">
+                                                    <h4>Patrones Aberrantes</h4>
+                                                    <p>Ciertos tumores expresan marcadores inesperados que pueden causar
+                                                        diagnósticos erróneos:</p>
+                                                    <ul>
+                                                        <li><strong>CK+ en Sarcomas:</strong> Sinovial, Epitelioide,
+                                                            Angiosarcoma.</li>
+                                                        <li><strong>PAX8+ No Renales:</strong> AdenoCA Seroso de Ovario,
+                                                            Tiroides, Timo.</li>
+                                                        <li><strong>S100+ No Melanocíticos:</strong> Tumores neurales,
+                                                            Mioepiteliales, Mama.</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="ihq-card">
+                                                    <h4>Desafíos de Tinción</h4>
+                                                    <ul>
+                                                        <li><strong>Tinción Cruzada:</strong> PAX8 policlonal puede
+                                                            marcar linfocitos B.</li>
+                                                        <li><strong>Focalidad:</strong> Marcadores como CDH17 pueden ser
+                                                            muy heterogéneos.</li>
+                                                        <li><strong>Anticipación:</strong> El CK20 "puntiforme" es clave
+                                                            para Merkel.</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Sub-Accordion 5: Aplicación en Casos Reales -->
+                                <div class="service-accordion-item">
+                                    <button class="service-accordion-header">
+                                        <h5 class="service-title">5. Casos Clínicos de Referencia</h5>
+                                        <i class="fas fa-chevron-down service-accordion-icon"></i>
+                                    </button>
+                                    <div class="service-accordion-content">
+                                        <div class="service-accordion-content-inner">
+                                            <div class="ihq-grid">
+                                                <div class="ihq-card">
+                                                    <h4>Caso A: Merkel vs Pulmón</h4>
+                                                    <p>Ante un tumor de células pequeñas:</p>
+                                                    <ul>
+                                                        <li><strong>Merkel:</strong> CK20+ (Puntiforme), TTF-1-, NE+
+                                                        </li>
+                                                        <li><strong>Célula Pequeña:</strong> TTF-1+, CK20-, NE+</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="ihq-card">
+                                                    <h4>Caso B: Tumor de Origen Renal</h4>
+                                                    <p>Identificación de metástasis de CPCR Tipo II:</p>
+                                                    <ul>
+                                                        <li><strong>Inmunofenotipo:</strong> PAX8+, P504S+, CK7-, TTF-1-
+                                                        </li>
+                                                        <li><strong>Morfología:</strong> Arquitectura papilar, nucleolos
+                                                            prominentes.</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <p class="ihq-text"
+                                                style="font-size: 0.85rem; font-style: italic; margin-top: 20px;">*Este
+                                                compendio técnico se basa en las revisiones actualizadas de Kandukuri et
+                                                al. (Arch Pathol Lab Med, 2017) y Rekhtman (Quick Reference Handbook for
+                                                Surgical Pathologists).</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
