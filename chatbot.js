@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { text: "Consultar Precios", next: "pricing" },
                 { text: "Cómo Enviar Muestras", next: "samples" },
                 { text: "Hablar con un Especialista", next: "lead_capture_start" },
+                { text: "Hablar por WhatsApp", action: "whatsapp" },
                 { text: "Volver", next: "start" }
             ]
         },
@@ -40,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { text: "Consultar Precios", next: "pricing" },
                 { text: "Necesito ayuda con mi diagnóstico", next: "patient_help" },
                 { text: "Quiero contactar al laboratorio", next: "lead_capture_start" },
+                { text: "Hablar por WhatsApp", action: "whatsapp" },
                 { text: "Volver", next: "start" }
             ]
         },
@@ -54,35 +56,48 @@ document.addEventListener('DOMContentLoaded', () => {
             ]
         },
         pricing: {
-            text: "Estos son precios referenciales para nuestros estudios más comunes. Pueden variar según la complejidad del caso.",
+            text: "Aquí tienes nuestra lista detallada de precios. Selecciona una categoría para ver más:",
             options: [
-                { text: "Biopsia Simple", next: "price_biopsy" },
-                { text: "Estudio Citológico (PAP)", next: "price_cytology" },
-                { text: "Pieza Quirúrgica", next: "price_surgical" },
+                { text: "Biopsias", next: "price_biopsy" },
+                { text: "Citología", next: "price_cytology" },
+                { text: "Piezas Quirúrgicas", next: "price_surgical" },
+                { text: "Marcadores / IHC", next: "price_ihc" },
                 { text: "Volver", next: "start" }
             ]
         },
         price_biopsy: {
-            text: "El costo aproximado para un estudio de <b>biopsia simple</b> es de <b>S/ 120</b>. Para una cotización exacta, por favor déjanos tus datos.",
+            text: "<b>Tarifas de Biopsias:</b><br><br>• Biopsia Gástrica: <b>S/ 80</b><br>• Biopsia Esófago/Intestiono/Colon: <b>S/ 80</b><br>• Biopsia de Cervix: <b>S/ 80</b><br>• Cono Cervical: <b>S/ 120</b><br>• Biopsia de Próstata (6 frascos): <b>S/ 250</b>",
             options: [
                 { text: "Solicitar cotización exacta", next: "lead_capture_start" },
                 { text: "Ver otros precios", next: "pricing" },
+                { text: "Hablar por WhatsApp", action: "whatsapp" },
                 { text: "Volver al inicio", next: "start" }
             ]
         },
         price_cytology: {
-            text: "El costo aproximado para un <b>estudio citológico (Papanicolaou)</b> es de <b>S/ 80</b>. Para una cotización exacta, por favor déjanos tus datos.",
+            text: "<b>Tarifas de Citología:</b><br><br>• Papanicolau: <b>S/ 20</b><br>• Extendido de Tiroides (por lámina): <b>S/ 20</b><br>• Extendido PAAG Glándula Salival (por lámina): <b>S/ 20</b>",
             options: [
                 { text: "Solicitar cotización exacta", next: "lead_capture_start" },
                 { text: "Ver otros precios", next: "pricing" },
+                { text: "Hablar por WhatsApp", action: "whatsapp" },
                 { text: "Volver al inicio", next: "start" }
             ]
         },
         price_surgical: {
-            text: "El estudio de una <b>pieza quirúrgica</b> es más complejo y el precio base es de <b>S/ 250</b>. Te recomendamos solicitar una cotización precisa para tu caso.",
+            text: "<b>Piezas Convencionales:</b><br>• Vesícula/Apéndice: S/ 110<br>• Útero y Ovarios: S/ 150<br>• Placenta: S/ 80<br>• Tumor partes blandas (<4cm): S/ 100<br><br><b>Oncológicas:</b><br>• Estómago/Colon/Riñón: S/ 250<br>• Útero c/Ganglios: S/ 300<br>• Médula Ósea: S/ 150",
             options: [
                 { text: "Solicitar cotización exacta", next: "lead_capture_start" },
                 { text: "Ver otros precios", next: "pricing" },
+                { text: "Hablar por WhatsApp", action: "whatsapp" },
+                { text: "Volver al inicio", next: "start" }
+            ]
+        },
+        price_ihc: {
+            text: "<b>Tarifas Marcadores / IHC:</b><br><br>• Marcador SIN lectura: <b>S/ 100</b><br>• Marcador CON lectura/informe: <b>S/ 250</b><br><br>Contamos con un amplio panel de anticuerpos (Ki67, CD3, CD20, Her2, etc).",
+            options: [
+                { text: "Solicitar cotización exacta", next: "lead_capture_start" },
+                { text: "Ver otros precios", next: "pricing" },
+                { text: "Hablar por WhatsApp", action: "whatsapp" },
                 { text: "Volver al inicio", next: "start" }
             ]
         },
@@ -90,6 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
             text: "Ofrecemos un servicio de diagnóstico detallado y rápido en esa área. Para darte información más específica y personalizada, lo mejor es que hables con uno de nuestros especialistas.",
             options: [
                 { text: "Contactar a un Especialista", next: "lead_capture_start" },
+                { text: "Hablar por WhatsApp", action: "whatsapp" },
                 { text: "Ver otros servicios", next: "services" },
                 { text: "Volver al inicio", next: "start" }
             ]
@@ -98,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
             text: "Entendemos que la rapidez es crucial. Nuestros resultados de rutina suelen estar listos en 24-48 horas, garantizando un diagnóstico veloz para la tranquilidad de todos.",
             options: [
                 { text: "Contactar para un caso urgente", next: "lead_capture_start" },
+                { text: "Hablar por WhatsApp", action: "whatsapp" },
                 { text: "Volver", next: "doctor" }
             ]
         },
@@ -105,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
             text: "Sabemos que la espera puede ser difícil. Generalmente, los resultados están disponibles en 24-48 horas. Tu médico te contactará en cuanto los reciba y los revise.",
             options: [
                 { text: "Tengo otra duda", next: "patient" },
+                { text: "Hablar por WhatsApp", action: "whatsapp" },
                 { text: "Volver al inicio", next: "start" }
             ]
         },
@@ -112,6 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
             text: "El proceso es sencillo y seguro. Para coordinar la logística de envío y asegurarnos de que tu muestra llegue en perfectas condiciones, por favor déjanos tus datos y te llamaremos a la brevedad.",
             options: [
                 { text: "Dejar mis datos", next: "lead_capture_start" },
+                { text: "Hablar por WhatsApp", action: "whatsapp" },
                 { text: "Volver", next: "doctor" }
             ]
         },
@@ -119,6 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
             text: "Entiendo. Aunque no podemos darte un diagnóstico por este medio, podemos ponerte en contacto con nuestro equipo para que te orienten. Tu tranquilidad es nuestra prioridad.",
             options: [
                 { text: "Sí, quiero que me contacten", next: "lead_capture_start" },
+                { text: "Hablar por WhatsApp", action: "whatsapp" },
                 { text: "Volver", next: "patient" }
             ]
         },
@@ -135,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lead_capture_end: {
             text: "Perfecto, {name}. Hemos recibido tus datos ({contact}). Un especialista te contactará muy pronto. Estamos para darte la seguridad y tranquilidad que necesitas.",
             options: [
+                { text: "Hablar por WhatsApp ahora", action: "whatsapp" },
                 { text: "Tengo otra consulta", next: "start" }
             ]
         }
@@ -142,8 +163,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentStep = 'start';
     let capturedData = {};
+    let conversationHistory = [];
 
     function showBotMessage(message) {
+        // Clean HTML for history
+        const cleanMessage = message.replace(/<[^>]*>?/gm, '');
+        conversationHistory.push(`Asistente: ${cleanMessage}`);
+
         const messageEl = document.createElement('div');
         messageEl.className = 'chat-message bot-message';
         messageEl.innerHTML = message; // Use innerHTML to allow for bold/links
@@ -152,6 +178,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showUserMessage(message) {
+        conversationHistory.push(`Usuario: ${message}`);
+
         const messageEl = document.createElement('div');
         messageEl.className = 'chat-message user-message';
         messageEl.textContent = message;
@@ -195,9 +223,12 @@ document.addEventListener('DOMContentLoaded', () => {
             showUserMessage(e.target.textContent);
 
             if (action === 'whatsapp') {
-                const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+                const summary = conversationHistory.join('\n');
+                const finalMessage = `Hola, vengo de la página web. Aquí está el resumen de mi consulta con el asistente:\n\n${summary}`;
+                const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(finalMessage)}`;
+
                 window.open(url, '_blank');
-                showBotMessage("Abriendo WhatsApp para que puedas comunicarte con nosotros directamente.");
+                showBotMessage("Abriendo WhatsApp para que puedas comunicarte con nosotros directamente con el resumen de tu consulta.");
                 return;
             }
 
@@ -220,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (step.next === 'lead_capture_end') {
             capturedData.contact = inputText;
         }
-        
+
         renderStep(step.next);
     }
 
@@ -233,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
         chatContainer.classList.toggle('open');
         if (chatContainer.classList.contains('open')) {
             if (messagesContainer.children.length === 0) {
-                 renderStep('start');
+                renderStep('start');
             }
         }
     });

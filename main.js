@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const hash = window.location.hash.substring(1);
         if (hash) {
             showSection(hash);
-        } else {
+        } else if (document.getElementById('inicio')) {
             showSection('inicio');
         }
     });
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const initialHash = window.location.hash.substring(1);
     if (initialHash && document.getElementById(initialHash)) {
         showSection(initialHash);
-    } else {
+    } else if (document.getElementById('inicio')) {
         showSection('inicio');
     }
     
