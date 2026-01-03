@@ -68,47 +68,32 @@ document.addEventListener('DOMContentLoaded', function() {
         showSection('inicio');
     }
     
-    // Funcionalidad de acordeones para servicios
-    const serviceAccordionHeaders = document.querySelectorAll('.service-accordion-header');
-    serviceAccordionHeaders.forEach(header => {
-        header.addEventListener('click', function() {
-            const accordionItem = this.parentElement;
-            const content = accordionItem.querySelector('.service-accordion-content');
-            const icon = this.querySelector('.service-accordion-icon');
-            
-            // Alternar el estado del acordeón
-            const isActive = content.classList.contains('active');
-            
-            if (isActive) {
-                content.classList.remove('active');
-                icon.classList.remove('rotated');
-            } else {
-                content.classList.add('active');
-                icon.classList.add('rotated');
-            }
+    // Función para inicializar acordeones
+    function initAccordion(headerSelector) {
+        const headers = document.querySelectorAll(headerSelector);
+        headers.forEach(header => {
+            header.addEventListener('click', function() {
+                const accordionItem = this.parentElement;
+                const content = accordionItem.querySelector('.service-accordion-content');
+                const icon = this.querySelector('.service-accordion-icon');
+                
+                if (content) {
+                    const isActive = content.classList.contains('active');
+                    
+                    if (isActive) {
+                        content.classList.remove('active');
+                        if (icon) icon.classList.remove('rotated');
+                    } else {
+                        content.classList.add('active');
+                        if (icon) icon.classList.add('rotated');
+                    }
+                }
+            });
         });
-    });
-    
-    // Funcionalidad de acordeones para CV
-    const cvAccordionHeaders = document.querySelectorAll('.cv-accordion-header');
-    cvAccordionHeaders.forEach(header => {
-        header.addEventListener('click', function() {
-            const accordionItem = this.parentElement;
-            const content = accordionItem.querySelector('.cv-accordion-content');
-            const icon = this.querySelector('.cv-accordion-icon');
-            
-            // Alternar el estado del acordeón
-            const isActive = content.classList.contains('active');
-            
-            if (isActive) {
-                content.classList.remove('active');
-                icon.classList.remove('rotated');
-            } else {
-                content.classList.add('active');
-                icon.classList.add('rotated');
-            }
-        });
-    });
+    }
+
+    // Inicializar todos los acordeones
+    initAccordion('.service-accordion-header');
     
     
 

@@ -5,6 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JC PATH LAB - Laboratorio de Anatomía Patológica</title>
+
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="style.css?v=5" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+
+    <!-- Prefetch for faster navigation -->
+    <link rel="prefetch" href="cv.html">
+    <link rel="prefetch" href="solicitud.html">
+    <link rel="prefetch" href="blogs.html">
+
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -18,7 +28,7 @@
         <div class="header-container">
             <!-- Logo -->
             <div class="logo-container">
-                <img src="logo-jcpathlab.png" alt="JC PATH LAB Logo" class="logo">
+                <img src="logo-jcpathlab.png" alt="JC PATH LAB Logo" class="logo" width="180" height="60">
             </div>
 
             <!-- Navigation Menu -->
@@ -27,139 +37,140 @@
                     <li class="nav-item"><a href="#inicio" class="nav-link active">Inicio</a></li>
                     <li class="nav-item"><a href="#servicios" class="nav-link">Servicios</a></li>
                     <li class="nav-item"><a href="#quienes-somos" class="nav-link">Quiénes Somos</a></li>
+                    <li class="nav-item"><a href="cv.html" class="nav-link">Curriculum Vitae</a></li>
                     <li class="nav-item"><a href="#classroom" class="nav-link">Classroom</a></li>
                     <li class="nav-item"><a href="#protocolos" class="nav-link">Nuestros Protocolos</a></li>
                     <li class="nav-item"><a href="blogs.html" class="nav-link">Blogs</a></li>
-                    <li class="nav-item"><a href="solicitud.html" class="nav-link">Solicitud</a></li>
+                    <li class="nav-item"><a href="solicitud.html" class="nav-link">Solicitud de Estudio
+                            Anatomopatológico</a></li>
                     <li class="nav-item"><a href="#contacto" class="nav-link">Contacto</a></li>
                 </ul>
             </nav>
 
             <!-- Hamburger Menu -->
-            <button class="hamburger">
+            <button class="hamburger" aria-label="Menú de navegación">
                 <span class="line"></span>
                 <span class="line"></span>
                 <span class="line"></span>
             </button>
         </div>
     </header>
+    <main>
+        <!-- Secciones independientes -->
+        <!-- Inicio Section -->
+        <section id="inicio" class="hero page-section active">
+            <div class="hero-content">
+                <h1
+                    style="font-size: clamp(2.2rem, 5vw, 4.5rem); font-weight: 800; color: var(--accent); margin-bottom: 10px; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); line-height: 1.1; text-transform: uppercase;">
+                    Laboratorio de Anatomía Patológica<br>JC PATH LAB</h1>
+                <h2 style="margin-top: 0;">Excelencia en Diagnóstico Patológico</h2>
 
-    <!-- Secciones independientes -->
-    <!-- Inicio Section -->
-    <section id="inicio" class="hero page-section active">
-        <div class="hero-content">
-            <h2
-                style="font-size: clamp(2.2rem, 5vw, 4.5rem); font-weight: 800; color: var(--accent); margin-bottom: 10px; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); line-height: 1.1; text-transform: uppercase;">
-                Laboratorio de Anatomía Patológica<br>JC PATH LAB</h2>
-            <h1 style="margin-top: 0;">Excelencia en Diagnóstico Patológico</h1>
-
-            <div class="hero-buttons">
-                <a href="#contacto" class="btn btn-primary">Solicitar Servicios</a>
-                <a href="#servicios" class="btn btn-secondary">Conocer Más</a>
-            </div>
-
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <div class="stat-icon">
-                        <i class="fas fa-microscope"></i>
-                    </div>
-                    <div class="stat-content">
-                        <h3>35+</h3>
-                        <p>Años de Experiencia</p>
-                    </div>
+                <div class="hero-buttons">
+                    <a href="#contacto" class="btn btn-primary">Solicitar Servicios</a>
+                    <a href="#servicios" class="btn btn-secondary">Conocer Más</a>
                 </div>
 
-                <div class="stat-item">
-                    <div class="stat-icon">
-                        <i class="fas fa-user-md"></i>
-                    </div>
-                    <div class="stat-content">
-                        <h3>Especialista Certificado</h3>
-                    </div>
-                </div>
-
-                <div class="stat-item">
-                    <div class="stat-icon">
-                        <i class="fas fa-flask"></i>
-                    </div>
-                    <div class="stat-content">
-                        <h3>50K+</h3>
-                        <p>Estudios Realizados</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="servicios" class="services-section page-section">
-        <div class="section-header">
-            <h2 class="section-title">Nuestros Servicios Especializados</h2>
-        </div>
-
-        <div class="services-container">
-            <div class="services-accordion">
-                <!-- Service 1 -->
-                <div class="service-accordion-item">
-                    <button class="service-accordion-header">
-                        <div class="service-title-container">
-                            <div class="service-icon">
-                                <i class="fas fa-microscope"></i>
-                            </div>
-                            <h3 class="service-title">Diagnóstico de biopsias</h3>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-microscope"></i>
                         </div>
-                        <i class="fas fa-chevron-down service-accordion-icon"></i>
-                    </button>
-                    <div class="service-accordion-content">
-                        <div class="service-accordion-content-inner">
-                            <p class="service-description">Análisis microscópico de tejidos obtenidos por cirugía o
-                                procedimientos médicos para identificar la presencia y tipo de enfermedades como tumores
-                                o inflamaciones. Este proceso orienta el diagnóstico y el tratamiento médico adecuado.
-                            </p>
+                        <div class="stat-content">
+                            <h3>35+</h3>
+                            <p>Años de Experiencia</p>
+                        </div>
+                    </div>
 
-                            <div class="price-list-container"
-                                style="margin-top: 20px; margin-bottom: 25px; background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid var(--accent);">
-                                <h4
-                                    style="color: var(--secondary); font-size: 1.1rem; margin-top: 0; margin-bottom: 15px; font-weight: 700;">
-                                    LISTA DE PRECIOS - BIOPSIAS</h4>
-                                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>Especialista Certificado</h3>
+                        </div>
+                    </div>
+
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3>50K+</h3>
+                            <p>Estudios Realizados</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="servicios" class="services-section page-section">
+            <div class="section-header">
+                <h2 class="section-title">Nuestros Servicios Especializados</h2>
+            </div>
+
+            <div class="services-container">
+                <div class="services-accordion">
+                    <!-- Service 1 -->
+                    <div class="service-accordion-item">
+                        <button class="service-accordion-header">
+                            <div class="service-title-container">
+                                <div class="service-icon">
+                                    <i class="fas fa-microscope"></i>
+                                </div>
+                                <h3 class="service-title">Diagnóstico de biopsias</h3>
+                            </div>
+                            <i class="fas fa-chevron-down service-accordion-icon"></i>
+                        </button>
+                        <div class="service-accordion-content">
+                            <div class="service-accordion-content-inner">
+                                <p class="service-description">Análisis microscópico de tejidos obtenidos por cirugía o
+                                    procedimientos médicos para identificar la presencia y tipo de enfermedades como
+                                    tumores
+                                    o inflamaciones. Este proceso orienta el diagnóstico y el tratamiento médico
+                                    adecuado.
+                                </p>
+
+                                <h4 style="margin-top: 0; color: var(--accent); margin-bottom: 15px;">LISTA DE PRECIOS -
+                                    BIOPSIAS</h4>
+                                <table style="width: 100%; border-collapse: collapse;">
                                     <tbody>
-                                        <tr style="border-bottom: 1px solid #e9ecef;">
-                                            <td style="padding: 8px 0; color: var(--dark);">BIOPSIA GÁSTRICA</td>
+                                        <tr style="border-bottom: 1px solid #ddd;">
+                                            <td style="padding: 10px 0;">BIOPSIA GÁSTRICA</td>
                                             <td
-                                                style="padding: 8px 0; text-align: right; font-weight: 700; color: var(--primary);">
+                                                style="padding: 10px 0; text-align: right; font-weight: bold; color: var(--secondary);">
                                                 80 SOLES</td>
                                         </tr>
-                                        <tr style="border-bottom: 1px solid #e9ecef;">
-                                            <td style="padding: 8px 0; color: var(--dark);">BIOPSIA DE ESÓFAGO,
-                                                INTESTINO DELGADO Y COLON</td>
+                                        <tr style="border-bottom: 1px solid #ddd;">
+                                            <td style="padding: 10px 0;">BIOPSIA DE ESÓFAGO, INTESTINO DELGADO Y COLON
+                                            </td>
                                             <td
-                                                style="padding: 8px 0; text-align: right; font-weight: 700; color: var(--primary);">
+                                                style="padding: 10px 0; text-align: right; font-weight: bold; color: var(--secondary);">
                                                 80 SOLES</td>
                                         </tr>
-                                        <tr style="border-bottom: 1px solid #e9ecef;">
-                                            <td style="padding: 8px 0; color: var(--dark);">BIOPSIA DE CERVIX</td>
+                                        <tr style="border-bottom: 1px solid #ddd;">
+                                            <td style="padding: 10px 0;">BIOPSIA DE CERVIX</td>
                                             <td
-                                                style="padding: 8px 0; text-align: right; font-weight: 700; color: var(--primary);">
+                                                style="padding: 10px 0; text-align: right; font-weight: bold; color: var(--secondary);">
                                                 80 SOLES</td>
                                         </tr>
-                                        <tr style="border-bottom: 1px solid #e9ecef;">
-                                            <td style="padding: 8px 0; color: var(--dark);">CONO CERVICAL</td>
+                                        <tr style="border-bottom: 1px solid #ddd;">
+                                            <td style="padding: 10px 0;">CONO CERVICAL</td>
                                             <td
-                                                style="padding: 8px 0; text-align: right; font-weight: 700; color: var(--primary);">
+                                                style="padding: 10px 0; text-align: right; font-weight: bold; color: var(--secondary);">
                                                 120 SOLES</td>
                                         </tr>
                                         <tr>
-                                            <td style="padding: 8px 0; color: var(--dark);">BIOPSIA DE PRÓSTATA (POR 6
-                                                FRASCOS)</td>
+                                            <td style="padding: 10px 0;">BIOPSIA DE PRÓSTATA (POR 6 FRASCOS)</td>
                                             <td
-                                                style="padding: 8px 0; text-align: right; font-weight: 700; color: var(--primary);">
+                                                style="padding: 10px 0; text-align: right; font-weight: bold; color: var(--secondary);">
                                                 250 SOLES</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                            <a href="#" class="service-link">Más información sobre diagnóstico de biopsias <i
+                                    class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -211,7 +222,8 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                            <a href="#" class="service-link">Más información sobre estudios citológicos <i
+                                    class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -523,7 +535,8 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                            <a href="#" class="service-link">Más información sobre Inmunohistoquímica <i
+                                    class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -544,7 +557,8 @@
                             <p class="service-description">Análisis rápido de una muestra durante la cirugía para ayudar
                                 a tomar decisiones inmediatas sobre el tratamiento quirúrgico, proporcionando resultados
                                 en pocos minutos.</p>
-                            <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                            <a href="#" class="service-link">Más información sobre biopsia intraoperatoria <i
+                                    class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -571,9 +585,9 @@
                                     style="color: var(--secondary); font-size: 1.1rem; margin-top: 0; margin-bottom: 15px; font-weight: 700;">
                                     LISTA DE PRECIOS - PIEZAS QUIRÚRGICAS</h4>
 
-                                <h5
+                                <h4
                                     style="color: var(--primary); font-size: 1rem; margin-top: 15px; margin-bottom: 10px; font-weight: 600; text-transform: uppercase;">
-                                    Piezas Quirúrgicas Convencionales</h5>
+                                    Piezas Quirúrgicas Convencionales</h4>
                                 <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
                                     <tbody>
                                         <tr style="border-bottom: 1px solid #e9ecef;">
@@ -616,9 +630,9 @@
                                     </tbody>
                                 </table>
 
-                                <h5
+                                <h4
                                     style="color: var(--primary); font-size: 1rem; margin-top: 25px; margin-bottom: 10px; font-weight: 600; text-transform: uppercase;">
-                                    Piezas de Origen Oncológico</h5>
+                                    Piezas de Origen Oncológico</h4>
                                 <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
                                     <tbody>
                                         <tr style="border-bottom: 1px solid #e9ecef;">
@@ -677,1242 +691,1182 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <a href="#" class="service-link">Más información <i class="fas fa-arrow-right"></i></a>
+                            <a href="#" class="service-link">Más información sobre análisis de piezas quirúrgicas <i
+                                    class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- About Section - Quiénes Somos -->
-    <section id="quienes-somos" class="about-section page-section">
-        <div class="container">
-            <div class="services-accordion" style="margin-bottom: 40px; margin-top: 20px;">
-                <!-- Mision -->
-                <div class="service-accordion-item">
-                    <button class="service-accordion-header">
-                        <div class="service-title-container">
-                            <h3 class="service-title">Misión</h3>
-                        </div>
-                        <i class="fas fa-chevron-down service-accordion-icon"></i>
-                    </button>
-                    <div class="service-accordion-content">
-                        <div class="service-accordion-content-inner">
-                            <p class="service-description">En JC LAB, nuestra misión es contribuir de manera
-                                significativa al avance de la medicina a través de diagnósticos precisos y servicios de
-                                anatomía patológica de alta calidad. Nos esforzamos por brindar información valiosa para
-                                mejorar la atención médica y el bienestar de los pacientes.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Compromiso con la Calidad -->
-                <div class="service-accordion-item">
-                    <button class="service-accordion-header">
-                        <div class="service-title-container">
-                            <h3 class="service-title">Compromiso con la Calidad</h3>
-                        </div>
-                        <i class="fas fa-chevron-down service-accordion-icon"></i>
-                    </button>
-                    <div class="service-accordion-content">
-                        <div class="service-accordion-content-inner">
-                            <p class="service-description">En JC LAB, la calidad es nuestra prioridad. Contamos con
-                                rigurosos estándares de control de calidad y mantenemos certificaciones que respaldan
-                                nuestra dedicación a la excelencia. Cada informe que generamos refleja nuestro
-                                compromiso inquebrantable con la precisión y la fiabilidad.</p>
-                            <div class="about-office-image" style="margin-top: 25px; text-align: center;">
-                                <img src="OFCINAPRINCIPAL1.jpg" alt="Oficina Principal JC Path Lab" loading="lazy"
-                                    style="max-width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 4px solid var(--white);">
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Innovación y Tecnología -->
-                <div class="service-accordion-item">
-                    <button class="service-accordion-header">
-                        <div class="service-title-container">
-                            <h3 class="service-title">Innovación y Tecnología</h3>
-                        </div>
-                        <i class="fas fa-chevron-down service-accordion-icon"></i>
-                    </button>
-                    <div class="service-accordion-content">
-                        <div class="service-accordion-content-inner">
-                            <p class="service-description">En JC LAB, no solo nos destacamos por nuestros servicios de
-                                anatomía patológica de alta calidad, sino también por nuestra adopción de tecnologías
-                                avanzadas que optimizan y mejoran cada aspecto de nuestro trabajo. Queremos destacar dos
-                                aspectos clave que nos diferencian:</p>
-
-                            <h4
-                                style="color: var(--primary); font-size: 1.1rem; margin-top: 15px; margin-bottom: 10px;">
-                                Software de Gestión de Informes:</h4>
-                            <p class="service-description">Contamos con un software de gestión de informes diseñado
-                                específicamente para el ámbito de la anatomía patológica. Este sistema integral permite
-                                una gestión eficiente de datos, desde la recepción de muestras hasta la entrega de
-                                informes finales. Con funcionalidades de seguimiento en tiempo real, aseguramos una
-                                trazabilidad completa del proceso, garantizando la integridad y confidencialidad de la
-                                información.</p>
-                            <div class="tech-image-container" style="margin: 20px 0; text-align: center;">
-                                <img src="SOFTWARE.jpg" alt="Software de Gestión JC Path Lab" loading="lazy"
-                                    style="max-width: 90%; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
-                            </div>
-
-
-                            <h4
-                                style="color: var(--primary); font-size: 1.1rem; margin-top: 15px; margin-bottom: 10px;">
-                                Digitalización de Láminas Histológicas:</h4>
-                            <p class="service-description">En un esfuerzo por mejorar la accesibilidad y colaboración,
-                                hemos implementado la digitalización de nuestras láminas histológicas. Este avance
-                                tecnológico nos permite compartir imágenes de alta resolución de las muestras,
-                                facilitando la colaboración remota con colegas y ofreciendo a nuestros clientes acceso
-                                fácil y rápido a los resultados.</p>
-                            <div class="tech-image-container" style="margin: 20px 0; text-align: center;">
-                                <img src="MICROSCOPIO.jpg" alt="Digitalización de Láminas" loading="lazy"
-                                    style="max-width: 90%; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
-                            </div>
-
-
-                            <h4
-                                style="color: var(--primary); font-size: 1.1rem; margin-top: 15px; margin-bottom: 10px;">
-                                Beneficios Claves:</h4>
-                            <ul
-                                style="list-style-type: disc; padding-left: 20px; color: var(--text-color); margin-bottom: 15px;">
-                                <li style="margin-bottom: 8px;"><strong>Eficiencia Operativa:</strong> Nuestro software
-                                    agiliza los flujos de trabajo, reduciendo los tiempos de respuesta y permitiendo una
-                                    gestión más eficiente de los recursos, permitiendo remitir los informes hasta máximo
-                                    4 días de recibir la muestra quirúrgica y 3 días muestras de citología.</li>
-                                <li style="margin-bottom: 8px;"><strong>Precisión Mejorada:</strong> La digitalización
-                                    de las láminas histológicas no solo facilita la visualización, sino que también
-                                    mejora la precisión en la interpretación y análisis de las muestras.</li>
-                                <li style="margin-bottom: 8px;"><strong>Seguridad de Datos:</strong> Nuestro compromiso
-                                    con la seguridad de los datos garantiza la confidencialidad de la información del
-                                    paciente y cumple con los estándares regulatorios.</li>
-                            </ul>
-                            <p class="service-description">Estos avances tecnológicos no solo demuestran nuestra
-                                adaptación a las últimas tendencias, sino que también refuerzan nuestro compromiso con
-                                proporcionar resultados precisos y accesibles. En JC LAB, fusionamos la tradición de la
-                                anatomía patológica con la innovación tecnológica para ofrecer un servicio completo y de
-                                vanguardia a nuestros clientes.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Área de Macroscopía -->
-                <div class="service-accordion-item">
-                    <button class="service-accordion-header">
-                        <div class="service-title-container">
-                            <h3 class="service-title">Contamos con nuestra propia área de macroscopía</h3>
-                        </div>
-                        <i class="fas fa-chevron-down service-accordion-icon"></i>
-                    </button>
-                    <div class="service-accordion-content">
-                        <div class="service-accordion-content-inner">
-                            <p class="service-description">Tenemos 1 ambiente especialmente diseñado para el
-                                procesamiento de muestras, llamado área de macroscópica, ésta área presenta campana
-                                extractora flujo laminar y aire que extrae los gases tóxicos, para protección del
-                                personal, además presenta tanto a nivel de la entrada del ambiente, como tubos con
-                                extractores de aire para todo el ambiente. Como se ve las imágenes también presenta 1
-                                gabinete para el adecuado almacenaje de las láminas tacos, todo totalmente organizado
-                                para que en cualquier momento el paciente o la institución al momento de solicitar la
-                                sea inmediatamente entregado.</p>
-                            <div class="tech-image-container" style="margin-top: 25px; text-align: center;">
-                                <img src="AREA DE MACROSCOPIA.jpg" alt="Área de Macroscopía JC Path Lab" loading="lazy"
-                                    style="max-width: 90%; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Conclusiones -->
-                <div class="service-accordion-item">
-                    <button class="service-accordion-header">
-                        <div class="service-title-container">
-                            <h3 class="service-title">Conclusiones</h3>
-                        </div>
-                        <i class="fas fa-chevron-down service-accordion-icon"></i>
-                    </button>
-                    <div class="service-accordion-content">
-                        <div class="service-accordion-content-inner">
-                            <p class="service-description">En resumen, en JC LAB, nos enorgullece ser su socio confiable
-                                en anatomía patológica. Nuestro compromiso con la calidad, la innovación y la ética nos
-                                distingue, y esperamos poder colaborar con ustedes para avanzar juntos en la mejora de
-                                la salud y la medicina. Gracias por considerarnos, esperamos su invitación para discutir
-                                más a fondo posibles formas de colaboración.</p>
-                            <p class="service-description">Agradecido por su gentil atención, me suscribo de usted
-                                quedando a su disposición, para disipar alguna duda, que pueda sugerirle acerca del
-                                producto.</p>
-                        </div>
-                    </div>
-                </div>
             </div>
-            <div class="about-header">
-                <h2 class="section-title">Dr. Josehp Christopher Castillo Cuenca</h2>
-            </div>
+        </section>
 
-            <div class="about-content">
-                <div class="about-image">
-                    <img src="fotojosehpcastillo.png" alt="Dr. Josehp Christopher Castillo Cuenca" loading="lazy">
-                </div>
-
-                <div class="personal-info" style="font-size: 1rem; line-height: 1.6;">
-                    <p style="margin-bottom: 10px; font-size: 1.2rem; color: var(--primary);"><strong>Médico Anátomo
-                            Patólogo</strong></p>
-                    <p><strong>CMP:</strong> 56435 | <strong>RNE:</strong> 29091</p>
-
-                    <h4 style="color: var(--secondary); margin-top: 20px; margin-bottom: 10px;">Formación y Especialidad
-                    </h4>
-                    <ul style="list-style-type: none; padding-left: 0; margin-bottom: 20px;">
-                        <li><i class="fas fa-university" style="color: var(--accent); margin-right: 8px;"></i>
-                            Universidad Nacional Mayor de San Marcos (UNMSM)</li>
-                        <li><i class="fas fa-certificate" style="color: var(--accent); margin-right: 8px;"></i>
-                            Especialista en Anatomía Patológica</li>
-                    </ul>
-
-                    <h4 style="color: var(--secondary); margin-top: 20px; margin-bottom: 10px;">Experiencia Profesional
-                        Destacada</h4>
-                    <ul style="list-style-type: disc; padding-left: 20px; margin-bottom: 20px;">
-                        <li><strong>Hospital Nacional Daniel Alcides Carrión:</strong> Médico Anátomo Patólogo (Desde
-                            2016).</li>
-                        <li><strong>Unilabs Pathology Diagnostics Services:</strong> Médico Anátomo Patólogo (2015 -
-                            2023).</li>
-                        <li><strong>Universidad Nacional Mayor de San Marcos:</strong> Docente Auxiliar y Tutor de
-                            Residentes.</li>
-                    </ul>
-
-                    <h4 style="color: var(--secondary); margin-top: 20px; margin-bottom: 10px;">Áreas de Alta
-                        Especialización</h4>
-                    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
-                        <span
-                            style="background: #eef7ff; color: var(--primary); padding: 5px 12px; border-radius: 15px; font-size: 0.9rem; font-weight: 600;">Hematopatología</span>
-                        <span
-                            style="background: #eef7ff; color: var(--primary); padding: 5px 12px; border-radius: 15px; font-size: 0.9rem; font-weight: 600;">Tumores
-                            de Partes Blandas y Óseo</span>
-                        <span
-                            style="background: #eef7ff; color: var(--primary); padding: 5px 12px; border-radius: 15px; font-size: 0.9rem; font-weight: 600;">Tumores
-                            de Cabeza y Cuello</span>
-                        <span
-                            style="background: #eef7ff; color: var(--primary); padding: 5px 12px; border-radius: 15px; font-size: 0.9rem; font-weight: 600;">Patología
-                            Infecciosa</span>
-                    </div>
-
-                    <h4 style="color: var(--secondary); margin-top: 20px; margin-bottom: 10px;">Investigación
-                        Internacional</h4>
-                    <p>Coautor de artículos en revistas indexadas de alto impacto como <em>Virchows Archiv</em>,
-                        contribuyendo a la descripción de nuevas entidades tumorales (Tiroblastoma).</p>
-                </div>
-
-                <div class="call-to-action">
-                    <p>"El diagnóstico patológico es el pilar fundamental para una medicina precisa y personalizada"</p>
-                    <a href="#contacto" class="btn">Contáctame</a>
-                </div>
-
-                <div class="cv-content">
-                    <!-- Formación Académica -->
-                    <div class="cv-section">
-                        <h3><i class="fas fa-graduation-cap"></i> FORMACIÓN ACADÉMICA</h3>
-                        <p><strong>Universidad Nacional Mayor de San Marcos (UNMSM)</strong></p>
-                        <p>Médico Cirujano (2010) | CMP: 56435</p>
-                        <p><strong>Universidad Nacional Mayor de San Marcos (UNMSM)</strong></p>
-                        <p>Especialista en Anatomía Patológica (2016) | RNE: 29091</p>
-                    </div>
-
-                    <!-- Experiencia Profesional -->
-                    <div class="cv-section">
-                        <h3><i class="fas fa-briefcase"></i> EXPERIENCIA PROFESIONAL</h3>
-                        <ul>
-                            <li><strong>Hospital Nacional Daniel Alcides Carrión:</strong> Médico Anátomo Patólogo (2016
-                                - Actualidad).</li>
-                            <li><strong>Unilabs Pathology Diagnostics Services:</strong> Médico Anátomo Patólogo (2015 -
-                                2023).</li>
-                            <li><strong>Universidad Nacional Mayor de San Marcos:</strong> Docente Auxiliar y Tutor de
-                                Residentes (2019 - Actualidad).</li>
-                        </ul>
-                    </div>
-
-                    <!-- Cursos y Congresos -->
-                    <div class="cv-section">
-                        <h3><i class="fas fa-chalkboard-teacher"></i> CURSOS Y CONGRESOS</h3>
-                        <ul>
-                            <li>Curso Internacional de Actualización en Patología Genitourinaria (2014)</li>
-                            <li>I Convención Nacional de Anatomía Patológica – ESSALUD (2014)</li>
-                            <li>V Jornada Peruana de Patología Oncológica, Trujillo (2018), Segundo premio caso clínico
-                            </li>
-                            <li>Curso Internacional de Patología Gastrointestinal (2018)</li>
-                            <li>Pathologist Training Workshop, Laboratorios Roche Argentina (2019)</li>
-                            <li>IX Congreso Internacional de Patología Uro-Oncológica (2019)</li>
-                            <li>XXXII Congreso Latinoamericano de Patología – SLAP (2019)</li>
-                        </ul>
-                    </div>
-
-                    <!-- Producción Académica -->
-                    <div class="cv-section">
-                        <h3><i class="fas fa-book"></i> PRODUCCIÓN ACADÉMICA</h3>
-
-                        <h4 style="color: var(--secondary); font-size: 1rem; margin-top: 15px; margin-bottom: 10px;">
-                            Artículos en Revistas Internacionales Indexadas</h4>
-                        <ul style="margin-bottom: 15px;">
-                            <li><strong>"Malignant teratoid tumor of the thyroid gland... is the term 'thyroblastoma'
-                                    more appropriate?"</strong><br>
-                                <em>Virchows Archiv (Vol. 477, 2020)</em>. Coautoría en estudio multicéntrico (Alemania,
-                                Canadá, Portugal, Arabia Saudita y Perú).
-                            </li>
-                        </ul>
-
-                        <h4 style="color: var(--secondary); font-size: 1rem; margin-top: 15px; margin-bottom: 10px;">
-                            Artículos en Revistas Nacionales Indexadas</h4>
-                        <ul style="margin-bottom: 15px;">
-                            <li><strong>"Percepción de estudiantes de medicina sobre la virtualización de los cursos de
-                                    patología..."</strong><br>
-                                <em>Anales de la Facultad de Medicina (Vol. 83, Nº 2, 2022)</em>. Coautor.
-                            </li>
-                            <li><strong>"Depósito fibrinoide perivelloso placentario masivo como causa de restricción
-                                    severa del crecimiento intrauterino"</strong><br>
-                                <em>Revista Peruana de Ginecología y Obstetricia (Vol. 66, Nº 2, 2020)</em>. Coautor.
-                            </li>
-                        </ul>
-
-                        <h4 style="color: var(--secondary); font-size: 1rem; margin-top: 15px; margin-bottom: 10px;">
-                            Producción Científica y Congresos</h4>
-                        <ul style="margin-bottom: 15px;">
-                            <li><strong>Congreso Científico Internacional FELSOCEM 2024 (Asunción, Paraguay):</strong>
-                                Asesor científico en casos clínicos ("Carcinoma adenoide quístico traqueal", "Carcinoma
-                                endometrioide").</li>
-                            <li><strong>XXII Congreso Nacional de Anatomía Patológica:</strong> Presentación de casos
-                                "Nevus de Spitz Atípico" e "Histoplasmosis Diseminada Aguda en VIH".</li>
-                        </ul>
-
-                        <h4 style="color: var(--secondary); font-size: 1rem; margin-top: 15px; margin-bottom: 10px;">
-                            Ponencias Destacadas</h4>
-                        <ul>
-                            <li><strong>XXX Curso de Fisiopatología Clínica (Marzo 2025):</strong> "Patología de la
-                                serie mieloide (Leucemias Agudas)" y "Patología de los ganglios linfáticos (Linfomas No
-                                Hodgkin)".</li>
-                        </ul>
-                    </div>
-
-                    <!-- Habilidades -->
-                    <div class="cv-section">
-                        <h3><i class="fas fa-star"></i> HABILIDADES</h3>
-                        <ul class="skills-grid">
-                            <li>Diagnóstico morfológico e inmunohistoquímico integral</li>
-                            <li>Análisis molecular de tejidos y células</li>
-                            <li>Experiencia en necropsias, biopsias intraoperatorias y estudios citológicos</li>
-                            <li>Capacitación docencia y tutoría en anatomía patológica pregrado y postgrado</li>
-                            <li>Manejo avanzado de plataformas académicas virtuales y presenciales</li>
-                            <li>Liderazgo y trabajo multidisciplinario</li>
-                        </ul>
-                    </div>
-
-                    <!-- Datos Personales -->
-                    <div class="cv-section">
-                        <h3><i class="fas fa-user"></i> DATOS PERSONALES Y CARACTERÍSTICAS</h3>
-                        <p>Responsable, dinámico, asertivo, con alta capacidad analítica, rapidez de aprendizaje,
-                            solidario y colaborativo en equipos de trabajo.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Classroom Section -->
-    <section id="classroom" class="classroom-section page-section">
-        <div class="container">
+        <!-- About Section - Quiénes Somos -->
+        <section id="quienes-somos" class="about-section page-section">
             <div class="section-header">
-                <h2 class="section-title">Classroom</h2>
+                <h2 class="section-title">Quiénes Somos</h2>
             </div>
+            <div class="container">
+                <div class="services-accordion" style="margin-bottom: 40px; margin-top: 20px;">
+                    <!-- Mision -->
+                    <div class="service-accordion-item">
+                        <button class="service-accordion-header">
+                            <div class="service-title-container">
+                                <h3 class="service-title">Misión</h3>
+                            </div>
+                            <i class="fas fa-chevron-down service-accordion-icon"></i>
+                        </button>
+                        <div class="service-accordion-content">
+                            <div class="service-accordion-content-inner">
+                                <p class="service-description">En JC LAB, nuestra misión es contribuir de manera
+                                    significativa al avance de la medicina a través de diagnósticos precisos y servicios
+                                    de
+                                    anatomía patológica de alta calidad. Nos esforzamos por brindar información valiosa
+                                    para
+                                    mejorar la atención médica y el bienestar de los pacientes.</p>
+                            </div>
+                        </div>
+                    </div>
 
-            <!-- Classroom Cards in Columns -->
-            <div class="classroom-grid">
-                <a href="dermatopatologia.html" class="classroom-card-link">
+                    <!-- Compromiso con la Calidad -->
+                    <div class="service-accordion-item">
+                        <button class="service-accordion-header">
+                            <div class="service-title-container">
+                                <h3 class="service-title">Compromiso con la Calidad</h3>
+                            </div>
+                            <i class="fas fa-chevron-down service-accordion-icon"></i>
+                        </button>
+                        <div class="service-accordion-content">
+                            <div class="service-accordion-content-inner">
+                                <p class="service-description">En JC LAB, la calidad es nuestra prioridad. Contamos con
+                                    rigurosos estándares de control de calidad y mantenemos certificaciones que
+                                    respaldan
+                                    nuestra dedicación a la excelencia. Cada informe que generamos refleja nuestro
+                                    compromiso inquebrantable con la precisión y la fiabilidad.</p>
+                                <div class="about-office-image" style="margin-top: 25px; text-align: center;">
+                                    <img src="recepcion-laboratorio.jpg" alt="Oficina Principal JC Path Lab - Recepción"
+                                        loading="lazy"
+                                        style="max-width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 4px solid var(--white);">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Innovación y Tecnología -->
+                    <div class="service-accordion-item">
+                        <button class="service-accordion-header">
+                            <div class="service-title-container">
+                                <h3 class="service-title">Innovación y Tecnología</h3>
+                            </div>
+                            <i class="fas fa-chevron-down service-accordion-icon"></i>
+                        </button>
+                        <div class="service-accordion-content">
+                            <div class="service-accordion-content-inner">
+                                <p class="service-description">En JC LAB, no solo nos destacamos por nuestros servicios
+                                    de
+                                    anatomía patológica de alta calidad, sino también por nuestra adopción de
+                                    tecnologías
+                                    avanzadas que optimizan y mejoran cada aspecto de nuestro trabajo. Queremos destacar
+                                    dos
+                                    aspectos clave que nos diferencian:</p>
+
+                                <h4
+                                    style="color: var(--primary); font-size: 1.1rem; margin-top: 15px; margin-bottom: 10px;">
+                                    Software de Gestión de Informes:</h4>
+                                <p class="service-description">Contamos con un software de gestión de informes diseñado
+                                    específicamente para el ámbito de la anatomía patológica. Este sistema integral
+                                    permite
+                                    una gestión eficiente de datos, desde la recepción de muestras hasta la entrega de
+                                    informes finales. Con funcionalidades de seguimiento en tiempo real, aseguramos una
+                                    trazabilidad completa del proceso, garantizando la integridad y confidencialidad de
+                                    la
+                                    información.</p>
+                                <div class="tech-image-container" style="margin: 20px 0; text-align: center;">
+                                    <img src="analisis-digital-patologia.jpg"
+                                        alt="Software de Gestión de Patología Digital JC Path Lab" loading="lazy"
+                                        style="max-width: 90%; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                                </div>
+
+
+                                <h4
+                                    style="color: var(--primary); font-size: 1.1rem; margin-top: 15px; margin-bottom: 10px;">
+                                    Digitalización de Láminas Histológicas:</h4>
+                                <p class="service-description">En un esfuerzo por mejorar la accesibilidad y
+                                    colaboración,
+                                    hemos implementado la digitalización de nuestras láminas histológicas. Este avance
+                                    tecnológico nos permite compartir imágenes de alta resolución de las muestras,
+                                    facilitando la colaboración remota con colegas y ofreciendo a nuestros clientes
+                                    acceso
+                                    fácil y rápido a los resultados.</p>
+                                <div class="tech-image-container" style="margin: 20px 0; text-align: center;">
+                                    <img src="microscopio-patologia.jpg" alt="Microscopio Digital para Telepatología"
+                                        loading="lazy"
+                                        style="max-width: 90%; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                                </div>
+
+
+                                <h4
+                                    style="color: var(--primary); font-size: 1.1rem; margin-top: 15px; margin-bottom: 10px;">
+                                    Beneficios Claves:</h4>
+                                <ul
+                                    style="list-style-type: disc; padding-left: 20px; color: var(--text-color); margin-bottom: 15px;">
+                                    <li style="margin-bottom: 8px;"><strong>Eficiencia Operativa:</strong> Nuestro
+                                        software
+                                        agiliza los flujos de trabajo, reduciendo los tiempos de respuesta y permitiendo
+                                        una
+                                        gestión más eficiente de los recursos, permitiendo remitir los informes hasta
+                                        máximo
+                                        4 días de recibir la muestra quirúrgica y 3 días muestras de citología.</li>
+                                    <li style="margin-bottom: 8px;"><strong>Precisión Mejorada:</strong> La
+                                        digitalización
+                                        de las láminas histológicas no solo facilita la visualización, sino que también
+                                        mejora la precisión en la interpretación y análisis de las muestras.</li>
+                                    <li style="margin-bottom: 8px;"><strong>Seguridad de Datos:</strong> Nuestro
+                                        compromiso
+                                        con la seguridad de los datos garantiza la confidencialidad de la información
+                                        del
+                                        paciente y cumple con los estándares regulatorios.</li>
+                                </ul>
+                                <p class="service-description">Estos avances tecnológicos no solo demuestran nuestra
+                                    adaptación a las últimas tendencias, sino que también refuerzan nuestro compromiso
+                                    con
+                                    proporcionar resultados precisos y accesibles. En JC LAB, fusionamos la tradición de
+                                    la
+                                    anatomía patológica con la innovación tecnológica para ofrecer un servicio completo
+                                    y de
+                                    vanguardia a nuestros clientes.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Área de Macroscopía -->
+                    <div class="service-accordion-item">
+                        <button class="service-accordion-header">
+                            <div class="service-title-container">
+                                <h3 class="service-title">Contamos con nuestra propia área de macroscopía</h3>
+                            </div>
+                            <i class="fas fa-chevron-down service-accordion-icon"></i>
+                        </button>
+                        <div class="service-accordion-content">
+                            <div class="service-accordion-content-inner">
+                                <p class="service-description">Tenemos 1 ambiente especialmente diseñado para el
+                                    procesamiento de muestras, llamado área de macroscópica, ésta área presenta campana
+                                    extractora flujo laminar y aire que extrae los gases tóxicos, para protección del
+                                    personal, además presenta tanto a nivel de la entrada del ambiente, como tubos con
+                                    extractores de aire para todo el ambiente. Como se ve las imágenes también presenta
+                                    1
+                                    gabinete para el adecuado almacenaje de las láminas tacos, todo totalmente
+                                    organizado
+                                    para que en cualquier momento el paciente o la institución al momento de solicitar
+                                    la
+                                    sea inmediatamente entregado.</p>
+                                <div class="tech-image-container" style="margin-top: 25px; text-align: center;">
+                                    <img src="area-macroscopia.jpg"
+                                        alt="Área de Macroscopía y Procesamiento de Muestras" loading="lazy"
+                                        style="max-width: 90%; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Conclusiones -->
+                    <div class="service-accordion-item">
+                        <button class="service-accordion-header">
+                            <div class="service-title-container">
+                                <h3 class="service-title">Conclusiones</h3>
+                            </div>
+                            <i class="fas fa-chevron-down service-accordion-icon"></i>
+                        </button>
+                        <div class="service-accordion-content">
+                            <div class="service-accordion-content-inner">
+                                <p class="service-description">En resumen, en JC LAB, nos enorgullece ser su socio
+                                    confiable
+                                    en anatomía patológica. Nuestro compromiso con la calidad, la innovación y la ética
+                                    nos
+                                    distingue, y esperamos poder colaborar con ustedes para avanzar juntos en la mejora
+                                    de
+                                    la salud y la medicina. Gracias por considerarnos, esperamos su invitación para
+                                    discutir
+                                    más a fondo posibles formas de colaboración.</p>
+                                <p class="service-description">Agradecido por su gentil atención, me suscribo de usted
+                                    quedando a su disposición, para disipar alguna duda, que pueda sugerirle acerca del
+                                    producto.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Classroom Section -->
+        <section id="classroom" class="classroom-section page-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Classroom</h2>
+                </div>
+
+                <!-- Classroom Cards in Columns -->
+                <div class="classroom-grid">
+                    <a href="dermatopatologia.html" class="classroom-card-link">
+                        <div class="classroom-card">
+                            <div class="classroom-icon">
+                                Dermatopatología
+                            </div>
+                            <div class="classroom-image">
+                                <img src="dermatopatologia.png" alt="Dermatopatología">
+                            </div>
+                            <div class="classroom-content">
+                            </div>
+                        </div>
+                    </a>
+
                     <div class="classroom-card">
                         <div class="classroom-icon">
-                            Dermatopatología
+                            Neuropatología
                         </div>
                         <div class="classroom-image">
-                            <img src="dermatopatologia.png" alt="Dermatopatología">
+                            <img src="neuropatologia.png" alt="Neuropatología">
                         </div>
                         <div class="classroom-content">
                         </div>
                     </div>
-                </a>
 
-                <div class="classroom-card">
-                    <div class="classroom-icon">
-                        Neuropatología
-                    </div>
-                    <div class="classroom-image">
-                        <img src="neuropatologia.png" alt="Neuropatología">
-                    </div>
-                    <div class="classroom-content">
-                    </div>
-                </div>
+                    <a href="partes-blandas.html" class="classroom-card-link">
+                        <div class="classroom-card">
+                            <div class="classroom-icon">
+                                Tumores de Partes Blandas
+                            </div>
+                            <div class="classroom-image">
+                                <img src="liposarcoma.png" alt="Tumores de Partes Blandas">
+                            </div>
+                            <div class="classroom-content">
+                            </div>
+                        </div>
+                    </a>
 
-                <a href="partes-blandas.html" class="classroom-card-link">
                     <div class="classroom-card">
                         <div class="classroom-icon">
-                            Tumores de Partes Blandas
+                            Citopatología
                         </div>
                         <div class="classroom-image">
-                            <img src="liposarcoma.png" alt="Tumores de Partes Blandas">
+                            <img src="citopatologia.png" alt="Citopatología">
                         </div>
                         <div class="classroom-content">
                         </div>
                     </div>
-                </a>
 
-                <div class="classroom-card">
-                    <div class="classroom-icon">
-                        Citopatología
-                    </div>
-                    <div class="classroom-image">
-                        <img src="citopatologia.png" alt="Citopatología">
-                    </div>
-                    <div class="classroom-content">
-                    </div>
-                </div>
-
-                <div class="classroom-card">
-                    <div class="classroom-icon">
-                        Patología Gastrointestinal
-                    </div>
-                    <div class="classroom-image">
-                        <img src="gastrointestinal.png" alt="Patología Gastrointestinal">
-                    </div>
-                    <div class="classroom-content">
-                    </div>
-                </div>
-
-                <div class="classroom-card">
-                    <div class="classroom-icon">
-                        Patología Genitourinaria
-                    </div>
-                    <div class="classroom-image">
-                        <img src="genitourinario.png" alt="Patología Genitourinaria">
-                    </div>
-                    <div class="classroom-content">
-                    </div>
-                </div>
-
-                <div class="classroom-card">
-                    <div class="classroom-icon">
-                        Patología Ginecológica
-                    </div>
-                    <div class="classroom-image">
-                        <img src="carcinomaescamoso.png" alt="Patología Ginecológica">
-                    </div>
-                    <div class="classroom-content">
-                    </div>
-                </div>
-
-                <div class="classroom-card">
-                    <div class="classroom-icon">
-                        Patología de Cabeza y Cuello
-                    </div>
-                    <div class="classroom-image">
-                        <img src="carcinomapapilar.png" alt="Patología de Cabeza y Cuello">
-                    </div>
-                    <div class="classroom-content">
-                    </div>
-                </div>
-
-                <div class="classroom-card">
-                    <div class="classroom-icon">
-                        Patología Hepatobiliar y Pancreática
-                    </div>
-                    <div class="classroom-image">
-                        <img src="hepatocarcinoma.png" alt="Patología Hepatobiliar y Pancreática">
-                    </div>
-                    <div class="classroom-content">
-                    </div>
-                </div>
-
-                <div class="classroom-card">
-                    <div class="classroom-icon">
-                        Patología de Ganglio Linfático
-                    </div>
-                    <div class="classroom-image">
-                        <img src="limfoma.png" alt="Patología de Ganglio Linfático">
-                    </div>
-                    <div class="classroom-content">
-                    </div>
-                </div>
-
-                <div class="classroom-card">
-                    <div class="classroom-icon">
-                        Histología Normal
-                    </div>
-                    <div class="classroom-image">
-                        <img src="colonnormal.png" alt="Histología Normal">
-                    </div>
-                    <div class="classroom-content">
-                    </div>
-                </div>
-
-                <div class="classroom-card">
-                    <div class="classroom-icon">
-                        Placenta
-                    </div>
-                    <div class="classroom-image">
-                        <img src="corioamnionitisaguda.png" alt="Placenta">
-                    </div>
-                    <div class="classroom-content">
-                    </div>
-                </div>
-
-                <a href="canceraspectospatologicosindex.html" class="classroom-card-link">
                     <div class="classroom-card">
                         <div class="classroom-icon">
-                            Cancer: Aspectos Patologicos
+                            Patología Gastrointestinal
                         </div>
                         <div class="classroom-image">
-                            <img src="adenocarcinomapulmon.png" alt="Cancer: Aspectos Patologicos">
+                            <img src="gastrointestinal.png" alt="Patología Gastrointestinal">
                         </div>
                         <div class="classroom-content">
                         </div>
                     </div>
-                </a>
 
-                <div class="classroom-card">
-                    <div class="classroom-icon">
-                        Patología Torácica
+                    <div class="classroom-card">
+                        <div class="classroom-icon">
+                            Patología Genitourinaria
+                        </div>
+                        <div class="classroom-image">
+                            <img src="genitourinario.png" alt="Patología Genitourinaria">
+                        </div>
+                        <div class="classroom-content">
+                        </div>
                     </div>
-                    <div class="classroom-image">
-                        <img src="adenocarcinomapulmon.png" alt="Patología Torácica">
+
+                    <div class="classroom-card">
+                        <div class="classroom-icon">
+                            Patología Ginecológica
+                        </div>
+                        <div class="classroom-image">
+                            <img src="carcinomaescamoso.png" alt="Patología Ginecológica">
+                        </div>
+                        <div class="classroom-content">
+                        </div>
                     </div>
-                    <div class="classroom-content">
+
+                    <div class="classroom-card">
+                        <div class="classroom-icon">
+                            Patología de Cabeza y Cuello
+                        </div>
+                        <div class="classroom-image">
+                            <img src="carcinomapapilar.png" alt="Patología de Cabeza y Cuello">
+                        </div>
+                        <div class="classroom-content">
+                        </div>
+                    </div>
+
+                    <div class="classroom-card">
+                        <div class="classroom-icon">
+                            Patología Hepatobiliar y Pancreática
+                        </div>
+                        <div class="classroom-image">
+                            <img src="hepatocarcinoma.png" alt="Patología Hepatobiliar y Pancreática">
+                        </div>
+                        <div class="classroom-content">
+                        </div>
+                    </div>
+
+                    <div class="classroom-card">
+                        <div class="classroom-icon">
+                            Patología de Ganglio Linfático
+                        </div>
+                        <div class="classroom-image">
+                            <img src="limfoma.png" alt="Patología de Ganglio Linfático">
+                        </div>
+                        <div class="classroom-content">
+                        </div>
+                    </div>
+
+                    <div class="classroom-card">
+                        <div class="classroom-icon">
+                            Histología Normal
+                        </div>
+                        <div class="classroom-image">
+                            <img src="colonnormal.png" alt="Histología Normal">
+                        </div>
+                        <div class="classroom-content">
+                        </div>
+                    </div>
+
+                    <div class="classroom-card">
+                        <div class="classroom-icon">
+                            Placenta
+                        </div>
+                        <div class="classroom-image">
+                            <img src="corioamnionitisaguda.png" alt="Placenta">
+                        </div>
+                        <div class="classroom-content">
+                        </div>
+                    </div>
+
+                    <a href="canceraspectospatologicosindex.html" class="classroom-card-link">
+                        <div class="classroom-card">
+                            <div class="classroom-icon">
+                                Cancer: Aspectos Patologicos
+                            </div>
+                            <div class="classroom-image">
+                                <img src="adenocarcinomapulmon.png" alt="Cancer: Aspectos Patologicos">
+                            </div>
+                            <div class="classroom-content">
+                            </div>
+                        </div>
+                    </a>
+
+                    <div class="classroom-card">
+                        <div class="classroom-icon">
+                            Patología Torácica
+                        </div>
+                        <div class="classroom-image">
+                            <img src="adenocarcinomapulmon.png" alt="Patología Torácica">
+                        </div>
+                        <div class="classroom-content">
+                        </div>
                     </div>
                 </div>
+
             </div>
+        </section>
 
-        </div>
-    </section>
-
-    <!-- Protocolos Section -->
-    <section id="protocolos" class="services-section page-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Nuestros Protocolos de Manejo</h2>
-            </div>
-
-            <div class="services-accordion">
-                <div class="service-accordion-item">
-                    <button class="service-accordion-header">
-                        <div class="service-title-container">
-                            <div class="service-icon">
-                                <i class="fas fa-file-medical"></i>
-                            </div>
-                            <h3 class="service-title">Protocolo de Biopsias</h3>
-                        </div>
-                        <i class="fas fa-chevron-down service-accordion-icon"></i>
-                    </button>
-                    <div class="service-accordion-content">
-                        <div class="service-accordion-content-inner">
-                            <p class="service-description">Contenido del protocolo de biopsias...</p>
-                        </div>
-                    </div>
+        <!-- Protocolos Section -->
+        <section id="protocolos" class="services-section page-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Nuestros Protocolos de Manejo</h2>
                 </div>
 
-                <div class="service-accordion-item">
-                    <button class="service-accordion-header">
-                        <div class="service-title-container">
-                            <div class="service-icon">
-                                <i class="fas fa-file-medical"></i>
+                <div class="services-accordion">
+                    <div class="service-accordion-item">
+                        <button class="service-accordion-header">
+                            <div class="service-title-container">
+                                <div class="service-icon">
+                                    <i class="fas fa-file-medical"></i>
+                                </div>
+                                <h3 class="service-title">Protocolo de Biopsias</h3>
                             </div>
-                            <h3 class="service-title">Protocolo de Citologías</h3>
-                        </div>
-                        <i class="fas fa-chevron-down service-accordion-icon"></i>
-                    </button>
-                    <div class="service-accordion-content">
-                        <div class="service-accordion-content-inner">
-                            <!-- Nested Accordion -->
-                            <div class="services-accordion">
-                                <!-- Protocol 1 -->
-                                <div class="service-accordion-item">
-                                    <button class="service-accordion-header">
-                                        <h5 class="service-title">PROTOCOLO DE TINCIÓN PARA IMPRONTAS CITOLÓGICAS</h5>
-                                        <i class="fas fa-chevron-down service-accordion-icon"></i>
-                                    </button>
-                                    <div class="service-accordion-content">
-                                        <div class="service-accordion-content-inner">
-                                            <p>Este protocolo es rápido, eficaz y ideal para una evaluación
-                                                intraoperatoria.</p>
-                                            <p><strong>Principio:</strong><br>La tinción de Hematoxilina-Eosina (H&E) es
-                                                el estándar de oro. La hematoxilina tiñe los núcleos de azul/púrpura,
-                                                mientras que la eosina tiñe el citoplasma y las estructuras
-                                                extracelulares de rosa.</p>
-                                            <p><strong>Ventajas de este protocolo:</strong><br>
-                                                - Bajo consumo de alcohol: Utiliza solo dos baños de alcohol de 95° (uno
-                                                para fijar y otro para deshidratar).<br>
-                                                - Rápido: Menos de 2 minutos.<br>
-                                                - Eficiente: Proporciona un contraste nuclear-citoplasmático excelente.
-                                            </p>
-                                            <p><strong>Reactivos Necesarios:</strong><br>
-                                                - Fijador: Alcohol isopropílico o etanol al 95%.<br>
-                                                - Hematoxilina Harris (o similar).<br>
-                                                - Agua acidificada (1-2 gotas de HCl concentrado en 500 ml de agua
-                                                destilada).<br>
-                                                - Eosina acuosa o alcohólica.<br>
-                                                - Alcohol al 95% (para deshidratar).<br>
-                                                - Xilol o sustituto de xilol (para aclarar).<br>
-                                                - Medio de montaje sintético.</p>
-                                            <p><strong>PROCEDIMIENTO PASO A PASO:</strong><br>
-                                                1. Fijación Inmediata: Sumergir la impronta inmediatamente después de
-                                                tomarla en Alcohol al 95% durante 30 segundos. Esto previene el secado
-                                                al aire y la distorsión celular.<br>
-                                                2. Escurrir el exceso de alcohol.<br>
-                                                3. Tinción Nuclear (Hematoxilina): Sumergir el portaobjetos en
-                                                Hematoxilina Harris durante 20-30 segundos.<br>
-                                                4. Enjuagar con agua corriente hasta que el agua salga clara (20-30
-                                                segundos).<br>
-                                                5. Diferenciación: Sumergir brevemente (1-3 inmersiones rápidas) en Agua
-                                                acidificada. Este paso elimina el exceso de hematoxilina de los
-                                                citoplasmas. ¡No exceder el tiempo!<br>
-                                                6. Enjuagar inmediatamente en agua corriente (10 segundos).<br>
-                                                7. "Azuleo": Sumergir en agua con un pH ligeramente alcalino (agua del
-                                                grifo es suficiente) durante 10 segundos para volver los núcleos de un
-                                                azul brillante.<br>
-                                                8. Tinción Citoplasmática (Eosina): Sumergir en Eosina durante 10-20
-                                                segundos.<br>
-                                                9. Escurrir el exceso.<br>
-                                                10. Deshidratación y Aclarado: Sumergir en Alcohol al 95% (2 baños
-                                                rápidos de 5-10 segundos cada uno) para deshidratar.<br>
-                                                11. Sumergir en Xilol o sustituto de xilol (2 baños de 30 segundos cada
-                                                uno) para aclarar.<br>
-                                                12. Montaje: Montar con medio de montaje sintético y cubrir con un
-                                                cubreobjetos.</p>
-                                            <p><strong>Nota:</strong> Para una evaluación ultra-rápida (menos de 60
-                                                segundos), muchos tecnólogos utilizan tinciones tipo Diff-Quik
-                                                (Romanowsky modificado), que son aún más rápidas y usan muy poco
-                                                alcohol, pero el contraste H&E es más familiar para los patólogos en el
-                                                contexto intraoperatorio.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Protocol 2 -->
-                                <div class="service-accordion-item">
-                                    <button class="service-accordion-header">
-                                        <h5 class="service-title">PROTOCOLO DE TINCIÓN DE PAPANICOLAOU (MODIFICADO)</h5>
-                                        <i class="fas fa-chevron-down service-accordion-icon"></i>
-                                    </button>
-                                    <div class="service-accordion-content">
-                                        <div class="service-accordion-content-inner">
-                                            <p>El Pap es una tinción policromática que permite un detallado estudio de
-                                                la cromatina y la diferenciación citoplasmática (queratinización,
-                                                metaplasia, etc.).</p>
-                                            <p><strong>Principio:</strong><br>Utiliza múltiples colorantes
-                                                (hematoxilina, Orange G, EA-50 o EA-65) que se diferencian con alcohol
-                                                acidificado para obtener una gama de colores.</p>
-                                            <p><strong>Modificaciones para eficiencia:</strong><br>
-                                                - Volúmenes reducidos: Usar cubetas pequeñas o frascos de boca estrecha
-                                                para minimizar la evaporación y el volumen de reactivo necesario.<br>
-                                                - Alcohol acidificado reutilizable: El alcohol acidificado para la
-                                                diferenciación puede usarse para varias series de tinciones si se
-                                                controla su fuerza.<br>
-                                                - Baños de alcohol de menor concentración: Se puede utilizar etanol al
-                                                95% para la deshidratación inicial y final en lugar de al 100%,
-                                                reduciendo costos.</p>
-                                            <p><strong>Reactivos Necesarios:</strong><br>
-                                                - Fijador: Alcohol etílico al 95% (Spray citofijador o en baño).<br>
-                                                - Hematoxilina de Papanicolaou (ej. Harris o Gill).<br>
-                                                - Alcohol acidificado (0.5% HCl en alcohol al 70% o 95%).<br>
-                                                - Solución de Orange G.<br>
-                                                - Solución de EA-50 o EA-65 (Eosina Azure).<br>
-                                                - Alcohol al 95% (para deshidratar).<br>
-                                                - Alcohol absoluto (opcional, se puede sustituir por 95% en la mayoría
-                                                de pasos).<br>
-                                                - Xilol o sustituto de xilol.<br>
-                                                - Medio de montaje.</p>
-                                            <p><strong>Procedimiento Paso a Paso:</strong><br>
-                                                1. Fijación: Las muestras (LBC o convencionales) deben estar fijadas
-                                                inmediatamente en alcohol etílico al 95% durante un mínimo de 15
-                                                minutos. La fijación adecuada es crítica.<br>
-                                                2. Hidratación: Sumergir en Alcohol al 70% y luego en Agua destilada (1
-                                                min cada uno). Esto prepara las células para la tinción acuosa.<br>
-                                                3. Tinción Nuclear: Hematoxilina durante 3-5 minutos.<br>
-                                                4. Enjuagar en agua corriente.<br>
-                                                5. Diferenciación (Paso Ácido Clave): Sumergir en Alcohol acidificado
-                                                (0.5% HCl) por 2-5 inmersiones rápidas. Este es el paso más crítico. El
-                                                exceso de tiempo aquí destruirá la tinción nuclear.<br>
-                                                6. Enjuagar exhaustivamente en agua corriente (5-10 minutos).<br>
-                                                7. "Azuleo": Sumergir en agua corriente o agua con un poco de
-                                                bicarbonato/litro (1-2 minutos).<br>
-                                                8. Deshidratación: Sumergir en Alcohol al 70% y luego en Alcohol al 95%
-                                                (1 min cada uno).<br>
-                                                9. Tinción Citoplasmática: Orange G durante 1-2 minutos.<br>
-                                                10. Enjuagar en 2 baños de Alcohol al 95% (brevemente, para eliminar el
-                                                exceso).<br>
-                                                11. EA-50 o EA-65 durante 2-5 minutos (ajustar según la reactividad del
-                                                lote).<br>
-                                                12. Enjuagar en 2 baños de Alcohol al 95% (brevemente).
-                                                13. Deshidratación Final y Aclarado:<br>
-                                                - Sumergir en Alcohol al 95% (2 baños de 1 minuto cada uno). Este paso
-                                                puede hacerse con alcohol al 95% en lugar de absoluto.<br>
-                                                - Si se requiere mayor claridad, usar un baño de Alcohol absoluto (1
-                                                min).<br>
-                                                - Sumergir en Xilol o sustituto (2-3 baños de 2 minutos cada uno).<br>
-                                                14. Montaje: Montar con medio de montaje de resina sintética.</p>
-                                            <p><strong>Consejo de Eficiencia:</strong><br>El alcohol acidificado (Paso
-                                                4) es donde se gasta más ácido. Prepare volúmenes pequeños y cámbielo
-                                                cuando note que diferencia demasiado lento (núcleos pálidos) o demasiado
-                                                rápido (pérdida de núcleos en todas las muestras). El control visual es
-                                                esencial.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Protocol 3 -->
-                                <div class="service-accordion-item">
-                                    <button class="service-accordion-header">
-                                        <h5 class="service-title">Guía técnica – Coloración Papanicolaou</h5>
-                                        <i class="fas fa-chevron-down service-accordion-icon"></i>
-                                    </button>
-                                    <div class="service-accordion-content">
-                                        <div class="service-accordion-content-inner">
-                                            <p>Tiempos exactos, contingencias y controles de calidad para obtener
-                                                láminas diagnósticas óptimas (temperatura ambiente 20-25 °C).</p>
-                                            <h6>1. Pre-coloración</h6>
-                                            <table class="protocol-table">
-                                                <tr>
-                                                    <th>Paso</th>
-                                                    <th>Reactivo</th>
-                                                    <th>Tiempo</th>
-                                                    <th>Notas críticas</th>
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Fijación Alcohol-Eter 1:1</td>
-                                                    <td>30 min (máx 24 h)</td>
-                                                    <td>Tapar; evita autolisis</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Hidratación – Agua corriente</td>
-                                                    <td>2 min</td>
-                                                    <td>Cambiar si el agua se enturbia</td>
-                                                </tr>
-                                            </table>
-                                            <h6>2. Tinción nuclear (Hematoxilina Harris)</h6>
-                                            <table class="protocol-table">
-                                                <tr>
-                                                    <th>Paso</th>
-                                                    <th>Reactivo</th>
-                                                    <th>Tiempo</th>
-                                                    <th>Indicadores / control</th>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Hematoxilina Harris</td>
-                                                    <td>2 min 30 s</td>
-                                                    <td>Filtrar antes de usar</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>Agua corriente</td>
-                                                    <td>30 s</td>
-                                                    <td>Lavado por arrastre</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>5</td>
-                                                    <td>Diferenciación HCl 1 %</td>
-                                                    <td>3-5 s</td>
-                                                    <td>Fondo apenas claro</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>6</td>
-                                                    <td>Agua corriente</td>
-                                                    <td>30 s</td>
-                                                    <td>Detener ácido</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>7</td>
-                                                    <td>Azulación – Agua amoniacal</td>
-                                                    <td>30-45 s</td>
-                                                    <td>Núcleo azul intenso</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>8</td>
-                                                    <td>Agua corriente</td>
-                                                    <td>2 min</td>
-                                                    <td>Eliminar alcali; secar borde</td>
-                                                </tr>
-                                            </table>
-                                            <h6>3. Tinción citoplasmática</h6>
-                                            <table class="protocol-table">
-                                                <tr>
-                                                    <th>Paso</th>
-                                                    <th>Reactivo</th>
-                                                    <th>Tiempo</th>
-                                                    <th>Objetivo / observación</th>
-                                                </tr>
-                                                <tr>
-                                                    <td>9</td>
-                                                    <td>Alcohol 96 %</td>
-                                                    <td>30 s</td>
-                                                    <td>Pre-deshidratación</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>10</td>
-                                                    <td>Orange G</td>
-                                                    <td>1 min 30 s</td>
-                                                    <td>Queratina → naranja</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>11</td>
-                                                    <td>Alcohol 96 %</td>
-                                                    <td>30 s</td>
-                                                    <td>Lavado</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>12</td>
-                                                    <td>EA-50</td>
-                                                    <td>2 min</td>
-                                                    <td>Citoplasma: rosa/verde/pardo</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>13</td>
-                                                    <td>Alcohol 96 %</td>
-                                                    <td>30 s</td>
-                                                    <td>Retirar colorante libre</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>14</td>
-                                                    <td>Alcohol 96 % (2.º baño)</td>
-                                                    <td>30 s</td>
-                                                    <td>Asegura limpieza</td>
-                                                </tr>
-                                            </table>
-                                            <h6>4. Deshidratación – Aclaramiento – Montaje</h6>
-                                            <table class="protocol-table">
-                                                <tr>
-                                                    <th>Paso</th>
-                                                    <th>Reactivo</th>
-                                                    <th>Tiempo</th>
-                                                    <th>Indicador</th>
-                                                </tr>
-                                                <tr>
-                                                    <td>15</td>
-                                                    <td>Alcohol absoluto I</td>
-                                                    <td>1 min</td>
-                                                    <td>Sin turbidez</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>16</td>
-                                                    <td>Alcohol absoluto II</td>
-                                                    <td>1 min</td>
-                                                    <td>Deshidratación completa</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>17</td>
-                                                    <td>Xilol I</td>
-                                                    <td>1 min</td>
-                                                    <td>Muestra transparente</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>18</td>
-                                                    <td>Xilol II</td>
-                                                    <td>1 min</td>
-                                                    <td>Bordes irisados</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>19</td>
-                                                    <td>Resina de montaje</td>
-                                                    <td>Inmediato</td>
-                                                    <td>Sin burbujas; índice refracción 1,48-1,52</td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
+                            <i class="fas fa-chevron-down service-accordion-icon"></i>
+                        </button>
+                        <div class="service-accordion-content">
+                            <div class="service-accordion-content-inner">
+                                <p class="service-description">Contenido del protocolo de biopsias...</p>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="service-accordion-item">
-                    <button class="service-accordion-header">
-                        <div class="service-title-container">
-                            <div class="service-icon">
-                                <i class="fas fa-file-medical"></i>
+                    <div class="service-accordion-item">
+                        <button class="service-accordion-header">
+                            <div class="service-title-container">
+                                <div class="service-icon">
+                                    <i class="fas fa-file-medical"></i>
+                                </div>
+                                <h3 class="service-title">Protocolo de Citologías</h3>
                             </div>
-                            <h3 class="service-title">Protocolo de Inmunohistoquímica</h3>
-                        </div>
-                        <i class="fas fa-chevron-down service-accordion-icon"></i>
-                    </button>
-                    <div class="service-accordion-content">
-                        <div class="service-accordion-content-inner">
-                            <div class="ihq-page">
-                                <p class="ihq-text">La Inmunohistoquímica (IHQ) es una herramienta diagnóstica
-                                    fundamental que combina técnicas histológicas, inmunológicas y químicas para
-                                    identificar componentes tisulares específicos a través de la interacción
-                                    antígeno-anticuerpo.</p>
-
-                                <!-- Sub-Accordion 1: Fundamentos y Metodología -->
-                                <div class="service-accordion-item">
-                                    <button class="service-accordion-header">
-                                        <h5 class="service-title">1. Fundamentos y Metodología</h5>
-                                        <i class="fas fa-chevron-down service-accordion-icon"></i>
-                                    </button>
-                                    <div class="service-accordion-content">
-                                        <div class="service-accordion-content-inner">
-                                            <div class="ihq-highlight-box">
-                                                <h5>¿Cómo funciona la IHQ?</h5>
-                                                <p class="ihq-text">La IHQ detecta antígenos específicos
-                                                    (proteínas/carbohidratos) mediante el reconocimiento
-                                                    antígeno-anticuerpo, permitiendo visualizar la localización celular
-                                                    de marcadores específicos.</p>
-                                            </div>
-
-                                            <h4 class="ihq-subtitle"><i class="fas fa-vial"></i> Tipos de Anticuerpos
+                            <i class="fas fa-chevron-down service-accordion-icon"></i>
+                        </button>
+                        <div class="service-accordion-content">
+                            <div class="service-accordion-content-inner">
+                                <!-- Nested Accordion -->
+                                <div class="services-accordion">
+                                    <!-- Protocol 1 -->
+                                    <div class="service-accordion-item">
+                                        <button class="service-accordion-header">
+                                            <h4 class="service-title">PROTOCOLO DE TINCIÓN PARA IMPRONTAS CITOLÓGICAS
                                             </h4>
-                                            <div class="ihq-grid" style="margin-bottom: 20px;">
-                                                <div class="ihq-card">
-                                                    <h4>Monoclonales</h4>
-                                                    <p>Reconocen un único epítopo (clon único). Son altamente
-                                                        específicos. Fabricados mediante hibridomas.</p>
-                                                </div>
-                                                <div class="ihq-card">
-                                                    <h4>Policlonales</h4>
-                                                    <p>Reconocen múltiples epítopos. Más sensibles pero menos
-                                                        específicos. Mayor tinción de fondo.</p>
-                                                </div>
-                                            </div>
-
-                                            <h4 class="ihq-subtitle"><i class="fas fa-project-diagram"></i> Sistemas de
-                                                Detección</h4>
-                                            <div class="ihq-grid" style="margin-bottom: 20px;">
-                                                <div class="ihq-card">
-                                                    <h4>Método Directo</h4>
-                                                    <p>El anticuerpo primario está marcado. Rápido pero requiere más
-                                                        anticuerpo (caro).</p>
-                                                </div>
-                                                <div class="ihq-card">
-                                                    <h4>Método Indirecto</h4>
-                                                    <p>Se utiliza un anticuerpo secundario marcado. Más versátil,
-                                                        sensible y económico.</p>
-                                                </div>
-                                            </div>
-
-                                            <h4 class="ihq-subtitle"><i class="fas fa-microscope"></i> Localización de
-                                                Marcadores</h4>
-                                            <div class="ihq-grid">
-                                                <div class="ihq-card">
-                                                    <h4>Membranoso</h4>
-                                                    <ul>
-                                                        <li>CD20, CD3, CD45</li>
-                                                        <li>HER2, PD-L1</li>
-                                                        <li>E-cadherina, BerEP4</li>
-                                                    </ul>
-                                                </div>
-                                                <div class="ihq-card">
-                                                    <h4>Nuclear</h4>
-                                                    <ul>
-                                                        <li>Factores de Transcripción</li>
-                                                        <li>TTF-1, p53, p40</li>
-                                                        <li>PAX8, GATA3, SOX10</li>
-                                                    </ul>
-                                                </div>
-                                                <div class="ihq-card">
-                                                    <h4>Citoplasmático</h4>
-                                                    <ul>
-                                                        <li>Citoqueratinas (AE1/AE3)</li>
-                                                        <li>Vimentina, Desmina</li>
-                                                        <li>S100 (Nuclear y Citopl)</li>
-                                                    </ul>
-                                                </div>
+                                            <i class="fas fa-chevron-down service-accordion-icon"></i>
+                                        </button>
+                                        <div class="service-accordion-content">
+                                            <div class="service-accordion-content-inner">
+                                                <p>Este protocolo es rápido, eficaz y ideal para una evaluación
+                                                    intraoperatoria.</p>
+                                                <p><strong>Principio:</strong><br>La tinción de Hematoxilina-Eosina
+                                                    (H&E) es
+                                                    el estándar de oro. La hematoxilina tiñe los núcleos de
+                                                    azul/púrpura,
+                                                    mientras que la eosina tiñe el citoplasma y las estructuras
+                                                    extracelulares de rosa.</p>
+                                                <p><strong>Ventajas de este protocolo:</strong><br>
+                                                    - Bajo consumo de alcohol: Utiliza solo dos baños de alcohol de 95°
+                                                    (uno
+                                                    para fijar y otro para deshidratar).<br>
+                                                    - Rápido: Menos de 2 minutos.<br>
+                                                    - Eficiente: Proporciona un contraste nuclear-citoplasmático
+                                                    excelente.
+                                                </p>
+                                                <p><strong>Reactivos Necesarios:</strong><br>
+                                                    - Fijador: Alcohol isopropílico o etanol al 95%.<br>
+                                                    - Hematoxilina Harris (o similar).<br>
+                                                    - Agua acidificada (1-2 gotas de HCl concentrado en 500 ml de agua
+                                                    destilada).<br>
+                                                    - Eosina acuosa o alcohólica.<br>
+                                                    - Alcohol al 95% (para deshidratar).<br>
+                                                    - Xilol o sustituto de xilol (para aclarar).<br>
+                                                    - Medio de montaje sintético.</p>
+                                                <p><strong>PROCEDIMIENTO PASO A PASO:</strong><br>
+                                                    1. Fijación Inmediata: Sumergir la impronta inmediatamente después
+                                                    de
+                                                    tomarla en Alcohol al 95% durante 30 segundos. Esto previene el
+                                                    secado
+                                                    al aire y la distorsión celular.<br>
+                                                    2. Escurrir el exceso de alcohol.<br>
+                                                    3. Tinción Nuclear (Hematoxilina): Sumergir el portaobjetos en
+                                                    Hematoxilina Harris durante 20-30 segundos.<br>
+                                                    4. Enjuagar con agua corriente hasta que el agua salga clara (20-30
+                                                    segundos).<br>
+                                                    5. Diferenciación: Sumergir brevemente (1-3 inmersiones rápidas) en
+                                                    Agua
+                                                    acidificada. Este paso elimina el exceso de hematoxilina de los
+                                                    citoplasmas. ¡No exceder el tiempo!<br>
+                                                    6. Enjuagar inmediatamente en agua corriente (10 segundos).<br>
+                                                    7. "Azuleo": Sumergir en agua con un pH ligeramente alcalino (agua
+                                                    del
+                                                    grifo es suficiente) durante 10 segundos para volver los núcleos de
+                                                    un
+                                                    azul brillante.<br>
+                                                    8. Tinción Citoplasmática (Eosina): Sumergir en Eosina durante 10-20
+                                                    segundos.<br>
+                                                    9. Escurrir el exceso.<br>
+                                                    10. Deshidratación y Aclarado: Sumergir en Alcohol al 95% (2 baños
+                                                    rápidos de 5-10 segundos cada uno) para deshidratar.<br>
+                                                    11. Sumergir en Xilol o sustituto de xilol (2 baños de 30 segundos
+                                                    cada
+                                                    uno) para aclarar.<br>
+                                                    12. Montaje: Montar con medio de montaje sintético y cubrir con un
+                                                    cubreobjetos.</p>
+                                                <p><strong>Nota:</strong> Para una evaluación ultra-rápida (menos de 60
+                                                    segundos), muchos tecnólogos utilizan tinciones tipo Diff-Quik
+                                                    (Romanowsky modificado), que son aún más rápidas y usan muy poco
+                                                    alcohol, pero el contraste H&E es más familiar para los patólogos en
+                                                    el
+                                                    contexto intraoperatorio.</p>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                <!-- Sub-Accordion 2: Algoritmos Diagnósticos -->
-                                <div class="service-accordion-item">
-                                    <button class="service-accordion-header">
-                                        <h5 class="service-title">2. Algoritmos Diagnósticos</h5>
-                                        <i class="fas fa-chevron-down service-accordion-icon"></i>
-                                    </button>
-                                    <div class="service-accordion-content">
-                                        <div class="service-accordion-content-inner">
-                                            <h4 class="ihq-subtitle"><i class="fas fa-project-diagram"></i> Enfoque en
-                                                Neoplasias Indiferenciadas</h4>
-                                            <p class="ihq-text">Ante un tumor de origen desconocido, se utiliza un panel
-                                                de cribado inicial (Screening Panel) para determinar el linaje:</p>
-
-                                            <div class="ihq-table-container">
-                                                <table class="ihq-table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Resultado IHQ</th>
-                                                            <th>Linaje Probable</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td><strong>CK+ / CD45- / S100-</strong></td>
-                                                            <td>Epitelial (Carcinoma)</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><strong>CD45+ / CK- / S100-</strong></td>
-                                                            <td>Linfoide (Linfoma)</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><strong>S100+ / SOX10+ / CK-</strong></td>
-                                                            <td>Melanocítico / Neurogénico</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><strong>Vimentina+ / CK- / CD45-</strong></td>
-                                                            <td>Mesenquimal (Sarcoma)</td>
-                                                        </tr>
-                                                    </tbody>
+                                    <!-- Protocol 2 -->
+                                    <div class="service-accordion-item">
+                                        <button class="service-accordion-header">
+                                            <h4 class="service-title">PROTOCOLO DE TINCIÓN DE PAPANICOLAOU (MODIFICADO)
+                                            </h4>
+                                            <i class="fas fa-chevron-down service-accordion-icon"></i>
+                                        </button>
+                                        <div class="service-accordion-content">
+                                            <div class="service-accordion-content-inner">
+                                                <p>El Pap es una tinción policromática que permite un detallado estudio
+                                                    de
+                                                    la cromatina y la diferenciación citoplasmática (queratinización,
+                                                    metaplasia, etc.).</p>
+                                                <p><strong>Principio:</strong><br>Utiliza múltiples colorantes
+                                                    (hematoxilina, Orange G, EA-50 o EA-65) que se diferencian con
+                                                    alcohol
+                                                    acidificado para obtener una gama de colores.</p>
+                                                <p><strong>Modificaciones para eficiencia:</strong><br>
+                                                    - Volúmenes reducidos: Usar cubetas pequeñas o frascos de boca
+                                                    estrecha
+                                                    para minimizar la evaporación y el volumen de reactivo
+                                                    necesario.<br>
+                                                    - Alcohol acidificado reutilizable: El alcohol acidificado para la
+                                                    diferenciación puede usarse para varias series de tinciones si se
+                                                    controla su fuerza.<br>
+                                                    - Baños de alcohol de menor concentración: Se puede utilizar etanol
+                                                    al
+                                                    95% para la deshidratación inicial y final en lugar de al 100%,
+                                                    reduciendo costos.</p>
+                                                <p><strong>Reactivos Necesarios:</strong><br>
+                                                    - Fijador: Alcohol etílico al 95% (Spray citofijador o en baño).<br>
+                                                    - Hematoxilina de Papanicolaou (ej. Harris o Gill).<br>
+                                                    - Alcohol acidificado (0.5% HCl en alcohol al 70% o 95%).<br>
+                                                    - Solución de Orange G.<br>
+                                                    - Solución de EA-50 o EA-65 (Eosina Azure).<br>
+                                                    - Alcohol al 95% (para deshidratar).<br>
+                                                    - Alcohol absoluto (opcional, se puede sustituir por 95% en la
+                                                    mayoría
+                                                    de pasos).<br>
+                                                    - Xilol o sustituto de xilol.<br>
+                                                    - Medio de montaje.</p>
+                                                <p><strong>Procedimiento Paso a Paso:</strong><br>
+                                                    1. Fijación: Las muestras (LBC o convencionales) deben estar fijadas
+                                                    inmediatamente en alcohol etílico al 95% durante un mínimo de 15
+                                                    minutos. La fijación adecuada es crítica.<br>
+                                                    2. Hidratación: Sumergir en Alcohol al 70% y luego en Agua destilada
+                                                    (1
+                                                    min cada uno). Esto prepara las células para la tinción acuosa.<br>
+                                                    3. Tinción Nuclear: Hematoxilina durante 3-5 minutos.<br>
+                                                    4. Enjuagar en agua corriente.<br>
+                                                    5. Diferenciación (Paso Ácido Clave): Sumergir en Alcohol
+                                                    acidificado
+                                                    (0.5% HCl) por 2-5 inmersiones rápidas. Este es el paso más crítico.
+                                                    El
+                                                    exceso de tiempo aquí destruirá la tinción nuclear.<br>
+                                                    6. Enjuagar exhaustivamente en agua corriente (5-10 minutos).<br>
+                                                    7. "Azuleo": Sumergir en agua corriente o agua con un poco de
+                                                    bicarbonato/litro (1-2 minutos).<br>
+                                                    8. Deshidratación: Sumergir en Alcohol al 70% y luego en Alcohol al
+                                                    95%
+                                                    (1 min cada uno).<br>
+                                                    9. Tinción Citoplasmática: Orange G durante 1-2 minutos.<br>
+                                                    10. Enjuagar en 2 baños de Alcohol al 95% (brevemente, para eliminar
+                                                    el
+                                                    exceso).<br>
+                                                    11. EA-50 o EA-65 durante 2-5 minutos (ajustar según la reactividad
+                                                    del
+                                                    lote).<br>
+                                                    12. Enjuagar en 2 baños de Alcohol al 95% (brevemente).
+                                                    13. Deshidratación Final y Aclarado:<br>
+                                                    - Sumergir en Alcohol al 95% (2 baños de 1 minuto cada uno). Este
+                                                    paso
+                                                    puede hacerse con alcohol al 95% en lugar de absoluto.<br>
+                                                    - Si se requiere mayor claridad, usar un baño de Alcohol absoluto (1
+                                                    min).<br>
+                                                    - Sumergir en Xilol o sustituto (2-3 baños de 2 minutos cada
+                                                    uno).<br>
+                                                    14. Montaje: Montar con medio de montaje de resina sintética.</p>
+                                                <p><strong>Consejo de Eficiencia:</strong><br>El alcohol acidificado
+                                                    (Paso
+                                                    4) es donde se gasta más ácido. Prepare volúmenes pequeños y
+                                                    cámbielo
+                                                    cuando note que diferencia demasiado lento (núcleos pálidos) o
+                                                    demasiado
+                                                    rápido (pérdida de núcleos en todas las muestras). El control visual
+                                                    es
+                                                    esencial.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Protocol 3 -->
+                                    <div class="service-accordion-item">
+                                        <button class="service-accordion-header">
+                                            <h4 class="service-title">Guía técnica – Coloración Papanicolaou</h4>
+                                            <i class="fas fa-chevron-down service-accordion-icon"></i>
+                                        </button>
+                                        <div class="service-accordion-content">
+                                            <div class="service-accordion-content-inner">
+                                                <p>Tiempos exactos, contingencias y controles de calidad para obtener
+                                                    láminas diagnósticas óptimas (temperatura ambiente 20-25 °C).</p>
+                                                <h5>1. Pre-coloración</h5>
+                                                <table class="protocol-table">
+                                                    <tr>
+                                                        <th>Paso</th>
+                                                        <th>Reactivo</th>
+                                                        <th>Tiempo</th>
+                                                        <th>Notas críticas</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Fijación Alcohol-Eter 1:1</td>
+                                                        <td>30 min (máx 24 h)</td>
+                                                        <td>Tapar; evita autolisis</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>Hidratación – Agua corriente</td>
+                                                        <td>2 min</td>
+                                                        <td>Cambiar si el agua se enturbia</td>
+                                                    </tr>
+                                                </table>
+                                                <h5>2. Tinción nuclear (Hematoxilina Harris)</h5>
+                                                <table class="protocol-table">
+                                                    <tr>
+                                                        <th>Paso</th>
+                                                        <th>Reactivo</th>
+                                                        <th>Tiempo</th>
+                                                        <th>Indicadores / control</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>3</td>
+                                                        <td>Hematoxilina Harris</td>
+                                                        <td>2 min 30 s</td>
+                                                        <td>Filtrar antes de usar</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>4</td>
+                                                        <td>Agua corriente</td>
+                                                        <td>30 s</td>
+                                                        <td>Lavado por arrastre</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>5</td>
+                                                        <td>Diferenciación HCl 1 %</td>
+                                                        <td>3-5 s</td>
+                                                        <td>Fondo apenas claro</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>6</td>
+                                                        <td>Agua corriente</td>
+                                                        <td>30 s</td>
+                                                        <td>Detener ácido</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>7</td>
+                                                        <td>Azulación – Agua amoniacal</td>
+                                                        <td>30-45 s</td>
+                                                        <td>Núcleo azul intenso</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>8</td>
+                                                        <td>Agua corriente</td>
+                                                        <td>2 min</td>
+                                                        <td>Eliminar alcali; secar borde</td>
+                                                    </tr>
+                                                </table>
+                                                <h5>3. Tinción citoplasmática</h5>
+                                                <table class="protocol-table">
+                                                    <tr>
+                                                        <th>Paso</th>
+                                                        <th>Reactivo</th>
+                                                        <th>Tiempo</th>
+                                                        <th>Objetivo / observación</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>9</td>
+                                                        <td>Alcohol 96 %</td>
+                                                        <td>30 s</td>
+                                                        <td>Pre-deshidratación</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>10</td>
+                                                        <td>Orange G</td>
+                                                        <td>1 min 30 s</td>
+                                                        <td>Queratina → naranja</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>11</td>
+                                                        <td>Alcohol 96 %</td>
+                                                        <td>30 s</td>
+                                                        <td>Lavado</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>12</td>
+                                                        <td>EA-50</td>
+                                                        <td>2 min</td>
+                                                        <td>Citoplasma: rosa/verde/pardo</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>13</td>
+                                                        <td>Alcohol 96 %</td>
+                                                        <td>30 s</td>
+                                                        <td>Retirar colorante libre</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>14</td>
+                                                        <td>Alcohol 96 % (2.º baño)</td>
+                                                        <td>30 s</td>
+                                                        <td>Asegura limpieza</td>
+                                                    </tr>
+                                                </table>
+                                                <h5>4. Deshidratación – Aclaramiento – Montaje</h5>
+                                                <table class="protocol-table">
+                                                    <tr>
+                                                        <th>Paso</th>
+                                                        <th>Reactivo</th>
+                                                        <th>Tiempo</th>
+                                                        <th>Indicador</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>15</td>
+                                                        <td>Alcohol absoluto I</td>
+                                                        <td>1 min</td>
+                                                        <td>Sin turbidez</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>16</td>
+                                                        <td>Alcohol absoluto II</td>
+                                                        <td>1 min</td>
+                                                        <td>Deshidratación completa</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>17</td>
+                                                        <td>Xilol I</td>
+                                                        <td>1 min</td>
+                                                        <td>Muestra transparente</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>18</td>
+                                                        <td>Xilol II</td>
+                                                        <td>1 min</td>
+                                                        <td>Bordes irisados</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>19</td>
+                                                        <td>Resina de montaje</td>
+                                                        <td>Inmediato</td>
+                                                        <td>Sin burbujas; índice refracción 1,48-1,52</td>
+                                                    </tr>
                                                 </table>
                                             </div>
-
-                                            <h4 class="ihq-subtitle"><i class="fas fa-route"></i> El "Curso del
-                                                Intestino" (The Gut Course)</h4>
-                                            <p class="ihq-text">Este algoritmo orienta la búsqueda del primario basado
-                                                en la frecuencia estadística y el sitio de metástasis:</p>
-                                            <div class="ihq-grid">
-                                                <div class="ihq-card">
-                                                    <h4>Demografía Clave</h4>
-                                                    <ul>
-                                                        <li><strong>Hombres:</strong> Próstata, Pulmón, Colon</li>
-                                                        <li><strong>Mujeres:</strong> Mama, Pulmón, Colon, GYN</li>
-                                                        <li><strong>Jóvenes:</strong> Células Germinales, Tiroides</li>
-                                                    </ul>
-                                                </div>
-                                                <div class="ihq-card">
-                                                    <h4>Sitio de Metástasis</h4>
-                                                    <ul>
-                                                        <li><strong>Hueso:</strong> Mama, Pulmón, Próstata, Riñón</li>
-                                                        <li><strong>Hígado:</strong> Colon, Páncreas, Mama, Pulmón</li>
-                                                        <li><strong>Cerebro:</strong> Pulmón, Mama, Melanoma, Renal</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-
-                                            <div class="ihq-highlight-box">
-                                                <h5>Reglas de Oro del Patólogo</h5>
-                                                <ul>
-                                                    <li><strong>No interpretes IHQ sin morfología previa:</strong> La
-                                                        IHQ debe confirmar o refinar una sospecha morfológica.</li>
-                                                    <li><strong>La IHQ es estadística, no absoluta:</strong> Existen
-                                                        expresiones aberrantes (ej. CK+ en sarcomas).</li>
-                                                    <li><strong>Confía en Paneles, no en tinciones aisladas:</strong> Un
-                                                        solo marcador puede fallar o ser inespecífico.</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Sub-Accordion 3: Guía de Marcadores Específicos -->
-                                <div class="service-accordion-item">
-                                    <button class="service-accordion-header">
-                                        <h5 class="service-title">3. Guía de Marcadores por Diferenciación</h5>
-                                        <i class="fas fa-chevron-down service-accordion-icon"></i>
-                                    </button>
-                                    <div class="service-accordion-content">
-                                        <div class="service-accordion-content-inner">
-                                            <h4 class="ihq-subtitle"><i class="fas fa-dna"></i> Marcadores de Linaje
-                                            </h4>
-                                            <div class="ihq-table-container">
-                                                <table class="ihq-table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Diferenciación</th>
-                                                            <th>Marcadores Clave</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td><strong>Epitelial</strong></td>
-                                                            <td>AE1/AE3, CAM5.2, BerEP4, Claudina-4, EMA</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><strong>Mesotelial</strong></td>
-                                                            <td>Calretinina, WT1 (Nuclear), D2-40, CK5/6</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><strong>Músculo Liso/Mioepitelial</strong></td>
-                                                            <td>SMA, Calponina, Desmina, H-Caldesmón</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><strong>Neuroendocrino</strong></td>
-                                                            <td>Sinaptofisina, Cromogranina, CD56, INSM1</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><strong>Melanocítico</strong></td>
-                                                            <td>SOX10, S100, Melan-A, HMB45</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><strong>Germinal</strong></td>
-                                                            <td>SALL4, PLAP, OCT4, CD117</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><strong>Endotelial</strong></td>
-                                                            <td>ERG (Nuclear), CD31, CD34</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-
-                                            <h4 class="ihq-subtitle"><i class="fas fa-map-marker-alt"></i> Sitios
-                                                Primarios Comunes</h4>
-                                            <div class="ihq-grid">
-                                                <div class="ihq-card">
-                                                    <h4>Tórax y Abdomen</h4>
-                                                    <ul>
-                                                        <li><strong>Pulmón (Adeno):</strong> TTF-1, Napsina A</li>
-                                                        <li><strong>Mama:</strong> GATA3, RE, GCDFP-15</li>
-                                                        <li><strong>GI (Colon):</strong> SATB2, CDX2, CK20</li>
-                                                        <li><strong>Hígado (CHC):</strong> Arginasa-1, HepPar-1</li>
-                                                    </ul>
-                                                </div>
-                                                <div class="ihq-card">
-                                                    <h4>Urogenital y Otros</h4>
-                                                    <ul>
-                                                        <li><strong>Riñón (CCR):</strong> PAX8, RCCma, pVHL</li>
-                                                        <li><strong>Próstata:</strong> NKX3.1, PSA, PSAP</li>
-                                                        <li><strong>Tiroides:</strong> PAX8, TTF-1, Tiroglobulina</li>
-                                                        <li><strong>Urotelio:</strong> GATA3, Uroplakina II, p40</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Sub-Accordion 4: Interpretación y Trampas Diagnósticas -->
-                                <div class="service-accordion-item">
-                                    <button class="service-accordion-header">
-                                        <h5 class="service-title">4. Interpretación y "Trampas"</h5>
-                                        <i class="fas fa-chevron-down service-accordion-icon"></i>
-                                    </button>
-                                    <div class="service-accordion-content">
-                                        <div class="service-accordion-content-inner">
-                                            <h4 class="ihq-subtitle"><i class="fas fa-exclamation-triangle"></i> ¿Eso es
-                                                Positivo?</h4>
-                                            <p class="ihq-text">La interpretación requiere evaluar la intensidad y el
-                                                porcentaje de células teñidas, comparando con controles externos e
-                                                internos.</p>
-
-                                            <div class="ihq-grid">
-                                                <div class="ihq-card">
-                                                    <h4>Patrones Aberrantes</h4>
-                                                    <p>Ciertos tumores expresan marcadores inesperados que pueden causar
-                                                        diagnósticos erróneos:</p>
-                                                    <ul>
-                                                        <li><strong>CK+ en Sarcomas:</strong> Sinovial, Epitelioide,
-                                                            Angiosarcoma.</li>
-                                                        <li><strong>PAX8+ No Renales:</strong> AdenoCA Seroso de Ovario,
-                                                            Tiroides, Timo.</li>
-                                                        <li><strong>S100+ No Melanocíticos:</strong> Tumores neurales,
-                                                            Mioepiteliales, Mama.</li>
-                                                    </ul>
-                                                </div>
-                                                <div class="ihq-card">
-                                                    <h4>Desafíos de Tinción</h4>
-                                                    <ul>
-                                                        <li><strong>Tinción Cruzada:</strong> PAX8 policlonal puede
-                                                            marcar linfocitos B.</li>
-                                                        <li><strong>Focalidad:</strong> Marcadores como CDH17 pueden ser
-                                                            muy heterogéneos.</li>
-                                                        <li><strong>Anticipación:</strong> El CK20 "puntiforme" es clave
-                                                            para Merkel.</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Sub-Accordion 5: Aplicación en Casos Reales -->
-                                <div class="service-accordion-item">
-                                    <button class="service-accordion-header">
-                                        <h5 class="service-title">5. Casos Clínicos de Referencia</h5>
-                                        <i class="fas fa-chevron-down service-accordion-icon"></i>
-                                    </button>
-                                    <div class="service-accordion-content">
-                                        <div class="service-accordion-content-inner">
-                                            <div class="ihq-grid">
-                                                <div class="ihq-card">
-                                                    <h4>Caso A: Merkel vs Pulmón</h4>
-                                                    <p>Ante un tumor de células pequeñas:</p>
-                                                    <ul>
-                                                        <li><strong>Merkel:</strong> CK20+ (Puntiforme), TTF-1-, NE+
-                                                        </li>
-                                                        <li><strong>Célula Pequeña:</strong> TTF-1+, CK20-, NE+</li>
-                                                    </ul>
-                                                </div>
-                                                <div class="ihq-card">
-                                                    <h4>Caso B: Tumor de Origen Renal</h4>
-                                                    <p>Identificación de metástasis de CPCR Tipo II:</p>
-                                                    <ul>
-                                                        <li><strong>Inmunofenotipo:</strong> PAX8+, P504S+, CK7-, TTF-1-
-                                                        </li>
-                                                        <li><strong>Morfología:</strong> Arquitectura papilar, nucleolos
-                                                            prominentes.</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <p class="ihq-text"
-                                                style="font-size: 0.85rem; font-style: italic; margin-top: 20px;">*Este
-                                                compendio técnico se basa en las revisiones actualizadas de Kandukuri et
-                                                al. (Arch Pathol Lab Med, 2017) y Rekhtman (Quick Reference Handbook for
-                                                Surgical Pathologists).</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="service-accordion-item">
-                    <button class="service-accordion-header">
-                        <div class="service-title-container">
-                            <div class="service-icon">
-                                <i class="fas fa-file-medical"></i>
+                    <div class="service-accordion-item">
+                        <button class="service-accordion-header">
+                            <div class="service-title-container">
+                                <div class="service-icon">
+                                    <i class="fas fa-file-medical"></i>
+                                </div>
+                                <h3 class="service-title">Protocolo de Inmunohistoquímica</h3>
                             </div>
-                            <h3 class="service-title">Bethesda de Tiroides</h3>
+                            <i class="fas fa-chevron-down service-accordion-icon"></i>
+                        </button>
+                        <div class="service-accordion-content">
+                            <div class="service-accordion-content-inner">
+                                <div class="ihq-page">
+                                    <p class="ihq-text">La Inmunohistoquímica (IHQ) es una herramienta diagnóstica
+                                        fundamental que combina técnicas histológicas, inmunológicas y químicas para
+                                        identificar componentes tisulares específicos a través de la interacción
+                                        antígeno-anticuerpo.</p>
+
+                                    <!-- Sub-Accordion 1: Fundamentos y Metodología -->
+                                    <div class="service-accordion-item">
+                                        <button class="service-accordion-header">
+                                            <h4 class="service-title">1. Fundamentos y Metodología</h4>
+                                            <i class="fas fa-chevron-down service-accordion-icon"></i>
+                                        </button>
+                                        <div class="service-accordion-content">
+                                            <div class="service-accordion-content-inner">
+                                                <div class="ihq-highlight-box">
+                                                    <h4>¿Cómo funciona la IHQ?</h4>
+                                                    <p class="ihq-text">La IHQ detecta antígenos específicos
+                                                        (proteínas/carbohidratos) mediante el reconocimiento
+                                                        antígeno-anticuerpo, permitiendo visualizar la localización
+                                                        celular
+                                                        de marcadores específicos.</p>
+                                                </div>
+
+                                                <h4 class="ihq-subtitle"><i class="fas fa-vial"></i> Tipos de
+                                                    Anticuerpos
+                                                </h4>
+                                                <div class="ihq-grid" style="margin-bottom: 20px;">
+                                                    <div class="ihq-card">
+                                                        <h4>Monoclonales</h4>
+                                                        <p>Reconocen un único epítopo (clon único). Son altamente
+                                                            específicos. Fabricados mediante hibridomas.</p>
+                                                    </div>
+                                                    <div class="ihq-card">
+                                                        <h4>Policlonales</h4>
+                                                        <p>Reconocen múltiples epítopos. Más sensibles pero menos
+                                                            específicos. Mayor tinción de fondo.</p>
+                                                    </div>
+                                                </div>
+
+                                                <h4 class="ihq-subtitle"><i class="fas fa-project-diagram"></i> Sistemas
+                                                    de
+                                                    Detección</h4>
+                                                <div class="ihq-grid" style="margin-bottom: 20px;">
+                                                    <div class="ihq-card">
+                                                        <h4>Método Directo</h4>
+                                                        <p>El anticuerpo primario está marcado. Rápido pero requiere más
+                                                            anticuerpo (caro).</p>
+                                                    </div>
+                                                    <div class="ihq-card">
+                                                        <h4>Método Indirecto</h4>
+                                                        <p>Se utiliza un anticuerpo secundario marcado. Más versátil,
+                                                            sensible y económico.</p>
+                                                    </div>
+                                                </div>
+
+                                                <h4 class="ihq-subtitle"><i class="fas fa-microscope"></i> Localización
+                                                    de
+                                                    Marcadores</h4>
+                                                <div class="ihq-grid">
+                                                    <div class="ihq-card">
+                                                        <h4>Membranoso</h4>
+                                                        <ul>
+                                                            <li>CD20, CD3, CD45</li>
+                                                            <li>HER2, PD-L1</li>
+                                                            <li>E-cadherina, BerEP4</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="ihq-card">
+                                                        <h4>Nuclear</h4>
+                                                        <ul>
+                                                            <li>Factores de Transcripción</li>
+                                                            <li>TTF-1, p53, p40</li>
+                                                            <li>PAX8, GATA3, SOX10</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="ihq-card">
+                                                        <h4>Citoplasmático</h4>
+                                                        <ul>
+                                                            <li>Citoqueratinas (AE1/AE3)</li>
+                                                            <li>Vimentina, Desmina</li>
+                                                            <li>S100 (Nuclear y Citopl)</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Sub-Accordion 2: Algoritmos Diagnósticos -->
+                                    <div class="service-accordion-item">
+                                        <button class="service-accordion-header">
+                                            <h4 class="service-title">2. Algoritmos Diagnósticos</h4>
+                                            <i class="fas fa-chevron-down service-accordion-icon"></i>
+                                        </button>
+                                        <div class="service-accordion-content">
+                                            <div class="service-accordion-content-inner">
+                                                <h4 class="ihq-subtitle"><i class="fas fa-project-diagram"></i> Enfoque
+                                                    en
+                                                    Neoplasias Indiferenciadas</h4>
+                                                <p class="ihq-text">Ante un tumor de origen desconocido, se utiliza un
+                                                    panel
+                                                    de cribado inicial (Screening Panel) para determinar el linaje:</p>
+
+                                                <div class="ihq-table-container">
+                                                    <table class="ihq-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Resultado IHQ</th>
+                                                                <th>Linaje Probable</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><strong>CK+ / CD45- / S100-</strong></td>
+                                                                <td>Epitelial (Carcinoma)</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>CD45+ / CK- / S100-</strong></td>
+                                                                <td>Linfoide (Linfoma)</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>S100+ / SOX10+ / CK-</strong></td>
+                                                                <td>Melanocítico / Neurogénico</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Vimentina+ / CK- / CD45-</strong></td>
+                                                                <td>Mesenquimal (Sarcoma)</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                                <h4 class="ihq-subtitle"><i class="fas fa-route"></i> El "Curso del
+                                                    Intestino" (The Gut Course)</h4>
+                                                <p class="ihq-text">Este algoritmo orienta la búsqueda del primario
+                                                    basado
+                                                    en la frecuencia estadística y el sitio de metástasis:</p>
+                                                <div class="ihq-grid">
+                                                    <div class="ihq-card">
+                                                        <h4>Demografía Clave</h4>
+                                                        <ul>
+                                                            <li><strong>Hombres:</strong> Próstata, Pulmón, Colon</li>
+                                                            <li><strong>Mujeres:</strong> Mama, Pulmón, Colon, GYN</li>
+                                                            <li><strong>Jóvenes:</strong> Células Germinales, Tiroides
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="ihq-card">
+                                                        <h4>Sitio de Metástasis</h4>
+                                                        <ul>
+                                                            <li><strong>Hueso:</strong> Mama, Pulmón, Próstata, Riñón
+                                                            </li>
+                                                            <li><strong>Hígado:</strong> Colon, Páncreas, Mama, Pulmón
+                                                            </li>
+                                                            <li><strong>Cerebro:</strong> Pulmón, Mama, Melanoma, Renal
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                                <div class="ihq-highlight-box">
+                                                    <h4>Reglas de Oro del Patólogo</h4>
+                                                    <ul>
+                                                        <li><strong>No interpretes IHQ sin morfología previa:</strong>
+                                                            La
+                                                            IHQ debe confirmar o refinar una sospecha morfológica.</li>
+                                                        <li><strong>La IHQ es estadística, no absoluta:</strong> Existen
+                                                            expresiones aberrantes (ej. CK+ en sarcomas).</li>
+                                                        <li><strong>Confía en Paneles, no en tinciones
+                                                                aisladas:</strong> Un
+                                                            solo marcador puede fallar o ser inespecífico.</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Sub-Accordion 3: Guía de Marcadores Específicos -->
+                                    <div class="service-accordion-item">
+                                        <button class="service-accordion-header">
+                                            <h4 class="service-title">3. Guía de Marcadores por Diferenciación</h4>
+                                            <i class="fas fa-chevron-down service-accordion-icon"></i>
+                                        </button>
+                                        <div class="service-accordion-content">
+                                            <div class="service-accordion-content-inner">
+                                                <h4 class="ihq-subtitle"><i class="fas fa-dna"></i> Marcadores de Linaje
+                                                </h4>
+                                                <div class="ihq-table-container">
+                                                    <table class="ihq-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Diferenciación</th>
+                                                                <th>Marcadores Clave</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><strong>Epitelial</strong></td>
+                                                                <td>AE1/AE3, CAM5.2, BerEP4, Claudina-4, EMA</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Mesotelial</strong></td>
+                                                                <td>Calretinina, WT1 (Nuclear), D2-40, CK5/6</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Músculo Liso/Mioepitelial</strong></td>
+                                                                <td>SMA, Calponina, Desmina, H-Caldesmón</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Neuroendocrino</strong></td>
+                                                                <td>Sinaptofisina, Cromogranina, CD56, INSM1</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Melanocítico</strong></td>
+                                                                <td>SOX10, S100, Melan-A, HMB45</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Germinal</strong></td>
+                                                                <td>SALL4, PLAP, OCT4, CD117</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Endotelial</strong></td>
+                                                                <td>ERG (Nuclear), CD31, CD34</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                                <h4 class="ihq-subtitle"><i class="fas fa-map-marker-alt"></i> Sitios
+                                                    Primarios Comunes</h4>
+                                                <div class="ihq-grid">
+                                                    <div class="ihq-card">
+                                                        <h4>Tórax y Abdomen</h4>
+                                                        <ul>
+                                                            <li><strong>Pulmón (Adeno):</strong> TTF-1, Napsina A</li>
+                                                            <li><strong>Mama:</strong> GATA3, RE, GCDFP-15</li>
+                                                            <li><strong>GI (Colon):</strong> SATB2, CDX2, CK20</li>
+                                                            <li><strong>Hígado (CHC):</strong> Arginasa-1, HepPar-1</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="ihq-card">
+                                                        <h4>Urogenital y Otros</h4>
+                                                        <ul>
+                                                            <li><strong>Riñón (CCR):</strong> PAX8, RCCma, pVHL</li>
+                                                            <li><strong>Próstata:</strong> NKX3.1, PSA, PSAP</li>
+                                                            <li><strong>Tiroides:</strong> PAX8, TTF-1, Tiroglobulina
+                                                            </li>
+                                                            <li><strong>Urotelio:</strong> GATA3, Uroplakina II, p40
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Sub-Accordion 4: Interpretación y Trampas Diagnósticas -->
+                                    <div class="service-accordion-item">
+                                        <button class="service-accordion-header">
+                                            <h4 class="service-title">4. Interpretación y "Trampas"</h4>
+                                            <i class="fas fa-chevron-down service-accordion-icon"></i>
+                                        </button>
+                                        <div class="service-accordion-content">
+                                            <div class="service-accordion-content-inner">
+                                                <h4 class="ihq-subtitle"><i class="fas fa-exclamation-triangle"></i>
+                                                    ¿Eso es
+                                                    Positivo?</h4>
+                                                <p class="ihq-text">La interpretación requiere evaluar la intensidad y
+                                                    el
+                                                    porcentaje de células teñidas, comparando con controles externos e
+                                                    internos.</p>
+
+                                                <div class="ihq-grid">
+                                                    <div class="ihq-card">
+                                                        <h4>Patrones Aberrantes</h4>
+                                                        <p>Ciertos tumores expresan marcadores inesperados que pueden
+                                                            causar
+                                                            diagnósticos erróneos:</p>
+                                                        <ul>
+                                                            <li><strong>CK+ en Sarcomas:</strong> Sinovial, Epitelioide,
+                                                                Angiosarcoma.</li>
+                                                            <li><strong>PAX8+ No Renales:</strong> AdenoCA Seroso de
+                                                                Ovario,
+                                                                Tiroides, Timo.</li>
+                                                            <li><strong>S100+ No Melanocíticos:</strong> Tumores
+                                                                neurales,
+                                                                Mioepiteliales, Mama.</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="ihq-card">
+                                                        <h4>Desafíos de Tinción</h4>
+                                                        <ul>
+                                                            <li><strong>Tinción Cruzada:</strong> PAX8 policlonal puede
+                                                                marcar linfocitos B.</li>
+                                                            <li><strong>Focalidad:</strong> Marcadores como CDH17 pueden
+                                                                ser
+                                                                muy heterogéneos.</li>
+                                                            <li><strong>Anticipación:</strong> El CK20 "puntiforme" es
+                                                                clave
+                                                                para Merkel.</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Sub-Accordion 5: Aplicación en Casos Reales -->
+                                    <div class="service-accordion-item">
+                                        <button class="service-accordion-header">
+                                            <h4 class="service-title">5. Casos Clínicos de Referencia</h4>
+                                            <i class="fas fa-chevron-down service-accordion-icon"></i>
+                                        </button>
+                                        <div class="service-accordion-content">
+                                            <div class="service-accordion-content-inner">
+                                                <div class="ihq-grid">
+                                                    <div class="ihq-card">
+                                                        <h4>Caso A: Merkel vs Pulmón</h4>
+                                                        <p>Ante un tumor de células pequeñas:</p>
+                                                        <ul>
+                                                            <li><strong>Merkel:</strong> CK20+ (Puntiforme), TTF-1-, NE+
+                                                            </li>
+                                                            <li><strong>Célula Pequeña:</strong> TTF-1+, CK20-, NE+</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="ihq-card">
+                                                        <h4>Caso B: Tumor de Origen Renal</h4>
+                                                        <p>Identificación de metástasis de CPCR Tipo II:</p>
+                                                        <ul>
+                                                            <li><strong>Inmunofenotipo:</strong> PAX8+, P504S+, CK7-,
+                                                                TTF-1-
+                                                            </li>
+                                                            <li><strong>Morfología:</strong> Arquitectura papilar,
+                                                                nucleolos
+                                                                prominentes.</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <p class="ihq-text"
+                                                    style="font-size: 0.85rem; font-style: italic; margin-top: 20px;">
+                                                    *Este
+                                                    compendio técnico se basa en las revisiones actualizadas de
+                                                    Kandukuri et
+                                                    al. (Arch Pathol Lab Med, 2017) y Rekhtman (Quick Reference Handbook
+                                                    for
+                                                    Surgical Pathologists).</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <i class="fas fa-chevron-down service-accordion-icon"></i>
-                    </button>
-                    <div class="service-accordion-content">
-                        <div class="service-accordion-content-inner">
-                            <p class="service-description">La clasificación de Bethesda para tiroides tiene 6 categorías
-                                diagnósticas, y cada una tiene criterios citológicos
-                                específicos:<br><br><strong>Categoría I: No
-                                    diagnóstica/insatisfactoria</strong><br>Muestras con problema de cantidad o calidad,
-                                generalmente menos de 6 grupos con al menos 10 células foliculares cada uno.<br>Puede
-                                incluir muestras con material hemático, macrófagos, células cilíndricas respiratorias o
-                                artefactos.<br>No se puede emitir diagnóstico definitivo.<br><br><strong>Categoría II:
-                                    Benigna</strong><br>Lesiones con células foliculares normales o con cambios
-                                reactivos.<br>Puede incluir bocio coloide, nódulos hiperplásicos,
-                                tiroiditis.<br>Ausencia de atipia o signos de malignidad.<br><br><strong>Categoría III:
-                                    Atipia o lesión folicular de significado indeterminado</strong><br>Presencia de
-                                atipia estructural o nuclear, pero insuficiente para clasificar como sospechoso o
-                                maligno.<br>Problemas técnicos o morfológicos que impiden diagnóstico claro.<br>Riesgo
-                                variable de malignidad, alrededor del 16%.<br><br><strong>Categoría IV: Neoplasia
-                                    folicular o lesión folicular sospechosa</strong><br>Presencia de células foliculares
-                                en patrón que sugiere neoplasia, como proliferación folicular.<br>Ausencia de criterios
-                                claros de carcinoma.<br><br><strong>Categoría V: Sospechoso de
-                                    malignidad</strong><br>Células con características sugestivas de carcinoma papilar o
-                                malignidad clara.<br>No concluyente, pero con alta sospecha.<br><br><strong>Categoría
-                                    VI: Maligno</strong><br>Características citológicas concluyentes de carcinomas,
-                                principalmente carcinoma papilar.<br>Diagnóstico definitivo.<br><br>Estos criterios
-                                guían el diagnóstico citológico y el manejo clínico de los nódulos tiroideos según la
-                                Punción Aspiración con Aguja Fina</p>
+                    </div>
+
+                    <div class="service-accordion-item">
+                        <button class="service-accordion-header">
+                            <div class="service-title-container">
+                                <div class="service-icon">
+                                    <i class="fas fa-file-medical"></i>
+                                </div>
+                                <h3 class="service-title">Bethesda de Tiroides</h3>
+                            </div>
+                            <i class="fas fa-chevron-down service-accordion-icon"></i>
+                        </button>
+                        <div class="service-accordion-content">
+                            <div class="service-accordion-content-inner">
+                                <p class="service-description">La clasificación de Bethesda para tiroides tiene 6
+                                    categorías
+                                    diagnósticas, y cada una tiene criterios citológicos
+                                    específicos:<br><br><strong>Categoría I: No
+                                        diagnóstica/insatisfactoria</strong><br>Muestras con problema de cantidad o
+                                    calidad,
+                                    generalmente menos de 6 grupos con al menos 10 células foliculares cada
+                                    uno.<br>Puede
+                                    incluir muestras con material hemático, macrófagos, células cilíndricas
+                                    respiratorias o
+                                    artefactos.<br>No se puede emitir diagnóstico definitivo.<br><br><strong>Categoría
+                                        II:
+                                        Benigna</strong><br>Lesiones con células foliculares normales o con cambios
+                                    reactivos.<br>Puede incluir bocio coloide, nódulos hiperplásicos,
+                                    tiroiditis.<br>Ausencia de atipia o signos de malignidad.<br><br><strong>Categoría
+                                        III:
+                                        Atipia o lesión folicular de significado indeterminado</strong><br>Presencia de
+                                    atipia estructural o nuclear, pero insuficiente para clasificar como sospechoso o
+                                    maligno.<br>Problemas técnicos o morfológicos que impiden diagnóstico
+                                    claro.<br>Riesgo
+                                    variable de malignidad, alrededor del 16%.<br><br><strong>Categoría IV: Neoplasia
+                                        folicular o lesión folicular sospechosa</strong><br>Presencia de células
+                                    foliculares
+                                    en patrón que sugiere neoplasia, como proliferación folicular.<br>Ausencia de
+                                    criterios
+                                    claros de carcinoma.<br><br><strong>Categoría V: Sospechoso de
+                                        malignidad</strong><br>Células con características sugestivas de carcinoma
+                                    papilar o
+                                    malignidad clara.<br>No concluyente, pero con alta
+                                    sospecha.<br><br><strong>Categoría
+                                        VI: Maligno</strong><br>Características citológicas concluyentes de carcinomas,
+                                    principalmente carcinoma papilar.<br>Diagnóstico definitivo.<br><br>Estos criterios
+                                    guían el diagnóstico citológico y el manejo clínico de los nódulos tiroideos según
+                                    la
+                                    Punción Aspiración con Aguja Fina</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Contact Section -->
-    <section id="contacto" class="contact-section page-section">
+    <!-- Footer -->
+    <footer id="contacto" class="contact-section">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Contáctenos</h2>
@@ -2017,7 +1971,7 @@
                     allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
-    </section>
+    </footer>
 
     <!-- Chatbot HTML Structure -->
     <div id="chat-container">

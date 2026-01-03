@@ -25,6 +25,12 @@ body {
     overflow-x: hidden;
 }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 110px;
+    /* Offset for fixed header */
+}
+
 /* --- HEADER STYLES --- */
 .header {
     background-color: var(--white);
@@ -1344,11 +1350,14 @@ body {
     .nav-link {
         font-size: 18px;
         display: block;
-        padding: 15px 20px;
+        padding: 18px 20px;
+        /* Increased for better touch target */
         border-radius: 30px;
         width: 100%;
         background: rgba(255, 255, 255, 0.7);
-        margin-bottom: 10px;
+        margin-bottom: 12px;
+        min-height: 48px;
+        /* Touch target accessibility */
     }
 
     .hero h1 {
@@ -1486,12 +1495,17 @@ body {
 }
 
 @media screen and (max-width: 480px) {
-    .logo {
-        height: 50px;
+    .hero h1 {
+        font-size: 1.8rem;
+        /* Scaled down for 320px */
     }
 
-    .hero h1 {
-        font-size: 2.2rem;
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .logo {
+        height: 40px;
     }
 
     .hero p {

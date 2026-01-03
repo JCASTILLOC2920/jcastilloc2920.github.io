@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,7 +34,8 @@
             align-items: center;
         }
 
-        .boton-desplegable:hover, .boton-desplegable.activo {
+        .boton-desplegable:hover,
+        .boton-desplegable.activo {
             background-color: #e9ecef;
         }
 
@@ -68,7 +70,7 @@
             border-collapse: collapse;
             margin: 20px 0;
             font-family: Arial, sans-serif;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             overflow: hidden;
         }
@@ -98,35 +100,34 @@
         }
 
         .enlaces-casos {
-          margin-top: 8px;
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
+            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
         }
 
         .enlace-caso {
-          display: inline-block;
-          background-color: #e8f4f8;
-          color: #2c3e50;
-          text-decoration: none;
-          padding: 6px 10px;
-          border-radius: 4px;
-          font-size: 0.85em;
-          border: 1px solid #b8d8e8;
-          transition: all 0.3s ease;
+            display: inline-block;
+            background-color: #e8f4f8;
+            color: #2c3e50;
+            text-decoration: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            border: 1px solid #b8d8e8;
+            transition: all 0.3s ease;
         }
 
         .enlace-caso:hover {
-          background-color: #2c3e50;
-          color: white;
-          text-decoration: none;
-          transform: translateY(-1px);
-          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background-color: #2c3e50;
+            color: white;
+            text-decoration: none;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-
-
     </style>
 </head>
+
 <body>
     <!-- Header Section -->
     <header class="header">
@@ -135,7 +136,7 @@
             <div class="logo-container">
                 <a href="index.html#inicio"><img src="logo-jcpathlab.png" alt="JC PATH LAB Logo" class="logo"></a>
             </div>
-            
+
             <!-- Navigation Menu -->
             <nav>
                 <ul class="nav-menu">
@@ -147,9 +148,9 @@
                     <li class="nav-item"><a href="index.html#contacto" class="nav-link">Contacto</a></li>
                 </ul>
             </nav>
-            
+
             <!-- Hamburger Menu (for mobile) -->
-            <button class="hamburger">
+            <button class="hamburger" aria-label="Menú de navegación">
                 <span class="line"></span>
                 <span class="line"></span>
                 <span class="line"></span>
@@ -161,7 +162,7 @@
     <section id="tumores-partes-blandas" class="page-section topic-detail-section active" style="margin-top: 90px;">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Enfoque Diagnóstico de los Tumores de Partes Blandas</h2>
+                <h1 class="section-title">Enfoque Diagnóstico de los Tumores de Partes Blandas</h1>
             </div>
 
             <div class="topic-content">
@@ -170,99 +171,153 @@
                     <div class="contenido-desplegable" style="padding-top: 20px; padding-bottom: 20px;">
                         <h5>Cómo Funciona el Cerebro de un Residente Novato</h5>
                         <ul>
-                            <li><strong>La memoria es visual:</strong> El cerebro recuerda imágenes 10 veces mejor que palabras. Haz que DIBUJEN lo que ven con lápiz y papel.</li>
-                            <li><strong>El sueño es obligatorio:</strong> Durante el sueño profundo, el cerebro "repite" lo que estudiaron. Si no duermen 8 horas, olvidan el 80% en una semana.</li>
-                            <li><strong>Mezclar casos es mejor:</strong> Ver 5 lipomas seguidos aburre al cerebro. Ver lipoma, fascitis, schwannoma, luego otro lipoma activa la discriminación.</li>
-                            <li><strong>Los errores son aprendizaje:</strong> Cada error que cometen es oportunidad. No los critiques, pregunta "¿Qué viste que te llevó a ese diagnóstico?".</li>
+                            <li><strong>La memoria es visual:</strong> El cerebro recuerda imágenes 10 veces mejor que
+                                palabras. Haz que DIBUJEN lo que ven con lápiz y papel.</li>
+                            <li><strong>El sueño es obligatorio:</strong> Durante el sueño profundo, el cerebro "repite"
+                                lo que estudiaron. Si no duermen 8 horas, olvidan el 80% en una semana.</li>
+                            <li><strong>Mezclar casos es mejor:</strong> Ver 5 lipomas seguidos aburre al cerebro. Ver
+                                lipoma, fascitis, schwannoma, luego otro lipoma activa la discriminación.</li>
+                            <li><strong>Los errores son aprendizaje:</strong> Cada error que cometen es oportunidad. No
+                                los critiques, pregunta "¿Qué viste que te llevó a ese diagnóstico?".</li>
                         </ul>
                         <hr>
                         <h4>SEMANA 1: TUMORES DE BAJO GRADO (LOS QUE NO MATAN RÁPIDO)</h4>
                         <h5>DÍA 1: TUMORES DE GRASA - LA FUNDACIÓN DE TODO</h5>
                         <h6>BLOQUE 1: 8:00-8:15 HORAS - BIENVENIDA Y OBJETIVOS</h6>
-                        <p>Contenido para presentar: "Durante estas 2 semanas no van a aprender todos los sarcomas. Van a aprender a NO COMETER ERRORES CATASTRÓFICOS. El error más grave es llamarle cáncer a algo que es benigno, o viceversa. Hoy enfocamos en grasa. Al final del día, el residente de primer año debe ser capaz de mirar un tumor de grasa y decir con seguridad si es benigno o si tiene problemas."</p>
+                        <p>Contenido para presentar: "Durante estas 2 semanas no van a aprender todos los sarcomas. Van
+                            a aprender a NO COMETER ERRORES CATASTRÓFICOS. El error más grave es llamarle cáncer a algo
+                            que es benigno, o viceversa. Hoy enfocamos en grasa. Al final del día, el residente de
+                            primer año debe ser capaz de mirar un tumor de grasa y decir con seguridad si es benigno o
+                            si tiene problemas."</p>
                         <h6>BLOQUE 2: 8:15-9:00 HORAS - TEORÍA DE GRASA EN LENGUAJE SENCILLO</h6>
                         <ul>
-                            <li><strong>Qué es el tejido graso normal:</strong> Imagina una pared hecha de globos blancos (células grasas). Cada globo tiene una semilla pequeña en el borde (el núcleo). Los globos están apretados unos contra otros. Eso es grasa normal.</li>
-                            <li><strong>Qué es un lipoma (tumor benigno de grasa):</strong> Es una pared de globos normales, pero envueltos en una bolsa de plástico delgada (cápsula). Los globos son de igual tamaño, la semilla está en el borde, no hay globos rotos. Es tan benigno que si el paciente vive 100 años, el lipoma no le hará nada.</li>
+                            <li><strong>Qué es el tejido graso normal:</strong> Imagina una pared hecha de globos
+                                blancos (células grasas). Cada globo tiene una semilla pequeña en el borde (el núcleo).
+                                Los globos están apretados unos contra otros. Eso es grasa normal.</li>
+                            <li><strong>Qué es un lipoma (tumor benigno de grasa):</strong> Es una pared de globos
+                                normales, pero envueltos en una bolsa de plástico delgada (cápsula). Los globos son de
+                                igual tamaño, la semilla está en el borde, no hay globos rotos. Es tan benigno que si el
+                                paciente vive 100 años, el lipoma no le hará nada.</li>
                             <li><strong>Cómo se ve en el microscopio (el truco visual):</strong>
                                 <ul>
                                     <li>Aumento bajo (4 aumentos): Parece un mar de círculos blancos uniformes.</li>
-                                    <li>Aumento medio (10 aumentos): Cada célula es un círculo vacío con un puntito oscuro en un lado.</li>
-                                    <li>Aumento alto (20 aumentos): El puntito (núcleo) es plano, uniforme, del mismo tamaño en todas las células.</li>
+                                    <li>Aumento medio (10 aumentos): Cada célula es un círculo vacío con un puntito
+                                        oscuro en un lado.</li>
+                                    <li>Aumento alto (20 aumentos): El puntito (núcleo) es plano, uniforme, del mismo
+                                        tamaño en todas las células.</li>
                                 </ul>
                             </li>
-                            <li><strong>Qué es un lipoma atípico (grasa con células "enojadas"):</strong> Es como un lipoma, pero algunas células de soporte (fibroblastos) se pusieron feas. Tienen núcleos grandes y oscuros. Pero las células de grasa siguen siendo normales. NO hay células con múltiples burbujas (lipoblastos).</li>
+                            <li><strong>Qué es un lipoma atípico (grasa con células "enojadas"):</strong> Es como un
+                                lipoma, pero algunas células de soporte (fibroblastos) se pusieron feas. Tienen núcleos
+                                grandes y oscuros. Pero las células de grasa siguen siendo normales. NO hay células con
+                                múltiples burbujas (lipoblastos).</li>
                             <li><strong>Regla de oro que los novatos olvidan:</strong>
                                 <ul>
-                                    <li>Si está en extremidad (brazo o pierna) y no hay lipoblastos, es LIPOMA ATÍPICO (benigno).</li>
-                                    <li>Si está en retroperitoneo (atrás del abdomen), se llama LIPOSARCOMA BIEN DIFERENCIADO (cáncer de bajo grado, pero vuelve a crecer siempre).</li>
+                                    <li>Si está en extremidad (brazo o pierna) y no hay lipoblastos, es LIPOMA ATÍPICO
+                                        (benigno).</li>
+                                    <li>Si está en retroperitoneo (atrás del abdomen), se llama LIPOSARCOMA BIEN
+                                        DIFERENCIADO (cáncer de bajo grado, pero vuelve a crecer siempre).</li>
                                 </ul>
                             </li>
-                            <li><strong>Qué es un lipoblasto (la célula del cáncer de grasa):</strong> Es una célula de grasa que se descontroló. Tiene múltiples burbujas (vacuolas) que empujan el núcleo a un lado, haciéndolo parecer como una "gota con ojo". Si encuentras UNA célula así en retroperitoneo, es SARCOMA.</li>
+                            <li><strong>Qué es un lipoblasto (la célula del cáncer de grasa):</strong> Es una célula de
+                                grasa que se descontroló. Tiene múltiples burbujas (vacuolas) que empujan el núcleo a un
+                                lado, haciéndolo parecer como una "gota con ojo". Si encuentras UNA célula así en
+                                retroperitoneo, es SARCOMA.</li>
                         </ul>
                         <h6>BLOQUE 3: 9:00-9:45 HORAS - MICROSCOPIO PRÁCTICO</h6>
                         <ul>
-                            <li><strong>Ejercicio 1:</strong> Mostrar 3 lipomas físicos. Residente de primer año dibuja una célula de grasa. Residente de tercer año corrige.</li>
-                            <li><strong>Ejercicio 2:</strong> Mostrar 2 lipomas atípicos. Residente de tercer año señala la célula de soporte fea. Residente de primer año cuenta cuántas ve en 10 campos.</li>
-                            <li><strong>Ejercicio 3:</strong> Mostrar 1 liposarcoma bien diferenciado retroperitoneal. Buscar juntos el primer lipoblasto. El residente que lo encuentra primero "gana" un punto.</li>
+                            <li><strong>Ejercicio 1:</strong> Mostrar 3 lipomas físicos. Residente de primer año dibuja
+                                una célula de grasa. Residente de tercer año corrige.</li>
+                            <li><strong>Ejercicio 2:</strong> Mostrar 2 lipomas atípicos. Residente de tercer año señala
+                                la célula de soporte fea. Residente de primer año cuenta cuántas ve en 10 campos.</li>
+                            <li><strong>Ejercicio 3:</strong> Mostrar 1 liposarcoma bien diferenciado retroperitoneal.
+                                Buscar juntos el primer lipoblasto. El residente que lo encuentra primero "gana" un
+                                punto.</li>
                         </ul>
                         <h6>BLOQUE 4: 9:45-10:00 HORAS - DESCANSO ACTIVO</h6>
-                        <p>Parad de mirar microscopio. Sentad en silencio con los ojos cerrados. El cerebro procesará automáticamente las imágenes de grasa que viste. Tomad café sin azúcar (la cafeína ayuda a consolidar memoria).</p>
+                        <p>Parad de mirar microscopio. Sentad en silencio con los ojos cerrados. El cerebro procesará
+                            automáticamente las imágenes de grasa que viste. Tomad café sin azúcar (la cafeína ayuda a
+                            consolidar memoria).</p>
                         <h6>BLOQUE 5: 10:00-10:45 HORAS - CASOS ESCANEADOS (CARRERA CONTRA RELOJ)</h6>
                         <p>8 casos en monitor, 3 minutos por caso.</p>
                         <ul>
                             <li>Intercalado: Mezcla 6 lipomatoso con 2 fibroblastíticos (para que no se duerman).</li>
                             <li>Residente de primer año dice solo: "Benigno, atípico o maligno".</li>
-                            <li>Residente de tercer año justifica: "Porque veo lipoblastos" o "Porque está en retroperitoneo".</li>
+                            <li>Residente de tercer año justifica: "Porque veo lipoblastos" o "Porque está en
+                                retroperitoneo".</li>
                         </ul>
                         <h6>BLOQUE 6: 10:45-11:30 HORAS - DICTADO SIMULADO</h6>
-                        <p>Residente de tercer año dicta un liposarcoma retroperitoneal completo. Residente de primer año transcribe y subraya palabras que suenan "alarmistas" (ejemplo: "cáncer agresivo" cuando es de bajo grado).</p>
+                        <p>Residente de tercer año dicta un liposarcoma retroperitoneal completo. Residente de primer
+                            año transcribe y subraya palabras que suenan "alarmistas" (ejemplo: "cáncer agresivo" cuando
+                            es de bajo grado).</p>
                         <p><strong>Error del novato que corregimos hoy:</strong></p>
                         <ul>
                             <li><strong>Error:</strong> Llamar "liposarcoma" a un lipoma atípico de pierna.</li>
-                            <li><strong>Corrección:</strong> La ubicación lo define. En extremidad es "atípico", no "sarcoma bien diferenciado".</li>
-                            <li><strong>Consecuencia si no se corrige:</strong> El oncólogo puede dar quimioterapia innecesaria.</li>
+                            <li><strong>Corrección:</strong> La ubicación lo define. En extremidad es "atípico", no
+                                "sarcoma bien diferenciado".</li>
+                            <li><strong>Consecuencia si no se corrige:</strong> El oncólogo puede dar quimioterapia
+                                innecesaria.</li>
                         </ul>
                         <h6>BLOQUE 7: 11:30-12:00 HORAS - TAREA Y CIERRE</h6>
                         <ul>
-                            <li><strong>Tarea para residente de primer año:</strong> Crear 5 tarjetas Anki con fotos del celular. Pregunta: "¿Lipoma, atípico o sarcoma?" Respuesta: 3 características.</li>
-                            <li><strong>Tarea para residente de tercer año:</strong> Escribir un párrafo para oncólogo explicando por qué el lipoma atípico de extremidad no necesita radioterapia.</li>
+                            <li><strong>Tarea para residente de primer año:</strong> Crear 5 tarjetas Anki con fotos del
+                                celular. Pregunta: "¿Lipoma, atípico o sarcoma?" Respuesta: 3 características.</li>
+                            <li><strong>Tarea para residente de tercer año:</strong> Escribir un párrafo para oncólogo
+                                explicando por qué el lipoma atípico de extremidad no necesita radioterapia.</li>
                         </ul>
                         <hr>
                         <h5>DÍA 2: TUMORES FIBROBLÁSTICOS - LA TRAMPA DE LA PROTEÍNA BETA-CATENINA</h5>
                         <h6>BLOQUE 1: 8:00-8:15 HORAS - REPASO Y OBJETIVOS</h6>
-                        <p>"ayer aprendimos grasa. Hoy aprendemos fibroblastos (células que producen colágeno). El error más común es confiar en una tinción llamada beta-catenina sin mirar la morfología. Eso es como confiar en un GPS y no mirar el camino."</p>
+                        <p>"ayer aprendimos grasa. Hoy aprendemos fibroblastos (células que producen colágeno). El error
+                            más común es confiar en una tinción llamada beta-catenina sin mirar la morfología. Eso es
+                            como confiar en un GPS y no mirar el camino."</p>
                         <h6>BLOQUE 2: 8:15-9:00 HORAS - TEORÍA DE FIBROBLASTOS</h6>
                         <ul>
-                            <li><strong>Qué es la fibromatosis desmoide (tumor fibroso de abdomen):</strong> Es un tumor intermedio: no es cáncer que se disemina, pero invade como cáncer. Ocurre en mujeres jóvenes (después de embarazo) o en personas con síndrome de Gardner (mutación genética).</li>
+                            <li><strong>Qué es la fibromatosis desmoide (tumor fibroso de abdomen):</strong> Es un tumor
+                                intermedio: no es cáncer que se disemina, pero invade como cáncer. Ocurre en mujeres
+                                jóvenes (después de embarazo) o en personas con síndrome de Gardner (mutación genética).
+                            </li>
                             <li><strong>Cómo se ve en microscopio:</strong>
                                 <ul>
-                                    <li>Patrón "sweeping fascicles": Bandas largas de células que fluyen como olas del mar. Es el patrón más elegante en patología.</li>
+                                    <li>Patrón "sweeping fascicles": Bandas largas de células que fluyen como olas del
+                                        mar. Es el patrón más elegante en patología.</li>
                                     <li>Células uniformes, sin pleomorfismo.</li>
                                     <li>Colágeno keloide denso que comprime los núcleos (se ven alargados).</li>
-                                    <li>Beta-catenina: Positiva nuclear difusa (80% de células, intensidad fuerte). NOTA IMPORTANTE: La morfología siempre es más importante que la tinción. El 10-20% de desmoides son negativos para beta-catenina.</li>
+                                    <li>Beta-catenina: Positiva nuclear difusa (80% de células, intensidad fuerte). NOTA
+                                        IMPORTANTE: La morfología siempre es más importante que la tinción. El 10-20% de
+                                        desmoides son negativos para beta-catenina.</li>
                                 </ul>
                             </li>
-                            <li><strong>Truco visual:</strong> En 10 aumentos, cierra un ojo. Si el tumor parece "cabello peinado limpio", es desmoide.</li>
-                            <li><strong>Qué es la fascitis nudular (inflamación que asusta):</strong> Es reacción a un trauma menor. Crece en 1-2 semanas, duele mucho. Es benigna pero histológicamente espantosa.</li>
+                            <li><strong>Truco visual:</strong> En 10 aumentos, cierra un ojo. Si el tumor parece
+                                "cabello peinado limpio", es desmoide.</li>
+                            <li><strong>Qué es la fascitis nudular (inflamación que asusta):</strong> Es reacción a un
+                                trauma menor. Crece en 1-2 semanas, duele mucho. Es benigna pero histológicamente
+                                espantosa.</li>
                             <li><strong>Cómo se ve en microscopio:</strong>
                                 <ul>
-                                    <li>Zona central: Tejido de granulación con vasos nuevos y sangría. Parece tejido de curación.</li>
+                                    <li>Zona central: Tejido de granulación con vasos nuevos y sangría. Parece tejido de
+                                        curación.</li>
                                     <li>Zona intermedia: Miofibroblastos en lágrima en estudio mucoide (líquido).</li>
                                     <li>Zona periferia: Infiltrado de linfocitos (defensas) y fibrosis.</li>
                                     <li>Beta-catenina: Negativa o positiva muy focal (menos de 30%) y débil.</li>
                                 </ul>
                             </li>
-                            <li><strong>Truco visual:</strong> En 10 aumentos, si parece "cabello despeinado", es fascitis.</li>
-                            <li><strong>Qué es el tumor fibrosarcomatoide de la piel (DFSP):</strong> Tumor de piel que crece muy lento pero infiltra grasa profunda. No hace metástasis pero vuelve a crecer siempre si no se extirpa bien.</li>
+                            <li><strong>Truco visual:</strong> En 10 aumentos, si parece "cabello despeinado", es
+                                fascitis.</li>
+                            <li><strong>Qué es el tumor fibrosarcomatoide de la piel (DFSP):</strong> Tumor de piel que
+                                crece muy lento pero infiltra grasa profunda. No hace metástasis pero vuelve a crecer
+                                siempre si no se extirpa bien.</li>
                             <li><strong>Cómo se ve en microscopio:</strong>
                                 <ul>
-                                    <li>Infiltra grasa con células uniformes en espirales (patrón "hueva de abeja").</li>
-                                    <li>CD34 positivo difuso (90% de células). NOTA: CD34 no es específico, también es positivo en otros tumores. Requiere correlación morfológica.</li>
+                                    <li>Infiltra grasa con células uniformes en espirales (patrón "hueva de abeja").
+                                    </li>
+                                    <li>CD34 positivo difuso (90% de células). NOTA: CD34 no es específico, también es
+                                        positivo en otros tumores. Requiere correlación morfológica.</li>
                                     <li>Beta-catenina negativa.</li>
                                 </ul>
                             </li>
-                            <li><strong>Error del novato:</strong> Llamarlo "sarcoma indiferenciado" por infiltración. Es DFSP por CD34 y arquitectura.</li>
+                            <li><strong>Error del novato:</strong> Llamarlo "sarcoma indiferenciado" por infiltración.
+                                Es DFSP por CD34 y arquitectura.</li>
                         </ul>
                         <h6>Tabla comparativa para memorizar:</h6>
                         <table class="tabla-tumores">
@@ -315,44 +370,66 @@
                         </table>
                         <h6>BLOQUE 3: 9:00-9:45 HORAS - MICROSCOPIO CON CASOS FÍSICOS</h6>
                         <ul>
-                            <li><strong>Ejercicio 1:</strong> 2 desmoides. Residente de tercer año muestra patrón "sweeping". Residente de primer año dibuja una onda.</li>
-                            <li><strong>Ejercicio 2:</strong> 2 fasciitis. Residente de tercer año explica por qué la beta-catenina no sirve aquí. Residente de primer año cuenta vasos nuevos.</li>
-                            <li><strong>Ejercicio 3:</strong> 1 tumor fibrosarcomatoide de piel. Buscar juntos la infiltración en grasa. Residente que primero encuentra células en espiral gana punto.</li>
+                            <li><strong>Ejercicio 1:</strong> 2 desmoides. Residente de tercer año muestra patrón
+                                "sweeping". Residente de primer año dibuja una onda.</li>
+                            <li><strong>Ejercicio 2:</strong> 2 fasciitis. Residente de tercer año explica por qué la
+                                beta-catenina no sirve aquí. Residente de primer año cuenta vasos nuevos.</li>
+                            <li><strong>Ejercicio 3:</strong> 1 tumor fibrosarcomatoide de piel. Buscar juntos la
+                                infiltración en grasa. Residente que primero encuentra células en espiral gana punto.
+                            </li>
                         </ul>
                         <h6>BLOQUE 4: 9:45-10:00 HORAS - DESCANSO</h6>
                         <p>Cerrar los ojos. Visualizar el patrón de olas del desmoide. El cerebro lo grabará mejor.</p>
                         <h6>BLOQUE 5: 10:00-10:45 HORAS - CASOS ESCANEADOS CON TRAMPA</h6>
-                        <p>7 casos escaneados. Trampa: mezclar 2 casos con beta-catenina débil positiva (fasciitis) para que residente de tercer año caiga en la trampa. Si residente de tercer año dice "desmoide", staff pregunta: "¿Ves fascículos largos o desorden?".</p>
+                        <p>7 casos escaneados. Trampa: mezclar 2 casos con beta-catenina débil positiva (fasciitis) para
+                            que residente de tercer año caiga en la trampa. Si residente de tercer año dice "desmoide",
+                            staff pregunta: "¿Ves fascículos largos o desorden?".</p>
                         <h6>BLOQUE 6: 10:45-11:30 HORAS - DICTADO Y ERRORES</h6>
-                        <p>Residente de primer año dicta fascitis. Staff interrumpe si usa palabra "sarcoma". Se corrige a "lesión reactiva".</p>
+                        <p>Residente de primer año dicta fascitis. Staff interrumpe si usa palabra "sarcoma". Se corrige
+                            a "lesión reactiva".</p>
                         <p><strong>Error del novato que corregimos hoy:</strong></p>
                         <ul>
                             <li><strong>Error:</strong> Hacer beta-catenina en fascitis y llamarlo desmoide.</li>
-                            <li><strong>Corrección:</strong> La historia clínica (crecimiento rápido) es más importante que la tinción.</li>
-                            <li><strong>Consecuencia:</strong> El paciente podría ser operado innecesariamente con márgenes grandes.</li>
+                            <li><strong>Corrección:</strong> La historia clínica (crecimiento rápido) es más importante
+                                que la tinción.</li>
+                            <li><strong>Consecuencia:</strong> El paciente podría ser operado innecesariamente con
+                                márgenes grandes.</li>
                         </ul>
                         <h6>BLOQUE 7: 11:30-12:00 HORAS - TAREAS</h6>
                         <ul>
-                            <li><strong>Residente de primer año:</strong> Crear 3 tarjetas comparando desmoide vs fascitis (dibujo + 2 palabras clave).</li>
-                            <li><strong>Residente de tercer año:</strong> Escribir cómo explicarías a un cirujano por qué no deben operar una fascitis como si fuera desmoide.</li>
+                            <li><strong>Residente de primer año:</strong> Crear 3 tarjetas comparando desmoide vs
+                                fascitis (dibujo + 2 palabras clave).</li>
+                            <li><strong>Residente de tercer año:</strong> Escribir cómo explicarías a un cirujano por
+                                qué no deben operar una fascitis como si fuera desmoide.</li>
                         </ul>
                         <hr>
                         <h5>DÍA 3: TUMORES DE NERVIO - LA PROTEÍNA S100 NO ES TODO</h5>
                         <h6>BLOQUE 1: 8:00-8:15 HORAS - REPASO Y OBJETIVOS</h6>
-                        <p>"Ayer aprendimos fibroblastos. Hoy aprendemos nervios. El error más grave es llamarle cáncer a un schwannoma benigno. También el error opuesto: llamarle benigno a un cáncer de nervio."</p>
+                        <p>"Ayer aprendimos fibroblastos. Hoy aprendemos nervios. El error más grave es llamarle cáncer
+                            a un schwannoma benigno. También el error opuesto: llamarle benigno a un cáncer de nervio."
+                        </p>
                         <h6>BLOQUE 2: 8:15-9:00 HORAS - TEORÍA DE NERVIOS EN LENGUAJE DE COCINA</h6>
                         <ul>
-                            <li><strong>Qué es un schwannoma (tumor del aislamiento del nervio):</strong> El nervio es como un cable eléctrico: tiene el cobre (axón) y el plástico aislante (células de Schwann). El schwannoma es tumor del plástico. Es 100% benigno.</li>
+                            <li><strong>Qué es un schwannoma (tumor del aislamiento del nervio):</strong> El nervio es
+                                como un cable eléctrico: tiene el cobre (axón) y el plástico aislante (células de
+                                Schwann). El schwannoma es tumor del plástico. Es 100% benigno.</li>
                             <li><strong>Cómo se ve en microscopio (el truco de los dos patrones):</strong>
                                 <ul>
-                                    <li>Antoni A: Células compactas en filas paralelas que forman cuerpos de Verocay (dos filas de núcleos con un puente claro entre ellos). Es como ver "palitos de dientes alineados".</li>
-                                    <li>Antoni B: Células sueltas, con huecos (microquistes) y vasos gruesos. Es la zona "vieja" del tumor.</li>
-                                    <li>Cápsula: Siempre hay una bolsa (cápsula) que separa el tumor del nervio normal. El nervio está FUERA.</li>
-                                    <li>Proteína S100: Positivo en 100% de células (todas brillan). NOTA: La proteína SOX10 es más sensible y específica en casos difíciles.</li>
+                                    <li>Antoni A: Células compactas en filas paralelas que forman cuerpos de Verocay
+                                        (dos filas de núcleos con un puente claro entre ellos). Es como ver "palitos de
+                                        dientes alineados".</li>
+                                    <li>Antoni B: Células sueltas, con huecos (microquistes) y vasos gruesos. Es la zona
+                                        "vieja" del tumor.</li>
+                                    <li>Cápsula: Siempre hay una bolsa (cápsula) que separa el tumor del nervio normal.
+                                        El nervio está FUERA.</li>
+                                    <li>Proteína S100: Positivo en 100% de células (todas brillan). NOTA: La proteína
+                                        SOX10 es más sensible y específica en casos difíciles.</li>
                                 </ul>
                             </li>
-                            <li><strong>Truco para enseñar:</strong> Busca los cuerpos de Verocay en 10 aumentos. Si los encuentras, es schwannoma. Acabó el diagnóstico.</li>
-                            <li><strong>Qué es un neurofibroma (tumor de todo el cable):</strong> Es tumor del cobre Y del plástico Y la funda. No tiene cápsula. Es benigno pero puede volverse maligno.</li>
+                            <li><strong>Truco para enseñar:</strong> Busca los cuerpos de Verocay en 10 aumentos. Si los
+                                encuentras, es schwannoma. Acabó el diagnóstico.</li>
+                            <li><strong>Qué es un neurofibroma (tumor de todo el cable):</strong> Es tumor del cobre Y
+                                del plástico Y la funda. No tiene cápsula. Es benigno pero puede volverse maligno.</li>
                             <li><strong>Cómo se ve en microscopio:</strong>
                                 <ul>
                                     <li>Mezcla de células sin orden.</li>
@@ -361,20 +438,31 @@
                                     <li>Proteína CD34 positivo en fibroblastos.</li>
                                 </ul>
                             </li>
-                            <li><strong>Truco para enseñar:</strong> Haz tinción de neurofilamento. Si ves hilos negros (axones) dentro, es neurofibroma. Si no los ves, es schwannoma. ESTO ES OBLIGATORIO según la clasificación actual.</li>
-                            <li><strong>Qué es el sarcoma maligno de vaina de nervio (MPNST - cáncer del nervio):</strong> Es el cáncer del nervio. Ocurre en gente con neurofibromatosis tipo 1 (enfermedad genética) o solo.</li>
+                            <li><strong>Truco para enseñar:</strong> Haz tinción de neurofilamento. Si ves hilos negros
+                                (axones) dentro, es neurofibroma. Si no los ves, es schwannoma. ESTO ES OBLIGATORIO
+                                según la clasificación actual.</li>
+                            <li><strong>Qué es el sarcoma maligno de vaina de nervio (MPNST - cáncer del
+                                    nervio):</strong> Es el cáncer del nervio. Ocurre en gente con neurofibromatosis
+                                tipo 1 (enfermedad genética) o solo.</li>
                             <li><strong>Cómo se ve en microscopio:</strong>
                                 <ul>
                                     <li>Células fusiformes muy feas, con núcleos oscuros y grandes.</li>
-                                    <li>Mitosis: más de 5 por 2 milímetros cuadrados (obligado contar aproximadamente 50 campos de gran aumento).</li>
+                                    <li>Mitosis: más de 5 por 2 milímetros cuadrados (obligado contar aproximadamente 50
+                                        campos de gran aumento).</li>
                                     <li>Necrosis (áreas muertas).</li>
-                                    <li>Proteína S100 negativo o muy débil (menos de 10%). Proteína SOX10 positivo débil en algunas células.</li>
+                                    <li>Proteína S100 negativo o muy débil (menos de 10%). Proteína SOX10 positivo débil
+                                        en algunas células.</li>
                                     <li>NO hay axones (el nervio fue destruido).</li>
                                     <li>Nuevo marcador: Pérdida de H3K27me3 es muy específico.</li>
                                 </ul>
                             </li>
-                            <li><strong>Truco para enseñar:</strong> Si el tumor es mayor de 5 centímetros, profundo, con necrosis, y proteína S100 negativo, asume sarcoma maligno de vaina de nervio. Comprueba si el paciente tiene manchas café con leche en piel (signo de neurofibromatosis tipo 1).</li>
-                            <li><strong>Qué es el perineurioma (tumor de la funda externa):</strong> Muy raro, benigno. Proteína S100 negativo, proteína EMA positivo. Las células envuelven colágeno como "cebolla".</li>
+                            <li><strong>Truco para enseñar:</strong> Si el tumor es mayor de 5 centímetros, profundo,
+                                con necrosis, y proteína S100 negativo, asume sarcoma maligno de vaina de nervio.
+                                Comprueba si el paciente tiene manchas café con leche en piel (signo de
+                                neurofibromatosis tipo 1).</li>
+                            <li><strong>Qué es el perineurioma (tumor de la funda externa):</strong> Muy raro, benigno.
+                                Proteína S100 negativo, proteína EMA positivo. Las células envuelven colágeno como
+                                "cebolla".</li>
                         </ul>
                         <h6>Tabla visual para memorizar:</h6>
                         <table class="tabla-tumores">
@@ -420,34 +508,49 @@
                         </table>
                         <h6>BLOQUE 3: 9:00-9:45 HORAS - MICROSCOPIO CON CASOS FÍSICOS</h6>
                         <ul>
-                            <li><strong>Ejercicio 1:</strong> 2 schwannomas. Residente de tercer año encuentra cuerpo de Verocay en 90 segundos. Residente de primer año dibuja el cuerpo de Verocay.</li>
-                            <li><strong>Ejercicio 2:</strong> 1 neurofibroma. Hacemos tinción de neurofilamento juntos. Residente de primer año cuenta hilos axonales. OBLIGATORIO.</li>
-                            <li><strong>Ejercicio 3:</strong> 1 sarcoma maligno de vaina de nervio. Residente de tercer año cuenta mitosis en 10 campos. Mínimo 50 campos de gran aumento obligados. Si encuentra menos, reconsidera diagnóstico.</li>
+                            <li><strong>Ejercicio 1:</strong> 2 schwannomas. Residente de tercer año encuentra cuerpo de
+                                Verocay en 90 segundos. Residente de primer año dibuja el cuerpo de Verocay.</li>
+                            <li><strong>Ejercicio 2:</strong> 1 neurofibroma. Hacemos tinción de neurofilamento juntos.
+                                Residente de primer año cuenta hilos axonales. OBLIGATORIO.</li>
+                            <li><strong>Ejercicio 3:</strong> 1 sarcoma maligno de vaina de nervio. Residente de tercer
+                                año cuenta mitosis en 10 campos. Mínimo 50 campos de gran aumento obligados. Si
+                                encuentra menos, reconsidera diagnóstico.</li>
                         </ul>
                         <h6>BLOQUE 4: 9:45-10:00 HORAS - DESCANSO</h6>
                         <p>Visualizar el patrón "hilos dentro del neurofibroma". El cerebro lo consolidará.</p>
                         <h6>BLOQUE 5: 10:00-10:45 HORAS - CASOS ESCANEADOS TRAMPA</h6>
-                        <p>6 casos: 3 schwannomas, 2 neurofibromas, 1 sarcoma maligno de vaina de nervio. Trampa: El sarcoma maligno tiene proteína S100 focal débil para engañar. Residente de tercer año debe decir "sarcoma maligno de vaina de nervio por necrosis y mitosis, no por S100".</p>
+                        <p>6 casos: 3 schwannomas, 2 neurofibromas, 1 sarcoma maligno de vaina de nervio. Trampa: El
+                            sarcoma maligno tiene proteína S100 focal débil para engañar. Residente de tercer año debe
+                            decir "sarcoma maligno de vaina de nervio por necrosis y mitosis, no por S100".</p>
                         <h6>BLOQUE 6: 10:45-11:30 HORAS - DICTADO Y ERRORES</h6>
-                        <p>Residente de primer año dicta neurofibroma. Staff interrumpe si dice "cápsula" (los neurofibromas no tienen cápsula).</p>
+                        <p>Residente de primer año dicta neurofibroma. Staff interrumpe si dice "cápsula" (los
+                            neurofibromas no tienen cápsula).</p>
                         <p><strong>Error del novato que corregimos hoy:</strong></p>
                         <ul>
-                            <li><strong>Error:</strong> No hacer tinción de neurofilamento en tumor proteína S100 positivo.</li>
-                            <li><strong>Corrección:</strong> Siempre hacer neurofilamento para ver si hay axones dentro.</li>
-                            <li><strong>Consecuencia:</strong> Llamar schwannoma a un neurofibroma cambia manejo quirúrgico.</li>
+                            <li><strong>Error:</strong> No hacer tinción de neurofilamento en tumor proteína S100
+                                positivo.</li>
+                            <li><strong>Corrección:</strong> Siempre hacer neurofilamento para ver si hay axones dentro.
+                            </li>
+                            <li><strong>Consecuencia:</strong> Llamar schwannoma a un neurofibroma cambia manejo
+                                quirúrgico.</li>
                         </ul>
                         <h6>BLOQUE 7: 11:30-12:00 HORAS - TAREAS</h6>
                         <ul>
-                            <li><strong>Residente de primer año:</strong> Crear tarjeta con dibujo de cuerpo de Verocay.</li>
-                            <li><strong>Residente de tercer año:</strong> Lista de verificación "Cuándo sospechar sarcoma maligno de vaina de nervio" (tamaño mayor de 5 centímetros, necrosis, proteína S100 negativo).</li>
+                            <li><strong>Residente de primer año:</strong> Crear tarjeta con dibujo de cuerpo de Verocay.
+                            </li>
+                            <li><strong>Residente de tercer año:</strong> Lista de verificación "Cuándo sospechar
+                                sarcoma maligno de vaina de nervio" (tamaño mayor de 5 centímetros, necrosis, proteína
+                                S100 negativo).</li>
                         </ul>
                         <hr>
                         <h5>DÍA 4: TUMORES VASCULARES Y TUMOR DEL ESTROMA GASTROINTESTINAL</h5>
                         <h6>BLOQUE 1: 8:00-8:15 HORAS - REPASO Y OBJETIVOS</h6>
-                        <p>"Ayer aprendimos nervios. Hoy aprendemos vasos sanguíneos y el tumor del intestino. El error mortal es NO hacer CD117 en un tumor abdominal fusocelular."</p>
+                        <p>"Ayer aprendimos nervios. Hoy aprendemos vasos sanguíneos y el tumor del intestino. El error
+                            mortal es NO hacer CD117 en un tumor abdominal fusocelular."</p>
                         <h6>BLOQUE 2: 8:15-9:00 HORAS - TEORÍA DE VASOS E INTESTINO</h6>
                         <ul>
-                            <li><strong>Qué es un hemangioma (vaso benigno):</strong> Es una malformación: vasos que se formaron mal pero están quietos. No crecen, no son cáncer.</li>
+                            <li><strong>Qué es un hemangioma (vaso benigno):</strong> Es una malformación: vasos que se
+                                formaron mal pero están quietos. No crecen, no son cáncer.</li>
                             <li><strong>Cómo se ve en microscopio:</strong>
                                 <ul>
                                     <li>Vasos redondos de diferentes tamaños.</li>
@@ -455,26 +558,36 @@
                                     <li>No hay células dividiéndose. Los núcleos son uniformes.</li>
                                 </ul>
                             </li>
-                            <li><strong>Qué es un angiosarcoma (cáncer de vasos):</strong> Es cáncer de las células que revisten los vasos. Muy agresivo. Ocurre en cara de ancianos o mama tras radioterapia.</li>
+                            <li><strong>Qué es un angiosarcoma (cáncer de vasos):</strong> Es cáncer de las células que
+                                revisten los vasos. Muy agresivo. Ocurre en cara de ancianos o mama tras radioterapia.
+                            </li>
                             <li><strong>Cómo se ve en microscopio:</strong>
                                 <ul>
                                     <li>Canales irregulares que infiltran grasa como raíces.</li>
-                                    <li>El endotelio es protuberante: los núcleos sobresalen como botones dentro del vaso.</li>
-                                    <li>Mitosis visibles (más de 5 por 2 milímetros cuadrados, aproximadamente 50 campos).</li>
+                                    <li>El endotelio es protuberante: los núcleos sobresalen como botones dentro del
+                                        vaso.</li>
+                                    <li>Mitosis visibles (más de 5 por 2 milímetros cuadrados, aproximadamente 50
+                                        campos).</li>
                                     <li>Necrosis (áreas de tejido muerto).</li>
                                 </ul>
                             </li>
-                            <li><strong>Error del novato:</strong> Llamar "hemangioma" a angiosarcoma por no buscar endotelio protuberante.</li>
-                            <li><strong>Qué es el sarcoma sinovial (cáncer de rodilla):</strong> Tumor de jóvenes cerca de la rodilla. No viene de la sinovial, pero se llama así.</li>
+                            <li><strong>Error del novato:</strong> Llamar "hemangioma" a angiosarcoma por no buscar
+                                endotelio protuberante.</li>
+                            <li><strong>Qué es el sarcoma sinovial (cáncer de rodilla):</strong> Tumor de jóvenes cerca
+                                de la rodilla. No viene de la sinovial, pero se llama así.</li>
                             <li><strong>Cómo se ve en microscopio:</strong>
                                 <ul>
-                                    <li>Monofásico fusocelular: Células uniformes en hojas con vasos ramificados (patrón "árbol sin hojas").</li>
+                                    <li>Monofásico fusocelular: Células uniformes en hojas con vasos ramificados (patrón
+                                        "árbol sin hojas").</li>
                                     <li>Bifásico: Células cuadradas y fusiformes mezcladas.</li>
                                     <li>Calcificaciones blancas en 30% de casos.</li>
-                                    <li>Importante: Edad es clave. Si es mayor de 40 años, piensa en carcinoma metastásico antes que sinovial.</li>
+                                    <li>Importante: Edad es clave. Si es mayor de 40 años, piensa en carcinoma
+                                        metastásico antes que sinovial.</li>
                                 </ul>
                             </li>
-                            <li><strong>Qué es el tumor del estroma gastrointestinal (GIST):</strong> Es el tumor más común del intestino delgado. Viene de células que mueven el intestino. Puede ser benigno o maligno.</li>
+                            <li><strong>Qué es el tumor del estroma gastrointestinal (GIST):</strong> Es el tumor más
+                                común del intestino delgado. Viene de células que mueven el intestino. Puede ser benigno
+                                o maligno.</li>
                             <li><strong>Cómo se ve en microscopio:</strong>
                                 <ul>
                                     <li>Células fusiformes (70%) o cuadradas (30%).</li>
@@ -482,7 +595,8 @@
                                     <li>NOTA: También haz proteína DOG1 para casos CD117 negativos.</li>
                                 </ul>
                             </li>
-                            <li><strong>Error mortal del novato:</strong> NO hacer CD117 en tumor abdominal fusocelular. Puedes llamarle "sarcoma indiferenciado" a un tumor curable con pastillas.</li>
+                            <li><strong>Error mortal del novato:</strong> NO hacer CD117 en tumor abdominal fusocelular.
+                                Puedes llamarle "sarcoma indiferenciado" a un tumor curable con pastillas.</li>
                         </ul>
                         <h6>Tabla de riesgo del tumor del estroma gastrointestinal:</h6>
                         <table class="tabla-tumores">
@@ -506,29 +620,40 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <p>NOTA IMPORTANTE: La rotura del tumor y el índice Ki-67 mayor de 10% también indican alto riesgo.</p>
+                        <p>NOTA IMPORTANTE: La rotura del tumor y el índice Ki-67 mayor de 10% también indican alto
+                            riesgo.</p>
                         <h6>BLOQUE 3: 9:00-9:45 HORAS - MICROSCOPIO</h6>
                         <ul>
-                            <li><strong>Ejercicio 1:</strong> 1 hemangioma cavernoso + 1 angiosarcoma. Residente de primer año busca endotelio protuberante. Residente de tercer año cuenta mitosis (50 campos obligatorios).</li>
-                            <li><strong>Ejercicio 2:</strong> 1 sarcoma sinovial. Buscar calcificaciones juntos con luz polarizada.</li>
-                            <li><strong>Ejercicio 3:</strong> 1 tumor del estroma gastrointestinal fusocelular + 1 tumor del estroma gastrointestinal epitelioide. Hacer CD117 en ambos. Verificar positividad. Hacer DOG1 si hay duda.</li>
+                            <li><strong>Ejercicio 1:</strong> 1 hemangioma cavernoso + 1 angiosarcoma. Residente de
+                                primer año busca endotelio protuberante. Residente de tercer año cuenta mitosis (50
+                                campos obligatorios).</li>
+                            <li><strong>Ejercicio 2:</strong> 1 sarcoma sinovial. Buscar calcificaciones juntos con luz
+                                polarizada.</li>
+                            <li><strong>Ejercicio 3:</strong> 1 tumor del estroma gastrointestinal fusocelular + 1 tumor
+                                del estroma gastrointestinal epitelioide. Hacer CD117 en ambos. Verificar positividad.
+                                Hacer DOG1 si hay duda.</li>
                         </ul>
                         <h6>BLOQUE 4: 9:45-10:00 HORAS - DESCANSO</h6>
                         <p>Visualizar el patrón "árbol sin hojas" del sinovial.</p>
                         <h6>BLOQUE 5: 10:00-10:45 HORAS - CASOS ESCANEADOS CON TRAMPA</h6>
-                        <p>5 casos: 1 hemangioma, 1 angiosarcoma, 1 sinovial, 1 tumor del estroma gastrointestinal, 1 carcinoma metastásico (para confundir). Residente de tercer año debe decir "esto no es sinovial porque el paciente tiene 70 años".</p>
+                        <p>5 casos: 1 hemangioma, 1 angiosarcoma, 1 sinovial, 1 tumor del estroma gastrointestinal, 1
+                            carcinoma metastásico (para confundir). Residente de tercer año debe decir "esto no es
+                            sinovial porque el paciente tiene 70 años".</p>
                         <p><strong>Error del novato que corregimos hoy:</strong></p>
                         <ul>
                             <li><strong>Error:</strong> No hacer CD117 en tumor abdominal.</li>
-                            <li><strong>Corrección:</strong> Todo tumor fusocelular abdominal necesita CD117 y DOG1.</li>
-                            <li><strong>Consecuencia:</strong> Llamar sarcoma a un tumor del estroma gastrointestinal = paciente no recibe imatinib = muerte.</li>
+                            <li><strong>Corrección:</strong> Todo tumor fusocelular abdominal necesita CD117 y DOG1.
+                            </li>
+                            <li><strong>Consecuencia:</strong> Llamar sarcoma a un tumor del estroma gastrointestinal =
+                                paciente no recibe imatinib = muerte.</li>
                         </ul>
                         <h6>BLOQUE 6: 10:45-11:30 HORAS - DICTADO</h6>
                         <p>Residente de primer año dicta hemangioma. Staff corrige si dice "cáncer".</p>
                         <h6>BLOQUE 7: 11:30-12:00 HORAS - TAREAS</h6>
                         <ul>
                             <li><strong>Residente de primer año:</strong> Tarjeta con patrón "árbol sin hojas".</li>
-                            <li><strong>Residente de tercer año:</strong> Protocolo de solicitud de FISH para el gen SS18 para oncólogo.</li>
+                            <li><strong>Residente de tercer año:</strong> Protocolo de solicitud de FISH para el gen
+                                SS18 para oncólogo.</li>
                         </ul>
                         <hr>
                         <h5>DÍA 5: EXAMEN SEMANAL Y FEEDBACK</h5>
@@ -548,14 +673,18 @@
                         <h6>BLOQUE 3: 9:30-10:00 HORAS - CORRECCIÓN CON TIME-STAMP</h6>
                         <p>Staff muestra cada caso con el tiempo que tardaron.</p>
                         <ul>
-                            <li>"Casilla 4: Residente de primer año tardó 3 minutos, vio atipia pero no ubicación. Recuerda: retroperitoneo = liposarcoma".</li>
-                            <li>"Casilla 8: Residente de tercer año dijo 'sarcoma indiferenciado' pero había cuerpos de Verocay. Era schwannoma"</li>
+                            <li>"Casilla 4: Residente de primer año tardó 3 minutos, vio atipia pero no ubicación.
+                                Recuerda: retroperitoneo = liposarcoma".</li>
+                            <li>"Casilla 8: Residente de tercer año dijo 'sarcoma indiferenciado' pero había cuerpos de
+                                Verocay. Era schwannoma"</li>
                         </ul>
                         <h6>BLOQUE 4: 10:00-10:15 HORAS - DESCANSO</h6>
                         <h6>BLOQUE 5: 10:15-11:00 HORAS - FEEDBACK 360°</h6>
                         <ul>
-                            <li>Residente de primer año evalúa a residente de tercer año: "Me enseñó bien los cuerpos de Verocay pero hablaba muy rápido".</li>
-                            <li>Residente de tercer año evalúa a residente de primer año: "Mejoró mucho en lipomas pero aún confunde fascia con músculo".</li>
+                            <li>Residente de primer año evalúa a residente de tercer año: "Me enseñó bien los cuerpos de
+                                Verocay pero hablaba muy rápido".</li>
+                            <li>Residente de tercer año evalúa a residente de primer año: "Mejoró mucho en lipomas pero
+                                aún confunde fascia con músculo".</li>
                             <li>Staff completa rúbrica MD Anderson.</li>
                         </ul>
                         <h6>BLOQUE 6: 11:00-12:00 HORAS - PLAN DE MEJORA Y CIERRE</h6>
@@ -574,22 +703,28 @@
                         <h4>SEMANA 2: TUMORES DE ALTO GRADO (LOS PELIGROSOS)</h4>
                         <h5>DÍA 6: TUMORES DE MÚSCULO - RABDOMIOSARCOMA Y LEIOMIOSARCOMA</h5>
                         <h6>BLOQUE 1: 8:00-8:15 HORAS - BIENVENIDA SEMANA 2</h6>
-                        <p>"Hoy empezamos tumores que pueden matar. El objetivo es que residente de primer año NO los deje pasar en niños (rabdomio) y que residente de tercer año identifique músculo liso vs otros."</p>
+                        <p>"Hoy empezamos tumores que pueden matar. El objetivo es que residente de primer año NO los
+                            deje pasar en niños (rabdomio) y que residente de tercer año identifique músculo liso vs
+                            otros."</p>
                         <h6>BLOQUE 2: 8:15-9:00 HORAS - TEORÍA DE MÚSCULOS</h6>
                         <ul>
                             <li><strong>Rabdomiosarcoma embrionario (cáncer de músculo en niños):</strong>
                                 <ul>
                                     <li>Edad: Menor de 10 años. Localización: orbita, vejiga, vagina.</li>
-                                    <li>Célula clave: Strap cell (célula en banda). Alargada, con múltiples núcleos en línea.</li>
-                                    <li>Miofibrillas cruzadas: Con tricrómica de Masson, ves líneas transversales (rayas de cebra). Es patognomónico.</li>
+                                    <li>Célula clave: Strap cell (célula en banda). Alargada, con múltiples núcleos en
+                                        línea.</li>
+                                    <li>Miofibrillas cruzadas: Con tricrómica de Masson, ves líneas transversales (rayas
+                                        de cebra). Es patognomónico.</li>
                                     <li>Tinciones: Miogenina y MyoD1 positivo nuclear.</li>
-                                    <li>Error del novato: No hacer miogenina en tumor redondeado en niño. Asume linfoma o neuroblastoma.</li>
+                                    <li>Error del novato: No hacer miogenina en tumor redondeado en niño. Asume linfoma
+                                        o neuroblastoma.</li>
                                 </ul>
                             </li>
                             <li><strong>Rabdomiosarcoma alveolar (el peor):</strong>
                                 <ul>
                                     <li>Edad: 10-25 años. Extremidades.</li>
-                                    <li>Patrón alveolar: Células en nidos separados por tabiques fibrosos, flotando. Parece pulmón fetal.</li>
+                                    <li>Patrón alveolar: Células en nidos separados por tabiques fibrosos, flotando.
+                                        Parece pulmón fetal.</li>
                                     <li>Contar mitosis: Más de 5 por 50 campos = agresivo.</li>
                                     <li>Fusión del gen FOXO1: Siempre presente. No la hacemos aquí, pero asúmela.</li>
                                     <li>Manejo: Quimioterapia intensa, ganglionar.</li>
@@ -599,16 +734,20 @@
                                 <ul>
                                     <li>Edad: Mayor de 45 años.</li>
                                     <li>Morfología: Como sarcoma indiferenciado + focos de miofibrillas.</li>
-                                    <li>Error del novato: En adulto, si ves pleomorfismo, piensa primero en sarcoma indiferenciado, no en rabdomio.</li>
+                                    <li>Error del novato: En adulto, si ves pleomorfismo, piensa primero en sarcoma
+                                        indiferenciado, no en rabdomio.</li>
                                 </ul>
                             </li>
                             <li><strong>Leiomiosarcoma (cáncer de músculo liso):</strong>
                                 <ul>
                                     <li>Edad: Mayor de 40 años. Retroperitoneo, útero, vena cava.</li>
-                                    <li>Célula clave: Núcleo en forma de cigarro (alargado con extremos redondeados).</li>
-                                    <li>Vacuolas paranucleares: Espacios vacíos alrededor del núcleo. Patognomónicas.</li>
+                                    <li>Célula clave: Núcleo en forma de cigarro (alargado con extremos redondeados).
+                                    </li>
+                                    <li>Vacuolas paranucleares: Espacios vacíos alrededor del núcleo. Patognomónicas.
+                                    </li>
                                     <li>Necrosis coagulativa: Obligatoria en leiomiosarcoma.</li>
-                                    <li>Tinciones: Actina de músculo liso positiva, H-caldesmón positivo. Miogenina negativa (clave para diferenciar de rabdomio).</li>
+                                    <li>Tinciones: Actina de músculo liso positiva, H-caldesmón positivo. Miogenina
+                                        negativa (clave para diferenciar de rabdomio).</li>
                                 </ul>
                             </li>
                         </ul>
@@ -656,103 +795,146 @@
                         </table>
                         <h6>BLOQUE 3: 9:00-9:45 HORAS - MICROSCOPIO</h6>
                         <ul>
-                            <li><strong>Ejercicio 1:</strong> 1 rabdomio embrionario. Residente de primer año busca strap cell en 40 aumentos. Residente de tercer año confirma miofibrillas cruzadas con tricrómica.</li>
-                            <li><strong>Ejercicio 2:</strong> 1 rabdomio alveolar. Contar mitosis juntos (50 campos obligatorios). Si &gt;5, confirmar alveolar.</li>
-                            <li><strong>Ejercicio 3:</strong> 1 leiomiosarcoma retroperitoneal. Residente de primer año identifica vacuolas paranucleares. Residente de tercer año confirma necrosis coagulativa.</li>
+                            <li><strong>Ejercicio 1:</strong> 1 rabdomio embrionario. Residente de primer año busca
+                                strap cell en 40 aumentos. Residente de tercer año confirma miofibrillas cruzadas con
+                                tricrómica.</li>
+                            <li><strong>Ejercicio 2:</strong> 1 rabdomio alveolar. Contar mitosis juntos (50 campos
+                                obligatorios). Si &gt;5, confirmar alveolar.</li>
+                            <li><strong>Ejercicio 3:</strong> 1 leiomiosarcoma retroperitoneal. Residente de primer año
+                                identifica vacuolas paranucleares. Residente de tercer año confirma necrosis
+                                coagulativa.</li>
                         </ul>
                         <h6>BLOQUE 4: 9:45-10:00 HORAS - DESCANSO</h6>
                         <p>Visualizar strap cell. Consolidación durante sueño.</p>
                         <h6>BLOQUE 5: 10:00-10:45 HORAS - CASOS ESCANEADOS ALTA VELOCIDAD</h6>
-                        <p>6 casos: 2 rabdomios, 2 leiomiosarcomas, 2 sarcomas indiferenciados (para confundir). Residente de tercer año debe diferenciar leiomiosarcoma de indiferenciado por vacuolas.</p>
+                        <p>6 casos: 2 rabdomios, 2 leiomiosarcomas, 2 sarcomas indiferenciados (para confundir).
+                            Residente de tercer año debe diferenciar leiomiosarcoma de indiferenciado por vacuolas.</p>
                         <h6>BLOQUE 6: 10:45-11:30 HORAS - DICTADO Y ERRORES</h6>
-                        <p>Residente de tercer año dicta rabdomio alveolar. Staff revisa si incluye "FOXO1 FISH pendiente".</p>
+                        <p>Residente de tercer año dicta rabdomio alveolar. Staff revisa si incluye "FOXO1 FISH
+                            pendiente".</p>
                         <p><strong>Error del novato que corregimos hoy:</strong></p>
                         <ul>
-                            <li><strong>Error:</strong> En niño con tumor redondeado, asumir neuroblastoma o linfoma sin hacer miogenina.</li>
-                            <li><strong>Corrección:</strong> Miogenina obligatoria en todo tumor de células redondas en niño.</li>
-                            <li><strong>Consecuencia:</strong> No diagnosticar rabdomio = niño no recibe quimio correcta = muerte.</li>
+                            <li><strong>Error:</strong> En niño con tumor redondeado, asumir neuroblastoma o linfoma sin
+                                hacer miogenina.</li>
+                            <li><strong>Corrección:</strong> Miogenina obligatoria en todo tumor de células redondas en
+                                niño.</li>
+                            <li><strong>Consecuencia:</strong> No diagnosticar rabdomio = niño no recibe quimio correcta
+                                = muerte.</li>
                         </ul>
                         <h6>BLOQUE 7: 11:30-12:00 HORAS - TAREAS</h6>
                         <ul>
                             <li><strong>Residente de primer año:</strong> Tarjeta con dibujo de strap cell.</li>
-                            <li><strong>Residente de tercer año:</strong> Protocolo de manejo de rabdomio con oncólogo pediatra.</li>
+                            <li><strong>Residente de tercer año:</strong> Protocolo de manejo de rabdomio con oncólogo
+                                pediatra.</li>
                         </ul>
                         <hr>
                         <h5>DÍA 7: SARCOMA SINOVIAL Y SARCOMA EPITELIOIDE</h5>
                         <h6>BLOQUE 1: 8:00-8:15 HORAS - REPASO VELOZ</h6>
-                        <p>"¿Cuál es el único tumor que debe hacer CD117? ¿Qué edad para rabdomio alveolar? ¿Qué forma tiene el núcleo en leiomiosarcoma?"</p>
+                        <p>"¿Cuál es el único tumor que debe hacer CD117? ¿Qué edad para rabdomio alveolar? ¿Qué forma
+                            tiene el núcleo en leiomiosarcoma?"</p>
                         <h6>BLOQUE 2: 8:15-9:00 HORAS - TEORÍA DE TUMORES RAROS</h6>
                         <ul>
                             <li><strong>Sarcoma sinovial (revisión profunda):</strong>
                                 <ul>
-                                    <li>Fusión del gen SS18: Es el diagnóstico molecular definitivo. Sin embargo, la morfología + edad + localización es suficiente para sospecharlo.</li>
-                                    <li>Nota en reporte: "Morfología sugestiva de sarcoma sinovial. Confirmación con estudio SS18-SSX por FISH o secuenciación masiva recomendada en centro de referencia oncológica."</li>
-                                    <li>Manejo: Quimioterapia neoadyuvante, márgenes amplios, seguimiento por 10 años.</li>
+                                    <li>Fusión del gen SS18: Es el diagnóstico molecular definitivo. Sin embargo, la
+                                        morfología + edad + localización es suficiente para sospecharlo.</li>
+                                    <li>Nota en reporte: "Morfología sugestiva de sarcoma sinovial. Confirmación con
+                                        estudio SS18-SSX por FISH o secuenciación masiva recomendada en centro de
+                                        referencia oncológica."</li>
+                                    <li>Manejo: Quimioterapia neoadyuvante, márgenes amplios, seguimiento por 10 años.
+                                    </li>
                                 </ul>
                             </li>
                             <li><strong>Sarcoma epitelioide vs melanoma:</strong>
                                 <ul>
-                                    <li>Clave morfológica: Sarcoma epitelioide tiene células más uniformes, melanoma más pleomórfico.</li>
-                                    <li>Tinción definitiva: HMB45 negativo = sarcoma epitelioide. Melan-A negativo = sarcoma epitelioide.</li>
-                                    <li>Ubicación: Sarcoma epitelioide es profundo (músculo, tendón). Melanoma está en piel o tiene historia de lesión pigmentada.</li>
+                                    <li>Clave morfológica: Sarcoma epitelioide tiene células más uniformes, melanoma más
+                                        pleomórfico.</li>
+                                    <li>Tinción definitiva: HMB45 negativo = sarcoma epitelioide. Melan-A negativo =
+                                        sarcoma epitelioide.</li>
+                                    <li>Ubicación: Sarcoma epitelioide es profundo (músculo, tendón). Melanoma está en
+                                        piel o tiene historia de lesión pigmentada.</li>
                                 </ul>
                             </li>
                             <li><strong>Tumor del estroma gastrointestinal (revisión de riesgo):</strong>
                                 <ul>
-                                    <li>Error del novato: No reportar mitosis por 50 campos de gran aumento. El oncólogo necesita el número exacto.</li>
-                                    <li>Ejemplo: "Tasa mitótica: 4 por 50 campos de gran aumento" (no "baja mitosis").</li>
-                                    <li>Si CD117 negativo: Haz tinción SDHA. Si negativa, es tumor del estroma gastrointestinal deficiente en SDH (más agresivo, requiere sunitinib en lugar de imatinib).</li>
+                                    <li>Error del novato: No reportar mitosis por 50 campos de gran aumento. El oncólogo
+                                        necesita el número exacto.</li>
+                                    <li>Ejemplo: "Tasa mitótica: 4 por 50 campos de gran aumento" (no "baja mitosis").
+                                    </li>
+                                    <li>Si CD117 negativo: Haz tinción SDHA. Si negativa, es tumor del estroma
+                                        gastrointestinal deficiente en SDH (más agresivo, requiere sunitinib en lugar de
+                                        imatinib).</li>
                                 </ul>
                             </li>
                         </ul>
                         <h6>BLOQUE 3: 9:00-9:45 HORAS - MICROSCOPIO</h6>
                         <ul>
-                            <li><strong>Ejercicio 1:</strong> 1 sarcoma sinovial bifásico. Residente de primer año identifica zona epitelioide. Residente de tercer año confirma fusión del gen SS18 teórica.</li>
-                            <li><strong>Ejercicio 2:</strong> 1 sarcoma epitelioide + 1 melanoma (desafío). Ambos proteína S100 positivo. Residente de tercer año decide por HMB45.</li>
-                            <li><strong>Ejercicio 3:</strong> 1 tumor del estroma gastrointestinal de alto riesgo. Residente de primer año cuenta mitosis (50 campos). Residente de tercer año calcula riesgo completo incluyendo rotura tumoral y Ki-67.</li>
+                            <li><strong>Ejercicio 1:</strong> 1 sarcoma sinovial bifásico. Residente de primer año
+                                identifica zona epitelioide. Residente de tercer año confirma fusión del gen SS18
+                                teórica.</li>
+                            <li><strong>Ejercicio 2:</strong> 1 sarcoma epitelioide + 1 melanoma (desafío). Ambos
+                                proteína S100 positivo. Residente de tercer año decide por HMB45.</li>
+                            <li><strong>Ejercicio 3:</strong> 1 tumor del estroma gastrointestinal de alto riesgo.
+                                Residente de primer año cuenta mitosis (50 campos). Residente de tercer año calcula
+                                riesgo completo incluyendo rotura tumoral y Ki-67.</li>
                         </ul>
                         <h6>BLOQUE 4: 9:45-10:00 HORAS - DESCANSO</h6>
                         <h6>BLOQUE 5: 10:00-10:45 HORAS - CASOS ESCANEADOS</h6>
-                        <p>5 casos: sinovial, melanoma, sarcoma epitelioide, tumor del estroma gastrointestinal, carcinoma metastásico. Residente de tercer año debe diferenciar sinovial de carcinoma por edad.</p>
+                        <p>5 casos: sinovial, melanoma, sarcoma epitelioide, tumor del estroma gastrointestinal,
+                            carcinoma metastásico. Residente de tercer año debe diferenciar sinovial de carcinoma por
+                            edad.</p>
                         <h6>BLOQUE 6: 10:45-11:30 HORAS - DICTADO Y ERRORES</h6>
-                        <p>Residente de tercer año dicta sinovial completo: morfología + FISH pendiente + quimio recomendada.</p>
+                        <p>Residente de tercer año dicta sinovial completo: morfología + FISH pendiente + quimio
+                            recomendada.</p>
                         <p><strong>Error del novato que corregimos hoy:</strong></p>
                         <ul>
                             <li><strong>Error:</strong> No especificar estudio molecular en sinovial.</li>
-                            <li><strong>Corrección:</strong> "FISH for SS18-SSX1/2" es obligatorio para protocolo de oncólogo.</li>
+                            <li><strong>Corrección:</strong> "FISH for SS18-SSX1/2" es obligatorio para protocolo de
+                                oncólogo.</li>
                             <li><strong>Consecuencia:</strong> Sin FISH, oncólogo no sabe si responderá a quimio.</li>
                         </ul>
                         <h6>BLOQUE 7: 11:30-12:00 HORAS - TAREAS</h6>
                         <ul>
-                            <li><strong>Residente de primer año:</strong> Tarjeta con diferencia sarcoma epitelioide vs melanoma.</li>
-                            <li><strong>Residente de tercer año:</strong> Protocolo de manejo tumor del estroma gastrointestinal de alto riesgo.</li>
+                            <li><strong>Residente de primer año:</strong> Tarjeta con diferencia sarcoma epitelioide vs
+                                melanoma.</li>
+                            <li><strong>Residente de tercer año:</strong> Protocolo de manejo tumor del estroma
+                                gastrointestinal de alto riesgo.</li>
                         </ul>
                         <hr>
                         <h5>DÍA 8: SARCOMA DE CÉLULAS CLARAS Y LEIOMIOSARCOMA RETROPERITONEAL</h5>
                         <h6>BLOQUE 1: 8:00-8:15 HORAS - REPASO RÁPIDO</h6>
-                        <p>Test oral: "¿Qué marca diferencia melanoma de sarcoma epitelioide? ¿Qué edad para sinovial? ¿Qué tinción en tumor del estroma gastrointestinal?"</p>
+                        <p>Test oral: "¿Qué marca diferencia melanoma de sarcoma epitelioide? ¿Qué edad para sinovial?
+                            ¿Qué tinción en tumor del estroma gastrointestinal?"</p>
                         <h6>BLOQUE 2: 8:15-9:00 HORAS - TEORÍA DE DIFERENCIACIÓN</h6>
                         <ul>
                             <li><strong>Sarcoma de células claras (el error más común de novatos):</strong>
                                 <ul>
-                                    <li>Novatos lo llaman "melanoma". La clave es HMB45 negativo + ubicación profunda + FUSIÓN DEL GEN EWSR1.</li>
-                                    <li>Historia: Siempre preguntar: "¿Hay lesión pigmentada en piel?" Si no, descarta melanoma.</li>
-                                    <li>CORRECCIÓN FUNDAMENTAL: Sin fusión del gen EWSR1 confirmada, escribe "Neoplasia melanocítica maligna S100 positiva, descartar sarcoma de células claras".</li>
+                                    <li>Novatos lo llaman "melanoma". La clave es HMB45 negativo + ubicación profunda +
+                                        FUSIÓN DEL GEN EWSR1.</li>
+                                    <li>Historia: Siempre preguntar: "¿Hay lesión pigmentada en piel?" Si no, descarta
+                                        melanoma.</li>
+                                    <li>CORRECCIÓN FUNDAMENTAL: Sin fusión del gen EWSR1 confirmada, escribe "Neoplasia
+                                        melanocítica maligna S100 positiva, descartar sarcoma de células claras".</li>
                                 </ul>
                             </li>
                             <li><strong>Leiomiosarcoma retroperitoneal vs liposarcoma dediferenciado:</strong>
                                 <ul>
                                     <li>Ambos son retroperitoneales, grandes, con necrosis.</li>
-                                    <li>Leiomiosarcoma: Actina positivo, proteína S100 negativo, vacuolas paranucleares, células en cigarro.</li>
-                                    <li>Liposarcoma dediferenciado: Tiene área de grasa con atipia (liposarcoma bien diferenciado) al lado de área pleomórfica sin grasa. Es como ver "dos tumores en uno".</li>
-                                    <li>Error del novato: No buscar área de grasa en dediferenciado. Si la encuentras, cambia diagnóstico.</li>
+                                    <li>Leiomiosarcoma: Actina positivo, proteína S100 negativo, vacuolas paranucleares,
+                                        células en cigarro.</li>
+                                    <li>Liposarcoma dediferenciado: Tiene área de grasa con atipia (liposarcoma bien
+                                        diferenciado) al lado de área pleomórfica sin grasa. Es como ver "dos tumores en
+                                        uno".</li>
+                                    <li>Error del novato: No buscar área de grasa en dediferenciado. Si la encuentras,
+                                        cambia diagnóstico.</li>
                                 </ul>
                             </li>
                         </ul>
                         <h6>Algoritmo para proteína S100 positivo definitivo (imprimir y pegar en microscopio):</h6>
                         <ol>
                             <li>¿Piel con mancha? → Melanoma</li>
-                            <li>¿Profundo + HMB45 negativo? → Sarcoma de células claras (PENDIENTE fusión del gen EWSR1)</li>
+                            <li>¿Profundo + HMB45 negativo? → Sarcoma de células claras (PENDIENTE fusión del gen EWSR1)
+                            </li>
                             <li>¿Hilos axonales? → Schwannoma/neurofibroma</li>
                             <li>¿Mitosis altas + proteína S100 negativo? → Sarcoma maligno de vaina de nervio</li>
                             <li>¿Epitelioide + c-KIT negativo? → Sarcoma epitelioide</li>
@@ -760,30 +942,43 @@
                         </ol>
                         <h6>BLOQUE 3: 9:00-9:45 HORAS - MICROSCOPIO CON DESAFÍO</h6>
                         <ul>
-                            <li><strong>Ejercicio 1:</strong> 1 sarcoma de células claras + 1 melanoma metastásico. Desafío: Ambos residentes diagnostican por separado. Luego comparan. Staff revela HMB45 y habla de necesidad de fusión del gen EWSR1.</li>
-                            <li><strong>Ejercicio 2:</strong> 1 leiomiosarcoma + 1 liposarcoma dediferenciado. Buscar juntos área de grasa en dediferenciado. Usar 4 aumentos para ver panorama.</li>
-                            <li><strong>Ejercicio 3:</strong> 1 caso "incógnita" retroperitoneal. Residente de tercer año aplica algoritmo completo en 3 minutos.</li>
+                            <li><strong>Ejercicio 1:</strong> 1 sarcoma de células claras + 1 melanoma metastásico.
+                                Desafío: Ambos residentes diagnostican por separado. Luego comparan. Staff revela HMB45
+                                y habla de necesidad de fusión del gen EWSR1.</li>
+                            <li><strong>Ejercicio 2:</strong> 1 leiomiosarcoma + 1 liposarcoma dediferenciado. Buscar
+                                juntos área de grasa en dediferenciado. Usar 4 aumentos para ver panorama.</li>
+                            <li><strong>Ejercicio 3:</strong> 1 caso "incógnita" retroperitoneal. Residente de tercer
+                                año aplica algoritmo completo en 3 minutos.</li>
                         </ul>
                         <h6>BLOQUE 4: 9:45-10:00 HORAS - DESCANSO</h6>
                         <h6>BLOQUE 5: 10:00-10:45 HORAS - CASOS ESCANEADOS MIXTOS</h6>
-                        <p>6 casos: 2 sarcoma células claras, 1 melanoma, 1 sarcoma maligno de vaina de nervio, 1 leiomiosarcoma, 1 liposarcoma dediferenciado. Residente de primer año categoriza primero, luego residente de tercer año especifica.</p>
+                        <p>6 casos: 2 sarcoma células claras, 1 melanoma, 1 sarcoma maligno de vaina de nervio, 1
+                            leiomiosarcoma, 1 liposarcoma dediferenciado. Residente de primer año categoriza primero,
+                            luego residente de tercer año especifica.</p>
                         <h6>BLOQUE 6: 10:45-11:30 HORAS - DICTADO Y ERROR MORTAL</h6>
-                        <p>Residente de primer año dicta sarcoma de células claras. Staff revisa si incluye "HMB45 negativo" y "fusión del gen EWSR1 pendiente". Si no, error crítico.</p>
+                        <p>Residente de primer año dicta sarcoma de células claras. Staff revisa si incluye "HMB45
+                            negativo" y "fusión del gen EWSR1 pendiente". Si no, error crítico.</p>
                         <p><strong>Error del novato que corregimos hoy:</strong></p>
                         <ul>
-                            <li><strong>Error:</strong> Llamar melanoma a sarcoma de células claras sin hacer HMB45 ni fusión del gen EWSR1.</li>
-                            <li><strong>Corrección:</strong> HMB45 es obligatorio. Fusión del gen EWSR1 es definitiva.</li>
-                            <li><strong>Consecuencia:</strong> Melanoma recibe inmunoterapia, sarcoma recibe quimioterapia. Son diferentes. El paciente puede morir por tratamiento incorrecto.</li>
+                            <li><strong>Error:</strong> Llamar melanoma a sarcoma de células claras sin hacer HMB45 ni
+                                fusión del gen EWSR1.</li>
+                            <li><strong>Corrección:</strong> HMB45 es obligatorio. Fusión del gen EWSR1 es definitiva.
+                            </li>
+                            <li><strong>Consecuencia:</strong> Melanoma recibe inmunoterapia, sarcoma recibe
+                                quimioterapia. Son diferentes. El paciente puede morir por tratamiento incorrecto.</li>
                         </ul>
                         <h6>BLOQUE 7: 11:30-12:00 HORAS - TAREAS</h6>
                         <ul>
-                            <li><strong>Residente de primer año:</strong> Tabla comparativa melanoma vs sarcoma de células claras (4 ítems).</li>
-                            <li><strong>Residente de tercer año:</strong> Protocolo de solicitud de secuenciación masiva (NGS) para sarcomas indiferenciados.</li>
+                            <li><strong>Residente de primer año:</strong> Tabla comparativa melanoma vs sarcoma de
+                                células claras (4 ítems).</li>
+                            <li><strong>Residente de tercer año:</strong> Protocolo de solicitud de secuenciación masiva
+                                (NGS) para sarcomas indiferenciados.</li>
                         </ul>
                         <hr>
                         <h5>DÍA 9: SARCOMA INDIFERENCIADO PLEOMÓRFICO - CUÁNDO DECIR "NO SÉ"</h5>
                         <h6>BLOQUE 1: 8:00-8:15 HORAS - TEST DE EXCLUSIÓN</h6>
-                        <p>Staff muestra un caso. Residente de tercer año debe verbalizar algoritmo completo en 2 minutos sin saltarse pasos.</p>
+                        <p>Staff muestra un caso. Residente de tercer año debe verbalizar algoritmo completo en 2
+                            minutos sin saltarse pasos.</p>
                         <h6>BLOQUE 2: 8:15-9:00 HORAS - TEORÍA DEL "NO SÉ" PROFESIONAL</h6>
                         <h6>Algoritmo de exclusión completo (repetir hasta el cansancio):</h6>
                         <ol>
@@ -796,37 +991,52 @@
                             <li>Buscar grasa con atipia → ¿Liposarcoma dediferenciado?</li>
                             <li>Buscar área de células claras uniformes → ¿Sarcoma de células claras?</li>
                             <li>Buscar patrón específico (sinovial, desmoide, etc.)</li>
-                            <li>Si todo negativo y biopsia pequeña → "Neoplasia maligna de alto grado, clasificación pendiente biopsia completa"</li>
+                            <li>Si todo negativo y biopsia pequeña → "Neoplasia maligna de alto grado, clasificación
+                                pendiente biopsia completa"</li>
                         </ol>
                         <h6>Cómo redactar "pendiente de molecular" sin sonar incompetente:</h6>
                         <ul>
                             <li><strong>MAL:</strong> "Diagnóstico pendiente de estudios moleculares".</li>
-                            <li><strong>BIEN:</strong> "Morfología sugestiva de [diagnóstico]. Estudios inmunohistoquímicos limitados por [motivo]. Recomendamos [estudio específico: secuenciación masiva sarcoma panel, FISH específica] en centro de referencia".</li>
+                            <li><strong>BIEN:</strong> "Morfología sugestiva de [diagnóstico]. Estudios
+                                inmunohistoquímicos limitados por [motivo]. Recomendamos [estudio específico:
+                                secuenciación masiva sarcoma panel, FISH específica] en centro de referencia".</li>
                         </ul>
-                        <p><strong>Ejemplo real:</strong> "Neoplasia fusocelular maligna mostrando 8 mitosis por 2 milímetros cuadrados y necrosis geográfica. Inmunofenotipo es inespecífico (solo vimentina positivo). Diagnóstico diferencial incluye sarcoma indiferenciado, melanoma, y carcinoma sarcomatoide. Recomendamos secuenciación masiva completa sarcoma panel incluyendo fusiones genéticas en laboratorio acreditado para guiar terapia."</p>
+                        <p><strong>Ejemplo real:</strong> "Neoplasia fusocelular maligna mostrando 8 mitosis por 2
+                            milímetros cuadrados y necrosis geográfica. Inmunofenotipo es inespecífico (solo vimentina
+                            positivo). Diagnóstico diferencial incluye sarcoma indiferenciado, melanoma, y carcinoma
+                            sarcomatoide. Recomendamos secuenciación masiva completa sarcoma panel incluyendo fusiones
+                            genéticas en laboratorio acreditado para guiar terapia."</p>
                         <h6>BLOQUE 3: 9:00-9:45 HORAS - MICROSCOPIO CON "INCÓGNITAS"</h6>
-                        <p>3 casos sin diagnóstico. Residente de primer año y residente de tercer año aplican algoritmo por separado. Luego discuten. Staff actúa como árbitro.</p>
-                        <p><strong>Ejercicio especial:</strong> 1 biopsia pequeña de tumor grande. Residente de tercer año debe decir "No puedo clasificar con certeza, necesito más tejido". Staff aplaude.</p>
+                        <p>3 casos sin diagnóstico. Residente de primer año y residente de tercer año aplican algoritmo
+                            por separado. Luego discuten. Staff actúa como árbitro.</p>
+                        <p><strong>Ejercicio especial:</strong> 1 biopsia pequeña de tumor grande. Residente de tercer
+                            año debe decir "No puedo clasificar con certeza, necesito más tejido". Staff aplaude.</p>
                         <h6>BLOQUE 4: 9:45-10:00 HORAS - DESCANSO</h6>
                         <h6>BLOQUE 5: 10:00-10:45 HORAS - CASOS ESCANEADOS CON ERRORES DE ARCHIVO</h6>
                         <p>Staff muestra 2 casos reales mal diagnosticados en archivo:</p>
                         <ul>
                             <li>Caso 1: Melanoma llamado sarcoma indiferenciado (no se hizo HMB45).</li>
-                            <li>Caso 2: Sarcoma maligno de vaina de nervio llamado neurofibroma (no se contaron mitosis en 50 campos).</li>
+                            <li>Caso 2: Sarcoma maligno de vaina de nervio llamado neurofibroma (no se contaron mitosis
+                                en 50 campos).</li>
                         </ul>
                         <p>Análisis: ¿Qué pregunta no se hizo? ¿Qué tinción faltó?</p>
                         <p><strong>Error del novato que corregimos hoy:</strong></p>
                         <ul>
                             <li><strong>Error:</strong> Diagnosticar "sarcoma indiferenciado" en biopsia pequeña.</li>
-                            <li><strong>Corrección:</strong> Siempre decir "neoplasia maligna de alto grado, clasificación pendiente biopsia completa y estudios moleculares".</li>
-                            <li><strong>Consecuencia:</strong> El oncólogo espera a tener más tejido y no da quimio errónea.</li>
+                            <li><strong>Corrección:</strong> Siempre decir "neoplasia maligna de alto grado,
+                                clasificación pendiente biopsia completa y estudios moleculares".</li>
+                            <li><strong>Consecuencia:</strong> El oncólogo espera a tener más tejido y no da quimio
+                                errónea.</li>
                         </ul>
                         <h6>BLOQUE 6: 10:45-11:30 HORAS - SIMULACIÓN DE ERROR</h6>
-                        <p>Staff juega el papel de patólogo novato que diagnostica "sarcoma indiferenciado". Residente de tercer año debe actuar como senior y corregirlo educadamente.</p>
+                        <p>Staff juega el papel de patólogo novato que diagnostica "sarcoma indiferenciado". Residente
+                            de tercer año debe actuar como senior y corregirlo educadamente.</p>
                         <p><strong>Frases de corrección educada:</strong></p>
                         <ul>
-                            <li>"Esa es una interpretación razonable, pero miremos si hay área de grasa para descartar liposarcoma dediferenciado".</li>
-                            <li>"Antes de llamarlo indiferenciado, asegurémonos de haber descartado melanoma con HMB45".</li>
+                            <li>"Esa es una interpretación razonable, pero miremos si hay área de grasa para descartar
+                                liposarcoma dediferenciado".</li>
+                            <li>"Antes de llamarlo indiferenciado, asegurémonos de haber descartado melanoma con HMB45".
+                            </li>
                             <li>"En biopsias pequeñas, es más seguro ser descriptivo que diagnóstico".</li>
                         </ul>
                         <h6>BLOQUE 7: 11:30-12:00 HORAS - PREPARACIÓN PARA EXAMEN</h6>
@@ -842,7 +1052,8 @@
                         <hr>
                         <h5>DÍA 10: EXAMEN FINAL Y PLAN DE VIDA POST-ROTACIÓN</h5>
                         <h6>BLOQUE 1: 8:00-9:30 HORAS - EXAMEN PRÁCTICO SUPREMO</h6>
-                        <p>15 casos escaneados desconocidos (mezcla completa de 2 semanas). Cada caso tiene 5 minutos.</p>
+                        <p>15 casos escaneados desconocidos (mezcla completa de 2 semanas). Cada caso tiene 5 minutos.
+                        </p>
                         <p><strong>Residente de Primer Año (Novato):</strong></p>
                         <ul>
                             <li>Diagnóstico: Benigno / Intermedio / Maligno (30 puntos)</li>
@@ -851,7 +1062,8 @@
                         </ul>
                         <p><strong>Residente de Tercer Año (Avanzado):</strong></p>
                         <ul>
-                            <li>Diagnóstico específico (Clasificación de la Organización Mundial de la Salud 2020) (30 puntos)</li>
+                            <li>Diagnóstico específico (Clasificación de la Organización Mundial de la Salud 2020) (30
+                                puntos)</li>
                             <li>Diagnóstico diferencial con 2 alternativas (20 puntos)</li>
                             <li>Tinción o estudio molecular específico (30 puntos)</li>
                             <li>Manejo sin molecular (justificación clínica) (20 puntos)</li>
@@ -864,8 +1076,10 @@
                         <h6>BLOQUE 2: 9:30-10:00 HORAS - CORRECCIÓN INMEDIATA</h6>
                         <p>Staff corrige cada caso con time-stamp exacto:</p>
                         <ul>
-                            <li>"Casilla 5: Residente de primer año tardó 2 minutos, vio grasa pero no ubicación. Recuerda: retroperitoneo = liposarcoma no atípico".</li>
-                            <li>"Casilla 9: Residente de tercer año dijo 'sarcoma indiferenciado' pero había cuerpos de Verocay. Era schwannoma. Pérdida de 15 puntos".</li>
+                            <li>"Casilla 5: Residente de primer año tardó 2 minutos, vio grasa pero no ubicación.
+                                Recuerda: retroperitoneo = liposarcoma no atípico".</li>
+                            <li>"Casilla 9: Residente de tercer año dijo 'sarcoma indiferenciado' pero había cuerpos de
+                                Verocay. Era schwannoma. Pérdida de 15 puntos".</li>
                         </ul>
                         <h6>BLOQUE 3: 10:00-10:15 HORAS - DESCANSO</h6>
                         <h6>BLOQUE 4: 10:15-11:00 HORAS - RÚBRICA MD ANDERSON Y FEEDBACK 360°</h6>
@@ -945,41 +1159,54 @@
                         </table>
                         <p><strong>Feedback 360°:</strong></p>
                         <ul>
-                            <li>Residente de primer año evalúa a residente de tercer año: "Me enseñó bien los cuerpos de Verocay pero se frustró cuando no entendía".</li>
-                            <li>Residente de tercer año evalúa a residente de primer año: "Mejoró 200% en categorización pero aún tiene miedo de equivocarse".</li>
-                            <li>Staff evalúa: "Residente de primer año tiene confianza adecuada. Residente de tercer año necesita ser más humilde al enseñar".</li>
+                            <li>Residente de primer año evalúa a residente de tercer año: "Me enseñó bien los cuerpos de
+                                Verocay pero se frustró cuando no entendía".</li>
+                            <li>Residente de tercer año evalúa a residente de primer año: "Mejoró 200% en categorización
+                                pero aún tiene miedo de equivocarse".</li>
+                            <li>Staff evalúa: "Residente de primer año tiene confianza adecuada. Residente de tercer año
+                                necesita ser más humilde al enseñar".</li>
                         </ul>
                         <h6>BLOQUE 5: 11:00-11:30 HORAS - PLAN DE MANTENIMIENTO DE 6 MESES</h6>
                         <p><strong>Compromisos firmados (documento físico que firman):</strong></p>
                         <p><strong>Residente de Primer Año:</strong></p>
                         <ul>
-                            <li>Deck Anki: Revisar 20 tarjetas cada domingo (30 minutos). Demostrar progreso semanal con screenshot.</li>
-                            <li>WhatsApp: Enviar 1 foto de caso difícil cada 2 semanas del sign-out real. Incluir: edad, ubicación, foto, diagnóstico tentativo.</li>
+                            <li>Deck Anki: Revisar 20 tarjetas cada domingo (30 minutos). Demostrar progreso semanal con
+                                screenshot.</li>
+                            <li>WhatsApp: Enviar 1 foto de caso difícil cada 2 semanas del sign-out real. Incluir: edad,
+                                ubicación, foto, diagnóstico tentativo.</li>
                             <li>Zoom mensual: Asistir a todas las reuniones. Participar activamente.</li>
                             <li>Tumor Board: Asistir a 3 presentaciones en 6 meses. Hacer preguntas.</li>
                         </ul>
                         <p><strong>Residente de Tercer Año:</strong></p>
                         <ul>
-                            <li>Mentoría: Responder a residente de primer año en WhatsApp en 24 horas. Ser paciente.</li>
+                            <li>Mentoría: Responder a residente de primer año en WhatsApp en 24 horas. Ser paciente.
+                            </li>
                             <li>Zoom: Preparar 1 caso complejo para discutir en cada sesión.</li>
                             <li>Tumor Board: Presentar 1 caso de partes blandas en 3 meses.</li>
-                            <li>Competencia: Al final de 6 meses, diagnosticar 20 casos de archivo sin ayuda. &gt;90% precisión.</li>
+                            <li>Competencia: Al final de 6 meses, diagnosticar 20 casos de archivo sin ayuda. &gt;90%
+                                precisión.</li>
                         </ul>
                         <p><strong>Staff:</strong></p>
                         <ul>
                             <li>WhatsApp: Responder consultas en 24 horas.</li>
                             <li>Zoom: Enviar 5 casos nuevos 2 días antes de cada sesión. Guiar discusión.</li>
                             <li>Evaluación: Hacer examen práctico de 10 casos a los 3 meses.</li>
-                            <li>Recompensa: Si cumplen todos los compromisos, staff escribe carta de recomendación para fellowship o trabajo.</li>
+                            <li>Recompensa: Si cumplen todos los compromisos, staff escribe carta de recomendación para
+                                fellowship o trabajo.</li>
                         </ul>
                         <h6>BLOQUE 6: 11:30-12:00 HORAS - CIERRE Y MENSAJE FINAL</h6>
-                        <p><strong>Staff:</strong> "Ustedes no terminaron de aprender sarcomas. Terminaron el curso de sobrevivencia. El 90% de los errores graves en patología son de partes blandas. Ahora saben cuándo no saben. Eso los convierte en patólogos seguros."</p>
+                        <p><strong>Staff:</strong> "Ustedes no terminaron de aprender sarcomas. Terminaron el curso de
+                            sobrevivencia. El 90% de los errores graves en patología son de partes blandas. Ahora saben
+                            cuándo no saben. Eso los convierte en patólogos seguros."</p>
                         <p><strong>Mensajes individuales:</strong></p>
                         <ul>
-                            <li>A residente de primer año: "Tienes buen ojo. Confía en tu morfología. Pero cuando dudes, pregunta. No tengas miedo de parecer tonto. Es más tonto matar a un paciente."</li>
-                            <li>A residente de tercer año: "Tienes conocimiento. Pero la humildad es más importante. Enseña con paciencia. El mejor senior es el que forma más juniors."</li>
+                            <li>A residente de primer año: "Tienes buen ojo. Confía en tu morfología. Pero cuando dudes,
+                                pregunta. No tengas miedo de parecer tonto. Es más tonto matar a un paciente."</li>
+                            <li>A residente de tercer año: "Tienes conocimiento. Pero la humildad es más importante.
+                                Enseña con paciencia. El mejor senior es el que forma más juniors."</li>
                         </ul>
-                        <p><strong>Ceremonia de diplomas:</strong> Entregar certificado físico "MD Anderson Soft Tissue Pathology Bootcamp - Week 1 & 2 Completion".</p>
+                        <p><strong>Ceremonia de diplomas:</strong> Entregar certificado físico "MD Anderson Soft Tissue
+                            Pathology Bootcamp - Week 1 & 2 Completion".</p>
                         <p><strong>Foto grupal:</strong> Para archivo del departamento.</p>
                         <hr>
                         <h5>APÉNDICE: MATERIAL IMPRESO PARA RESIDENTES</h5>
@@ -1029,170 +1256,233 @@
                         </ul>
                         <h6>Frases de Emergencia para Dictado (Cuando Dudes)</h6>
                         <ul>
-                            <li>Para lipoma atípico en extremidad: "Atypical lipomatous tumor, complete excision recommended, no adjuvant therapy indicated."</li>
-                            <li>Para tumor abdominal fusocelular: "Spindle cell neoplasm, CD117 immunostain pending to rule out gastrointestinal stromal tumor."</li>
-                            <li>Para proteína S100 positivo sin lesión cutánea: "S100-positive spindle cell neoplasm, HMB45 negative, suggestive of clear cell sarcoma pending EWSR1 molecular confirmation."</li>
-                            <li>Para biopsia pequeña: "High-grade malignant neoplasm, classification requires excisional biopsy and comprehensive molecular profiling."</li>
+                            <li>Para lipoma atípico en extremidad: "Atypical lipomatous tumor, complete excision
+                                recommended, no adjuvant therapy indicated."</li>
+                            <li>Para tumor abdominal fusocelular: "Spindle cell neoplasm, CD117 immunostain pending to
+                                rule out gastrointestinal stromal tumor."</li>
+                            <li>Para proteína S100 positivo sin lesión cutánea: "S100-positive spindle cell neoplasm,
+                                HMB45 negative, suggestive of clear cell sarcoma pending EWSR1 molecular confirmation."
+                            </li>
+                            <li>Para biopsia pequeña: "High-grade malignant neoplasm, classification requires excisional
+                                biopsy and comprehensive molecular profiling."</li>
                         </ul>
                         <hr>
                         <h5>ERRORES DEL NOVATO: GALERÍA DE HORRORES (Consecuencias Reales)</h5>
                         <ul>
                             <li><strong>Caso 1: Lipoma Llamado Sarcoma</strong>
                                 <ul>
-                                    <li>Error: Residente de primer año llamó "liposarcoma" a lipoma atípico de pierna.</li>
-                                    <li>Consecuencia: Oncólogo dio radioterapia innecesaria. Paciente desarrolló linfedema crónico.</li>
+                                    <li>Error: Residente de primer año llamó "liposarcoma" a lipoma atípico de pierna.
+                                    </li>
+                                    <li>Consecuencia: Oncólogo dio radioterapia innecesaria. Paciente desarrolló
+                                        linfedema crónico.</li>
                                     <li>Lección: Ubicación define nombre retroperitoneo vs extremidad.</li>
                                 </ul>
                             </li>
                             <li><strong>Caso 2: Fasciitis Llamada Desmoide</strong>
                                 <ul>
                                     <li>Error: Residente de tercer año confió en beta-catenina débil positiva.</li>
-                                    <li>Consecuencia: Cirujano hizo resección extensa con márgenes de 3 cm, dejándole hernia a paciente.</li>
-                                    <li>Lección: Historia clínica (crecimiento rápido) &gt; tinción. Beta-catenina no es 100%.</li>
+                                    <li>Consecuencia: Cirujano hizo resección extensa con márgenes de 3 cm, dejándole
+                                        hernia a paciente.</li>
+                                    <li>Lección: Historia clínica (crecimiento rápido) &gt; tinción. Beta-catenina no es
+                                        100%.</li>
                                 </ul>
                             </li>
                             <li><strong>Caso 3: Melanoma Llamado Sarcoma</strong>
                                 <ul>
                                     <li>Error: No hacer HMB45 en proteína S100 positivo profundo.</li>
-                                    <li>Consecuencia: Paciente recibió quimioterapia para sarcoma en lugar de inmunoterapia para melanoma. Murió en 6 meses.</li>
-                                    <li>Lección: HMB45 es obligatorio. Fusión del gen EWSR1 confirma sarcoma de células claras.</li>
+                                    <li>Consecuencia: Paciente recibió quimioterapia para sarcoma en lugar de
+                                        inmunoterapia para melanoma. Murió en 6 meses.</li>
+                                    <li>Lección: HMB45 es obligatorio. Fusión del gen EWSR1 confirma sarcoma de células
+                                        claras.</li>
                                 </ul>
                             </li>
                             <li><strong>Caso 4: Tumor del estroma gastrointestinal Llamado Leiomiosarcoma</strong>
                                 <ul>
                                     <li>Error: No hacer CD117.</li>
-                                    <li>Consecuencia: Paciente recibió quimio para sarcoma en lugar de imatinib para tumor del estroma gastrointestinal. Tumor creció y metastatizó.</li>
+                                    <li>Consecuencia: Paciente recibió quimio para sarcoma en lugar de imatinib para
+                                        tumor del estroma gastrointestinal. Tumor creció y metastatizó.</li>
                                     <li>Lección: CD117 es obligatorio en abdomen. DOG1 es backup.</li>
                                 </ul>
                             </li>
                             <li><strong>Caso 5: Sarcoma maligno de vaina de nervio Llamado Neurofibroma</strong>
                                 <ul>
                                     <li>Error: No contar mitosis en 50 campos.</li>
-                                    <li>Consecuencia: No se dio quimioterapia. Paciente desarrolló metástasis pulmonares y falleció.</li>
-                                    <li>Lección: Contar mitosis en 50 campos es obligatorio en todo tumor de nervio.</li>
+                                    <li>Consecuencia: No se dio quimioterapia. Paciente desarrolló metástasis pulmonares
+                                        y falleció.</li>
+                                    <li>Lección: Contar mitosis en 50 campos es obligatorio en todo tumor de nervio.
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
                         <hr>
                         <h5>CONCLUSIÓN FINAL PARA EL STAFF</h5>
-                        <p>Este programa no enseña a los residentes a ser expertos en 2 semanas. Eso es imposible. Lo que hace es:</p>
+                        <p>Este programa no enseña a los residentes a ser expertos en 2 semanas. Eso es imposible. Lo
+                            que hace es:</p>
                         <ul>
                             <li>Prevenir errores letales: Muertes por diagnóstico incorrecto.</li>
                             <li>Crear humildad diagnóstica: Saber cuándo pedir ayuda.</li>
                             <li>Fomentar el pensamiento algorítmico: Paso a paso, sin saltos.</li>
                             <li>Establecer hábitos de repaso: Espaciado activo es clave para retención.</li>
-                            <li>Construir red de apoyo: Residente de tercer año enseña a residente de primer año, staff supervisa.</li>
+                            <li>Construir red de apoyo: Residente de tercer año enseña a residente de primer año, staff
+                                supervisa.</li>
                         </ul>
-                        <p>La meta final: Que en 6 meses, residente de primer año pueda manejar sign-out solo con consultas puntuales, y residente de tercer año pueda enseñar a otro residente de primer año.</p>
-                        <p>Recuerda: La mejor enseñanza es la que el residente no olvida. Usa analogías, visualización, y repaso constante. Y sobre todo, sé paciente. Fuiste novato una vez.</p>
+                        <p>La meta final: Que en 6 meses, residente de primer año pueda manejar sign-out solo con
+                            consultas puntuales, y residente de tercer año pueda enseñar a otro residente de primer año.
+                        </p>
+                        <p>Recuerda: La mejor enseñanza es la que el residente no olvida. Usa analogías, visualización,
+                            y repaso constante. Y sobre todo, sé paciente. Fuiste novato una vez.</p>
                         <hr>
                         <h5>BIBLIOGRAFÍA OBLIGATORIA PARA IMPRIMIR EN MANUAL</h5>
                         <h6>Clasificación y Diagnóstico:</h6>
                         <ol>
-                            <li>WHO Classification of Soft Tissue and Bone Tumours, 5th Edition (2020). FUENTE PRINCIPAL</li>
-                            <li>Fletcher CDM. "The 2020 WHO Classification: What's new in soft tissue tumours?" Histopathology. 2021;78(1):182-193. DOI: 10.1111/his.14216</li>
-                            <li>Busquets J et al. "Nueva clasificación OMS de tumores de partes blandas" Radiología. 2021;63(3):234-242.</li>
+                            <li>WHO Classification of Soft Tissue and Bone Tumours, 5th Edition (2020). FUENTE PRINCIPAL
+                            </li>
+                            <li>Fletcher CDM. "The 2020 WHO Classification: What's new in soft tissue tumours?"
+                                Histopathology. 2021;78(1):182-193. DOI: 10.1111/his.14216</li>
+                            <li>Busquets J et al. "Nueva clasificación OMS de tumores de partes blandas" Radiología.
+                                2021;63(3):234-242.</li>
                         </ol>
                         <h6>Marcadores Inmunohistoquímicos:</h6>
                         <ol start="4">
-                            <li>Patel RM, Li P. "Immunohistochemistry in the diagnosis of soft tissue tumors" Surgical Pathology Clinics. 2021;14(1):89-105.</li>
-                            <li>Jo VY, Fletcher CDM. "Diagnosis and genetics of soft tissue tumors" Genes Chromosomes Cancer. 2020;59(1):63-77.</li>
+                            <li>Patel RM, Li P. "Immunohistochemistry in the diagnosis of soft tissue tumors" Surgical
+                                Pathology Clinics. 2021;14(1):89-105.</li>
+                            <li>Jo VY, Fletcher CDM. "Diagnosis and genetics of soft tissue tumors" Genes Chromosomes
+                                Cancer. 2020;59(1):63-77.</li>
                         </ol>
                         <h6>Sarcoma Sinovial:</h6>
                         <ol start="6">
-                            <li>Kawai A et al. "Synovial Sarcoma: Current Concepts and Future Perspectives" Journal of Clinical Oncology. 2021;39(9):997-1009. DOI: 10.1200/JCO.20.03133</li>
+                            <li>Kawai A et al. "Synovial Sarcoma: Current Concepts and Future Perspectives" Journal of
+                                Clinical Oncology. 2021;39(9):997-1009. DOI: 10.1200/JCO.20.03133</li>
                         </ol>
                         <h6>Aprendizaje en Patología:</h6>
                         <ol start="7">
-                            <li>Raman R, Kohli M. "Error-based learning in pathology residency" Academic Pathology. 2022;9:237428952210750.</li>
-                            <li>Larsen DP et al. "Spaced repetition improves diagnostic accuracy" Medical Education. 2023;57(3):234-242.</li>
+                            <li>Raman R, Kohli M. "Error-based learning in pathology residency" Academic Pathology.
+                                2022;9:237428952210750.</li>
+                            <li>Larsen DP et al. "Spaced repetition improves diagnostic accuracy" Medical Education.
+                                2023;57(3):234-242.</li>
                         </ol>
                     </div>
                 </div>
                 <div class="elemento-desplegable">
-                    <button class="boton-desplegable"><i class="fas fa-microscope" style="margin-right: 10px; color: var(--accent);"></i> Biopsia y Resección de Tumores de Partes Blandas</button>
+                    <button class="boton-desplegable"><i class="fas fa-microscope"
+                            style="margin-right: 10px; color: var(--accent);"></i> Biopsia y Resección de Tumores de
+                        Partes Blandas</button>
                     <div class="contenido-desplegable" style="padding-top: 20px; padding-bottom: 20px;">
                         <div class="elemento-desplegable">
-                            <button class="boton-desplegable" style="font-size: 1.1rem; background-color: #fdfdff;">DESCRIPCIÓN GENERAL</button>
+                            <button class="boton-desplegable"
+                                style="font-size: 1.1rem; background-color: #fdfdff;">DESCRIPCIÓN GENERAL</button>
                             <div class="contenido-desplegable" style="padding-top: 20px; padding-bottom: 20px;">
                                 <h5>Puntos Generales</h5>
                                 <ul>
-                                    <li>Actualmente hay disponibles una variedad de procedimientos diagnósticos para que los cirujanos y clínicos evalúen los tumores de partes blandas.</li>
-                                    <li>Los tumores que parecen probablemente benignos a menudo se extirpan quirúrgicamente sin toma de muestra, o se siguen clínicamente.</li>
-                                    <li>Los tumores que parecen probablemente malignos o potencialmente malignos usualmente se muestrean preoperatoriamente.</li>
-                                    <li>Con frecuencia creciente, los tumores de partes blandas se muestrean inicialmente mediante biopsia con aguja gruesa, aspiración con aguja fina (PAAF) o biopsia limitada, debido a la morbilidad mínima para el paciente.</li>
-                                    <li>Un diagnóstico exitoso generalmente conduce a la escisión local, resección amplia con márgenes, o quimioterapia adyuvante preoperatoria y/o radioterapia.</li>
-                                    <li>Las muestras más pequeñas son generalmente más difíciles de evaluar debido a problemas de muestreo y problemas relacionados con la inmunohistoquímica.</li>
+                                    <li>Actualmente hay disponibles una variedad de procedimientos diagnósticos para que
+                                        los cirujanos y clínicos evalúen los tumores de partes blandas.</li>
+                                    <li>Los tumores que parecen probablemente benignos a menudo se extirpan
+                                        quirúrgicamente sin toma de muestra, o se siguen clínicamente.</li>
+                                    <li>Los tumores que parecen probablemente malignos o potencialmente malignos
+                                        usualmente se muestrean preoperatoriamente.</li>
+                                    <li>Con frecuencia creciente, los tumores de partes blandas se muestrean
+                                        inicialmente mediante biopsia con aguja gruesa, aspiración con aguja fina (PAAF)
+                                        o biopsia limitada, debido a la morbilidad mínima para el paciente.</li>
+                                    <li>Un diagnóstico exitoso generalmente conduce a la escisión local, resección
+                                        amplia con márgenes, o quimioterapia adyuvante preoperatoria y/o radioterapia.
+                                    </li>
+                                    <li>Las muestras más pequeñas son generalmente más difíciles de evaluar debido a
+                                        problemas de muestreo y problemas relacionados con la inmunohistoquímica.</li>
                                 </ul>
                                 <h5>Tipos de Muestras</h5>
                                 <ul>
-                                    <li><strong>Biopsia con aguja gruesa:</strong> Muestra muy pequeña. Popular por su riesgo mínimo.</li>
-                                    <li><strong>Aspiración con aguja fina (PAAF):</strong> Permite evaluación inmediata de la adecuación. Mínima morbilidad.</li>
-                                    <li><strong>Biopsia quirúrgica abierta:</strong> Muestra más grande y tejido más intacto. Menor riesgo de subdiagnóstico.</li>
-                                    <li><strong>Escisión local:</strong> Remoción completa del tumor sin buscar márgenes amplios. Estándar para tumores benignos superficiales.</li>
-                                    <li><strong>Resección con márgenes:</strong> Incluye resección amplia y radical. Estándar para tumores agresivos, profundos y sarcomas.</li>
+                                    <li><strong>Biopsia con aguja gruesa:</strong> Muestra muy pequeña. Popular por su
+                                        riesgo mínimo.</li>
+                                    <li><strong>Aspiración con aguja fina (PAAF):</strong> Permite evaluación inmediata
+                                        de la adecuación. Mínima morbilidad.</li>
+                                    <li><strong>Biopsia quirúrgica abierta:</strong> Muestra más grande y tejido más
+                                        intacto. Menor riesgo de subdiagnóstico.</li>
+                                    <li><strong>Escisión local:</strong> Remoción completa del tumor sin buscar márgenes
+                                        amplios. Estándar para tumores benignos superficiales.</li>
+                                    <li><strong>Resección con márgenes:</strong> Incluye resección amplia y radical.
+                                        Estándar para tumores agresivos, profundos y sarcomas.</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="elemento-desplegable">
-                            <button class="boton-desplegable" style="font-size: 1.1rem; background-color: #fdfdff;">MUESTRAS DE BIOPSIA</button>
+                            <button class="boton-desplegable"
+                                style="font-size: 1.1rem; background-color: #fdfdff;">MUESTRAS DE BIOPSIA</button>
                             <div class="contenido-desplegable" style="padding-top: 20px; padding-bottom: 20px;">
                                 <h5>Enfoque Histológico General</h5>
                                 <ul>
                                     <li>Asegurar que esté presente tejido lesional.</li>
                                     <li>Evaluar el patrón de crecimiento y las características citológicas.</li>
-                                    <li>Buscar pistas histológicas que sugieran una diferenciación específica (ej., lipoblastos).</li>
+                                    <li>Buscar pistas histológicas que sugieran una diferenciación específica (ej.,
+                                        lipoblastos).</li>
                                     <li>Evaluar la actividad mitótica y la presencia o ausencia de necrosis.</li>
                                     <li>Utilizar estudios auxiliares (IHQ, molecular) según sea necesario.</li>
                                 </ul>
                                 <h5>Advertencias</h5>
                                 <ul>
                                     <li>Siempre excluir carcinoma, melanoma, linfoma y mesotelioma.</li>
-                                    <li>Cuidado con los problemas de muestreo: un tumor de bajo grado en biopsia puede tener áreas de alto grado en la resección.</li>
-                                    <li>El diagnóstico de "sarcoma pleomórfico indiferenciado" no debe hacerse en la biopsia, ya que es un diagnóstico de exclusión.</li>
-                                    <li>Algunos sarcomas pueden parecer benignos (ej., sarcoma fibromixoide de bajo grado) y algunos tumores benignos pueden parecer malignos (ej., fascitis nodular).</li>
+                                    <li>Cuidado con los problemas de muestreo: un tumor de bajo grado en biopsia puede
+                                        tener áreas de alto grado en la resección.</li>
+                                    <li>El diagnóstico de "sarcoma pleomórfico indiferenciado" no debe hacerse en la
+                                        biopsia, ya que es un diagnóstico de exclusión.</li>
+                                    <li>Algunos sarcomas pueden parecer benignos (ej., sarcoma fibromixoide de bajo
+                                        grado) y algunos tumores benignos pueden parecer malignos (ej., fascitis
+                                        nodular).</li>
                                     <li>Un diagnóstico conservador en la biopsia sirve mejor al paciente.</li>
                                 </ul>
                                 <h5>Informe</h5>
                                 <ul>
                                     <li>Hacer todo lo posible por establecer un diagnóstico claro y el grado.</li>
-                                    <li>Si no es posible, un diagnóstico descriptivo ayuda a guiar la planificación (ej., "neoplasia mixoide de bajo grado, sugestiva de benigna").</li>
+                                    <li>Si no es posible, un diagnóstico descriptivo ayuda a guiar la planificación
+                                        (ej., "neoplasia mixoide de bajo grado, sugestiva de benigna").</li>
                                     <li>Se recomienda un comentario para discutir el diagnóstico diferencial.</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="elemento-desplegable">
-                            <button class="boton-desplegable" style="font-size: 1.1rem; background-color: #fdfdff;">MUESTRAS DE RESECCIÓN</button>
+                            <button class="boton-desplegable"
+                                style="font-size: 1.1rem; background-color: #fdfdff;">MUESTRAS DE RESECCIÓN</button>
                             <div class="contenido-desplegable" style="padding-top: 20px; padding-bottom: 20px;">
                                 <h5>Enfoque Histológico General</h5>
                                 <ul>
-                                    <li><strong>Sin terapia neoadyuvante:</strong> Revisar la biopsia original, confirmar el diagnóstico y el grado, y evaluar los márgenes.</li>
-                                    <li><strong>Con terapia neoadyuvante:</strong> Confirmar el diagnóstico original. El cuadro histológico puede cambiar drásticamente (necrosis, fibrosis, atipia). Documentar el porcentaje de viabilidad tumoral residual y evaluar los márgenes.</li>
+                                    <li><strong>Sin terapia neoadyuvante:</strong> Revisar la biopsia original,
+                                        confirmar el diagnóstico y el grado, y evaluar los márgenes.</li>
+                                    <li><strong>Con terapia neoadyuvante:</strong> Confirmar el diagnóstico original. El
+                                        cuadro histológico puede cambiar drásticamente (necrosis, fibrosis, atipia).
+                                        Documentar el porcentaje de viabilidad tumoral residual y evaluar los márgenes.
+                                    </li>
                                 </ul>
                                 <h5>Advertencias</h5>
                                 <ul>
-                                    <li>Un pequeño porcentaje de tumores desafía la clasificación. El objetivo es distinguir entre benigno, bajo grado y alto grado.</li>
-                                    <li>La clasificación de un tumor tratado es difícil. Las células pueden volverse pleomórficas y las técnicas auxiliares no son confiables.</li>
+                                    <li>Un pequeño porcentaje de tumores desafía la clasificación. El objetivo es
+                                        distinguir entre benigno, bajo grado y alto grado.</li>
+                                    <li>La clasificación de un tumor tratado es difícil. Las células pueden volverse
+                                        pleomórficas y las técnicas auxiliares no son confiables.</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="elemento-desplegable">
-                            <button class="boton-desplegable" style="font-size: 1.1rem; background-color: #fdfdff;">TEMAS ESPECIALES</button>
+                            <button class="boton-desplegable"
+                                style="font-size: 1.1rem; background-color: #fdfdff;">TEMAS ESPECIALES</button>
                             <div class="contenido-desplegable" style="padding-top: 20px; padding-bottom: 20px;">
                                 <h5>Consulta Intraoperatoria por Congelación</h5>
                                 <ul>
                                     <li>Se solicita para confirmar un diagnóstico o cuando no hay biopsia previa.</li>
-                                    <li>La información más útil que el patólogo puede proporcionar es si el tumor parece benigno, de bajo grado o de alto grado.</li>
-                                    <li>Se recomienda precaución al calificar un tumor como "benigno" en congelación.</li>
+                                    <li>La información más útil que el patólogo puede proporcionar es si el tumor parece
+                                        benigno, de bajo grado o de alto grado.</li>
+                                    <li>Se recomienda precaución al calificar un tumor como "benigno" en congelación.
+                                    </li>
                                 </ul>
                                 <h5>Evaluación mediante Pruebas Auxiliares</h5>
                                 <ul>
-                                    <li><strong>Inmunohistoquímica (IHQ):</strong> Un panel de screening (ej., Queratina, S100, SMA, Desmina, CD34) es útil.</li>
-                                    <li><strong>Análisis molecular:</strong> Pruebas como FISH o RT-PCR pueden ser cruciales.</li>
+                                    <li><strong>Inmunohistoquímica (IHQ):</strong> Un panel de screening (ej.,
+                                        Queratina, S100, SMA, Desmina, CD34) es útil.</li>
+                                    <li><strong>Análisis molecular:</strong> Pruebas como FISH o RT-PCR pueden ser
+                                        cruciales.</li>
                                 </ul>
                                 <h5>Consulta con un Experto</h5>
                                 <ul>
-                                    <li>Recomendada en casos difíciles, raros o cuando el diagnóstico histológico no concuerda con la clínica.</li>
+                                    <li>Recomendada en casos difíciles, raros o cuando el diagnóstico histológico no
+                                        concuerda con la clínica.</li>
                                 </ul>
                             </div>
                         </div>
@@ -1200,61 +1490,79 @@
                 </div>
 
                 <div class="elemento-desplegable">
-                    <button class="boton-desplegable"><i class="fas fa-birthday-cake" style="margin-right: 10px; color: var(--accent);"></i> Enfoque Basado en la Edad</button>
+                    <button class="boton-desplegable"><i class="fas fa-birthday-cake"
+                            style="margin-right: 10px; color: var(--accent);"></i> Enfoque Basado en la Edad</button>
                     <div class="contenido-desplegable" style="padding-top: 20px; padding-bottom: 20px;">
-                        
+
                         <ul>
-                            <li><strong>Lactancia (&lt; 3 Años):</strong> Hamartoma fibroso, Fibromatosis de cuerpos de inclusión, Fibrosarcoma infantil, Lipoblastoma.
+                            <li><strong>Lactancia (&lt; 3 Años):</strong> Hamartoma fibroso, Fibromatosis de cuerpos de
+                                inclusión, Fibrosarcoma infantil, Lipoblastoma.
                                 <table class="tabla-tumores">
-                                  <thead>
-                                    <tr>
-                                      <th>Tumor</th>
-                                      <th>Frecuencia en &lt;3 años</th>
-                                      <th>Características Anatomopatológicas Clave</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <tr>
-                                      <td><strong>Rabdomiosarcoma (Embrional)</strong></td>
-                                      <td class="tipo-maligno"><strong>MÁS FRECUENTE (Maligno)</strong></td>
-                                      <td>
-                                        Células pequeñas y redondas. Positivo para Desmina, Miogenina, Actina.
-                                        <div class="enlaces-casos">
-                                          <a href="https://pathpresenter.net/public/display?token=1eaf6493" target="_blank" class="enlace-caso">
-                                            📋 Ver caso 1 en PathPresenter
-                                          </a>
-                                          <a href="https://pathpresenter.net/public/display?token=f96016f1" target="_blank" class="enlace-caso">
-                                            📋 Ver caso 2 en PathPresenter
-                                          </a>
-                                        </div>
-                                      </td>
-                                    </tr>
-                                    <tr>
-                                      <td><strong>Hemangioma Infantil</strong></td>
-                                      <td class="tipo-benigno">Muy Frecuente (Benigno)</td>
-                                      <td>Proliferación lobulada de capilares maduros.</td>
-                                    </tr>
-                                    <tr>
-                                      <td><strong>Tumor de Células Granulares</strong></td>
-                                      <td class="tipo-maligno">Poco Frecuente (Maligno)</td>
-                                      <td>Células con núcleo vesiculoso, nucléolo prominente y citoplasma eosinófilo. Pérdida de INI1 (SMARCB1).</td>
-                                    </tr>
-                                    <tr>
-                                      <td><strong>Sarcoma de Ewing Extraóseo</strong></td>
-                                      <td class="tipo-maligno">Poco Frecuente (Maligno)</td>
-                                      <td>Células redondas monótonas, positividad membranosa difusa para CD99. Confirmar con genética (FISH para EWSR1).</td>
-                                    </tr>
-                                    <tr>
-                                      <td><strong>Fibromatosis</strong></td>
-                                      <td class="tipo-benigno">Poco Frecuente (Benigna/Localmente agresiva)</td>
-                                      <td>Proliferación de fibroblastos/miofibroblastos en haces, de bajo grado. Infiltración de tejidos adyacentes.</td>
-                                    </tr>
-                                  </tbody>
+                                    <thead>
+                                        <tr>
+                                            <th>Tumor</th>
+                                            <th>Frecuencia en &lt;3 años</th>
+                                            <th>Características Anatomopatológicas Clave</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Rabdomiosarcoma (Embrional)</strong></td>
+                                            <td class="tipo-maligno"><strong>MÁS FRECUENTE (Maligno)</strong></td>
+                                            <td>
+                                                Células pequeñas y redondas. Positivo para Desmina, Miogenina, Actina.
+                                                <div class="enlaces-casos">
+                                                    <a href="https://pathpresenter.net/public/display?token=1eaf6493"
+                                                        target="_blank" class="enlace-caso">
+                                                        📋 Ver caso 1 en PathPresenter
+                                                    </a>
+                                                    <a href="https://pathpresenter.net/public/display?token=f96016f1"
+                                                        target="_blank" class="enlace-caso">
+                                                        📋 Ver caso 2 en PathPresenter
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Hemangioma Infantil</strong></td>
+                                            <td class="tipo-benigno">Muy Frecuente (Benigno)</td>
+                                            <td>Proliferación lobulada de capilares maduros.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Tumor de Células Granulares</strong></td>
+                                            <td class="tipo-maligno">Poco Frecuente (Maligno)</td>
+                                            <td>Células con núcleo vesiculoso, nucléolo prominente y citoplasma
+                                                eosinófilo. Pérdida de INI1 (SMARCB1).</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Sarcoma de Ewing Extraóseo</strong></td>
+                                            <td class="tipo-maligno">Poco Frecuente (Maligno)</td>
+                                            <td>Células redondas monótonas, positividad membranosa difusa para CD99.
+                                                Confirmar con genética (FISH para EWSR1).</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Fibromatosis</strong></td>
+                                            <td class="tipo-benigno">Poco Frecuente (Benigna/Localmente agresiva)</td>
+                                            <td>Proliferación de fibroblastos/miofibroblastos en haces, de bajo grado.
+                                                Infiltración de tejidos adyacentes.</td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </li>
-                            <li><strong>Lactantes, Niños o Adolescentes (&lt; 20 Años):</strong> Angiomatosis, Rabdomiosarcoma embrionario, Tumor rabdoide extrarenal.</li>
-                            <p style="margin-top: 15px; margin-left: 20px;">El tumor de partes blandas más frecuente en lactantes, niños y adolescentes (&lt; 20 años) es el hemangioma entre los benignos, y el rabdomiosarcoma entre los malignos. Esta información se basa en estudios y reportes que muestran que más del 75% de los tumores de partes blandas en niños son benignos, con el hemangioma, linfangioma y fibromatosis como los principales en esa categoría. En cuanto a los tumores malignos, el rabdomiosarcoma es el más común, representando aproximadamente el 61% de los sarcomas de partes blandas en la infancia y adolescencia, seguido por tumores del grupo Ewing (16%), sarcoma sinovial (7%), fibrosarcoma (3%), y otros menos frecuentes.</p>
-                            <p style="margin-left: 20px; font-weight: bold;">A continuación, se presenta un cuadro resumen basado en evidencia del MD Anderson Cancer Center y literatura especializada:</p>
+                            <li><strong>Lactantes, Niños o Adolescentes (&lt; 20 Años):</strong> Angiomatosis,
+                                Rabdomiosarcoma embrionario, Tumor rabdoide extrarenal.</li>
+                            <p style="margin-top: 15px; margin-left: 20px;">El tumor de partes blandas más frecuente en
+                                lactantes, niños y adolescentes (&lt; 20 años) es el hemangioma entre los benignos, y el
+                                rabdomiosarcoma entre los malignos. Esta información se basa en estudios y reportes que
+                                muestran que más del 75% de los tumores de partes blandas en niños son benignos, con el
+                                hemangioma, linfangioma y fibromatosis como los principales en esa categoría. En cuanto
+                                a los tumores malignos, el rabdomiosarcoma es el más común, representando
+                                aproximadamente el 61% de los sarcomas de partes blandas en la infancia y adolescencia,
+                                seguido por tumores del grupo Ewing (16%), sarcoma sinovial (7%), fibrosarcoma (3%), y
+                                otros menos frecuentes.</p>
+                            <p style="margin-left: 20px; font-weight: bold;">A continuación, se presenta un cuadro
+                                resumen basado en evidencia del MD Anderson Cancer Center y literatura especializada:
+                            </p>
                             <table class="tabla-tumores">
                                 <thead>
                                     <tr>
@@ -1283,141 +1591,256 @@
                                     <tr>
                                         <td>Adolescentes (15-19 años)</td>
                                         <td>Lipoma, Fibromatosis</td>
-                                        <td>Tumores Ewing, <a href="https://pathpresenter.net/public/display?token=865dbbf6" target="_blank" class="enlace-caso">Sarcoma sinovial</a>, <a href="https://pathpresenter.net/public/display?token=a417cf4b" target="_blank" class="enlace-caso">Sarcoma sinovial</a></td>
+                                        <td>Tumores Ewing, <a
+                                                href="https://pathpresenter.net/public/display?token=865dbbf6"
+                                                target="_blank" class="enlace-caso">Sarcoma sinovial</a>, <a
+                                                href="https://pathpresenter.net/public/display?token=a417cf4b"
+                                                target="_blank" class="enlace-caso">Sarcoma sinovial</a></td>
                                         <td>Sarcomas no rabdomiosarcomas más frecuentes</td>
                                         <td>Extremidades, tronco</td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <li><strong>Adolescentes a Adultos Jóvenes (~ 10 a 35 Años):</strong> Rabdomiosarcoma alveolar, Sarcoma de partes blandas alveolar, Sarcoma epiteloide, Liposarcoma mixoide, Sarcoma sinovial.</li>
-                            <li><strong>Adultos Jóvenes a de Mediana Edad (~ 20 a 50 Años):</strong> Sarcoma de células claras, Dermatofibrosarcoma protuberans, Leiomiosarcoma, Fascitis nodular.</li>
-                            <li><strong>Adultos de Mediana Edad a Mayores (~ 45 a 60 Años):</strong> Liposarcoma bien diferenciado/desdiferenciado, Condrosarcoma mixoide extraesquelético.</li>
-                            <li><strong>Adultos Mayores y Ancianos (&gt; 50 Años):</strong> Fibroxantoma atípico, Mixofibrosarcoma, Liposarcoma pleomórfico, Sarcoma pleomórfico indiferenciado.</li>
+                            <li><strong>Adolescentes a Adultos Jóvenes (~ 10 a 35 Años):</strong> Rabdomiosarcoma
+                                alveolar, Sarcoma de partes blandas alveolar, Sarcoma epiteloide, Liposarcoma mixoide,
+                                Sarcoma sinovial.</li>
+                            <li><strong>Adultos Jóvenes a de Mediana Edad (~ 20 a 50 Años):</strong> Sarcoma de células
+                                claras, Dermatofibrosarcoma protuberans, Leiomiosarcoma, Fascitis nodular.</li>
+                            <li><strong>Adultos de Mediana Edad a Mayores (~ 45 a 60 Años):</strong> Liposarcoma bien
+                                diferenciado/desdiferenciado, Condrosarcoma mixoide extraesquelético.</li>
+                            <li><strong>Adultos Mayores y Ancianos (&gt; 50 Años):</strong> Fibroxantoma atípico,
+                                Mixofibrosarcoma, Liposarcoma pleomórfico, Sarcoma pleomórfico indiferenciado.</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="elemento-desplegable">
-                    <button class="boton-desplegable"><i class="fas fa-map-marker-alt" style="margin-right: 10px; color: var(--accent);"></i> Enfoque Basado en la Localización</button>
+                    <button class="boton-desplegable"><i class="fas fa-map-marker-alt"
+                            style="margin-right: 10px; color: var(--accent);"></i> Enfoque Basado en la
+                        Localización</button>
                     <div class="contenido-desplegable" style="padding-top: 20px; padding-bottom: 20px;">
                         <div class="elemento-desplegable">
-                            <button class="boton-desplegable" style="font-size: 1.1rem; background-color: #fdfdff; justify-content: flex-start; gap: 15px;">Extremidades Distales (Acrales)</button>
-                            <div class="contenido-desplegable"><ul><li>Sarcoma de células claras</li><li>Sarcoma epiteloide</li><li>Fibromatosis palmar/plantar</li></ul></div>
+                            <button class="boton-desplegable"
+                                style="font-size: 1.1rem; background-color: #fdfdff; justify-content: flex-start; gap: 15px;">Extremidades
+                                Distales (Acrales)</button>
+                            <div class="contenido-desplegable">
+                                <ul>
+                                    <li>Sarcoma de células claras</li>
+                                    <li>Sarcoma epiteloide</li>
+                                    <li>Fibromatosis palmar/plantar</li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="elemento-desplegable">
-                            <button class="boton-desplegable" style="font-size: 1.1rem; background-color: #fdfdff; justify-content: flex-start; gap: 15px;">Dedos de Manos y Pies</button>
-                            <div class="contenido-desplegable"><ul><li>Fibromixoma acral</li><li>Tumor glómico</li><li>Tumor de células gigantes tenosinovial</li></ul></div>
+                            <button class="boton-desplegable"
+                                style="font-size: 1.1rem; background-color: #fdfdff; justify-content: flex-start; gap: 15px;">Dedos
+                                de Manos y Pies</button>
+                            <div class="contenido-desplegable">
+                                <ul>
+                                    <li>Fibromixoma acral</li>
+                                    <li>Tumor glómico</li>
+                                    <li>Tumor de células gigantes tenosinovial</li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="elemento-desplegable">
-                            <button class="boton-desplegable" style="font-size: 1.1rem; background-color: #fdfdff; justify-content: flex-start; gap: 15px;">Región Genital e Ingle</button>
-                            <div class="contenido-desplegable"><ul><li>Angiomiofibroblastoma</li><li>Angiomixoma profundo</li><li>Rabdomiosarcoma de células fusiformes</li></ul></div>
+                            <button class="boton-desplegable"
+                                style="font-size: 1.1rem; background-color: #fdfdff; justify-content: flex-start; gap: 15px;">Región
+                                Genital e Ingle</button>
+                            <div class="contenido-desplegable">
+                                <ul>
+                                    <li>Angiomiofibroblastoma</li>
+                                    <li>Angiomixoma profundo</li>
+                                    <li>Rabdomiosarcoma de células fusiformes</li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="elemento-desplegable">
-                            <button class="boton-desplegable" style="font-size: 1.1rem; background-color: #fdfdff; justify-content: flex-start; gap: 15px;">Mesenterio/Epiplón/Peritoneo</button>
-                            <div class="contenido-desplegable"><ul><li>Fibromatosis desmoide</li><li>GIST</li><li>Tumor miofibroblástico inflamatorio</li></ul></div>
+                            <button class="boton-desplegable"
+                                style="font-size: 1.1rem; background-color: #fdfdff; justify-content: flex-start; gap: 15px;">Mesenterio/Epiplón/Peritoneo</button>
+                            <div class="contenido-desplegable">
+                                <ul>
+                                    <li>Fibromatosis desmoide</li>
+                                    <li>GIST</li>
+                                    <li>Tumor miofibroblástico inflamatorio</li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="elemento-desplegable">
-                            <button class="boton-desplegable" style="font-size: 1.1rem; background-color: #fdfdff; justify-content: flex-start; gap: 15px;">Cabeza y Cuello</button>
-                            <div class="contenido-desplegable"><ul><li>Rabdomiosarcoma embrionario</li><li>Rabdomioma</li><li>Neurotequeoma celular</li></ul></div>
+                            <button class="boton-desplegable"
+                                style="font-size: 1.1rem; background-color: #fdfdff; justify-content: flex-start; gap: 15px;">Cabeza
+                                y Cuello</button>
+                            <div class="contenido-desplegable">
+                                <ul>
+                                    <li>Rabdomiosarcoma embrionario</li>
+                                    <li>Rabdomioma</li>
+                                    <li>Neurotequeoma celular</li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="elemento-desplegable">
-                            <button class="boton-desplegable" style="font-size: 1.1rem; background-color: #fdfdff; justify-content: flex-start; gap: 15px;">Retroperitoneo</button>
-                            <div class="contenido-desplegable"><ul><li>Liposarcoma (desdiferenciado y bien diferenciado)</li><li>Leiomiosarcoma</li><li>Schwannoma</li></ul></div>
+                            <button class="boton-desplegable"
+                                style="font-size: 1.1rem; background-color: #fdfdff; justify-content: flex-start; gap: 15px;">Retroperitoneo</button>
+                            <div class="contenido-desplegable">
+                                <ul>
+                                    <li>Liposarcoma (desdiferenciado y bien diferenciado)</li>
+                                    <li>Leiomiosarcoma</li>
+                                    <li>Schwannoma</li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="elemento-desplegable">
-                            <button class="boton-desplegable" style="font-size: 1.1rem; background-color: #fdfdff; justify-content: flex-start; gap: 15px;">Tronco, Hombros y Espalda</button>
-                            <div class="contenido-desplegable"><ul><li>Dermatofibrosarcoma protuberans</li><li>Elastofibroma</li><li>Lipoma de células fusiformes/pleomórfico</li></ul></div>
+                            <button class="boton-desplegable"
+                                style="font-size: 1.1rem; background-color: #fdfdff; justify-content: flex-start; gap: 15px;">Tronco,
+                                Hombros y Espalda</button>
+                            <div class="contenido-desplegable">
+                                <ul>
+                                    <li>Dermatofibrosarcoma protuberans</li>
+                                    <li>Elastofibroma</li>
+                                    <li>Lipoma de células fusiformes/pleomórfico</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="elemento-desplegable">
-                    <button class="boton-desplegable"><i class="fas fa-project-diagram" style="margin-right: 10px; color: var(--accent);"></i> Enfoque Diagnóstico Basado en Patrones</button>
+                    <button class="boton-desplegable"><i class="fas fa-project-diagram"
+                            style="margin-right: 10px; color: var(--accent);"></i> Enfoque Diagnóstico Basado en
+                        Patrones</button>
                     <div class="contenido-desplegable" style="padding-top: 20px; padding-bottom: 20px;">
                         <h4>PATRONES DE CÉLULAS FUSIFORMES MONOMÓRFICAS</h4>
                         <ul>
                             <li><strong>Dispuestas en Láminas:</strong> Sarcoma sinovial, Tumor fibroso solitario.</li>
-                            <li><strong>Con Áreas Hipo e Hipercelulares:</strong> Sarcoma fibromixoide de bajo grado, MPNST, Schwannoma.</li>
-                            <li><strong>Dispuestas en Haces o Fascículos:</strong> Leiomioma, Fibromatosis, Leiomiosarcoma, Schwannoma.</li>
-                            <li><strong>Dispuestas en Fascículos "Espina de Pescado":</strong> Fibrosarcoma, Sarcoma sinovial.</li>
-                            <li><strong>Arquitectura Estoriforme o en Remolino:</strong> Dermatofibrosarcoma protuberans, Fascitis nodular, Perineurioma.</li>
-                            <li><strong>Dentro de Estroma Mixoide:</strong> Mixoma intramuscular, Liposarcoma mixoide, Neurofibroma, Fascitis nodular.</li>
+                            <li><strong>Con Áreas Hipo e Hipercelulares:</strong> Sarcoma fibromixoide de bajo grado,
+                                MPNST, Schwannoma.</li>
+                            <li><strong>Dispuestas en Haces o Fascículos:</strong> Leiomioma, Fibromatosis,
+                                Leiomiosarcoma, Schwannoma.</li>
+                            <li><strong>Dispuestas en Fascículos "Espina de Pescado":</strong> Fibrosarcoma, Sarcoma
+                                sinovial.</li>
+                            <li><strong>Arquitectura Estoriforme o en Remolino:</strong> Dermatofibrosarcoma
+                                protuberans, Fascitis nodular, Perineurioma.</li>
+                            <li><strong>Dentro de Estroma Mixoide:</strong> Mixoma intramuscular, Liposarcoma mixoide,
+                                Neurofibroma, Fascitis nodular.</li>
                         </ul>
                         <h4>PATRONES DE CÉLULAS FUSIFORMES PLEOMÓRFICAS</h4>
                         <ul>
-                            <li><strong>Dispuestas en Láminas:</strong> Sarcoma pleomórfico indiferenciado, Liposarcoma desdiferenciado/pleomórfico.</li>
+                            <li><strong>Dispuestas en Láminas:</strong> Sarcoma pleomórfico indiferenciado, Liposarcoma
+                                desdiferenciado/pleomórfico.</li>
                             <li><strong>Dispuestas en Fascículos:</strong> Leiomiosarcoma, MPNST.</li>
                             <li><strong>Dentro de Estroma Mixoide:</strong> Mixofibrosarcoma.</li>
                         </ul>
                         <h4>PATRONES DE CÉLULAS EPITELIOIDES</h4>
                         <ul>
-                            <li><strong>Dispuestas en Nidos o Lóbulos:</strong> Sarcoma de partes blandas alveolar, Sarcoma de células claras, Sarcoma epiteloide, Tumor glómico, PEComa.</li>
-                            <li><strong>Dispuestas en Láminas (Citoplasma Abundante):</strong> Sarcoma epiteloide (tipo proximal), Tumor rabdoide extrarenal.</li>
-                            <li><strong>Dispuestas en Láminas (Citoplasma Mínimo/Escaso - "Células Azules"):</strong> Sarcoma de Ewing, Rabdomiosarcoma alveolar, Sarcoma sinovial pobremente diferenciado.</li>
-                            <li><strong>Con Estroma Mixoide:</strong> Mioepitelioma, Condrosarcoma mixoide extraesquelético.</li>
+                            <li><strong>Dispuestas en Nidos o Lóbulos:</strong> Sarcoma de partes blandas alveolar,
+                                Sarcoma de células claras, Sarcoma epiteloide, Tumor glómico, PEComa.</li>
+                            <li><strong>Dispuestas en Láminas (Citoplasma Abundante):</strong> Sarcoma epiteloide (tipo
+                                proximal), Tumor rabdoide extrarenal.</li>
+                            <li><strong>Dispuestas en Láminas (Citoplasma Mínimo/Escaso - "Células Azules"):</strong>
+                                Sarcoma de Ewing, Rabdomiosarcoma alveolar, Sarcoma sinovial pobremente diferenciado.
+                            </li>
+                            <li><strong>Con Estroma Mixoide:</strong> Mioepitelioma, Condrosarcoma mixoide
+                                extraesquelético.</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="elemento-desplegable">
-                    <button class="boton-desplegable"><i class="fas fa-dna" style="margin-right: 10px; color: var(--accent);"></i> Enfoque Diagnóstico Basado en Características</button>
+                    <button class="boton-desplegable"><i class="fas fa-dna"
+                            style="margin-right: 10px; color: var(--accent);"></i> Enfoque Diagnóstico Basado en
+                        Características</button>
                     <div class="contenido-desplegable" style="padding-top: 20px; padding-bottom: 20px;">
                         <h4>CARACTERÍSTICAS CITOLÓGICAS</h4>
                         <ul>
                             <li><strong>Células Claras:</strong> Sarcoma de células claras, Mioepitelioma, PEComa.</li>
-                            <li><strong>Células Granulares:</strong> Tumor de células granulares, Hibernoma, Rabdomioma adulto.</li>
+                            <li><strong>Células Granulares:</strong> Tumor de células granulares, Hibernoma, Rabdomioma
+                                adulto.</li>
                             <li><strong>Células en Clavo de Dedo (Hobnail):</strong> Varios hemangioendoteliomas.</li>
-                            <li><strong>Células Rabdoides:</strong> Sarcoma epiteloide, Tumor rabdoide extrarenal, Carcinoma mioepitelial.</li>
+                            <li><strong>Células Rabdoides:</strong> Sarcoma epiteloide, Tumor rabdoide extrarenal,
+                                Carcinoma mioepitelial.</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="elemento-desplegable">
-                    <button class="boton-desplegable">Resumen del Dr. Valenzuela: Una perspectiva desde la experiencia.</button>
+                    <button class="boton-desplegable">Resumen del Dr. Valenzuela: Una perspectiva desde la
+                        experiencia.</button>
                     <div class="contenido-desplegable" style="padding-top: 20px; padding-bottom: 20px;">
                         <div class="summary-content">
                             <div class="summary-column">
-                                <p>¡Por supuesto! Tome asiento, joven. Soy el Dr. Valenzuela, Jefe de Patología de Partes Blandas aquí en el MD Anderson. Usted tiene 16 años y esa curiosidad es lo más valioso que tiene. Voy a contarle cómo es *realmente* este oficio de detective de células.</p>
-                                <p>Olvídese de los libros por un momento. Esto es como una guerra contra la incertidumbre, y cada tumor es un campo de batalla.</p>
+                                <p>¡Por supuesto! Tome asiento, joven. Soy el Dr. Valenzuela, Jefe de Patología de
+                                    Partes Blandas aquí en el MD Anderson. Usted tiene 16 años y esa curiosidad es lo
+                                    más valioso que tiene. Voy a contarle cómo es *realmente* este oficio de detective
+                                    de células.</p>
+                                <p>Olvídese de los libros por un momento. Esto es como una guerra contra la
+                                    incertidumbre, y cada tumor es un campo de batalla.</p>
                                 <h4>El Arte de la Muestra: No Es Solo Pinchar</h4>
-                                <p>Cuando ese cirujano viene a mi laboratorio, no me trae un tumor, me trae una <strong>pregunta</strong>: "¿Qué es esto y qué hacemos con ello?".</p>
+                                <p>Cuando ese cirujano viene a mi laboratorio, no me trae un tumor, me trae una
+                                    <strong>pregunta</strong>: "¿Qué es esto y qué hacemos con ello?".</p>
                                 <ul>
-                                    <li><strong>La Biopsia con Aguja (Core Needle):</strong> Es nuestro francotirador. Rápido y limpio, pero es solo una foto de una calle. El riesgo es que esa calle no represente a toda la ciudad.</li>
-                                    <li><strong>La Escisión/Resección:</strong> Esto es el mapa completo. Aquí diagnosticamos, estadificamos y damos pronóstico. Lo más crucial: <strong>analizamos los márgenes</strong>. Si el tumor toca el borde, es como dejar raíces de una mala hierba. Va a volver.</li>
+                                    <li><strong>La Biopsia con Aguja (Core Needle):</strong> Es nuestro francotirador.
+                                        Rápido y limpio, pero es solo una foto de una calle. El riesgo es que esa calle
+                                        no represente a toda la ciudad.</li>
+                                    <li><strong>La Escisión/Resección:</strong> Esto es el mapa completo. Aquí
+                                        diagnosticamos, estadificamos y damos pronóstico. Lo más crucial:
+                                        <strong>analizamos los márgenes</strong>. Si el tumor toca el borde, es como
+                                        dejar raíces de una mala hierba. Va a volver.</li>
                                 </ul>
                                 <h4>Los Tres Pilares del Diagnóstico: La Santísima Trinidad</h4>
-                                <p>Usamos los TRES enfoques a la vez. Es como tener un filtro de Instagram, un buscador de Google y un test de ADN para identificar a alguien.</p>
+                                <p>Usamos los TRES enfoques a la vez. Es como tener un filtro de Instagram, un buscador
+                                    de Google y un test de ADN para identificar a alguien.</p>
                                 <h5>1. El Contexto: ¿QUIÉN es el paciente y DÓNDE está el problema?</h5>
                                 <p>Un tumor en el pie de un adolescente NO es lo mismo que en un anciano. Es simple.</p>
                                 <ul>
-                                    <li><strong>Un bebé con un bulto:</strong> Pienso en <strong>Lipoblastoma</strong> o <strong>Fibrosarcoma Infantil</strong>.</li>
-                                    <li><strong>Un joven de 20 años:</strong> Mi radar se enfoca en el <strong>Sarcoma Sinovial</strong>.</li>
-                                    <li><strong>Un adulto mayor:</strong> Pienso en <strong>Mixofibrosarcoma</strong>.</li>
+                                    <li><strong>Un bebé con un bulto:</strong> Pienso en <strong>Lipoblastoma</strong> o
+                                        <strong>Fibrosarcoma Infantil</strong>.</li>
+                                    <li><strong>Un joven de 20 años:</strong> Mi radar se enfoca en el <strong>Sarcoma
+                                            Sinovial</strong>.</li>
+                                    <li><strong>Un adulto mayor:</strong> Pienso en <strong>Mixofibrosarcoma</strong>.
+                                    </li>
                                 </ul>
                             </div>
                             <div class="summary-column">
                                 <h5>2. El Patrón: La "Cara" del Tumor bajo el Microscopio</h5>
                                 <p>Es leer el lenguaje de las células.</p>
                                 <ul>
-                                    <li><strong>Células alargadas (fusiformes) ordenadas:</strong> Suena a <strong>Leiomiosarcoma</strong>.</li>
-                                    <li><strong>Células redondas y grandes (epitelioides):</strong> Me hace pensar en <strong>Carcinoma</strong>, <strong>Melanoma</strong>, o <strong>Sarcoma de Células Claras</strong>.</li>
-                                    <li><strong>Parece gelatina con células flotando (mixoide):</strong> Firma del <strong>Liposarcoma Mixoide</strong>.</li>
-                                    <li><strong>Monstruos (células pleomórficas):</strong> Un <strong>Sarcoma Pleomórfico Indiferenciado</strong>.</li>
+                                    <li><strong>Células alargadas (fusiformes) ordenadas:</strong> Suena a
+                                        <strong>Leiomiosarcoma</strong>.</li>
+                                    <li><strong>Células redondas y grandes (epitelioides):</strong> Me hace pensar en
+                                        <strong>Carcinoma</strong>, <strong>Melanoma</strong>, o <strong>Sarcoma de
+                                            Células Claras</strong>.</li>
+                                    <li><strong>Parece gelatina con células flotando (mixoide):</strong> Firma del
+                                        <strong>Liposarcoma Mixoide</strong>.</li>
+                                    <li><strong>Monstruos (células pleomórficas):</strong> Un <strong>Sarcoma
+                                            Pleomórfico Indiferenciado</strong>.</li>
                                 </ul>
                                 <h5>3. Las Marcas: La "Huella Dactilar" Molecular</h5>
                                 <p>Cuando la morfología no basta, sacamos la artillería pesada.</p>
                                 <ul>
-                                    <li><strong>Inmunohistoquímica (IHQ):</strong> "Pruebas de embarazo" para células. ¿Se tiñe con <strong>Desmina</strong>? Es músculo. ¿Con <strong>S100</strong>? Es nervioso o grasa.</li>
-                                    <li><strong>Genética Molecular (FISH, PCR):</strong> Nivel NASA. Buscamos fallos en el código genético. El <strong>Sarcoma Sinovial</strong> tiene una translocación X;18. Es su DNI. El <strong>Liposarcoma Bien Diferenciado</strong> tiene una amplificación de <strong>MDM2</strong>. Diagnóstico seguro.</li>
+                                    <li><strong>Inmunohistoquímica (IHQ):</strong> "Pruebas de embarazo" para células.
+                                        ¿Se tiñe con <strong>Desmina</strong>? Es músculo. ¿Con <strong>S100</strong>?
+                                        Es nervioso o grasa.</li>
+                                    <li><strong>Genética Molecular (FISH, PCR):</strong> Nivel NASA. Buscamos fallos en
+                                        el código genético. El <strong>Sarcoma Sinovial</strong> tiene una translocación
+                                        X;18. Es su DNI. El <strong>Liposarcoma Bien Diferenciado</strong> tiene una
+                                        amplificación de <strong>MDM2</strong>. Diagnóstico seguro.</li>
                                 </ul>
                                 <h4>Los Secretos del Oficio</h4>
                                 <ol>
-                                    <li><strong>La Regla de Oro:</strong> NUNCA digas que es un tumor de partes blandas sin antes descartar <strong>Carcinoma, Melanoma o Linfoma</strong>.</li>
-                                    <li><strong>Los "Imitadores Benignos":</strong> La <strong>Fascitis Nodular</strong> parece un sarcoma pero no lo es. Una pesadilla para novatos.</li>
-                                    <li><strong>Los "Asesinos de Bajo Perfil":</strong> Tumores como el <strong>Sarcoma Fibromixoide de Bajo Grado</strong> se ven aburridos, pero son traicioneros y metastatizan años después.</li>
-                                    <li><strong>La Humildad:</strong> Si no estoy seguro, lo digo. La arrogancia en esta especialidad mata.</li>
+                                    <li><strong>La Regla de Oro:</strong> NUNCA digas que es un tumor de partes blandas
+                                        sin antes descartar <strong>Carcinoma, Melanoma o Linfoma</strong>.</li>
+                                    <li><strong>Los "Imitadores Benignos":</strong> La <strong>Fascitis Nodular</strong>
+                                        parece un sarcoma pero no lo es. Una pesadilla para novatos.</li>
+                                    <li><strong>Los "Asesinos de Bajo Perfil":</strong> Tumores como el <strong>Sarcoma
+                                            Fibromixoide de Bajo Grado</strong> se ven aburridos, pero son traicioneros
+                                        y metastatizan años después.</li>
+                                    <li><strong>La Humildad:</strong> Si no estoy seguro, lo digo. La arrogancia en esta
+                                        especialidad mata.</li>
                                 </ol>
-                                <p class="summary-conclusion">Joven, lo que hace un patólogo de partes blandas no es poner un nombre bonito a una enfermedad. Es <strong>guiar el tratamiento</strong>. Cada diapositiva que miro es una vida. Y mi trabajo es descifrar su historia para darle el mejor final posible.</p>
+                                <p class="summary-conclusion">Joven, lo que hace un patólogo de partes blandas no es
+                                    poner un nombre bonito a una enfermedad. Es <strong>guiar el tratamiento</strong>.
+                                    Cada diapositiva que miro es una vida. Y mi trabajo es descifrar su historia para
+                                    darle el mejor final posible.</p>
                             </div>
                         </div>
                     </div>
@@ -1433,13 +1856,13 @@
         </div>
     </section>
 
-    <script src="page.js"></script>
+    <script src="main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const botones = document.querySelectorAll('.boton-desplegable');
 
             botones.forEach(boton => {
-                boton.addEventListener('click', function() {
+                boton.addEventListener('click', function () {
                     this.classList.toggle('activo');
                     const contenido = this.nextElementSibling;
 
@@ -1451,10 +1874,11 @@
                         contenido.style.paddingTop = '20px';
                         contenido.style.paddingBottom = '20px';
                         contenido.style.maxHeight = contenido.scrollHeight + 40 + 'px';
-                    } 
+                    }
                 });
             });
         });
     </script>
 </body>
+
 </html>

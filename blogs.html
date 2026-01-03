@@ -7,6 +7,11 @@
     <title>Blogs - JC PATH LAB</title>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="style.css?v=5" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css?v=5">
     <link rel="stylesheet" href="chatbot.css">
@@ -18,7 +23,8 @@
         <div class="header-container">
             <!-- Logo -->
             <div class="logo-container">
-                <img src="logo-jcpathlab.png" alt="JC PATH LAB Logo" class="logo" loading="lazy">
+                <img src="logo-jcpathlab.png" alt="JC PATH LAB Logo" class="logo" width="180" height="60"
+                    loading="lazy">
             </div>
 
             <!-- Navigation Menu -->
@@ -27,6 +33,7 @@
                     <li class="nav-item"><a href="index.html#inicio" class="nav-link">Inicio</a></li>
                     <li class="nav-item"><a href="index.html#servicios" class="nav-link">Servicios</a></li>
                     <li class="nav-item"><a href="index.html#quienes-somos" class="nav-link">Quiénes Somos</a></li>
+                    <li class="nav-item"><a href="cv.html" class="nav-link">Curriculum Vitae</a></li>
                     <li class="nav-item"><a href="index.html#classroom" class="nav-link">Classroom</a></li>
                     <li class="nav-item"><a href="index.html#protocolos" class="nav-link">Nuestros Protocolos</a></li>
                     <li class="nav-item"><a href="blogs.html" class="nav-link active">Blogs</a></li>
@@ -36,7 +43,7 @@
             </nav>
 
             <!-- Hamburger Menu -->
-            <button class="hamburger">
+            <button class="hamburger" aria-label="Menú de navegación">
                 <span class="line"></span>
                 <span class="line"></span>
                 <span class="line"></span>
@@ -48,7 +55,7 @@
     <section id="blogs" class="page-section active" style="padding-top: 100px; min-height: 60vh;">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">RESPUESTA A LAS PREGUNTAS DE LOS USUARIOS</h2>
+                <h1 class="section-title">RESPUESTA A LAS PREGUNTAS DE LOS USUARIOS</h1>
             </div>
 
             <div class="blogs-content" style="margin-top: 2rem;">
