@@ -13,31 +13,79 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://jcastilloc2920.github.io/cv.html</loc>
+        <priority>0.7</priority>
+    </url>
+    <url>
         <loc>https://jcastilloc2920.github.io/dermatopatologia.html</loc>
-        <priority>0.6</priority>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://jcastilloc2920.github.io/neuropatologia.html</loc>
-        <priority>0.6</priority>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://jcastilloc2920.github.io/partes-blandas.html</loc>
-        <priority>0.6</priority>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://jcastilloc2920.github.io/citopatologia.html</loc>
-        <priority>0.6</priority>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://jcastilloc2920.github.io/gastrointestinal.html</loc>
-        <priority>0.6</priority>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://jcastilloc2920.github.io/genitourinario.html</loc>
-        <priority>0.6</priority>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://jcastilloc2920.github.io/canceraspectospatologicosindex.html</loc>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://jcastilloc2920.github.io/canceraspectopatologicos.html</loc>
         <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://jcastilloc2920.github.io/inmunohistoquimica_resumen.html</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://jcastilloc2920.github.io/inmunohistoquimica_resumen_2.html</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://jcastilloc2920.github.io/partesblandas.html</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://jcastilloc2920.github.io/tumoresdepartesblandasrotacion.html</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://jcastilloc2920.github.io/lipoma_presentacion.html</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://jcastilloc2920.github.io/lipomaatipico.html</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://jcastilloc2920.github.io/hibernoma.html</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://jcastilloc2920.github.io/Atypical%20Spindle%20Cell.html</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://jcastilloc2920.github.io/antibodies_table.html</loc>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://jcastilloc2920.github.io/powerpoint_simulation.html</loc>
+        <priority>0.4</priority>
     </url>
 </urlset>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página no encontrada - JC PATH LAB</title>
+    <meta name="description" content="Página no encontrada en JC PATH LAB.">
+
+    <!-- Use same CSS as index.html -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=5">
+
+    <style>
+        .error-hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 0 20px;
+        }
+
+        .error-code {
+            font-size: clamp(6rem, 15vw, 12rem);
+            font-weight: 900;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .error-title {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .error-message {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--dark);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="logo-jcpathlab.png" alt="JC PATH LAB Logo" class="logo" width="180" height="60">
+            </div>
+
+            <nav>
+                <ul class="nav-menu">
+                    <!-- Updated links to point to index.html sections -->
+                    <li class="nav-item"><a href="index.html#inicio" class="nav-link">Inicio</a></li>
+                    <li class="nav-item"><a href="index.html#servicios" class="nav-link">Servicios</a></li>
+                    <li class="nav-item"><a href="index.html#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 404 Content -->
+    <main>
+        <section class="error-hero">
+            <div class="error-code">404</div>
+            <h1 class="error-title">¡Ups! Página no encontrada</h1>
+            <p class="error-message">Lo sentimos, la página que estás buscando no existe o ha sido movida. Pero no te
+                preocupes, puedes volver a nuestra página principal.</p>
+            <a href="index.html" class="btn btn-primary">
+                <i class="fas fa-home"></i> Volver al Inicio
+            </a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="contact-section" style="padding-top: 50px; background-color: var(--white);">
+        <div class="container" style="text-align: center;">
+            <p style="color: var(--dark);">&copy; 2024 JC PATH LAB. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

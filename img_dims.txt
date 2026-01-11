@@ -1,0 +1,17 @@
+recepcion-laboratorio.jpg:946,686
+analisis-digital-patologia.jpg:1000,750
+microscopio-patologia.jpg:874,1426
+area-macroscopia.jpg:1000,750
+dermatopatologia.png:268,188
+neuropatologia.png:425,314
+liposarcoma.png:425,285
+citopatologia.png:567,425
+gastrointestinal.png:425,319
+genitourinario.png:397,298
+carcinomaescamoso.png:254,198
+carcinomapapilar.png:472,303
+hepatocarcinoma.png:320,240
+limfoma.png:284,203
+colonnormal.png:488,360
+corioamnionitisaguda.png:329,244
+adenocarcinomapulmon.png:454,363

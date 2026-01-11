@@ -15,6 +15,57 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css?v=5">
     <link rel="stylesheet" href="chatbot.css">
+
+    <!-- JSON-LD FAQPage Schema for Rich Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "¿Qué es el virus del papiloma humano (VPH)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Es el virus de transmisión sexual más común del mundo. Tener VPH no es sinónimo de tener cáncer, pero algunos tipos de alto riesgo pueden causar cambios celulares que, si no se tratan, podrían derivar en cáncer. La mayoría de infecciones son inofensivas y el cuerpo las elimina solo."
+        }
+      }, {
+        "@type": "Question",
+        "name": "¿Qué es la clamidia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Es una infección bacteriana común (Chlamydia trachomatis) transmitida sexualmente. A menudo es asintomática ('la infección silenciosa'), pero si no se trata con antibióticos, puede causar daños graves y permanentes en el aparato reproductor."
+        }
+      }, {
+        "@type": "Question",
+        "name": "¿Qué es el herpes simple?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Es una infección viral (VHS) que permanece latente en el cuerpo de por vida. El tipo 1 suele causar llagas labiales y el tipo 2 llagas genitales. Se transmite por contacto directo piel con piel, incluso cuando no hay lesiones visibles."
+        }
+      }, {
+        "@type": "Question",
+        "name": "¿Qué es la gonorrea?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Es una infección de transmisión sexual causada por la bacteria Neisseria gonorrhoeae. Afecta zonas húmedas como uretra, cuello uterino, recto y garganta. Es curable con antibióticos, pero es crucial tratarla rápido para evitar complicaciones."
+        }
+      }, {
+        "@type": "Question",
+        "name": "¿Qué es la sífilis?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Es una infección bacteriana (Treponema pallidum) que progresa por etapas. Comienza con una llaga indolora (chancro) y, si no se trata, puede avanzar y dañar órganos internos años después. Se cura fácilmente con penicilina en sus etapas tempranas."
+        }
+      }, {
+        "@type": "Question",
+        "name": "¿El acné es contagioso?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, el acné no es contagioso. No se transmite por contacto, toallas o besos. Es causado por factores internos como cambios hormonales y producción excesiva de grasa que obstruye los poros."
+        }
+      }]
+    }
+    </script>
 </head>
 
 <body>
@@ -60,11 +111,11 @@
 
             <div class="blogs-content" style="margin-top: 2rem;">
                 <div class="services-accordion">
-                    <div class="service-accordion-item blog-accordion-item">
+                    <div id="vph" class="service-accordion-item blog-accordion-item">
                         <button class="service-accordion-header blog-accordion-header">
                             <div class="service-title-container">
-                                <h3 class="service-title" style="font-size: 1.1rem; text-transform: none;">Un usuario
-                                    nos pregunta: ¿Qué es el virus del papiloma humano?</h3>
+                                <h2 class="service-title" style="font-size: 1.1rem; text-transform: none;">Un usuario
+                                    nos pregunta: ¿Qué es el virus del papiloma humano?</h2>
                             </div>
                             <i class="fas fa-chevron-down service-accordion-icon"></i>
                         </button>
@@ -140,7 +191,9 @@
                                 <p style="margin-bottom: 0.5rem;"><strong>Para mujeres:</strong> El Ginecólogo es tu
                                     aliado principal. Él o ella te hará:</p>
                                 <ul style="margin-left: 1.5rem; margin-bottom: 1rem; list-style-type: disc;">
-                                    <li style="margin-bottom: 0.5rem;"><strong>El Papanicolaou (Pap):</strong> Toma una
+                                    <li style="margin-bottom: 0.5rem;"><strong>El <a href="index.html#servicios"
+                                                style="color: var(--primary); text-decoration: none; border-bottom: 1px dashed;">Papanicolaou
+                                                (Pap)</a>:</strong> Toma una
                                         pequeña muestra de células del cuello de tu útero para que nosotros en el
                                         laboratorio la analicemos y busquemos cambios.</li>
                                     <li style="margin-bottom: 0.5rem;"><strong>La prueba del VPH:</strong> Detecta la
@@ -184,8 +237,8 @@
                     <div class="service-accordion-item blog-accordion-item">
                         <button class="service-accordion-header blog-accordion-header">
                             <div class="service-title-container">
-                                <h3 class="service-title" style="font-size: 1.1rem; text-transform: none;">Un usuario
-                                    nos consulta: ¿Qué es la clamidia?</h3>
+                                <h2 class="service-title" style="font-size: 1.1rem; text-transform: none;">Un usuario
+                                    nos consulta: ¿Qué es la clamidia?</h2>
                             </div>
                             <i class="fas fa-chevron-down service-accordion-icon"></i>
                         </button>
@@ -338,8 +391,8 @@
                     <div class="service-accordion-item blog-accordion-item">
                         <button class="service-accordion-header blog-accordion-header">
                             <div class="service-title-container">
-                                <h3 class="service-title" style="font-size: 1.1rem; text-transform: none;">Un usuario
-                                    nos pregunta: ¿Qué es el herpes simple?</h3>
+                                <h2 class="service-title" style="font-size: 1.1rem; text-transform: none;">Un usuario
+                                    nos pregunta: ¿Qué es el herpes simple?</h2>
                             </div>
                             <i class="fas fa-chevron-down service-accordion-icon"></i>
                         </button>
@@ -473,8 +526,8 @@
                     <div class="service-accordion-item blog-accordion-item">
                         <button class="service-accordion-header blog-accordion-header">
                             <div class="service-title-container">
-                                <h3 class="service-title" style="font-size: 1.1rem; text-transform: none;">Un usuario
-                                    nos pregunta: ¿Qué es la gonorrea?</h3>
+                                <h2 class="service-title" style="font-size: 1.1rem; text-transform: none;">Un usuario
+                                    nos pregunta: ¿Qué es la gonorrea?</h2>
                             </div>
                             <i class="fas fa-chevron-down service-accordion-icon"></i>
                         </button>
@@ -611,8 +664,8 @@
                     <div class="service-accordion-item blog-accordion-item">
                         <button class="service-accordion-header blog-accordion-header">
                             <div class="service-title-container">
-                                <h3 class="service-title" style="font-size: 1.1rem; text-transform: none;">Un usuario
-                                    nos pregunta: ¿Qué es la sífilis?</h3>
+                                <h2 class="service-title" style="font-size: 1.1rem; text-transform: none;">Un usuario
+                                    nos pregunta: ¿Qué es la sífilis?</h2>
                             </div>
                             <i class="fas fa-chevron-down service-accordion-icon"></i>
                         </button>
@@ -761,9 +814,9 @@
                     <div class="service-accordion-item blog-accordion-item">
                         <button class="service-accordion-header blog-accordion-header">
                             <div class="service-title-container">
-                                <h3 class="service-title" style="font-size: 1.1rem; text-transform: none;">Un usuario
+                                <h2 class="service-title" style="font-size: 1.1rem; text-transform: none;">Un usuario
                                     nos pregunta: "Doctor, mi hijo adolescente tiene granos. ¿Es algo grave? ¿Se pega?"
-                                </h3>
+                                </h2>
                             </div>
                             <i class="fas fa-chevron-down service-accordion-icon"></i>
                         </button>

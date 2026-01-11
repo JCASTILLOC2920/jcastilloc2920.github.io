@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jcastilloc2920.github.io/sitemap.xml
