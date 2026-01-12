@@ -88,4 +88,8 @@
         <loc>https://jcastilloc2920.github.io/powerpoint_simulation.html</loc>
         <priority>0.4</priority>
     </url>
+    <url>
+        <loc>https://jcastilloc2920.github.io/educacion-medica.html</loc>
+        <priority>0.8</priority>
+    </url>
 </urlset>
