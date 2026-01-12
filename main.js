@@ -1,22 +1,22 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
     const pageSections = document.querySelectorAll('.page-section');
-    
+
     // Función para mostrar una sección específica
     function showSection(sectionId) {
         // Ocultar todas las secciones
         pageSections.forEach(section => {
             section.classList.remove('active');
         });
-        
+
         // Mostrar la sección solicitada
         const targetSection = document.getElementById(sectionId);
         if (targetSection) {
             targetSection.classList.add('active');
         }
-        
+
         // Actualizar enlace activo
         navLinks.forEach(link => {
             link.classList.remove('active');
@@ -24,11 +24,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 link.classList.add('active');
             }
         });
-        
+
         // Guardar estado en el historial
         history.pushState(null, null, `#${sectionId}`);
     }
-    
+
     // Manejar clics en enlaces de navegación
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -45,13 +45,37 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Manejar botón de menú hamburguesa
-    hamburger.addEventListener('click', function() {
+    hamburger.addEventListener('click', function () {
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
+        // Cerrar todos los submenús al cerrar el menú principal
+        if (!navMenu.classList.contains('active')) {
+            document.querySelectorAll('.has-dropdown').forEach(item => {
+                item.classList.remove('mobile-active');
+            });
+        }
     });
-    
+
+    // Manejar dropdowns en móviles (clic para abrir)
+    const dropdownToggles = document.querySelectorAll('.has-dropdown > .nav-link');
+    dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', function (e) {
+            if (window.innerWidth <= 900) {
+                e.preventDefault();
+                const parent = this.parentElement;
+
+                // Cerrar otros dropdowns
+                document.querySelectorAll('.has-dropdown').forEach(item => {
+                    if (item !== parent) item.classList.remove('mobile-active');
+                });
+
+                parent.classList.toggle('mobile-active');
+            }
+        });
+    });
+
     // Manejar cambios en el historial (botones atrás/adelante)
-    window.addEventListener('popstate', function() {
+    window.addEventListener('popstate', function () {
         const hash = window.location.hash.substring(1);
         if (hash) {
             showSection(hash);
@@ -59,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
             showSection('inicio');
         }
     });
-    
+
     // Inicializar página según hash de URL
     const initialHash = window.location.hash.substring(1);
     if (initialHash && document.getElementById(initialHash)) {
@@ -67,19 +91,19 @@ document.addEventListener('DOMContentLoaded', function() {
     } else if (document.getElementById('inicio')) {
         showSection('inicio');
     }
-    
+
     // Función para inicializar acordeones
     function initAccordion(headerSelector) {
         const headers = document.querySelectorAll(headerSelector);
         headers.forEach(header => {
-            header.addEventListener('click', function() {
+            header.addEventListener('click', function () {
                 const accordionItem = this.parentElement;
                 const content = accordionItem.querySelector('.service-accordion-content');
                 const icon = this.querySelector('.service-accordion-icon');
-                
+
                 if (content) {
                     const isActive = content.classList.contains('active');
-                    
+
                     if (isActive) {
                         content.classList.remove('active');
                         if (icon) icon.classList.remove('rotated');
@@ -94,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Inicializar todos los acordeones
     initAccordion('.service-accordion-header');
-    
-    
+
+
 
 });
