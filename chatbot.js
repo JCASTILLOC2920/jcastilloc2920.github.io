@@ -1,258 +1,179 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     const chatContainer = document.getElementById('chat-container');
     const chatToggle = document.getElementById('chat-toggle');
     const closeBtn = document.querySelector('.close-btn');
     const messagesContainer = document.getElementById('chat-messages');
     const optionsContainer = document.getElementById('bot-options');
-    const inputContainer = document.getElementById('chat-input-container');
     const userInput = document.getElementById('chat-input');
     const sendBtn = document.getElementById('send-btn');
+    const typingIndicator = document.getElementById('typing-indicator');
 
     const whatsappNumber = '51986396733';
-    const whatsappMessage = 'Hola, vengo de la página web y quisiera hacer una consulta.';
 
-    // --- CHATBOT DIALOGUE AND LOGIC ---
-    const conversation = {
-        start: {
-            text: "Hola, soy tu asistente virtual de JC Pathlab. Entiendo que buscar un diagnóstico puede generar inquietud. Estoy aquí para ayudarte a resolver tus dudas con total confianza y rapidez.",
-            options: [
-                { text: "Soy Médico / Clínica", next: "doctor" },
-                { text: "Soy Paciente", next: "patient" },
-                { text: "Consultar Precios", next: "pricing" },
-                { text: "Chatear por WhatsApp", action: "whatsapp" }
-            ]
+    // --- KNOWLEDGE BASE ---
+    const KNOWLEDGE_BASE = {
+        saludos: {
+            keywords: ['hola', 'buenos dias', 'buenas tardes', 'buenas noches', 'saludos'],
+            response: "¡Hola! Soy el asistente virtual del Dr. Josehp Castillo en JC PATH LAB. ¿En qué puedo ayudarte hoy? Estoy aquí para resolver tus dudas sobre análisis, precios o coordinar tu atención."
         },
-        doctor: {
-            text: "Perfecto. Ofrecemos diagnósticos precisos y rápidos, respaldados por años de experiencia, para garantizar la mejor y más segura atención a sus pacientes. ¿Qué información necesita?",
-            options: [
-                { text: "Tiempos de Entrega", next: "turnaround" },
-                { text: "Consultar Precios", next: "pricing" },
-                { text: "Cómo Enviar Muestras", next: "samples" },
-                { text: "Hablar con un Especialista", next: "lead_capture_start" },
-                { text: "Hablar por WhatsApp", action: "whatsapp" },
-                { text: "Volver", next: "start" }
-            ]
+        precios: {
+            keywords: ['precio', 'costo', 'cuanto cuesta', 'tarifa', 'cotizacion', 'soles'],
+            response: "Contamos con tarifas competitivas y transparentes:<br><br>• <b>Biopsias:</b> Desde S/ 80 (Gástrica, Útero, etc.) hasta S/ 250 (Próstata, Oncológicas).<br>• <b>Citología:</b> Papanicolaou S/ 20.<br>• <b>Inmunohistoquímica:</b> S/ 100 por marcador (Sin lectura) o S/ 250 (Con informe).<br>• <b>Piezas Quirúrgicas:</b> Desde S/ 110.<br><br>¿Deseas una cotización formal por WhatsApp?"
         },
-        patient: {
-            text: "Comprendo tu preocupación. Estamos aquí para darte la seguridad y tranquilidad que necesitas. Por favor, recuerda que los resultados siempre deben ser interpretados por tu médico tratante. ¿Cómo puedo orientarte?",
-            options: [
-                { text: "¿Cuánto tarda mi resultado?", next: "turnaround_patient" },
-                { text: "Consultar Precios", next: "pricing" },
-                { text: "Necesito ayuda con mi diagnóstico", next: "patient_help" },
-                { text: "Quiero contactar al laboratorio", next: "lead_capture_start" },
-                { text: "Hablar por WhatsApp", action: "whatsapp" },
-                { text: "Volver", next: "start" }
-            ]
+        biopsias: {
+            keywords: ['biopsia', 'gastrica', 'prostata', 'cervix', 'cono', 'quirurgica'],
+            response: "Somos especialistas en procesamiento de biopsias con resultados en 24-48 horas. Procesamos biopsias gástricas, de próstata (S/ 250), de cuello uterino (S/ 80), cono cervical (S/ 120) y piezas oncológicas complejas."
         },
-        services: {
-            text: "Nos especializamos en una amplia gama de diagnósticos para darte resultados certeros. Nuestra experiencia es tu tranquilidad. ¿Sobre qué área te gustaría saber más?",
-            options: [
-                { text: "Biopsias", next: "service_info" },
-                { text: "Citopatología", next: "service_info" },
-                { text: "Dermatopatología", next: "service_info" },
-                { text: "Neuropatología", next: "service_info" },
-                { text: "Volver", next: "start" }
-            ]
+        citologia: {
+            keywords: ['papanicolau', 'citologia', 'tiroides', 'paag', 'liquido'],
+            response: "Realizamos estudios citológicos de alta precisión. El <b>Papanicolaou</b> tiene un costo de S/ 20. También realizamos extendidos de tiroides y aspiraciones por aguja fina (PAAG)."
         },
-        pricing: {
-            text: "Aquí tienes nuestra lista detallada de precios. Selecciona una categoría para ver más:",
-            options: [
-                { text: "Biopsias", next: "price_biopsy" },
-                { text: "Citología", next: "price_cytology" },
-                { text: "Piezas Quirúrgicas", next: "price_surgical" },
-                { text: "Marcadores / IHC", next: "price_ihc" },
-                { text: "Volver", next: "start" }
-            ]
+        inmunohistoquimica: {
+            keywords: ['ihc', 'inmunohistoquimica', 'marcadores', 'anticuerpos', 'her2', 'ki67'],
+            response: "Contamos con un panel de más de 100 anticuerpos (Ki67, HER2, p16, CD20, etc.) para diagnósticos oncológicos definitivos. El costo por marcador es de S/ 100 solo procesamiento o S/ 250 con informe patológico."
         },
-        price_biopsy: {
-            text: "<b>Tarifas de Biopsias:</b><br><br>• Biopsia Gástrica: <b>S/ 80</b><br>• Biopsia Esófago/Intestiono/Colon: <b>S/ 80</b><br>• Biopsia de Cervix: <b>S/ 80</b><br>• Cono Cervical: <b>S/ 120</b><br>• Biopsia de Próstata (6 frascos): <b>S/ 250</b>",
-            options: [
-                { text: "Solicitar cotización exacta", next: "lead_capture_start" },
-                { text: "Ver otros precios", next: "pricing" },
-                { text: "Hablar por WhatsApp", action: "whatsapp" },
-                { text: "Volver al inicio", next: "start" }
-            ]
+        vph: {
+            keywords: ['vph', 'papiloma', 'verrugas', 'cuello uterino', 'cancer'],
+            response: "El VPH es el virus de transmisión sexual más común. En JC PATH LAB realizamos el descarte mediante citología (Papanicolaou) y pruebas de p16/Ki67 para evaluar el riesgo de cáncer. ¡No te alarmes, la detección temprana es la clave!"
         },
-        price_cytology: {
-            text: "<b>Tarifas de Citología:</b><br><br>• Papanicolau: <b>S/ 20</b><br>• Extendido de Tiroides (por lámina): <b>S/ 20</b><br>• Extendido PAAG Glándula Salival (por lámina): <b>S/ 20</b>",
-            options: [
-                { text: "Solicitar cotización exacta", next: "lead_capture_start" },
-                { text: "Ver otros precios", next: "pricing" },
-                { text: "Hablar por WhatsApp", action: "whatsapp" },
-                { text: "Volver al inicio", next: "start" }
-            ]
+        dr_castillo: {
+            keywords: ['doctor', 'quien es', 'josehp', 'experiencia', 'curriculum', 'especialista'],
+            response: "El <b>Dr. Josehp Castillo Cuenca</b> es un médico patólogo con amplia trayectoria en el diagnóstico de cáncer, subespecialista en áreas como Dermatopatología y Patología Oncológica. Su enfoque es la rapidez y la precisión absoluta."
         },
-        price_surgical: {
-            text: "<b>Piezas Convencionales:</b><br>• Vesícula/Apéndice: S/ 110<br>• Útero y Ovarios: S/ 150<br>• Placenta: S/ 80<br>• Tumor partes blandas (<4cm): S/ 100<br><br><b>Oncológicas:</b><br>• Estómago/Colon/Riñón: S/ 250<br>• Útero c/Ganglios: S/ 300<br>• Médula Ósea: S/ 150",
-            options: [
-                { text: "Solicitar cotización exacta", next: "lead_capture_start" },
-                { text: "Ver otros precios", next: "pricing" },
-                { text: "Hablar por WhatsApp", action: "whatsapp" },
-                { text: "Volver al inicio", next: "start" }
-            ]
+        tiempo: {
+            keywords: ['tiempo', 'cuando esta', 'entrega', 'tarda', 'demora', 'resultado'],
+            response: "Entendemos la urgencia. Los resultados de biopsias de rutina y citologías suelen estar listos en <b>24 a 48 horas</b>. Casos especiales de inmunohistoquímica pueden tomar un poco más según la complejidad."
         },
-        price_ihc: {
-            text: "<b>Tarifas Marcadores / IHC:</b><br><br>• Marcador SIN lectura: <b>S/ 100</b><br>• Marcador CON lectura/informe: <b>S/ 250</b><br><br>Contamos con un amplio panel de anticuerpos (Ki67, CD3, CD20, Her2, etc).",
-            options: [
-                { text: "Solicitar cotización exacta", next: "lead_capture_start" },
-                { text: "Ver otros precios", next: "pricing" },
-                { text: "Hablar por WhatsApp", action: "whatsapp" },
-                { text: "Volver al inicio", next: "start" }
-            ]
+        contacto: {
+            keywords: ['contacto', 'donde estan', 'ubicacion', 'telefono', 'whatsapp', 'cita', 'atencion'],
+            response: "Estamos ubicados en Puente Piedra, Lima. Puedes escribirnos directamente al WhatsApp o llamarnos al <b>986396733</b> para coordinar el envío de muestras o tu atención."
         },
-        service_info: {
-            text: "Ofrecemos un servicio de diagnóstico detallado y rápido en esa área. Para darte información más específica y personalizada, lo mejor es que hables con uno de nuestros especialistas.",
-            options: [
-                { text: "Contactar a un Especialista", next: "lead_capture_start" },
-                { text: "Hablar por WhatsApp", action: "whatsapp" },
-                { text: "Ver otros servicios", next: "services" },
-                { text: "Volver al inicio", next: "start" }
-            ]
+        especialidades: {
+            keywords: ['especialidad', 'subespecialidad', 'dermatopatologia', 'neuropatologia', 'partes blandas', 'gastrointestinal', 'genitourinario'],
+            response: "El Dr. Castillo es experto en múltiples subespecialidades:<br><br>• <b>Dermatopatología:</b> Biopsias de piel y cuero cabelludo.<br>• <b>Neuropatología:</b> Tumores de sistema nervioso.<br>• <b>Partes Blandas:</b> Diagnóstico de sarcomas y tumores de grasa.<br>• <b>Gastrointestinal:</b> Biopsias de estómago, colon e hígado.<br>• <b>Genitourinario:</b> Próstata, riñón y vejiga.<br><br>¿Te gustaría saber sobre alguna en específico?"
         },
-        turnaround: {
-            text: "Entendemos que la rapidez es crucial. Nuestros resultados de rutina suelen estar listos en 24-48 horas, garantizando un diagnóstico veloz para la tranquilidad de todos.",
-            options: [
-                { text: "Contactar para un caso urgente", next: "lead_capture_start" },
-                { text: "Hablar por WhatsApp", action: "whatsapp" },
-                { text: "Volver", next: "doctor" }
-            ]
+        muestras: {
+            keywords: ['muestra', 'enviar', 'formol', 'frasco', 'envio'],
+            response: "Para el envío de muestras: deben estar sumergidas en <b>formol al 10%</b> en un frasco bien cerrado y rotulado con el nombre del paciente. Podemos ayudarte con la logística de recojo, solo escríbenos al WhatsApp."
         },
-        turnaround_patient: {
-            text: "Sabemos que la espera puede ser difícil. Generalmente, los resultados están disponibles en 24-48 horas. Tu médico te contactará en cuanto los reciba y los revise.",
-            options: [
-                { text: "Tengo otra duda", next: "patient" },
-                { text: "Hablar por WhatsApp", action: "whatsapp" },
-                { text: "Volver al inicio", next: "start" }
-            ]
-        },
-        samples: {
-            text: "El proceso es sencillo y seguro. Para coordinar la logística de envío y asegurarnos de que tu muestra llegue en perfectas condiciones, por favor déjanos tus datos y te llamaremos a la brevedad.",
-            options: [
-                { text: "Dejar mis datos", next: "lead_capture_start" },
-                { text: "Hablar por WhatsApp", action: "whatsapp" },
-                { text: "Volver", next: "doctor" }
-            ]
-        },
-        patient_help: {
-            text: "Entiendo. Aunque no podemos darte un diagnóstico por este medio, podemos ponerte en contacto con nuestro equipo para que te orienten. Tu tranquilidad es nuestra prioridad.",
-            options: [
-                { text: "Sí, quiero que me contacten", next: "lead_capture_start" },
-                { text: "Hablar por WhatsApp", action: "whatsapp" },
-                { text: "Volver", next: "patient" }
-            ]
-        },
-        lead_capture_start: {
-            text: "Para darte una atención personalizada y resolver tu caso con la urgencia que merece, por favor, déjame tu nombre.",
-            input: true,
-            next: "lead_capture_contact"
-        },
-        lead_capture_contact: {
-            text: "Gracias, {name}. Ahora, por favor, déjame tu número de teléfono o correo electrónico para que uno de nuestros especialistas se ponga en contacto contigo a la brevedad.",
-            input: true,
-            next: "lead_capture_end"
-        },
-        lead_capture_end: {
-            text: "Perfecto, {name}. Hemos recibido tus datos ({contact}). Un especialista te contactará muy pronto. Estamos para darte la seguridad y tranquilidad que necesitas.",
-            options: [
-                { text: "Hablar por WhatsApp ahora", action: "whatsapp" },
-                { text: "Tengo otra consulta", next: "start" }
-            ]
+        problemas: {
+            keywords: ['problema', 'queja', 'error', 'ayuda', 'urgente', 'mal', 'no funciona'],
+            response: "Lamento que tengas inconvenientes. Por favor, permíteme conectarte directamente con el Dr. Castillo para resolver esto de inmediato. ¿Quieres que abra el WhatsApp ahora?"
         }
     };
 
-    let currentStep = 'start';
-    let capturedData = {};
     let conversationHistory = [];
 
-    function showBotMessage(message) {
-        // Clean HTML for history
-        const cleanMessage = message.replace(/<[^>]*>?/gm, '');
-        conversationHistory.push(`Asistente: ${cleanMessage}`);
-
-        const messageEl = document.createElement('div');
-        messageEl.className = 'chat-message bot-message';
-        messageEl.innerHTML = message; // Use innerHTML to allow for bold/links
-        messagesContainer.appendChild(messageEl);
+    function showBotMessage(message, withOptions = true) {
+        typingIndicator.style.display = 'block';
         scrollToBottom();
+
+        setTimeout(() => {
+            typingIndicator.style.display = 'none';
+            const messageEl = document.createElement('div');
+            messageEl.className = 'chat-message bot-message';
+            messageEl.innerHTML = message;
+            messagesContainer.appendChild(messageEl);
+            scrollToBottom();
+
+            if (withOptions) {
+                renderGeneralOptions();
+            }
+
+            conversationHistory.push(`Asistente: ${message.replace(/<[^>]*>?/gm, '')}`);
+            detectLeadIntent(message);
+        }, 800);
     }
 
     function showUserMessage(message) {
-        conversationHistory.push(`Usuario: ${message}`);
-
         const messageEl = document.createElement('div');
         messageEl.className = 'chat-message user-message';
         messageEl.textContent = message;
         messagesContainer.appendChild(messageEl);
         scrollToBottom();
+        conversationHistory.push(`Usuario: ${message}`);
     }
 
-    function renderStep(stepKey) {
-        currentStep = stepKey;
-        const step = conversation[stepKey];
+    function detectLeadIntent(botResponse) {
+        // Simple logic to show WhatsApp button if interest is high
+        const interestKeywords = ['precios', 'biopsia', 'atencion', 'contacto', 'problema', 'cotizacion'];
+        const lowerResponse = botResponse.toLowerCase();
 
-        if (step.text) {
-            let message = step.text;
-            if (message.includes('{name}')) message = message.replace('{name}', capturedData.name);
-            if (message.includes('{contact}')) message = message.replace('{contact}', capturedData.contact);
-            showBotMessage(message);
-        }
+        if (interestKeywords.some(k => lowerResponse.includes(k))) {
+            const whatsappCard = document.createElement('div');
+            whatsappCard.className = 'whatsapp-card';
+            whatsappCard.innerHTML = `
+                <a href="#" class="whatsapp-link" id="wa-lead-btn">
+                    <i class="fab fa-whatsapp"></i> Hablar con el Dr. Castillo
+                </a>
+                <p style="font-size: 11px; margin-top: 5px; color: #555;">Recibirás atención inmediata y personalizada.</p>
+            `;
+            messagesContainer.appendChild(whatsappCard);
+            scrollToBottom();
 
-        optionsContainer.innerHTML = '';
-        if (step.options) {
-            inputContainer.style.display = 'none';
-            step.options.forEach(option => {
-                const button = document.createElement('button');
-                button.className = 'option-btn';
-                button.textContent = option.text;
-                if (option.next) button.dataset.next = option.next;
-                if (option.action) button.dataset.action = option.action;
-                optionsContainer.appendChild(button);
+            document.getElementById('wa-lead-btn').addEventListener('click', (e) => {
+                e.preventDefault();
+                redirectToWhatsApp();
             });
-        } else {
-            inputContainer.style.display = 'flex';
-            userInput.focus();
         }
     }
 
-    function handleOptionClick(e) {
-        if (e.target.classList.contains('option-btn')) {
-            const nextStep = e.target.dataset.next;
-            const action = e.target.dataset.action;
-
-            showUserMessage(e.target.textContent);
-
-            if (action === 'whatsapp') {
-                const summary = conversationHistory.join('\n');
-                const finalMessage = `Hola, vengo de la página web. Aquí está el resumen de mi consulta con el asistente:\n\n${summary}`;
-                const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(finalMessage)}`;
-
-                window.open(url, '_blank');
-                showBotMessage("Abriendo WhatsApp para que puedas comunicarte con nosotros directamente con el resumen de tu consulta.");
-                return;
-            }
-
-            if (nextStep) {
-                renderStep(nextStep);
-            }
-        }
+    function redirectToWhatsApp() {
+        const summary = conversationHistory.slice(-5).join('\n');
+        const finalMessage = `Hola Dr. Castillo, estoy consultando en su web y requiero ayuda específica. Resumen:\n\n${summary}`;
+        const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(finalMessage)}`;
+        window.open(url, '_blank');
+        showBotMessage("Abriendo WhatsApp... ¡Un momento por favor!", false);
     }
 
-    function handleSend() {
-        const inputText = userInput.value.trim();
-        if (inputText === '') return;
+    function handleUserInput() {
+        const input = userInput.value.trim().toLowerCase();
+        if (!input) return;
 
-        showUserMessage(inputText);
+        showUserMessage(userInput.value);
         userInput.value = '';
 
-        const step = conversation[currentStep];
-        if (step.next === 'lead_capture_contact') {
-            capturedData.name = inputText;
-        } else if (step.next === 'lead_capture_end') {
-            capturedData.contact = inputText;
+        let bestMatch = null;
+        let maxKeywords = 0;
+
+        for (const topic in KNOWLEDGE_BASE) {
+            const matches = KNOWLEDGE_BASE[topic].keywords.filter(k => input.includes(k)).length;
+            if (matches > maxKeywords) {
+                maxKeywords = matches;
+                bestMatch = KNOWLEDGE_BASE[topic].response;
+            }
         }
 
-        renderStep(step.next);
+        if (bestMatch) {
+            showBotMessage(bestMatch);
+        } else {
+            showBotMessage("Es una buena pregunta. Para darte una respuesta precisa sobre ese tema, te sugiero consultarlo directamente con nuestro equipo de especialistas vía WhatsApp.");
+        }
+    }
+
+    function renderGeneralOptions() {
+        optionsContainer.innerHTML = '';
+        const options = [
+            { text: "Ver Precios", topic: "precios" },
+            { text: "Tiempos de Entrega", topic: "tiempo" },
+            { text: "Dudas sobre VPH", topic: "vph" },
+            { text: "WhatsApp Directo", action: "whatsapp" }
+        ];
+
+        options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.textContent = opt.text;
+            btn.addEventListener('click', () => {
+                showUserMessage(opt.text);
+                if (opt.action === 'whatsapp') {
+                    redirectToWhatsApp();
+                } else {
+                    showBotMessage(KNOWLEDGE_BASE[opt.topic].response);
+                }
+            });
+            optionsContainer.appendChild(btn);
+        });
     }
 
     function scrollToBottom() {
@@ -262,22 +183,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- EVENT LISTENERS ---
     chatToggle.addEventListener('click', () => {
         chatContainer.classList.toggle('open');
-        if (chatContainer.classList.contains('open')) {
-            if (messagesContainer.children.length === 0) {
-                renderStep('start');
-            }
+        if (chatContainer.classList.contains('open') && messagesContainer.children.length === 0) {
+            showBotMessage("¡Bienvenido! Soy el asistente virtual de <b>JC PATH LAB</b>. ¿Cómo puedo ayudarte hoy con tus dudas de patología?");
         }
     });
 
-    closeBtn.addEventListener('click', () => {
-        chatContainer.classList.remove('open');
-    });
-
-    optionsContainer.addEventListener('click', handleOptionClick);
-    sendBtn.addEventListener('click', handleSend);
-    userInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            handleSend();
-        }
-    });
+    closeBtn.addEventListener('click', () => chatContainer.classList.remove('open'));
+    sendBtn.addEventListener('click', handleUserInput);
+    userInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleUserInput(); });
 });

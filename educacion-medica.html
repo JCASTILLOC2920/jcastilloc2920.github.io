@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="expandable-buttons.css">
+    <meta name="keywords" content="Anatomía Patológica, Lima, Biopsia, JC PATH LAB, diagnóstico cáncer">
+    <link rel="stylesheet" href="chatbot.css">
 </head>
 
 <body>
@@ -58,7 +60,8 @@
                 <span class="line"></span>
             </button>
         </div>
-    </header>
+        <meta name="keywords" content="Anatomía Patológica, Lima, Biopsia, JC PATH LAB, diagnóstico cáncer">
+</header>
 
     <section class="topic-detail-section" style="margin-top: 90px;">
         <div class="container">
@@ -123,8 +126,47 @@
     </section>
 
     <script src="main.js"></script>
+    
+    <!-- Chatbot HTML Structure -->
+    <div id="chat-container">
+        <div id="chat-header">
+            <div class="bot-avatar">
+                <i class="fas fa-user-md"></i>
+            </div>
+            <div class="chat-title-group">
+                <h4>Asistente JC Path Lab</h4>
+                <span>En línea ahora</span>
+            </div>
+            <span class="close-btn">&times;</span>
+        </div>
+        <div id="chat-messages"></div>
+        <div id="typing-indicator">
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+            Asistente del Dr. Castillo está escribiendo...
+        </div>
+        <div id="bot-options"></div>
+        <div id="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Escribe tu mensaje aquí...">
+            <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+    <button id="chat-toggle">
+        <i class="fas fa-comments"></i>
+    </button>
+
     <script src="chatbot.js"></script>
     <script src="expandable-buttons.js"></script>
+
+    <!-- Botones de Contacto Flotantes (SEO & CRO) -->
+    <div class="sticky-contact">
+        <a href="https://wa.me/51986396733" class="sticky-btn whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Contacto por WhatsApp">
+            <i class="fab fa-whatsapp"></i> <span>WhatsApp</span>
+        </a>
+        
+    </div>
+
 </body>
 
 </html>
