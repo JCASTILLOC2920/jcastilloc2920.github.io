@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Precios | JC PATH LAB - Anatomía Patológica Lima</title>
+    <meta name="description"
+        content="Consulta nuestros precios competitivos en biopsias, citología y Papanicolaou. Transparencia y calidad en diagnósticos patológicos en Lima.">
+
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="style.css" as="style">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .prices-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            padding: 120px 20px 60px;
+            text-align: center;
+        }
+
+        .prices-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .price-category {
+            margin-bottom: 50px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            border-top: 5px solid var(--accent);
+        }
+
+        .category-header {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .category-header i {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        .category-header h2 {
+            margin: 0;
+            color: var(--secondary);
+            font-size: 1.5rem;
+        }
+
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .price-table th,
+        .price-table td {
+            padding: 15px 30px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .price-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .price-table tr:hover {
+            background-color: #fcfcfc;
+        }
+
+        .price-name {
+            font-weight: 500;
+            color: #333;
+            width: 70%;
+        }
+
+        .price-value {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.2rem;
+            text-align: right;
+            width: 30%;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px;
+            background: #e3f2fd;
+            border-radius: 15px;
+        }
+
+        .floating-call-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            z-index: 9999;
+            transition: transform 0.3s ease;
+        }
+
+        .floating-call-btn:hover {
+            transform: scale(1.05);
+            background-color: #20bd5a;
+        }
+
+        @media (max-width: 768px) {
+
+            .price-table th,
+            .price-table td {
+                padding: 15px;
+            }
+
+            .price-name {
+                font-size: 0.95rem;
+            }
+
+            .price-value {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="chatbot.css">
+</head>
+
+<body>
+
+    <!-- Header (Same as index) -->
+    <!-- Header (Standardized) -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="logo-jcpathlab.png" alt="JC PATH LAB" class="logo" width="180" height="60">
+                </a>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Inicio</a></li>
+                    <li class="nav-item"><a href="index.html#servicios" class="nav-link">Servicios</a></li>
+
+                    <!-- Dropdown: Institucional -->
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="nav-link">Institucional <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item"><a href="index.html#quienes-somos">Quiénes Somos</a></li>
+                            <li class="dropdown-item"><a href="cv.html">Curriculum Vitae</a></li>
+                            <li class="dropdown-item"><a href="index.html#protocolos">Nuestros Protocolos</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Dropdown: Área Académica -->
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="nav-link">Área Académica <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-item"><a href="educacion-medica.html">Zona Médica</a></li>
+                            <li class="dropdown-item"><a href="index.html#classroom">Classroom</a></li>
+                            <li class="dropdown-item"><a href="blogs.html">Blogs</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="solicitud.html" class="nav-link nav-cta">Solicitud de Estudio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="precios.html" class="nav-link active"
+                            style="color: var(--accent); font-weight: 700;">Precios</a>
+                    </li>
+                    <li class="nav-item"><a href="index.html#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <!-- Hamburger Menu -->
+            <button class="hamburger" aria-label="Menú de navegación">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="prices-hero">
+        <h1>Lista de Precios Oficial</h1>
+        <p>Transparencia y precios justos para tu salud</p>
+    </div>
+
+    <div class="prices-container">
+
+        <!-- Biopsias -->
+        <div class="price-category">
+            <div class="category-header">
+                <i class="fas fa-microscope"></i>
+                <h2>Biopsias y Tejidos</h2>
+            </div>
+            <table class="price-table">
+                <tbody>
+                    <tr>
+                        <td class="price-name">BIOPSIA GÁSTRICA</td>
+                        <td class="price-value">80 SOLES</td>
+                    </tr>
+                    <tr>
+                        <td class="price-name">BIOPSIA DE ESÓFAGO, INTESTINO DELGADO Y COLON</td>
+                        <td class="price-value">80 SOLES</td>
+                    </tr>
+                    <tr>
+                        <td class="price-name">BIOPSIA DE CERVIX</td>
+                        <td class="price-value">80 SOLES</td>
+                    </tr>
+                    <tr>
+                        <td class="price-name">CONO CERVICAL</td>
+                        <td class="price-value">120 SOLES</td>
+                    </tr>
+                    <tr>
+                        <td class="price-name">BIOPSIA DE PRÓSTATA (POR 6 FRASCOS)</td>
+                        <td class="price-value">250 SOLES</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Citología -->
+        <div class="price-category">
+            <div class="category-header">
+                <i class="fas fa-vial"></i>
+                <h2>Citología y Papanicolaou</h2>
+            </div>
+            <table class="price-table">
+                <tbody>
+                    <tr>
+                        <td class="price-name">PAPANICOLAOU</td>
+                        <td class="price-value">20 SOLES</td>
+                    </tr>
+                    <tr>
+                        <td class="price-name">EXTENDIDO DE TIROIDES (POR CADA LÁMINA)</td>
+                        <td class="price-value">20 SOLES</td>
+                    </tr>
+                    <tr>
+                        <td class="price-name">EXTENDIDO DE ASPIRACIÓN POR AGUJA FINA DE GLÁNDULA SALIVAL</td>
+                        <td class="price-value">20 SOLES</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="cta-section">
+            <h3>¿No encuentras el estudio que buscas?</h3>
+            <p>Realizamos todo tipo de estudios anatomopatológicos. Contáctanos para una cotización personalizada.</p>
+            <br>
+            <a href="https://wa.me/51986396733" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Consultar por
+                WhatsApp</a>
+        </div>
+
+    </div>
+
+    <!-- Footer Simple -->
+    <footer style="background: var(--dark); color: white; padding: 40px 20px; text-align: center;">
+        <p>&copy; 2026 JC PATH LAB. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Botón Flotante -->
+    <a href="tel:+51986396733" class="floating-call-btn">
+        <i class="fas fa-phone-alt"></i>
+        <span>Llamar Ahora</span>
+    </a>
+
+
+    <!-- Botones de Contacto Flotantes (SEO & CRO) -->
+    <div class="sticky-contact">
+        <a href="https://wa.me/51986396733" class="sticky-btn whatsapp" target="_blank" rel="noopener noreferrer"
+            aria-label="Contacto por WhatsApp">
+            <i class="fab fa-whatsapp"></i> <span>WhatsApp</span>
+        </a>
+        <a href="tel:+51986396733" class="sticky-btn phone" aria-label="Llamar ahora"
+            style="background-color: #0056b3;">
+            <i class="fas fa-phone-alt"></i> <span>Llamar</span>
+        </a>
+    </div>
+
+    <!-- Chatbot HTML Structure -->
+    <div id="chat-container">
+        <div id="chat-header">
+            <div class="bot-avatar">
+                <i class="fas fa-user-md"></i>
+            </div>
+            <div class="chat-title-group">
+                <div class="chat-name">Asistente JC Path Lab</div>
+                <span>En línea ahora</span>
+            </div>
+            <span class="close-btn">&times;</span>
+        </div>
+        <div id="chat-messages"></div>
+        <div id="typing-indicator">
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+            Asistente del Dr. Castillo está escribiendo...
+        </div>
+        <div id="bot-options"></div>
+        <div id="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Escribe tu mensaje aquí...">
+            <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+    <button id="chat-toggle">
+        <i class="fas fa-comments"></i>
+    </button>
+
+    <script src="chatbot.js"></script>
+</body>
+
+</html>

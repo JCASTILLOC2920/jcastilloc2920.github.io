@@ -1,4 +1,13 @@
 User-agent: *
 Allow: /
-
 Sitemap: https://jcastilloc2920.github.io/sitemap.xml
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: *
+Disallow: /chatbot.js
+Disallow: /main.js

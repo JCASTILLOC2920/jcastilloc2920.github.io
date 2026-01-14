@@ -10,7 +10,7 @@
 
 #chat-container {
     position: fixed;
-    bottom: 175px;
+    bottom: 235px;
     right: 25px;
     width: 380px;
     max-width: 90%;
@@ -40,7 +40,7 @@
 
 #chat-toggle {
     position: fixed;
-    bottom: 100px;
+    bottom: 160px;
     right: 25px;
     width: 65px;
     height: 65px;
