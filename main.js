@@ -78,16 +78,17 @@ document.addEventListener('DOMContentLoaded', function () {
         const hash = window.location.hash.substring(1);
         if (hash) {
             showSection(hash);
-        } else if (document.getElementById('inicio')) {
-            showSection('inicio');
+        } else if (document.getElementById('hero')) {
+            showSection('hero');
         }
     });
 
     const initialHash = window.location.hash.substring(1);
     if (initialHash && document.getElementById(initialHash)) {
         showSection(initialHash);
+    } else if (document.getElementById('hero')) {
+        showSection('hero');
     } else if (document.getElementById('inicio')) {
-        // Only default to 'inicio' if it exists
         showSection('inicio');
     }
 

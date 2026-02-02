@@ -29,6 +29,14 @@ html {
     scroll-padding-top: 110px;
 }
 
+/* Base Mobile Optimization */
+@media (max-width: 768px) {
+    html {
+        font-size: 15px;
+        /* Optimizing base metric */
+    }
+}
+
 .header {
     background-color: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(12px);
@@ -189,7 +197,8 @@ html {
     transition: var(--transition);
 }
 
-.hero {
+.hero,
+.hero-section {
     min-height: 100vh;
     /* Changed from height to min-height to allow expansion */
     background: linear-gradient(135deg, rgba(0, 86, 179, 0.8) 0%, rgba(0, 51, 102, 0.9) 100%), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3') no-repeat center/cover;
@@ -202,7 +211,8 @@ html {
     /* Added padding for spacing when content wraps */
 }
 
-.hero::before {
+.hero::before,
+.hero-section::before {
     content: '';
     position: absolute;
     top: 0;
@@ -238,6 +248,19 @@ html {
     margin-bottom: 40px;
     max-width: clamp(300px, 60vw, 800px);
     font-weight: 300;
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2.5rem;
+        /* Explicit control for very small screens */
+        padding: 0 10px;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+        padding: 0 15px;
+    }
 }
 
 .hero-buttons {
@@ -569,6 +592,121 @@ html {
     font-size: 1.05rem;
     color: var(--dark);
     line-height: 1.6;
+}
+
+/* --- HERO SECTION MODIFICADO (CARRUSEL DE FONDO) --- */
+.hero-section {
+    position: relative;
+    background-color: #000;
+    /* Fondo negro de base */
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* EL VELO AZUL (OVERLAY) */
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 86, 179, 0.75) 0%, rgba(0, 48, 100, 0.85) 100%);
+    z-index: 1;
+    /* Encima del slider */
+    pointer-events: none;
+    /* Permitir clicks si fuera necesario */
+}
+
+/* Contenedor del Slider */
+.hero-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    /* Detrás del velo */
+}
+
+/* Contenido (Texto) */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    /* Encima de todo */
+}
+
+/* Borde Negro para el Texto (Mejor Lectura) */
+.hero-content h1,
+.hero-content h2,
+.hero-content p,
+.hero-content span {
+    text-shadow:
+        2px 2px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000,
+        0 0 10px rgba(0, 0, 0, 0.8);
+    /* Sombra difusa extra */
+}
+
+/* Imágenes del Slider */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    animation: slideAnimation 20s infinite;
+    /* Más lento (20s) */
+}
+
+/* Definición de las imágenes */
+.slide:nth-child(1) {
+    background-image: url('bg-slide-1.png');
+    animation-delay: 0s;
+}
+
+.slide:nth-child(2) {
+    background-image: url('bg-slide-2.png');
+    animation-delay: 10s;
+    /* Mitad de 20s */
+}
+
+/* Keyframes para el Crossfade Suave */
+@keyframes slideAnimation {
+    0% {
+        opacity: 0;
+        transform: scale(1);
+    }
+
+    10% {
+        opacity: 1;
+        transform: scale(1.02);
+    }
+
+    40% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+
+    50% {
+        opacity: 0;
+        transform: scale(1.05);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1);
+    }
 }
 
 .call-to-action {
@@ -1998,5 +2136,282 @@ html {
 @media (min-width: 901px) {
     .sticky-btn span {
         display: inline;
+    }
+}
+
+/* =========================================
+   Antibiotics Modal & Item Styles
+   (Refactored from index.html)
+   ========================================= */
+.antibody-item {
+    cursor: pointer !important;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.antibody-item:hover {
+    background-color: #e3f2fd !important;
+    color: #007bff !important;
+    text-decoration: underline;
+}
+
+/* Antibiotics Modal Styles */
+.ab-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.ab-modal.show {
+    display: flex;
+    opacity: 1;
+}
+
+.ab-modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    position: relative;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+    border-top: 5px solid var(--primary);
+}
+
+.ab-modal.show .ab-modal-content {
+    transform: translateY(0);
+}
+
+.ab-close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.ab-close:hover {
+    color: #333;
+}
+
+.ab-title {
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.ab-info {
+    line-height: 1.6;
+    color: #444;
+    font-size: 1.05rem;
+}
+
+/* =========================================
+   SPA Routing Logic (Critical)
+   ========================================= */
+.page-section {
+    display: none;
+    /* Hide all sections by default */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.page-section.active {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Explicit fallback for individual sections if needed */
+#servicios.active,
+#contacto.active,
+#hero.active,
+.hero-section.active {
+    display: block !important;
+    opacity: 1 !important;
+}
+
+/* Hero needs flex, re-override below */
+
+/* Hero styles mapped above */
+
+/* When Hero is active, it needs flex, not block */
+.hero-section.active,
+#hero.active {
+    display: flex !important;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- VIDEO MODAL & BUTTON (CINEMA STYLE) --- */
+
+.video-btn-hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    cursor: pointer;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.video-btn-hero:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.video-btn-hero i {
+    font-size: 1.2rem;
+    color: #ffeb3b;
+    animation: pulsePlay 2s infinite;
+}
+
+@keyframes pulsePlay {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Modal Overlay */
+.video-modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.9);
+    /* Darker backdrop for Cinema effect */
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.video-modal.show {
+    display: flex;
+    opacity: 1;
+}
+
+/* Modal Content (The Phone Screen Layer) */
+.video-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 380px;
+    /* Force Mobile Width on Desktop */
+    aspect-ratio: 9 / 16;
+    background-color: #000;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), 0 0 100px rgba(0, 86, 179, 0.3);
+    /* Glow */
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    border: 4px solid #333;
+    /* Phone bezel effect */
+}
+
+.video-modal.show .video-modal-content {
+    transform: scale(1);
+}
+
+/* Close Button */
+.close-video {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10001;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.close-video:hover {
+    background: rgba(255, 0, 0, 0.8);
+    transform: rotate(90deg);
+}
+
+.video-container {
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 480px) {
+    .video-modal-content {
+        max-width: 100%;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        border: none;
+        aspect-ratio: auto;
+    }
+
+    .close-video {
+        top: 20px;
+        right: 20px;
+        font-size: 35px;
     }
 }
