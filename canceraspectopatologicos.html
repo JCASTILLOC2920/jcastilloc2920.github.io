@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +15,8 @@
             position: relative;
             width: 100vw;
             height: 100vh;
-            background-color: #2c3e50; /* Fondo oscuro para resaltar el video */
+            background-color: #2c3e50;
+            /* Fondo oscuro para resaltar el video */
         }
 
         .slide {
@@ -41,14 +43,16 @@
 
         .slide iframe {
             width: 80vw;
-            height: 45vw; /* Proporción 16:9 */
+            height: 45vw;
+            /* Proporción 16:9 */
             max-width: 1120px;
             max-height: 630px;
             border: 3px solid white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         }
 
-        .prev, .next {
+        .prev,
+        .next {
             cursor: pointer;
             position: absolute;
             top: 50%;
@@ -61,7 +65,7 @@
             transition: 0.6s ease;
             border-radius: 0 3px 3px 0;
             user-select: none;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0, 0, 0, 0.5);
             z-index: 10;
         }
 
@@ -69,13 +73,14 @@
             right: 0;
             border-radius: 3px 0 0 3px;
         }
-        
+
         .prev {
             left: 0;
         }
 
-        .prev:hover, .next:hover {
-            background-color: rgba(0,0,0,0.8);
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
         }
 
         .slide-number {
@@ -85,7 +90,7 @@
             transform: translateX(-50%);
             font-size: 16px;
             color: #ccc;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0, 0, 0, 0.5);
             padding: 5px 10px;
             border-radius: 10px;
         }
@@ -105,55 +110,73 @@
             border: 1px solid white;
             transition: background-color 0.3s;
         }
+
         .back-button:hover {
             background-color: rgba(255, 255, 255, 0.2);
         }
     </style>
 
-    <meta name="description" content="Especialistas en Anatomía Patológica en Lima. Biopsias rápidas y diagnósticos oncológicos de alta precisión.">
-    <meta name="keywords" content="Laboratorio de Patología Lima, Biopsias en Lima, Inmunohistoquímica rápida, Diagnóstico de cáncer, Dr. Josehp Castillo, JC PATH LAB, Segunda opinión médica, procesamiento de biopsias, laboratorio clínico Lima">
-    <link rel="stylesheet" href="chatbot.css">
+    <meta name="description"
+        content="Especialistas en Anatomía Patológica en Lima. Biopsias rápidas y diagnósticos oncológicos de alta precisión.">
+    <meta name="keywords"
+        content="Laboratorio de Patología Lima, Biopsias en Lima, Inmunohistoquímica rápida, Diagnóstico de cáncer, Dr. Josehp Castillo, JC PATH LAB, Segunda opinión médica, procesamiento de biopsias, laboratorio clínico Lima">
+
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Aspectos Patológicos del Cáncer">
-    <meta name="twitter:description" content="JC PATH LAB: Laboratorio de Anatomía Patológica. Expertos en biopsias y citología en Lima.">
+    <meta name="twitter:description"
+        content="JC PATH LAB: Laboratorio de Anatomía Patológica. Expertos en biopsias y citología en Lima.">
     <meta name="twitter:image" content="https://jcastilloc2920.github.io/logo-jcpathlab.png">
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <a href="canceraspectospatologicosindex.html" class="back-button">Volver a listado de videos</a>
 
     <div class="slideshow-container">
-        
+
         <div class="slide active">
             <h2>Carcinoma Basocelular</h2>
-            <iframe src="https://www.youtube.com/embed/t1NF9k-bcSI" title="Carcinoma Basocelular - YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/t1NF9k-bcSI" title="Carcinoma Basocelular - YouTube"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
             <div class="slide-number">1 / 5</div>
         </div>
 
         <div class="slide">
             <h2>Carcinoma Escamoso</h2>
-            <iframe src="https://www.youtube.com/embed/tuONPwRG_iM" title="Carcinoma Escamoso - YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/tuONPwRG_iM" title="Carcinoma Escamoso - YouTube" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
             <div class="slide-number">2 / 5</div>
         </div>
 
         <div class="slide">
             <h2>MELANOMA</h2>
-            <iframe src="https://www.youtube.com/embed/-0eA_Y8G4FE" title="Melanoma - YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/-0eA_Y8G4FE" title="Melanoma - YouTube" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
             <div class="slide-number">3 / 5</div>
         </div>
 
         <div class="slide">
             <h2>Carcinoma Escamoso Invasivo de Cervix</h2>
-            <iframe src="https://www.youtube.com/embed/o6QihoprdSk" title="Carcinoma Escamoso Invasivo de Cervix - YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/o6QihoprdSk"
+                title="Carcinoma Escamoso Invasivo de Cervix - YouTube" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
             <div class="slide-number">4 / 5</div>
         </div>
 
         <div class="slide">
             <h2>adenocarcinoma endometrioide</h2>
-            <iframe src="https://www.youtube.com/embed/27j_tMlJK1I" title="adenocarcinoma endometrioide - YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/27j_tMlJK1I" title="adenocarcinoma endometrioide - YouTube"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
             <div class="slide-number">5 / 5</div>
         </div>
 
@@ -241,6 +264,7 @@
         <i class="fas fa-comments"></i>
     </button>
 
-    <script src="chatbot.js"></script>
+
 </body>
+
 </html>

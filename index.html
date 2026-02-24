@@ -51,6 +51,7 @@
 
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <!-- Preconnect to Google Fonts if needed, but the site currently uses common system fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 
@@ -126,7 +127,7 @@
     }
     </script>
 
-    <link rel="stylesheet" href="chatbot.css">
+
 </head>
 
 <body>
@@ -136,7 +137,7 @@
             <!-- Logo -->
             <div class="logo-container">
                 <img src="logo-jcpathlab.png" alt="JC PATH LAB, laboratorio de anatomía patológica y biopsias en Lima"
-                    class="logo" width="180" height="60">
+                    class="logo" width="180" height="60" loading="eager">
             </div>
 
             <!-- Navigation Menu -->
@@ -177,7 +178,7 @@
             </nav>
 
             <!-- Hamburger Menu -->
-            <button class="hamburger" aria-label="Menú de navegación">
+            <button class="hamburger" aria-label="Abrir menú de navegación">
                 <span class="line"></span>
                 <span class="line"></span>
                 <span class="line"></span>
@@ -195,7 +196,9 @@
             </div>
 
             <div class="container hero-content">
-                <h1 style="font-weight: 700;">Laboratorio de Patología JC PATH LAB</h1>
+                <h1 style="font-weight: 700; margin-bottom: 5px;">JC PATH LAB</h1>
+                <h2 style="font-size: 1.5rem; color: rgba(255,255,255,0.95); margin-bottom: 25px; font-weight: 300;">
+                    Laboratorio de Anatomía Patológica</h2>
                 <p class="hero-subtitle">Diagnósticos de Alta Precisión con Tecnología de Calidad Mundial 🔬</p>
                 <div class="trust-bar-mini">
                     <span><i class="fas fa-certificate"></i> Certificación ISO</span>
@@ -210,19 +213,19 @@
                     Recojo a domicilio en todo Lima, y recepción de encomiendas de provincias.</h2>
 
                 <div class="hero-buttons">
-                    <a href="javascript:void(0)" id="btn-paciente" class="btn btn-primary"
-                        style="background-color: #0056b3; border-color: #0056b3;">
-                        <i class="fas fa-user-injured"></i> SOY PACIENTE<br>
-                        <span style="font-size: 0.8em; font-weight: normal;">Ver Precios y Recojo</span>
-                        <br><span
-                            style="font-size: 0.7em; font-weight: normal; color: #ffeb3b; text-decoration: underline;"
-                            onclick="document.getElementById('chat-toggle').click(); window.event.stopPropagation();">¿Dudas?
-                            Chatea aquí ↘</span>
+                    <a href="javascript:void(0)" id="btn-paciente" class="btn btn-hero-patient">
+                        <i class="fas fa-user-injured"></i>
+                        <span class="cta-title">SOY PACIENTE</span>
+                        <span class="cta-subtitle">Ver Precios y Recojo</span>
                     </a>
-                    <a href="javascript:void(0)" id="btn-medico" class="btn btn-secondary"
-                        style="background-color: white; color: #0056b3;">
-                        <i class="fas fa-user-md"></i> SOY MÉDICO / CLÍNICA<br>
-                        <span style="font-size: 0.8em; font-weight: normal;">Protocolos y Derivaciones</span>
+                    <a href="javascript:void(0)" class="chat-dudas-link"
+                        onclick="document.getElementById('chat-toggle').click(); window.event.stopPropagation();">
+                        ¿Dudas? Chatea aquí ↘
+                    </a>
+                    <a href="javascript:void(0)" id="btn-medico" class="btn btn-hero-doctor">
+                        <i class="fas fa-user-md"></i>
+                        <span class="cta-title">SOY MÉDICO / CLÍNICA</span>
+                        <span class="cta-subtitle">Protocolos y Derivaciones</span>
                     </a>
 
                     <!-- New Video Button -->
@@ -231,47 +234,28 @@
                     </a>
                 </div>
 
-                <!-- Trust Bar / Barra de Confianza -->
-                <div class="hero-stats" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
-                    <div class="stat-item">
-                        <div class="stat-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="stat-content">
-                            <h3>Rápido</h3>
-                            <p>Resultados en 3-4 días</p>
-                        </div>
-                    </div>
+                <!-- Stats Banner Section (Moved and Enhanced) -->
 
-                    <div class="stat-item">
-                        <div class="stat-icon">
-                            <i class="fas fa-motorcycle"></i>
-                        </div>
-                        <div class="stat-content">
-                            <h3>A Domicilio</h3>
-                            <p>Recojo en todo Lima</p>
-                        </div>
-                    </div>
+            </div>
+        </section>
 
-                    <div class="stat-item">
-                        <div class="stat-icon">
-                            <i class="fas fa-microscope"></i>
-                        </div>
-                        <div class="stat-content">
-                            <h3>Alta Precisión</h3>
-                            <p>Diagnóstico Digital</p>
-                        </div>
-                    </div>
+        <!-- Social Proof Banner - High Impact Stats -->
+        <section class="social-proof-banner">
+            <div class="stats-container">
+                <div class="stat-box">
+                    <i class="fas fa-shield-halved"></i>
+                    <span class="stat-number">+15</span>
+                    <span class="stat-label">Años de Experiencia</span>
                 </div>
-
-                <!-- Social Proof Re-integration (God Mode) -->
-                <div style="margin-top: 25px; text-align: center; color: rgba(255,255,255,0.9); font-size: 0.9rem;">
-                    <p style="margin: 0;">
-                        <i class="fas fa-star" style="color: gold;"></i> <strong>+15 Años de Experiencia</strong>
-                        &nbsp;|&nbsp;
-                        <i class="fas fa-check-circle" style="color: lightgreen;"></i> <strong>+50,000 Estudios
-                            Realizados</strong>
-                    </p>
+                <div class="stat-box">
+                    <i class="fas fa-microscope"></i>
+                    <span class="stat-number">+50,000</span>
+                    <span class="stat-label">Estudios Realizados</span>
+                </div>
+                <div class="stat-box">
+                    <i class="fas fa-user-check"></i>
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Confianza Médica</span>
                 </div>
             </div>
         </section>
@@ -307,47 +291,29 @@
                                 <h4 style="margin-top: 0; color: var(--accent); margin-bottom: 15px;">LISTA DE
                                     PRECIOS -
                                     BIOPSIAS</h4>
-                                <table style="width: 100%; border-collapse: collapse;">
-                                    <tbody>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 10px 0;">BIOPSIA GÁSTRICA</td>
-                                            <td
-                                                style="padding: 10px 0; text-align: right; font-weight: bold; color: var(--secondary);">
-                                                80 SOLES</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 10px 0;"><a href="gastrointestinal.html"
-                                                    style="color: inherit; text-decoration: none;">BIOPSIA DE
-                                                    ESÓFAGO,
-                                                    INTESTINO DELGADO Y COLON</a>
-                                            </td>
-                                            <td
-                                                style="padding: 10px 0; text-align: right; font-weight: bold; color: var(--secondary);">
-                                                80 SOLES</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 10px 0;">BIOPSIA DE CERVIX</td>
-                                            <td
-                                                style="padding: 10px 0; text-align: right; font-weight: bold; color: var(--secondary);">
-                                                80 SOLES</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #ddd;">
-                                            <td style="padding: 10px 0;">CONO CERVICAL</td>
-                                            <td
-                                                style="padding: 10px 0; text-align: right; font-weight: bold; color: var(--secondary);">
-                                                120 SOLES</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding: 10px 0;"><a href="genitourinario.html"
-                                                    style="color: inherit; text-decoration: none;">BIOPSIA DE
-                                                    PRÓSTATA
-                                                    (POR 6 FRASCOS)</a></td>
-                                            <td
-                                                style="padding: 10px 0; text-align: right; font-weight: bold; color: var(--secondary);">
-                                                250 SOLES</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="pricing-grid">
+                                    <div class="pricing-card">
+                                        <div class="pricing-card-name">BIOPSIA GÁSTRICA</div>
+                                        <div class="pricing-card-price">80<span>Soles</span></div>
+                                    </div>
+                                    <a href="gastrointestinal.html" class="pricing-card">
+                                        <div class="pricing-card-name">BIOPSIA DE ESÓFAGO, INTESTINO DELGADO Y COLON
+                                        </div>
+                                        <div class="pricing-card-price">80<span>Soles</span></div>
+                                    </a>
+                                    <div class="pricing-card">
+                                        <div class="pricing-card-name">BIOPSIA DE CERVIX</div>
+                                        <div class="pricing-card-price">80<span>Soles</span></div>
+                                    </div>
+                                    <div class="pricing-card">
+                                        <div class="pricing-card-name">CONO CERVICAL</div>
+                                        <div class="pricing-card-price">120<span>Soles</span></div>
+                                    </div>
+                                    <a href="genitourinario.html" class="pricing-card">
+                                        <div class="pricing-card-name">BIOPSIA DE PRÓSTATA (POR 6 FRASCOS)</div>
+                                        <div class="pricing-card-price">250<span>Soles</span></div>
+                                    </a>
+                                </div>
                             </div>
                             <div style="display:none;" aria-hidden="true">
                                 <p>Uso clínico de ACTINA MUSCULO LISO: Detecta tumores derivados del músculo liso,
@@ -548,32 +514,21 @@
                                 <h4
                                     style="color: var(--secondary); font-size: 1.1rem; margin-top: 0; margin-bottom: 15px; font-weight: 700;">
                                     LISTA DE PRECIOS - CITOLOGÍA</h4>
-                                <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
-                                    <tbody>
-                                        <tr style="border-bottom: 1px solid #e9ecef;">
-                                            <td style="padding: 8px 0; color: var(--dark);">PAPANICOLAOU</td>
-                                            <td
-                                                style="padding: 8px 0; text-align: right; font-weight: 700; color: var(--primary);">
-                                                20 SOLES</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid #e9ecef;">
-                                            <td style="padding: 8px 0; color: var(--dark);">EXTENDIDO DE TIROIDES
-                                                (POR
-                                                CADA LÁMINA)</td>
-                                            <td
-                                                style="padding: 8px 0; text-align: right; font-weight: 700; color: var(--primary);">
-                                                20 SOLES</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding: 8px 0; color: var(--dark);">EXTENDIDO DE ASPIRACIÓN
-                                                POR
-                                                AGUJA FINA DE GLÁNDULA SALIVAL (POR CADA LÁMINA)</td>
-                                            <td
-                                                style="padding: 8px 0; text-align: right; font-weight: 700; color: var(--primary);">
-                                                20 SOLES</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="pricing-grid">
+                                    <div class="pricing-card">
+                                        <div class="pricing-card-name">PAPANICOLAOU</div>
+                                        <div class="pricing-card-price">20<span>Soles</span></div>
+                                    </div>
+                                    <div class="pricing-card">
+                                        <div class="pricing-card-name">EXTENDIDO DE TIROIDES (POR CADA LÁMINA)</div>
+                                        <div class="pricing-card-price">20<span>Soles</span></div>
+                                    </div>
+                                    <div class="pricing-card">
+                                        <div class="pricing-card-name">EXTENDIDO DE ASPIRACIÓN POR AGUJA FINA DE
+                                            GLÁNDULA SALIVAL (POR CADA LÁMINA)</div>
+                                        <div class="pricing-card-price">20<span>Soles</span></div>
+                                    </div>
+                                </div>
                             </div>
                             <div style="display:none;" aria-hidden="true">
                                 <p>Uso clínico de ACTINA MUSCULO LISO: Detecta tumores derivados del músculo liso,
@@ -771,297 +726,276 @@
                                 <h4
                                     style="color: var(--secondary); font-size: 1.1rem; margin-top: 0; margin-bottom: 15px; font-weight: 700;">
                                     RELACIÓN DE ANTICUERPOS PARA INMUNOHISTOQUIMICA</h4>
-                                <details
-                                    style="margin-bottom: 20px; border: 1px solid #ddd; padding: 10px; border-radius: 5px;">
-                                    <summary style="cursor: pointer; color: var(--primary); font-weight: 600;">Ver
-                                        lista
-                                        completa de +60 Anticuerpos (CD3, CD20, Ki67...)</summary>
-                                    <table
-                                        style="width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-top: 15px;">
-                                        <tbody>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark); width: 33%;">ACTINA
-                                                    MUSCULO
-                                                    LISO</td>
-                                                <td style="padding: 6px 4px; color: var(--dark); width: 33%;">ACTINA
-                                                    (HIF35)
-                                                </td>
-                                                <td style="padding: 6px 4px; color: var(--dark); width: 33%;">
-                                                    ADIPOFILINA
-                                                </td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">AFP (Alfa
-                                                    FetoProteina)
-                                                </td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">ALK(CD246)</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">AMACR (Racemase)
-                                                </td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">AMILOIDE A</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">ANDROGENO</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">A. CARBONICA IX
-                                                    (CA
-                                                    IX)
-                                                </td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">ARGINASE 1</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">ATRX</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">BCL-2</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">BCL-6</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">BER-EP4</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">BETACATENIN</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">C-MYC</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CALCITONINA</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CALDESMON</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">CALPONINA</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CALRETININA</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CD1a</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">CD3</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CD4</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CD5</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">CD7</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CD8</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CD10</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">CD15</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CD19</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CD20</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">CD21</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CD23</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CD30</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">CD31</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CD34</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CD43</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">CD45</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CD56</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CD61</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">CD68</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CD79a</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CD99</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">CD117</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CD138</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CDK4</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">CDX2</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CA-125</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CA 19.9</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">CEA</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CYCLIN D1</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CITOKERATIN CAMS 2
-                                                </td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">CITOKERATIN OSCAR
-                                                </td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CITOKERATIN 5/6
-                                                </td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CITOKERATIN 7</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">CITOKERATIN 8</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CITOKERATIN 14
-                                                </td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CITOKERATIN 17
-                                                </td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">CITOKERATIN 18
-                                                </td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CITOKERATIN 19
-                                                </td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CITOKERATIN 20
-                                                </td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">CITOMEGALOVIRUS
-                                                </td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">COLAGENO IV</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">CK HWM (34BE12)
-                                                </td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">CROMOGRANINA A
-                                                </td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">DESMINA</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">DOG-1</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">EBV/LMP-1</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">E-CADHERINA</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">EMA</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">ERG</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">ESTROGENO</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">FACTOR VIII</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">FACTOR XIIIa</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">FASCIN A</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">FOXP3</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">FLY-1</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">GCDFP-15</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">GATA 3</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">GFAP</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">GLUT-1</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">GLIPICAN 3</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">GLYCOFORINA</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">GRANZYME B</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">HCG (Beta)</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">HER2
-                                                    (C-ERBB2/CB11)
-                                                </td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">HEP-PAR1</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">HHV-8</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">HMB45</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">IDH-1</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">IgG</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">IgG-4</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">Ig M</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">INI-1</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">IMP-3</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">INHIBINA</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">KAPPA</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">KI67</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">LAMBDA</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">LEF-1</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">LISOZIMA</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">MAMAGLOBINA</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">MELAN A/MART-1
-                                                </td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">MIELOPEROXIDASA
-                                                    (MPO)
-                                                </td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">MIOGEINA</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">MITF</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">MLH1</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">MSH2</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">MSH6</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">MUC 2</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">MUC 5AC</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">MUC 6</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">MUM-1</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">MYO D1</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">MMP9</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">NAPSIN A</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">NEUROFILAMENTO
-                                                </td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">NGFR</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">OLIG 2</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">P16</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">P40</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">P53</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">P57</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">PANQUERATINA</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">PAX-5</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">PAX-8</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">PODOPLANINA /
-                                                    D2-40
-                                                </td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">PD-1/CD279</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">PD-L1 (22c3)</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">PLAP</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">PMS2</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">PSA</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">P-TEN</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">PROGESTERONA</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">VPH</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">S-100</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">SATB-2</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">SALL 4</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">SINAPTOFISINA</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">SOX-10</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">SMAD4/DPC4</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">STAT 6</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">T. PALLIDUM</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">TDT</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">TLE-1</td>
-                                            </tr>
-                                            <tr style="border-bottom: 1px solid #e9ecef;">
-                                                <td style="padding: 6px 4px; color: var(--dark);">TIA-1</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">TIROGLOBULINA</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">TIROSINASA</td>
-                                            </tr>
-                                            <tr>
-                                                <td style="padding: 6px 4px; color: var(--dark);">TTF-1</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">VIMENTINA</td>
-                                                <td style="padding: 6px 4px; color: var(--dark);">WT-1</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <details class="ihq-details">
+                                    <summary class="ihq-summary">
+                                        <i class="fas fa-search"></i> Buscar Marcadores (Ver lista completa)
+                                    </summary>
+
+                                    <!-- Barra de Búsqueda -->
+                                    <div class="marker-search-container">
+                                        <div class="search-icon-wrapper">
+                                            <i class="fas fa-filter"></i>
+                                        </div>
+                                        <input type="text" id="markerSearch"
+                                            placeholder="Escribe un marcador (Ej. CD20, Ki67)..." autocomplete="off">
+                                    </div>
+
+                                    <div class="antibody-table-wrapper">
+                                        <table class="antibody-table">
+                                            <tbody>
+                                                <tr>
+                                                    <td>ACTINA MUSCULO LISO</td>
+                                                    <td>ACTINA (HIF35)</td>
+                                                    <td>ADIPOFILINA</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>AFP (Alfa FetoProteina)</td>
+                                                    <td>ALK(CD246)</td>
+                                                    <td>AMACR (Racemase)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>AMILOIDE A</td>
+                                                    <td>ANDROGENO</td>
+                                                    <td>A. CARBONICA IX (CA IX)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>ARGINASE 1</td>
+                                                    <td>ATRX</td>
+                                                    <td>BCL-2</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>BCL-6</td>
+                                                    <td>BER-EP4</td>
+                                                    <td>BETACATENIN</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>C-MYC</td>
+                                                    <td>CALCITONINA</td>
+                                                    <td>CALDESMON</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CALPONINA</td>
+                                                    <td>CALRETININA</td>
+                                                    <td>CD1a</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CD3</td>
+                                                    <td>CD4</td>
+                                                    <td>CD5</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CD7</td>
+                                                    <td>CD8</td>
+                                                    <td>CD10</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CD15</td>
+                                                    <td>CD19</td>
+                                                    <td>CD20</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CD21</td>
+                                                    <td>CD23</td>
+                                                    <td>CD30</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CD31</td>
+                                                    <td>CD34</td>
+                                                    <td>CD43</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CD45</td>
+                                                    <td>CD56</td>
+                                                    <td>CD61</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CD68</td>
+                                                    <td>CD79a</td>
+                                                    <td>CD99</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CD117</td>
+                                                    <td>CD138</td>
+                                                    <td>CDK4</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CDX2</td>
+                                                    <td>CA-125</td>
+                                                    <td>CA 19.9</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CEA</td>
+                                                    <td>CYCLIN D1</td>
+                                                    <td>CITOKERATIN CAMS 2</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CITOKERATIN OSCAR</td>
+                                                    <td>CITOKERATIN 5/6</td>
+                                                    <td>CITOKERATIN 7</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CITOKERATIN 8</td>
+                                                    <td>CITOKERATIN 14</td>
+                                                    <td>CITOKERATIN 17</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CITOKERATIN 18</td>
+                                                    <td>CITOKERATIN 19</td>
+                                                    <td>CITOKERATIN 20</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CITOMEGALOVIRUS</td>
+                                                    <td>COLAGENO IV</td>
+                                                    <td>CK HWM (34BE12)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>CROMOGRANINA A</td>
+                                                    <td>DESMINA</td>
+                                                    <td>DOG-1</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>EBV/LMP-1</td>
+                                                    <td>E-CADHERINA</td>
+                                                    <td>EMA</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>ERG</td>
+                                                    <td>ESTROGENO</td>
+                                                    <td>FACTOR VIII</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>FACTOR XIIIa</td>
+                                                    <td>FASCIN A</td>
+                                                    <td>FOXP3</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>FLY-1</td>
+                                                    <td>GCDFP-15</td>
+                                                    <td>GATA 3</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>GFAP</td>
+                                                    <td>GLUT-1</td>
+                                                    <td>GLIPICAN 3</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>GLYCOFORINA</td>
+                                                    <td>GRANZYME B</td>
+                                                    <td>HCG (Beta)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>HER2 (C-ERBB2/CB11)</td>
+                                                    <td>HEP-PAR1</td>
+                                                    <td>HHV-8</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>HMB45</td>
+                                                    <td>IDH-1</td>
+                                                    <td>IgG</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>IgG-4</td>
+                                                    <td>Ig M</td>
+                                                    <td>INI-1</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>IMP-3</td>
+                                                    <td>INHIBINA</td>
+                                                    <td>KAPPA</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>KI67</td>
+                                                    <td>LAMBDA</td>
+                                                    <td>LEF-1</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>LISOZIMA</td>
+                                                    <td>MAMAGLOBINA</td>
+                                                    <td>MELAN A/MART-1</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>MIELOPEROXIDASA (MPO)</td>
+                                                    <td>MIOGEINA</td>
+                                                    <td>MITF</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>MLH1</td>
+                                                    <td>MSH2</td>
+                                                    <td>MSH6</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>MUC 2</td>
+                                                    <td>MUC 5AC</td>
+                                                    <td>MUC 6</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>MUM-1</td>
+                                                    <td>MYO D1</td>
+                                                    <td>MMP9</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>NAPSIN A</td>
+                                                    <td>NEUROFILAMENTO</td>
+                                                    <td>NGFR</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>OLIG 2</td>
+                                                    <td>P16</td>
+                                                    <td>P40</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>P53</td>
+                                                    <td>P57</td>
+                                                    <td>PANQUERATINA</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>PAX-5</td>
+                                                    <td>PAX-8</td>
+                                                    <td>PODOPLANINA / D2-40</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>PD-1/CD279</td>
+                                                    <td>PD-L1 (22c3)</td>
+                                                    <td>PLAP</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>PMS2</td>
+                                                    <td>PSA</td>
+                                                    <td>P-TEN</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>PROGESTERONA</td>
+                                                    <td>VPH</td>
+                                                    <td>S-100</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>SATB-2</td>
+                                                    <td>SALL 4</td>
+                                                    <td>SINAPTOFISINA</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>SOX-10</td>
+                                                    <td>SMAD4/DPC4</td>
+                                                    <td>STAT 6</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>T. PALLIDUM</td>
+                                                    <td>TDT</td>
+                                                    <td>TLE-1</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>TIA-1</td>
+                                                    <td>TIROGLOBULINA</td>
+                                                    <td>TIROSINASA</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>TTF-1</td>
+                                                    <td>VIMENTINA</td>
+                                                    <td>WT-1</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </details>
                             </div>
                             <div style="display:none;" aria-hidden="true">
@@ -1258,172 +1192,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div style="display:none;" aria-hidden="true">
-                                <p>Uso clínico de ACTINA MUSCULO LISO: Detecta tumores derivados del músculo liso,
-                                    como
-                                    miomas uterinos y ciertos sarcomas.</p>
-                                <p>Uso clínico de ACTINA (HIF35): Marcador general de células musculares; ayuda a
-                                    identificar tumores del tejido blando.</p>
-                                <p>Uso clínico de ADIPOFILINA: Identifica la presencia de lípidos; útil en tumores
-                                    sebáceos y de glándulas sudoríparas.</p>
-                                <p>Uso clínico de AFP (Alfa FetoProteina): Marcador clave en tumores de hígado y
-                                    tumores
-                                    de células germinales del testículo u ovario.</p>
-                                <p>Uso clínico de ALK(CD246): Identifica cambios genéticos en ciertos tipos de
-                                    cáncer de
-                                    pulmón, linfomas y tumores infantiles.</p>
-                                <p>Uso clínico de AMACR (Racemase): Altamente sensible para diagnosticar cáncer de
-                                    próstata y ciertos tipos de cáncer de riñón.</p>
-                                <p>Uso clínico de AMILOIDE A: Detecta depósitos de proteína amiloide en tejidos,
-                                    asociados a enfermedades inflamatorias crónicas.</p>
-                                <p>Uso clínico de ANDROGENO: Evalúa la respuesta a hormonas masculinas en tumores de
-                                    próstata y ciertos tumores de mama.</p>
-                                <p>Uso clínico de A. CARBONICA IX (CA IX): Marcador específico para el cáncer de
-                                    riñón
-                                    (carcinoma de células claras).</p>
-                                <p>Uso clínico de ARGINASE 1: El marcador más específico para confirmar que un tumor
-                                    se
-                                    originó directamente en el hígado.</p>
-                                <p>Uso clínico de ATRX: Utilizado para clasificar tumores cerebrales (gliomas) y
-                                    predecir su comportamiento clínico.</p>
-                                <p>Uso clínico de BCL-2: Proteína que impide la muerte celular; su exceso ayuda a
-                                    diagnosticar diversos tipos de linfomas.</p>
-                                <p>Uso clínico de BCL-6: Identifica linfocitos de los centros germinales; esencial
-                                    para
-                                    clasificar linfomas agresivos.</p>
-                                <p>Uso clínico de BER-EP4: Ayuda a distinguir el carcinoma basocelular de la piel de
-                                    otros tumores similares.</p>
-                                <p>Uso clínico de BETACATENIN: Marcador de señalización celular útil en tumores de
-                                    colon, de mama y tumores 'desmoides'.</p>
-                                <p>Uso clínico de C-MYC: Gen que regula el crecimiento celular; su presencia indica
-                                    alta
-                                    agresividad en linfomas.</p>
-                                <p>Uso clínico de CALCITONINA: Marcador hormonal fundamental para el diagnóstico del
-                                    cáncer medular de tiroides.</p>
-                                <p>Uso clínico de CALDESMON: Marcador muy específico para identificar células de
-                                    músculo
-                                    liso en tumores del útero y tejidos blandos.</p>
-                                <p>Uso clínico de CALPONINA: Identifica células de soporte en las glándulas; vital
-                                    para
-                                    diferenciar lesiones benignas de malignas en mama.</p>
-                                <p>Uso clínico de CALRETININA: Principal marcador para diagnosticar mesotelioma y
-                                    ciertos tumores de los ovarios.</p>
-                                <p>Uso clínico de CD1a: Identifica células de Langerhans; crucial para diagnosticar
-                                    la
-                                    histiocitosis X.</p>
-                                <p>Uso clínico de CD3: El marcador universal para identificar Linfocitos T (células
-                                    clave del sistema de defensa).</p>
-                                <p>Uso clínico de CD4: Subtipo de linfocitos T; importante en la evaluación de
-                                    enfermedades inmunes y linfomas.</p>
-                                <p>Uso clínico de CD5: Ayuda a clasificar leucemias crónicas y linfomas de células
-                                    pequeñas.</p>
-                                <p>Uso clínico de CD7: Uno de los marcadores más tempranos de células de defensa T;
-                                    útil
-                                    en leucemias agudas.</p>
-                                <p>Uso clínico de CD8: Identifica linfocitos T 'asesinos'; mide la fuerza del
-                                    sistema
-                                    inmune contra el cáncer.</p>
-                                <p>Uso clínico de CD10: Marcador de células germinales de los ganglios; útil en el
-                                    estudio de linfomas y cáncer de riñón.</p>
-                                <p>Uso clínico de CD15: Característico de las células de Reed-Sternberg en el
-                                    Linfoma de
-                                    Hodgkin clásico.</p>
-                                <p>Uso clínico de CD19: Marcador fundamental para identificar todas las etapas de
-                                    desarrollo de los Linfocitos B.</p>
-                                <p>Uso clínico de CD20: El marcador más importante para el diagnóstico y guía de
-                                    tratamiento de Linfomas de células B.</p>
-                                <p>Uso clínico de CD21: Identifica las redes que sostienen a los linfocitos en los
-                                    ganglios; útil en linfomas foliculares.</p>
-                                <p>Uso clínico de CD23: Ayuda a diferenciar la leucemia linfática crónica de otros
-                                    tipos
-                                    de linfomas.</p>
-                                <p>Uso clínico de CD30: Clave para el diagnóstico del Linfoma de Hodgkin y linfomas
-                                    anaplásicos de células grandes.</p>
-                                <p>Uso clínico de CD31: Marcador de células endoteliales (vasos sanguíneos);
-                                    identifica
-                                    tumores vasculares como angiosarcomas.</p>
-                                <p>Uso clínico de CD34: Identifica vasos sanguíneos y células madre; esencial en la
-                                    clasificación de leucemias y sarcomas.</p>
-                                <p>Uso clínico de CD43: Ayuda a detectar anormalidades en linfocitos B y T; útil en
-                                    la
-                                    clasificación de linfomas.</p>
-                                <p>Uso clínico de CD45: Antígeno Común Leucocitario; confirma que el tumor se
-                                    origina en
-                                    el sistema de la sangre.</p>
-                                <p>Uso clínico de CD56: Marcador para células de defensa NK y tumores
-                                    neuroendocrinos
-                                    (como el cáncer microcítico de pulmón).</p>
-                                <p>Uso clínico de CD61: Identifica células precursoras de las plaquetas; útil en el
-                                    diagnóstico de leucemias específicas.</p>
-                                <p>Uso clínico de CD68: Marca macrófagos (células de limpieza); ayuda a identificar
-                                    inflamación y ciertos tumores.</p>
-                                <p>Uso clínico de CD79a: Marcador muy específico y temprano para Linfocitos B;
-                                    complementa al CD20.</p>
-                                <p>Uso clínico de CD99: Marcador distintivo del Sarcoma de Ewing y tumores
-                                    neuroectodérmicos infantiles.</p>
-                                <p>Uso clínico de CD117: Esencial para diagnosticar tumores GIST del sistema
-                                    digestivo y
-                                    ciertos tipos de leucemia.</p>
-                                <p>Uso clínico de CD138: Principal marcador de células plasmáticas; fundamental para
-                                    diagnosticar el Mieloma Múltiple.</p>
-                                <p>Uso clínico de CDK4: Evalúa anormalidades genéticas en tumores de grasa para
-                                    distinguir lipomas de liposarcomas.</p>
-                                <p>Uso clínico de CDX2: Indica con alta precisión que un tumor proviene del tracto
-                                    digestivo, especialmente del colon.</p>
-                                <p>Uso clínico de CA-125: Utilizado para monitorear y diagnosticar tumores de ovario
-                                    y
-                                    de la cavidad abdominal.</p>
-                                <p>Uso clínico de CA 19.9: Marcador de apoyo para el diagnóstico de cáncer de
-                                    páncreas y
-                                    vías biliares.</p>
-                                <p>Uso clínico de CEA: Antígeno Carcinoembrionario; marcador general para cáncer de
-                                    colon, páncreas y otros.</p>
-                                <p>Uso clínico de CYCLIN D1: Proteína reguladora; su detección es clave para
-                                    diagnosticar el Linfoma de Células del Manto.</p>
-                                <p>Uso clínico de CITOKERATIN 5/6: Ayuda a identificar carcinomas escamosos y a
-                                    distinguir mesoteliomas de otros tipos de cáncer de pulmón.</p>
-                                <p>Uso clínico de CITOKERATIN 7: Marcador de origen glandular; se encuentra
-                                    comúnmente
-                                    en tumores de mama, pulmón y ovario.</p>
-                                <p>Uso clínico de CITOKERATIN 20: Marcador de origen muy específico para el tracto
-                                    digestivo (colon) y células de Merkel en la piel.</p>
-                                <p>Uso clínico de DESMINA: Detecta células musculares; esencial para diagnosticar
-                                    tumores del músculo esquelético y liso.</p>
-                                <p>Uso clínico de DOG-1: Marcador altamente específico para tumores GIST; muy útil
-                                    cuando el CD117 es negativo.</p>
-                                <p>Uso clínico de HER2 (C-ERBB2/CB11): Evalúa la agresividad celular; crucial para
-                                    guiar
-                                    tratamientos biológicos en cáncer de mama y estómago.</p>
-                                <p>Uso clínico de HMB45: Altamente específico para el diagnóstico de Melanoma
-                                    (cáncer
-                                    agresivo de piel).</p>
-                                <p>Uso clínico de KI67: El marcador de proliferación más usado; indica qué
-                                    porcentaje de
-                                    células se están dividiendo.</p>
-                                <p>Uso clínico de P16: Marcador de infección por VPH; esencial en el diagnóstico de
-                                    cáncer de cuello uterino y garganta.</p>
-                                <p>Uso clínico de P40: El marcador más fiable para diagnosticar el carcinoma de
-                                    células
-                                    escamosas del pulmón.</p>
-                                <p>Uso clínico de P53: Detecta la mutación más común en el cáncer, indicando
-                                    agresividad
-                                    y guiando el tratamiento.</p>
-                                <p>Uso clínico de PSA: Antígeno Prostático Específico; la prueba de referencia para
-                                    el
-                                    tejido de la próstata.</p>
-                                <p>Uso clínico de S-100: Marcador versátil usado para detectar melanomas, tumores
-                                    nerviosos y de glándulas salivares.</p>
-                                <p>Uso clínico de SINAPTOFISINA: Identifica vesículas nerviosas; esencial para
-                                    diagnosticar tumores neuroendocrinos.</p>
-                                <p>Uso clínico de SOX-10: Marcador moderno y muy sensible para diagnosticar
-                                    melanomas y
-                                    tumores de nervios.</p>
-                                <p>Uso clínico de TTF-1: Diferencia con precisión el cáncer originado en el pulmón
-                                    de
-                                    metástasis de otros órganos.</p>
-                                <p>Uso clínico de VIMENTINA: Marcador general de los tejidos conectivos; ayuda a
-                                    clasificar sarcomas.</p>
-                            </div>
+
 
                             <a href="#" class="service-link">Más información sobre Inmunohistoquímica <i
                                     class="fas fa-arrow-right"></i></a>
@@ -1468,8 +1237,9 @@
                     </button>
                     <div class="service-accordion-content">
                         <div class="service-accordion-content-inner">
-                            cirugía para evaluar la extensión de una enfermedad o confirmar un diagnóstico previo.
-                            </p>
+                            <p>Estudio especializado de órganos o tejidos obtenidos mediante cirugía para evaluar la
+                                extensión de una enfermedad o confirmar un diagnóstico previo.</p>
+
 
                             <div class="price-list-container"
                                 style="margin-top: 20px; margin-bottom: 25px; background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid var(--accent);">
@@ -1586,172 +1356,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div style="display:none;" aria-hidden="true">
-                                <p>Uso clínico de ACTINA MUSCULO LISO: Detecta tumores derivados del músculo liso,
-                                    como
-                                    miomas uterinos y ciertos sarcomas.</p>
-                                <p>Uso clínico de ACTINA (HIF35): Marcador general de células musculares; ayuda a
-                                    identificar tumores del tejido blando.</p>
-                                <p>Uso clínico de ADIPOFILINA: Identifica la presencia de lípidos; útil en tumores
-                                    sebáceos y de glándulas sudoríparas.</p>
-                                <p>Uso clínico de AFP (Alfa FetoProteina): Marcador clave en tumores de hígado y
-                                    tumores
-                                    de células germinales del testículo u ovario.</p>
-                                <p>Uso clínico de ALK(CD246): Identifica cambios genéticos en ciertos tipos de
-                                    cáncer de
-                                    pulmón, linfomas y tumores infantiles.</p>
-                                <p>Uso clínico de AMACR (Racemase): Altamente sensible para diagnosticar cáncer de
-                                    próstata y ciertos tipos de cáncer de riñón.</p>
-                                <p>Uso clínico de AMILOIDE A: Detecta depósitos de proteína amiloide en tejidos,
-                                    asociados a enfermedades inflamatorias crónicas.</p>
-                                <p>Uso clínico de ANDROGENO: Evalúa la respuesta a hormonas masculinas en tumores de
-                                    próstata y ciertos tumores de mama.</p>
-                                <p>Uso clínico de A. CARBONICA IX (CA IX): Marcador específico para el cáncer de
-                                    riñón
-                                    (carcinoma de células claras).</p>
-                                <p>Uso clínico de ARGINASE 1: El marcador más específico para confirmar que un tumor
-                                    se
-                                    originó directamente en el hígado.</p>
-                                <p>Uso clínico de ATRX: Utilizado para clasificar tumores cerebrales (gliomas) y
-                                    predecir su comportamiento clínico.</p>
-                                <p>Uso clínico de BCL-2: Proteína que impide la muerte celular; su exceso ayuda a
-                                    diagnosticar diversos tipos de linfomas.</p>
-                                <p>Uso clínico de BCL-6: Identifica linfocitos de los centros germinales; esencial
-                                    para
-                                    clasificar linfomas agresivos.</p>
-                                <p>Uso clínico de BER-EP4: Ayuda a distinguir el carcinoma basocelular de la piel de
-                                    otros tumores similares.</p>
-                                <p>Uso clínico de BETACATENIN: Marcador de señalización celular útil en tumores de
-                                    colon, de mama y tumores 'desmoides'.</p>
-                                <p>Uso clínico de C-MYC: Gen que regula el crecimiento celular; su presencia indica
-                                    alta
-                                    agresividad en linfomas.</p>
-                                <p>Uso clínico de CALCITONINA: Marcador hormonal fundamental para el diagnóstico del
-                                    cáncer medular de tiroides.</p>
-                                <p>Uso clínico de CALDESMON: Marcador muy específico para identificar células de
-                                    músculo
-                                    liso en tumores del útero y tejidos blandos.</p>
-                                <p>Uso clínico de CALPONINA: Identifica células de soporte en las glándulas; vital
-                                    para
-                                    diferenciar lesiones benignas de malignas en mama.</p>
-                                <p>Uso clínico de CALRETININA: Principal marcador para diagnosticar mesotelioma y
-                                    ciertos tumores de los ovarios.</p>
-                                <p>Uso clínico de CD1a: Identifica células de Langerhans; crucial para diagnosticar
-                                    la
-                                    histiocitosis X.</p>
-                                <p>Uso clínico de CD3: El marcador universal para identificar Linfocitos T (células
-                                    clave del sistema de defensa).</p>
-                                <p>Uso clínico de CD4: Subtipo de linfocitos T; importante en la evaluación de
-                                    enfermedades inmunes y linfomas.</p>
-                                <p>Uso clínico de CD5: Ayuda a clasificar leucemias crónicas y linfomas de células
-                                    pequeñas.</p>
-                                <p>Uso clínico de CD7: Uno de los marcadores más tempranos de células de defensa T;
-                                    útil
-                                    en leucemias agudas.</p>
-                                <p>Uso clínico de CD8: Identifica linfocitos T 'asesinos'; mide la fuerza del
-                                    sistema
-                                    inmune contra el cáncer.</p>
-                                <p>Uso clínico de CD10: Marcador de células germinales de los ganglios; útil en el
-                                    estudio de linfomas y cáncer de riñón.</p>
-                                <p>Uso clínico de CD15: Característico de las células de Reed-Sternberg en el
-                                    Linfoma de
-                                    Hodgkin clásico.</p>
-                                <p>Uso clínico de CD19: Marcador fundamental para identificar todas las etapas de
-                                    desarrollo de los Linfocitos B.</p>
-                                <p>Uso clínico de CD20: El marcador más importante para el diagnóstico y guía de
-                                    tratamiento de Linfomas de células B.</p>
-                                <p>Uso clínico de CD21: Identifica las redes que sostienen a los linfocitos en los
-                                    ganglios; útil en linfomas foliculares.</p>
-                                <p>Uso clínico de CD23: Ayuda a diferenciar la leucemia linfática crónica de otros
-                                    tipos
-                                    de linfomas.</p>
-                                <p>Uso clínico de CD30: Clave para el diagnóstico del Linfoma de Hodgkin y linfomas
-                                    anaplásicos de células grandes.</p>
-                                <p>Uso clínico de CD31: Marcador de células endoteliales (vasos sanguíneos);
-                                    identifica
-                                    tumores vasculares como angiosarcomas.</p>
-                                <p>Uso clínico de CD34: Identifica vasos sanguíneos y células madre; esencial en la
-                                    clasificación de leucemias y sarcomas.</p>
-                                <p>Uso clínico de CD43: Ayuda a detectar anormalidades en linfocitos B y T; útil en
-                                    la
-                                    clasificación de linfomas.</p>
-                                <p>Uso clínico de CD45: Antígeno Común Leucocitario; confirma que el tumor se
-                                    origina en
-                                    el sistema de la sangre.</p>
-                                <p>Uso clínico de CD56: Marcador para células de defensa NK y tumores
-                                    neuroendocrinos
-                                    (como el cáncer microcítico de pulmón).</p>
-                                <p>Uso clínico de CD61: Identifica células precursoras de las plaquetas; útil en el
-                                    diagnóstico de leucemias específicas.</p>
-                                <p>Uso clínico de CD68: Marca macrófagos (células de limpieza); ayuda a identificar
-                                    inflamación y ciertos tumores.</p>
-                                <p>Uso clínico de CD79a: Marcador muy específico y temprano para Linfocitos B;
-                                    complementa al CD20.</p>
-                                <p>Uso clínico de CD99: Marcador distintivo del Sarcoma de Ewing y tumores
-                                    neuroectodérmicos infantiles.</p>
-                                <p>Uso clínico de CD117: Esencial para diagnosticar tumores GIST del sistema
-                                    digestivo y
-                                    ciertos tipos de leucemia.</p>
-                                <p>Uso clínico de CD138: Principal marcador de células plasmáticas; fundamental para
-                                    diagnosticar el Mieloma Múltiple.</p>
-                                <p>Uso clínico de CDK4: Evalúa anormalidades genéticas en tumores de grasa para
-                                    distinguir lipomas de liposarcomas.</p>
-                                <p>Uso clínico de CDX2: Indica con alta precisión que un tumor proviene del tracto
-                                    digestivo, especialmente del colon.</p>
-                                <p>Uso clínico de CA-125: Utilizado para monitorear y diagnosticar tumores de ovario
-                                    y
-                                    de la cavidad abdominal.</p>
-                                <p>Uso clínico de CA 19.9: Marcador de apoyo para el diagnóstico de cáncer de
-                                    páncreas y
-                                    vías biliares.</p>
-                                <p>Uso clínico de CEA: Antígeno Carcinoembrionario; marcador general para cáncer de
-                                    colon, páncreas y otros.</p>
-                                <p>Uso clínico de CYCLIN D1: Proteína reguladora; su detección es clave para
-                                    diagnosticar el Linfoma de Células del Manto.</p>
-                                <p>Uso clínico de CITOKERATIN 5/6: Ayuda a identificar carcinomas escamosos y a
-                                    distinguir mesoteliomas de otros tipos de cáncer de pulmón.</p>
-                                <p>Uso clínico de CITOKERATIN 7: Marcador de origen glandular; se encuentra
-                                    comúnmente
-                                    en tumores de mama, pulmón y ovario.</p>
-                                <p>Uso clínico de CITOKERATIN 20: Marcador de origen muy específico para el tracto
-                                    digestivo (colon) y células de Merkel en la piel.</p>
-                                <p>Uso clínico de DESMINA: Detecta células musculares; esencial para diagnosticar
-                                    tumores del músculo esquelético y liso.</p>
-                                <p>Uso clínico de DOG-1: Marcador altamente específico para tumores GIST; muy útil
-                                    cuando el CD117 es negativo.</p>
-                                <p>Uso clínico de HER2 (C-ERBB2/CB11): Evalúa la agresividad celular; crucial para
-                                    guiar
-                                    tratamientos biológicos en cáncer de mama y estómago.</p>
-                                <p>Uso clínico de HMB45: Altamente específico para el diagnóstico de Melanoma
-                                    (cáncer
-                                    agresivo de piel).</p>
-                                <p>Uso clínico de KI67: El marcador de proliferación más usado; indica qué
-                                    porcentaje de
-                                    células se están dividiendo.</p>
-                                <p>Uso clínico de P16: Marcador de infección por VPH; esencial en el diagnóstico de
-                                    cáncer de cuello uterino y garganta.</p>
-                                <p>Uso clínico de P40: El marcador más fiable para diagnosticar el carcinoma de
-                                    células
-                                    escamosas del pulmón.</p>
-                                <p>Uso clínico de P53: Detecta la mutación más común en el cáncer, indicando
-                                    agresividad
-                                    y guiando el tratamiento.</p>
-                                <p>Uso clínico de PSA: Antígeno Prostático Específico; la prueba de referencia para
-                                    el
-                                    tejido de la próstata.</p>
-                                <p>Uso clínico de S-100: Marcador versátil usado para detectar melanomas, tumores
-                                    nerviosos y de glándulas salivares.</p>
-                                <p>Uso clínico de SINAPTOFISINA: Identifica vesículas nerviosas; esencial para
-                                    diagnosticar tumores neuroendocrinos.</p>
-                                <p>Uso clínico de SOX-10: Marcador moderno y muy sensible para diagnosticar
-                                    melanomas y
-                                    tumores de nervios.</p>
-                                <p>Uso clínico de TTF-1: Diferencia con precisión el cáncer originado en el pulmón
-                                    de
-                                    metástasis de otros órganos.</p>
-                                <p>Uso clínico de VIMENTINA: Marcador general de los tejidos conectivos; ayuda a
-                                    clasificar sarcomas.</p>
-                            </div>
+
 
                             <a href="#" class="service-link">Más información sobre análisis de piezas quirúrgicas <i
                                     class="fas fa-arrow-right"></i></a>
@@ -3003,34 +2608,34 @@
                     </div>
                 </div>
             </div>
-            <!-- Zona Médica Section (Authority Content) -->
-            <section id="zona-medica" class="page-section" style="background-color: #f4f7f9; padding: 60px 0;">
-                <div class="container">
-                    <div class="section-header">
-                        <h2 class="section-title">Zona Médica y Recursos para Especialistas</h2>
-                        <p class="section-description"
-                            style="max-width: 800px; margin: 20px auto; text-align: center; color: #555;">
-                            Brindamos soporte técnico avanzado y recursos académicos para cirujanos oncológicos y
-                            patólogos. Explore nuestras guías de referencia y protocolos estandarizados.
-                        </p>
-                    </div>
-                    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-                        <a href="educacion-medica.html" class="back-button"
-                            style="background: var(--primary); color: white; padding: 15px 30px; border-radius: 5px; text-decoration: none;">
-                            <i class="fas fa-graduation-cap"></i> Acceder a la Zona Médica
-                        </a>
-                        <a href="dermatopatologia.html" class="back-button"
-                            style="background: #fff; color: var(--primary); border: 1px solid var(--primary); padding: 15px 30px; border-radius: 5px; text-decoration: none;">
-                            <i class="fas fa-microscope"></i> Patrones de Dermatopatología
-                        </a>
-                    </div>
-                </div>
-            </section>
+        </section>
 
-            <!-- Classroom Anchor -->
-            <div id="classroom"></div>
-            <!-- Protocolos Anchor -->
-            <div id="protocolos"></div>
+        <!-- Zona Médica Section (Authority Content) -->
+
+        <section id="zona-medica" class="page-section" style="background-color: #f4f7f9; padding: 60px 0;">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Zona Médica y Recursos para Especialistas</h2>
+                    <p class="section-description"
+                        style="max-width: 800px; margin: 20px auto; text-align: center; color: #555;">
+                        Brindamos soporte técnico avanzado y recursos académicos para cirujanos oncológicos y
+                        patólogos. Explore nuestras guías de referencia y protocolos estandarizados.
+                    </p>
+                </div>
+                <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <a href="educacion-medica.html" class="back-button"
+                        style="background: var(--primary); color: white; padding: 15px 30px; border-radius: 5px; text-decoration: none;">
+                        <i class="fas fa-graduation-cap"></i> Acceder a la Zona Médica
+                    </a>
+                    <a href="dermatopatologia.html" class="back-button"
+                        style="background: #fff; color: var(--primary); border: 1px solid var(--primary); padding: 15px 30px; border-radius: 5px; text-decoration: none;">
+                        <i class="fas fa-microscope"></i> Patrones de Dermatopatología
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
     </main>
 
     <!-- Footer -->
@@ -3136,27 +2741,26 @@
             <div class="map-container">
                 <!-- Ubicación del Laboratorio -->
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3902.632048392849!2d-77.08730908440896!3d-11.932890000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTHCsDU1JzU4LjQiUyA3N8KwMDUnMDQuNyJX!5e0!3m2!1ses!2spe!4v1690826791259!5m2!1ses!2spe"
-                    allowfullscreen="" loading="lazy"></iframe>
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.518641974716!2d-77.0315757!3d-12.0079083!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105cf6bad079363%3A0xe67db5d96277257!2sJC%20PATH%20LAB!5e0!3m2!1ses-419!2spe!4v1709424567890!5m2!1ses-419!2spe"
+                    allowfullscreen="" loading="lazy" title="Ubicación de JC PATH LAB en Google Maps" width="600"
+                    height="300"></iframe>
             </div>
         </div>
     </footer>
 
-
-
-
-
     <!-- Chatbot HTML Structure -->
     <div id="chat-container">
         <div id="chat-header">
-            <div class="bot-avatar">
-                <i class="fas fa-user-md"></i>
+            <div class="chat-avatar-container">
+                <canvas id="avatar-canvas" class="chat-avatar" aria-label="Avatar animado del asistente médico"
+                    width="75" height="75"></canvas>
+                <div class="online-status" aria-label="Estado: En línea"></div>
             </div>
             <div class="chat-title-group">
                 <div class="chat-name">Asistente JC Path Lab</div>
-                <span>En línea ahora</span>
+                <span>En línea • Respuesta rápida</span>
             </div>
-            <span class="close-btn">&times;</span>
+            <span class="close-btn" role="button" aria-label="Cerrar chat">&times;</span>
         </div>
         <div id="chat-messages"></div>
         <div id="typing-indicator">
@@ -3172,26 +2776,34 @@
             </label>
             <input type="file" id="chat-file-upload" accept="image/*" style="display: none;">
             <input type="text" id="chat-input" placeholder="Escribe o sube foto de tu orden...">
-            <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+            <button id="send-btn" aria-label="Enviar mensaje"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>
-    <button id="chat-toggle">
+    <button id="chat-toggle" aria-label="Abrir chat de asistencia">
         <i class="fas fa-comments"></i>
     </button>
+
+    <!-- Hidden Video Sources for Interactive Avatar -->
+    <div id="avatar-videos"
+        style="opacity: 0; height: 0; width: 0; overflow: hidden; position: absolute; pointer-events: none;">
+        <video id="vid-idle" src="idle.mp4" loop muted playsinline preload="auto" autoplay></video>
+        <video id="vid-pensando" src="pensando.mp4" loop muted playsinline preload="auto"></video>
+        <video id="vid-hablando" src="hablando.mp4" loop muted playsinline preload="auto"></video>
+        <video id="vid-saludo" src="saludo.mp4" muted playsinline preload="auto"></video>
+    </div>
     <!-- Chatbot Automated Tooltip -->
     <div id="chat-tooltip" class="chat-tooltip">
         ¿Tienes una orden médica? <strong>Haz clic aquí</strong> para enviarla y cotizar al instante. 📸
     </div>
 
     <!-- Chatbot Knowledge Base (God Mode) -->
-    <script src="site_knowledge.js"></script>
-    <script src="chatbot.js"></script>
-    <script src="main.js"></script>
+
+    <script src="main.js" defer></script>
 
     <!-- Modal para Inmunohistoquímica -->
     <div id="antibodyModal" class="ab-modal">
         <div class="ab-modal-content">
-            <span class="ab-close">&times;</span>
+            <span class="ab-close" role="button" aria-label="Cerrar información">&times;</span>
             <h3 id="modalTitle" class="ab-title"></h3>
             <p id="modalInfo" class="ab-info"></p>
             <div style="margin-top: 20px; font-size: 0.85rem; color: #888;">
@@ -3212,10 +2824,9 @@
             const info = document.getElementById('modalInfo');
 
             // Find all antibody cells and add the interactive class
-            const cells = document.querySelectorAll('td');
+            const cells = document.querySelectorAll('.antibody-table td');
             cells.forEach(cell => {
                 const text = cell.innerText.trim();
-                // Check if the text matches an antibody name
                 if (antibodyData[text]) {
                     cell.classList.add('antibody-item');
                     cell.title = "Haz clic para ver su uso clínico";
@@ -3228,6 +2839,22 @@
                     });
                 }
             });
+
+            // Lógica de Búsqueda de Marcadores
+            const searchInput = document.getElementById('markerSearch');
+            if (searchInput) {
+                searchInput.addEventListener('input', function (e) {
+                    const query = e.target.value.toLowerCase().trim();
+                    cells.forEach(cell => {
+                        const markerName = cell.innerText.toLowerCase();
+                        if (markerName.includes(query)) {
+                            cell.classList.remove('hidden');
+                        } else {
+                            cell.classList.add('hidden');
+                        }
+                    });
+                });
+            }
 
             // Close modal events
             if (span) {
@@ -3289,7 +2916,7 @@
     <!-- Video Modal (Cinema Style) -->
     <div id="video-modal" class="video-modal" onclick="closeVideoModal()">
         <div class="video-modal-content" onclick="event.stopPropagation()">
-            <span class="close-video" onclick="closeVideoModal()">&times;</span>
+            <span class="close-video" role="button" aria-label="Cerrar video" onclick="closeVideoModal()">&times;</span>
             <div class="video-container">
                 <iframe id="youtube-frame" width="100%" height="100%" src="" title="JC Path Lab Tour" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

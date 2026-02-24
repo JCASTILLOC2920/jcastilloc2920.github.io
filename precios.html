@@ -22,72 +22,93 @@
         }
 
         .prices-container {
-            max-width: 1000px;
+            max-width: 1200px;
+            /* Increased for grid layout */
             margin: 0 auto;
             padding: 40px 20px;
         }
 
         .price-category {
             margin-bottom: 50px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-            border-top: 5px solid var(--accent);
+            padding-bottom: 30px;
+            /* Space at the bottom */
         }
 
         .category-header {
-            padding: 20px 30px;
-            background: #f8f9fa;
-            border-bottom: 1px solid #eee;
+            padding: 20px 0;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--accent);
             display: flex;
             align-items: center;
             gap: 15px;
         }
 
         .category-header i {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--accent);
         }
 
         .category-header h2 {
             margin: 0;
             color: var(--secondary);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
         }
 
-        .price-table {
-            width: 100%;
-            border-collapse: collapse;
+        /* Pricing Card Grid System */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
         }
 
-        .price-table th,
-        .price-table td {
-            padding: 15px 30px;
-            text-align: left;
-            border-bottom: 1px solid #eee;
+        .pricing-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+            /* Increased intensity */
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border-top: 4px solid var(--accent);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 160px;
+            position: relative;
+            cursor: pointer;
         }
 
-        .price-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .price-table tr:hover {
-            background-color: #fcfcfc;
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22);
+            /* 40% more intense */
+            background-color: #fafbfc;
+            border-top-color: var(--primary);
         }
 
         .price-name {
-            font-weight: 500;
-            color: #333;
-            width: 70%;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            line-height: 1.4;
         }
 
         .price-value {
-            font-weight: 700;
+            font-size: 1.6rem;
+            font-weight: 800;
             color: var(--primary);
-            font-size: 1.2rem;
             text-align: right;
-            width: 30%;
+            margin-top: auto;
+        }
+
+        .price-value span {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-left: 5px;
+            color: var(--text);
+            opacity: 0.7;
         }
 
         .cta-section {
@@ -98,46 +119,23 @@
             border-radius: 15px;
         }
 
-        .floating-call-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #25d366;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 50px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            font-weight: bold;
-            z-index: 9999;
-            transition: transform 0.3s ease;
-        }
-
-        .floating-call-btn:hover {
-            transform: scale(1.05);
-            background-color: #20bd5a;
-        }
-
         @media (max-width: 768px) {
-
-            .price-table th,
-            .price-table td {
-                padding: 15px;
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
 
-            .price-name {
-                font-size: 0.95rem;
+            .pricing-card {
+                padding: 20px;
+                min-height: auto;
             }
 
-            .price-value {
-                font-size: 1.1rem;
+            .category-header h2 {
+                font-size: 1.5rem;
             }
         }
     </style>
-    <link rel="stylesheet" href="chatbot.css">
+
 </head>
 
 <body>
@@ -209,30 +207,28 @@
                 <i class="fas fa-microscope"></i>
                 <h2>Biopsias y Tejidos</h2>
             </div>
-            <table class="price-table">
-                <tbody>
-                    <tr>
-                        <td class="price-name">BIOPSIA GÁSTRICA</td>
-                        <td class="price-value">80 SOLES</td>
-                    </tr>
-                    <tr>
-                        <td class="price-name">BIOPSIA DE ESÓFAGO, INTESTINO DELGADO Y COLON</td>
-                        <td class="price-value">80 SOLES</td>
-                    </tr>
-                    <tr>
-                        <td class="price-name">BIOPSIA DE CERVIX</td>
-                        <td class="price-value">80 SOLES</td>
-                    </tr>
-                    <tr>
-                        <td class="price-name">CONO CERVICAL</td>
-                        <td class="price-value">120 SOLES</td>
-                    </tr>
-                    <tr>
-                        <td class="price-name">BIOPSIA DE PRÓSTATA (POR 6 FRASCOS)</td>
-                        <td class="price-value">250 SOLES</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="price-name">BIOPSIA GÁSTRICA</div>
+                    <div class="price-value">80<span>SOLES</span></div>
+                </div>
+                <div class="pricing-card">
+                    <div class="price-name">BIOPSIA DE ESÓFAGO, INTESTINO DELGADO Y COLON</div>
+                    <div class="price-value">80<span>SOLES</span></div>
+                </div>
+                <div class="pricing-card">
+                    <div class="price-name">BIOPSIA DE CERVIX</div>
+                    <div class="price-value">80<span>SOLES</span></div>
+                </div>
+                <div class="pricing-card">
+                    <div class="price-name">CONO CERVICAL</div>
+                    <div class="price-value">120<span>SOLES</span></div>
+                </div>
+                <div class="pricing-card">
+                    <div class="price-name">BIOPSIA DE PRÓSTATA (POR 6 FRASCOS)</div>
+                    <div class="price-value">250<span>SOLES</span></div>
+                </div>
+            </div>
         </div>
 
         <!-- Citología -->
@@ -241,22 +237,20 @@
                 <i class="fas fa-vial"></i>
                 <h2>Citología y Papanicolaou</h2>
             </div>
-            <table class="price-table">
-                <tbody>
-                    <tr>
-                        <td class="price-name">PAPANICOLAOU</td>
-                        <td class="price-value">20 SOLES</td>
-                    </tr>
-                    <tr>
-                        <td class="price-name">EXTENDIDO DE TIROIDES (POR CADA LÁMINA)</td>
-                        <td class="price-value">20 SOLES</td>
-                    </tr>
-                    <tr>
-                        <td class="price-name">EXTENDIDO DE ASPIRACIÓN POR AGUJA FINA DE GLÁNDULA SALIVAL</td>
-                        <td class="price-value">20 SOLES</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="price-name">PAPANICOLAOU</div>
+                    <div class="price-value">20<span>SOLES</span></div>
+                </div>
+                <div class="pricing-card">
+                    <div class="price-name">EXTENDIDO DE TIROIDES (POR CADA LÁMINA)</div>
+                    <div class="price-value">20<span>SOLES</span></div>
+                </div>
+                <div class="pricing-card">
+                    <div class="price-name">EXTENDIDO DE ASPIRACIÓN POR AGUJA FINA DE GLÁNDULA SALIVAL</div>
+                    <div class="price-value">20<span>SOLES</span></div>
+                </div>
+            </div>
         </div>
 
         <!-- Inmunohistoquímica (NUEVO) -->
@@ -265,22 +259,20 @@
                 <i class="fas fa-dna"></i>
                 <h2>Inmunohistoquímica y Marcadores</h2>
             </div>
-            <table class="price-table">
-                <tbody>
-                    <tr>
-                        <td class="price-name">1 MARCADOR (Incluye Informe)</td>
-                        <td class="price-value">250 SOLES</td>
-                    </tr>
-                    <tr>
-                        <td class="price-name">PANEL DE 3 MARCADORES</td>
-                        <td class="price-value">400 SOLES</td>
-                    </tr>
-                    <tr>
-                        <td class="price-name">PANEL ONCOLÓGICO (5 o más marcadores)</td>
-                        <td class="price-value">800 SOLES</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="price-name">1 MARCADOR (Incluye Informe)</div>
+                    <div class="price-value">250<span>SOLES</span></div>
+                </div>
+                <div class="pricing-card">
+                    <div class="price-name">PANEL DE 3 MARCADORES</div>
+                    <div class="price-value">400<span>SOLES</span></div>
+                </div>
+                <div class="pricing-card">
+                    <div class="price-name">PANEL ONCOLÓGICO (5 o más marcadores)</div>
+                    <div class="price-value">800<span>SOLES</span></div>
+                </div>
+            </div>
         </div>
 
         <div class="cta-section">
@@ -347,8 +339,7 @@
     </button>
 
     <!-- Chatbot Knowledge Base (God Mode) -->
-    <script src="site_knowledge.js"></script>
-    <script src="chatbot.js"></script>
+
 </body>
 
 </html>
