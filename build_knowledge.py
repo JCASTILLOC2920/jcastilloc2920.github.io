@@ -3,7 +3,7 @@ import re
 import json
 
 # Configuration
-working_dir = r"c:\Users\josehp\Desktop\paginas web\jcastilloc2920.github.io-index.html"
+working_dir = os.path.dirname(os.path.abspath(__file__))
 output_file = os.path.join(working_dir, "site_knowledge.js")
 
 def extract_text_from_html(html_content):
@@ -28,7 +28,16 @@ for filename in os.listdir(working_dir):
                 text = extract_text_from_html(content)
                 if text:
                     knowledge_base.append(f"--- FILE: {filename} ---\n{text}\n")
-                    print(f"Indexed: {filename}")
+                    print(f"Indexed HTML: {filename}")
+        except Exception as e:
+            print(f"Error reading {filename}: {e}")
+    elif filename == "base_conocimiento.txt":
+        file_path = os.path.join(working_dir, filename)
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+                knowledge_base.append(f"--- INTERNAL KNOWLEDGE: {filename} ---\n{content}\n")
+                print(f"Indexed Internal Knowledge: {filename}")
         except Exception as e:
             print(f"Error reading {filename}: {e}")
 

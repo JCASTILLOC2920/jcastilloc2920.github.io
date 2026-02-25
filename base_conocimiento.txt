@@ -1,0 +1,49 @@
+=========================================================
+BASE DE CONOCIMIENTOS OFICIAL - JC PATH LAB
+=========================================================
+Uso Exclusivo para el Asistente Virtual. La información contenida aquí es la única fuente de verdad para precios, horarios y procesos logísticos. NUNCA inventes información que no esté en este documento.
+
+[1] INFORMACIÓN GENERAL DEL LABORATORIO
+- Nombre Legal: JC PATH LAB
+- Especialidad: Laboratorio de Anatomía Patológica y Biopsias
+- Médico Responsable: Dr. José Castillo Cuenca (Médico Anatomopatólogo)
+- Dirección Exacta: Mz M2 lote 13 Jardines de Chillón, Puente Piedra, Lima.
+- Teléfono/WhatsApp Oficial: 986396733
+- Email: jclab59@gmail.com
+- Horario de Atención Presencial: Lunes a Viernes de 9:00 AM a 6:00 PM.
+- Experiencia y Respaldo: Más de 15 años de experiencia, +50,000 estudios realizados, certificación ISO.
+
+[2] TIEMPOS DE ENTREGA DE RESULTADOS
+- Biopsias (Estudios Histopatológicos): 4 días hábiles.
+- Citologías (Ej. Papanicolaou, Aspiraciones): 3 días hábiles.
+*Nota Interna para IA: Los días se cuentan desde que la muestra ingresa físicamente al laboratorio.*
+
+[3] LISTA DE PRECIOS EXACTOS (Sujeto a confirmación con foto de Orden Médica)
+
+-- BIOPSIAS --
+- Biopsia Gástrica: 80 Soles.
+- Biopsia de Esófago, Intestino Delgado y Colon: 80 Soles.
+- Biopsia de Cérvix: 80 Soles.
+- Cono Cervical: 120 Soles.
+- Biopsia de Médula Ósea sin Reticulina: 150 Soles.
+- Biopsia de Piel o Mucosa (hasta 10 cm): 200 Soles.
+- Biopsia de Próstata (Por 6 frascos): 250 Soles.
+
+-- CITOLOGÍAS --
+- Papanicolaou (PAP): 20 Soles.
+- Extendido de Tiroides (Por cada lámina): 20 Soles.
+- Extendido de Aspiración por Aguja Fina de Glándula Salival (Por cada lámina): 20 Soles.
+
+[4] LOGÍSTICA DE RECOJO DE MUESTRAS Y ENVÍOS
+- Recojos en Lima: Contamos con servicio de recojo a domicilio en todo Lima para comodidad del paciente y de las clínicas.
+- Recepción de Provincias: Recibimos encomiendas de muestras desde todas las provincias del Perú.
+- Requisito Indispensable: Es obligatorio que el paciente o clínica envíe una foto de la orden médica o solicitud de estudio para confirmar el análisis correcto antes de proceder.
+
+[5] SERVICIOS EXCLUSIVOS PARA MÉDICOS Y CLÍNICAS (Derivaciones)
+- Inmunohistoquímica: Contamos con un catálogo exhaustivo de marcadores para diagnósticos precisos (ej. ACTINA, AFP, BCL-2, CD3, CD20, HER2, KI67, PSA, entre muchos otros).
+- Patología Digital: Nuestro software de gestión permite a los médicos derivantes el seguimiento de casos en tiempo real y la visualización de láminas histológicas digitalizadas en alta resolución.
+- Segunda Opinión: Realizamos diagnóstico oncológico de alta precisión y segunda opinión para casos complejos.
+- Infraestructura: Contamos con un área de macroscopía propia equipada con campana extractora de flujo laminar para máxima seguridad y calidad.
+
+[PREPARACIÓN ADICIONAL TÉCNICA]
+- Fijación de Muestras: Las muestras de tejido deben enviarse sumergidas en FORMOL AL 10%.
