@@ -79,12 +79,27 @@ Verdad bajo el Microscopio: Biopsias, Inmunohistoquímica y Diagnósticos | JC P
 // ============================================
 
 // --- CONFIGURACIÓN ---
+// --- DATA: TARIFARIO ESTATICO JC PATH LAB ---
+const tarifarioJCPathLab = {
+    "citologia": { titulo: "Citología y Prevención", estudios: { "papanicolaou": { nombre: "Papanicolaou (Cérvico-Vaginal)", precio: 20.00 }, "secrecion pezon": { nombre: "Secreción / Descarga del Pezón", precio: 40.00 }, "liquidos": { nombre: "Citología de Líquidos (Pleural, Ascítico, Orina)", precio: 70.00 }, "baaf": { nombre: "Aspiración con Aguja Fina (BAAF)", precio: 90.00 } } },
+    "biopsias_simples": { titulo: "Biopsias Simples y Endoscópicas", estudios: { "gastrica": { nombre: "Biopsia Gástrica (Endoscópica)", precio: 80.00 }, "colon_esofago": { nombre: "Biopsia de Esófago, Intestino o Colon", precio: 80.00 }, "cervix": { nombre: "Biopsia de Cérvix / Cuello Uterino", precio: 80.00 }, "piel": { nombre: "Biopsia de Piel (Punch)", precio: 80.00 } } },
+    "biopsias_quirurgicas": { titulo: "Biopsias Quirúrgicas y Oncológicas", estudios: { "cono": { nombre: "Cono Cervical (LEEP)", precio: 120.00 }, "vesicula_apendice": { nombre: "Vesícula Biliar o Apéndice", precio: 120.00 }, "utero": { nombre: "Útero (Histerectomía simple)", precio: 180.00 }, "prostata": { nombre: "Próstata (Mapeo por 6 frascos)", precio: 250.00 }, "mama_radical": { nombre: "Mastectomía / Cuadrantectomía", precio: 350.00 } } },
+    "inmunohistoquimica": { titulo: "Inmunohistoquímica (IHC)", estudios: { "marcador_individual": { nombre: "Marcador Individual (Ki67, HER2, CD3, etc.)", precio: 180.00 }, "panel_mama": { nombre: "Panel de Mama Básico (RE, RP, HER2, Ki67)", precio: 750.00 } } }
+};
+
 const BOT_NAME = "Asistente JC Path Lab";
 // Icono más científico
+
+// --- CONFIGURACIÓN DE SEGURIDAD Y LÍMITES ---
+const MAX_MESSAGE_LENGTH = 500;
+const RATE_LIMIT_MS = 1500;
+let lastMessageTime = 0;
 
 // --- ESTADO DEL CHAT ---
 let conversationHistory = [];
 let lastBotIntent = null; // Track context (e.g., 'waiting_for_pickup_confirmation')
+let userName = "";
+let userPhone = "";
 
 // --- INICIALIZACIÓN ---
 document.addEventListener("DOMContentLoaded", () => {
@@ -107,6 +122,11 @@ function initChatbotUI() {
             chatContainer.classList.add("open");
             // Foco en el input al abrir
             setTimeout(() => inputField?.focus(), 300);
+
+            // Reactivar motor del avatar si estaba suspendido
+            if (typeof changeAvatarState === 'function') {
+                changeAvatarState("saludo");
+            }
         });
     }
 
@@ -189,22 +209,29 @@ let avatarCanvas = null;
 function initAvatarEngine() {
     avatarCanvas = document.getElementById("avatar-canvas");
     if (!avatarCanvas) return;
-    avatarCtx = avatarCanvas.getContext("2d");
 
-    // Set internal resolution (smaller for performance)
+    // Set internal resolution (smaller for performance) BEFORE getting context
     avatarCanvas.width = 400;
     avatarCanvas.height = 400;
 
+    avatarCtx = avatarCanvas.getContext("2d");
+
     // Primer renderizado para asegurar coherencia
     avatarCtx.fillStyle = "transparent";
-    avatarCtx.fillRect(0, 0, 400, 400);
+    avatarCtx.clearRect(0, 0, 400, 400);
 
-    changeAvatarState("idle");
+    // Activación retardada para asegurar que el DOM y videos estén listos
+    setTimeout(() => {
+        if (typeof changeAvatarState === 'function') {
+            changeAvatarState("idle");
+        }
+    }, 500);
+
     requestAnimationFrame(renderAvatar);
 }
 
 function renderAvatar() {
-    if (avatarCtx) {
+    if (avatarCtx && avatarCanvas) {
         // Clear regardless of video state
         avatarCtx.clearRect(0, 0, 400, 400);
 
@@ -212,18 +239,25 @@ function renderAvatar() {
             // Circular clip
             avatarCtx.save();
             avatarCtx.beginPath();
-            avatarCtx.arc(200, 200, 195, 0, Math.PI * 2);
+            avatarCtx.arc(200, 200, 198, 0, Math.PI * 2);
             avatarCtx.clip();
 
             // Draw video frame
             avatarCtx.drawImage(currentVideo, 0, 0, 400, 400);
             avatarCtx.restore();
-        } else if (currentVideo) {
-            // Si el video existe pero no está listo, mostrar un placeholder sutil
-            avatarCtx.fillStyle = "rgba(0, 210, 255, 0.05)";
+        } else {
+            // DIAGNÓSTICO: Si no hay video listo, pintar un círculo sólido
+            // Esto permite saber si el problema es el Canvas (invisible) o el Video (no carga)
+            avatarCtx.fillStyle = "rgba(0, 210, 255, 0.3)"; // Color celeste semitransparente
             avatarCtx.beginPath();
             avatarCtx.arc(200, 200, 195, 0, Math.PI * 2);
             avatarCtx.fill();
+
+            // Texto de carga sutil
+            avatarCtx.fillStyle = "white";
+            avatarCtx.font = "bold 40px Arial";
+            avatarCtx.textAlign = "center";
+            avatarCtx.fillText("...", 200, 210);
         }
     }
     requestAnimationFrame(renderAvatar);
@@ -239,31 +273,38 @@ function changeAvatarState(state) {
 
     const targetVideo = videos[state] || videos.idle;
 
-    if (currentVideo === targetVideo) return;
+    if (!targetVideo) return;
+    if (currentVideo === targetVideo && !targetVideo.paused) return;
 
-    // Pause previous
-    if (currentVideo) {
+    // Pausar el actual si es distinto
+    if (currentVideo && currentVideo !== targetVideo) {
         currentVideo.pause();
         currentVideo.currentTime = 0;
     }
 
     currentVideo = targetVideo;
-    
-    // Asegurar que el video se cargue y reproduzca
-    if (currentVideo) {
-        currentVideo.muted = true; // Forzar para evitar bloqueos
-        currentVideo.play().catch(e => {
-            console.log("Auto-play blocked, retrying on interaction...", e);
-            // Intentar reproducir de nuevo al primer clic en cualquier parte si falló
-            const retryPlay = () => {
-                currentVideo.play();
-                document.removeEventListener('click', retryPlay);
+
+    // Configuración del video
+    currentVideo.muted = true;
+    currentVideo.loop = (state !== "saludo");
+
+    const playPromise = currentVideo.play();
+
+    if (playPromise !== undefined) {
+        playPromise.catch(error => {
+            console.warn("Reproducción automática prevenida. Esperando interacción...");
+            // Intentar reproducir en el próximo evento de interacción
+            const forcePlay = () => {
+                if (currentVideo) currentVideo.play().catch(() => { });
+                document.removeEventListener('click', forcePlay);
+                document.removeEventListener('touchstart', forcePlay);
             };
-            document.addEventListener('click', retryPlay);
+            document.addEventListener('click', forcePlay);
+            document.addEventListener('touchstart', forcePlay);
         });
     }
 
-    // Auto-transition for greeting
+    // Transición automática del saludo al idle
     if (state === "saludo") {
         currentVideo.onended = () => changeAvatarState("idle");
     }
@@ -273,9 +314,28 @@ function changeAvatarState(state) {
 
 async function handleUserMessage() {
     const inputField = document.getElementById("chat-input");
-    const userText = inputField.value.trim();
+    let userText = inputField.value.trim();
 
     if (!userText) return;
+
+    // 0. BLINDAJE: Sanitización y Límites
+    userText = sanitizeInput(userText);
+
+    // Control de Spam (Rate Limiting)
+    const now = Date.now();
+    if (now - lastMessageTime < RATE_LIMIT_MS) {
+        console.warn("Spam detected - blocking message");
+        return;
+    }
+    lastMessageTime = now;
+
+    // Control de Longitud
+    if (userText.length > MAX_MESSAGE_LENGTH) {
+        addMessage(userText.substring(0, 50) + "...", "user");
+        addMessage(`Su mensaje es muy extenso (máx ${MAX_MESSAGE_LENGTH} caracteres). Por favor, resuma su consulta para poder ayudarle mejor. 📝`, "bot");
+        inputField.value = "";
+        return;
+    }
 
     // 1. Mostrar mensaje del usuario
     addMessage(userText, "user");
@@ -292,7 +352,7 @@ async function handleUserMessage() {
         // Try local triage first (fastest)
         const localResponse = generateLocalResponse(userText);
 
-        if (localResponse && !localResponse.includes("pase a humano")) {
+        if (localResponse && !localResponse.includes("GeminiFallback")) {
             response = localResponse;
         } else {
             // Fallback to AI API if local response is generic
@@ -354,12 +414,19 @@ async function callGeminiAPI(userMessage, base64Image = null) {
         });
     }
 
+    // Incluir historial para que tenga memoria
+    const contents = conversationHistory.map(msg => ({
+        role: msg.sender === "user" ? "user" : "model",
+        parts: [{ text: msg.text }]
+    }));
+
+    // Añadir el mensaje actual si no está en el historial todavía
+    // (Depende de si addMessage se llamó antes o después, en este flujo se llamó antes)
+
     const payload = {
-        contents: [{
-            parts: parts
-        }],
+        contents: contents,
         systemInstruction: {
-            parts: [{ text: SYSTEM_PROMPT }]
+            parts: [{ text: `${SYSTEM_PROMPT}\n\nESTADO ACTUAL DEL CHAT:\n- Nombre detectado: ${userName || 'Aún no proporcionado'}\n- Teléfono detectado: ${userPhone || 'Aún no proporcionado'}\n- Paso actual: ${lastBotIntent || 'Conversación libre'}` }]
         }
     };
 
@@ -370,7 +437,12 @@ async function callGeminiAPI(userMessage, base64Image = null) {
     });
 
     const data = await response.json();
-    return data.candidates[0].content.parts[0].text;
+
+    // Safety check for candidates
+    if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+        return data.candidates[0].content.parts[0].text;
+    }
+    return "Lo siento, tuve un pequeño problema técnico al procesar su consulta. ¿Podría repetirla o prefiere que coordinemos por WhatsApp directamente?";
 }
 
 function convertToBase64(file) {
@@ -385,105 +457,77 @@ function convertToBase64(file) {
 function generateLocalResponse(query) {
     const qLower = query.toLowerCase();
 
-    // --- 1. INTENCIONES DIRECTAS (HARDCODED FAST RESPONSES) ---
+    // --- 0. SEGURIDAD: CATCH-ALL PARA GIBBERISH / EMOJIS ---
+    if (qLower.length > 0 && !qLower.match(/[a-z0-9]/i) && !qLower.match(/^(ok|si|no)$/)) {
+        return "Veo que me envía emojis o símbolos. 😊 Para una atención personalizada de su caso médico, ¿le gustaría que coordinemos por WhatsApp con el Dr. Castillo?";
+    }
 
-    // PRIORITY 1: INTENCIÓN DE FOTO / SOLICITUD (Correccion de Bug "Linfoma")
-    if (qLower.includes("foto") || qLower.includes("subir") || qLower.includes("adjuntar") || qLower.includes("enviar") || qLower.includes("solicitud") || qLower.includes("orden")) {
+    // --- 1. INTENCIONES DIRECTAS (TOLERANTES A ERRORES) ---
+
+    // PRIORITY 1: INTENCIÓN DE FOTO / SOLICITUD (Regex tolerante)
+    if (qLower.match(/(foto|subir|adjuntar|enviar|solicitu|orden|imajen|magen)/)) {
         lastBotIntent = null; // Reset context
         return "¡Excelente! Para enviarnos la foto de su solicitud o estudio, por favor haga clic en el **botón de WhatsApp** (icono verde) que ve en su pantalla. 📲\n\nPor ese medio recibimos todas las órdenes directamente para coordinar el recojo de inmediato.";
     }
 
-    // PRIORITY 1.5: CONFIRMACIÓN DE CONTEXTO (SI / NO)
-    if (lastBotIntent === 'waiting_for_pickup_confirmation') {
-        if (qLower.match(/^(si|sí|claro|por favor|ok|esta bien|dale)/)) {
+    // PRIORITY 1.5: CONFIRMACIÓN DE CONTEXTO (SI / NO / OK)
+    if (lastBotIntent === 'waiting_for_pickup_confirmation' || lastBotIntent === 'waiting_for_whatsapp_handover') {
+        if (qLower.match(/^(si|sí|claro|por favor|ok|esta bien|dale|bueno|perfecto|vale|porfa|ya|ta bien)/)) {
+            if (lastBotIntent === 'waiting_for_whatsapp_handover') {
+                lastBotIntent = 'asking_user_name';
+                return "¡Excelente decisión! Para que el **Dr. Castillo** tenga su caso bien organizado, ¿podría decirme su **nombre completo**?";
+            }
             lastBotIntent = null;
             return "¡Perfecto! 🎉\n\nPor favor, haga clic en el **botón de WhatsApp** (la burbuja verde 💬) para coordinar la hora y dirección exacta con nuestra central de recojos.\n\n¡Le esperamos!";
-        } else if (qLower.match(/^(no|luego|mas tarde|gracias)/)) {
+        } else if (qLower.match(/^(no|luego|mas tarde|gracias|nada|despues)/)) {
             lastBotIntent = null;
             return "Entendido. Quedamos a su disposición para cuando lo necesite. 😊\n\nRecuerde que atendemos de Lunes a Sábado.";
         }
     }
 
-    // PRIORITY 2: SALUDOS
-    if (qLower.match(/^(hola|buenos d|buenas|hi|que tal|como estas)/)) {
-        const saludos = [
-            "¡Hola! 👋 Bienvenido a JC PATH LAB. Soy su asistente virtual. ¿En qué estudio médico puedo orientarle hoy?",
-            "¡Buenos días! ☀️ Entiendo que la salud es lo primero. Cuénteme, ¿qué información necesita para agilizar su atención?",
-            "¡Hola! Quedo atento a su consulta. Recuerde que atendemos en **Puente Piedra** y todo **Lima Norte**. ¿En qué le ayudo? 🩺"
-        ];
-        return saludos[Math.floor(Math.random() * saludos.length)];
-    }
-
-    // PRIORITY 3: IDENTIDAD (Evitar que responda con textos médicos)
-    if (qLower.includes("quien eres") || qLower.includes("tu nombre") || qLower.includes("como te llamas") || qLower.includes("que haces") || qLower.includes("eres un robot")) {
-        return "Soy el **Asistente Virtual Inteligente de JC PATH LAB**. 🤖\n\nEstoy entrenado para responder preguntas sobre nuestros servicios de anatomía patológica, precios, horarios y ubicación.\n\nAunque sé mucho sobre nuestros protocolos médicos, mi función principal es ayudarle a coordinar sus estudios y recojos de muestras. ¿En qué puedo servirle?";
-    }
-
-    // --- 1. TRIAJE INTELIGENTE (CRO & VENTAS) ---
-    // Detectar intención de Biopsia o PAP para cerrar venta con foto
-    if ((qLower.includes("precio") || qLower.includes("costo") || qLower.includes("cuanto")) &&
-        (qLower.includes("biopsia") || qLower.includes("pap") || qLower.includes("papanicolau") || qLower.includes("estudio") || qLower.includes("examen"))) {
-        return "Entiendo, estimado/a. Ese es uno de los estudios que realizamos con mayor frecuencia y precisión. 🔬\n\nPara darle una información exacta, **¿podría enviarme una foto de su orden médica?** 📄\n\nAsí el Dr. Castillo podrá validarla de inmediato y confirmarle el costo y tiempo exacto.\n\n👉 *Sube una foto de tu orden médica para darte el precio exacto y programar tu recojo.*";
-    }
-
-    // Precios Generales (Si no especifica estudio)
-    if (qLower.includes("precio") || qLower.includes("costo") || qLower.includes("cuanto cuesta") || qLower.includes("valor")) {
-        // Intentar buscar precios específicos si se menciona un estudio
-        const specificPrice = findPriceInText(qLower);
-        if (specificPrice) return specificPrice;
-
-        // Respuesta persuasiva de venta con PRECIOS GOD MODE
-        return "Con gusto. Manejamos tarifas accesibles para todo **Lima Norte**. 🏥\n\n🔹 **Biopsia Gástrica / Cérvix:** **S/ 80**\n🔹 **Papanicolaou (PAP):** **S/ 20**\n🔹 **Cono Cervical:** **S/ 120**\n🔹 **Biopsia de Próstata:** **S/ 250**\n\n⚠️ *Nuestros resultados son válidos para cualquier clínica u hospital oncológico del país.*\n\n¿Desea enviarme una foto de su orden médica para empezar?";
-    }
-
-    // Logística y Recojo (Enfatizar Agilidad)
-    if (qLower.includes("recojo") || qLower.includes("domicilio") || qLower.includes("llevo la muestra") || qLower.includes("donde entregar") ||
-        (qLower.includes("tengo") && qLower.includes("muestra")) ||
-        (qLower.includes("quiero") && qLower.includes("enviar")) ||
-        qLower.includes("a donde envio") || qLower.includes("weviar")) { // 'weviar' as typo catch
-        lastBotIntent = 'waiting_for_pickup_confirmation'; // Set context
-        return "¡Despreocúpese del tráfico! 🛑 Nosotros nos encargamos.\n\n✅ **Recojo en todo Lima:** Vamos a su domicilio o clínica.\n✅ **Provincias:** Recepcionamos encomiendas en agencia.\n\nEl tiempo de respuesta es rápido: **3-4 días hábiles**. ⏱\n\n¿Le gustaría programar el recojo de su muestra ahora?";
-    }
-
-    // Dirección / Ubicación (Lima Norte)
-    if (qLower.includes("donde") || qLower.includes("ubicacion") || qLower.includes("direccion") || qLower.includes("llegar")) {
-        return "Estamos ubicados estratégicamente en **Puente Piedra**, siendo el laboratorio de referencia para todo **Lima Norte** (Ancón, Carabayllo, Comas, Los Olivos). 📍\n\n🏠 **Dirección:** Mz M2 lote 13, Jardines de Chillón.\n\nSi prefiere no venir, recuerde que contamos con **servicio de recojo a domicilio**. 🛵";
-    }
-
-    // Horarios
-    if (qLower.includes("horario") || qLower.includes("atienden") || qLower.includes("hora")) {
-        return "Nuestro horario de atención es:\n\n📅 **Lunes a Viernes:** 9:00 AM - 6:00 PM\n📅 **Sábados:** Previa cita.\n\nSiempre es bueno avisarnos antes de venir para esperarte. 😉";
-    }
-
-    // Contacto / Telefono
-    // Contacto / Telefono
-    if (qLower.includes("telefono") || qLower.includes("celular") || qLower.includes("numero") || qLower.includes("whatsapp") || qLower.includes("contacto") || qLower.includes("contactar") || qLower.includes("hablar")) {
-        lastBotIntent = null; // Clear context
-        return "Quedamos atentos a su consulta directa al **+51 986 396 733**. 📱\n\nPara una atención más rápida, le sugiero hacer clic en el **botón de WhatsApp** para chatear con nuestra área de recepción y enviar fotos de sus órdenes.";
-    }
-
-    // --- 1.5. INTENCIONES DE AYUDA / FALLBACK (SMALL TALK) ---
-    if (qLower.includes("ayuda") || qLower.includes("help") || qLower.includes("opciones") || qLower.includes("menu")) {
-        return "🤖 **Menú de Ayuda:**\n\n1. **Precios:** Escribe 'precio biopsia' o 'costo papanicolaou'.\n2. **Logística:** Escribe 'recoger muestra' o 'donde entregar'.\n3. **Ubicación:** Escribe 'dirección'.\n4. **Contacto:** Escribe 'hablar con humano'.\n\n¿Cuál eliges?";
-    }
-
-    if (qLower.includes("no entiendo") || qLower.includes("error") || qLower.includes("mal") || qLower.includes("equivocado")) {
-        return "¡Mil disculpas! 😓 A veces mis circuitos se cruzan.\n\nPara no hacerte perder tiempo, te sugiero contactar directamente a nuestra central humana por WhatsApp haciendo clic aquí abajo. 👇";
-    }
-
-    // --- 2. BÚSQUEDA SEMÁNTICA EN 'SITE_KNOWLEDGE' (Cerebro Web) ---
-    // Usaremos la variable global SITE_KNOWLEDGE que contiene TODO el texto de la web.
-
-    if (typeof SITE_KNOWLEDGE !== 'undefined') {
-        const bestMatch = findBestMatchInKnowledge(query, SITE_KNOWLEDGE);
-        if (bestMatch) {
-            return bestMatch;
+    // PRIORITY 1.6: RECOLECCIÓN DE DATOS (Manejo de interrupciones y persistencia)
+    if (lastBotIntent === 'asking_user_name') {
+        const isInterruption = qLower.includes("?") || qLower.match(/(precio|donde|horario|costo|biopsia|pap)/);
+        if (isInterruption) {
+            const tempResponse = generateLocalResponseWithoutDataStates(query);
+            return `${tempResponse}\n\nEntendido su duda. Pero para continuar con el reporte del doctor, **¿cuál es su nombre completo?** 👤`;
         }
+
+        // Validación básica de nombre (evitar basura simple)
+        if (qLower.length < 2 || !qLower.match(/[a-z]/i)) {
+            return "Por favor, ingrese un nombre válido para que el doctor pueda identificarle. 👤";
+        }
+
+        userName = query;
+        lastBotIntent = 'asking_user_phone';
+        return `Mucho gusto, **${userName}**. 👋 Ahora, por favor, indíqueme su **número de teléfono** de 9 dígitos para que el doctor pueda identificarle.`;
     }
 
-    // --- 3. FALLBACK GENERAL (Empatía + pase a humano) ---
-    return "Entiendo su consulta, estimado/a. 🤔 \n\nPara darle una respuesta 100% precisa sobre este tema médico, prefiero que lo vea directamente el Dr. Castillo.\n\n¿Le parece bien si le escribimos por WhatsApp para resolverlo a detalle?";
+    if (lastBotIntent === 'asking_user_phone') {
+        const isInterruption = qLower.includes("?") || qLower.match(/(precio|donde|horario|costo|biopsia|pap)/);
+        if (isInterruption) {
+            const tempResponse = generateLocalResponseWithoutDataStates(query);
+            return `${tempResponse}\n\nPerfecto. Solo me falta su **número de teléfono** para enviarle la información al doctor. 📞`;
+        }
+
+        userPhone = query.replace(/\D/g, '');
+        if (userPhone.length !== 9) {
+            return "El número debe tener **9 dígitos**. Por favor, ingréselo nuevamente para contactarle correctamente. 📞";
+        }
+        lastBotIntent = null;
+
+        const transcript = conversationHistory.slice(-6).map(m => `${m.sender === 'user' ? 'Cliente' : 'Bot'}: ${m.text}`).join('\n');
+        const finalMessage = `Hola Dr. Castillo, solicito atención personalizada:\n\n👤 *Nombre:* ${userName}\n📞 *Teléfono:* ${userPhone}\n\n💬 *Resumen del chat:*\n${transcript}\n\nMe gustaría coordinar una cita/recojo.`;
+        const waLink = `https://wa.me/51986396733?text=${encodeURIComponent(finalMessage)}`;
+
+        return `¡Todo listo! He preparado su reporte para el doctor.\n\nPor favor, haga clic aquí para enviarlo por WhatsApp:\n\n👉 **[ENVIAR MI CONSULTA AL DR. CASTILLO](${waLink})**\n\nEsto le ahorrará tiempo explicando su caso de nuevo.`;
+    }
+
+    // SI NO HAY ESTADO DE CAPTURA, PROCESAR NORMALMENTE
+    const response = generateLocalResponseWithoutDataStates(query);
+    return response;
 }
+
 
 function findPriceInText(query) {
     // Lógica simple para extraer precios si están en el SITE_KNOWLEDGE cerca de la palabra clave
@@ -574,6 +618,126 @@ function findBestMatchInKnowledge(query, knowledgeText) {
     return null;
 }
 
+// --- FUNCIONES DE BLINDAJE (SECURITY & ROBUSTNESS) ---
+
+function sanitizeInput(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    let cleanText = div.innerHTML;
+    // Remover caracteres de control o scripts maliciosos extra
+    return cleanText.replace(/<[^>]*>?/gm, '').trim();
+}
+
+// --- CONFIGURACIÓN DE RESPUESTAS MAESTRAS (MASTER TEMPLATES) ---
+const PRICE_LIST_TEMPLATE = `
+Entiendo, con gusto le brindo nuestros precios referenciales. 🏷️ 
+
+En **JC PATH LAB** manejamos las tarifas más competitivas de Lima Norte:
+
+🔬 **ESTUDIOS PRINCIPALES:**
+• **Papanicolaou (PAP):** S/ 20
+• **Biopsia Gástrica:** S/ 80
+• **Biopsia de Cérvix:** S/ 80
+• **Biopsia de Colon:** S/ 100
+• **Cono Cervical:** S/ 120
+• **Biopsia de Próstata:** S/ 250
+
+✅ *Nuestros resultados son válidos para cualquier clínica u hospital del país.*
+
+¿De qué examen o estudio específico busca el costo para confirmarle el tiempo de entrega? 🩺`;
+
+const LOCATION_TEMPLATE = `📍 **JC PATH LAB** se encuentra en: Mz M2 Lote 13, Jardines de Chillón (Puente Piedra, Lima Norte).
+
+🛵 Recuerde que también contamos con servicio de recojo a domicilio en todo Lima.
+
+¿Desea que le envíe el enlace de Google Maps o prefiere coordinar un recojo de muestra?`;
+
+// --- TEMPLATES DE NEURO-VENTAS ---
+const B2C_RECOJO_TEMPLATE = `🛵 **Logística y Recepción de Muestras**
+
+Para su total comodidad, contamos con recojo a domicilio en todo Lima, asegurando la cadena de custodia de su muestra.
+
+¿Prefiere que programemos el recojo en su dirección hoy mismo, o le queda más cómodo acercarse a nuestra sede en Puente Piedra?`;
+
+const B2B_MEDICO_TEMPLATE = `🔬 **Atención a Colegas e Instituciones**
+
+Es un honor saludarle, colega. En **JC PATH LAB** garantizamos resultados de alta precisión en solo 3 días gracias a nuestro sistema de patología digital.
+
+Para convenios y derivaciones corporativas, el Dr. Castillo gestiona personalmente estas alianzas. ¿Desea que le comunique directamente a su línea privada ahora mismo?`;
+
+/**
+ * Función que encapsula toda la inteligencia local sin estados de recolección.
+ * Útil para responder dudas "fuera de fase".
+ */
+function generateLocalResponseWithoutDataStates(query) {
+    const qLower = query.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    // --- 1. DETECCIÓN DE PERFIL B2B (Médicos) ---
+    if (qLower.match(/(doctor|medico|clinica|convenio|derivar|protocolo|colega)/)) {
+        return B2B_MEDICO_TEMPLATE;
+    }
+
+    // --- 2. MOTOR DE VENTAS (EL INTERCEPTOR) ---
+    const responsePrecio = procesarConsultaPrecio(query);
+    if (responsePrecio) {
+        return responsePrecio;
+    }
+
+    // --- 3. INTERCEPTOR DE UBICACIÓN / RECOJO (B2C) ---
+    if (qLower.match(/(recojo|domicilio|donde entregar|muestra|llevar|enviar|movilidad|comodo|lejos|delivery|ubicacion|como llego|distrito|puente piedra|local|donde quedan|donde estan)/)) {
+        return B2C_RECOJO_TEMPLATE;
+    }
+
+    // Regex e Intenciones tolerantes (Fallback local para otros temas)
+    const isBiopsia = qLower.match(/biops[iy]a/);
+    const isPap = qLower.match(/pap[a]*nicolau/);
+
+    // PRIORITY 2: SALUDOS
+    if (qLower.match(/^(hola|buenos d|buenas|hi|que tal|como estas)/)) {
+        const saludos = [
+            "¡Hola! 👋 Bienvenido a JC PATH LAB. Soy su asistente virtual. ¿En qué estudio médico puedo orientarle hoy?",
+            "¡Buenos días! ☀️ Entiendo que la salud es lo primero. Cuénteme, ¿qué información necesita para agilizar su atención?",
+            "¡Hola! Quedo atento a su consulta. Recuerde que atendemos en **Puente Piedra** y todo **Lima Norte**. ¿En qué le ayudo? 🩺"
+        ];
+        return saludos[Math.floor(Math.random() * saludos.length)];
+    }
+
+    // PRIORITY 3: IDENTIDAD
+    if (qLower.match(/(quien eres|tu nombre|como te llamas|que haces|eres un robot)/)) {
+        return "Soy el **Asistente Virtual Inteligente de JC PATH LAB**. 🤖\n\nEstoy entrenado para responder preguntas sobre nuestros servicios, precios y horarios. ¿En qué puedo servirle?";
+    }
+
+    // Horarios
+    if (qLower.match(/(horario|atienden|hora)/)) {
+        return "Atendemos de **Lunes a Viernes (9:00 AM - 6:00 PM)** y Sábados previa cita. 😉";
+    }
+
+    // Contacto
+    if (qLower.match(/(telefono|celular|numero|whatsapp|contacto|hablar)/)) {
+        return "Puede contactarnos al **+51 986 396 733**. 📱 O use el botón verde de WhatsApp para chat rápido.";
+    }
+
+    // Ayuda
+    if (qLower.match(/(ayuda|help|opciones|menu)/)) {
+        return "🤖 **¿En qué le ayudo?**\n\n1. Escriba 'precio' para costos.\n2. Escriba 'dirección' para ubicarnos.\n3. Escriba 'recojo' para programar recojo.";
+    }
+
+    // BÚSQUEDA SEMÁNTICA
+    if (typeof SITE_KNOWLEDGE !== 'undefined') {
+        const bestMatch = findBestMatchInKnowledge(query, SITE_KNOWLEDGE);
+        if (bestMatch) return bestMatch;
+    }
+
+    // FALLBACK final (Seguro contra pérdida de estado)
+    if (lastBotIntent === 'asking_user_name' || lastBotIntent === 'asking_user_phone') {
+        return null; // Permitir que la lógica superior maneje el error de captura o pase a Gemini
+    }
+
+    // Solo si NO estamos capturando datos, sugerimos el paso a WhatsApp
+    lastBotIntent = 'waiting_for_whatsapp_handover';
+    return "Entiendo su consulta. 🤔 Como es un tema que requiere precisión médica, prefiero que lo vea directamente el Dr. Castillo.\n\n¿Le parece bien si le escribimos por WhatsApp para resolverlo a detalle?";
+}
+
 // --- UI UTILS ---
 
 function addMessage(text, sender) {
@@ -592,6 +756,10 @@ function addMessage(text, sender) {
     msgDiv.innerHTML = formattedText;
 
     chatBody.appendChild(msgDiv);
+
+    // PERSISTENCIA DEL HISTORIAL (MEMORIA)
+    conversationHistory.push({ text, sender, timestamp: new Date() });
+
     scrollToBottom();
 }
 
@@ -613,11 +781,11 @@ function scrollToBottom() {
     const chatBody = document.getElementById("chat-messages");
     chatBody.scrollTop = chatBody.scrollHeight;
 }
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     var expandableButtons = document.querySelectorAll(".expandable-button");
 
-    expandableButtons.forEach(function(button) {
-        button.addEventListener("click", function() {
+    expandableButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
             this.classList.toggle("active");
             var content = this.nextElementSibling;
             if (content.style.display === "block") {
@@ -628,15 +796,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
-document.addEventListener('DOMContentLoaded', function() {
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
 
-    hamburger.addEventListener('click', function() {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
-});
 document.addEventListener('DOMContentLoaded', function () {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
@@ -754,3 +914,45 @@ document.addEventListener('DOMContentLoaded', function () {
 
     initAccordion('.service-accordion-header');
 });
+
+/**
+ * TAREA 2: Lógica del Motor de Ventas (El Interceptor)
+ * Procesa consultas de precios basándose en intenciones y Neuro-ventas.
+ */
+function procesarConsultaPrecio(mensaje) {
+    const qLower = mensaje.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    // Regex para detectar intención de precio
+    const isPrecioQuery = qLower.match(/(precio|costo|cuanto.*cue[sz]ta|tarifa|cobra|valor|presupuesto|tarifario)/);
+
+    if (!isPrecioQuery) return null;
+
+    // 1. Búsqueda Específica: Intentamos encontrar un match con los keys de estudios
+    for (const catKey in tarifarioJCPathLab) {
+        const categoria = tarifarioJCPathLab[catKey];
+        for (const estudioKey in categoria.estudios) {
+            if (qLower.includes(estudioKey)) {
+                const estudio = categoria.estudios[estudioKey];
+                return `La **${estudio.nombre}** es uno de nuestros estudios de especialidad. Su valor es de **S/ ${estudio.precio.toFixed(2)}**. Entregamos diagnósticos de alta precisión muy rápidos. \n\n¿Prefiere acercarse a nuestra sede hoy, o coordinamos el **recojo de su muestra a domicilio** para su mayor comodidad? 🛵`;
+            }
+        }
+    }
+
+    // 2. Menú Guiado: Si es genérico ("precio", "costo") o no hubo match de examen
+    // Listar solo los títulos de las 4 categorías principales
+    let menuCategorias = "Para darle el valor exacto de su inversión en salud, ¿de cuál de estas 4 áreas es el estudio que le indicó su médico? 🩺\n\n";
+    let index = 1;
+    for (const key in tarifarioJCPathLab) {
+        menuCategorias += `${index}. **${tarifarioJCPathLab[key].titulo}**\n`;
+        index++;
+    }
+
+    // 3. Fallback: Si preguntan por precio pero no detectamos una categoría o examen conocido
+    const palabrasExamen = qLower.match(/(estudio|examen|analisis|prueba|resultado)/);
+    if (palabrasExamen && !qLower.match(/(citologia|biopsia|inmuno|ihc)/)) {
+        return `Ese estudio requiere una evaluación personalizada del **Dr. Castillo**. ¿Desea que le comunique con él ahora mismo? 👨‍⚕️`;
+    }
+
+    return menuCategorias;
+}
+

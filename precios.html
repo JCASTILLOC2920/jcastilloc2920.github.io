@@ -134,6 +134,111 @@
                 font-size: 1.5rem;
             }
         }
+
+        /* Price Accordion Styles */
+        .prices-accordion {
+            margin-top: 30px;
+        }
+
+        .accordion-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+
+        .price-accordion-header {
+            padding: 20px 25px;
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .price-accordion-header:hover {
+            background-color: #f8fbff;
+        }
+
+        .category-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .category-info i {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        .category-info h2 {
+            margin: 0;
+            font-size: 1.25rem;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        .price-accordion-icon {
+            transition: transform 0.3s ease;
+            color: var(--accent);
+        }
+
+        .price-accordion-icon.rotated {
+            transform: rotate(180deg);
+        }
+
+        .price-accordion-content {
+            display: none;
+            padding: 0 25px 25px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .price-accordion-content.active {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .price-table td {
+            padding: 12px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .price-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .study-name {
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .study-price {
+            text-align: right;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 
 </head>
@@ -201,76 +306,124 @@
 
     <div class="prices-container">
 
-        <!-- Biopsias -->
-        <div class="price-category">
-            <div class="category-header">
-                <i class="fas fa-microscope"></i>
-                <h2>Biopsias y Tejidos</h2>
+        <div class="prices-accordion">
+            <!-- Citología -->
+            <div class="accordion-item">
+                <div class="price-accordion-header service-accordion-header">
+                    <div class="category-info">
+                        <i class="fas fa-microscope"></i>
+                        <h2>Citología y Prevención</h2>
+                    </div>
+                    <i class="fas fa-chevron-down price-accordion-icon service-accordion-icon"></i>
+                </div>
+                <div class="price-accordion-content service-accordion-content">
+                    <table class="price-table">
+                        <tr>
+                            <td class="study-name">Papanicolaou (Cérvico-Vaginal)</td>
+                            <td class="study-price">S/ 20.00</td>
+                        </tr>
+                        <tr>
+                            <td class="study-name">Secreción / Descarga del Pezón</td>
+                            <td class="study-price">S/ 40.00</td>
+                        </tr>
+                        <tr>
+                            <td class="study-name">Citología de Líquidos (Pleural, Ascítico, Orina)</td>
+                            <td class="study-price">S/ 70.00</td>
+                        </tr>
+                        <tr>
+                            <td class="study-name">Aspiración con Aguja Fina (BAAF)</td>
+                            <td class="study-price">S/ 90.00</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="price-name">BIOPSIA GÁSTRICA</div>
-                    <div class="price-value">80<span>SOLES</span></div>
-                </div>
-                <div class="pricing-card">
-                    <div class="price-name">BIOPSIA DE ESÓFAGO, INTESTINO DELGADO Y COLON</div>
-                    <div class="price-value">80<span>SOLES</span></div>
-                </div>
-                <div class="pricing-card">
-                    <div class="price-name">BIOPSIA DE CERVIX</div>
-                    <div class="price-value">80<span>SOLES</span></div>
-                </div>
-                <div class="pricing-card">
-                    <div class="price-name">CONO CERVICAL</div>
-                    <div class="price-value">120<span>SOLES</span></div>
-                </div>
-                <div class="pricing-card">
-                    <div class="price-name">BIOPSIA DE PRÓSTATA (POR 6 FRASCOS)</div>
-                    <div class="price-value">250<span>SOLES</span></div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Citología -->
-        <div class="price-category">
-            <div class="category-header">
-                <i class="fas fa-vial"></i>
-                <h2>Citología y Papanicolaou</h2>
+            <!-- Biopsias Simples -->
+            <div class="accordion-item">
+                <div class="price-accordion-header service-accordion-header">
+                    <div class="category-info">
+                        <i class="fas fa-vial"></i>
+                        <h2>Biopsias Simples y Endoscópicas</h2>
+                    </div>
+                    <i class="fas fa-chevron-down price-accordion-icon service-accordion-icon"></i>
+                </div>
+                <div class="price-accordion-content service-accordion-content">
+                    <table class="price-table">
+                        <tr>
+                            <td class="study-name">Biopsia Gástrica (Endoscópica)</td>
+                            <td class="study-price">S/ 80.00</td>
+                        </tr>
+                        <tr>
+                            <td class="study-name">Biopsia de Esófago, Intestino o Colon</td>
+                            <td class="study-price">S/ 80.00</td>
+                        </tr>
+                        <tr>
+                            <td class="study-name">Biopsia de Cérvix / Cuello Uterino</td>
+                            <td class="study-price">S/ 80.00</td>
+                        </tr>
+                        <tr>
+                            <td class="study-name">Biopsia de Piel (Punch)</td>
+                            <td class="study-price">S/ 80.00</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="price-name">PAPANICOLAOU</div>
-                    <div class="price-value">20<span>SOLES</span></div>
-                </div>
-                <div class="pricing-card">
-                    <div class="price-name">EXTENDIDO DE TIROIDES (POR CADA LÁMINA)</div>
-                    <div class="price-value">20<span>SOLES</span></div>
-                </div>
-                <div class="pricing-card">
-                    <div class="price-name">EXTENDIDO DE ASPIRACIÓN POR AGUJA FINA DE GLÁNDULA SALIVAL</div>
-                    <div class="price-value">20<span>SOLES</span></div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Inmunohistoquímica (NUEVO) -->
-        <div class="price-category">
-            <div class="category-header">
-                <i class="fas fa-dna"></i>
-                <h2>Inmunohistoquímica y Marcadores</h2>
+            <!-- Biopsias Quirúrgicas -->
+            <div class="accordion-item">
+                <div class="price-accordion-header service-accordion-header">
+                    <div class="category-info">
+                        <i class="fas fa-hospital-user"></i>
+                        <h2>Biopsias Quirúrgicas y Oncológicas</h2>
+                    </div>
+                    <i class="fas fa-chevron-down price-accordion-icon service-accordion-icon"></i>
+                </div>
+                <div class="price-accordion-content service-accordion-content">
+                    <table class="price-table">
+                        <tr>
+                            <td class="study-name">Cono Cervical (LEEP)</td>
+                            <td class="study-price">S/ 120.00</td>
+                        </tr>
+                        <tr>
+                            <td class="study-name">Vesícula Biliar o Apéndice</td>
+                            <td class="study-price">S/ 120.00</td>
+                        </tr>
+                        <tr>
+                            <td class="study-name">Útero (Histerectomía simple)</td>
+                            <td class="study-price">S/ 180.00</td>
+                        </tr>
+                        <tr>
+                            <td class="study-name">Próstata (Mapeo por 6 frascos)</td>
+                            <td class="study-price">S/ 250.00</td>
+                        </tr>
+                        <tr>
+                            <td class="study-name">Mastectomía / Cuadrantectomía</td>
+                            <td class="study-price">S/ 350.00</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="price-name">1 MARCADOR (Incluye Informe)</div>
-                    <div class="price-value">250<span>SOLES</span></div>
+
+            <!-- Inmunohistoquímica -->
+            <div class="accordion-item">
+                <div class="price-accordion-header service-accordion-header">
+                    <div class="category-info">
+                        <i class="fas fa-dna"></i>
+                        <h2>Inmunohistoquímica (IHC)</h2>
+                    </div>
+                    <i class="fas fa-chevron-down price-accordion-icon service-accordion-icon"></i>
                 </div>
-                <div class="pricing-card">
-                    <div class="price-name">PANEL DE 3 MARCADORES</div>
-                    <div class="price-value">400<span>SOLES</span></div>
-                </div>
-                <div class="pricing-card">
-                    <div class="price-name">PANEL ONCOLÓGICO (5 o más marcadores)</div>
-                    <div class="price-value">800<span>SOLES</span></div>
+                <div class="price-accordion-content service-accordion-content">
+                    <table class="price-table">
+                        <tr>
+                            <td class="study-name">Marcador Individual (Ki67, HER2, CD3, etc.)</td>
+                            <td class="study-price">S/ 180.00</td>
+                        </tr>
+                        <tr>
+                            <td class="study-name">Panel de Mama Básico (RE, RP, HER2, Ki67)</td>
+                            <td class="study-price">S/ 750.00</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
@@ -340,6 +493,9 @@
 
     <!-- Chatbot Knowledge Base (God Mode) -->
 
+
+    <!-- Scripts -->
+    <script src="main.js"></script>
 </body>
 
 </html>
