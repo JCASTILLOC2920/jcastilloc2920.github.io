@@ -100,6 +100,7 @@ let conversationHistory = [];
 let lastBotIntent = null; // Track context (e.g., 'waiting_for_pickup_confirmation')
 let userName = "";
 let userPhone = "";
+let lastExamenConsultado = "estudio solicitado"; // Default value for Warm Handoff
 
 // --- INICIALIZACIÓN ---
 document.addEventListener("DOMContentLoaded", () => {
@@ -293,14 +294,6 @@ function changeAvatarState(state) {
     if (playPromise !== undefined) {
         playPromise.catch(error => {
             console.warn("Reproducción automática prevenida. Esperando interacción...");
-            // Intentar reproducir en el próximo evento de interacción
-            const forcePlay = () => {
-                if (currentVideo) currentVideo.play().catch(() => { });
-                document.removeEventListener('click', forcePlay);
-                document.removeEventListener('touchstart', forcePlay);
-            };
-            document.addEventListener('click', forcePlay);
-            document.addEventListener('touchstart', forcePlay);
         });
     }
 
@@ -309,6 +302,53 @@ function changeAvatarState(state) {
         currentVideo.onended = () => changeAvatarState("idle");
     }
 }
+
+// --- ESTRATEGIA: TRASPASO EN CALIENTE (WARM HANDOFF) ---
+
+/**
+ * Genera un botón de WhatsApp con estilo premium y mensaje de alta conversión.
+ * @param {string} examen - El nombre del examen consultado.
+ * @returns {string} - HTML del botón.
+ */
+function generarBotonWhatsApp(examen) {
+    const numero = "51986396733";
+    const mensaje = `🚨 NUEVA SOLICITUD DE PACIENTE 🚨\n\n🔬 *Examen:* ${examen}\n✅ *Estado:* Listo para agendar\n\nHola Dr. Castillo, vengo del asistente virtual. Deseo coordinar la entrega de mi muestra/estudio de ${examen}. ¿Me podría brindar los pasos a seguir?`;
+
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+
+    return `
+    <div class="warm-handoff-container" style="margin-top: 15px; animation: fadeInUp 0.5s ease-out;">
+        <p style="font-size: 0.9em; color: #555; margin-bottom: 8px;">✨ ¡Excelente decisión! Para agendar ahora mismo, presiona el botón:</p>
+        <a href="${url}" target="_blank" class="whatsapp-handoff-btn" style="
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        " onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 20px rgba(37, 211, 102, 0.4)';" 
+           onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(37, 211, 102, 0.3)';">
+            <i class="fab fa-whatsapp" style="margin-right: 10px; font-size: 1.2em;"></i>
+            AGENDAR POR WHATSAPP
+        </a>
+    </div>`;
+}
+
+/**
+ * Verifica si el usuario quiere avanzar (Warm Handoff).
+ * @param {string} text - El texto del usuario.
+ * @returns {boolean} - True si se detecta intención de avanzar.
+ */
+function checkForWarmHandoff(text) {
+    const handoffRegex = /\b(ok|si|sí|claro|por supuesto|agendar|quiero|lista|listo|avance|avanzar|proceder|acepto)\b/i;
+    return handoffRegex.test(text);
+}
+
+// --- PROCESAMIENTO DE MENSAJES ---
 
 // --- MOTOR DE RESPUESTA LOCAL (SIN API) ---
 
@@ -348,6 +388,19 @@ async function handleUserMessage() {
     const thinkingTime = Math.random() * 1000 + 800;
 
     setTimeout(async () => { // Make callback async
+        // --- INTEGRACIÓN: WARM HANDOFF ---
+        if (checkForWarmHandoff(userText)) {
+            removeTypingIndicator();
+            changeAvatarState("speaking");
+
+            const handoffButton = generarBotonWhatsApp(lastExamenConsultado);
+            addMessage(`¡Perfecto! Veo que estás listo para avanzar con tu **${lastExamenConsultado}**. Para brindarte una atención personalizada y rápida, te derivaré directamente con el Dr. Castillo vía WhatsApp.`, "bot");
+            addMessage(handoffButton, "bot");
+
+            setTimeout(() => changeAvatarState("idle"), 5000);
+            return; // Terminar flujo aquí para el Warm Handoff
+        }
+
         let response;
         // Try local triage first (fastest)
         const localResponse = generateLocalResponse(userText);
@@ -617,6 +670,39 @@ function findBestMatchInKnowledge(query, knowledgeText) {
 
     return null;
 }
+
+/**
+ * Procesa consultas de precio y captura el último examen consultado.
+ */
+function procesarConsultaPrecio(query) {
+    const qLower = query.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    // Lista de exámenes comunes para capturar contexto
+    const examenes = [
+        "biopsia gastrica", "biopsia de cervix", "biopsia de colon", "cono cervical",
+        "biopsia de prostata", "papanicolaou", "citologia", "inmunohistoquimica",
+        "tiroides", "mama", "piel", "glándula salival"
+    ];
+
+    // Intentar encontrar si el usuario menciona un examen específico
+    for (let examen of examenes) {
+        if (qLower.includes(examen)) {
+            lastExamenConsultado = examen.toUpperCase();
+            break;
+        }
+    }
+
+    if (qLower.match(/(precio|costo|cuanto cuesta|valer|tarifa|cuanto esta|presupuesto)/)) {
+        // Si hay un examen específico detectado, intentar dar prioridad a su precio
+        const specificPrice = findPriceInText(query);
+        if (specificPrice) return specificPrice;
+
+        return PRICE_LIST_TEMPLATE;
+    }
+
+    return null;
+}
+
 
 // --- FUNCIONES DE BLINDAJE (SECURITY & ROBUSTNESS) ---
 
