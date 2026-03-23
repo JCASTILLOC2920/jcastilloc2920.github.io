@@ -114,8 +114,13 @@ function initChatbotUI() {
     const inputField = document.getElementById("chat-input");
     const toggleBtn = document.getElementById("chat-toggle");
     const closeBtn = document.querySelector(".close-btn");
+    const chatName = document.querySelector(".chat-name");
 
-    if (!chatContainer) return; // Seguridad si no existe el HTML
+    if (chatName && AVATAR_PROFILES[currentProfileId]) {
+        chatName.innerText = `Asistente: ${AVATAR_PROFILES[currentProfileId].name}`;
+    }
+
+    if (!chatContainer) return; 
 
     // Toggle Visibility
     if (toggleBtn) {
@@ -202,20 +207,42 @@ function initChatbotUI() {
     }, 1500);
 }
 
-// --- AVATAR INTERACTIVO (VIDEO-TO-CANVAS) ---
-let currentVideo = null;
+// --- AVATAR INTERACTIVO PRO (CROSS-FADE & DUAL PROFILE) ---
+let activeVideo = null;
+let nextVideo = null;
 let avatarCtx = null;
 let avatarCanvas = null;
+let fadeAlpha = 0;
+let currentProfileId = 1; // 1: Original, 2: Victoria
+
+const AVATAR_PROFILES = {
+    1: { name: "Asistente Senior", prefix: "" },
+    2: { name: "Victoria", prefix: "" } // Usamos los IDs del DOM
+};
+
+function getActiveProfileId() {
+    const saved = localStorage.getItem("jc_avatar_profile");
+    if (saved) return parseInt(saved);
+
+    const hour = new Date().getHours();
+    const profileId = (hour >= 8 && hour < 14) ? 2 : 1; 
+    localStorage.setItem("jc_avatar_profile", profileId);
+    return profileId;
+}
 
 function initAvatarEngine() {
+    currentProfileId = getActiveProfileId();
     avatarCanvas = document.getElementById("avatar-canvas");
     if (!avatarCanvas) return;
 
-    // Set internal resolution (smaller for performance) BEFORE getting context
     avatarCanvas.width = 400;
     avatarCanvas.height = 400;
-
     avatarCtx = avatarCanvas.getContext("2d");
+
+    // Desbloqueo global de video al primer clic (Requerido por navegadores)
+    document.addEventListener("click", () => {
+        if (activeVideo) activeVideo.play().catch(() => {});
+    }, { once: true });
 
     // Primer renderizado para asegurar coherencia
     avatarCtx.fillStyle = "transparent";
@@ -233,73 +260,94 @@ function initAvatarEngine() {
 
 function renderAvatar() {
     if (avatarCtx && avatarCanvas) {
-        // Clear regardless of video state
         avatarCtx.clearRect(0, 0, 400, 400);
 
-        if (currentVideo && currentVideo.readyState >= 2) {
-            // Circular clip
-            avatarCtx.save();
-            avatarCtx.beginPath();
-            avatarCtx.arc(200, 200, 198, 0, Math.PI * 2);
-            avatarCtx.clip();
+        // Clip circular para todos los frames
+        avatarCtx.save();
+        avatarCtx.beginPath();
+        avatarCtx.arc(200, 200, 198, 0, Math.PI * 2);
+        avatarCtx.clip();
 
-            // Draw video frame
-            avatarCtx.drawImage(currentVideo, 0, 0, 400, 400);
-            avatarCtx.restore();
-        } else {
-            // DIAGNÓSTICO: Si no hay video listo, pintar un círculo sólido
-            // Esto permite saber si el problema es el Canvas (invisible) o el Video (no carga)
-            avatarCtx.fillStyle = "rgba(0, 210, 255, 0.3)"; // Color celeste semitransparente
-            avatarCtx.beginPath();
-            avatarCtx.arc(200, 200, 195, 0, Math.PI * 2);
-            avatarCtx.fill();
-
-            // Texto de carga sutil
-            avatarCtx.fillStyle = "white";
-            avatarCtx.font = "bold 40px Arial";
-            avatarCtx.textAlign = "center";
-            avatarCtx.fillText("...", 200, 210);
+        // 1. Dibujar video activo (desvaneciéndose si hay transición)
+        if (activeVideo && activeVideo.readyState >= 2) {
+            avatarCtx.globalAlpha = 1.0 - fadeAlpha;
+            avatarCtx.drawImage(activeVideo, 0, 0, 400, 400);
+        } else if (!nextVideo) {
+            // Placeholder si no hay nada cargado aún
+            drawPlaceholder();
         }
+
+        // 2. Dibujar video siguiente (apareciendo)
+        if (nextVideo && nextVideo.readyState >= 2) {
+            avatarCtx.globalAlpha = fadeAlpha;
+            avatarCtx.drawImage(nextVideo, 0, 0, 400, 400);
+            
+            // Incrementar alpha para el cross-fade (suavidad)
+            fadeAlpha += 0.04; 
+            if (fadeAlpha >= 1) {
+                if (activeVideo && activeVideo !== nextVideo) {
+                    activeVideo.pause();
+                    activeVideo.currentTime = 0;
+                }
+                activeVideo = nextVideo;
+                nextVideo = null;
+                fadeAlpha = 0;
+            }
+        }
+
+        avatarCtx.restore();
     }
     requestAnimationFrame(renderAvatar);
 }
 
+function drawPlaceholder() {
+    avatarCtx.fillStyle = "rgba(0, 210, 255, 0.2)";
+    avatarCtx.beginPath();
+    avatarCtx.arc(200, 200, 195, 0, Math.PI * 2);
+    avatarCtx.fill();
+    avatarCtx.fillStyle = "white";
+    avatarCtx.font = "bold 40px Arial";
+    avatarCtx.textAlign = "center";
+    avatarCtx.fillText("JC", 200, 215);
+}
+
 function changeAvatarState(state) {
+    const suffix = `-${currentProfileId}`;
     const videos = {
-        idle: document.getElementById("vid-idle"),
-        thinking: document.getElementById("vid-pensando"),
-        speaking: document.getElementById("vid-hablando"),
-        saludo: document.getElementById("vid-saludo")
+        idle: document.getElementById(`vid-idle${suffix}`),
+        thinking: document.getElementById(`vid-pensando${suffix}`),
+        speaking: document.getElementById(`vid-hablando${suffix}`),
+        saludo: document.getElementById(`vid-saludo${suffix}`)
     };
 
     const targetVideo = videos[state] || videos.idle;
-
     if (!targetVideo) return;
-    if (currentVideo === targetVideo && !targetVideo.paused) return;
 
-    // Pausar el actual si es distinto
-    if (currentVideo && currentVideo !== targetVideo) {
-        currentVideo.pause();
-        currentVideo.currentTime = 0;
+    // Si ya es el activo y está reproduciendo, no hacer nada
+    if (activeVideo === targetVideo && !nextVideo) return;
+
+    // Configurar el video objetivo
+    targetVideo.muted = true;
+    targetVideo.loop = (state !== "saludo");
+    targetVideo.playsInline = true;
+
+    // Iniciar transición
+    if (activeVideo) {
+        nextVideo = targetVideo;
+        fadeAlpha = 0;
+    } else {
+        activeVideo = targetVideo;
     }
 
-    currentVideo = targetVideo;
-
-    // Configuración del video
-    currentVideo.muted = true;
-    currentVideo.loop = (state !== "saludo");
-
-    const playPromise = currentVideo.play();
-
+    const playPromise = targetVideo.play();
     if (playPromise !== undefined) {
-        playPromise.catch(error => {
-            console.warn("Reproducción automática prevenida. Esperando interacción...");
+        playPromise.catch(() => {
+            console.log("Autoplay waiting for user interaction");
         });
     }
 
-    // Transición automática del saludo al idle
     if (state === "saludo") {
-        currentVideo.onended = () => changeAvatarState("idle");
+        targetVideo.onended = () => changeAvatarState("idle");
     }
 }
 
@@ -427,6 +475,8 @@ async function handleUserMessage() {
 }
 
 // --- GEMINI API CONFIGURATION ---
+// ADVERTENCIA DE SEGURIDAD: Esta API_KEY se encuentra expuesta en el código cliente.
+// Se recomienda mover el procesamiento de API a un servidor dedicado (Backend) para mayor seguridad.
 const API_KEY = "AIzaSyD1UhBYJ-L_rcM2hK-CKJmi57Lb6wGqyz8";
 const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
 
@@ -602,30 +652,30 @@ function findPriceInText(query) {
     return null;
 }
 
+// OPTIMIZACIÓN: Pre-segmentar el conocimiento para evitar lag en cada consulta
+const KNOWLEDGE_SENTENCES = (typeof SITE_KNOWLEDGE !== 'undefined') 
+    ? (SITE_KNOWLEDGE.match(/[^.!?]+[.!?]+/g) || SITE_KNOWLEDGE.split('\n'))
+    : [];
+
 function findBestMatchInKnowledge(query, knowledgeText) {
-    // 1. Dividir el conocimiento en segmentos manejables
-    const sentences = knowledgeText.match(/[^.!?]+[.!?]+/g) || knowledgeText.split('\n');
+    if (KNOWLEDGE_SENTENCES.length === 0) return null;
 
     // GOD MODE: FILTRO MÉDICO ESTRICTO
-    // Solo buscamos en la base de datos si la consulta tiene INTENCIÓN MÉDICA o TÉCNICA.
     const medicalTriggers = ["biopsia", "cancer", "tumor", "maligno", "benigno", "papanicolau", "citologia", "inmunohistoquimica", "ihq", "marcador", "prueba", "examen", "analisis", "resultado", "informe", "lamina", "bloque", "taco", "molecula", "genetica", "her2", "ki67", "estudio", "procedimiento", "precio", "costo", "valor", "tarifario"];
 
-    // Normalizar texto para busqueda (sin tildes)
     const normalize = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     const qNorm = normalize(query.toLowerCase());
 
-    // Si NO contiene ninguna palabra médica clave, ABORTAR BÚSQUEDA (Evita alucinaciones con textos aleatorios)
     const hasMedicalIntent = medicalTriggers.some(trigger => qNorm.includes(trigger));
     if (!hasMedicalIntent) return null;
 
     const queryWords = qNorm.split(/\s+/).filter(w => w.length > 4);
-
     if (queryWords.length === 0) return null;
 
     let bestMatchIndex = -1;
-    let maxScore = 0; // Reset logic
+    let maxScore = 0;
 
-    sentences.forEach((sentence, index) => {
+    KNOWLEDGE_SENTENCES.forEach((sentence, index) => {
         let score = 0;
         const sentenceLower = normalize(sentence.toLowerCase());
 
@@ -638,7 +688,6 @@ function findBestMatchInKnowledge(query, knowledgeText) {
             }
         });
 
-        // Penalizar headers
         if (sentence.includes("--- SOURCE:")) score -= 100;
 
         if (score > maxScore) {
@@ -647,21 +696,18 @@ function findBestMatchInKnowledge(query, knowledgeText) {
         }
     });
 
-    // UMBRAL MÁS ALTO (GOD MODE)
-    // 15 Puntos = Al menos 1 coincidencia exacta o 2 parciales.
     if (maxScore >= 15 && bestMatchIndex !== -1) {
         let response = "";
 
-        // Contexto inteligente (Previous + Current + Next)
         if (bestMatchIndex > 0) {
-            const prev = sentences[bestMatchIndex - 1].trim();
+            const prev = KNOWLEDGE_SENTENCES[bestMatchIndex - 1].trim();
             if (!prev.includes("--- SOURCE:") && prev.length > 20) response += prev + " ";
         }
 
-        response += sentences[bestMatchIndex].trim();
+        response += KNOWLEDGE_SENTENCES[bestMatchIndex].trim();
 
-        if (bestMatchIndex < sentences.length - 1) {
-            const next = sentences[bestMatchIndex + 1].trim();
+        if (bestMatchIndex < KNOWLEDGE_SENTENCES.length - 1) {
+            const next = KNOWLEDGE_SENTENCES[bestMatchIndex + 1].trim();
             if (!next.includes("--- SOURCE:") && next.length > 20) response += " " + next;
         }
 
@@ -671,37 +717,9 @@ function findBestMatchInKnowledge(query, knowledgeText) {
     return null;
 }
 
-/**
- * Procesa consultas de precio y captura el último examen consultado.
- */
-function procesarConsultaPrecio(query) {
-    const qLower = query.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+// La función procesarConsultaPrecio ha sido unificada al final de este archivo (Refactorización)
 
-    // Lista de exámenes comunes para capturar contexto
-    const examenes = [
-        "biopsia gastrica", "biopsia de cervix", "biopsia de colon", "cono cervical",
-        "biopsia de prostata", "papanicolaou", "citologia", "inmunohistoquimica",
-        "tiroides", "mama", "piel", "glándula salival"
-    ];
-
-    // Intentar encontrar si el usuario menciona un examen específico
-    for (let examen of examenes) {
-        if (qLower.includes(examen)) {
-            lastExamenConsultado = examen.toUpperCase();
-            break;
-        }
-    }
-
-    if (qLower.match(/(precio|costo|cuanto cuesta|valer|tarifa|cuanto esta|presupuesto)/)) {
-        // Si hay un examen específico detectado, intentar dar prioridad a su precio
-        const specificPrice = findPriceInText(query);
-        if (specificPrice) return specificPrice;
-
-        return PRICE_LIST_TEMPLATE;
-    }
-
-    return null;
-}
+// --- UNIFICACIÓN DE LÓGICA DE PRECIOS MOVIDA AL FINAL DEL ARCHIVO PARA EVITAR CONFLICTOS ---
 
 
 // --- FUNCIONES DE BLINDAJE (SECURITY & ROBUSTNESS) ---
@@ -1008,6 +1026,20 @@ document.addEventListener('DOMContentLoaded', function () {
 function procesarConsultaPrecio(mensaje) {
     const qLower = mensaje.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
+    // --- CAPTURA DE CONTEXTO (Para Warm Handoff) ---
+    const examenes = [
+        "biopsia gastrica", "biopsia de cervix", "biopsia de colon", "cono cervical",
+        "biopsia de prostata", "papanicolaou", "citologia", "inmunohistoquimica",
+        "tiroides", "mama", "piel", "glándula salival"
+    ];
+
+    for (let examen of examenes) {
+        if (qLower.includes(examen)) {
+            lastExamenConsultado = examen.toUpperCase();
+            break;
+        }
+    }
+
     // Regex para detectar intención de precio
     const isPrecioQuery = qLower.match(/(precio|costo|cuanto.*cue[sz]ta|tarifa|cobra|valor|presupuesto|tarifario)/);
 
@@ -1025,7 +1057,6 @@ function procesarConsultaPrecio(mensaje) {
     }
 
     // 2. Menú Guiado: Si es genérico ("precio", "costo") o no hubo match de examen
-    // Listar solo los títulos de las 4 categorías principales
     let menuCategorias = "Para darle el valor exacto de su inversión en salud, ¿de cuál de estas 4 áreas es el estudio que le indicó su médico? 🩺\n\n";
     let index = 1;
     for (const key in tarifarioJCPathLab) {
