@@ -4,12 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JC PATH LAB | Biopsias y Anatomía Patológica en Puente Piedra, Lima Norte</title>
+    <title>JC PATH LAB | Biopsias y Patología en Puente Piedra</title>
     <meta name="description"
         content="Laboratorio de Anatomía Patológica en Puente Piedra, Lima Norte. Biopsias rápidas en 3-4 días, inmunohistoquímica, Papanicolaou y diagnóstico de cáncer. Recojo a domicilio.">
     <meta name="keywords"
         content="anatomia patologica puente piedra, biopsias lima norte, inmunohistoquimica peru, patologo oncologo lima, papanicolaou precio, citologia cervical, diagnostico cancer lima, laboratorio puente piedra, biopsia gastrica precio, patologo certificado peru, jc path lab, patologia oncologica lima norte">
     <link rel="canonical" href="https://jcastilloc2920.github.io/">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0056b3">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <!-- Social Media Meta Tags -->
     <!-- Twitter Card Meta Tags -->
@@ -54,6 +59,7 @@
     <!-- Preconnect to Google Fonts if needed, but the site currently uses common system fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mobile-app.css">
 
     <script type="application/ld+json">
     {
@@ -196,7 +202,7 @@
             </div>
 
             <div class="container hero-content">
-                <h1 style="font-weight: 700; margin-bottom: 5px;">JC PATH LAB</h1>
+                <h1 style="font-weight: 700; margin-bottom: 5px;">Laboratorio de Anatomía Patológica JC PATH LAB</h1>
                 <h2 style="font-size: 1.5rem; color: rgba(255,255,255,0.95); margin-bottom: 25px; font-weight: 300;">
                     Laboratorio de Anatomía Patológica</h2>
                 <p class="hero-subtitle">Diagnósticos de Alta Precisión con Tecnología de Calidad Mundial 🔬</p>
@@ -213,23 +219,23 @@
                     Recojo a domicilio en todo Lima, y recepción de encomiendas de provincias.</h2>
 
                 <div class="hero-buttons">
-                    <a href="javascript:void(0)" id="btn-paciente" class="btn btn-hero-patient">
+                    <a href="https://wa.me/51986396733?text=Hola%20JC%20PATH%20LAB,%20soy%20paciente%20y%20deseo%20información%20sobre%20precios%20y%20recojo%20de%20biopsia." id="btn-paciente" class="btn btn-hero-patient">
                         <i class="fas fa-user-injured"></i>
                         <span class="cta-title">SOY PACIENTE</span>
                         <span class="cta-subtitle">Ver Precios y Recojo</span>
                     </a>
-                    <a href="javascript:void(0)" class="chat-dudas-link"
+                    <a href="#" class="chat-dudas-link"
                         onclick="document.getElementById('chat-toggle').click(); window.event.stopPropagation();">
                         ¿Dudas? Chatea aquí ↘
                     </a>
-                    <a href="javascript:void(0)" id="btn-medico" class="btn btn-hero-doctor">
+                    <a href="https://wa.me/51986396733?text=Hola%20JC%20PATH%20LAB,%20soy%20médico%20u%20odontólogo%20y%20deseo%20coordinar%20el%20envío%20de%20una%20muestra." id="btn-medico" class="btn btn-hero-doctor">
                         <i class="fas fa-user-md"></i>
                         <span class="cta-title">SOY MÉDICO / CLÍNICA</span>
                         <span class="cta-subtitle">Protocolos y Derivaciones</span>
                     </a>
 
                     <!-- New Video Button -->
-                    <a href="javascript:void(0)" onclick="openVideoModal()" class="video-btn-hero">
+                    <a href="#" onclick="openVideoModal()" class="video-btn-hero">
                         <i class="fas fa-play-circle"></i> Ver Video del Laboratorio
                     </a>
                 </div>
@@ -262,6 +268,7 @@
 
         <!-- Services Section -->
         <section id="servicios" class="services-section page-section">
+            <div id="precios" class="section-anchor"></div>
             <div class="section-header">
                 <h2 class="section-title">Anatomía Patológica y Diagnóstico Especializado</h2>
             </div>
@@ -315,172 +322,120 @@
                                     </a>
                                 </div>
                             </div>
-                            <div style="display:none;" aria-hidden="true">
-                                <p>Uso clínico de ACTINA MUSCULO LISO: Detecta tumores derivados del músculo liso,
-                                    como
-                                    miomas uterinos y ciertos sarcomas.</p>
-                                <p>Uso clínico de ACTINA (HIF35): Marcador general de células musculares; ayuda a
-                                    identificar tumores del tejido blando.</p>
-                                <p>Uso clínico de ADIPOFILINA: Identifica la presencia de lípidos; útil en tumores
-                                    sebáceos y de glándulas sudoríparas.</p>
-                                <p>Uso clínico de AFP (Alfa FetoProteina): Marcador clave en tumores de hígado y
-                                    tumores
-                                    de células germinales del testículo u ovario.</p>
-                                <p>Uso clínico de ALK(CD246): Identifica cambios genéticos en ciertos tipos de
-                                    cáncer de
-                                    pulmón, linfomas y tumores infantiles.</p>
-                                <p>Uso clínico de AMACR (Racemase): Altamente sensible para diagnosticar cáncer de
-                                    próstata y ciertos tipos de cáncer de riñón.</p>
-                                <p>Uso clínico de AMILOIDE A: Detecta depósitos de proteína amiloide en tejidos,
-                                    asociados a enfermedades inflamatorias crónicas.</p>
-                                <p>Uso clínico de ANDROGENO: Evalúa la respuesta a hormonas masculinas en tumores de
-                                    próstata y ciertos tumores de mama.</p>
-                                <p>Uso clínico de A. CARBONICA IX (CA IX): Marcador específico para el cáncer de
-                                    riñón
-                                    (carcinoma de células claras).</p>
-                                <p>Uso clínico de ARGINASE 1: El marcador más específico para confirmar que un tumor
-                                    se
-                                    originó directamente en el hígado.</p>
-                                <p>Uso clínico de ATRX: Utilizado para clasificar tumores cerebrales (gliomas) y
-                                    predecir su comportamiento clínico.</p>
-                                <p>Uso clínico de BCL-2: Proteína que impide la muerte celular; su exceso ayuda a
-                                    diagnosticar diversos tipos de linfomas.</p>
-                                <p>Uso clínico de BCL-6: Identifica linfocitos de los centros germinales; esencial
-                                    para
-                                    clasificar linfomas agresivos.</p>
-                                <p>Uso clínico de BER-EP4: Ayuda a distinguir el carcinoma basocelular de la piel de
-                                    otros tumores similares.</p>
-                                <p>Uso clínico de BETACATENIN: Marcador de señalización celular útil en tumores de
-                                    colon, de mama y tumores 'desmoides'.</p>
-                                <p>Uso clínico de C-MYC: Gen que regula el crecimiento celular; su presencia indica
-                                    alta
-                                    agresividad en linfomas.</p>
-                                <p>Uso clínico de CALCITONINA: Marcador hormonal fundamental para el diagnóstico del
-                                    cáncer medular de tiroides.</p>
-                                <p>Uso clínico de CALDESMON: Marcador muy específico para identificar células de
-                                    músculo
-                                    liso en tumores del útero y tejidos blandos.</p>
-                                <p>Uso clínico de CALPONINA: Identifica células de soporte en las glándulas; vital
-                                    para
-                                    diferenciar lesiones benignas de malignas en mama.</p>
-                                <p>Uso clínico de CALRETININA: Principal marcador para diagnosticar mesotelioma y
-                                    ciertos tumores de los ovarios.</p>
-                                <p>Uso clínico de CD1a: Identifica células de Langerhans; crucial para diagnosticar
-                                    la
-                                    histiocitosis X.</p>
-                                <p>Uso clínico de CD3: El marcador universal para identificar Linfocitos T (células
-                                    clave del sistema de defensa).</p>
-                                <p>Uso clínico de CD4: Subtipo de linfocitos T; importante en la evaluación de
-                                    enfermedades inmunes y linfomas.</p>
-                                <p>Uso clínico de CD5: Ayuda a clasificar leucemias crónicas y linfomas de células
-                                    pequeñas.</p>
-                                <p>Uso clínico de CD7: Uno de los marcadores más tempranos de células de defensa T;
-                                    útil
-                                    en leucemias agudas.</p>
-                                <p>Uso clínico de CD8: Identifica linfocitos T 'asesinos'; mide la fuerza del
-                                    sistema
-                                    inmune contra el cáncer.</p>
-                                <p>Uso clínico de CD10: Marcador de células germinales de los ganglios; útil en el
-                                    estudio de linfomas y cáncer de riñón.</p>
-                                <p>Uso clínico de CD15: Característico de las células de Reed-Sternberg en el
-                                    Linfoma de
-                                    Hodgkin clásico.</p>
-                                <p>Uso clínico de CD19: Marcador fundamental para identificar todas las etapas de
-                                    desarrollo de los Linfocitos B.</p>
-                                <p>Uso clínico de CD20: El marcador más importante para el diagnóstico y guía de
-                                    tratamiento de Linfomas de células B.</p>
-                                <p>Uso clínico de CD21: Identifica las redes que sostienen a los linfocitos en los
-                                    ganglios; útil en linfomas foliculares.</p>
-                                <p>Uso clínico de CD23: Ayuda a diferenciar la leucemia linfática crónica de otros
-                                    tipos
-                                    de linfomas.</p>
-                                <p>Uso clínico de CD30: Clave para el diagnóstico del Linfoma de Hodgkin y linfomas
-                                    anaplásicos de células grandes.</p>
-                                <p>Uso clínico de CD31: Marcador de células endoteliales (vasos sanguíneos);
-                                    identifica
-                                    tumores vasculares como angiosarcomas.</p>
-                                <p>Uso clínico de CD34: Identifica vasos sanguíneos y células madre; esencial en la
-                                    clasificación de leucemias y sarcomas.</p>
-                                <p>Uso clínico de CD43: Ayuda a detectar anormalidades en linfocitos B y T; útil en
-                                    la
-                                    clasificación de linfomas.</p>
-                                <p>Uso clínico de CD45: Antígeno Común Leucocitario; confirma que el tumor se
-                                    origina en
-                                    el sistema de la sangre.</p>
-                                <p>Uso clínico de CD56: Marcador para células de defensa NK y tumores
-                                    neuroendocrinos
-                                    (como el cáncer microcítico de pulmón).</p>
-                                <p>Uso clínico de CD61: Identifica células precursoras de las plaquetas; útil en el
-                                    diagnóstico de leucemias específicas.</p>
-                                <p>Uso clínico de CD68: Marca macrófagos (células de limpieza); ayuda a identificar
-                                    inflamación y ciertos tumores.</p>
-                                <p>Uso clínico de CD79a: Marcador muy específico y temprano para Linfocitos B;
-                                    complementa al CD20.</p>
-                                <p>Uso clínico de CD99: Marcador distintivo del Sarcoma de Ewing y tumores
-                                    neuroectodérmicos infantiles.</p>
-                                <p>Uso clínico de CD117: Esencial para diagnosticar tumores GIST del sistema
-                                    digestivo y
-                                    ciertos tipos de leucemia.</p>
-                                <p>Uso clínico de CD138: Principal marcador de células plasmáticas; fundamental para
-                                    diagnosticar el Mieloma Múltiple.</p>
-                                <p>Uso clínico de CDK4: Evalúa anormalidades genéticas en tumores de grasa para
-                                    distinguir lipomas de liposarcomas.</p>
-                                <p>Uso clínico de CDX2: Indica con alta precisión que un tumor proviene del tracto
-                                    digestivo, especialmente del colon.</p>
-                                <p>Uso clínico de CA-125: Utilizado para monitorear y diagnosticar tumores de ovario
-                                    y
-                                    de la cavidad abdominal.</p>
-                                <p>Uso clínico de CA 19.9: Marcador de apoyo para el diagnóstico de cáncer de
-                                    páncreas y
-                                    vías biliares.</p>
-                                <p>Uso clínico de CEA: Antígeno Carcinoembrionario; marcador general para cáncer de
-                                    colon, páncreas y otros.</p>
-                                <p>Uso clínico de CYCLIN D1: Proteína reguladora; su detección es clave para
-                                    diagnosticar el Linfoma de Células del Manto.</p>
-                                <p>Uso clínico de CITOKERATIN 5/6: Ayuda a identificar carcinomas escamosos y a
-                                    distinguir mesoteliomas de otros tipos de cáncer de pulmón.</p>
-                                <p>Uso clínico de CITOKERATIN 7: Marcador de origen glandular; se encuentra
-                                    comúnmente
-                                    en tumores de mama, pulmón y ovario.</p>
-                                <p>Uso clínico de CITOKERATIN 20: Marcador de origen muy específico para el tracto
-                                    digestivo (colon) y células de Merkel en la piel.</p>
-                                <p>Uso clínico de DESMINA: Detecta células musculares; esencial para diagnosticar
-                                    tumores del músculo esquelético y liso.</p>
-                                <p>Uso clínico de DOG-1: Marcador altamente específico para tumores GIST; muy útil
-                                    cuando el CD117 es negativo.</p>
-                                <p>Uso clínico de HER2 (C-ERBB2/CB11): Evalúa la agresividad celular; crucial para
-                                    guiar
-                                    tratamientos biológicos en cáncer de mama y estómago.</p>
-                                <p>Uso clínico de HMB45: Altamente específico para el diagnóstico de Melanoma
-                                    (cáncer
-                                    agresivo de piel).</p>
-                                <p>Uso clínico de KI67: El marcador de proliferación más usado; indica qué
-                                    porcentaje de
-                                    células se están dividiendo.</p>
-                                <p>Uso clínico de P16: Marcador de infección por VPH; esencial en el diagnóstico de
-                                    cáncer de cuello uterino y garganta.</p>
-                                <p>Uso clínico de P40: El marcador más fiable para diagnosticar el carcinoma de
-                                    células
-                                    escamosas del pulmón.</p>
-                                <p>Uso clínico de P53: Detecta la mutación más común en el cáncer, indicando
-                                    agresividad
-                                    y guiando el tratamiento.</p>
-                                <p>Uso clínico de PSA: Antígeno Prostático Específico; la prueba de referencia para
-                                    el
-                                    tejido de la próstata.</p>
-                                <p>Uso clínico de S-100: Marcador versátil usado para detectar melanomas, tumores
-                                    nerviosos y de glándulas salivares.</p>
-                                <p>Uso clínico de SINAPTOFISINA: Identifica vesículas nerviosas; esencial para
-                                    diagnosticar tumores neuroendocrinos.</p>
-                                <p>Uso clínico de SOX-10: Marcador moderno y muy sensible para diagnosticar
-                                    melanomas y
-                                    tumores de nervios.</p>
-                                <p>Uso clínico de TTF-1: Diferencia con precisión el cáncer originado en el pulmón
-                                    de
-                                    metástasis de otros órganos.</p>
-                                <p>Uso clínico de VIMENTINA: Marcador general de los tejidos conectivos; ayuda a
-                                    clasificar sarcomas.</p>
-                            </div>
+                            <!-- Catálogo Interactivo de Marcadores -->
+                            <section class="marcadores-container">
+                                <!-- Contenido de marcadores omitido aquí por brevedad, pero igual estructuralmente -->
+                                <details class="marcador-accordion">
+                                    <summary>Marcadores Hematolinfoides (Linfomas y Leucemias)</summary>
+                                    <div class="marcador-content">
+                                        <ul>
+                                            <li><strong>CD1a:</strong> Identifica células de Langerhans; crucial para
+                                                diagnosticar la histiocitosis X.</li>
+                                            <li><strong>CD3:</strong> El marcador universal para identificar Linfocitos
+                                                T (células clave del sistema de defensa).</li>
+                                            <li><strong>CD4:</strong> Subtipo de linfocitos T; importante en la
+                                                evaluación de enfermedades inmunes y linfomas.</li>
+                                            <li><strong>CD5:</strong> Ayuda a clasificar leucemias crónicas y linfomas
+                                                de células pequeñas.</li>
+                                            <li><strong>CD7:</strong> Uno de los marcadores más tempranos de células de
+                                                defensa T; útil en leucemias agudas.</li>
+                                            <li><strong>CD8:</strong> Identifica linfocitos T 'asesinos'; mide la fuerza
+                                                del sistema inmune contra el cáncer.</li>
+                                            <li><strong>CD10:</strong> Marcador de células germinales de los ganglios;
+                                                útil en el estudio de linfomas y cáncer de riñón.</li>
+                                            <li><strong>CD15:</strong> Característico de las células de Reed-Sternberg
+                                                en el Linfoma de Hodgkin clásico.</li>
+                                            <li><strong>CD19:</strong> Marcador fundamental para identificar todas las
+                                                etapas de desarrollo de los Linfocitos B.</li>
+                                            <li><strong>CD20:</strong> El marcador más importante para el diagnóstico y
+                                                guía de tratamiento de Linfomas de células B.</li>
+                                            <li><strong>CD21:</strong> Identifica las redes que sostienen a los
+                                                linfocitos en los ganglios; útil en linfomas foliculares.</li>
+                                            <li><strong>CD23:</strong> Ayuda a diferenciar la leucemia linfática crónica
+                                                de otros tipos de linfomas.</li>
+                                            <li><strong>CD30:</strong> Clave para el diagnóstico del Linfoma de Hodgkin
+                                                y linfomas anaplásicos de células grandes.</li>
+                                            <li><strong>CD43:</strong> Ayuda a detectar anormalidades en linfocitos B y
+                                                T; útil en la clasificación de linfomas.</li>
+                                            <li><strong>CD45:</strong> Antígeno Común Leucocitario; confirma que el
+                                                tumor se origina en el sistema de la sangre.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+
+                                <details class="marcador-accordion">
+                                    <summary>Marcadores Epiteliales (Carcinomas)</summary>
+                                    <div class="marcador-content">
+                                        <ul>
+                                            <li><strong>Panqueratina:</strong> Marcador universal de carcinomas (tumores
+                                                de origen epitelial).</li>
+                                            <li><strong>CITOKERATIN 7:</strong> Indica origen glandular (mama, pulmón,
+                                                ovario).</li>
+                                            <li><strong>CITOKERATIN 20:</strong> Específico para el tracto digestivo
+                                                (colon) y células de la piel.</li>
+                                            <li><strong>EMA:</strong> Antígeno de membrana epitelial; útil en diversos
+                                                carcinomas.</li>
+                                            <li><strong>BER-EP4:</strong> Ayuda a distinguir el carcinoma basocelular de
+                                                otros tumores cutáneos.</li>
+                                            <li><strong>P40:</strong> El marcador más fiable para el carcinoma de
+                                                células escamosas.</li>
+                                            <li><strong>TTF-1:</strong> Identifica con precisión tumores originados en
+                                                pulmón o tiroides.</li>
+                                            <li><strong>PSA:</strong> Antígeno Prostático Específico; clave para el
+                                                tejido de la próstata.</li>
+                                            <li><strong>GATA 3:</strong> Excelente marcador para tumores de mama y de la
+                                                vejiga (urotelio).</li>
+                                            <li><strong>PAX-8:</strong> Fundamental para diagnosticar tumores de riñón,
+                                                tiroides y sistema ginecológico.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+
+                                <details class="marcador-accordion">
+                                    <summary>Marcadores de Tejidos Blandos (Sarcomas)</summary>
+                                    <div class="marcador-content">
+                                        <ul>
+                                            <li><strong>VIMENTINA:</strong> Marcador general de tejidos conectivos;
+                                                ayuda a clasificar sarcomas.</li>
+                                            <li><strong>DESMINA:</strong> Detecta células musculares; esencial para
+                                                tumores de músculo.</li>
+                                            <li><strong>ACTINA MUSCULO LISO:</strong> Identifica tumores de músculo liso
+                                                (miomas, sarcomas).</li>
+                                            <li><strong>S-100:</strong> Marcador versátil para melanomas y tumores
+                                                nerviosos.</li>
+                                            <li><strong>SOX-10:</strong> Muy sensible para diagnosticar melanomas y
+                                                tumores de nervios.</li>
+                                            <li><strong>CD31 / CD34:</strong> Marcadores de vasos sanguíneos;
+                                                identifican tumores vasculares.</li>
+                                            <li><strong>CD117 (c-KIT):</strong> Esencial para diagnosticar tumores GIST
+                                                del sistema digestivo.</li>
+                                            <li><strong>DOG-1:</strong> Altamente específico para GIST; complementa al
+                                                CD117.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+
+                                <details class="marcador-accordion">
+                                    <summary>Otros Marcadores Importantes (Pronóstico y Otros)</summary>
+                                    <div class="marcador-content">
+                                        <ul>
+                                            <li><strong>KI-67:</strong> Mide qué porcentaje de células se están
+                                                dividiendo (proliferación).</li>
+                                            <li><strong>P53:</strong> Detecta mutaciones genéticas comunes; indica
+                                                agresividad en muchos cánceres.</li>
+                                            <li><strong>HER2:</strong> Evalúa agresividad; crucial para tratamientos en
+                                                cáncer de mama y estómago.</li>
+                                            <li><strong>P16:</strong> Marcador de infección por VPH; vital en cáncer de
+                                                cuello uterino.</li>
+                                            <li><strong>CALRETININA:</strong> Principal marcador para diagnosticar
+                                                mesotelioma.</li>
+                                            <li><strong>SINAPTOFISINA / CROMOGRANINA A:</strong> Identifican tumores
+                                                neuroendocrinos.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </section>
+
 
                             <a href="partes-blandas.html" class="service-link">Más información sobre diagnóstico de
                                 biopsias <i class="fas fa-arrow-right"></i></a>
@@ -530,172 +485,119 @@
                                     </div>
                                 </div>
                             </div>
-                            <div style="display:none;" aria-hidden="true">
-                                <p>Uso clínico de ACTINA MUSCULO LISO: Detecta tumores derivados del músculo liso,
-                                    como
-                                    miomas uterinos y ciertos sarcomas.</p>
-                                <p>Uso clínico de ACTINA (HIF35): Marcador general de células musculares; ayuda a
-                                    identificar tumores del tejido blando.</p>
-                                <p>Uso clínico de ADIPOFILINA: Identifica la presencia de lípidos; útil en tumores
-                                    sebáceos y de glándulas sudoríparas.</p>
-                                <p>Uso clínico de AFP (Alfa FetoProteina): Marcador clave en tumores de hígado y
-                                    tumores
-                                    de células germinales del testículo u ovario.</p>
-                                <p>Uso clínico de ALK(CD246): Identifica cambios genéticos en ciertos tipos de
-                                    cáncer de
-                                    pulmón, linfomas y tumores infantiles.</p>
-                                <p>Uso clínico de AMACR (Racemase): Altamente sensible para diagnosticar cáncer de
-                                    próstata y ciertos tipos de cáncer de riñón.</p>
-                                <p>Uso clínico de AMILOIDE A: Detecta depósitos de proteína amiloide en tejidos,
-                                    asociados a enfermedades inflamatorias crónicas.</p>
-                                <p>Uso clínico de ANDROGENO: Evalúa la respuesta a hormonas masculinas en tumores de
-                                    próstata y ciertos tumores de mama.</p>
-                                <p>Uso clínico de A. CARBONICA IX (CA IX): Marcador específico para el cáncer de
-                                    riñón
-                                    (carcinoma de células claras).</p>
-                                <p>Uso clínico de ARGINASE 1: El marcador más específico para confirmar que un tumor
-                                    se
-                                    originó directamente en el hígado.</p>
-                                <p>Uso clínico de ATRX: Utilizado para clasificar tumores cerebrales (gliomas) y
-                                    predecir su comportamiento clínico.</p>
-                                <p>Uso clínico de BCL-2: Proteína que impide la muerte celular; su exceso ayuda a
-                                    diagnosticar diversos tipos de linfomas.</p>
-                                <p>Uso clínico de BCL-6: Identifica linfocitos de los centros germinales; esencial
-                                    para
-                                    clasificar linfomas agresivos.</p>
-                                <p>Uso clínico de BER-EP4: Ayuda a distinguir el carcinoma basocelular de la piel de
-                                    otros tumores similares.</p>
-                                <p>Uso clínico de BETACATENIN: Marcador de señalización celular útil en tumores de
-                                    colon, de mama y tumores 'desmoides'.</p>
-                                <p>Uso clínico de C-MYC: Gen que regula el crecimiento celular; su presencia indica
-                                    alta
-                                    agresividad en linfomas.</p>
-                                <p>Uso clínico de CALCITONINA: Marcador hormonal fundamental para el diagnóstico del
-                                    cáncer medular de tiroides.</p>
-                                <p>Uso clínico de CALDESMON: Marcador muy específico para identificar células de
-                                    músculo
-                                    liso en tumores del útero y tejidos blandos.</p>
-                                <p>Uso clínico de CALPONINA: Identifica células de soporte en las glándulas; vital
-                                    para
-                                    diferenciar lesiones benignas de malignas en mama.</p>
-                                <p>Uso clínico de CALRETININA: Principal marcador para diagnosticar mesotelioma y
-                                    ciertos tumores de los ovarios.</p>
-                                <p>Uso clínico de CD1a: Identifica células de Langerhans; crucial para diagnosticar
-                                    la
-                                    histiocitosis X.</p>
-                                <p>Uso clínico de CD3: El marcador universal para identificar Linfocitos T (células
-                                    clave del sistema de defensa).</p>
-                                <p>Uso clínico de CD4: Subtipo de linfocitos T; importante en la evaluación de
-                                    enfermedades inmunes y linfomas.</p>
-                                <p>Uso clínico de CD5: Ayuda a clasificar leucemias crónicas y linfomas de células
-                                    pequeñas.</p>
-                                <p>Uso clínico de CD7: Uno de los marcadores más tempranos de células de defensa T;
-                                    útil
-                                    en leucemias agudas.</p>
-                                <p>Uso clínico de CD8: Identifica linfocitos T 'asesinos'; mide la fuerza del
-                                    sistema
-                                    inmune contra el cáncer.</p>
-                                <p>Uso clínico de CD10: Marcador de células germinales de los ganglios; útil en el
-                                    estudio de linfomas y cáncer de riñón.</p>
-                                <p>Uso clínico de CD15: Característico de las células de Reed-Sternberg en el
-                                    Linfoma de
-                                    Hodgkin clásico.</p>
-                                <p>Uso clínico de CD19: Marcador fundamental para identificar todas las etapas de
-                                    desarrollo de los Linfocitos B.</p>
-                                <p>Uso clínico de CD20: El marcador más importante para el diagnóstico y guía de
-                                    tratamiento de Linfomas de células B.</p>
-                                <p>Uso clínico de CD21: Identifica las redes que sostienen a los linfocitos en los
-                                    ganglios; útil en linfomas foliculares.</p>
-                                <p>Uso clínico de CD23: Ayuda a diferenciar la leucemia linfática crónica de otros
-                                    tipos
-                                    de linfomas.</p>
-                                <p>Uso clínico de CD30: Clave para el diagnóstico del Linfoma de Hodgkin y linfomas
-                                    anaplásicos de células grandes.</p>
-                                <p>Uso clínico de CD31: Marcador de células endoteliales (vasos sanguíneos);
-                                    identifica
-                                    tumores vasculares como angiosarcomas.</p>
-                                <p>Uso clínico de CD34: Identifica vasos sanguíneos y células madre; esencial en la
-                                    clasificación de leucemias y sarcomas.</p>
-                                <p>Uso clínico de CD43: Ayuda a detectar anormalidades en linfocitos B y T; útil en
-                                    la
-                                    clasificación de linfomas.</p>
-                                <p>Uso clínico de CD45: Antígeno Común Leucocitario; confirma que el tumor se
-                                    origina en
-                                    el sistema de la sangre.</p>
-                                <p>Uso clínico de CD56: Marcador para células de defensa NK y tumores
-                                    neuroendocrinos
-                                    (como el cáncer microcítico de pulmón).</p>
-                                <p>Uso clínico de CD61: Identifica células precursoras de las plaquetas; útil en el
-                                    diagnóstico de leucemias específicas.</p>
-                                <p>Uso clínico de CD68: Marca macrófagos (células de limpieza); ayuda a identificar
-                                    inflamación y ciertos tumores.</p>
-                                <p>Uso clínico de CD79a: Marcador muy específico y temprano para Linfocitos B;
-                                    complementa al CD20.</p>
-                                <p>Uso clínico de CD99: Marcador distintivo del Sarcoma de Ewing y tumores
-                                    neuroectodérmicos infantiles.</p>
-                                <p>Uso clínico de CD117: Esencial para diagnosticar tumores GIST del sistema
-                                    digestivo y
-                                    ciertos tipos de leucemia.</p>
-                                <p>Uso clínico de CD138: Principal marcador de células plasmáticas; fundamental para
-                                    diagnosticar el Mieloma Múltiple.</p>
-                                <p>Uso clínico de CDK4: Evalúa anormalidades genéticas en tumores de grasa para
-                                    distinguir lipomas de liposarcomas.</p>
-                                <p>Uso clínico de CDX2: Indica con alta precisión que un tumor proviene del tracto
-                                    digestivo, especialmente del colon.</p>
-                                <p>Uso clínico de CA-125: Utilizado para monitorear y diagnosticar tumores de ovario
-                                    y
-                                    de la cavidad abdominal.</p>
-                                <p>Uso clínico de CA 19.9: Marcador de apoyo para el diagnóstico de cáncer de
-                                    páncreas y
-                                    vías biliares.</p>
-                                <p>Uso clínico de CEA: Antígeno Carcinoembrionario; marcador general para cáncer de
-                                    colon, páncreas y otros.</p>
-                                <p>Uso clínico de CYCLIN D1: Proteína reguladora; su detección es clave para
-                                    diagnosticar el Linfoma de Células del Manto.</p>
-                                <p>Uso clínico de CITOKERATIN 5/6: Ayuda a identificar carcinomas escamosos y a
-                                    distinguir mesoteliomas de otros tipos de cáncer de pulmón.</p>
-                                <p>Uso clínico de CITOKERATIN 7: Marcador de origen glandular; se encuentra
-                                    comúnmente
-                                    en tumores de mama, pulmón y ovario.</p>
-                                <p>Uso clínico de CITOKERATIN 20: Marcador de origen muy específico para el tracto
-                                    digestivo (colon) y células de Merkel en la piel.</p>
-                                <p>Uso clínico de DESMINA: Detecta células musculares; esencial para diagnosticar
-                                    tumores del músculo esquelético y liso.</p>
-                                <p>Uso clínico de DOG-1: Marcador altamente específico para tumores GIST; muy útil
-                                    cuando el CD117 es negativo.</p>
-                                <p>Uso clínico de HER2 (C-ERBB2/CB11): Evalúa la agresividad celular; crucial para
-                                    guiar
-                                    tratamientos biológicos en cáncer de mama y estómago.</p>
-                                <p>Uso clínico de HMB45: Altamente específico para el diagnóstico de Melanoma
-                                    (cáncer
-                                    agresivo de piel).</p>
-                                <p>Uso clínico de KI67: El marcador de proliferación más usado; indica qué
-                                    porcentaje de
-                                    células se están dividiendo.</p>
-                                <p>Uso clínico de P16: Marcador de infección por VPH; esencial en el diagnóstico de
-                                    cáncer de cuello uterino y garganta.</p>
-                                <p>Uso clínico de P40: El marcador más fiable para diagnosticar el carcinoma de
-                                    células
-                                    escamosas del pulmón.</p>
-                                <p>Uso clínico de P53: Detecta la mutación más común en el cáncer, indicando
-                                    agresividad
-                                    y guiando el tratamiento.</p>
-                                <p>Uso clínico de PSA: Antígeno Prostático Específico; la prueba de referencia para
-                                    el
-                                    tejido de la próstata.</p>
-                                <p>Uso clínico de S-100: Marcador versátil usado para detectar melanomas, tumores
-                                    nerviosos y de glándulas salivares.</p>
-                                <p>Uso clínico de SINAPTOFISINA: Identifica vesículas nerviosas; esencial para
-                                    diagnosticar tumores neuroendocrinos.</p>
-                                <p>Uso clínico de SOX-10: Marcador moderno y muy sensible para diagnosticar
-                                    melanomas y
-                                    tumores de nervios.</p>
-                                <p>Uso clínico de TTF-1: Diferencia con precisión el cáncer originado en el pulmón
-                                    de
-                                    metástasis de otros órganos.</p>
-                                <p>Uso clínico de VIMENTINA: Marcador general de los tejidos conectivos; ayuda a
-                                    clasificar sarcomas.</p>
-                            </div>
+                            <!-- Catálogo Interactivo de Marcadores -->
+                            <section class="marcadores-container">
+                                <details class="marcador-accordion">
+                                    <summary>Marcadores Hematolinfoides (Linfomas y Leucemias)</summary>
+                                    <div class="marcador-content">
+                                        <ul>
+                                            <li><strong>CD1a:</strong> Identifica células de Langerhans; crucial para
+                                                diagnosticar la histiocitosis X.</li>
+                                            <li><strong>CD3:</strong> El marcador universal para identificar Linfocitos
+                                                T (células clave del sistema de defensa).</li>
+                                            <li><strong>CD4:</strong> Subtipo de linfocitos T; importante en la
+                                                evaluación de enfermedades inmunes y linfomas.</li>
+                                            <li><strong>CD5:</strong> Ayuda a clasificar leucemias crónicas y linfomas
+                                                de células pequeñas.</li>
+                                            <li><strong>CD7:</strong> Uno de los marcadores más tempranos de células de
+                                                defensa T; útil en leucemias agudas.</li>
+                                            <li><strong>CD8:</strong> Identifica linfocitos T 'asesinos'; mide la fuerza
+                                                del sistema inmune contra el cáncer.</li>
+                                            <li><strong>CD10:</strong> Marcador de células germinales de los ganglios;
+                                                útil en el estudio de linfomas y cáncer de riñón.</li>
+                                            <li><strong>CD15:</strong> Característico de las células de Reed-Sternberg
+                                                en el Linfoma de Hodgkin clásico.</li>
+                                            <li><strong>CD19:</strong> Marcador fundamental para identificar todas las
+                                                etapas de desarrollo de los Linfocitos B.</li>
+                                            <li><strong>CD20:</strong> El marcador más importante para el diagnóstico y
+                                                guía de tratamiento de Linfomas de células B.</li>
+                                            <li><strong>CD21:</strong> Identifica las redes que sostienen a los
+                                                linfocitos en los ganglios; útil en linfomas foliculares.</li>
+                                            <li><strong>CD23:</strong> Ayuda a diferenciar la leucemia linfática crónica
+                                                de otros tipos de linfomas.</li>
+                                            <li><strong>CD30:</strong> Clave para el diagnóstico del Linfoma de Hodgkin
+                                                y linfomas anaplásicos de células grandes.</li>
+                                            <li><strong>CD43:</strong> Ayuda a detectar anormalidades en linfocitos B y
+                                                T; útil en la clasificación de linfomas.</li>
+                                            <li><strong>CD45:</strong> Antígeno Común Leucocitario; confirma que el
+                                                tumor se origina en el sistema de la sangre.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+
+                                <details class="marcador-accordion">
+                                    <summary>Marcadores Epiteliales (Carcinomas)</summary>
+                                    <div class="marcador-content">
+                                        <ul>
+                                            <li><strong>Panqueratina:</strong> Marcador universal de carcinomas (tumores
+                                                de origen epitelial).</li>
+                                            <li><strong>CITOKERATIN 7:</strong> Indica origen glandular (mama, pulmón,
+                                                ovario).</li>
+                                            <li><strong>CITOKERATIN 20:</strong> Específico para el tracto digestivo
+                                                (colon) y células de la piel.</li>
+                                            <li><strong>EMA:</strong> Antígeno de membrana epitelial; útil en diversos
+                                                carcinomas.</li>
+                                            <li><strong>BER-EP4:</strong> Ayuda a distinguir el carcinoma basocelular de
+                                                otros tumores cutáneos.</li>
+                                            <li><strong>P40:</strong> El marcador más fiable para el carcinoma de
+                                                células escamosas.</li>
+                                            <li><strong>TTF-1:</strong> Identifica con precisión tumores originados en
+                                                pulmón o tiroides.</li>
+                                            <li><strong>PSA:</strong> Antígeno Prostático Específico; clave para el
+                                                tejido de la próstata.</li>
+                                            <li><strong>GATA 3:</strong> Excelente marcador para tumores de mama y de la
+                                                vejiga (urotelio).</li>
+                                            <li><strong>PAX-8:</strong> Fundamental para diagnosticar tumores de riñón,
+                                                tiroides y sistema ginecológico.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+
+                                <details class="marcador-accordion">
+                                    <summary>Marcadores de Tejidos Blandos (Sarcomas)</summary>
+                                    <div class="marcador-content">
+                                        <ul>
+                                            <li><strong>VIMENTINA:</strong> Marcador general de tejidos conectivos;
+                                                ayuda a clasificar sarcomas.</li>
+                                            <li><strong>DESMINA:</strong> Detecta células musculares; esencial para
+                                                tumores de músculo.</li>
+                                            <li><strong>ACTINA MUSCULO LISO:</strong> Identifica tumores de músculo liso
+                                                (miomas, sarcomas).</li>
+                                            <li><strong>S-100:</strong> Marcador versátil para melanomas y tumores
+                                                nerviosos.</li>
+                                            <li><strong>SOX-10:</strong> Muy sensible para diagnosticar melanomas y
+                                                tumores de nervios.</li>
+                                            <li><strong>CD31 / CD34:</strong> Marcadores de vasos sanguíneos;
+                                                identifican tumores vasculares.</li>
+                                            <li><strong>CD117 (c-KIT):</strong> Esencial para diagnosticar tumores GIST
+                                                del sistema digestivo.</li>
+                                            <li><strong>DOG-1:</strong> Altamente específico para GIST; complementa al
+                                                CD117.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+
+                                <details class="marcador-accordion">
+                                    <summary>Otros Marcadores Importantes (Pronóstico y Otros)</summary>
+                                    <div class="marcador-content">
+                                        <ul>
+                                            <li><strong>KI-67:</strong> Mide qué porcentaje de células se están
+                                                dividiendo (proliferación).</li>
+                                            <li><strong>P53:</strong> Detecta mutaciones genéticas comunes; indica
+                                                agresividad en muchos cánceres.</li>
+                                            <li><strong>HER2:</strong> Evalúa agresividad; crucial para tratamientos en
+                                                cáncer de mama y estómago.</li>
+                                            <li><strong>P16:</strong> Marcador de infección por VPH; vital en cáncer de
+                                                cuello uterino.</li>
+                                            <li><strong>CALRETININA:</strong> Principal marcador para diagnosticar
+                                                mesotelioma.</li>
+                                            <li><strong>SINAPTOFISINA / CROMOGRANINA A:</strong> Identifican tumores
+                                                neuroendocrinos.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+                            </section>
+
 
                             <a href="citopatologia.html" class="service-link">Más información sobre estudios
                                 citológicos
@@ -998,172 +900,121 @@
                                     </div>
                                 </details>
                             </div>
-                            <div style="display:none;" aria-hidden="true">
-                                <p>Uso clínico de ACTINA MUSCULO LISO: Detecta tumores derivados del músculo liso,
-                                    como
-                                    miomas uterinos y ciertos sarcomas.</p>
-                                <p>Uso clínico de ACTINA (HIF35): Marcador general de células musculares; ayuda a
-                                    identificar tumores del tejido blando.</p>
-                                <p>Uso clínico de ADIPOFILINA: Identifica la presencia de lípidos; útil en tumores
-                                    sebáceos y de glándulas sudoríparas.</p>
-                                <p>Uso clínico de AFP (Alfa FetoProteina): Marcador clave en tumores de hígado y
-                                    tumores
-                                    de células germinales del testículo u ovario.</p>
-                                <p>Uso clínico de ALK(CD246): Identifica cambios genéticos en ciertos tipos de
-                                    cáncer de
-                                    pulmón, linfomas y tumores infantiles.</p>
-                                <p>Uso clínico de AMACR (Racemase): Altamente sensible para diagnosticar cáncer de
-                                    próstata y ciertos tipos de cáncer de riñón.</p>
-                                <p>Uso clínico de AMILOIDE A: Detecta depósitos de proteína amiloide en tejidos,
-                                    asociados a enfermedades inflamatorias crónicas.</p>
-                                <p>Uso clínico de ANDROGENO: Evalúa la respuesta a hormonas masculinas en tumores de
-                                    próstata y ciertos tumores de mama.</p>
-                                <p>Uso clínico de A. CARBONICA IX (CA IX): Marcador específico para el cáncer de
-                                    riñón
-                                    (carcinoma de células claras).</p>
-                                <p>Uso clínico de ARGINASE 1: El marcador más específico para confirmar que un tumor
-                                    se
-                                    originó directamente en el hígado.</p>
-                                <p>Uso clínico de ATRX: Utilizado para clasificar tumores cerebrales (gliomas) y
-                                    predecir su comportamiento clínico.</p>
-                                <p>Uso clínico de BCL-2: Proteína que impide la muerte celular; su exceso ayuda a
-                                    diagnosticar diversos tipos de linfomas.</p>
-                                <p>Uso clínico de BCL-6: Identifica linfocitos de los centros germinales; esencial
-                                    para
-                                    clasificar linfomas agresivos.</p>
-                                <p>Uso clínico de BER-EP4: Ayuda a distinguir el carcinoma basocelular de la piel de
-                                    otros tumores similares.</p>
-                                <p>Uso clínico de BETACATENIN: Marcador de señalización celular útil en tumores de
-                                    colon, de mama y tumores 'desmoides'.</p>
-                                <p>Uso clínico de C-MYC: Gen que regula el crecimiento celular; su presencia indica
-                                    alta
-                                    agresividad en linfomas.</p>
-                                <p>Uso clínico de CALCITONINA: Marcador hormonal fundamental para el diagnóstico del
-                                    cáncer medular de tiroides.</p>
-                                <p>Uso clínico de CALDESMON: Marcador muy específico para identificar células de
-                                    músculo
-                                    liso en tumores del útero y tejidos blandos.</p>
-                                <p>Uso clínico de CALPONINA: Identifica células de soporte en las glándulas; vital
-                                    para
-                                    diferenciar lesiones benignas de malignas en mama.</p>
-                                <p>Uso clínico de CALRETININA: Principal marcador para diagnosticar mesotelioma y
-                                    ciertos tumores de los ovarios.</p>
-                                <p>Uso clínico de CD1a: Identifica células de Langerhans; crucial para diagnosticar
-                                    la
-                                    histiocitosis X.</p>
-                                <p>Uso clínico de CD3: El marcador universal para identificar Linfocitos T (células
-                                    clave del sistema de defensa).</p>
-                                <p>Uso clínico de CD4: Subtipo de linfocitos T; importante en la evaluación de
-                                    enfermedades inmunes y linfomas.</p>
-                                <p>Uso clínico de CD5: Ayuda a clasificar leucemias crónicas y linfomas de células
-                                    pequeñas.</p>
-                                <p>Uso clínico de CD7: Uno de los marcadores más tempranos de células de defensa T;
-                                    útil
-                                    en leucemias agudas.</p>
-                                <p>Uso clínico de CD8: Identifica linfocitos T 'asesinos'; mide la fuerza del
-                                    sistema
-                                    inmune contra el cáncer.</p>
-                                <p>Uso clínico de CD10: Marcador de células germinales de los ganglios; útil en el
-                                    estudio de linfomas y cáncer de riñón.</p>
-                                <p>Uso clínico de CD15: Característico de las células de Reed-Sternberg en el
-                                    Linfoma de
-                                    Hodgkin clásico.</p>
-                                <p>Uso clínico de CD19: Marcador fundamental para identificar todas las etapas de
-                                    desarrollo de los Linfocitos B.</p>
-                                <p>Uso clínico de CD20: El marcador más importante para el diagnóstico y guía de
-                                    tratamiento de Linfomas de células B.</p>
-                                <p>Uso clínico de CD21: Identifica las redes que sostienen a los linfocitos en los
-                                    ganglios; útil en linfomas foliculares.</p>
-                                <p>Uso clínico de CD23: Ayuda a diferenciar la leucemia linfática crónica de otros
-                                    tipos
-                                    de linfomas.</p>
-                                <p>Uso clínico de CD30: Clave para el diagnóstico del Linfoma de Hodgkin y linfomas
-                                    anaplásicos de células grandes.</p>
-                                <p>Uso clínico de CD31: Marcador de células endoteliales (vasos sanguíneos);
-                                    identifica
-                                    tumores vasculares como angiosarcomas.</p>
-                                <p>Uso clínico de CD34: Identifica vasos sanguíneos y células madre; esencial en la
-                                    clasificación de leucemias y sarcomas.</p>
-                                <p>Uso clínico de CD43: Ayuda a detectar anormalidades en linfocitos B y T; útil en
-                                    la
-                                    clasificación de linfomas.</p>
-                                <p>Uso clínico de CD45: Antígeno Común Leucocitario; confirma que el tumor se
-                                    origina en
-                                    el sistema de la sangre.</p>
-                                <p>Uso clínico de CD56: Marcador para células de defensa NK y tumores
-                                    neuroendocrinos
-                                    (como el cáncer microcítico de pulmón).</p>
-                                <p>Uso clínico de CD61: Identifica células precursoras de las plaquetas; útil en el
-                                    diagnóstico de leucemias específicas.</p>
-                                <p>Uso clínico de CD68: Marca macrófagos (células de limpieza); ayuda a identificar
-                                    inflamación y ciertos tumores.</p>
-                                <p>Uso clínico de CD79a: Marcador muy específico y temprano para Linfocitos B;
-                                    complementa al CD20.</p>
-                                <p>Uso clínico de CD99: Marcador distintivo del Sarcoma de Ewing y tumores
-                                    neuroectodérmicos infantiles.</p>
-                                <p>Uso clínico de CD117: Esencial para diagnosticar tumores GIST del sistema
-                                    digestivo y
-                                    ciertos tipos de leucemia.</p>
-                                <p>Uso clínico de CD138: Principal marcador de células plasmáticas; fundamental para
-                                    diagnosticar el Mieloma Múltiple.</p>
-                                <p>Uso clínico de CDK4: Evalúa anormalidades genéticas en tumores de grasa para
-                                    distinguir lipomas de liposarcomas.</p>
-                                <p>Uso clínico de CDX2: Indica con alta precisión que un tumor proviene del tracto
-                                    digestivo, especialmente del colon.</p>
-                                <p>Uso clínico de CA-125: Utilizado para monitorear y diagnosticar tumores de ovario
-                                    y
-                                    de la cavidad abdominal.</p>
-                                <p>Uso clínico de CA 19.9: Marcador de apoyo para el diagnóstico de cáncer de
-                                    páncreas y
-                                    vías biliares.</p>
-                                <p>Uso clínico de CEA: Antígeno Carcinoembrionario; marcador general para cáncer de
-                                    colon, páncreas y otros.</p>
-                                <p>Uso clínico de CYCLIN D1: Proteína reguladora; su detección es clave para
-                                    diagnosticar el Linfoma de Células del Manto.</p>
-                                <p>Uso clínico de CITOKERATIN 5/6: Ayuda a identificar carcinomas escamosos y a
-                                    distinguir mesoteliomas de otros tipos de cáncer de pulmón.</p>
-                                <p>Uso clínico de CITOKERATIN 7: Marcador de origen glandular; se encuentra
-                                    comúnmente
-                                    en tumores de mama, pulmón y ovario.</p>
-                                <p>Uso clínico de CITOKERATIN 20: Marcador de origen muy específico para el tracto
-                                    digestivo (colon) y células de Merkel en la piel.</p>
-                                <p>Uso clínico de DESMINA: Detecta células musculares; esencial para diagnosticar
-                                    tumores del músculo esquelético y liso.</p>
-                                <p>Uso clínico de DOG-1: Marcador altamente específico para tumores GIST; muy útil
-                                    cuando el CD117 es negativo.</p>
-                                <p>Uso clínico de HER2 (C-ERBB2/CB11): Evalúa la agresividad celular; crucial para
-                                    guiar
-                                    tratamientos biológicos en cáncer de mama y estómago.</p>
-                                <p>Uso clínico de HMB45: Altamente específico para el diagnóstico de Melanoma
-                                    (cáncer
-                                    agresivo de piel).</p>
-                                <p>Uso clínico de KI67: El marcador de proliferación más usado; indica qué
-                                    porcentaje de
-                                    células se están dividiendo.</p>
-                                <p>Uso clínico de P16: Marcador de infección por VPH; esencial en el diagnóstico de
-                                    cáncer de cuello uterino y garganta.</p>
-                                <p>Uso clínico de P40: El marcador más fiable para diagnosticar el carcinoma de
-                                    células
-                                    escamosas del pulmón.</p>
-                                <p>Uso clínico de P53: Detecta la mutación más común en el cáncer, indicando
-                                    agresividad
-                                    y guiando el tratamiento.</p>
-                                <p>Uso clínico de PSA: Antígeno Prostático Específico; la prueba de referencia para
-                                    el
-                                    tejido de la próstata.</p>
-                                <p>Uso clínico de S-100: Marcador versátil usado para detectar melanomas, tumores
-                                    nerviosos y de glándulas salivares.</p>
-                                <p>Uso clínico de SINAPTOFISINA: Identifica vesículas nerviosas; esencial para
-                                    diagnosticar tumores neuroendocrinos.</p>
-                                <p>Uso clínico de SOX-10: Marcador moderno y muy sensible para diagnosticar
-                                    melanomas y
-                                    tumores de nervios.</p>
-                                <p>Uso clínico de TTF-1: Diferencia con precisión el cáncer originado en el pulmón
-                                    de
-                                    metástasis de otros órganos.</p>
-                                <p>Uso clínico de VIMENTINA: Marcador general de los tejidos conectivos; ayuda a
-                                    clasificar sarcomas.</p>
-                            </div>
+                            <!-- Catálogo Interactivo de Marcadores -->
+                            <section id="catalogo-marcadores" class="marcadores-container">
+
+                                <details class="marcador-accordion">
+                                    <summary>Marcadores Hematolinfoides (Linfomas y Leucemias)</summary>
+                                    <div class="marcador-content">
+                                        <ul>
+                                            <li><strong>CD1a:</strong> Identifica células de Langerhans; crucial para
+                                                diagnosticar la histiocitosis X.</li>
+                                            <li><strong>CD3:</strong> El marcador universal para identificar Linfocitos
+                                                T (células clave del sistema de defensa).</li>
+                                            <li><strong>CD4:</strong> Subtipo de linfocitos T; importante en la
+                                                evaluación de enfermedades inmunes y linfomas.</li>
+                                            <li><strong>CD5:</strong> Ayuda a clasificar leucemias crónicas y linfomas
+                                                de células pequeñas.</li>
+                                            <li><strong>CD7:</strong> Uno de los marcadores más tempranos de células de
+                                                defensa T; útil en leucemias agudas.</li>
+                                            <li><strong>CD8:</strong> Identifica linfocitos T 'asesinos'; mide la fuerza
+                                                del sistema inmune contra el cáncer.</li>
+                                            <li><strong>CD10:</strong> Marcador de células germinales de los ganglios;
+                                                útil en el estudio de linfomas y cáncer de riñón.</li>
+                                            <li><strong>CD15:</strong> Característico de las células de Reed-Sternberg
+                                                en el Linfoma de Hodgkin clásico.</li>
+                                            <li><strong>CD19:</strong> Marcador fundamental para identificar todas las
+                                                etapas de desarrollo de los Linfocitos B.</li>
+                                            <li><strong>CD20:</strong> El marcador más importante para el diagnóstico y
+                                                guía de tratamiento de Linfomas de células B.</li>
+                                            <li><strong>CD21:</strong> Identifica las redes que sostienen a los
+                                                linfocitos en los ganglios; útil en linfomas foliculares.</li>
+                                            <li><strong>CD23:</strong> Ayuda a diferenciar la leucemia linfática crónica
+                                                de otros tipos de linfomas.</li>
+                                            <li><strong>CD30:</strong> Clave para el diagnóstico del Linfoma de Hodgkin
+                                                y linfomas anaplásicos de células grandes.</li>
+                                            <li><strong>CD43:</strong> Ayuda a detectar anormalidades en linfocitos B y
+                                                T; útil en la clasificación de linfomas.</li>
+                                            <li><strong>CD45:</strong> Antígeno Común Leucocitario; confirma que el
+                                                tumor se origina en el sistema de la sangre.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+
+                                <details class="marcador-accordion">
+                                    <summary>Marcadores Epiteliales (Carcinomas)</summary>
+                                    <div class="marcador-content">
+                                        <ul>
+                                            <li><strong>Panqueratina:</strong> Marcador universal de carcinomas (tumores
+                                                de origen epitelial).</li>
+                                            <li><strong>CITOKERATIN 7:</strong> Indica origen glandular (mama, pulmón,
+                                                ovario).</li>
+                                            <li><strong>CITOKERATIN 20:</strong> Específico para el tracto digestivo
+                                                (colon) y células de la piel.</li>
+                                            <li><strong>EMA:</strong> Antígeno de membrana epitelial; útil en diversos
+                                                carcinomas.</li>
+                                            <li><strong>BER-EP4:</strong> Ayuda a distinguir el carcinoma basocelular de
+                                                otros tumores cutáneos.</li>
+                                            <li><strong>P40:</strong> El marcador más fiable para el carcinoma de
+                                                células escamosas.</li>
+                                            <li><strong>TTF-1:</strong> Identifica con precisión tumores originados en
+                                                pulmón o tiroides.</li>
+                                            <li><strong>PSA:</strong> Antígeno Prostático Específico; clave para el
+                                                tejido de la próstata.</li>
+                                            <li><strong>GATA 3:</strong> Excelente marcador para tumores de mama y de la
+                                                vejiga (urotelio).</li>
+                                            <li><strong>PAX-8:</strong> Fundamental para diagnosticar tumores de riñón,
+                                                tiroides y sistema ginecológico.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+
+                                <details class="marcador-accordion">
+                                    <summary>Marcadores de Tejidos Blandos (Sarcomas)</summary>
+                                    <div class="marcador-content">
+                                        <ul>
+                                            <li><strong>VIMENTINA:</strong> Marcador general de tejidos conectivos;
+                                                ayuda a clasificar sarcomas.</li>
+                                            <li><strong>DESMINA:</strong> Detecta células musculares; esencial para
+                                                tumores de músculo.</li>
+                                            <li><strong>ACTINA MUSCULO LISO:</strong> Identifica tumores de músculo liso
+                                                (miomas, sarcomas).</li>
+                                            <li><strong>S-100:</strong> Marcador versátil para melanomas y tumores
+                                                nerviosos.</li>
+                                            <li><strong>SOX-10:</strong> Muy sensible para diagnosticar melanomas y
+                                                tumores de nervios.</li>
+                                            <li><strong>CD31 / CD34:</strong> Marcadores de vasos sanguíneos;
+                                                identifican tumores vasculares.</li>
+                                            <li><strong>CD117 (c-KIT):</strong> Esencial para diagnosticar tumores GIST
+                                                del sistema digestivo.</li>
+                                            <li><strong>DOG-1:</strong> Altamente específico para GIST; complementa al
+                                                CD117.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+
+                                <details class="marcador-accordion">
+                                    <summary>Otros Marcadores Importantes (Pronóstico y Otros)</summary>
+                                    <div class="marcador-content">
+                                        <ul>
+                                            <li><strong>KI-67:</strong> Mide qué porcentaje de células se están
+                                                dividiendo (proliferación).</li>
+                                            <li><strong>P53:</strong> Detecta mutaciones genéticas comunes; indica
+                                                agresividad en muchos cánceres.</li>
+                                            <li><strong>HER2:</strong> Evalúa agresividad; crucial para tratamientos en
+                                                cáncer de mama y estómago.</li>
+                                            <li><strong>P16:</strong> Marcador de infección por VPH; vital en cáncer de
+                                                cuello uterino.</li>
+                                            <li><strong>CALRETININA:</strong> Principal marcador para diagnosticar
+                                                mesotelioma.</li>
+                                            <li><strong>SINAPTOFISINA / CROMOGRANINA A:</strong> Identifican tumores
+                                                neuroendocrinos.</li>
+                                        </ul>
+                                    </div>
+                                </details>
+
+                            </section>
+
 
 
                             <div class="price-list-container"
@@ -2766,7 +2617,7 @@
             <span class="typing-dot"></span>
             <span class="typing-dot"></span>
             <span class="typing-dot"></span>
-            Asistente del Dr. Castillo está escribiendo...
+            <span id="typing-text">Asistente está escribiendo...</span>
         </div>
         <div id="bot-options"></div>
         <div id="chat-input-container">
@@ -2785,10 +2636,17 @@
     <!-- Hidden Video Sources for Interactive Avatar - Forced visibility off-screen -->
     <div id="avatar-videos"
         style="position: fixed; bottom: -1000px; left: -1000px; width: 100px; height: 100px; overflow: hidden; opacity: 0.1; pointer-events: none; z-index: -1;">
-        <video id="vid-idle" src="idle.mp4" loop muted playsinline preload="auto" autoplay></video>
-        <video id="vid-pensando" src="pensando.mp4" loop muted playsinline preload="auto"></video>
-        <video id="vid-hablando" src="hablando.mp4" loop muted playsinline preload="auto"></video>
-        <video id="vid-saludo" src="saludo.mp4" muted playsinline preload="auto"></video>
+        <!-- Elena Videos (Originals) -->
+        <video id="elena-idle" src="idle.mp4" loop muted playsinline preload="auto" autoplay></video>
+        <video id="elena-pensando" src="pensando.mp4" loop muted playsinline preload="auto"></video>
+        <video id="elena-hablando" src="hablando.mp4" loop muted playsinline preload="auto"></video>
+        <video id="elena-saludo" src="saludo.mp4" muted playsinline preload="auto"></video>
+
+        <!-- Victoria Videos -->
+        <video id="victoria-idle" src="victoriaidle.mp4" loop muted playsinline preload="auto"></video>
+        <video id="victoria-pensando" src="victoriapensando.mp4" loop muted playsinline preload="auto"></video>
+        <video id="victoria-hablando" src="victoriahablando.mp4" loop muted playsinline preload="auto"></video>
+        <video id="victoria-saludo" src="victoriasaludo.mp4" muted playsinline preload="auto"></video>
     </div>
     <!-- Chatbot Automated Tooltip -->
     <div id="chat-tooltip" class="chat-tooltip">
@@ -2874,7 +2732,7 @@
 
 
     <!-- Botones de Contacto Flotantes (SEO & CRO) -->
-    <div class="sticky-contact">
+    <div id="contacto" class="sticky-contact">
         <a href="https://wa.me/51986396733?text=Hola%20JC%20PATH%20LAB,%20quiero%20coordinar%20el%20recojo%20de%20una%20muestra%20en%20Lima"
             class="sticky-btn whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Contacto por WhatsApp">
             <i class="fab fa-whatsapp"></i> <span>WhatsApp</span>
@@ -2884,6 +2742,45 @@
             <i class="fas fa-phone-alt"></i> <span>Llamar</span>
         </a>
 
+    </div>
+
+    <!-- Chat Widget (God Mode AI Assistant) -->
+    <div id="chat-container">
+        <div id="chat-header">
+            <div class="chat-title-group">
+                <div class="chat-name">Victoria</div>
+                <div class="chat-status">En línea <span id="ai-status" style="font-size: 0.8em; opacity: 0.8; margin-left: 5px;">(Local)</span></div>
+            </div>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div id="chat-messages"></div>
+        <div id="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Escribe tu consulta...">
+            <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- Chat Toggle Button with Avatar Canvas -->
+    <button id="chat-toggle" aria-label="Abrir asistente virtual">
+        <div id="avatar-container">
+            <canvas id="avatar-canvas"></canvas>
+        </div>
+        <div id="chat-tooltip">¿Tienes dudas? ¡Chatea conmigo! 🩺</div>
+    </button>
+
+    <!-- Hidden Video Assets for Avatar Engine -->
+    <div style="display:none;" aria-hidden="true">
+        <!-- Victoria Avatar -->
+        <video id="victoria-idle" src="victoriaidle.mp4" muted loop preload="auto"></video>
+        <video id="victoria-hablando" src="victoriahablando.mp4" muted loop preload="auto"></video>
+        <video id="victoria-pensando" src="victoriapensando.mp4" muted loop preload="auto"></video>
+        <video id="victoria-saludo" src="victoriasaludo.mp4" muted preload="auto"></video>
+        
+        <!-- Elena Avatar (Fallback/Alternative) -->
+        <video id="elena-idle" src="idle.mp4" muted loop preload="auto"></video>
+        <video id="elena-hablando" src="hablando.mp4" muted loop preload="auto"></video>
+        <video id="elena-pensando" src="pensando.mp4" muted loop preload="auto"></video>
+        <video id="elena-saludo" src="saludo.mp4" muted preload="auto"></video>
     </div>
 
     <!-- God Mode Dual Navigation Logic -->
@@ -2948,6 +2845,77 @@
                 closeVideoModal();
             }
         });
+    </script>
+    <!-- Bottom Navigation (Android Native Style) -->
+    <nav class="bottom-nav">
+        <a href="#home" class="bottom-nav-item active" onclick="setActiveNav(this)">
+            <i class="fas fa-home"></i>
+            <span>Inicio</span>
+        </a>
+        <a href="#servicios" class="bottom-nav-item" onclick="setActiveNav(this)">
+            <i class="fas fa-stethoscope"></i>
+            <span>Servicios</span>
+        </a>
+        <a href="#precios" class="bottom-nav-item" onclick="setActiveNav(this)">
+            <i class="fas fa-tags"></i>
+            <span>Precios</span>
+        </a>
+        <a href="#contacto" class="bottom-nav-item" onclick="setActiveNav(this)">
+            <i class="fas fa-comment-medical"></i>
+            <span>Contacto</span>
+        </a>
+    </nav>
+
+    <!-- Mobile App Logic (PWA, Ripples, Back Button) -->
+    <script>
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./service-worker.js')
+                    .then(reg => console.log('Service Worker registrado', reg))
+                    .catch(err => console.log('Error al registrar SW', err));
+            });
+        }
+
+        // Active Nav State
+        function setActiveNav(element) {
+            document.querySelectorAll('.bottom-nav-item').forEach(item => item.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        // Material Design Ripple Effect
+        document.addEventListener('click', function (e) {
+            const target = e.target.closest('.bottom-nav-item, .btn, .btn-primary, .btn-secondary, .btn-hero-patient, .btn-hero-doctor');
+            if (target) {
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                target.appendChild(ripple);
+                
+                const rect = target.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                ripple.style.width = ripple.style.height = `${size}px`;
+                
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                
+                setTimeout(() => ripple.remove(), 600);
+            }
+        });
+
+        // Android Back Button Handling
+        window.addEventListener('popstate', function(event) {
+            // If a modal is open, close it instead of going back
+            const videoModal = document.getElementById('video-modal');
+            if (videoModal && videoModal.classList.contains('show')) {
+                closeVideoModal();
+                history.pushState(null, null, window.location.pathname); // Stay on page
+            }
+        });
+        
+        // Push initial state for back button handling
+        history.pushState(null, null, window.location.pathname);
     </script>
 </body>
 
