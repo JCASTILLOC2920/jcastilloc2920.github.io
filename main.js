@@ -11,11 +11,111 @@
 const MAX_MESSAGE_LENGTH = 500;
 const RATE_LIMIT_MS = 1500;
 let lastMessageTime = 0;
-let conversationHistory = [];
-let lastBotIntent = null; 
-let userName = "";
-let userPhone = "";
 let lastExamenConsultado = "estudio solicitado";
+
+// --- SMART DATA LOADING (ANTIBODIES & PRICING) ---
+let smartData = null;
+
+async function loadSmartData() {
+    if (smartData) return smartData;
+    try {
+        const response = await fetch('smart_data.json');
+        smartData = await response.json();
+        
+        // Initial rendering of markers
+        renderAntibodyTable(smartData.antibodies.alphabetical);
+        renderMarkerCatalog(smartData.catalog);
+        
+        // Update global pricing variable if used by chatbot
+        if (typeof tarifarioJCPathLab === 'undefined') {
+            window.tarifarioJCPathLab = smartData.pricing;
+        }
+        
+        return smartData;
+    } catch (e) {
+        console.error("Error loading smart data:", e);
+        return null;
+    }
+}
+
+function renderAntibodyTable(names) {
+    const tbody = document.getElementById('antibody-table-body');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+    
+    const details = smartData ? smartData.antibodies.details : {};
+    
+    // Render in rows of 3
+    for (let i = 0; i < names.length; i += 3) {
+        const tr = document.createElement('tr');
+        for (let j = 0; j < 3; j++) {
+            const td = document.createElement('td');
+            const name = names[i + j];
+            if (name) {
+                td.textContent = name;
+                if (details[name]) {
+                    td.classList.add('antibody-item');
+                    td.title = "Haz clic para ver su uso clínico";
+                    td.addEventListener('click', () => showAntibodyModal(name, details[name]));
+                }
+            }
+            tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
+    }
+}
+
+function showAntibodyModal(title, info) {
+    const modal = document.getElementById('antibodyModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalInfo = document.getElementById('modalInfo');
+    if (modal && modalTitle && modalInfo) {
+        modalTitle.innerText = title;
+        modalInfo.innerText = info;
+        modal.classList.add('show');
+        modal.style.display = 'flex';
+    }
+}
+
+function renderMarkerCatalog(catalog) {
+    const container = document.getElementById('dynamic-catalog-container');
+    if (!container) return;
+    container.innerHTML = '';
+    
+    for (const category in catalog) {
+        const details = document.createElement('details');
+        details.className = 'marcador-accordion';
+        
+        const summary = document.createElement('summary');
+        summary.textContent = category;
+        details.appendChild(summary);
+        
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'marcador-content';
+        
+        const ul = document.createElement('ul');
+        catalog[category].forEach(item => {
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>${item.name}:</strong> ${item.description}`;
+            ul.appendChild(li);
+        });
+        
+        contentDiv.appendChild(ul);
+        details.appendChild(contentDiv);
+        container.appendChild(details);
+    }
+}
+
+// --- LAZY VIDEO ENGINE ---
+function initLazyVideos() {
+    const videos = document.querySelectorAll('.avatar-video');
+    videos.forEach(v => {
+        if (v.dataset.src && !v.src) {
+            v.src = v.dataset.src;
+            v.load();
+        }
+    });
+}
 
 // --- AVATAR CONFIGURATION ---
 const AVATARS = {
@@ -43,7 +143,8 @@ const AVATARS = {
     }
 };
 
-let currentAvatarProfile = AVATARS.victoria;
+const currentHour = new Date().getHours();
+let currentAvatarProfile = (currentHour >= 8 && currentHour < 20) ? AVATARS.victoria : AVATARS.elena;
 
 // --- AI CONFIGURATION ---
 const OLLAMA_URL = "http://localhost:11434/api/generate";
@@ -286,6 +387,9 @@ function procesarConsultaPrecio(mensaje) {
 // ============================================
 
 function changeAvatarState(state) {
+    // Ensure videos are loaded before playing
+    initLazyVideos();
+    
     const profile = currentAvatarProfile;
     const allVideos = document.querySelectorAll('.avatar-video');
     allVideos.forEach(v => {
@@ -298,7 +402,14 @@ function changeAvatarState(state) {
     if (targetVideo) {
         targetVideo.style.display = 'block';
         targetVideo.muted = true;
-        targetVideo.play().catch(e => console.log("Auto-play blocked:", e));
+        // Check if video is ready
+        if (targetVideo.readyState >= 3) {
+            targetVideo.play().catch(e => console.log("Auto-play blocked:", e));
+        } else {
+            targetVideo.addEventListener('canplay', () => {
+                targetVideo.play().catch(e => console.log("Auto-play blocked:", e));
+            }, { once: true });
+        }
     }
 }
 
@@ -309,6 +420,13 @@ function switchAvatar() {
     
     const bannerName = document.getElementById("bot-name-banner");
     if (bannerName) bannerName.innerText = currentAvatarProfile.name;
+    
+    const togglePreview = document.getElementById("avatar-toggle-preview");
+    if (togglePreview) {
+        togglePreview.dataset.src = (currentAvatarProfile.name === "Victoria") ? "victoriaidle.mp4" : "elenaidle.mp4";
+        togglePreview.src = togglePreview.dataset.src;
+        togglePreview.load();
+    }
     
     changeAvatarState("saludo");
     setTimeout(() => changeAvatarState("idle"), 3000);
@@ -359,23 +477,125 @@ document.addEventListener("DOMContentLoaded", () => {
     const sentBtn = document.getElementById("send-btn");
     const inputField = document.getElementById("chat-input");
     const toggleBtn = document.getElementById("chat-toggle");
+
+    // ============================================
+    // HASH NAVIGATION HANDLER (Page Load)
+    // ============================================
+    const handleHashNavigation = () => {
+        const hash = window.location.hash;
+        if (hash && hash.length > 1) {
+            const targetId = hash.substring(1);
+            const targetSection = document.getElementById(targetId);
+            if (targetSection && targetSection.classList.contains('page-section')) {
+                // Deactivate all sections and activate target
+                document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+                targetSection.classList.add('active');
+                
+                // Optional: Smooth scroll adjustment after a short delay
+                setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 100);
+            }
+        }
+    };
+
+    // Execute hash handler immediately
+    handleHashNavigation();
     const closeBtn = document.querySelector(".close-btn");
     const switchBtn = document.getElementById("switch-avatar-btn");
 
     if (toggleBtn && chatContainer) {
+        const tooltip = document.querySelector(".chat-tooltip");
+        
+        // Mostrar tooltip tras 5 segundos si no se ha abierto el chat
+        setTimeout(() => {
+            if (!chatContainer.classList.contains("open") && tooltip) {
+                tooltip.classList.add("visible");
+            }
+        }, 5000);
+
         toggleBtn.addEventListener("click", () => {
-            chatContainer.classList.add("active");
+            chatContainer.classList.add("open");
             toggleBtn.style.display = "none";
+            if (tooltip) tooltip.classList.remove("visible");
+            
+            // Initialize videos on first interaction
+            initLazyVideos();
             changeAvatarState("saludo");
             setTimeout(() => changeAvatarState("idle"), 2500);
         });
+
+        if (tooltip) {
+            tooltip.addEventListener("click", () => toggleBtn.click());
+        }
+    }
+
+    // Load antibody and pricing data when the section comes into view
+    const markerSection = document.getElementById('antibody-table-dynamic');
+    if (markerSection) {
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                loadSmartData();
+                observer.disconnect();
+            }
+        }, { threshold: 0.1 });
+        observer.observe(markerSection);
+    }
+
+    // Search functionality for dynamic table
+    const markerSearch = document.getElementById('markerSearch');
+    if (markerSearch) {
+        markerSearch.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const filtered = smartData ? smartData.antibodies.alphabetical.filter(n => n.toLowerCase().includes(term)) : [];
+            renderAntibodyTable(filtered);
+        });
+    }
+
+    // Close modal events (Ported from antibodies.js)
+    const modal = document.getElementById('antibodyModal');
+    const closeBtnModal = document.querySelector('.ab-close');
+    if (closeBtnModal && modal) {
+        closeBtnModal.onclick = function () {
+            modal.classList.remove('show');
+            setTimeout(() => modal.style.display = 'none', 300);
+        }
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.classList.remove('show');
+                setTimeout(() => modal.style.display = 'none', 300);
+            }
+        }
     }
 
     if (closeBtn) {
         closeBtn.addEventListener("click", () => {
-            chatContainer.classList.remove("active");
+            chatContainer.classList.remove("open");
             toggleBtn.style.display = "flex";
         });
+    }
+
+    // Initial setup for the selected avatar
+    const bannerName = document.getElementById("bot-name-banner");
+    if (bannerName) bannerName.innerText = currentAvatarProfile.name;
+    
+    // Show correct avatar container in header
+    const vicContainer = document.getElementById(AVATARS.victoria.containerId);
+    const eleContainer = document.getElementById(AVATARS.elena.containerId);
+    if (vicContainer && eleContainer) {
+        vicContainer.style.display = (currentAvatarProfile.name === "Victoria") ? "block" : "none";
+        eleContainer.style.display = (currentAvatarProfile.name === "Elena") ? "block" : "none";
+    }
+
+    // Set initial preview video based on time-selected avatar
+    const togglePreview = document.getElementById("avatar-toggle-preview");
+    if (togglePreview) {
+        togglePreview.dataset.src = (currentAvatarProfile.name === "Victoria") ? "victoriaidle.mp4" : "elenaidle.mp4";
+        // Since toggleBtn might not be clicked yet, we can't call initLazyVideos, 
+        // but the user wants to see the circle immediately. 
+        // Let's actually show the preview video immediately.
+        togglePreview.src = togglePreview.dataset.src;
+        togglePreview.load();
     }
 
     if (switchBtn) {
@@ -410,20 +630,116 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Smooth Scroll etc.
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    // --- CENTRALIZED HASH NAVIGATION ---
+    function handleHash() {
+        const hash = window.location.hash;
+        if (hash.length > 1) {
+            const targetId = hash.substring(1);
+            const targetSection = document.getElementById(targetId);
+            if (targetSection && targetSection.classList.contains('page-section')) {
+                document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+                targetSection.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // Special case: if it's Classroom, we might want to ensure its grid is visible
+                if (targetId === 'classroom') {
+                    console.log("Classroom section activated");
+                }
+            }
+        }
+    }
+
+    // Initial load check
+    window.addEventListener('load', handleHash);
+    // Hash change check (for SPA-like feel)
+    window.addEventListener('hashchange', handleHash);
+
+    // Smooth Scroll & Section Switching (Internal Links)
+    document.querySelectorAll('a[href^="#"], a[href^="index.html#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            const href = this.getAttribute('href');
-            if (href !== "#" && href.length > 1) {
+            let href = this.getAttribute('href');
+            
+            // Normalize href (remove 'index.html' if current page is index.html)
+            if (href.startsWith('index.html#')) {
+                const path = window.location.pathname;
+                if (path.endsWith('index.html') || path === '/' || path.endsWith('/')) {
+                    href = href.substring(10); // Remove 'index.html'
+                }
+            }
+
+            if (href.startsWith('#') && href.length > 1) {
                 const targetId = href.substring(1);
                 const targetSection = document.getElementById(targetId);
-                if (targetSection) {
+                if (targetSection && targetSection.classList.contains('page-section')) {
                     e.preventDefault();
+                    
+                    // Actualizar Hash sin disparar el scroll por defecto del navegador (si es posible)
+                    // history.pushState(null, null, href); 
+                    
                     document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
                     targetSection.classList.add('active');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
+                    
+                    // Update URL hash manually for consistency
+                    if (window.location.hash !== href) {
+                        window.location.hash = href;
+                    }
                 }
             }
         });
     });
+
+    // Accordion Logic (Servicios, Protocolos, Contacto)
+    const accordionHeaders = document.querySelectorAll('.service-accordion-header, .contact-accordion-header');
+    accordionHeaders.forEach(header => {
+        header.addEventListener('click', function () {
+            const content = this.nextElementSibling;
+            const icon = this.querySelector('.service-accordion-icon');
+            
+            // Toggle active class on content
+            if (content) {
+                content.classList.toggle('active');
+            }
+            
+            // Toggle rotated class on icon
+        });
+    });
+
+    // ============================================
+    // CLÍNICO BACKDROP - CONTROLADOR DE VISIBILIDAD
+    // ============================================
+    (function() {
+        const backdrop = document.getElementById('clinico-backdrop');
+        const dropdownItems = document.querySelectorAll('.nav-item.has-dropdown');
+
+        if (backdrop && dropdownItems.length > 0) {
+            dropdownItems.forEach(item => {
+                const subMenu = item.querySelector('.dropdown-menu');
+
+                item.addEventListener('mouseenter', () => {
+                    // Resetear estado manual si existía
+                    if (subMenu) subMenu.classList.remove('u-hide-dropdown');
+                    
+                    backdrop.style.opacity = '1';
+                    backdrop.style.visibility = 'visible';
+                });
+
+                item.addEventListener('mouseleave', () => {
+                    backdrop.style.opacity = '0';
+                    backdrop.style.visibility = 'hidden';
+                    if (subMenu) subMenu.classList.remove('u-hide-dropdown');
+                });
+
+                // ESPECIAL: Al hacer clic en cualquier link del submenú, cerrar todo al instante
+                const links = item.querySelectorAll('.dropdown-menu a');
+                links.forEach(link => {
+                    link.addEventListener('click', () => {
+                        backdrop.style.opacity = '0';
+                        backdrop.style.visibility = 'hidden';
+                        if (subMenu) subMenu.classList.add('u-hide-dropdown');
+                    });
+                });
+            });
+        }
+    })();
 });

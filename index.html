@@ -152,6 +152,7 @@
 
 <body>
     <!-- Header Section -->
+    <div id="clinico-backdrop"></div>
     <header class="header">
         <div class="header-container">
             <!-- Logo -->
@@ -163,12 +164,12 @@
             <!-- Navigation Menu -->
             <nav>
                 <ul class="nav-menu">
-                    <li class="nav-item"><a href="#hero" class="nav-link active">Inicio</a></li>
+                    <li class="nav-item"><a href="#home-view" class="nav-link active">Inicio</a></li>
                     <li class="nav-item"><a href="#servicios" class="nav-link">Servicios</a></li>
 
                     <!-- Dropdown: Institucional -->
                     <li class="nav-item has-dropdown">
-                        <a href="#" class="nav-link">Institucional <i class="fas fa-chevron-down"></i></a>
+                        <a href="#quienes-somos" class="nav-link">Institucional <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-item"><a href="#quienes-somos">Quiénes Somos</a></li>
                             <li class="dropdown-item"><a href="cv.html">Curriculum Vitae</a></li>
@@ -178,7 +179,7 @@
 
                     <!-- Dropdown: Área Académica -->
                     <li class="nav-item has-dropdown">
-                        <a href="#" class="nav-link">Área Académica <i class="fas fa-chevron-down"></i></a>
+                        <a href="educacion-medica.html" class="nav-link">Área Académica <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-item"><a href="educacion-medica.html">Zona Médica</a></li>
                             <li class="dropdown-item"><a href="#classroom">Classroom</a></li>
@@ -207,83 +208,76 @@
     </header>
     <main>
         <!-- Secciones independientes -->
-        <!-- Hero Section -->
-        <section id="hero" class="hero-section page-section">
-            <!-- Background Slider -->
-            <div class="hero-slider">
-                <div class="slide"></div>
-                <div class="slide"></div>
-            </div>
-
-            <div class="container hero-content">
-                <h1 style="font-weight: 700; margin-bottom: 5px;">Laboratorio de Anatomía Patológica JC PATH LAB</h1>
-                <h2 style="font-size: 1.5rem; color: rgba(255,255,255,0.95); margin-bottom: 25px; font-weight: 300;">
-                    Laboratorio de Anatomía Patológica</h2>
-                <p class="hero-subtitle">Diagnósticos de Alta Precisión con Tecnología de Calidad Mundial 🔬</p>
-                <div class="trust-bar-mini">
-                    <span><i class="fas fa-certificate"></i> Certificación ISO</span>
-                    <span><i class="fas fa-check-circle"></i> Resultados en 3 días</span>
+        <!-- Consolidación de la Vista de Inicio (Home View) -->
+        <div id="home-view" class="page-section active">
+            <!-- Hero Section -->
+            <section id="hero" class="hero-section">
+                <!-- Background Slider -->
+                <div class="hero-slider">
+                    <div class="slide"></div>
+                    <div class="slide"></div>
                 </div>
 
-                <h2
-                    style="margin-top: 0; font-size: clamp(1.2rem, 2.5vw, 2rem); color: rgba(255,255,255,0.95); font-weight: 300;">
-                    Segunda Opinión, Biopsias y Diagnóstico Oncológico de Alta Precisión</h2>
-                <h2
-                    style="margin-top: 10px; font-size: clamp(1rem, 2vw, 1.5rem); color: rgba(255,255,255,0.9); font-weight: 400; max-width: 800px;">
-                    Recojo a domicilio en todo Lima, y recepción de encomiendas de provincias.</h2>
+                <div class="container hero-content">
+                    <h1>Diagnóstico Oncológico y Patológico de Alta Precisión</h1>
+                    <p class="hero-subtitle">Resultados en 3 días con certificación ISO. Recojo a domicilio en Lima y recepción nacional.</p>
+                    
+                    <div class="hero-buttons">
+                        <a href="https://informes-srjunco.vercel.app/login" class="btn btn-primary-cta">
+                            <i class="fas fa-file-medical"></i> Consultar Resultados
+                        </a>
+                        <a href="solicitud.html" class="btn btn-secondary-cta">
+                            Solicitar Estudio
+                        </a>
+                    </div>
 
-                <div class="hero-buttons">
-                    <a href="https://wa.me/51986396733?text=Hola%20JC%20PATH%20LAB,%20soy%20paciente%20y%20deseo%20información%20sobre%20precios%20y%20recojo%20de%20biopsia." id="btn-paciente" class="btn btn-hero-patient">
-                        <i class="fas fa-user-injured"></i>
-                        <span class="cta-title">SOY PACIENTE</span>
-                        <span class="cta-subtitle">Ver Precios y Recojo</span>
-                    </a>
-                    <a href="#" class="chat-dudas-link"
-                        onclick="document.getElementById('chat-toggle').click(); window.event.stopPropagation();">
-                        ¿Dudas? Chatea aquí ↘
-                    </a>
-                    <a href="https://informes-srjunco.vercel.app/login" class="btn btn-hero-reports">
-                        <i class="fas fa-file-medical"></i>
-                        <span class="cta-title">RESULTADOS</span>
-                        <span class="cta-subtitle">Consulta de Informes</span>
-                    </a>
-                    <a href="https://wa.me/51986396733?text=Hola%20JC%20PATH%20LAB,%20soy%20médico%20u%20odontólogo%20y%20deseo%20coordinar%20el%20envío%20de%20una%20muestra." id="btn-medico" class="btn btn-hero-doctor">
-                        <i class="fas fa-user-md"></i>
-                        <span class="cta-title">SOY MÉDICO / CLÍNICA</span>
-                        <span class="cta-subtitle">Protocolos y Derivaciones</span>
-                    </a>
-
-                    <!-- New Video Button -->
                     <a href="#" onclick="openVideoModal()" class="video-btn-hero">
                         <i class="fas fa-play-circle"></i> Ver Video del Laboratorio
                     </a>
                 </div>
+            </section>
 
-                <!-- Stats Banner Section (Moved and Enhanced) -->
+            <!-- Social Proof Banner - High Impact Stats -->
+            <section class="social-proof-banner">
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <i class="fas fa-shield-halved"></i>
+                        <span class="stat-number">+15</span>
+                        <span class="stat-label">Años de Experiencia</span>
+                    </div>
+                    <div class="stat-box">
+                        <i class="fas fa-microscope"></i>
+                        <span class="stat-number">+50,000</span>
+                        <span class="stat-label">Estudios Realizados</span>
+                    </div>
+                    <div class="stat-box">
+                        <i class="fas fa-user-check"></i>
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Confianza Médica</span>
+                    </div>
+                </div>
+            </section>
 
-            </div>
-        </section>
-
-        <!-- Social Proof Banner - High Impact Stats -->
-        <section class="social-proof-banner">
-            <div class="stats-container">
-                <div class="stat-box">
-                    <i class="fas fa-shield-halved"></i>
-                    <span class="stat-number">+15</span>
-                    <span class="stat-label">Años de Experiencia</span>
+            <!-- User Type Selection Cards -->
+            <section class="selection-cards">
+                <div class="container">
+                    <div class="selection-grid">
+                        <a id="btn-paciente" href="#precios" class="selection-card">
+                            <div class="card-icon"><i class="fas fa-user-injured"></i></div>
+                            <h3>Soy Paciente / Particular</h3>
+                            <p>Consulte precios por tipo de biopsia y solicite el recojo de su muestra a domicilio en todo Lima.</p>
+                            <span class="card-link">Ver Información <i class="fas fa-arrow-right"></i></span>
+                        </a>
+                        <a id="btn-medico" href="educacion-medica.html" class="selection-card">
+                            <div class="card-icon"><i class="fas fa-user-md"></i></div>
+                            <h3>Soy Médico / Clínica</h3>
+                            <p>Acceda a nuestros protocolos técnicos, formatos de derivación y convenios institucionales.</p>
+                            <span class="card-link">Protocolos Técnicos <i class="fas fa-arrow-right"></i></span>
+                        </a>
+                    </div>
                 </div>
-                <div class="stat-box">
-                    <i class="fas fa-microscope"></i>
-                    <span class="stat-number">+50,000</span>
-                    <span class="stat-label">Estudios Realizados</span>
-                </div>
-                <div class="stat-box">
-                    <i class="fas fa-user-check"></i>
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">Confianza Médica</span>
-                </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
         <!-- Services Section -->
         <section id="servicios" class="services-section page-section">
@@ -341,119 +335,6 @@
                                     </a>
                                 </div>
                             </div>
-                            <!-- Catálogo Interactivo de Marcadores -->
-                            <section id="catalogo-marcadores-biopsias" class="marcadores-container">
-                                <!-- Contenido de marcadores omitido aquí por brevedad, pero igual estructuralmente -->
-                                <details class="marcador-accordion">
-                                    <summary>Marcadores Hematolinfoides (Linfomas y Leucemias)</summary>
-                                    <div class="marcador-content">
-                                        <ul>
-                                            <li><strong>CD1a:</strong> Identifica células de Langerhans; crucial para
-                                                diagnosticar la histiocitosis X.</li>
-                                            <li><strong>CD3:</strong> El marcador universal para identificar Linfocitos
-                                                T (células clave del sistema de defensa).</li>
-                                            <li><strong>CD4:</strong> Subtipo de linfocitos T; importante en la
-                                                evaluación de enfermedades inmunes y linfomas.</li>
-                                            <li><strong>CD5:</strong> Ayuda a clasificar leucemias crónicas y linfomas
-                                                de células pequeñas.</li>
-                                            <li><strong>CD7:</strong> Uno de los marcadores más tempranos de células de
-                                                defensa T; útil en leucemias agudas.</li>
-                                            <li><strong>CD8:</strong> Identifica linfocitos T 'asesinos'; mide la fuerza
-                                                del sistema inmune contra el cáncer.</li>
-                                            <li><strong>CD10:</strong> Marcador de células germinales de los ganglios;
-                                                útil en el estudio de linfomas y cáncer de riñón.</li>
-                                            <li><strong>CD15:</strong> Característico de las células de Reed-Sternberg
-                                                en el Linfoma de Hodgkin clásico.</li>
-                                            <li><strong>CD19:</strong> Marcador fundamental para identificar todas las
-                                                etapas de desarrollo de los Linfocitos B.</li>
-                                            <li><strong>CD20:</strong> El marcador más importante para el diagnóstico y
-                                                guía de tratamiento de Linfomas de células B.</li>
-                                            <li><strong>CD21:</strong> Identifica las redes que sostienen a los
-                                                linfocitos en los ganglios; útil en linfomas foliculares.</li>
-                                            <li><strong>CD23:</strong> Ayuda a diferenciar la leucemia linfática crónica
-                                                de otros tipos de linfomas.</li>
-                                            <li><strong>CD30:</strong> Clave para el diagnóstico del Linfoma de Hodgkin
-                                                y linfomas anaplásicos de células grandes.</li>
-                                            <li><strong>CD43:</strong> Ayuda a detectar anormalidades en linfocitos B y
-                                                T; útil en la clasificación de linfomas.</li>
-                                            <li><strong>CD45:</strong> Antígeno Común Leucocitario; confirma que el
-                                                tumor se origina en el sistema de la sangre.</li>
-                                        </ul>
-                                    </div>
-                                </details>
-
-                                <details class="marcador-accordion">
-                                    <summary>Marcadores Epiteliales (Carcinomas)</summary>
-                                    <div class="marcador-content">
-                                        <ul>
-                                            <li><strong>Panqueratina:</strong> Marcador universal de carcinomas (tumores
-                                                de origen epitelial).</li>
-                                            <li><strong>CITOKERATIN 7:</strong> Indica origen glandular (mama, pulmón,
-                                                ovario).</li>
-                                            <li><strong>CITOKERATIN 20:</strong> Específico para el tracto digestivo
-                                                (colon) y células de la piel.</li>
-                                            <li><strong>EMA:</strong> Antígeno de membrana epitelial; útil en diversos
-                                                carcinomas.</li>
-                                            <li><strong>BER-EP4:</strong> Ayuda a distinguir el carcinoma basocelular de
-                                                otros tumores cutáneos.</li>
-                                            <li><strong>P40:</strong> El marcador más fiable para el carcinoma de
-                                                células escamosas.</li>
-                                            <li><strong>TTF-1:</strong> Identifica con precisión tumores originados en
-                                                pulmón o tiroides.</li>
-                                            <li><strong>PSA:</strong> Antígeno Prostático Específico; clave para el
-                                                tejido de la próstata.</li>
-                                            <li><strong>GATA 3:</strong> Excelente marcador para tumores de mama y de la
-                                                vejiga (urotelio).</li>
-                                            <li><strong>PAX-8:</strong> Fundamental para diagnosticar tumores de riñón,
-                                                tiroides y sistema ginecológico.</li>
-                                        </ul>
-                                    </div>
-                                </details>
-
-                                <details class="marcador-accordion">
-                                    <summary>Marcadores de Tejidos Blandos (Sarcomas)</summary>
-                                    <div class="marcador-content">
-                                        <ul>
-                                            <li><strong>VIMENTINA:</strong> Marcador general de tejidos conectivos;
-                                                ayuda a clasificar sarcomas.</li>
-                                            <li><strong>DESMINA:</strong> Detecta células musculares; esencial para
-                                                tumores de músculo.</li>
-                                            <li><strong>ACTINA MUSCULO LISO:</strong> Identifica tumores de músculo liso
-                                                (miomas, sarcomas).</li>
-                                            <li><strong>S-100:</strong> Marcador versátil para melanomas y tumores
-                                                nerviosos.</li>
-                                            <li><strong>SOX-10:</strong> Muy sensible para diagnosticar melanomas y
-                                                tumores de nervios.</li>
-                                            <li><strong>CD31 / CD34:</strong> Marcadores de vasos sanguíneos;
-                                                identifican tumores vasculares.</li>
-                                            <li><strong>CD117 (c-KIT):</strong> Esencial para diagnosticar tumores GIST
-                                                del sistema digestivo.</li>
-                                            <li><strong>DOG-1:</strong> Altamente específico para GIST; complementa al
-                                                CD117.</li>
-                                        </ul>
-                                    </div>
-                                </details>
-
-                                <details class="marcador-accordion">
-                                    <summary>Otros Marcadores Importantes (Pronóstico y Otros)</summary>
-                                    <div class="marcador-content">
-                                        <ul>
-                                            <li><strong>KI-67:</strong> Mide qué porcentaje de células se están
-                                                dividiendo (proliferación).</li>
-                                            <li><strong>P53:</strong> Detecta mutaciones genéticas comunes; indica
-                                                agresividad en muchos cánceres.</li>
-                                            <li><strong>HER2:</strong> Evalúa agresividad; crucial para tratamientos en
-                                                cáncer de mama y estómago.</li>
-                                            <li><strong>P16:</strong> Marcador de infección por VPH; vital en cáncer de
-                                                cuello uterino.</li>
-                                            <li><strong>CALRETININA:</strong> Principal marcador para diagnosticar
-                                                mesotelioma.</li>
-                                            <li><strong>SINAPTOFISINA / CROMOGRANINA A:</strong> Identifican tumores
-                                                neuroendocrinos.</li>
-                                        </ul>
-                                    </div>
-                                </details>
-                            </section>
 
 
                             <a href="partes-blandas.html" class="service-link">Más información sobre diagnóstico de
@@ -504,121 +385,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Catálogo Interactivo de Marcadores -->
-                            <section class="marcadores-container">
-                                <details class="marcador-accordion">
-                                    <summary>Marcadores Hematolinfoides (Linfomas y Leucemias)</summary>
-                                    <div class="marcador-content">
-                                        <ul>
-                                            <li><strong>CD1a:</strong> Identifica células de Langerhans; crucial para
-                                                diagnosticar la histiocitosis X.</li>
-                                            <li><strong>CD3:</strong> El marcador universal para identificar Linfocitos
-                                                T (células clave del sistema de defensa).</li>
-                                            <li><strong>CD4:</strong> Subtipo de linfocitos T; importante en la
-                                                evaluación de enfermedades inmunes y linfomas.</li>
-                                            <li><strong>CD5:</strong> Ayuda a clasificar leucemias crónicas y linfomas
-                                                de células pequeñas.</li>
-                                            <li><strong>CD7:</strong> Uno de los marcadores más tempranos de células de
-                                                defensa T; útil en leucemias agudas.</li>
-                                            <li><strong>CD8:</strong> Identifica linfocitos T 'asesinos'; mide la fuerza
-                                                del sistema inmune contra el cáncer.</li>
-                                            <li><strong>CD10:</strong> Marcador de células germinales de los ganglios;
-                                                útil en el estudio de linfomas y cáncer de riñón.</li>
-                                            <li><strong>CD15:</strong> Característico de las células de Reed-Sternberg
-                                                en el Linfoma de Hodgkin clásico.</li>
-                                            <li><strong>CD19:</strong> Marcador fundamental para identificar todas las
-                                                etapas de desarrollo de los Linfocitos B.</li>
-                                            <li><strong>CD20:</strong> El marcador más importante para el diagnóstico y
-                                                guía de tratamiento de Linfomas de células B.</li>
-                                            <li><strong>CD21:</strong> Identifica las redes que sostienen a los
-                                                linfocitos en los ganglios; útil en linfomas foliculares.</li>
-                                            <li><strong>CD23:</strong> Ayuda a diferenciar la leucemia linfática crónica
-                                                de otros tipos de linfomas.</li>
-                                            <li><strong>CD30:</strong> Clave para el diagnóstico del Linfoma de Hodgkin
-                                                y linfomas anaplásicos de células grandes.</li>
-                                            <li><strong>CD43:</strong> Ayuda a detectar anormalidades en linfocitos B y
-                                                T; útil en la clasificación de linfomas.</li>
-                                            <li><strong>CD45:</strong> Antígeno Común Leucocitario; confirma que el
-                                                tumor se origina en el sistema de la sangre.</li>
-                                        </ul>
-                                    </div>
-                                </details>
-
-                                <details class="marcador-accordion">
-                                    <summary>Marcadores Epiteliales (Carcinomas)</summary>
-                                    <div class="marcador-content">
-                                        <ul>
-                                            <li><strong>Panqueratina:</strong> Marcador universal de carcinomas (tumores
-                                                de origen epitelial).</li>
-                                            <li><strong>CITOKERATIN 7:</strong> Indica origen glandular (mama, pulmón,
-                                                ovario).</li>
-                                            <li><strong>CITOKERATIN 20:</strong> Específico para el tracto digestivo
-                                                (colon) y células de la piel.</li>
-                                            <li><strong>EMA:</strong> Antígeno de membrana epitelial; útil en diversos
-                                                carcinomas.</li>
-                                            <li><strong>BER-EP4:</strong> Ayuda a distinguir el carcinoma basocelular de
-                                                otros tumores cutáneos.</li>
-                                            <li><strong>P40:</strong> El marcador más fiable para el carcinoma de
-                                                células escamosas.</li>
-                                            <li><strong>TTF-1:</strong> Identifica con precisión tumores originados en
-                                                pulmón o tiroides.</li>
-                                            <li><strong>PSA:</strong> Antígeno Prostático Específico; clave para el
-                                                tejido de la próstata.</li>
-                                            <li><strong>GATA 3:</strong> Excelente marcador para tumores de mama y de la
-                                                vejiga (urotelio).</li>
-                                            <li><strong>PAX-8:</strong> Fundamental para diagnosticar tumores de riñón,
-                                                tiroides y sistema ginecológico.</li>
-                                        </ul>
-                                    </div>
-                                </details>
-
-                                <details class="marcador-accordion">
-                                    <summary>Marcadores de Tejidos Blandos (Sarcomas)</summary>
-                                    <div class="marcador-content">
-                                        <ul>
-                                            <li><strong>VIMENTINA:</strong> Marcador general de tejidos conectivos;
-                                                ayuda a clasificar sarcomas.</li>
-                                            <li><strong>DESMINA:</strong> Detecta células musculares; esencial para
-                                                tumores de músculo.</li>
-                                            <li><strong>ACTINA MUSCULO LISO:</strong> Identifica tumores de músculo liso
-                                                (miomas, sarcomas).</li>
-                                            <li><strong>S-100:</strong> Marcador versátil para melanomas y tumores
-                                                nerviosos.</li>
-                                            <li><strong>SOX-10:</strong> Muy sensible para diagnosticar melanomas y
-                                                tumores de nervios.</li>
-                                            <li><strong>CD31 / CD34:</strong> Marcadores de vasos sanguíneos;
-                                                identifican tumores vasculares.</li>
-                                            <li><strong>CD117 (c-KIT):</strong> Esencial para diagnosticar tumores GIST
-                                                del sistema digestivo.</li>
-                                            <li><strong>DOG-1:</strong> Altamente específico para GIST; complementa al
-                                                CD117.</li>
-                                        </ul>
-                                    </div>
-                                </details>
-
-                                <details class="marcador-accordion">
-                                    <summary>Otros Marcadores Importantes (Pronóstico y Otros)</summary>
-                                    <div class="marcador-content">
-                                        <ul>
-                                            <li><strong>KI-67:</strong> Mide qué porcentaje de células se están
-                                                dividiendo (proliferación).</li>
-                                            <li><strong>P53:</strong> Detecta mutaciones genéticas comunes; indica
-                                                agresividad en muchos cánceres.</li>
-                                            <li><strong>HER2:</strong> Evalúa agresividad; crucial para tratamientos en
-                                                cáncer de mama y estómago.</li>
-                                            <li><strong>P16:</strong> Marcador de infección por VPH; vital en cáncer de
-                                                cuello uterino.</li>
-                                            <li><strong>CALRETININA:</strong> Principal marcador para diagnosticar
-                                                mesotelioma.</li>
-                                            <li><strong>SINAPTOFISINA / CROMOGRANINA A:</strong> Identifican tumores
-                                                neuroendocrinos.</li>
-                                        </ul>
-                                    </div>
-                                </details>
-                            </section>
 
                             <div style="margin-top: 15px; font-size: 0.9rem;">
-                                <i class="fas fa-info-circle"></i> <a href="#catalogo-marcadores-biopsias" style="color: var(--primary);">Ver Guía Completa de Marcadores y su significado clínico aquí.</a>
+                                <i class="fas fa-info-circle"></i> <a href="#catalogo-marcadores-ihq" style="color: var(--primary);">Ver Guía Completa de Marcadores y su significado clínico aquí.</a>
                             </div>
 
 
@@ -666,299 +435,43 @@
                                     </div>
 
                                     <div class="antibody-table-wrapper">
-                                        <table class="antibody-table">
-                                            <tbody>
+                                        <table class="antibody-table" id="antibody-table-dynamic">
+                                            <thead>
                                                 <tr>
-                                                    <td>ACTINA MUSCULO LISO</td>
-                                                    <td>ACTINA (HIF35)</td>
-                                                    <td>ADIPOFILINA</td>
+                                                    <th>Marcador</th>
+                                                    <th>Marcador</th>
+                                                    <th>Marcador</th>
                                                 </tr>
-                                                <tr>
-                                                    <td>AFP (Alfa FetoProteina)</td>
-                                                    <td>ALK(CD246)</td>
-                                                    <td>AMACR (Racemase)</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>AMILOIDE A</td>
-                                                    <td>ANDROGENO</td>
-                                                    <td>A. CARBONICA IX (CA IX)</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>ARGINASE 1</td>
-                                                    <td>ATRX</td>
-                                                    <td>BCL-2</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>BCL-6</td>
-                                                    <td>BER-EP4</td>
-                                                    <td>BETACATENIN</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>C-MYC</td>
-                                                    <td>CALCITONINA</td>
-                                                    <td>CALDESMON</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>CALPONINA</td>
-                                                    <td>CALRETININA</td>
-                                                    <td>CD1a</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>CD3</td>
-                                                    <td>CD4</td>
-                                                    <td>CD5</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>CD7</td>
-                                                    <td>CD8</td>
-                                                    <td>CD10</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>CD15</td>
-                                                    <td>CD19</td>
-                                                    <td>CD20</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>CD21</td>
-                                                    <td>CD23</td>
-                                                    <td>CD30</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>CD31</td>
-                                                    <td>CD34</td>
-                                                    <td>CD43</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>CD45</td>
-                                                    <td>CD56</td>
-                                                    <td>CD61</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>CD68</td>
-                                                    <td>CD79a</td>
-                                                    <td>CD99</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>CD117</td>
-                                                    <td>CD138</td>
-                                                    <td>CDK4</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>CDX2</td>
-                                                    <td>CA-125</td>
-                                                    <td>CA 19.9</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>CEA</td>
-                                                    <td>CYCLIN D1</td>
-                                                    <td>CITOKERATIN CAMS 2</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>CITOKERATIN OSCAR</td>
-                                                    <td>CITOKERATIN 5/6</td>
-                                                    <td>CITOKERATIN 7</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>CITOKERATIN 8</td>
-                                                    <td>CITOKERATIN 14</td>
-                                                    <td>CITOKERATIN 17</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>CITOKERATIN 18</td>
-                                                    <td>CITOKERATIN 19</td>
-                                                    <td>CITOKERATIN 20</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>CITOMEGALOVIRUS</td>
-                                                    <td>COLAGENO IV</td>
-                                                    <td>CK HWM (34BE12)</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>CROMOGRANINA A</td>
-                                                    <td>DESMINA</td>
-                                                    <td>DOG-1</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>EBV/LMP-1</td>
-                                                    <td>E-CADHERINA</td>
-                                                    <td>EMA</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>ERG</td>
-                                                    <td>ESTROGENO</td>
-                                                    <td>FACTOR VIII</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>FACTOR XIIIa</td>
-                                                    <td>FASCIN A</td>
-                                                    <td>FOXP3</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>FLY-1</td>
-                                                    <td>GCDFP-15</td>
-                                                    <td>GATA 3</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>GFAP</td>
-                                                    <td>GLUT-1</td>
-                                                    <td>GLIPICAN 3</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>GLYCOFORINA</td>
-                                                    <td>GRANZYME B</td>
-                                                    <td>HCG (Beta)</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>HER2 (C-ERBB2/CB11)</td>
-                                                    <td>HEP-PAR1</td>
-                                                    <td>HHV-8</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>HMB45</td>
-                                                    <td>IDH-1</td>
-                                                    <td>IgG</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>IgG-4</td>
-                                                    <td>Ig M</td>
-                                                    <td>INI-1</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>IMP-3</td>
-                                                    <td>INHIBINA</td>
-                                                    <td>KAPPA</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>KI67</td>
-                                                    <td>LAMBDA</td>
-                                                    <td>LEF-1</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>LISOZIMA</td>
-                                                    <td>MAMAGLOBINA</td>
-                                                    <td>MELAN A/MART-1</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>MIELOPEROXIDASA (MPO)</td>
-                                                    <td>MIOGEINA</td>
-                                                    <td>MITF</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>MLH1</td>
-                                                    <td>MSH2</td>
-                                                    <td>MSH6</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>MUC 2</td>
-                                                    <td>MUC 5AC</td>
-                                                    <td>MUC 6</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>MUM-1</td>
-                                                    <td>MYO D1</td>
-                                                    <td>MMP9</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>NAPSIN A</td>
-                                                    <td>NEUROFILAMENTO</td>
-                                                    <td>NGFR</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>OLIG 2</td>
-                                                    <td>P16</td>
-                                                    <td>P40</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>P53</td>
-                                                    <td>P57</td>
-                                                    <td>PANQUERATINA</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>PAX-5</td>
-                                                    <td>PAX-8</td>
-                                                    <td>PODOPLANINA / D2-40</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>PD-1/CD279</td>
-                                                    <td>PD-L1 (22c3)</td>
-                                                    <td>PLAP</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>PMS2</td>
-                                                    <td>PSA</td>
-                                                    <td>P-TEN</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>PROGESTERONA</td>
-                                                    <td>VPH</td>
-                                                    <td>S-100</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>SATB-2</td>
-                                                    <td>SALL 4</td>
-                                                    <td>SINAPTOFISINA</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>SOX-10</td>
-                                                    <td>SMAD4/DPC4</td>
-                                                    <td>STAT 6</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>T. PALLIDUM</td>
-                                                    <td>TDT</td>
-                                                    <td>TLE-1</td>
-                                                    <td>TIA-1</td>
-                                                    <td>TIROGLOBULINA</td>
-                                                    <td>TIROSINASA</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>TTF-1</td>
-                                                    <td>VIMENTINA</td>
-                                                    <td>WT-1</td>
-                                                </tr>
+                                            </thead>
+                                            <tbody id="antibody-table-body">
+                                                <!-- Dynamic Content -->
+                                                <tr><td colspan="3" style="text-align:center; padding:20px;">Cargando marcadores...</td></tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </details>
                             </div>
-<<<<<<< HEAD
                             <!-- Catálogo Interactivo de Marcadores -->
-                            <section id="catalogo-marcadores" class="marcadores-container">
-
+                            <section id="catalogo-marcadores-ihq" class="marcadores-container">
                                 <details class="marcador-accordion">
                                     <summary>Marcadores Hematolinfoides (Linfomas y Leucemias)</summary>
                                     <div class="marcador-content">
                                         <ul>
-                                            <li><strong>CD1a:</strong> Identifica células de Langerhans; crucial para
-                                                diagnosticar la histiocitosis X.</li>
-                                            <li><strong>CD3:</strong> El marcador universal para identificar Linfocitos
-                                                T (células clave del sistema de defensa).</li>
-                                            <li><strong>CD4:</strong> Subtipo de linfocitos T; importante en la
-                                                evaluación de enfermedades inmunes y linfomas.</li>
-                                            <li><strong>CD5:</strong> Ayuda a clasificar leucemias crónicas y linfomas
-                                                de células pequeñas.</li>
-                                            <li><strong>CD7:</strong> Uno de los marcadores más tempranos de células de
-                                                defensa T; útil en leucemias agudas.</li>
-                                            <li><strong>CD8:</strong> Identifica linfocitos T 'asesinos'; mide la fuerza
-                                                del sistema inmune contra el cáncer.</li>
-                                            <li><strong>CD10:</strong> Marcador de células germinales de los ganglios;
-                                                útil en el estudio de linfomas y cáncer de riñón.</li>
-                                            <li><strong>CD15:</strong> Característico de las células de Reed-Sternberg
-                                                en el Linfoma de Hodgkin clásico.</li>
-                                            <li><strong>CD19:</strong> Marcador fundamental para identificar todas las
-                                                etapas de desarrollo de los Linfocitos B.</li>
-                                            <li><strong>CD20:</strong> El marcador más importante para el diagnóstico y
-                                                guía de tratamiento de Linfomas de células B.</li>
-                                            <li><strong>CD21:</strong> Identifica las redes que sostienen a los
-                                                linfocitos en los ganglios; útil en linfomas foliculares.</li>
-                                            <li><strong>CD23:</strong> Ayuda a diferenciar la leucemia linfática crónica
-                                                de otros tipos de linfomas.</li>
-                                            <li><strong>CD30:</strong> Clave para el diagnóstico del Linfoma de Hodgkin
-                                                y linfomas anaplásicos de células grandes.</li>
-                                            <li><strong>CD43:</strong> Ayuda a detectar anormalidades en linfocitos B y
-                                                T; útil en la clasificación de linfomas.</li>
-                                            <li><strong>CD45:</strong> Antígeno Común Leucocitario; confirma que el
-                                                tumor se origina en el sistema de la sangre.</li>
+                                            <li><strong>CD1a:</strong> Identifica células de Langerhans; crucial para diagnosticar la histiocitosis X.</li>
+                                            <li><strong>CD3:</strong> El marcador universal para identificar Linfocitos T (células clave del sistema de defensa).</li>
+                                            <li><strong>CD4:</strong> Subtipo de linfocitos T; importante en la evaluación de enfermedades inmunes y linfomas.</li>
+                                            <li><strong>CD5:</strong> Ayuda a clasificar leucemias crónicas y linfomas de células pequeñas.</li>
+                                            <li><strong>CD7:</strong> Uno de los marcadores más tempranos de células de defensa T; útil en leucemias agudas.</li>
+                                            <li><strong>CD8:</strong> Identifica linfocitos T 'asesinos'; mide la fuerza del sistema inmune contra el cáncer.</li>
+                                            <li><strong>CD10:</strong> Marcador de células germinales de los ganglios; útil en el estudio de linfomas y cáncer de riñón.</li>
+                                            <li><strong>CD15:</strong> Característico de las células de Reed-Sternberg en el Linfoma de Hodgkin clásico.</li>
+                                            <li><strong>CD19:</strong> Marcador fundamental para identificar todas las etapas de desarrollo de los Linfocitos B.</li>
+                                            <li><strong>CD20:</strong> El marcador más importante para el diagnóstico y guía de tratamiento de Linfomas de células B.</li>
+                                            <li><strong>CD21:</strong> Identifica las redes que sostienen a los linfocitos en los ganglios; útil en linfomas foliculares.</li>
+                                            <li><strong>CD23:</strong> Ayuda a diferenciar la leucemia linfática crónica de otros tipos de linfomas.</li>
+                                            <li><strong>CD30:</strong> Clave para el diagnóstico del Linfoma de Hodgkin y linfomas anaplásicos de células grandes.</li>
+                                            <li><strong>CD43:</strong> Ayuda a detectar anormalidades en linfocitos B y T; útil en la clasificación de linfomas.</li>
+                                            <li><strong>CD45:</strong> Antígeno Común Leucocitario; confirma que el tumor se origina en el sistema de la sangre.</li>
                                         </ul>
                                     </div>
                                 </details>
@@ -967,26 +480,16 @@
                                     <summary>Marcadores Epiteliales (Carcinomas)</summary>
                                     <div class="marcador-content">
                                         <ul>
-                                            <li><strong>Panqueratina:</strong> Marcador universal de carcinomas (tumores
-                                                de origen epitelial).</li>
-                                            <li><strong>CITOKERATIN 7:</strong> Indica origen glandular (mama, pulmón,
-                                                ovario).</li>
-                                            <li><strong>CITOKERATIN 20:</strong> Específico para el tracto digestivo
-                                                (colon) y células de la piel.</li>
-                                            <li><strong>EMA:</strong> Antígeno de membrana epitelial; útil en diversos
-                                                carcinomas.</li>
-                                            <li><strong>BER-EP4:</strong> Ayuda a distinguir el carcinoma basocelular de
-                                                otros tumores cutáneos.</li>
-                                            <li><strong>P40:</strong> El marcador más fiable para el carcinoma de
-                                                células escamosas.</li>
-                                            <li><strong>TTF-1:</strong> Identifica con precisión tumores originados en
-                                                pulmón o tiroides.</li>
-                                            <li><strong>PSA:</strong> Antígeno Prostático Específico; clave para el
-                                                tejido de la próstata.</li>
-                                            <li><strong>GATA 3:</strong> Excelente marcador para tumores de mama y de la
-                                                vejiga (urotelio).</li>
-                                            <li><strong>PAX-8:</strong> Fundamental para diagnosticar tumores de riñón,
-                                                tiroides y sistema ginecológico.</li>
+                                            <li><strong>Panqueratina:</strong> Marcador universal de carcinomas (tumores de origen epitelial).</li>
+                                            <li><strong>CITOKERATIN 7:</strong> Indica origen glandular (mama, pulmón, ovario).</li>
+                                            <li><strong>CITOKERATIN 20:</strong> Específico para el tracto digestivo (colon) y células de la piel.</li>
+                                            <li><strong>EMA:</strong> Antígeno de membrana epitelial; útil en diversos carcinomas.</li>
+                                            <li><strong>BER-EP4:</strong> Ayuda a distinguir el carcinoma basocelular de otros tumores cutáneos.</li>
+                                            <li><strong>P40:</strong> El marcador más fiable para el carcinoma de células escamosas.</li>
+                                            <li><strong>TTF-1:</strong> Identifica con precisión tumores originados en pulmón o tiroides.</li>
+                                            <li><strong>PSA:</strong> Antígeno Prostático Específico; clave para el tejido de la próstata.</li>
+                                            <li><strong>GATA 3:</strong> Excelente marcador para tumores de mama y de la vejiga (urotelio).</li>
+                                            <li><strong>PAX-8:</strong> Fundamental para diagnosticar tumores de riñón, tiroides y sistema ginecológico.</li>
                                         </ul>
                                     </div>
                                 </details>
@@ -995,22 +498,14 @@
                                     <summary>Marcadores de Tejidos Blandos (Sarcomas)</summary>
                                     <div class="marcador-content">
                                         <ul>
-                                            <li><strong>VIMENTINA:</strong> Marcador general de tejidos conectivos;
-                                                ayuda a clasificar sarcomas.</li>
-                                            <li><strong>DESMINA:</strong> Detecta células musculares; esencial para
-                                                tumores de músculo.</li>
-                                            <li><strong>ACTINA MUSCULO LISO:</strong> Identifica tumores de músculo liso
-                                                (miomas, sarcomas).</li>
-                                            <li><strong>S-100:</strong> Marcador versátil para melanomas y tumores
-                                                nerviosos.</li>
-                                            <li><strong>SOX-10:</strong> Muy sensible para diagnosticar melanomas y
-                                                tumores de nervios.</li>
-                                            <li><strong>CD31 / CD34:</strong> Marcadores de vasos sanguíneos;
-                                                identifican tumores vasculares.</li>
-                                            <li><strong>CD117 (c-KIT):</strong> Esencial para diagnosticar tumores GIST
-                                                del sistema digestivo.</li>
-                                            <li><strong>DOG-1:</strong> Altamente específico para GIST; complementa al
-                                                CD117.</li>
+                                            <li><strong>VIMENTINA:</strong> Marcador general de tejidos conectivos; ayuda a clasificar sarcomas.</li>
+                                            <li><strong>DESMINA:</strong> Detecta células musculares; esencial para tumores de músculo.</li>
+                                            <li><strong>ACTINA MUSCULO LISO:</strong> Identifica tumores de músculo liso (miomas, sarcomas).</li>
+                                            <li><strong>S-100:</strong> Marcador versátil para melanomas y tumores nerviosos.</li>
+                                            <li><strong>SOX-10:</strong> Muy sensible para diagnosticar melanomas y tumores de nervios.</li>
+                                            <li><strong>CD31 / CD34:</strong> Marcadores de vasos sanguíneos; identifican tumores vasculares.</li>
+                                            <li><strong>CD117 (c-KIT):</strong> Esencial para diagnosticar tumores GIST del sistema digestivo.</li>
+                                            <li><strong>DOG-1:</strong> Altamente específico para GIST; complementa al CD117.</li>
                                         </ul>
                                     </div>
                                 </details>
@@ -1019,28 +514,21 @@
                                     <summary>Otros Marcadores Importantes (Pronóstico y Otros)</summary>
                                     <div class="marcador-content">
                                         <ul>
-                                            <li><strong>KI-67:</strong> Mide qué porcentaje de células se están
-                                                dividiendo (proliferación).</li>
-                                            <li><strong>P53:</strong> Detecta mutaciones genéticas comunes; indica
-                                                agresividad en muchos cánceres.</li>
-                                            <li><strong>HER2:</strong> Evalúa agresividad; crucial para tratamientos en
-                                                cáncer de mama y estómago.</li>
-                                            <li><strong>P16:</strong> Marcador de infección por VPH; vital en cáncer de
-                                                cuello uterino.</li>
-                                            <li><strong>CALRETININA:</strong> Principal marcador para diagnosticar
-                                                mesotelioma.</li>
-                                            <li><strong>SINAPTOFISINA / CROMOGRANINA A:</strong> Identifican tumores
-                                                neuroendocrinos.</li>
+                                            <li><strong>KI-67:</strong> Mide qué porcentaje de células se están dividiendo (proliferación).</li>
+                                            <li><strong>P53:</strong> Detecta mutaciones genéticas comunes; indica agresividad en muchos cánceres.</li>
+                                            <li><strong>HER2:</strong> Evalúa agresividad; crucial para tratamientos en cáncer de mama y estómago.</li>
+                                            <li><strong>P16:</strong> Marcador de infección por VPH; vital en cáncer de cuello uterino.</li>
+                                            <li><strong>CALRETININA:</strong> Principal marcador para diagnosticar mesotelioma.</li>
+                                            <li><strong>SINAPTOFISINA / CROMOGRANINA A:</strong> Identifican tumores neuroendocrinos.</li>
                                         </ul>
                                     </div>
                                 </details>
-
                             </section>
 
 
 
                             <div style="margin-top: 15px; font-size: 0.9rem;">
-                                <i class="fas fa-info-circle"></i> <a href="#catalogo-marcadores-biopsias" style="color: var(--primary);">Consulte los detalles técnicos de cada marcador en nuestra guía arriba.</a>
+                                <i class="fas fa-info-circle"></i> <a href="#catalogo-marcadores-ihq" style="color: var(--primary);">Consulte los detalles técnicos de cada marcador en nuestra guía arriba.</a>
                             </div>
                             <div class="price-list-container"
                                 style="margin-top: 15px; margin-bottom: 25px; background: #fffbe6; padding: 20px; border-radius: 10px; border-left: 4px solid #ffd700;">
@@ -1070,7 +558,7 @@
                             </div>
 
 
-                            <a href="#" class="service-link">Más información sobre Inmunohistoquímica <i
+                            <a href="inmunohistoquimica_resumen.html" class="service-link">Más información sobre Inmunohistoquímica <i
                                     class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
@@ -1094,7 +582,7 @@
                                 a tomar decisiones inmediatas sobre el tratamiento quirúrgico, proporcionando
                                 resultados
                                 en pocos minutos.</p>
-                            <a href="#" class="service-link">Más información sobre biopsia intraoperatoria <i
+                            <a href="https://wa.me/51986396733?text=Hola%20JC%20PATH%20LAB,%20deseo%20coordinar%20una%20biopsia%20intraoperatoria." class="service-link">Consultar sobre Biopsia Intraoperatoria <i
                                     class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
@@ -1234,7 +722,7 @@
                             </div>
 
 
-                            <a href="#" class="service-link">Más información sobre análisis de piezas quirúrgicas <i
+                            <a href="https://wa.me/51986396733?text=Hola%20JC%20PATH%20LAB,%20deseo%20información%20sobre%20el%20análisis%20de%20piezas%20quirúrgicas." class="service-link">Más información sobre piezas quirúrgicas <i
                                     class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
@@ -1448,7 +936,7 @@
                                 Dermatopatología
                             </div>
                             <div class="classroom-image">
-                                <img src="dermatopatologia.png" alt="Análisis de Dermatopatología - JC PATH LAB"
+                                <img src="dermatopatologia.webp" alt="Análisis de Dermatopatología - JC PATH LAB"
                                     width="268" height="188" loading="lazy">
                             </div>
                             <div class="classroom-content">
@@ -1596,7 +1084,7 @@
                                 Cancer: Aspectos Patologicos
                             </div>
                             <div class="classroom-image">
-                                <img src="adenocarcinomapulmon.png" alt="Aspectos Patológicos del Cáncer" width="454"
+                                <img src="adenocarcinomapulmon.webp" alt="Aspectos Patológicos del Cáncer" width="454"
                                     height="363" loading="lazy">
                             </div>
                             <div class="classroom-content">
@@ -1640,11 +1128,19 @@
                         </button>
                         <div class="service-accordion-content">
                             <div class="service-accordion-content-inner">
-                                <p class="service-description">Contenido del protocolo de biopsias...</p>
+                                <p class="service-description">Nuestro protocolo de procesamiento de biopsias asegura la integridad de la muestra desde su recepción hasta el diagnóstico final:</p>
+                                <ul class="protocol-list">
+                                    <li><strong>Fijación:</strong> Uso estandarizado de Formol al 10% tamponado para preservación celular óptima.</li>
+                                    <li><strong>Macroscopía:</strong> Descripción detallada y muestreo selectivo en nuestra área especializada con campana de flujo laminar.</li>
+                                    <li><strong>Procesamiento:</strong> Ciclos de deshidratación e inclusión en parafina controlados por técnicos expertos.</li>
+                                    <li><strong>Microtomía:</strong> Cortes ultrafinos (3-5 micras) para una visualización microscópica de alta definición.</li>
+                                    <li><strong>Coloración:</strong> Hematoxilina-Eosina de rutina con controles de calidad diarios.</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Protocolo de Citologías -->
                     <div class="service-accordion-item">
                         <button class="service-accordion-header">
                             <div class="service-title-container">
@@ -2482,6 +1978,7 @@
                             </div>
                         </div>
                     </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -2624,8 +2121,6 @@
     </footer>
 
     <!-- Scripts Modulares -->
-    <script src="antibodies.js"></script>
-    <script src="tarifario.js"></script>
     <script src="site_knowledge.js"></script>
     <script src="main.js" defer></script>
 
@@ -2643,57 +2138,20 @@
 
 
 
-    <!-- Botones de Contacto Flotantes (SEO & CRO) -->
-    <div id="contacto" class="sticky-contact">
-        <a href="https://wa.me/51986396733?text=Hola%20JC%20PATH%20LAB,%20quiero%20coordinar%20el%20recojo%20de%20una%20muestra%20en%20Lima"
-            class="sticky-btn whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Contacto por WhatsApp">
-            <i class="fab fa-whatsapp"></i> <span>WhatsApp</span>
+    <!-- New Floating SpeedDial (WhatsApp & Call) -->
+    <div class="speed-dial">
+        <div class="speed-dial-options">
+            <a href="tel:+51986396733" class="speed-dial-option phone" aria-label="Llamar ahora">
+                <i class="fas fa-phone-alt"></i>
+                <span class="option-label">Llamar</span>
+            </a>
+        </div>
+        <a href="https://wa.me/51986396733?text=Hola%20JC%20PATH%20LAB,%20quiero%20coordinar%20el%20recojo%20de%20una%20muestra%20en%20Lima" 
+           class="speed-dial-main whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Contacto por WhatsApp">
+            <i class="fab fa-whatsapp"></i>
         </a>
-        <a href="tel:+51986396733" class="sticky-btn phone" aria-label="Llamar ahora"
-            style="background-color: #0056b3;">
-            <i class="fas fa-phone-alt"></i> <span>Llamar</span>
-        </a>
-
     </div>
 
-    <!-- Chat Widget (God Mode AI Assistant) -->
-    <div id="chat-container">
-        <div id="chat-header">
-            <div class="chat-title-group">
-                <div class="chat-name">Victoria</div>
-                <div class="chat-status">En línea <span id="ai-status" style="font-size: 0.8em; opacity: 0.8; margin-left: 5px;">(Local)</span></div>
-            </div>
-            <button class="close-btn">&times;</button>
-        </div>
-        <div id="chat-messages"></div>
-        <div id="chat-input-container">
-            <input type="text" id="chat-input" placeholder="Escribe tu consulta...">
-            <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
-        </div>
-    </div>
-
-    <!-- Chat Toggle Button with Avatar Preview -->
-    <button id="chat-toggle" aria-label="Abrir asistente virtual">
-        <div id="avatar-container">
-            <video id="avatar-toggle-preview" src="victoriaidle.mp4" muted loop autoplay playsinline style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"></video>
-        </div>
-        <div id="chat-tooltip">¿Tienes dudas? ¡Chatea conmigo! 🩺</div>
-    </button>
-
-    <!-- Hidden Video Assets for Avatar Engine -->
-    <div id="avatar-assets" style="display:none;" aria-hidden="true">
-        <!-- Victoria Avatar -->
-        <video id="victoria-idle" class="avatar-video" src="victoriaidle.mp4" muted loop preload="auto"></video>
-        <video id="victoria-hablando" class="avatar-video" src="victoriahablando.mp4" muted loop preload="auto"></video>
-        <video id="victoria-pensando" class="avatar-video" src="victoriapensando.mp4" muted loop preload="auto"></video>
-        <video id="victoria-saludo" class="avatar-video" src="victoriasaludo.mp4" muted preload="auto"></video>
-        
-        <!-- Elena Avatar (Fallback/Alternative) -->
-        <video id="elena-idle" class="avatar-video" src="idle.mp4" muted loop preload="auto"></video>
-        <video id="elena-hablando" class="avatar-video" src="hablando.mp4" muted loop preload="auto"></video>
-        <video id="elena-pensando" class="avatar-video" src="pensando.mp4" muted loop preload="auto"></video>
-        <video id="elena-saludo" class="avatar-video" src="saludo.mp4" muted preload="auto"></video>
-    </div>
 
     <!-- God Mode Dual Navigation Logic -->
     <script>
@@ -2704,19 +2162,21 @@
 
             if (btnPaciente) {
                 btnPaciente.addEventListener('click', function (e) {
+                    e.preventDefault();
                     // Ruta Paciente: Hide technical stuff
                     if (technicalDetails) technicalDetails.removeAttribute('open');
                     // Scroll to Services/Prices
-                    document.getElementById('precios-pacientes').scrollIntoView({ behavior: 'smooth' });
+                    document.getElementById('precios').scrollIntoView({ behavior: 'smooth' });
                 });
             }
 
             if (btnMedico) {
                 btnMedico.addEventListener('click', function (e) {
+                    e.preventDefault();
                     // Ruta Medico: Show technical stuff
                     if (technicalDetails) technicalDetails.setAttribute('open', 'true');
                     // Scroll to Services/Medical Area
-                    document.getElementById('area-medica').scrollIntoView({ behavior: 'smooth' });
+                    document.getElementById('zona-medica').scrollIntoView({ behavior: 'smooth' });
                 });
             }
         });
