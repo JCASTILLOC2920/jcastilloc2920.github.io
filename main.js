@@ -143,6 +143,12 @@ const AVATARS = {
     }
 };
 
+// Map these IDs to actual filenames for Elena in index.html later, 
+// but in main.js we just need the IDs to match.
+// Wait, the IDs match. The problem was the data-src in index.html.
+// But I also want to make sure the togglePreview gets the right filename.
+
+
 const currentHour = new Date().getHours();
 let currentAvatarProfile = (currentHour >= 8 && currentHour < 20) ? AVATARS.victoria : AVATARS.elena;
 
@@ -387,43 +393,61 @@ function procesarConsultaPrecio(mensaje) {
 // ============================================
 
 function changeAvatarState(state) {
-    // Ensure videos are loaded before playing
+    if (!currentAvatarProfile) return;
+    
     initLazyVideos();
     
-    const profile = currentAvatarProfile;
-    const allVideos = document.querySelectorAll('.avatar-video');
-    allVideos.forEach(v => {
+    // Solo ocultar videos que pertenecen al contenedor del asistente actual para evitar interferencias
+    const containerId = currentAvatarProfile.containerId;
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    const assistantVideos = container.querySelectorAll('.avatar-video');
+    assistantVideos.forEach(v => {
         v.style.display = 'none';
         v.pause();
     });
 
-    const targetVideoId = profile.videos[state] || profile.videos.idle;
+    const targetVideoId = currentAvatarProfile.videos[state] || currentAvatarProfile.videos.idle;
     const targetVideo = document.getElementById(targetVideoId);
+    
     if (targetVideo) {
         targetVideo.style.display = 'block';
         targetVideo.muted = true;
-        // Check if video is ready
-        if (targetVideo.readyState >= 3) {
-            targetVideo.play().catch(e => console.log("Auto-play blocked:", e));
-        } else {
-            targetVideo.addEventListener('canplay', () => {
-                targetVideo.play().catch(e => console.log("Auto-play blocked:", e));
-            }, { once: true });
+        // Reproducir con manejo de errores robusto
+        const playPromise = targetVideo.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.warn("Auto-play prevented or failed:", error);
+                // Si falla el play, al menos mostramos el primer frame
+                targetVideo.load(); 
+            });
         }
     }
 }
 
 function switchAvatar() {
+    // Pausar todos los videos activos para ahorrar recursos antes del cambio
+    document.querySelectorAll('.avatar-video').forEach(v => {
+        v.pause();
+        v.style.display = 'none';
+    });
+
     currentAvatarProfile = (currentAvatarProfile.name === "Victoria") ? AVATARS.elena : AVATARS.victoria;
-    document.getElementById(AVATARS.victoria.containerId).style.display = (currentAvatarProfile.name === "Victoria") ? "block" : "none";
-    document.getElementById(AVATARS.elena.containerId).style.display = (currentAvatarProfile.name === "Elena") ? "block" : "none";
+    
+    const vicContainer = document.getElementById(AVATARS.victoria.containerId);
+    const eleContainer = document.getElementById(AVATARS.elena.containerId);
+    
+    if (vicContainer) vicContainer.style.display = (currentAvatarProfile.name === "Victoria") ? "block" : "none";
+    if (eleContainer) eleContainer.style.display = (currentAvatarProfile.name === "Elena") ? "block" : "none";
     
     const bannerName = document.getElementById("bot-name-banner");
     if (bannerName) bannerName.innerText = currentAvatarProfile.name;
     
     const togglePreview = document.getElementById("avatar-toggle-preview");
     if (togglePreview) {
-        togglePreview.dataset.src = (currentAvatarProfile.name === "Victoria") ? "victoriaidle.mp4" : "elenaidle.mp4";
+        // CORRECCIÓN: La vista previa debe mostrar al asistente que NO está activo
+        togglePreview.dataset.src = (currentAvatarProfile.name === "Victoria") ? "idle.mp4" : "victoriaidle.mp4";
         togglePreview.src = togglePreview.dataset.src;
         togglePreview.load();
     }
@@ -590,7 +614,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Set initial preview video based on time-selected avatar
     const togglePreview = document.getElementById("avatar-toggle-preview");
     if (togglePreview) {
-        togglePreview.dataset.src = (currentAvatarProfile.name === "Victoria") ? "victoriaidle.mp4" : "elenaidle.mp4";
+        // Inicializar vista previa con el asistente contrario al seleccionado por la hora
+        togglePreview.dataset.src = (currentAvatarProfile.name === "Victoria") ? "idle.mp4" : "victoriaidle.mp4";
         // Since toggleBtn might not be clicked yet, we can't call initLazyVideos, 
         // but the user wants to see the circle immediately. 
         // Let's actually show the preview video immediately.
@@ -616,9 +641,13 @@ document.addEventListener("DOMContentLoaded", () => {
             removeTypingIndicator();
             changeAvatarState("hablando");
             addMessage(response, "bot");
-            setTimeout(() => changeAvatarState("idle"), 5000);
+            
+            // Volver a estado idle después de un tiempo basado en la longitud del texto
+            const readingTime = Math.max(3000, Math.min(8000, response.length * 50));
+            setTimeout(() => changeAvatarState("idle"), readingTime);
         } catch (error) {
             removeTypingIndicator();
+            changeAvatarState("idle");
             addMessage("Lo siento, estoy experimentando dificultades técnicas. ¿Desea hablar directamente con el Dr. Castillo? 🩺", "bot");
         }
     }
@@ -632,25 +661,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- CENTRALIZED HASH NAVIGATION ---
     function handleHash() {
-        const hash = window.location.hash;
-        if (hash.length > 1) {
-            const targetId = hash.substring(1);
-            const targetSection = document.getElementById(targetId);
-            if (targetSection && targetSection.classList.contains('page-section')) {
-                document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
-                targetSection.classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                
-                // Special case: if it's Classroom, we might want to ensure its grid is visible
-                if (targetId === 'classroom') {
-                    console.log("Classroom section activated");
-                }
+        const hash = window.location.hash || '#home-view';
+        const targetId = hash.substring(1) || 'home-view';
+        const targetSection = document.getElementById(targetId);
+
+        if (targetSection && targetSection.classList.contains('page-section')) {
+            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+            targetSection.classList.add('active');
+            
+            // Si es carga inicial, el scroll debe ser instantáneo
+            window.scrollTo(0, 0);
+            
+            if (targetId === 'classroom') {
+                console.log("Classroom section activated");
             }
         }
+        
+        // Restaurar visibilidad (Estrategia Zero-Flicker)
+        document.body.style.opacity = '1';
     }
 
-    // Initial load check
-    window.addEventListener('load', handleHash);
+    // Initial load check - DOMContentLoaded is faster than load
+    window.addEventListener('DOMContentLoaded', handleHash);
     // Hash change check (for SPA-like feel)
     window.addEventListener('hashchange', handleHash);
 
@@ -670,19 +702,21 @@ document.addEventListener("DOMContentLoaded", () => {
             if (href.startsWith('#') && href.length > 1) {
                 const targetId = href.substring(1);
                 const targetSection = document.getElementById(targetId);
-                if (targetSection && targetSection.classList.contains('page-section')) {
+                if (targetSection) {
                     e.preventDefault();
                     
-                    // Actualizar Hash sin disparar el scroll por defecto del navegador (si es posible)
-                    // history.pushState(null, null, href); 
-                    
-                    document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
-                    targetSection.classList.add('active');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    if (targetSection.classList.contains('page-section')) {
+                        document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+                        targetSection.classList.add('active');
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else {
+                        // Smooth scroll natural a cualquier otra sección (como #contacto)
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                    }
                     
                     // Update URL hash manually for consistency
                     if (window.location.hash !== href) {
-                        window.location.hash = href;
+                        history.pushState(null, null, href); 
                     }
                 }
             }
@@ -703,6 +737,46 @@ document.addEventListener("DOMContentLoaded", () => {
             
             // Toggle rotated class on icon
         });
+    });
+
+    // ============================================
+    // NAVEGACIÓN MÓVIL (HAMBURGUESA)
+    // ============================================
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector(".nav-menu");
+
+    if (hamburger && navMenu) {
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        });
+
+        // Cerrar menú al hacer clic en un enlace (importante para SPA)
+        document.querySelectorAll(".nav-link").forEach(link => {
+            link.addEventListener("click", () => {
+                hamburger.classList.remove("active");
+                navMenu.classList.remove("active");
+            });
+        });
+    }
+
+    // ============================================
+    // CONTROL DE DROPDOWNS (MOBILE & CLICK)
+    // ============================================
+    const dropItems = document.querySelectorAll('.nav-item.has-dropdown');
+    dropItems.forEach(item => {
+        const link = item.querySelector('.nav-link');
+        const icon = item.querySelector('.fa-chevron-down');
+
+        if (icon) {
+            icon.addEventListener('click', (e) => {
+                if (window.innerWidth <= 1024) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    item.classList.toggle('mobile-open');
+                }
+            });
+        }
     });
 
     // ============================================
@@ -737,6 +811,12 @@ document.addEventListener("DOMContentLoaded", () => {
                         backdrop.style.opacity = '0';
                         backdrop.style.visibility = 'hidden';
                         if (subMenu) subMenu.classList.add('u-hide-dropdown');
+                        
+                        // Si estamos en móvil, cerrar también el menú principal
+                        if (hamburger) {
+                            hamburger.classList.remove("active");
+                            navMenu.classList.remove("active");
+                        }
                     });
                 });
             });

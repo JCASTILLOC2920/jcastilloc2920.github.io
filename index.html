@@ -9,56 +9,20 @@
         content="Laboratorio de Anatomía Patológica en Puente Piedra, Lima Norte. Biopsias rápidas en 3-4 días, inmunohistoquímica, Papanicolaou y diagnóstico de cáncer. Recojo a domicilio.">
     <meta name="keywords"
         content="anatomia patologica puente piedra, biopsias lima norte, inmunohistoquimica peru, patologo oncologo lima, papanicolaou precio, citologia cervical, diagnostico cancer lima, laboratorio puente piedra, biopsia gastrica precio, patologo certificado peru, jc path lab, patologia oncologica lima norte">
-    <link rel="canonical" href="https://jcastilloc2920.github.io/">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#0056b3">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-    <!-- Social Media Meta Tags -->
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="JC PATH LAB | Laboratorio de Patología y Biopsias en Lima">
-    <meta name="twitter:description" content="Especialistas en Anatomía Patológica y Diagnóstico de Cáncer en Lima.">
-    <meta name="twitter:image" content="https://jcastilloc2920.github.io/logo-jcpathlab.png">
-
-    <meta property="og:title" content="JC PATH LAB | Excelencia en Anatomía Patológica" />
-    <meta property="og:locale" content="es_PE" />
-    <meta property="og:description"
-        content="Resultados rápidos y precisos en biopsias y patología oncológica. Tecnología avanzada para el diagnóstico definitivo." />
-    <meta property="og:url" content="https://jcastilloc2920.github.io/" />
-    <meta property="og:site_name" content="JC PATH LAB" />
-    <meta property="og:image" content="https://jcastilloc2920.github.io/logo-jcpathlab.png" />
-
-    <!-- Meta Tags para SEO Local -->
-    <meta name="geo.region" content="PE-LIM" />
-    <meta name="geo.placename" content="Lima" />
-    <meta name="geo.position" content="-11.8767;-77.0628" />
-    <meta name="ICBM" content="-11.8767, -77.0628" />
-
-    <!-- Meta Tags Adicionales SEO -->
-    <meta name="author" content="Dr. Josehp Castillo Cuenca" />
-    <meta name="language" content="es-PE" />
-    <meta name="revisit-after" content="7 days" />
-    <meta name="distribution" content="global" />
-    <meta name="rating" content="general" />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-
-    <!-- Google Search Console Verification (PENDIENTE: Obtener código al registrar en Google Search Console) -->
-    <!-- <meta name="google-site-verification" content="TU_CODIGO_AQUI" /> -->
-
-
-
-    <!-- Preload Critical Resources -->
-    <link rel="preload" href="style.css" as="style">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
-
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-    <!-- Preconnect to Google Fonts if needed, but the site currently uses common system fonts -->
+                        <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap">
+    
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Style -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mobile-app.css">
+    <link rel="stylesheet" href="mobile-app.css">
+    <link rel="stylesheet" href="mobile-app.css">
+    <link rel="stylesheet" href="mobile-app.css">
     <link rel="stylesheet" href="mobile-app.css">
     <style>
         .btn-hero-reports {
@@ -148,51 +112,67 @@
     </script>
 
 
+    <!-- Zero-Flicker Navigation Script -->
+    <style id="flicker-protection">
+        body { opacity: 0; transition: opacity 0.3s ease; }
+    </style>
+    <script>
+        (function() {
+            var hash = window.location.hash;
+            if (!hash || hash === '#home-view' || hash === '#') {
+                // Si no hay hash, mostramos el body inmediatamente
+                document.write('<style>body { opacity: 1 !important; }</style>');
+            }
+        })();
+    </script>
 </head>
 
 <body>
     <!-- Header Section -->
     <div id="clinico-backdrop"></div>
+                <!-- Header Section -->
     <header class="header">
         <div class="header-container">
             <!-- Logo -->
             <div class="logo-container">
-                <img src="logo-jcpathlab.png" alt="JC PATH LAB, laboratorio de anatomía patológica y biopsias en Lima"
-                    class="logo" width="180" height="60" loading="eager">
+                <a href="index.html" class="logo-link">
+                    <img src="logo-jcpathlab.png" alt="JC PATH LAB, laboratorio de anatomía patológica y biopsias en Lima"
+                        class="logo" width="180" height="60" loading="eager">
+                </a>
             </div>
 
             <!-- Navigation Menu -->
             <nav>
                 <ul class="nav-menu">
-                    <li class="nav-item"><a href="#home-view" class="nav-link active">Inicio</a></li>
-                    <li class="nav-item"><a href="#servicios" class="nav-link">Servicios</a></li>
+                    <li class="nav-item"><a href="index.html" class="nav-link active">Inicio</a></li>
+                    <li class="nav-item"><a href="index.html#servicios" class="nav-link">Servicios</a></li>
 
                     <!-- Dropdown: Institucional -->
                     <li class="nav-item has-dropdown">
-                        <a href="#quienes-somos" class="nav-link">Institucional <i class="fas fa-chevron-down"></i></a>
+                        <a href="#" class="nav-link ">Institucional <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-item"><a href="#quienes-somos">Quiénes Somos</a></li>
-                            <li class="dropdown-item"><a href="cv.html">Curriculum Vitae</a></li>
+                            <li class="dropdown-item"><a href="cv.html" class="">Curriculum Vitae</a></li>
                             <li class="dropdown-item"><a href="#protocolos">Nuestros Protocolos</a></li>
                         </ul>
                     </li>
 
                     <!-- Dropdown: Área Académica -->
                     <li class="nav-item has-dropdown">
-                        <a href="educacion-medica.html" class="nav-link">Área Académica <i class="fas fa-chevron-down"></i></a>
+                        <a href="#" class="nav-link ">Área Académica <i class="fas fa-chevron-down"></i></a>
                         <ul class="dropdown-menu">
-                            <li class="dropdown-item"><a href="educacion-medica.html">Zona Médica</a></li>
-                            <li class="dropdown-item"><a href="#classroom">Classroom</a></li>
-                            <li class="dropdown-item"><a href="blogs.html">Blogs</a></li>
+                            <li class="dropdown-item"><a href="educacion-medica.html" class="">Zona Médica</a></li>
+                            <li class="dropdown-item"><a href="classroom.html" class="">Classroom</a></li>
+                            <li class="dropdown-item"><a href="blogs.html" class="">Blogs</a></li>
                         </ul>
                     </li>
 
                     <li class="nav-item">
-                        <a href="solicitud.html" class="nav-link nav-cta">Solicitud de Estudio</a>
+                        <a href="solicitud.html" class="nav-link nav-cta ">Solicitud de Estudio</a>
                     </li>
                     <li class="nav-item">
-                        <a href="https://informes-srjunco.vercel.app/login" class="nav-link"
-                            style="color: #007bff; font-weight: 700;"><i class="fas fa-file-medical"></i> Resultados</a>
+                        <a href="login.html" class="nav-link"
+                            style="color: #64FFDA; font-weight: 700;"><i class="fas fa-file-medical"></i> Resultados</a>
                     </li>
                     <li class="nav-item"><a href="#contacto" class="nav-link">Contacto</a></li>
                 </ul>
@@ -209,7 +189,7 @@
     <main>
         <!-- Secciones independientes -->
         <!-- Consolidación de la Vista de Inicio (Home View) -->
-        <div id="home-view" class="page-section active">
+        <div id="home-view" class="page-section">
             <!-- Hero Section -->
             <section id="hero" class="hero-section">
                 <!-- Background Slider -->
@@ -218,15 +198,15 @@
                     <div class="slide"></div>
                 </div>
 
-                <div class="container hero-content">
-                    <h1>Diagnóstico Oncológico y Patológico de Alta Precisión</h1>
+                <div class="container hero-content float-animation">
+                    <h1 class="text-gradient">Diagnóstico Oncológico y Patológico de Alta Precisión</h1>
                     <p class="hero-subtitle">Resultados en 3 días con certificación ISO. Recojo a domicilio en Lima y recepción nacional.</p>
                     
                     <div class="hero-buttons">
-                        <a href="https://informes-srjunco.vercel.app/login" class="btn btn-primary-cta">
+                        <a href="login.html" class="btn btn-primary-cta glass-card">
                             <i class="fas fa-file-medical"></i> Consultar Resultados
                         </a>
-                        <a href="solicitud.html" class="btn btn-secondary-cta">
+                        <a href="solicitud.html" class="btn btn-secondary-cta glass-card">
                             Solicitar Estudio
                         </a>
                     </div>
@@ -288,63 +268,60 @@
 
             <div class="services-container">
                 <div class="services-accordion">
-                    <!-- Service 1 -->
-                    <div class="service-accordion-item">
-                        <button class="service-accordion-header">
-                            <div class="service-title-container">
-                                <div class="service-icon">
-                                    <i class="fas fa-microscope"></i>
-                                </div>
-                                <h3 class="service-title">Diagnóstico de biopsias</h3>
+                <!-- Service 1 -->
+                <div class="service-accordion-item glass-card">
+                    <button class="service-accordion-header">
+                        <div class="service-title-container">
+                            <div class="service-icon">
+                                <i class="fas fa-microscope"></i>
                             </div>
-                            <i class="fas fa-chevron-down service-accordion-icon"></i>
-                        </button>
-                        <div class="service-accordion-content">
-                            <div class="service-accordion-content-inner">
-                                <p class="service-description">Realizamos estudios histopatológicos de alta calidad.
-                                    El
-                                    análisis microscópico de tejidos (biopsias) es fundamental para detectar cáncer,
-                                    tumores benignos y procesos inflamatorios. Ofrecemos <b>resultados rápidos y
-                                        precisos</b> para guiar tu tratamiento médico inmediato.
-                                </p>
-
-                                <h4 style="margin-top: 0; color: var(--accent); margin-bottom: 15px;">LISTA DE
-                                    PRECIOS -
-                                    BIOPSIAS</h4>
-                                <div class="pricing-grid">
-                                    <div class="pricing-card">
-                                        <div class="pricing-card-name">BIOPSIA GÁSTRICA</div>
-                                        <div class="pricing-card-price">80<span>Soles</span></div>
-                                    </div>
-                                    <a href="gastrointestinal.html" class="pricing-card">
-                                        <div class="pricing-card-name">BIOPSIA DE ESÓFAGO, INTESTINO DELGADO Y COLON
-                                        </div>
-                                        <div class="pricing-card-price">80<span>Soles</span></div>
-                                    </a>
-                                    <div class="pricing-card">
-                                        <div class="pricing-card-name">BIOPSIA DE CERVIX</div>
-                                        <div class="pricing-card-price">80<span>Soles</span></div>
-                                    </div>
-                                    <div class="pricing-card">
-                                        <div class="pricing-card-name">CONO CERVICAL</div>
-                                        <div class="pricing-card-price">120<span>Soles</span></div>
-                                    </div>
-                                    <a href="genitourinario.html" class="pricing-card">
-                                        <div class="pricing-card-name">BIOPSIA DE PRÓSTATA (POR 6 FRASCOS)</div>
-                                        <div class="pricing-card-price">250<span>Soles</span></div>
-                                    </a>
-                                </div>
-                            </div>
-
-
-                            <a href="partes-blandas.html" class="service-link">Más información sobre diagnóstico de
-                                biopsias <i class="fas fa-arrow-right"></i></a>
+                            <h3 class="service-title">Diagnóstico de biopsias</h3>
                         </div>
+                        <i class="fas fa-chevron-down service-accordion-icon"></i>
+                    </button>
+                    <div class="service-accordion-content">
+                        <div class="service-accordion-content-inner">
+                            <p class="service-description">Realizamos estudios histopatológicos de alta calidad.
+                                El
+                                análisis microscópico de tejidos (biopsias) es fundamental para detectar cáncer,
+                                tumores benignos y procesos inflamatorios. Ofrecemos <b>resultados rápidos y
+                                    precisos</b> para guiar tu tratamiento médico inmediato.
+                            </p>
+
+                            <h4 style="color: var(--accent); margin-bottom: 15px; font-weight: 700;">LISTA DE PRECIOS - BIOPSIAS</h4>
+                            <div class="pricing-grid">
+                                <div class="pricing-card">
+                                    <div class="pricing-card-name">BIOPSIA GÁSTRICA</div>
+                                    <div class="pricing-card-price">80<span>Soles</span></div>
+                                </div>
+                                <a href="gastrointestinal.html" class="pricing-card">
+                                    <div class="pricing-card-name">BIOPSIA DE ESÓFAGO, INTESTINO DELGADO Y COLON
+                                    </div>
+                                    <div class="pricing-card-price">80<span>Soles</span></div>
+                                </a>
+                                <div class="pricing-card">
+                                    <div class="pricing-card-name">BIOPSIA DE CERVIX</div>
+                                    <div class="pricing-card-price">80<span>Soles</span></div>
+                                </div>
+                                <div class="pricing-card">
+                                    <div class="pricing-card-name">CONO CERVICAL</div>
+                                    <div class="pricing-card-price">120<span>Soles</span></div>
+                                </div>
+                                <a href="genitourinario.html" class="pricing-card">
+                                    <div class="pricing-card-name">BIOPSIA DE PRÓSTATA (POR 6 FRASCOS)</div>
+                                    <div class="pricing-card-price">250<span>Soles</span></div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <a href="partes-blandas.html" class="service-link">Más información sobre diagnóstico de
+                            biopsias <i class="fas fa-arrow-right"></i></a>
                     </div>
+                </div>
                 </div>
 
                 <!-- Service 2 -->
-                <div class="service-accordion-item">
+                <div class="service-accordion-item glass-card">
                     <button class="service-accordion-header">
                         <div class="service-title-container">
                             <div class="service-icon">
@@ -364,10 +341,8 @@
                                 detectar infecciones, alteraciones premalignas o malignas,
                                 ayudando a la prevención y diagnóstico temprano.</p>
 
-                            <div class="price-list-container"
-                                style="margin-top: 20px; margin-bottom: 25px; background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid var(--accent);">
-                                <h4
-                                    style="color: var(--secondary); font-size: 1.1rem; margin-top: 0; margin-bottom: 15px; font-weight: 700;">
+                            <div class="price-list-container glass-card" style="margin-top: 20px; margin-bottom: 25px; padding: 20px;">
+                                <h4 style="color: var(--secondary); font-size: 1.1rem; margin-top: 0; margin-bottom: 15px; font-weight: 700;">
                                     LISTA DE PRECIOS - CITOLOGÍA</h4>
                                 <div class="pricing-grid">
                                     <div class="pricing-card">
@@ -389,7 +364,6 @@
                             <div style="margin-top: 15px; font-size: 0.9rem;">
                                 <i class="fas fa-info-circle"></i> <a href="#catalogo-marcadores-ihq" style="color: var(--primary);">Ver Guía Completa de Marcadores y su significado clínico aquí.</a>
                             </div>
-
 
                             <a href="citopatologia.html" class="service-link">Más información sobre estudios
                                 citológicos
@@ -2012,7 +1986,7 @@
     </main>
 
     <!-- Footer -->
-    <footer id="contacto" class="contact-section page-section">
+    <footer id="contacto" class="contact-section">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Contáctenos</h2>
@@ -2289,6 +2263,57 @@
         // Push initial state for back button handling
         history.pushState(null, null, window.location.pathname);
     </script>
+    <!-- Chatbot HTML Structure -->
+    <div id="chat-container">
+        <div id="chat-header" class="video-mode">
+            <!-- AVATAR VICTORIA (Día) -->
+            <div id="avatar-victoria" class="avatar-video-container" style="display: none;">
+                <video id="victoria-idle" class="avatar-video active" muted loop playsinline data-src="victoriaidle.mp4"></video>
+                <video id="victoria-hablando" class="avatar-video" muted loop playsinline data-src="victoriahablando.mp4"></video>
+                <video id="victoria-pensando" class="avatar-video" muted loop playsinline data-src="victoriapensando.mp4"></video>
+                <video id="victoria-saludo" class="avatar-video" muted playsinline data-src="victoriasaludo.mp4"></video>
+            </div>
+            <!-- AVATAR ELENA (Noche) -->
+            <div id="avatar-elena" class="avatar-video-container" style="display: none;">
+                <video id="elena-idle" class="avatar-video active" muted loop playsinline data-src="idle.mp4"></video>
+                <video id="elena-hablando" class="avatar-video" muted loop playsinline data-src="hablando.mp4"></video>
+                <video id="elena-pensando" class="avatar-video" muted loop playsinline data-src="pensando.mp4"></video>
+                <video id="elena-saludo" class="avatar-video" muted playsinline data-src="saludo.mp4"></video>
+            </div>
+            
+            <div class="chat-header-content">
+                <div class="chat-title-group">
+                    <div class="chat-name" id="bot-name-banner">Victoria</div>
+                    <span>Especialista JC Path Lab</span>
+                </div>
+                <div class="chat-header-actions">
+                    <button id="switch-avatar-btn" class="header-icon-btn" title="Cambiar Asistente" onclick="switchAvatar()">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <div class="preview-avatar-wrapper">
+                        <video id="avatar-toggle-preview" muted loop autoplay playsinline data-src="idle.mp4"></video>
+                    </div>
+                    <span class="close-btn" onclick="document.getElementById('chat-container').classList.remove('open')">&times;</span>
+                </div>
+            </div>
+        </div>
+        <div id="chat-messages"></div>
+        <div id="typing-indicator">
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+            Asistente del Dr. Castillo está escribiendo...
+        </div>
+        <div id="bot-options"></div>
+        <div id="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Escribe tu mensaje aquí...">
+            <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+    <button id="chat-toggle">
+        <i class="fas fa-comments"></i>
+    </button>
+
 </body>
 
 </html>

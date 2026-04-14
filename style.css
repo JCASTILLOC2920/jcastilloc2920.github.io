@@ -5,31 +5,88 @@
 }
 
 :root {
-    --primary: #0056b3;
-    --secondary: #003366;
-    --accent: #007bff;
-    --light: #f8f9fa;
-    --dark: #343a40;
-    --text: #212529;
+    --primary: #0A192F; /* Deep Sapphire */
+    --secondary: #172A45; /* Lighter Sapphire */
+    --accent: #64FFDA; /* Neon Surgical Teal */
+    --light: #F8F9FA; 
+    --dark: #020C1B;
+    --text: #333333;
     --white: #ffffff;
-    --cta-accent: #ff6b35;
-    /* High Contrast Orange for Von Restorff Effect */
-    --transition: all 0.3s ease;
-    --card-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-    --border-radius: 12px;
+    --cta-accent: #E1E7EF; 
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --glass-shadow: 0 8px 32px 0 rgba(10, 25, 47, 0.15);
+    
+    /* Neón Premium */
+    --neon-glow: 0 0 15px rgba(100, 255, 218, 0.5), 0 0 30px rgba(100, 255, 218, 0.3);
+    
+    --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --card-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.1);
+    --border-radius: 16px;
 }
 
+/* --- ANIMACIONES PREMIUM --- */
+@keyframes gradientBg {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes textShine {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+@keyframes floatElement {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.text-gradient {
+    background: linear-gradient(270deg, #64FFDA, #00B4DB, #64FFDA);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textShine 4s linear infinite;
+}
+
+/* Glassmorphism Utilities */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+.glass-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 15px 35px rgba(10, 25, 47, 0.3), var(--neon-glow);
+    border: 1px solid rgba(100, 255, 218, 0.5);
+}
+
+.float-animation {
+    animation: floatElement 6s ease-in-out infinite;
+}
+
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Outfit', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text);
     background-color: #f5f7fa;
     line-height: 1.6;
     overflow-x: hidden;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 110px;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 /* Base Mobile Optimization */
@@ -59,7 +116,8 @@ html {
     align-items: center;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 10px 0;
+    height: 80px;
+    padding: 0;
 }
 
 .logo-container {
@@ -2931,28 +2989,33 @@ html {
     gap: 15px;
     border-bottom: var(--glass-border);
     flex-shrink: 0;
+    position: relative; /* Para el posicionamiento absoluto del botón de cierre */
 }
 
-.chat-avatar-container {
+.avatar-video-container {
     position: relative;
-    width: 75px;
-    height: 75px;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--god-mode-accent);
     flex-shrink: 0;
+    background: #000;
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.chat-avatar {
+.avatar-video {
     width: 100%;
     height: 100%;
-    border-radius: 50%;
-    border: 2px solid var(--god-mode-accent);
     object-fit: cover;
-    background: transparent;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    filter: drop-shadow(0 0 8px rgba(0, 210, 255, 0.2));
+    border-radius: 50%;
 }
 
 /* --- ANIMACIONES DE NATURALIZACIÓN --- */
-.chat-avatar-container {
+.avatar-video-container {
     animation: avatarBreathing 4s ease-in-out infinite, avatarFloating 6s ease-in-out infinite;
     transition: all 0.3s ease;
 }
@@ -2968,12 +3031,12 @@ html {
 }
 
 /* Estados Dinámicos */
-.chat-avatar-container.is-thinking {
+.avatar-video-container.is-thinking {
     animation: avatarBreathing 1.5s ease-in-out infinite; /* Respiración agitada "pensando" */
     box-shadow: 0 0 25px rgba(0, 210, 255, 0.4);
 }
 
-.chat-avatar-container.is-speaking {
+.avatar-video-container.is-speaking {
     border-color: #2ecc71;
     filter: drop-shadow(0 0 12px rgba(46, 204, 113, 0.5));
 }
@@ -3005,31 +3068,31 @@ html {
 }
 
 
+.chat-header-content {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 0;
+}
+
 .chat-title-group {
     flex-grow: 1;
     overflow: hidden;
+    min-width: 0;
 }
 
-.chat-title-group .chat-name {
-    margin: 0;
-    font-size: 1.1rem;
-    /* Relativo */
-    font-weight: 700;
-    color: var(--god-mode-text);
-    text-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.chat-title-group span {
-    font-size: 0.8rem;
-    color: var(--god-mode-accent);
-    letter-spacing: 0.5px;
+.chat-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 10px;
 }
 
 .close-btn {
-    margin-left: auto;
+    position: absolute;
+    top: 15px;
+    right: 15px;
     background: none;
     border: none;
     outline: none;
@@ -3040,6 +3103,9 @@ html {
     transition: 0.2s;
     padding: 5px;
     z-index: 10003;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .close-btn:hover {
@@ -3601,3 +3667,122 @@ html {
     transition: none !important;
 }
 
+
+/* ============================================ 
+   ESTILOS DE AVATARES DE VIDEO (JC PATH LAB)
+   ============================================ */
+#chat-header.video-mode {
+    padding: 15px;
+    height: auto;
+    min-height: 100px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px 15px 0 0;
+}
+
+#chat-header.video-mode .avatar-video-container {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin-right: 15px;
+    background: #000;
+    flex-shrink: 0;
+}
+
+.avatar-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.avatar-video.active {
+    display: block;
+}
+
+.chat-header-content {
+    flex: 1;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-title-group .chat-name {
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+}
+
+.chat-title-group span {
+    font-size: 0.8rem;
+    opacity: 0.9;
+    display: block;
+}
+
+.chat-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-icon-btn {
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-icon-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(30deg);
+}
+
+.preview-avatar-wrapper {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid #00f2fe;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.preview-avatar-wrapper:hover {
+    transform: scale(1.1);
+}
+
+#avatar-toggle-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Ajustes para el botón de cerrar en modo video */
+#chat-header.video-mode .close-btn {
+    position: static;
+    font-size: 24px;
+    color: white;
+    opacity: 0.8;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+#chat-header.video-mode .close-btn:hover {
+    opacity: 1;
+}

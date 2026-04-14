@@ -1761,15 +1761,37 @@
 
     <!-- Chatbot HTML Structure -->
     <div id="chat-container">
-        <div id="chat-header">
-            <div class="bot-avatar">
-                <i class="fas fa-user-md"></i>
+                <div id="chat-header" class="video-mode">
+            <!-- AVATAR VICTORIA (Día) -->
+            <div id="avatar-victoria" class="avatar-video-container" style="display: none;">
+                <video id="victoria-idle" class="avatar-video active" muted loop playsinline data-src="victoriaidle.mp4"></video>
+                <video id="victoria-hablando" class="avatar-video" muted loop playsinline data-src="victoriahablando.mp4"></video>
+                <video id="victoria-pensando" class="avatar-video" muted loop playsinline data-src="victoriapensando.mp4"></video>
+                <video id="victoria-saludo" class="avatar-video" muted playsinline data-src="victoriasaludo.mp4"></video>
             </div>
-            <div class="chat-title-group">
-                <div class="chat-name">Asistente JC Path Lab</div>
-                <span>En línea ahora</span>
+            <!-- AVATAR ELENA (Noche) -->
+            <div id="avatar-elena" class="avatar-video-container" style="display: none;">
+                <video id="elena-idle" class="avatar-video active" muted loop playsinline data-src="idle.mp4"></video>
+                <video id="elena-hablando" class="avatar-video" muted loop playsinline data-src="hablando.mp4"></video>
+                <video id="elena-pensando" class="avatar-video" muted loop playsinline data-src="pensando.mp4"></video>
+                <video id="elena-saludo" class="avatar-video" muted playsinline data-src="saludo.mp4"></video>
             </div>
-            <span class="close-btn">&times;</span>
+            
+            <div class="chat-header-content">
+                <div class="chat-title-group">
+                    <div class="chat-name" id="bot-name-banner">Victoria</div>
+                    <span>Especialista JC Path Lab</span>
+                </div>
+                <div class="chat-header-actions">
+                    <button id="switch-avatar-btn" class="header-icon-btn" title="Cambiar Asistente" onclick="switchAvatar()">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <div class="preview-avatar-wrapper">
+                        <video id="avatar-toggle-preview" muted loop autoplay playsinline data-src="idle.mp4"></video>
+                    </div>
+                    <span class="close-btn">&times;</span>
+                </div>
+            </div>
         </div>
         <div id="chat-messages"></div>
         <div id="typing-indicator">
