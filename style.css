@@ -5,24 +5,26 @@
 }
 
 :root {
-    --primary: #0A192F; /* Deep Sapphire */
-    --secondary: #172A45; /* Lighter Sapphire */
-    --accent: #64FFDA; /* Neon Surgical Teal */
-    --light: #F8F9FA; 
-    --dark: #020C1B;
-    --text: #333333;
+    --primary: #0F172A; /* Deep Space Navy */
+    --secondary: #1E293B; /* Slate Slate */
+    --accent: #14B8A6; /* Emerald Teal - Scientific Precision */
+    --accent-alt: #7C3AED; /* Premium Violet - Neuro Trust */
+    --light: #F8FAFC; 
+    --dark: #020617;
+    --text: #1E293B;
+    --text-muted: #64748B;
     --white: #ffffff;
-    --cta-accent: #E1E7EF; 
-    --glass-bg: rgba(255, 255, 255, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.4);
-    --glass-shadow: 0 8px 32px 0 rgba(10, 25, 47, 0.15);
+    --cta-accent: #F1F5F9; 
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
     
     /* Neón Premium */
-    --neon-glow: 0 0 15px rgba(100, 255, 218, 0.5), 0 0 30px rgba(100, 255, 218, 0.3);
+    --neon-glow: 0 0 20px rgba(20, 184, 166, 0.4);
     
-    --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    --card-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.1);
-    --border-radius: 16px;
+    --transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    --card-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
+    --border-radius: 20px;
 }
 
 /* --- ANIMACIONES PREMIUM --- */
@@ -44,7 +46,7 @@
 }
 
 .text-gradient {
-    background: linear-gradient(270deg, #64FFDA, #00B4DB, #64FFDA);
+    background: linear-gradient(270deg, var(--accent), #38BDF8, var(--accent-alt));
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -54,17 +56,17 @@
 /* Glassmorphism Utilities */
 .glass-card {
     background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     box-shadow: var(--glass-shadow);
     border-radius: var(--border-radius);
     transition: var(--transition);
 }
 .glass-card:hover {
-    transform: translateY(-8px) scale(1.01);
-    box-shadow: 0 15px 35px rgba(10, 25, 47, 0.3), var(--neon-glow);
-    border: 1px solid rgba(100, 255, 218, 0.5);
+    transform: translateY(-8px);
+    box-shadow: var(--card-shadow), var(--neon-glow);
+    border: 1px solid rgba(20, 184, 166, 0.3);
 }
 
 .float-animation {

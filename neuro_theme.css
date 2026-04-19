@@ -1,0 +1,84 @@
+/* neuro_theme.css - Premium Overlays and Advanced Aesthetics */
+
+:root {
+    --neuro-glow: 0 0 40px rgba(20, 184, 166, 0.15);
+    --neuro-glass: rgba(15, 23, 42, 0.8);
+}
+
+/* Advanced Shimmer effect for primary CTAs */
+.shimmer-btn {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--accent) 0%, #0D9488 100%);
+    color: white;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.shimmer-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.1) 40%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0.1) 60%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(45deg);
+    transition: 0.8s;
+    animation: shimmer 4s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-150%) rotate(45deg); }
+    100% { transform: translateX(150%) rotate(45deg); }
+}
+
+/* Smooth Reveal Animation */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Neuro-Trust Card - High contrast, deep depth */
+.neuro-card {
+    background: var(--secondary);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    transition: var(--transition);
+}
+
+.neuro-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 30px 60px -15px rgba(20, 184, 166, 0.2);
+    transform: scale(1.02);
+}
+
+/* Gradient Borders for premium feel */
+.gradient-border-box {
+    position: relative;
+    padding: 2px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+    border-radius: 22px;
+}
+
+.gradient-border-box > .inner {
+    background: var(--primary);
+    border-radius: 20px;
+    padding: 2rem;
+    height: 100%;
+}

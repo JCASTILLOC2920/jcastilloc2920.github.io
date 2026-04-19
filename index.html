@@ -4,7 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JC PATH LAB | Biopsias y Patología en Puente Piedra</title>
+    <title>JC PATH LAB | Biopsias y Anatomía Patológica en Lima Norte</title>
+    
+    <!-- SEO Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalOrganization",
+      "name": "JC PATH LAB",
+      "description": "Laboratorio de Anatomía Patológica especializado en biopsias y citocirugía en Lima Norte. Resultados rápidos y alta precisión.",
+      "url": "https://jcastilloc2920.github.io/",
+      "logo": "https://jcastilloc2920.github.io/logo.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+51-986396733",
+        "contactType": "customer service"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Mz M2 lote 13 Jardines de Chillón",
+        "addressLocality": "Puente Piedra",
+        "addressRegion": "Lima",
+        "addressCountry": "PE"
+      }
+    }
+    </script>
     <meta name="description"
         content="Laboratorio de Anatomía Patológica en Puente Piedra, Lima Norte. Biopsias rápidas en 3-4 días, inmunohistoquímica, Papanicolaou y diagnóstico de cáncer. Recojo a domicilio.">
     <meta name="keywords"
@@ -20,10 +44,7 @@
     <!-- Custom Style -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="mobile-app.css">
-    <link rel="stylesheet" href="mobile-app.css">
-    <link rel="stylesheet" href="mobile-app.css">
-    <link rel="stylesheet" href="mobile-app.css">
-    <link rel="stylesheet" href="mobile-app.css">
+    <link rel="stylesheet" href="neuro_theme.css">
     <style>
         .btn-hero-reports {
             background: linear-gradient(135deg, #0056b3 0%, #007bff 100%) !important;
@@ -203,7 +224,7 @@
                     <p class="hero-subtitle">Resultados en 3 días con certificación ISO. Recojo a domicilio en Lima y recepción nacional.</p>
                     
                     <div class="hero-buttons">
-                        <a href="login.html" class="btn btn-primary-cta glass-card">
+                        <a href="login.html" class="btn btn-primary-cta glass-card shimmer-btn">
                             <i class="fas fa-file-medical"></i> Consultar Resultados
                         </a>
                         <a href="solicitud.html" class="btn btn-secondary-cta glass-card">
@@ -242,17 +263,17 @@
             <section class="selection-cards">
                 <div class="container">
                     <div class="selection-grid">
-                        <a id="btn-paciente" href="#precios" class="selection-card">
+                        <a id="btn-paciente" href="#precios" class="selection-card reveal">
                             <div class="card-icon"><i class="fas fa-user-injured"></i></div>
                             <h3>Soy Paciente / Particular</h3>
                             <p>Consulte precios por tipo de biopsia y solicite el recojo de su muestra a domicilio en todo Lima.</p>
-                            <span class="card-link">Ver Información <i class="fas fa-arrow-right"></i></span>
+                            <span class="card-link shimmer-btn" style="padding: 10px; border-radius: 10px; display: inline-block;">Ver Información <i class="fas fa-arrow-right"></i></span>
                         </a>
-                        <a id="btn-medico" href="educacion-medica.html" class="selection-card">
+                        <a id="btn-medico" href="educacion-medica.html" class="selection-card reveal">
                             <div class="card-icon"><i class="fas fa-user-md"></i></div>
                             <h3>Soy Médico / Clínica</h3>
                             <p>Acceda a nuestros protocolos técnicos, formatos de derivación y convenios institucionales.</p>
-                            <span class="card-link">Protocolos Técnicos <i class="fas fa-arrow-right"></i></span>
+                            <span class="card-link shimmer-btn" style="padding: 10px; border-radius: 10px; display: inline-block;">Protocolos Técnicos <i class="fas fa-arrow-right"></i></span>
                         </a>
                     </div>
                 </div>

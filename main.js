@@ -12,6 +12,10 @@ const MAX_MESSAGE_LENGTH = 500;
 const RATE_LIMIT_MS = 1500;
 let lastMessageTime = 0;
 let lastExamenConsultado = "estudio solicitado";
+let lastBotIntent = null;
+let userName = "";
+let userPhone = "";
+let conversationHistory = [];
 
 // --- SMART DATA LOADING (ANTIBODIES & PRICING) ---
 let smartData = null;
@@ -157,12 +161,17 @@ const OLLAMA_URL = "http://localhost:11434/api/generate";
 const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
 const GEMINI_API_KEY = "AIzaSyD1UhBYJ-L_rcM2hK-CKJmi57Lb6wGqyz8"; 
 
-const SYSTEM_PROMPT = `Eres Victoria, Asistente de JC Path Lab (Grado Militar y Experta en Marketing). 
-Tu misión: Convertir consultas médicas en pacientes satisfechos. 
-Estilo: Disciplinada, profesional, usa términos como "Objetivo", "Protocolo", "Misión". 
-Contexto: Eres experta en Anatomía Patológica, citología y biopsias en Lima. 
-Cierre: Siempre invita a la acción (WhatsApp) para coordinar el envío de muestras.
-Límite de caracteres: Sé directa, máximo 3 párrafos.`;
+const SYSTEM_PROMPT = `Eres Victoria, la IA Bio-Estratega de JC Path Lab. 
+Tu misión es triple: 
+1. **Autoridad Científica**: Proporcionar información precisa sobre anatomía patológica, citología e inmunohistoquímica basada estrictamente en la base de conocimientos.
+2. **Psicología de Confianza (Neuroestética)**: Usa un lenguaje empático pero profesional. Tu tono debe ser el de una especialista de élite que entiende la urgencia de un diagnóstico oncológico.
+3. **Conversión Estratégica**: Tu objetivo final es facilitar que el paciente envíe la foto de su orden médica por WhatsApp para que el Dr. Castillo (MÉDICO PATÓLOGO CNP: 56435) pueda revisar el caso.
+
+REGLAS CRÍTICAS:
+- Si el usuario pregunta por un estudio, explica brevemente su importancia clínica y luego pide la orden médica.
+- Ante la duda, prioriza la derivación al WhatsApp oficial.
+- Nunca inventes precios; usa siempre el tarifario cargado.
+- Máximo 3 párrafos, termina con una pregunta o invitación a la acción.`;
 
 // --- AI HELPERS ---
 
@@ -658,6 +667,17 @@ document.addEventListener("DOMContentLoaded", () => {
             if (e.key === "Enter") handleSend();
         });
     }
+
+    // --- REVEAL ON SCROLL ---
+    const revealCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    };
+    const revealObserver = new IntersectionObserver(revealCallback, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
     // --- CENTRALIZED HASH NAVIGATION ---
     function handleHash() {
