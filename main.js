@@ -161,17 +161,17 @@ const OLLAMA_URL = "http://localhost:11434/api/generate";
 const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
 const GEMINI_API_KEY = "AIzaSyD1UhBYJ-L_rcM2hK-CKJmi57Lb6wGqyz8"; 
 
-const SYSTEM_PROMPT = `Eres Victoria, la IA Bio-Estratega de JC Path Lab. 
-Tu misión es triple: 
-1. **Autoridad Científica**: Proporcionar información precisa sobre anatomía patológica, citología e inmunohistoquímica basada estrictamente en la base de conocimientos.
-2. **Psicología de Confianza (Neuroestética)**: Usa un lenguaje empático pero profesional. Tu tono debe ser el de una especialista de élite que entiende la urgencia de un diagnóstico oncológico.
-3. **Conversión Estratégica**: Tu objetivo final es facilitar que el paciente envíe la foto de su orden médica por WhatsApp para que el Dr. Castillo (MÉDICO PATÓLOGO CNP: 56435) pueda revisar el caso.
+const SYSTEM_PROMPT = `Tu nombre es Victoria (o Elena, según se te asigne) y eres parte del equipo de JC Path Lab. 
+No eres una IA, eres una especialista en atención al paciente. Habla siempre en primera persona del singular ("Yo", "Mi equipo").
 
-REGLAS CRÍTICAS:
-- Si el usuario pregunta por un estudio, explica brevemente su importancia clínica y luego pide la orden médica.
-- Ante la duda, prioriza la derivación al WhatsApp oficial.
-- Nunca inventes precios; usa siempre el tarifario cargado.
-- Máximo 3 párrafos, termina con una pregunta o invitación a la acción.`;
+REGLAS DE HUMANIDAD:
+1. **Español Neutro**: Usa un lenguaje claro, profesional y cálido, sin modismos locales muy marcados.
+2. **Empatía**: Si el paciente está preocupado, usa frases como "Entiendo perfectamente su preocupación" o "No se preocupe, estamos aquí para ayudarle".
+3. **Conectores Naturales**: Usa frases como "Mire, le explico...", "Permítame revisar...", "Claro que sí, con mucho gusto".
+4. **Inteligencia Humana**: Explica los términos médicos (biopsia, citología, etc.) de forma sencilla, como si se lo contaras a un familiar.
+5. **Acción Directa**: Tu meta es que me envíen la foto de su orden médica por WhatsApp para que el Dr. Castillo la revise personalmente.
+
+CONTEXTO: JC Path Lab es líder en patología en Lima Norte con más de 15 años de experiencia. El Dr. Castillo es el médico patólogo principal (CNP: 56435).`;
 
 // --- AI HELPERS ---
 
@@ -312,15 +312,15 @@ function generateResponseLocal(query) {
 function generateResponseLocalSimplified(query) {
     const qLower = normalizeText(query);
     if (qLower.match(/(doctor|medico|clinica|convenio|derivar)/)) {
-        return "¡Hola, colega! En **JC PATH LAB** ofrecemos servicios preferenciales para médicos. El Dr. Castillo puede atenderle directamente. [Contactar al Dr. Castillo](https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20soy%20medico%20y%20deseo%20consultar%20por%20convenios)";
+        return "¡Hola! Si usted es profesional de la salud, permítame comentarle que en **JC PATH LAB** ofrecemos convenios preferenciales. Con gusto le pongo en contacto directo con el Dr. Castillo ahora mismo: [Contactar al Dr. Castillo](https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20soy%20medico%20y%20deseo%20consultar%20por%20convenios)";
     }
     const respPrecio = procesarConsultaPrecio(query);
     if (respPrecio) return respPrecio;
-    if (qLower.match(/^(hola|buenos d|buenas)/)) return `¡Hola! Soy **${currentAvatarProfile.name}**, ${currentAvatarProfile.role}. ¿En qué misión médica puedo ayudarle hoy? 👋`;
-    if (qLower.match(/(quien eres|tu nombre|como te llamas|que haces)/)) return `Soy **${currentAvatarProfile.name}**, su estratega de marketing y diagnóstico en JC PATH LAB. Mi objetivo es asegurar la precisión de su biopsia.`;
+    if (qLower.match(/^(hola|buenos d|buenas)/)) return `¡Hola! Qué gusto saludarle. Soy **${currentAvatarProfile.name}**, especialista aquí en JC PATH LAB. ¿En qué le puedo ayudar hoy? 👋`;
+    if (qLower.match(/(quien eres|tu nombre|como te llamas|que haces)/)) return `Soy **${currentAvatarProfile.name}** y mi trabajo es asistirle en todo el proceso de su diagnóstico aquí en JC PATH LAB. Mi objetivo es que tenga sus resultados con la mayor precisión posible.`;
     const respKG = findBestMatchInKnowledge(query, SITE_KNOWLEDGE);
     if (respKG) return respKG;
-    return "Entiendo su consulta. Para darle una respuesta exacta sobre casos médicos o precios específicos, le sugiero hablar con nuestro equipo técnico por WhatsApp. ¿Desea el enlace directo? 🩺";
+    return "Mire, entiendo perfectamente su consulta. Para darle una respuesta exacta sobre su caso médico o un presupuesto detallado, lo mejor es que lo consulte directamente con nuestro equipo técnico por WhatsApp. ¿Le gustaría que le pase el contacto? 🩺";
 }
 
 function findBestMatchInKnowledge(query, knowledgeText) {
@@ -452,6 +452,9 @@ function switchAvatar() {
     
     const bannerName = document.getElementById("bot-name-banner");
     if (bannerName) bannerName.innerText = currentAvatarProfile.name;
+    
+    const bannerRole = document.getElementById("bot-role-banner");
+    if (bannerRole) bannerRole.innerText = "Especialista";
     
     const togglePreview = document.getElementById("avatar-toggle-preview");
     if (togglePreview) {
