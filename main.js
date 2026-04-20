@@ -182,25 +182,6 @@ function updateAIStatus(level) {
     statusEl.style.color = level === "Local" ? "#fff" : (level === "Ollama" ? "#00ffcc" : "#ffcc00");
 }
 
-async function callOllama(prompt) {
-    updateAIStatus("Ollama");
-    try {
-        const response = await fetch(OLLAMA_URL, {
-            method: 'POST',
-            body: JSON.stringify({
-                model: 'llama3', 
-                prompt: `${SYSTEM_PROMPT}\n\nConsulta del usuario: ${prompt}`,
-                stream: false
-            }),
-            signal: AbortSignal.timeout(3000) 
-        });
-        const data = await response.json();
-        return data.response;
-    } catch (e) {
-        console.warn("Ollama falló o no está disponible.");
-        return null;
-    }
-}
 
 async function callGemini(prompt) {
     updateAIStatus("Gemini");
@@ -234,23 +215,15 @@ async function getHybridResponse(query) {
         return local;
     }
 
-    // Capa 1: Ollama (Inteligencia Local Avanzada)
-    try {
-        const ollamaResp = await callOllama(query);
-        if (ollamaResp) return ollamaResp;
-    } catch (e) {
-        console.warn("Ollama no disponible, pasando a Gemini...");
-    }
-
-    // Capa 2: Gemini (Respaldo Final)
+    // Capa 1: IA en la Nube (Victoria Autónoma)
     try {
         const geminiResp = await callGemini(query);
         if (geminiResp) return geminiResp;
     } catch (e) {
-        console.error("Gemini falló.");
+        console.error("Fallo crítico en cerebro de nube:", e);
     }
 
-    return local || "Lo siento, en este momento mis sistemas de inteligencia avanzada están experimentando una alta demanda. Por favor, contacte directamente con el Dr. Castillo vía WhatsApp para una atención inmediata. 🩺";
+    return "Mire, entiendo perfectamente su consulta. Para darle una respuesta exacta sobre su caso médico o un presupuesto detallado, lo mejor es que lo consulte directamente con nuestro equipo técnico por WhatsApp. ¿Le gustaría que le pase el contacto? 🩺";
 }
 
 function generateResponseLocal(query) {
@@ -297,7 +270,6 @@ function generateResponseLocal(query) {
             return `${tempResponse}\n\nPerfecto. Solo me falta su **número de teléfono** para enviarle la información al doctor. 📞`;
         }
         userPhone = query.replace(/\D/g, '');
-        if (userPhone.length !== 9) return "El número debe tener **9 dígitos**. Por favor, ingréselo nuevamente. 📞";
         lastBotIntent = null;
         
         const transcript = (conversationHistory || []).slice(-6).map(m => `${m.sender === 'user' ? 'Cliente' : 'Bot'}: ${m.text}`).join('\n');
@@ -306,21 +278,37 @@ function generateResponseLocal(query) {
         return `¡Todo listo! He preparado su reporte para el doctor.\n\n👉 **[ENVIAR MI CONSULTA AL DR. CASTILLO](${waLink})**\n\nEsto le ahorrará tiempo explicando su caso de nuevo.`;
     }
 
-    return generateResponseLocalSimplified(query);
+    // --- 4. BÚSQUEDA AUTÓNOMA (Propaganda e Información) ---
+    // Si no estamos en un flujo de recolección de datos, buscamos respuestas automáticas
+    const propagandaResp = generateResponseLocalSimplified(query);
+    if (propagandaResp) return propagandaResp;
+
+    return null;
 }
 
 function generateResponseLocalSimplified(query) {
-    const qLower = normalizeText(query);
-    if (qLower.match(/(doctor|medico|clinica|convenio|derivar)/)) {
+    const qNorm = normalizeText(query);
+    
+    // Búsqueda inteligente en base de propaganda local
+    if (qNorm.match(/(precio|costo|cuanto|vale|valor|tarifario)/)) return "Mire, tenemos opciones muy accesibles: Biopsia Gástrica/Colon a S/ 80, Próstata (6 frascos) a S/ 250 y Papanicolaou a S/ 20. ¿Desea que le pase el tarifario completo por WhatsApp? 💰";
+    if (qNorm.match(/(donde|ubicacion|direccion|lugar|queda)/)) return "Estamos en Mz M2 lote 13 Jardines de Chillón, Puente Piedra, Lima. Atendemos de Lunes a Sábado de 9:00 AM a 6:00 PM. ¡Le esperamos! 📍";
+    if (qNorm.match(/(contacto|whatsapp|wasap|telefono|llamar)/)) return "Nuestra línea directa de WhatsApp es el **986 396 733**. Mi equipo y el Dr. Castillo están atentos para ayudarle con su diagnóstico. 📱";
+    if (qNorm.match(/(rapidez|tiempo|demora|cuanto tarda)/)) return "¡Somos los más rápidos de Lima Norte! Entregamos resultados certificados en solo **3 a 4 días hábiles**, permitiendo iniciar tratamientos sin demora. ⚡";
+    if (qNorm.match(/(provincias|enviar|recibir|nacional)/)) return "Sí, recibimos muestras de todo el Perú vía Olva o Shalom. Solo debe enviarnos la muestra bien rotulada y nosotros nos encargamos del resto. 📦";
+    if (qNorm.match(/(domicilio|recojo|vienen)/)) return "Claro que sí, ofrecemos servicio de recojo a domicilio en TODO LIMA. Solo escríbanos al WhatsApp 986396733 y coordinamos la hora. 🛵";
+    if (qNorm.match(/(preparacion|indicaciones|ayuno)/)) return "Para biopsias, solo necesita traer su orden médica y el tejido en formol al 10%. Para Papanicolaou, se recomienda no estar en periodo menstrual ni haber tenido relaciones sexuales 24h antes. 🩺";
+
+    if (qNorm.match(/(doctor|medico|clinica|convenio|derivar)/)) {
         return "¡Hola! Si usted es profesional de la salud, permítame comentarle que en **JC PATH LAB** ofrecemos convenios preferenciales. Con gusto le pongo en contacto directo con el Dr. Castillo ahora mismo: [Contactar al Dr. Castillo](https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20soy%20medico%20y%20deseo%20consultar%20por%20convenios)";
     }
-    const respPrecio = procesarConsultaPrecio(query);
-    if (respPrecio) return respPrecio;
-    if (qLower.match(/^(hola|buenos d|buenas)/)) return `¡Hola! Qué gusto saludarle. Soy **${currentAvatarProfile.name}**, especialista aquí en JC PATH LAB. ¿En qué le puedo ayudar hoy? 👋`;
-    if (qLower.match(/(quien eres|tu nombre|como te llamas|que haces)/)) return `Soy **${currentAvatarProfile.name}** y mi trabajo es asistirle en todo el proceso de su diagnóstico aquí en JC PATH LAB. Mi objetivo es que tenga sus resultados con la mayor precisión posible.`;
+    
+    if (qNorm.match(/^(hola|buenos d|buenas)/)) return `¡Hola! Qué gusto saludarle. Soy **${currentAvatarProfile.name}**, especialista aquí en JC PATH LAB. ¿En qué le puedo ayudar hoy? 👋`;
+    if (qNorm.match(/(quien eres|tu nombre|como te llamas|que haces)/)) return `Soy **${currentAvatarProfile.name}** y mi trabajo es asistirle en todo el proceso de su diagnóstico aquí en JC PATH LAB. Mi objetivo es que tenga sus resultados con la mayor precisión posible.`;
+    
     const respKG = findBestMatchInKnowledge(query, SITE_KNOWLEDGE);
     if (respKG) return respKG;
-    return "Mire, entiendo perfectamente su consulta. Para darle una respuesta exacta sobre su caso médico o un presupuesto detallado, lo mejor es que lo consulte directamente con nuestro equipo técnico por WhatsApp. ¿Le gustaría que le pase el contacto? 🩺";
+
+    return null;
 }
 
 function findBestMatchInKnowledge(query, knowledgeText) {
