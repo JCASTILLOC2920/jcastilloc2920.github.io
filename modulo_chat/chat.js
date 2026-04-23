@@ -59,28 +59,17 @@ function removeTyping(id) {
 
 async function getVictoriaResponse(input) {
     try {
-        const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-                      method: 'POST',
-                      headers: {
-                          'Content-Type': 'application/json',
-                          'Authorization': `Bearer ${VICTORIA_CONFIG.groqApiKey}`
-          },
-                      body: JSON.stringify({
-                          model: VICTORIA_CONFIG.groqModel,
-                          messages: [
-          {
-                                  role: "system",
-                                  content: VICTORIA_CONFIG.systemPrompt + "\nBase de conocimientos: " + VICTORIA_CONFIG.knowledgeBase.join(" ")
-          },
-          {
-                                  role: "user",
-                                  content: input
-          }
-                          ],
-                          temperature: 0.5,
-                          max_tokens: 300
-          })
-          });
+        const response = await fetch(VICTORIA_CONFIG.chatEndpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: input,
+                systemPrompt: VICTORIA_CONFIG.systemPrompt,
+                knowledgeBase: VICTORIA_CONFIG.knowledgeBase.join(" ")
+            })
+        });
 
         if (!response.ok) {
             throw new Error(`Error en API Groq: ${response.status}`);

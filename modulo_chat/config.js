@@ -4,8 +4,8 @@ const VICTORIA_CONFIG = {
       welcomeMessage: "Bienvenido a JC PATH LAB. Soy Victoria, su asistente virtual de diagnostico. En que puedo ayudarle hoy?",
       errorMessage: "Lo siento, estoy experimentando una breve latencia en mi red Titan. Por favor, intente de nuevo en un momento.",
       themeColor: "#00D4FF",
-      // Configuracion de Groq
-      groqApiKey: "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", 
+      // Configuracion de Red Segura
+      chatEndpoint: "/api/chat", 
       groqModel: "llama-3.1-8b-instant",
       systemPrompt: "Eres Victoria, la asistente virtual experta de JC PATH LAB, un laboratorio de anatomia patologica. Responde de manera concisa, profesional y amable. Utiliza la base de conocimientos para responder.",
       knowledgeBase: [
