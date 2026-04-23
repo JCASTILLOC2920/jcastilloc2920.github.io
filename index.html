@@ -2335,6 +2335,24 @@
         <i class="fas fa-comments"></i>
     </button>
 
+    <style>
+        .whatsapp-pulse {
+            animation: pulse-aura 2s infinite;
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+        }
+        @keyframes pulse-aura {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+    </style>
+    <script src="modulo_chat/urgencia_social.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const waBtn = document.querySelector('.sticky-btn.whatsapp, .float-btn.whatsapp, .whatsapp-btn');
+            if(waBtn) waBtn.classList.add('whatsapp-pulse');
+        });
+    </script>
 </body>
 
 </html>
