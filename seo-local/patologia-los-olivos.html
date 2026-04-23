@@ -2010,7 +2010,31 @@
     </main>
 
     <!-- Footer -->
-    <footer id="contacto" class="contact-section">
+    
+    <!-- [INYECCION ANTIGRAVITY: CALCULADORA IHC B2B] -->
+    <section id="ihc-calculator" style="margin: 40px auto; max-width: 800px; padding: 30px; background: rgba(14, 42, 71, 0.05); border-radius: 12px; border-left: 6px solid #1abc9c; font-family: sans-serif;">
+        <h2 style="color: #0e2a47; margin-bottom: 5px;">🧬 Oráculo Diagnóstico B2B</h2>
+        <p style="color: #555; font-size: 0.95rem; margin-bottom: 20px;">Seleccione el origen sospechoso para visualizar los paneles de Inmunohistoquímica sugeridos.</p>
+        <select id="ihc-selector" style="width: 100%; padding: 12px; border-radius: 6px; border: 1px solid #ccc; font-size: 1rem; color: #333; margin-bottom: 15px;">
+            <option value="">-- Seleccione un Origen --</option>
+            <option value="mama">Carcinoma de Mama</option>
+            <option value="prostata">Adenocarcinoma Prostático</option>
+        </select>
+        <div id="ihc-result" style="display: none; background: white; padding: 20px; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);"><h4 id="res-title" style="color: #1abc9c; margin-top:0;"></h4><p id="res-text" style="color: #333;"></p></div>
+        <script>
+            document.getElementById('ihc-selector').addEventListener('change', function() {
+                const val = this.value;
+                const resultBox = document.getElementById('ihc-result');
+                if (val === '') { resultBox.style.display = 'none'; return; }
+                resultBox.style.display = 'block';
+                let paneles = {'mama': {t: 'Panel Básico de Mama', d: 'RE, RP, HER2, Ki-67.'}, 'prostata': {t: 'Panel Prostático', d: 'PSA, PSAP, AMACR (P504S).'} };
+                document.getElementById('res-title').innerHTML = paneles[val].t;
+                document.getElementById('res-text').innerHTML = paneles[val].d;
+            });
+        </script>
+    </section>
+    
+<footer id="contacto" class="contact-section">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Contáctenos</h2>
