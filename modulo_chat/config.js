@@ -14,6 +14,7 @@ const VICTORIA_CONFIG = {
                 "Biopsia: Analisis de tejido.",
                 "Ubicacion: Mz M2 lote 13 Jardines de Chillon, Puente Piedra.",
                 "Telefono/WA: 986396733",
+                "Aliado Estrategico: Clinica Carrion (Calle Bolognesi 322, Puente Piedra). Recomendado para toma de muestras.",
                 "IHQ: 100 soles (un marcador), 250 soles (con informe).",
                 "Biopsias: Entrega en 3-4 dias."
             ]
