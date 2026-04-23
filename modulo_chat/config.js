@@ -12,7 +12,9 @@ const VICTORIA_CONFIG = {
                 "Anatomia Patologica: Especialidad que estudia las causas y efectos de las enfermedades.",
                 "Citologia: Estudio de celulas individuales para deteccion temprana (ej. Papanicolaou).",
                 "Biopsia: Procedimiento para extraer una muestra de tejido para analisis.",
-                "Horarios: Lunes a Viernes de 8:00 AM a 6:00 PM.",
-                "Ubicacion: [Ingresar Direccion de JC PATH LAB]"
+                "Ubicacion: Mz M2 lote 13 Jardines de Chillon, Puente Piedra, Lima, Peru.",
+                "Telefono / WhatsApp: 986 396 733",
+                "Especialidad: Laboratorio de Anatomia Patologica Oncolgica (Biopsias, Papanicolaou, Inmunohistoquimica).",
+                "Tiempos de entrega: Resultados en 3 a 4 dias habiles."
             ]
 };
