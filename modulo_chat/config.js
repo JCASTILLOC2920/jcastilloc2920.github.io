@@ -14,7 +14,8 @@ const VICTORIA_CONFIG = {
                 "Biopsia: Procedimiento para extraer una muestra de tejido para analisis.",
                 "Ubicacion: Mz M2 lote 13 Jardines de Chillon, Puente Piedra, Lima, Peru.",
                 "Telefono / WhatsApp: 986 396 733",
-                "Especialidad: Laboratorio de Anatomia Patologica Oncolgica (Biopsias, Papanicolaou, Inmunohistoquimica).",
-                "Tiempos de entrega: Resultados en 3 a 4 dias habiles."
+                "IHQ - Marcadores: CD20 (Linfomas B), CD3 (Linfomas T), Ki-67 (Proliferacion/Agresividad), HER2 (Cancer de Mama/Estomago), ER/PR (Receptores Hormonales), P16 (VPH), TTF-1 (Pulmon/Tiroides).",
+                "IHQ - Costos: 100 soles por marcador sin lectura, 250 soles con lectura/informe.",
+                "Biopsias: Resultados en 3-4 dias habiles. Especialistas en oncologia."
             ]
 };
