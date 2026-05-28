@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JC PATH LAB - Anatomía Patológica LIMA PERÚ | Biopsias y Citología Lima Norte</title>
+    <title>JC PATH LAB - Anatomía Patológica en Pucallpa | Biopsias y Papanicolaou Ucayali</title>
     <meta name="geo.region" content="PE-LMA" />
     <meta name="geo.placename" content="Lima" />
     <meta name="geo.position" content="-11.8767;-77.0628" />
@@ -16,7 +16,7 @@
       "@context": "https://schema.org",
       "@type": "MedicalOrganization",
       "name": "JC PATH LAB",
-      "description": "Laboratorio de Anatomía Patológica especializado en biopsias y citocirugía en Lima Norte. Resultados rápidos y alta precisión.",
+      "description": "Laboratorio de Anatomía Patológica especializado en biopsias y citocirugía en Pucallpa, Ucayali. Resultados rápidos y alta precisión.",
       "url": "https://jcastilloc2920.github.io/",
       "logo": "https://jcastilloc2920.github.io/logo.png",
       "contactPoint": {
@@ -27,36 +27,167 @@
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Mz M2 lote 13 Jardines de Chillón",
-        "addressLocality": "Puente Piedra",
-        "addressRegion": "Lima",
+        "addressLocality": "Pucallpa",
+        "addressRegion": "Ucayali",
         "addressCountry": "PE"
       }
     }
     </script>
-    <meta name="description"
-        content="Laboratorio de Anatomía Patológica en Puente Piedra, Lima Norte. Biopsias rápidas en 3-4 días, inmunohistoquímica, Papanicolaou y diagnóstico de cáncer. Recojo a domicilio.">
-    <meta name="keywords"
-        content="anatomia patologica puente piedra, biopsias lima norte, inmunohistoquimica peru, patologo oncologo lima, papanicolaou precio, citologia cervical, diagnostico cancer lima, laboratorio puente piedra, biopsia gastrica precio, patologo certificado peru, jc path lab, patologia oncologica lima norte">
+    <meta name="description" content="Laboratorio de Anatomía Patológica en Pucallpa, Ucayali. JC PATH LAB ofrece diagnóstico de biopsias en 72 horas, inmunohistoquímica, citología y Papanicolaou. Recojo de muestras a domicilio.">
+    <meta name="keywords" content="anatomia patologica Pucallpa, biopsias Pucallpa, papanicolaou Pucallpa, inmunohistoquimica Pucallpa, laboratorio de patologia Pucallpa, jc path lab Pucallpa, patologo oncologo Ucayali">
                         <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap">
     
     <!-- Premium Design System -->
-    <link rel="stylesheet" href="modern-premium.css">
+    <link rel="stylesheet" href="../modern-premium.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Legacy Support (Internal cleanup) -->
-    <link rel="stylesheet" href="style.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="../style.css" media="print" onload="this.media='all'">
     
     <style>
-        /* Precision Fixes for the New Aesthetic */
-        :root { --accent: #06b6d4; }
+        /* Precision Fixes for the New Aesthetic - Neuromarketing Optimized */
+        :root {
+            --primary: #1e3a8a; /* Deep Cobalt Blue - Trust & Authority */
+            --primary-dark: #172554;
+            --secondary: #0d9488; /* Clinical Teal - Science & Recovery */
+            --accent: #f97316; /* Amber - Quick Results indicator */
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --emerald-cta: #10b981; /* High contrast green for CTAs */
+        }
         .text-gradient {
-            background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #0d9488 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+        .btn-premium {
+            background: var(--emerald-cta) !important;
+            border-radius: 30px !important;
+            transition: all 0.3s ease !important;
+        }
+        .btn-premium:hover {
+            background: #059669 !important;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3) !important;
+        }
+        /* Trust Banner Grid */
+        .trust-banner {
+            background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 100%);
+            border-top: 1px solid #ccfbf1;
+            border-bottom: 1px solid #ccfbf1;
+            padding: 3rem 0;
+            margin: 2rem 0;
+        }
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .trust-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--secondary);
+            transition: all 0.3s;
+        }
+        .trust-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px -3px rgba(13, 148, 136, 0.15);
+        }
+        /* Search Box and Accordions */
+        .marker-search-container {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        #markerSearch {
+            width: 100%;
+            padding: 0.9rem 1.5rem;
+            border: 2px solid #cbd5e1;
+            border-radius: 30px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+            outline: none;
+        }
+        #markerSearch:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.15);
+        }
+        .search-highlight {
+            background-color: rgba(16, 185, 129, 0.2); /* Soft Emerald overlay */
+            color: #047857;
+            font-weight: 600;
+            border-radius: 4px;
+            padding: 0 4px;
+        }
+        /* Premium Modal Styling */
+        .ab-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        .ab-modal-content {
+            background: rgba(255, 255, 255, 0.98);
+            margin: auto;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            width: 90%;
+            max-width: 500px;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .ab-modal.show {
+            display: flex !important;
+        }
+        .ab-modal.show .ab-modal-content {
+            transform: scale(1);
+        }
+        .ab-close {
+            position: absolute;
+            right: 1.5rem;
+            top: 1rem;
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .ab-close:hover {
+            color: var(--text-main);
+        }
+        .ab-title {
+            color: var(--primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 0.5rem;
+        }
+        .ab-info {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: var(--text-main);
         }
     </style>
 
@@ -65,7 +196,7 @@
       "@context": "https://schema.org",
       "@type": "MedicalBusiness",
       "@id": "https://jcastilloc2920.github.io/#business",
-      "name": "JC PATH LAB - Laboratorio de Anatomía Patológica",
+      "name": "JC PATH LAB - Anatomía Patológica Pucallpa",
       "alternateName": "Laboratorio del Dr. Josehp Castillo",
       "description": "Especialistas en diagnóstico por biopsias, citología e inmunohistoquímica con tecnología de punta en Lima, Perú. Segunda opinión patológica y diagnóstico oncológico de alta precisión.",
       "url": "https://jcastilloc2920.github.io/",
@@ -84,8 +215,8 @@
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Mz M2 lote 13 Jardines de Chillón",
-        "addressLocality": "Puente Piedra",
-        "addressRegion": "Lima",
+        "addressLocality": "Pucallpa",
+        "addressRegion": "Ucayali",
         "postalCode": "15118",
         "addressCountry": "PE"
       },
@@ -105,15 +236,172 @@
       ],
       "knowsAbout": ["Anatomía Patológica", "Oncopatología", "Inmunohistoquímica", "Citología", "Biopsias", "Segunda Opinión Patológica", "Diagnóstico Oncológico"],
       "medicalSpecialty": ["Pathology", "Oncology"],
-      "areaServed": {
-        "@type": "GeoCircle",
-        "geoMidpoint": {
-          "@type": "GeoCoordinates",
-          "latitude": "-11.8767",
-          "longitude": "-77.0628"
+      "areaServed": [
+        {
+                "@type": "AdministrativeArea",
+                "name": "Bellavista, Lima, Peru"
         },
-        "geoRadius": "50000"
-      },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Callao, Lima, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Carabayllo, Lima, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Carmen De La Legua, Lima, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Comas, Lima, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Independencia, Lima, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "La Perla, Lima, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Los Olivos, Lima, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Puente Piedra, Lima, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "San Martin De Porres, Lima, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Ventanilla, Lima, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Abancay, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Arequipa, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Ayacucho, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Cajamarca, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Canete, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Chachapoyas, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Chiclayo, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Chimbote, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Chincha, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Cusco, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Huacho, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Huancayo, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Huanuco, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Huaral, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Huaraz, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Ica, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Iquitos, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Juliaca, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Moyobamba, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Pisco, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Piura, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Pucallpa, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Puerto Maldonado, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Puno, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Sullana, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Tacna, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Talara, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Tarapoto, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Trujillo, Peru"
+        },
+        {
+                "@type": "AdministrativeArea",
+                "name": "Tumbes, Peru"
+        }
+],
       "founder": {
         "@type": "Person",
         "name": "Dr. Josehp Castillo Cuenca",
@@ -151,15 +439,15 @@
     <header>
         <div class="nav-container">
             <div class="logo-container">
-                <a href="index.html" class="logo-text">JC PATH LAB</a>
+                <a href="../index.html" class="logo-text">JC PATH LAB</a>
             </div>
             <nav class="desktop-nav">
                 <ul class="nav-menu" style="display: flex; list-style: none; gap: 2rem; margin: 0; align-items: center;">
-                    <li><a href="index.html" class="nav-link" style="text-decoration: none; font-weight: 600; color: var(--text-main);">Inicio</a></li>
-                    <li><a href="institucional.html" class="nav-link" style="text-decoration: none; font-weight: 600; color: var(--text-main);"><i class="fas fa-handshake"></i> Convenios</a></li>
-                    <li><a href="soporte-pericial.html" class="nav-link" style="text-decoration: none; font-weight: 600; color: var(--text-main);"><i class="fas fa-user-md"></i> Médicos</a></li>
-                    <li><a href="solicitud.html" class="btn-premium" style="font-size: 0.9rem;">Solicitud</a></li>
-                    <li><a href="login.html" class="nav-link" style="text-decoration: none; font-weight: 700; color: var(--primary);"><i class="fas fa-file-medical"></i> Resultados</a></li>
+                    <li><a href="../index.html" class="nav-link" style="text-decoration: none; font-weight: 600; color: var(--text-main);">Inicio</a></li>
+                    <li><a href="../institucional.html" class="nav-link" style="text-decoration: none; font-weight: 600; color: var(--text-main);"><i class="fas fa-handshake"></i> Convenios</a></li>
+                    <li><a href="../soporte-pericial.html" class="nav-link" style="text-decoration: none; font-weight: 600; color: var(--text-main);"><i class="fas fa-user-md"></i> Médicos</a></li>
+                    <li><a href="../solicitud.html" class="btn-premium" style="font-size: 0.9rem;">Solicitud</a></li>
+                    <li><a href="../login.html" class="nav-link" style="text-decoration: none; font-weight: 700; color: var(--primary);"><i class="fas fa-file-medical"></i> Resultados</a></li>
                 </ul>
             </nav>
         </div>
@@ -170,26 +458,26 @@
         <div id="home-view" class="page-section">
             <!-- Hero Section -->
             <!-- Premium Hero -->
-            <section id="hero" style="padding: 8rem 0; background: radial-gradient(circle at top right, #e0f2fe, #f8fafc); overflow: hidden;">
+            <section id="hero" class="hero-wrapper">
                 <div class="nav-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
                     <div class="hero-text-content">
-                        <span style="color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.875rem;">Excelencia en Diagnóstico</span>
-                        <h1 class="text-gradient" style="font-size: 3.5rem; line-height: 1.1; margin: 1rem 0 2rem 0; font-weight: 800;">
+                        <span style="color: var(--secondary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; font-size: 0.875rem; display: block; margin-bottom: 0.5rem;">Excelencia en Diagnóstico</span>
+                        <h1 class="text-gradient" style="font-size: 3.8rem; line-height: 1.1; margin: 0.5rem 0 1.5rem 0; font-weight: 800;">
                             Anatomía Patológica de <br> Precisión Quirúrgica
                         </h1>
-                        <p style="font-size: 1.125rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 500px;">
-                            Resultados oncológicos en 72 horas con certificación internacional. El aliado estratégico para clínicas y cirujanos en Lima.
+                        <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 500px; line-height: 1.6;">
+                            Resultados oncológicos en 72 horas con certificación internacional. El aliado de confianza para cirujanos de élite en Lima.
                         </p>
-                        <div style="display: flex; gap: 1rem;">
-                            <a href="login.html" class="btn-premium" style="padding: 1rem 2rem;">Consultar Resultados</a>
-                            <a href="solicitud.html" style="text-decoration: none; color: var(--text-main); font-weight: 600; display: flex; align-items: center; gap: 0.5rem; padding: 1rem;">
-                                Iniciar Estudio <i class="fas fa-chevron-right" style="font-size: 0.8rem;"></i>
+                        <div style="display: flex; gap: 1.5rem; align-items: center;">
+                            <a href="../login.html" class="btn-premium-lux">Consultar Resultados</a>
+                            <a href="../solicitud.html" class="btn-premium-lux secondary-lux">
+                                Iniciar Estudio <i class="fas fa-chevron-right" style="font-size: 0.8rem; margin-left: 0.4rem;"></i>
                             </a>
                         </div>
                     </div>
                     <div class="hero-visual" style="position: relative;">
-                        <div style="background: white; padding: 1rem; border-radius: 20px; box-shadow: var(--shadow-lg); transform: rotate(2deg);">
-                            <img src="microscopio-patologia.jpg" alt="Tecnología de Punta" style="width: 100%; border-radius: 12px; display: block;">
+                        <div style="background: white; padding: 1rem; border-radius: 24px; box-shadow: var(--shadow-lux); transform: rotate(1.5deg); border: 1px solid var(--glass-border);">
+                            <img src="../microscopio-patologia.jpg" alt="Tecnología de Punta" style="width: 100%; border-radius: 16px; display: block;">
                         </div>
                         <div style="position: absolute; bottom: -2rem; left: -2rem; background: var(--primary); color: white; padding: 1.5rem; border-radius: 16px; box-shadow: var(--shadow-lg); transform: rotate(-5deg);">
                             <div style="font-size: 2rem; font-weight: 800;">+50k</div>
@@ -219,22 +507,46 @@
                     </div>
                 </div>
             </section>
+            
+            <!-- Neuromarketing Trust Banner -->
+            <section class="trust-banner">
+                <div class="nav-container">
+                    <h2 style="text-align: center; font-size: 1.8rem; font-weight: 700; color: var(--primary); margin-bottom: 2rem;">Rigor Clínico y Soporte Empático para su Tranquilidad</h2>
+                    <div class="trust-grid">
+                        <div class="trust-card">
+                            <div style="font-size: 2.2rem; color: var(--secondary); margin-bottom: 1rem;"><i class="fas fa-certificate"></i></div>
+                            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-main);">Certeza Morfológica</h3>
+                            <p style="font-size: 0.95rem; color: var(--text-muted); margin: 0;">No interpretamos marcadores aislados. Correlacionamos cada inmunohistoquímica con la morfología celular del paciente para un diagnóstico definitivo y de alta precisión.</p>
+                        </div>
+                        <div class="trust-card">
+                            <div style="font-size: 2.2rem; color: var(--secondary); margin-bottom: 1rem;"><i class="fas fa-clock-rotate-left"></i></div>
+                            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-main);">Tiempos Críticos (72h)</h3>
+                            <p style="font-size: 0.95rem; color: var(--text-muted); margin: 0;">Entendemos la urgencia emocional y médica. Procesamos biopsias con máxima prioridad para entregar resultados oncológicos fiables en el menor tiempo.</p>
+                        </div>
+                        <div class="trust-card">
+                            <div style="font-size: 2.2rem; color: var(--secondary); margin-bottom: 1rem;"><i class="fas fa-box-tissue"></i></div>
+                            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-main);">Resguardo de Muestras</h3>
+                            <p style="font-size: 0.95rem; color: var(--text-muted); margin: 0;">Macroscopía propia y archivo climatizado de tacos de parafina y láminas. Sus muestras están custodiadas para cualquier consulta o segunda opinión inmediata.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <!-- Premium Selection Cards -->
             <section style="padding: 4rem 0;">
                 <div class="nav-container">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-                        <a href="guia-paciente.html" class="card" style="text-decoration: none; display: block; text-align: center; padding: 3rem;">
-                            <div style="font-size: 3rem; color: var(--primary); margin-bottom: 1.5rem;"><i class="fas fa-book-medical"></i></div>
-                            <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-main);">Soy Paciente / Particular</h3>
-                            <p style="color: var(--text-muted);">Guía útil para entender su informe y solicitar recojo de muestras.</p>
-                            <span style="display: inline-block; margin-top: 1.5rem; color: var(--primary); font-weight: 700;">Entender mi Análisis <i class="fas fa-arrow-right"></i></span>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
+                        <a href="../guia-paciente.html" class="premium-card" style="text-decoration: none; display: block; text-align: center; padding: 4rem 3rem;">
+                            <div class="trust-card-icon" style="color: var(--primary);"><i class="fas fa-book-medical"></i></div>
+                            <h3 style="font-size: 1.6rem; margin-bottom: 1rem; color: var(--primary-dark);">Soy Paciente / Particular</h3>
+                            <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.6;">Guía práctica para comprender su informe de patología y coordinar el recojo a domicilio de sus muestras en Lima.</p>
+                            <span style="display: inline-block; margin-top: 2rem; color: var(--primary); font-weight: 700; font-size: 1.05rem;">Entender mi Análisis <i class="fas fa-arrow-right" style="margin-left: 0.4rem;"></i></span>
                         </a>
-                        <a href="soporte-pericial.html" class="card" style="text-decoration: none; display: block; text-align: center; padding: 3rem;">
-                            <div style="font-size: 3rem; color: var(--accent); margin-bottom: 1.5rem;"><i class="fas fa-microscope"></i></div>
-                            <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-main);">Soy Médico / Clínica</h3>
-                            <p style="color: var(--text-muted);">Acceda a soporte pericial, protocolos IHC e interconsultas.</p>
-                            <span style="display: inline-block; margin-top: 1.5rem; color: var(--accent); font-weight: 700;">Soporte Técnico <i class="fas fa-arrow-right"></i></span>
+                        <a href="../soporte-pericial.html" class="premium-card" style="text-decoration: none; display: block; text-align: center; padding: 4rem 3rem;">
+                            <div class="trust-card-icon" style="color: var(--secondary);"><i class="fas fa-microscope"></i></div>
+                            <h3 style="font-size: 1.6rem; margin-bottom: 1rem; color: var(--primary-dark);">Soy Médico / Clínica</h3>
+                            <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.6;">Acceso a protocolos técnicos de inmunohistoquímica, convenios preferenciales e interconsultas rápidas.</p>
+                            <span style="display: inline-block; margin-top: 2rem; color: var(--secondary); font-weight: 700; font-size: 1.05rem;">Soporte Pericial <i class="fas fa-arrow-right" style="margin-left: 0.4rem;"></i></span>
                         </a>
                     </div>
                 </div>
@@ -255,7 +567,7 @@
                         <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
                             Análisis histopatológico con coloraciones especiales para la detección temprana de patologías oncológicas.
                         </p>
-                        <a href="partes-blandas.html" style="color: var(--primary); font-weight: 600; text-decoration: none; font-size: 0.9rem;">Ver Lista de Precios <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i></a>
+                        <a href="../partes-blandas.html" style="color: var(--primary); font-weight: 600; text-decoration: none; font-size: 0.9rem;">Ver Lista de Precios <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i></a>
                     </div>
                     <!-- Citología -->
                     <div class="card">
@@ -266,7 +578,7 @@
                         <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
                             Papanicolaou y estudios de líquidos con técnica de bloque celular para máxima precisión diagnóstica.
                         </p>
-                        <a href="citopatologia.html" style="color: #f97316; font-weight: 600; text-decoration: none; font-size: 0.9rem;">Ver Información <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i></a>
+                        <a href="../citopatologia.html" style="color: #f97316; font-weight: 600; text-decoration: none; font-size: 0.9rem;">Ver Información <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i></a>
                     </div>
                     <!-- IHC -->
                     <div class="card">
@@ -277,7 +589,7 @@
                         <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
                             Inmunotipificación de tumores con paneles predictivos y pronósticos de alta complejidad.
                         </p>
-                        <a href="inmunohistoquimica_resumen.html" style="color: #10b981; font-weight: 600; text-decoration: none; font-size: 0.9rem;">Consultar Marcadores <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i></a>
+                        <a href="../inmunohistoquimica_resumen.html" style="color: #10b981; font-weight: 600; text-decoration: none; font-size: 0.9rem;">Consultar Marcadores <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i></a>
                     </div>
                 </div>
             </div>
@@ -305,33 +617,42 @@
                                     precisos</b> para guiar tu tratamiento médico inmediato.
                             </p>
 
-                            <h4 style="color: var(--accent); margin-bottom: 15px; font-weight: 700;">LISTA DE PRECIOS - BIOPSIAS</h4>
-                            <div class="pricing-grid">
-                                <div class="pricing-card">
-                                    <div class="pricing-card-name">BIOPSIA GÁSTRICA</div>
-                                    <div class="pricing-card-price">80<span>Soles</span></div>
-                                </div>
-                                <a href="gastrointestinal.html" class="pricing-card">
-                                    <div class="pricing-card-name">BIOPSIA DE ESÓFAGO, INTESTINO DELGADO Y COLON
+                            <h4 style="color: var(--primary); font-size: 1.4rem; margin-top: 2rem; margin-bottom: 1.5rem; font-weight: 700; font-family: 'Outfit';">LISTA DE PRECIOS - BIOPSIAS DE ALTA PRECISIÓN</h4>
+                            <div class="pricing-lux-grid">
+                                <div class="pricing-lux-card popular">
+                                    <h5 style="font-size: 1.2rem; color: var(--primary-dark); margin-bottom: 0.5rem; font-family: 'Outfit';">Biopsias Convencionales</h5>
+                                    <p style="color: var(--text-muted); font-size: 0.9rem; flex-grow: 1; margin-bottom: 1rem;">Estómago, Esófago, Intestino Delgado, Colon o Cérvix. Diagnóstico morfológico con tinción H&E.</p>
+                                    <div class="pricing-price-box" style="margin: 1rem 0;">
+                                        <span class="pricing-currency">S/</span>
+                                        <span class="pricing-price">80</span>
+                                        <span class="pricing-term">/ estudio</span>
                                     </div>
-                                    <div class="pricing-card-price">80<span>Soles</span></div>
-                                </a>
-                                <div class="pricing-card">
-                                    <div class="pricing-card-name">BIOPSIA DE CERVIX</div>
-                                    <div class="pricing-card-price">80<span>Soles</span></div>
+                                    <a href="../gastrointestinal.html" class="btn-premium-lux secondary-lux" style="font-size: 0.9rem; padding: 0.8rem 1.5rem;">Detalles Técnicos</a>
                                 </div>
-                                <div class="pricing-card">
-                                    <div class="pricing-card-name">CONO CERVICAL</div>
-                                    <div class="pricing-card-price">120<span>Soles</span></div>
+                                <div class="pricing-lux-card">
+                                    <h5 style="font-size: 1.2rem; color: var(--primary-dark); margin-bottom: 0.5rem; font-family: 'Outfit';">Cono Cervical</h5>
+                                    <p style="color: var(--text-muted); font-size: 0.9rem; flex-grow: 1; margin-bottom: 1rem;">Estudio completo de márgenes quirúrgicos y profundidad invasiva cervical.</p>
+                                    <div class="pricing-price-box" style="margin: 1rem 0;">
+                                        <span class="pricing-currency">S/</span>
+                                        <span class="pricing-price">120</span>
+                                        <span class="pricing-term">/ estudio</span>
+                                    </div>
+                                    <a href="https://wa.me/51986396733?text=Hola,%20deseo%20coordinar%20estudio%20de%20cono%20cervical." class="btn-premium-lux" style="font-size: 0.9rem; padding: 0.8rem 1.5rem;">Agendar Recojo</a>
                                 </div>
-                                <a href="genitourinario.html" class="pricing-card">
-                                    <div class="pricing-card-name">BIOPSIA DE PRÓSTATA (POR 6 FRASCOS)</div>
-                                    <div class="pricing-card-price">250<span>Soles</span></div>
-                                </a>
+                                <div class="pricing-lux-card">
+                                    <h5 style="font-size: 1.2rem; color: var(--primary-dark); margin-bottom: 0.5rem; font-family: 'Outfit';">Biopsia de Próstata (6 Frascos)</h5>
+                                    <p style="color: var(--text-muted); font-size: 0.9rem; flex-grow: 1; margin-bottom: 1rem;">Panel completo para mapeo prostático oncológico detallado.</p>
+                                    <div class="pricing-price-box" style="margin: 1rem 0;">
+                                        <span class="pricing-currency">S/</span>
+                                        <span class="pricing-price">250</span>
+                                        <span class="pricing-term">/ panel</span>
+                                    </div>
+                                    <a href="../genitourinario.html" class="btn-premium-lux" style="font-size: 0.9rem; padding: 0.8rem 1.5rem;">Ver Protocolo</a>
+                                </div>
                             </div>
                         </div>
 
-                        <a href="partes-blandas.html" class="service-link">Más información sobre diagnóstico de
+                        <a href="../partes-blandas.html" class="service-link">Más información sobre diagnóstico de
                             biopsias <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -382,7 +703,7 @@
                                 <i class="fas fa-info-circle"></i> <a href="#catalogo-marcadores-ihq" style="color: var(--primary);">Ver Guía Completa de Marcadores y su significado clínico aquí.</a>
                             </div>
 
-                            <a href="citopatologia.html" class="service-link">Más información sobre estudios
+                            <a href="../citopatologia.html" class="service-link">Más información sobre estudios
                                 citológicos
                                 <i class="fas fa-arrow-right"></i></a>
                         </div>
@@ -444,76 +765,12 @@
                             </div>
                             <!-- Catálogo Interactivo de Marcadores -->
                             <section id="catalogo-marcadores-ihq" class="marcadores-container">
-                                <details class="marcador-accordion">
-                                    <summary>Marcadores Hematolinfoides (Linfomas y Leucemias)</summary>
-                                    <div class="marcador-content">
-                                        <ul>
-                                            <li><strong>CD1a:</strong> Identifica células de Langerhans; crucial para diagnosticar la histiocitosis X.</li>
-                                            <li><strong>CD3:</strong> El marcador universal para identificar Linfocitos T (células clave del sistema de defensa).</li>
-                                            <li><strong>CD4:</strong> Subtipo de linfocitos T; importante en la evaluación de enfermedades inmunes y linfomas.</li>
-                                            <li><strong>CD5:</strong> Ayuda a clasificar leucemias crónicas y linfomas de células pequeñas.</li>
-                                            <li><strong>CD7:</strong> Uno de los marcadores más tempranos de células de defensa T; útil en leucemias agudas.</li>
-                                            <li><strong>CD8:</strong> Identifica linfocitos T 'asesinos'; mide la fuerza del sistema inmune contra el cáncer.</li>
-                                            <li><strong>CD10:</strong> Marcador de células germinales de los ganglios; útil en el estudio de linfomas y cáncer de riñón.</li>
-                                            <li><strong>CD15:</strong> Característico de las células de Reed-Sternberg en el Linfoma de Hodgkin clásico.</li>
-                                            <li><strong>CD19:</strong> Marcador fundamental para identificar todas las etapas de desarrollo de los Linfocitos B.</li>
-                                            <li><strong>CD20:</strong> El marcador más importante para el diagnóstico y guía de tratamiento de Linfomas de células B.</li>
-                                            <li><strong>CD21:</strong> Identifica las redes que sostienen a los linfocitos en los ganglios; útil en linfomas foliculares.</li>
-                                            <li><strong>CD23:</strong> Ayuda a diferenciar la leucemia linfática crónica de otros tipos de linfomas.</li>
-                                            <li><strong>CD30:</strong> Clave para el diagnóstico del Linfoma de Hodgkin y linfomas anaplásicos de células grandes.</li>
-                                            <li><strong>CD43:</strong> Ayuda a detectar anormalidades en linfocitos B y T; útil en la clasificación de linfomas.</li>
-                                            <li><strong>CD45:</strong> Antígeno Común Leucocitario; confirma que el tumor se origina en el sistema de la sangre.</li>
-                                        </ul>
+                                <div id="dynamic-catalog-container">
+                                    <!-- Renderizado dinámicamente por main.js desde smart_data.json -->
+                                    <div style="text-align: center; padding: 20px; color: var(--text-muted);">
+                                        <i class="fas fa-spinner fa-spin"></i> Cargando catálogo de marcadores...
                                     </div>
-                                </details>
-
-                                <details class="marcador-accordion">
-                                    <summary>Marcadores Epiteliales (Carcinomas)</summary>
-                                    <div class="marcador-content">
-                                        <ul>
-                                            <li><strong>Panqueratina:</strong> Marcador universal de carcinomas (tumores de origen epitelial).</li>
-                                            <li><strong>CITOKERATIN 7:</strong> Indica origen glandular (mama, pulmón, ovario).</li>
-                                            <li><strong>CITOKERATIN 20:</strong> Específico para el tracto digestivo (colon) y células de la piel.</li>
-                                            <li><strong>EMA:</strong> Antígeno de membrana epitelial; útil en diversos carcinomas.</li>
-                                            <li><strong>BER-EP4:</strong> Ayuda a distinguir el carcinoma basocelular de otros tumores cutáneos.</li>
-                                            <li><strong>P40:</strong> El marcador más fiable para el carcinoma de células escamosas.</li>
-                                            <li><strong>TTF-1:</strong> Identifica con precisión tumores originados en pulmón o tiroides.</li>
-                                            <li><strong>PSA:</strong> Antígeno Prostático Específico; clave para el tejido de la próstata.</li>
-                                            <li><strong>GATA 3:</strong> Excelente marcador para tumores de mama y de la vejiga (urotelio).</li>
-                                            <li><strong>PAX-8:</strong> Fundamental para diagnosticar tumores de riñón, tiroides y sistema ginecológico.</li>
-                                        </ul>
-                                    </div>
-                                </details>
-
-                                <details class="marcador-accordion">
-                                    <summary>Marcadores de Tejidos Blandos (Sarcomas)</summary>
-                                    <div class="marcador-content">
-                                        <ul>
-                                            <li><strong>VIMENTINA:</strong> Marcador general de tejidos conectivos; ayuda a clasificar sarcomas.</li>
-                                            <li><strong>DESMINA:</strong> Detecta células musculares; esencial para tumores de músculo.</li>
-                                            <li><strong>ACTINA MUSCULO LISO:</strong> Identifica tumores de músculo liso (miomas, sarcomas).</li>
-                                            <li><strong>S-100:</strong> Marcador versátil para melanomas y tumores nerviosos.</li>
-                                            <li><strong>SOX-10:</strong> Muy sensible para diagnosticar melanomas y tumores de nervios.</li>
-                                            <li><strong>CD31 / CD34:</strong> Marcadores de vasos sanguíneos; identifican tumores vasculares.</li>
-                                            <li><strong>CD117 (c-KIT):</strong> Esencial para diagnosticar tumores GIST del sistema digestivo.</li>
-                                            <li><strong>DOG-1:</strong> Altamente específico para GIST; complementa al CD117.</li>
-                                        </ul>
-                                    </div>
-                                </details>
-
-                                <details class="marcador-accordion">
-                                    <summary>Otros Marcadores Importantes (Pronóstico y Otros)</summary>
-                                    <div class="marcador-content">
-                                        <ul>
-                                            <li><strong>KI-67:</strong> Mide qué porcentaje de células se están dividiendo (proliferación).</li>
-                                            <li><strong>P53:</strong> Detecta mutaciones genéticas comunes; indica agresividad en muchos cánceres.</li>
-                                            <li><strong>HER2:</strong> Evalúa agresividad; crucial para tratamientos en cáncer de mama y estómago.</li>
-                                            <li><strong>P16:</strong> Marcador de infección por VPH; vital en cáncer de cuello uterino.</li>
-                                            <li><strong>CALRETININA:</strong> Principal marcador para diagnosticar mesotelioma.</li>
-                                            <li><strong>SINAPTOFISINA / CROMOGRANINA A:</strong> Identifican tumores neuroendocrinos.</li>
-                                        </ul>
-                                    </div>
-                                </details>
+                                </div>
                             </section>
 
 
@@ -549,7 +806,7 @@
                             </div>
 
 
-                            <a href="inmunohistoquimica_resumen.html" class="service-link">Más información sobre Inmunohistoquímica <i
+                            <a href="../inmunohistoquimica_resumen.html" class="service-link">Más información sobre Inmunohistoquímica <i
                                     class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
@@ -809,7 +1066,7 @@
                                     y
                                     fácil.</p>
                                 <div class="tech-image-container" style="margin: 20px 0; text-align: center;">
-                                    <img src="microscopio-patologia.jpg" alt="Microscopía de Alta Resolución"
+                                    <img src="../microscopio-patologia.jpg" alt="Microscopía de Alta Resolución"
                                         class="gallery-img" loading="lazy" width="874" height="1426"
                                         style="max-width: 90%; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
                                 </div>
@@ -947,7 +1204,7 @@
                         </div>
                     </div>
 
-                    <a href="partes-blandas.html" class="classroom-card-link">
+                    <a href="../partes-blandas.html" class="classroom-card-link">
                         <div class="classroom-card">
                             <div class="classroom-icon">
                                 Tumores de Partes Blandas
@@ -2032,17 +2289,17 @@
         <div class="nav-container">
             <h2 style="font-size: 1.5rem; color: var(--text-main); margin-bottom: 2rem; text-align: center;">Servicios de Patología por Distrito en Lima y Callao</h2>
             <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
-                <a href="seo-local/patologia-comas.html" style="padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 20px; text-decoration: none; color: var(--text-muted); font-size: 0.85rem; transition: background 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">Patología en Comas</a>
-                <a href="seo-local/patologia-los-olivos.html" style="padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 20px; text-decoration: none; color: var(--text-muted); font-size: 0.85rem; transition: background 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">Patología en Los Olivos</a>
-                <a href="seo-local/patologia-independencia.html" style="padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 20px; text-decoration: none; color: var(--text-muted); font-size: 0.85rem; transition: background 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">Patología en Independencia</a>
-                <a href="seo-local/patologia-san-martin-de-porres.html" style="padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 20px; text-decoration: none; color: var(--text-muted); font-size: 0.85rem; transition: background 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">Patología en SMP</a>
-                <a href="seo-local/patologia-carabayllo.html" style="padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 20px; text-decoration: none; color: var(--text-muted); font-size: 0.85rem; transition: background 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">Patología en Carabayllo</a>
-                <a href="seo-local/patologia-puente-piedra.html" style="padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 20px; text-decoration: none; color: var(--text-muted); font-size: 0.85rem; transition: background 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">Patología en Puente Piedra</a>
-                <a href="seo-local/patologia-callao.html" style="padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 20px; text-decoration: none; color: var(--text-muted); font-size: 0.85rem; transition: background 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">Patología en Callao</a>
-                <a href="seo-local/patologia-bellavista.html" style="padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 20px; text-decoration: none; color: var(--text-muted); font-size: 0.85rem; transition: background 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">Patología en Bellavista</a>
-                <a href="seo-local/patologia-carmen-de-la-legua.html" style="padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 20px; text-decoration: none; color: var(--text-muted); font-size: 0.85rem; transition: background 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">Patología en Carmen de la Legua</a>
-                <a href="seo-local/patologia-la-perla.html" style="padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 20px; text-decoration: none; color: var(--text-muted); font-size: 0.85rem; transition: background 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">Patología en La Perla</a>
-                <a href="seo-local/patologia-ventanilla.html" style="padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 20px; text-decoration: none; color: var(--text-muted); font-size: 0.85rem; transition: background 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">Patología en Ventanilla</a>
+                <a href="../seo-local/patologia-comas.html" style="padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 20px; text-decoration: none; color: var(--text-muted); font-size: 0.85rem; transition: background 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">Patología en Comas</a>
+                <a href="../seo-local/patologia-los-olivos.html" style="padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 20px; text-decoration: none; color: var(--text-muted); font-size: 0.85rem; transition: background 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">Patología en Los Olivos</a>
+                <a href="../seo-local/patologia-independencia.html" style="padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 20px; text-decoration: none; color: var(--text-muted); font-size: 0.85rem; transition: background 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">Patología en Independencia</a>
+                <a href="../seo-local/patologia-san-martin-de-porres.html" style="padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 20px; text-decoration: none; color: var(--text-muted); font-size: 0.85rem; transition: background 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">Patología en SMP</a>
+                <a href="../seo-local/patologia-carabayllo.html" style="padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 20px; text-decoration: none; color: var(--text-muted); font-size: 0.85rem; transition: background 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">Patología en Carabayllo</a>
+                <a href="../seo-local/patologia-puente-piedra.html" style="padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 20px; text-decoration: none; color: var(--text-muted); font-size: 0.85rem; transition: background 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">Patología en Puente Piedra</a>
+                <a href="../seo-local/patologia-callao.html" style="padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 20px; text-decoration: none; color: var(--text-muted); font-size: 0.85rem; transition: background 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">Patología en Callao</a>
+                <a href="../seo-local/patologia-bellavista.html" style="padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 20px; text-decoration: none; color: var(--text-muted); font-size: 0.85rem; transition: background 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">Patología en Bellavista</a>
+                <a href="../seo-local/patologia-carmen-de-la-legua.html" style="padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 20px; text-decoration: none; color: var(--text-muted); font-size: 0.85rem; transition: background 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">Patología en Carmen de la Legua</a>
+                <a href="../seo-local/patologia-la-perla.html" style="padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 20px; text-decoration: none; color: var(--text-muted); font-size: 0.85rem; transition: background 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">Patología en La Perla</a>
+                <a href="../seo-local/patologia-ventanilla.html" style="padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 20px; text-decoration: none; color: var(--text-muted); font-size: 0.85rem; transition: background 0.2s;" onmouseover="this.style.background='#e2e8f0'" onmouseout="this.style.background='#f1f5f9'">Patología en Ventanilla</a>
             </div>
         </div>
     </section>
@@ -2157,7 +2414,7 @@
 
     <!-- Scripts Modulares -->
     <script src="site_knowledge.js"></script>
-    <script src="main.js" defer></script>
+    <script src="../main.js" defer></script>
 
     <!-- Modal para Inmunohistoquímica -->
     <div id="antibodyModal" class="ab-modal">
@@ -2375,22 +2632,122 @@
         <i class="fas fa-comments"></i>
     </button>
 
-    <!-- Zonas de Especialidad: Matriz de Autoridad SEO -->
+    <!-- Cobertura Regional y Satélite: Arquitectura Colmena SEO Premium -->
+    <section id="cobertura-regional" style="background: #0b0f19; padding: 60px 20px; border-top: 1px solid #1e293b; color: #94a3b8;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 style="font-family: 'Outfit', sans-serif; color: #38bdf8; font-size: 1.8rem; font-weight: 800; text-align: center; margin-bottom: 10px; letter-spacing: -0.025em; text-transform: uppercase;">
+                Red Nacional de Diagnóstico Patológico
+            </h2>
+            <p style="text-align: center; color: #64748b; font-size: 0.95rem; margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto;">
+                JC PATH LAB lidera el posicionamiento de precisión en patología clínica con cobertura en Lima Metropolitana y sedes autorizadas a nivel nacional para el procesamiento rápido de muestras.
+            </p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;">
+                <!-- Card Lima Metropolitana -->
+                <div class="cobertura-card" style="background: rgba(30, 41, 59, 0.25); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; padding: 24px; backdrop-filter: blur(10px);">
+                    <h3 style="font-family: 'Outfit', sans-serif; color: #e2e8f0; font-size: 1.15rem; font-weight: 700; margin-top: 0; margin-bottom: 15px; border-bottom: 1px solid #1e293b; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-map-marker-alt" style="color: #38bdf8;"></i> Lima Metropolitana & Callao
+                    </h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <a href="../seo-local/patologia-bellavista.html" class="cobertura-link">Bellavista</a>
+                    <a href="../seo-local/patologia-callao.html" class="cobertura-link">Callao</a>
+                    <a href="../seo-local/patologia-carabayllo.html" class="cobertura-link">Carabayllo</a>
+                    <a href="../seo-local/patologia-carmen-de-la-legua.html" class="cobertura-link">Carmen De La Legua</a>
+                    <a href="../seo-local/patologia-comas.html" class="cobertura-link">Comas</a>
+                    <a href="../seo-local/patologia-independencia.html" class="cobertura-link">Independencia</a>
+                    <a href="../seo-local/patologia-la-perla.html" class="cobertura-link">La Perla</a>
+                    <a href="../seo-local/patologia-los-olivos.html" class="cobertura-link">Los Olivos</a>
+                    <a href="../seo-local/patologia-puente-piedra.html" class="cobertura-link">Puente Piedra</a>
+                    <a href="../seo-local/patologia-san-martin-de-porres.html" class="cobertura-link">San Martin De Porres</a>
+                    <a href="../seo-local/patologia-ventanilla.html" class="cobertura-link">Ventanilla</a>
+                    </div>
+                </div>
+                
+                <!-- Card Cobertura Nacional -->
+                <div class="cobertura-card" style="background: rgba(30, 41, 59, 0.25); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; padding: 24px; backdrop-filter: blur(10px);">
+                    <h3 style="font-family: 'Outfit', sans-serif; color: #e2e8f0; font-size: 1.15rem; font-weight: 700; margin-top: 0; margin-bottom: 15px; border-bottom: 1px solid #1e293b; padding-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-globe-americas" style="color: #10b981;"></i> Sedes Regionales del Perú
+                    </h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <a href="../seo-nacional/patologia-abancay.html" class="cobertura-link">Abancay</a>
+                    <a href="../seo-nacional/patologia-arequipa.html" class="cobertura-link">Arequipa</a>
+                    <a href="../seo-nacional/patologia-ayacucho.html" class="cobertura-link">Ayacucho</a>
+                    <a href="../seo-nacional/patologia-cajamarca.html" class="cobertura-link">Cajamarca</a>
+                    <a href="../seo-nacional/patologia-canete.html" class="cobertura-link">Canete</a>
+                    <a href="../seo-nacional/patologia-chachapoyas.html" class="cobertura-link">Chachapoyas</a>
+                    <a href="../seo-nacional/patologia-chiclayo.html" class="cobertura-link">Chiclayo</a>
+                    <a href="../seo-nacional/patologia-chimbote.html" class="cobertura-link">Chimbote</a>
+                    <a href="../seo-nacional/patologia-chincha.html" class="cobertura-link">Chincha</a>
+                    <a href="../seo-nacional/patologia-cusco.html" class="cobertura-link">Cusco</a>
+                    <a href="../seo-nacional/patologia-huacho.html" class="cobertura-link">Huacho</a>
+                    <a href="../seo-nacional/patologia-huancayo.html" class="cobertura-link">Huancayo</a>
+                    <a href="../seo-nacional/patologia-huanuco.html" class="cobertura-link">Huanuco</a>
+                    <a href="../seo-nacional/patologia-huaral.html" class="cobertura-link">Huaral</a>
+                    <a href="../seo-nacional/patologia-huaraz.html" class="cobertura-link">Huaraz</a>
+                    <a href="../seo-nacional/patologia-ica.html" class="cobertura-link">Ica</a>
+                    <a href="../seo-nacional/patologia-iquitos.html" class="cobertura-link">Iquitos</a>
+                    <a href="../seo-nacional/patologia-juliaca.html" class="cobertura-link">Juliaca</a>
+                    <a href="../seo-nacional/patologia-moyobamba.html" class="cobertura-link">Moyobamba</a>
+                    <a href="../seo-nacional/patologia-pisco.html" class="cobertura-link">Pisco</a>
+                    <a href="../seo-nacional/patologia-piura.html" class="cobertura-link">Piura</a>
+                    <a href="../seo-nacional/patologia-pucallpa.html" class="cobertura-link">Pucallpa</a>
+                    <a href="../seo-nacional/patologia-puerto maldonado.html" class="cobertura-link">Puerto Maldonado</a>
+                    <a href="../seo-nacional/patologia-puno.html" class="cobertura-link">Puno</a>
+                    <a href="../seo-nacional/patologia-sullana.html" class="cobertura-link">Sullana</a>
+                    <a href="../seo-nacional/patologia-tacna.html" class="cobertura-link">Tacna</a>
+                    <a href="../seo-nacional/patologia-talara.html" class="cobertura-link">Talara</a>
+                    <a href="../seo-nacional/patologia-tarapoto.html" class="cobertura-link">Tarapoto</a>
+                    <a href="../seo-nacional/patologia-trujillo.html" class="cobertura-link">Trujillo</a>
+                    <a href="../seo-nacional/patologia-tumbes.html" class="cobertura-link">Tumbes</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Estilos inline dinámicos para hover -->
+            <style>
+                .cobertura-link {
+                    color: #94a3b8;
+                    text-decoration: none;
+                    font-size: 0.8rem;
+                    font-weight: 500;
+                    padding: 6px 12px;
+                    border-radius: 8px;
+                    background: #111827;
+                    border: 1px solid #1e293b;
+                    transition: all 0.2s ease;
+                }
+                .cobertura-link:hover {
+                    color: #38bdf8;
+                    background: #1e293b;
+                    border-color: #38bdf8;
+                    transform: translateY(-1px);
+                }
+                .cobertura-card {
+                    transition: all 0.3s ease;
+                }
+                .cobertura-card:hover {
+                    border-color: rgba(56, 189, 248, 0.3) !important;
+                    background: rgba(30, 41, 59, 0.4) !important;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                }
+            </style>
+        </div>
+    </section>
     <footer style="background: #0f172a; padding: 40px 20px; border-top: 1px solid #1e293b; text-align: center; color: #94a3b8; font-size: 0.8rem;">
         <div style="max-width: 1200px; margin: 0 auto; margin-bottom: 20px;">
             <strong style="color: #38bdf8; display: block; margin-bottom: 15px;">ZONAS DE ESPECIALIDAD PATOLÓGICA EN LIMA</strong>
             <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
-                <a href="patologia-puente-piedra.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #334155;">Puente Piedra</a>
-                <a href="patologia-los-olivos.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #334155;">Los Olivos</a>
-                <a href="patologia-comas.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #334155;">Comas</a>
-                <a href="patologia-carabayllo.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #334155;">Carabayllo</a>
-                <a href="patologia-independencia.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #334155;">Independencia</a>
-                <a href="patologia-smp.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #334155;">San Martín de Porres</a>
-                <a href="patologia-callao.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #334155;">Callao</a>
-                <a href="patologia-ventanilla.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #334155;">Ventanilla</a>
-                <a href="patologia-santa-rosa.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #334155;">Santa Rosa</a>
-                <a href="patologia-ancon.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #334155;">Ancón</a>
-                <a href="patologia-rimac.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #334155;">Rímac</a>
+                <a href="../patologia-puente-piedra.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #334155;">Puente Piedra</a>
+                <a href="../patologia-los-olivos.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #334155;">Los Olivos</a>
+                <a href="../patologia-comas.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #334155;">Comas</a>
+                <a href="../patologia-carabayllo.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #334155;">Carabayllo</a>
+                <a href="../patologia-independencia.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #334155;">Independencia</a>
+                <a href="../patologia-smp.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #334155;">San Martín de Porres</a>
+                <a href="../patologia-callao.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #334155;">Callao</a>
+                <a href="../patologia-ventanilla.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #334155;">Ventanilla</a>
+                <a href="../patologia-santa-rosa.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #334155;">Santa Rosa</a>
+                <a href="../patologia-ancon.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #334155;">Ancón</a>
+                <a href="../patologia-rimac.html" style="color: inherit; text-decoration: none; border-bottom: 1px solid #334155;">Rímac</a>
             </div>
         </div>
         <p>&copy; 2026 JC PATH LAB - Red de Diagnóstico Oncológico de Alta Precisión.</p>
@@ -2407,19 +2764,13 @@
             100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
     </style>
-    <script src="modulo_chat/urgencia_social.js"></script>
+    <script src="../modulo_chat/urgencia_social.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const waBtn = document.querySelector('.sticky-btn.whatsapp, .float-btn.whatsapp, .whatsapp-btn');
             if(waBtn) waBtn.classList.add('whatsapp-pulse');
         });
     </script>
-
-    <a href="https://wa.me/51951711718?text=Hola%20JC%20PATH%20LAB,%20deseo%20enviar%20una%20muestra%20desde%20Pucallpa" 
-       style="position:fixed;width:60px;height:60px;bottom:40px;right:40px;background-color:#25d366;color:#FFF;border-radius:50px;text-align:center;font-size:30px;box-shadow: 2px 2px 3px #999;z-index:100;display:flex;align-items:center;justify-content:center;text-decoration:none;" 
-       target="_blank">
-       <i class="fab fa-whatsapp"></i>
-    </a>
 </body>
 
 </html>

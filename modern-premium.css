@@ -1,172 +1,417 @@
+/* ==========================================================================
+   🔱 SYSTEM DESIGN SYSTEM: JC PATH LAB v3.0 (World-Class Aesthetics)
+   Inspired by: Apple, Stripe, and Premium Medical Boutique interfaces.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
 :root {
-    --primary: #2563eb;
-    --primary-dark: #1e40af;
-    --secondary: #64748b;
-    --accent: #06b6d4;
-    --bg-main: #f8fafc;
-    --bg-card: #ffffff;
-    --text-main: #0f172a;
-    --text-muted: #475569;
-    --glass: rgba(255, 255, 255, 0.8);
-    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    /* Premium Color Palette (HSL Tailored for Clinial Precision & Trust) */
+    --primary-hue: 221;
+    --primary: hsl(var(--primary-hue), 83%, 34%);       /* Deep Indigo Cobalt */
+    --primary-light: hsl(var(--primary-hue), 83%, 45%);
+    --primary-dark: hsl(var(--primary-hue), 83%, 15%);
+    
+    --secondary-hue: 174;
+    --secondary: hsl(var(--secondary-hue), 84%, 31%);   /* Pure Emerald Teal */
+    --secondary-light: hsl(var(--secondary-hue), 84%, 40%);
+    
+    --accent-hue: 188;
+    --accent: hsl(var(--accent-hue), 93%, 47%);         /* Electric Neon Blue */
+    --accent-glow: hsla(var(--accent-hue), 93%, 47%, 0.15);
+    
+    --success: hsl(142, 70%, 45%);                      /* Healthy Mint Green */
+    --warning: hsl(35, 92%, 50%);                       /* Amber Alert */
+    
+    /* Neutral Shades */
+    --bg-main: #fafbfd;
+    --bg-card: rgba(255, 255, 255, 0.75);
+    --text-main: hsl(222, 47%, 11%);                    /* Deep Slate Blue */
+    --text-muted: hsl(215, 16%, 47%);
+    
+    /* Glassmorphism & Visual Anchors */
+    --glass: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --border-radius-lg: 24px;
+    --border-radius-md: 16px;
+    
+    /* 3D Shadows & Auras */
+    --shadow-lux: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 20px 50px -20px rgba(15, 23, 42, 0.04);
+    --shadow-neon: 0 0 40px rgba(16, 185, 129, 0.1);
+    --shadow-btn: 0 10px 25px -5px rgba(37, 99, 235, 0.3);
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+/* ─── BASE RESET & TYPOGRAPHY ────────────────────────────────────────────── */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--bg-main);
     color: var(--text-main);
-    line-height: 1.6;
-    margin: 0;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
 }
 
-/* Glassmorphism Header */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--primary-dark);
+}
+
+/* ─── LUXURY GLASS HEADER ────────────────────────────────────────────────── */
 header {
     background: var(--glass);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     position: sticky;
     top: 0;
     z-index: 1000;
-    padding: 1rem 0;
+    padding: 1.2rem 0;
+    transition: all 0.3s ease;
 }
 
 .nav-container {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2rem;
+    padding: 0 2.5rem;
 }
 
 .logo-text {
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: var(--primary);
-    letter-spacing: -0.025em;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 1.6rem;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.03em;
     text-transform: uppercase;
 }
 
-/* Premium Cards */
-.card {
+/* ─── FULL-BLEED LUXURY HERO & ACCENTS ───────────────────────────────────── */
+.hero-wrapper {
+    position: relative;
+    padding: 8rem 0 6rem;
+    background: radial-gradient(circle at 10% 20%, rgba(224, 242, 254, 0.4) 0%, rgba(255, 255, 255, 0) 50%),
+                radial-gradient(circle at 90% 80%, rgba(204, 251, 241, 0.4) 0%, rgba(255, 255, 255, 0) 50%);
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+}
+
+/* ─── PREMIUM CARD LAYOUT (Glassmorphism & Neon Borders) ─────────────────── */
+.trust-card, .premium-card {
     background: var(--bg-card);
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: var(--shadow);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid #f1f5f9;
-}
-
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--primary);
-}
-
-/* Modern Buttons */
-.btn-premium {
-    background: var(--primary);
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.2s;
-    border: none;
-    cursor: pointer;
-}
-
-.btn-premium:hover {
-    background: var(--primary-dark);
-    box-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
-}
-
-/* Section Styling */
-.section-title {
-    font-size: 2.25rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-    text-align: center;
-    color: var(--text-main);
-}
-
-/* Virtual Assistant (Victoria) Integration */
-.victoria-container {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    z-index: 1000;
-}
-
-.victoria-bubble {
-    background: var(--bg-card);
-    border-radius: 20px;
-    padding: 1rem;
-    box-shadow: var(--shadow-lg);
-    border: 1px solid var(--primary);
-    max-width: 300px;
-    font-size: 0.9rem;
-}
-
-/* Victoria & Elena Chatbot Premium Styling */
-#chat-container {
-    background: var(--glass);
-    backdrop-filter: blur(20px);
-    border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: var(--border-radius-lg);
+    padding: 2.5rem;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-lux);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.trust-card::before, .premium-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.trust-card:hover, .premium-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.1), 0 0 50px rgba(16, 185, 129, 0.15);
+    border-color: rgba(16, 185, 129, 0.4);
+}
+
+.trust-card-icon {
+    font-size: 2.2rem;
+    color: var(--secondary);
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    transition: transform 0.3s;
+}
+
+.trust-card:hover .trust-card-icon {
+    transform: scale(1.15) rotate(5deg);
+}
+
+/* ─── WORLD-CLASS ACCORDIONS (Details & Summary) ────────────────────────── */
+.marcador-accordion {
+    background: rgba(255, 255, 255, 0.6) !important;
+    border-radius: var(--border-radius-md) !important;
+    border: 1px solid var(--glass-border) !important;
+    margin-bottom: 1rem !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02) !important;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.marcador-accordion[open] {
+    background: #ffffff !important;
+    border-color: rgba(13, 148, 136, 0.3) !important;
+    box-shadow: 0 20px 30px -10px rgba(13, 148, 136, 0.1) !important;
+}
+
+.marcador-accordion summary {
+    padding: 1.4rem 2rem !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 1.15rem !important;
+    color: var(--primary-dark) !important;
+    cursor: pointer !important;
+    list-style: none !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    outline: none !important;
+    user-select: none !important;
+}
+
+.marcador-accordion summary::-webkit-details-marker {
+    display: none !important;
+}
+
+.marcador-accordion summary::after {
+    content: '\f078';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 0.9rem;
+    color: var(--secondary);
+    transition: transform 0.3s ease;
+}
+
+.marcador-accordion[open] summary::after {
+    transform: rotate(180deg);
+}
+
+.marcador-accordion summary:hover {
+    background: rgba(13, 148, 136, 0.04) !important;
+}
+
+.marcador-content {
+    padding: 2rem !important;
+    border-top: 1px solid #f1f5f9 !important;
+    background: #fafcfc !important;
+}
+
+.marcador-content ul {
+    list-style: none !important;
+}
+
+.marcador-content li {
+    padding: 0.8rem 0 !important;
+    border-bottom: 1px dashed #e2e8f0 !important;
+    font-size: 0.95rem !important;
+    color: var(--text-main) !important;
+}
+
+.marcador-content li:last-child {
+    border-bottom: none !important;
+}
+
+/* ─── CHATBOT (Victoria & Elena) PREMIUM OVERHAUL ────────────────────────── */
+#chat-container {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-radius: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 30px 70px -15px rgba(15, 23, 42, 0.15);
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #chat-header {
-    background: linear-gradient(135deg, var(--primary), var(--accent));
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
-    padding: 1.5rem;
-    border-bottom: 0;
+    padding: 1.8rem;
+    border-bottom: none;
+    position: relative;
+}
+
+#chat-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
 }
 
 .chat-name {
+    font-family: 'Outfit', sans-serif;
     font-weight: 700;
-    font-size: 1.1rem;
-}
-
-#chat-input-container {
-    padding: 1rem;
-    background: white;
-    border-top: 1px solid #f1f5f9;
-    display: flex;
-    gap: 0.5rem;
-}
-
-#chat-input {
-    border: 1px solid #e2e8f0;
-    padding: 0.75rem 1rem;
-    border-radius: 12px;
-    width: 100%;
+    font-size: 1.25rem;
+    letter-spacing: -0.01em;
 }
 
 #chat-toggle {
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    width: 65px;
-    height: 65px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+    box-shadow: 0 15px 30px rgba(37, 99, 235, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     cursor: pointer;
-    border: none;
-    transition: all 0.3s;
+    border: 3px solid rgba(255, 255, 255, 0.9);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    z-index: 1000;
+}
+
+@keyframes glowing-ring {
+    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
+    70% { box-shadow: 0 0 0 20px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+#chat-toggle {
+    animation: glowing-ring 3.5s infinite;
 }
 
 #chat-toggle:hover {
-    transform: scale(1.1) rotate(5deg);
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 20px 40px rgba(37, 99, 235, 0.4);
+}
+
+/* ─── CLINICAL HIGHLIGHTS & MARKERS ────────────────────────────────────── */
+.search-highlight {
+    background-color: rgba(16, 185, 129, 0.12) !important;
+    color: #047857 !important;
+    font-weight: 600 !important;
+    border-radius: 6px !important;
+    padding: 1px 5px !important;
+    border: 1px solid rgba(16, 185, 129, 0.25) !important;
+}
+
+/* ─── LUXURY GRID DE PRECIOS (PREMIUM DIGITIAL CARDS) ────────────────────── */
+.pricing-lux-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.pricing-lux-card {
+    background: var(--bg-card);
+    border-radius: var(--border-radius-lg);
+    padding: 3rem 2.5rem;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-lux);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.pricing-lux-card.popular {
+    border-color: var(--secondary);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 253, 250, 0.8) 100%);
+}
+
+.pricing-lux-card.popular::after {
+    content: 'Recomendado';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--secondary);
+    color: white;
+    padding: 0.3rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-radius: 30px;
+    text-transform: uppercase;
+}
+
+.pricing-lux-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 40px 80px -20px rgba(15, 23, 42, 0.12);
+}
+
+.pricing-price-box {
+    margin: 2rem 0;
+    display: flex;
+    align-items: baseline;
+}
+
+.pricing-price {
+    font-family: 'Outfit', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+    line-height: 1;
+}
+
+.pricing-currency {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-right: 0.3rem;
+}
+
+.pricing-term {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-left: 0.5rem;
+}
+
+/* ─── BTN PREMIUM LUX ────────────────────────────────────────────────────── */
+.btn-premium-lux {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: white !important;
+    padding: 1.2rem 2.2rem;
+    border-radius: 50px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-btn);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: inline-block;
+}
+
+.btn-premium-lux:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px -5px rgba(37, 99, 235, 0.5), 0 0 20px rgba(6, 182, 212, 0.2);
+}
+
+.btn-premium-lux.secondary-lux {
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
+}
+
+.btn-premium-lux.secondary-lux:hover {
+    box-shadow: 0 15px 35px -5px rgba(13, 148, 136, 0.5);
 }
