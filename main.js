@@ -931,4 +931,17 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     })();
+
+    // ============================================
+    // CONTADOR SOBERANO DE VISITAS (COLMENA)
+    // ============================================
+    try {
+        fetch('https://api.counterapi.dev/v1/jcastilloc2920/visitas/up')
+            .then(r => r.json())
+            .then(d => console.log('[Colmena] Visita registrada. Total acumulado:', d.count))
+            .catch(e => console.warn('[Colmena] Error al registrar visita:', e));
+    } catch (err) {
+        console.warn('[Colmena] Fallo el tracking de visitas:', err);
+    }
 });
+
