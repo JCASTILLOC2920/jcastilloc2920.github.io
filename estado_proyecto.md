@@ -1,19 +1,19 @@
 # ESTADO DEL PROYECTO: INFRAESTRUCTURA CLÍNICA 2026 (COLMENA TITAN)
 **Fecha de Actualización:** 10 de Junio de 2026
 **Agente en Operación:** PRIME / ANTIGRAVITY_SYSTEM_OPERATOR
+**Hito:** Protocolo de Reseteo Ejecutado
 
 ## LO QUE HICIMOS HOY
-1. **Modernización de Clínica Carrión:** Inyección de arquitectura "Bento Grid", efectos "Glassmorphism" y adición estratégica del banner de Alianza con JC Path Lab.
-2. **Reestructuración Masiva del Repositorio:** Purga de 115 archivos basura en `c:\repositorio\jcastilloc2920.github.io`. Se movieron decenas de scripts huérfanos a `scripts_mantenimiento/` y se consolidó el SEO local.
-3. **Distribución Orgánica (Fenrir):** Creación del bot de WhatsApp (`whatsapp_promo_bot.py`) para distribución gratuita de la campaña publicitaria de la Clínica Carrión.
-4. **Soberanía del Ecosistema:** Erradicación forzosa de la dependencia de Gemini en la directiva de la Interfaz Valeria, obligando al sistema a operar con motores locales y Groq.
-5. **Estabilidad de Git:** Destrucción de la rama redundante `master` en GitHub, dejando a `index.html` como la única fuente de la verdad para el despliegue continuo.
+1. **Auditoría del Motor de Dictado (Macrorecorder):** Se detectó y diagnosticó el problema de escritura automática ("texto fantasma") y falta de precisión. Se proporcionaron las pautas exactas para ajustar el `energy_threshold` y la limpieza de buffers en `nucleo_voz.py`.
+2. **Desarrollo de la Extranet Clínica (UI/UX):** Se diseñó e implementó desde cero una interfaz web de grado Premium (Glassmorphism, variables CSS, Google Fonts) en la ruta `C:\repositorio\INFORMES JOSEHP`.
+3. **Lógica de Datos de la Interfaz:** Se programó `script.js` con un CRUD completo en memoria, buscador en tiempo real, modales de edición y cálculo automatizado de saldos para gestionar pacientes.
+4. **Despliegue a Producción:** Se inyectó la plataforma en la subcarpeta `informes-josehp` dentro del repositorio principal (`jcastilloc2920.github.io`) y se subió exitosamente a GitHub Pages bajo el Commit `a8e91b1`.
 
 ## DECISIONES TÉCNICAS TOMADAS
-*   **Aislamiento de Archivos:** Todo archivo que no aporta directamente al renderizado visual o indexación fue removido de la raíz del laboratorio para evitar penalizaciones por "Keyword Stuffing".
-*   **Persistencia de Tokens:** El token del bot de Telegram (`Fenrir2026_bot`) fue cristalizado en `E:\COLMENA_MAESTRA\CORE\fenrir_telegram_config.json` para evitar la "Amnesia Agéntica".
-*   **Modo Soberano:** Se confirmó la prohibición total de ejecución de Gemini para procesos críticos, asegurando que el host de 42GB de RAM / i7 dependa solo de inferencia controlada.
+*   **Arquitectura Híbrida (Web + Local):** Se validó que el enfoque más efectivo para la escalabilidad del laboratorio es usar un Frontend web moderno en lugar de un software pesado de escritorio.
+*   **Apertura a Clientes (Extranet):** Se modificó la visión arquitectónica: la página no será solo local, sino un portal para que las clínicas externas (clientes) busquen y descarguen los informes de sus pacientes.
+*   **Migración a BaaS (Pendiente):** Al requerir acceso externo, se acordó abandonar el almacenamiento estático de GitHub en favor de un backend remoto. Las opciones finales son **Vercel+Supabase (Soberano)** o **Firebase (Rápido)**.
 
 ## SIGUIENTE PASO EXACTO PARA LA SIGUIENTE INTERACCIÓN
-*   **Despliegue del Bot Fenrir:** Iniciar el desarrollo del script Python `fenrir_telegram_bot.py` que consumirá el token guardado para activar al Agente Distribuidor en Telegram y comenzar a captar leads (pacientes).
-*   **Auditoría de SEO:** Verificar en Google Search Console si la nueva estructura de carpetas `seo-local/` ha mejorado el puntaje tras la purga de la raíz.
+*   **Elección de Base de Datos:** El Comandante debe confirmar si la plataforma de descarga para clínicas se construirá sobre Supabase o Firebase.
+*   **Construcción del Backend:** Una vez elegido, el Agente programará el puente de conexión en Python para subir los PDFs automáticamente y modificará el `script.js` para extraerlos desde la nube en tiempo real mediante DNI.
