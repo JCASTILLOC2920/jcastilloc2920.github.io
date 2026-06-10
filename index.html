@@ -14,23 +14,48 @@
         <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "MedicalOrganization",
+      "@type": ["MedicalClinic", "MedicalBusiness"],
       "name": "JC PATH LAB",
-      "description": "Laboratorio de Anatomía Patológica especializado en biopsias y citocirugía en Lima Norte. Resultados rápidos y alta precisión.",
+      "description": "El Laboratorio de Anatomía Patológica líder en Lima Norte. Resultados de Biopsias, Papanicolaou e Inmunohistoquímica en 72 horas con precisión quirúrgica.",
       "url": "https://jcastilloc2920.github.io/",
-      "logo": "https://jcastilloc2920.github.io/logo.png",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+51-986396733",
-        "contactType": "customer service"
-      },
+      "logo": "https://jcastilloc2920.github.io/logo-jcpathlab.png",
+      "image": "https://jcastilloc2920.github.io/logo-jcpathlab.png",
+      "telephone": "+51986396733",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Mz M2 lote 13 Jardines de Chillón",
         "addressLocality": "Puente Piedra",
         "addressRegion": "Lima",
         "addressCountry": "PE"
-      }
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "-11.8767",
+        "longitude": "-77.0628"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "08:00",
+          "closes": "20:00"
+        }
+      ],
+      "medicalSpecialty": "Pathology",
+      "priceRange": "$$",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "128"
+      },
+      "member": [
+        {
+          "@type": "Physician",
+          "name": "Dr. Josehp Castillo",
+          "identifier": "C.M.P. 56435",
+          "medicalSpecialty": "Anatomía Patológica"
+        }
+      ]
     }
     </script>
         <meta name="description"

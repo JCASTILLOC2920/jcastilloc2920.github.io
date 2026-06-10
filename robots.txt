@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /scripts_mantenimiento/
+Disallow: /api/
+Disallow: /node_modules/
+Disallow: /modulo_chat/
 
 Sitemap: https://jcastilloc2920.github.io/sitemap.xml
