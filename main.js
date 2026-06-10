@@ -100,7 +100,9 @@ function renderMarkerCatalog(catalog) {
         const ul = document.createElement('ul');
         catalog[category].forEach(item => {
             const li = document.createElement('li');
-            li.innerHTML = `<strong>${item.name}:</strong> ${item.description}`;
+            const innerHTML = `<strong>${item.name}:</strong> ${item.description}`;
+            li.innerHTML = innerHTML;
+            li.dataset.originalHtml = innerHTML;
             ul.appendChild(li);
         });
         
@@ -185,6 +187,44 @@ function updateAIStatus(level) {
 
 async function callGemini(prompt) {
     updateAIStatus("Gemini");
+    
+    // DETECTOR DE DESARROLLO LOCAL: Redireccionar consultas de chatbot al clúster local gratis si estamos en localhost
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        updateAIStatus("Ollama Local");
+        try {
+            const response = await fetch("http://localhost:11434/api/generate", {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    model: "titan-elite:latest",
+                    prompt: `${SYSTEM_PROMPT}\n\nConsulta: ${prompt}`,
+                    stream: false
+                })
+            });
+            const data = await response.json();
+            if (data && data.response) {
+                return data.response;
+            }
+        } catch (e) {
+            console.warn("Ollama local en puerto 11434 falló, intentando puente en puerto 11435:", e);
+            try {
+                const response = await fetch("http://localhost:11435/titan/chat", {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        prompt: prompt
+                    })
+                });
+                const data = await response.json();
+                if (data && data.respuesta) {
+                    return data.respuesta;
+                }
+            } catch (err2) {
+                console.error("Ambos motores locales de desarrollo fallaron:", err2);
+            }
+        }
+    }
+
     try {
         const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
             method: 'POST',
@@ -566,13 +606,71 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.observe(markerSection);
     }
 
-    // Search functionality for dynamic table
+    // Search functionality for dynamic table and catalog
     const markerSearch = document.getElementById('markerSearch');
     if (markerSearch) {
         markerSearch.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            const filtered = smartData ? smartData.antibodies.alphabetical.filter(n => n.toLowerCase().includes(term)) : [];
-            renderAntibodyTable(filtered);
+            const term = e.target.value.toLowerCase().trim();
+            
+            // 1. Filter alphabetical grid
+            if (smartData && smartData.antibodies) {
+                const filtered = smartData.antibodies.alphabetical.filter(n => n.toLowerCase().includes(term));
+                renderAntibodyTable(filtered);
+            }
+            
+            // 2. Filter dynamic catalog accordions
+            const accordions = document.querySelectorAll('.marcador-accordion');
+            accordions.forEach(accordion => {
+                const items = accordion.querySelectorAll('li');
+                let hasVisibleItem = false;
+                
+                items.forEach(item => {
+                    const text = item.textContent.toLowerCase();
+                    if (text.includes(term)) {
+                        item.style.display = '';
+                        hasVisibleItem = true;
+                        
+                        // Highlight matching text (except tags)
+                        if (term.length >= 2) {
+                            const originalHTML = item.dataset.originalHtml || item.innerHTML;
+                            if (!item.dataset.originalHtml) {
+                                item.dataset.originalHtml = originalHTML;
+                            }
+                            
+                            // Highlight term in description part
+                            const strongTagMatch = originalHTML.match(/^<strong>.*?<\/strong>:\s*/);
+                            if (strongTagMatch) {
+                                const strongTag = strongTagMatch[0];
+                                const descText = originalHTML.substring(strongTag.length);
+                                const regex = new RegExp(`(${term})`, 'gi');
+                                const highlightedDesc = descText.replace(regex, '<mark class="search-highlight">$1</mark>');
+                                item.innerHTML = strongTag + highlightedDesc;
+                            } else {
+                                const regex = new RegExp(`(${term})`, 'gi');
+                                item.innerHTML = originalHTML.replace(regex, '<mark class="search-highlight">$1</mark>');
+                            }
+                        } else {
+                            if (item.dataset.originalHtml) {
+                                item.innerHTML = item.dataset.originalHtml;
+                            }
+                        }
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                // Show/hide the entire accordion and auto-open if it has matching items
+                if (hasVisibleItem) {
+                    accordion.style.display = '';
+                    if (term.length >= 2) {
+                        accordion.setAttribute('open', 'true');
+                    } else {
+                        accordion.removeAttribute('open');
+                    }
+                } else {
+                    accordion.style.display = 'none';
+                }
+            });
         });
     }
 
@@ -836,6 +934,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })();
 
     // ============================================
+<<<<<<< HEAD
     // MAGNETIC DYNAMISM ENGINE (2026 UI/UX)
     // ============================================
     (function initNeuroDynamism() {
@@ -883,4 +982,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     })();
+=======
+    // CONTADOR SOBERANO DE VISITAS (COLMENA)
+    // ============================================
+    try {
+        fetch('https://api.counterapi.dev/v1/jcastilloc2920/visitas/up')
+            .then(r => r.json())
+            .then(d => console.log('[Colmena] Visita registrada. Total acumulado:', d.count))
+            .catch(e => console.warn('[Colmena] Error al registrar visita:', e));
+    } catch (err) {
+        console.warn('[Colmena] Fallo el tracking de visitas:', err);
+    }
+>>>>>>> 7737e7e462a5a2bdfb46298d965ecc156a9552d2
 });
+

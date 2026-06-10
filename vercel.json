@@ -1,1 +1,12 @@
+<<<<<<< HEAD
 { "version": 2, "cleanUrls": true, "trailingSlash": false, "rewrites": [ { "source": "/api/chat", "destination": "/api/chat.js" } ] }
+=======
+{
+  "version": 2,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/(.*)\\.html", "destination": "/$1", "permanent": true }
+  ]
+}
+>>>>>>> 7737e7e462a5a2bdfb46298d965ecc156a9552d2
