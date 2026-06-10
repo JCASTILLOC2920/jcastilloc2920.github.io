@@ -783,8 +783,9 @@ document.addEventListener("DOMContentLoaded", () => {
             icon.addEventListener('click', (e) => {
                 if (window.innerWidth <= 1024) {
                     e.preventDefault();
-                    e.stopPropagation();
-                    item.classList.toggle('mobile-open');
+                  // ============================================
+    // CLÍNICO BACKDROP - CONTROLADOR DE VISIBILIDAD
+    // ============================================
                 }
             });
         }
@@ -832,5 +833,54 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             });
         }
+    })();
+
+    // ============================================
+    // MAGNETIC DYNAMISM ENGINE (2026 UI/UX)
+    // ============================================
+    (function initNeuroDynamism() {
+        // 1. Efecto Tilt 3D Ligero (Vanilla JS)
+        const tiltCards = document.querySelectorAll('.pricing-card, .service-accordion-item, .stat-box');
+        tiltCards.forEach(card => {
+            card.classList.add('neuro-tilt');
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -10; // Max 10 grados
+                const rotateY = ((x - centerX) / centerX) * 10;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+            });
+        });
+
+        // 2. Staggered Cascade Reveal
+        const neuroRevealElements = document.querySelectorAll('h2, h3, p, .pricing-card, .service-accordion-item, .stat-box');
+        let delayCounter = 0;
+        
+        const neuroObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Staggering dinámico
+                    entry.target.style.setProperty('--stagger', delayCounter);
+                    entry.target.classList.add('active');
+                    delayCounter++;
+                    
+                    // Resetear el contador rápidamente si los elementos no aparecen todos a la vez
+                    setTimeout(() => delayCounter = 0, 100);
+                    neuroObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+        neuroRevealElements.forEach(el => {
+            el.classList.add('neuro-reveal');
+            neuroObserver.observe(el);
+        });
+
     })();
 });
