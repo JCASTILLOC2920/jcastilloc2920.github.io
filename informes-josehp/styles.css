@@ -1,0 +1,536 @@
+/* ==========================================================================
+   DISEÑO CORPORATIVO: SISTEMA DE GESTIÓN PATOLÓGICA - JC PATH LAB
+   ========================================================================== */
+
+:root {
+    --primary-color: #1e3d75;      /* Azul Corporativo Oscuro (Navbar) */
+    --accent-color: #0d6efd;       /* Azul Primario (Botones) */
+    --hover-accent: #0b5ed7;
+    --sidebar-bg: #212529;         /* Gris Oscuro / Negro */
+    --sidebar-hover: #343a40;
+    --body-bg: #f4f6f9;            /* Fondo General Gris Claro */
+    --card-bg: #ffffff;            /* Fondo de Tarjetas Blanco */
+    --text-color: #212529;         /* Texto Principal */
+    --text-muted: #6c757d;         /* Texto Secundario/Etiquetas */
+    --border-color: #dee2e6;       /* Bordes Claros */
+    --badge-danger: #dc3545;       /* Rojo Alerta (S/. 0.00 / Retrasado) */
+    --badge-success: #198754;      /* Verde Éxito (Entregado / Fecha Futura) */
+    --table-header: #0d6efd;       /* Azul Cabecera Tabla */
+    --font-family: 'Inter', sans-serif;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset de Estilos Estándar */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--body-bg);
+    color: var(--text-color);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   NAVBAR SUPERIOR
+   ========================================================================== */
+.navbar {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.sidebar-toggle {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: var(--transition);
+}
+
+.sidebar-toggle:hover {
+    opacity: 0.8;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.clinic-icon {
+    font-size: 1.3rem;
+    color: #00e5ff; /* Cyan brillante para resaltar el microscopio */
+}
+
+.brand-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+.welcome-text {
+    font-size: 0.85rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    padding-left: 1.2rem;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.nav-icon-btn {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.nav-icon-btn:hover {
+    color: #00e5ff;
+}
+
+/* ==========================================================================
+   DISEÑO DE CONTENEDOR Y SIDEBAR
+   ========================================================================== */
+.main-layout {
+    display: flex;
+    margin-top: 55px;
+    min-height: calc(100vh - 55px);
+}
+
+.sidebar {
+    width: 240px;
+    background-color: var(--sidebar-bg);
+    color: #adb5bd;
+    padding: 1.5rem 0;
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.sidebar.collapsed {
+    width: 60px;
+}
+
+.sidebar.collapsed span {
+    display: none;
+}
+
+.sidebar-menu {
+    list-style: none;
+}
+
+.sidebar-menu li a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.85rem 1.5rem;
+    color: #adb5bd;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-left: 3px solid transparent;
+    transition: var(--transition);
+}
+
+.sidebar-menu li:hover a,
+.sidebar-menu li.active a {
+    color: #ffffff;
+    background-color: var(--sidebar-hover);
+}
+
+.sidebar-menu li.active a {
+    border-left-color: var(--accent-color);
+}
+
+.sidebar-menu li a i {
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.content-wrapper {
+    flex-grow: 1;
+    padding: 1.5rem;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+/* ==========================================================================
+   PANEL DE FILTROS (CARD)
+   ========================================================================== */
+.filter-card {
+    background: var(--card-bg);
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+}
+
+.filter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    align-items: flex-end;
+}
+
+.md-solicitante-group {
+    grid-column: span 2;
+}
+
+@media (max-width: 768px) {
+    .md-solicitante-group {
+        grid-column: span 1;
+    }
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.input-group label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.input-group input {
+    height: 34px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0 0.6rem;
+    font-size: 0.85rem;
+    font-family: inherit;
+    color: var(--text-color);
+    transition: var(--transition);
+    width: 100%;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+}
+
+.button-group {
+    display: flex;
+    gap: 0.6rem;
+}
+
+.btn {
+    height: 34px;
+    border: none;
+    border-radius: 4px;
+    padding: 0 1.2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: var(--transition);
+}
+
+.btn-search {
+    background-color: #1e3d75;
+    color: #ffffff;
+}
+
+.btn-search:hover {
+    background-color: #152c55;
+}
+
+.btn-patient {
+    background-color: #0b5ed7;
+    color: #ffffff;
+}
+
+.btn-patient:hover {
+    background-color: #0a58ca;
+}
+
+/* ==========================================================================
+   NAVEGACIÓN POR PESTAÑAS (TABS)
+   ========================================================================== */
+.services-tabs {
+    display: flex;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 1rem;
+    gap: 0.2rem;
+}
+
+.tab-link {
+    background: none;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    position: relative;
+    transition: var(--transition);
+}
+
+.tab-link:hover {
+    color: var(--accent-color);
+}
+
+.tab-link.active {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.tab-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+}
+
+/* ==========================================================================
+   TABLA DE PACIENTES
+   ========================================================================== */
+.table-container {
+    background: var(--card-bg);
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+    overflow-x: auto;
+}
+
+.patient-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    text-align: left;
+}
+
+.patient-table th {
+    background-color: var(--table-header);
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0.75rem 0.85rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.patient-table td {
+    padding: 0.65rem 0.85rem;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+.patient-table tbody tr:hover {
+    background-color: rgba(13, 110, 253, 0.02);
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Badges / Celdas coloreadas */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 4px;
+    text-align: center;
+    color: #ffffff;
+}
+
+.badge-danger {
+    background-color: var(--badge-danger);
+}
+
+.badge-success {
+    background-color: var(--badge-success);
+}
+
+/* Botones de acción en tabla */
+.action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.btn-edit {
+    color: var(--text-color);
+}
+
+.btn-edit:hover {
+    color: var(--accent-color);
+}
+
+.btn-view {
+    color: var(--text-color);
+}
+
+.btn-view:hover {
+    color: #00e5ff;
+}
+
+.btn-delete {
+    color: var(--badge-danger);
+}
+
+.btn-delete:hover {
+    opacity: 0.8;
+}
+
+/* ==========================================================================
+   MODAL REGISTRO/EDICIÓN (VENTANA EMERGENTE)
+   ========================================================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition);
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    width: 600px;
+    max-width: 90%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transform: translateY(-20px);
+    transition: var(--transition);
+}
+
+.modal-overlay.active .modal-card {
+    transform: translateY(0);
+}
+
+.modal-header {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modal-header h3 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.modal-form {
+    padding: 1.5rem;
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.modal-grid .input-group:nth-child(3),
+.modal-grid .input-group:nth-child(4) {
+    grid-column: span 2;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.6rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1rem;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    background-color: var(--hover-accent);
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.btn-secondary:hover {
+    background-color: #5c636a;
+}

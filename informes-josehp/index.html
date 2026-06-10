@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Pacientes - JC PATH LAB</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome para los Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar Superior -->
+    <header class="navbar">
+        <div class="navbar-left">
+            <button class="sidebar-toggle" id="toggleSidebar">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="logo-area">
+                <i class="fa-solid fa-microscope clinic-icon"></i>
+                <span class="brand-name">JC PATH LAB</span>
+            </div>
+            <span class="welcome-text">Bienvenido: <strong>JOSEHP CHRISTOPHER, CASTILLO CUENCA</strong></span>
+        </div>
+        <div class="navbar-right">
+            <button class="nav-icon-btn" title="Configuración">
+                <i class="fa-solid fa-user-gear"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        <!-- Sidebar Izquierda -->
+        <aside class="sidebar" id="sidebarMenu">
+            <ul class="sidebar-menu">
+                <li class="active"><a href="#"><i class="fa-solid fa-hospital-user"></i> <span>Pacientes</span></a></li>
+                <li><a href="#"><i class="fa-solid fa-file-invoice-dollar"></i> <span>Facturación</span></a></li>
+                <li><a href="#"><i class="fa-solid fa-receipt"></i> <span>Boletas</span></a></li>
+                <li><a href="#"><i class="fa-solid fa-chart-line"></i> <span>Rendimiento</span></a></li>
+                <li><a href="#"><i class="fa-solid fa-circle-info"></i> <span>Soporte</span></a></li>
+            </ul>
+        </aside>
+
+        <!-- Contenedor de Contenido Principal -->
+        <main class="content-wrapper">
+            <!-- Panel de Búsqueda y Filtros -->
+            <section class="filter-card">
+                <form id="searchForm" class="filter-grid">
+                    <div class="input-group">
+                        <label for="fecInicio">Fec. Inicio</label>
+                        <input type="date" id="fecInicio" name="fecInicio">
+                    </div>
+                    <div class="input-group">
+                        <label for="fecFinal">Fec. Final</label>
+                        <input type="date" id="fecFinal" name="fecFinal">
+                    </div>
+                    <div class="input-group">
+                        <label for="codAtencion">Cod. Atención</label>
+                        <input type="text" id="codAtencion" placeholder="Ej: 26Q-188">
+                    </div>
+                    <div class="input-group">
+                        <label for="nomPaciente">Nom. Paciente</label>
+                        <input type="text" id="nomPaciente" placeholder="Nombres">
+                    </div>
+                    <div class="input-group">
+                        <label for="apePaciente">Ape. Paciente</label>
+                        <input type="text" id="apePaciente" placeholder="Apellidos">
+                    </div>
+                    <div class="input-group">
+                        <label for="dni">DNI</label>
+                        <input type="text" id="dni" placeholder="Digite DNI">
+                    </div>
+                    <div class="input-group md-solicitante-group">
+                        <label for="medSolicitante">Med. Solicitante</label>
+                        <input type="text" id="medSolicitante" placeholder="Ing. nombre doctor o referencia">
+                    </div>
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-search">
+                            <i class="fa-solid fa-magnifying-glass"></i> Buscar
+                        </button>
+                        <button type="button" class="btn btn-patient" id="addPatientBtn">
+                            <i class="fa-solid fa-user-plus"></i> Paciente
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Categorías / Pestañas de Servicios -->
+            <nav class="services-tabs">
+                <button class="tab-link active" data-tab="HE">Serv. muestra HE (Q)</button>
+                <button class="tab-link" data-tab="IHC">Serv. Inmunohistoquímica (I)</button>
+                <button class="tab-link" data-tab="CITO">Serv. Citología (C)</button>
+            </nav>
+
+            <!-- Tabla de Registros -->
+            <div class="table-container">
+                <table class="patient-table">
+                    <thead>
+                        <tr>
+                            <th width="40">#</th>
+                            <th>COD-ATENCIÓN</th>
+                            <th>DNI</th>
+                            <th>MED. SOLICITANTE</th>
+                            <th>PACIENTE</th>
+                            <th>COSTO SERVICIO</th>
+                            <th>ADELANTO</th>
+                            <th>RESTA</th>
+                            <th>FEC. ENTREGA</th>
+                            <th width="50" class="text-center">E</th>
+                            <th width="50" class="text-center">VER</th>
+                            <th width="50" class="text-center">ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody id="patientTableBody">
+                        <!-- Las filas se inyectan dinámicamente mediante JS -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal para Agregar/Editar Paciente -->
+    <div class="modal-overlay" id="patientModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="modalTitle">Registrar Nuevo Paciente</h3>
+                <button class="modal-close" id="closeModalBtn">&times;</button>
+            </div>
+            <form id="modalForm" class="modal-form">
+                <div class="modal-grid">
+                    <div class="input-group">
+                        <label for="mCodAtencion">Código de Atención</label>
+                        <input type="text" id="mCodAtencion" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="mDni">DNI</label>
+                        <input type="text" id="mDni" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="mPaciente">Nombres y Apellidos del Paciente</label>
+                        <input type="text" id="mPaciente" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="mMedSolicitante">Médico Solicitante</label>
+                        <input type="text" id="mMedSolicitante" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="mCosto">Costo Servicio (S/.)</label>
+                        <input type="number" id="mCosto" min="0" step="0.1" value="0.0" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="mAdelanto">Adelanto (S/.)</label>
+                        <input type="number" id="mAdelanto" min="0" step="0.1" value="0.0" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="mFechaEntrega">Fecha de Entrega</label>
+                        <input type="date" id="mFechaEntrega" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cancelModalBtn">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="saveModalBtn">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script de Datos y Control -->
+    <script src="script.js"></script>
+</body>
+</html>
