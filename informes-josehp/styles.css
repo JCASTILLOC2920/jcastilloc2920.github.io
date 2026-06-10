@@ -534,3 +534,120 @@ body {
 .btn-secondary:hover {
     background-color: #5c636a;
 }
+
+/* ==========================================================================
+   MODAL AVANZADO (GRID ALINEADO)
+   ========================================================================== */
+.advanced-modal {
+    width: 750px !important;
+    max-width: 95% !important;
+}
+
+.modal-body-scroll {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    align-items: center;
+    margin-bottom: 0.8rem;
+    gap: 1rem;
+}
+
+.form-row.align-top {
+    align-items: flex-start;
+}
+
+.form-row label {
+    font-size: 0.85rem;
+    color: var(--text-color);
+    text-align: left;
+}
+
+.form-row input[type="text"],
+.form-row input[type="number"],
+.form-row input[type="date"],
+.form-row select,
+.form-row textarea {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.85rem;
+    color: var(--text-color);
+    font-family: var(--font-family);
+    transition: var(--transition);
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+}
+
+.full-width {
+    width: 100%;
+}
+
+.bg-gray {
+    background-color: #e9ecef;
+}
+
+.input-with-btn {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.input-with-btn input,
+.input-with-btn select {
+    flex-grow: 1;
+}
+
+.input-stacked {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkbox-inline {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+}
+
+.mt-2 { margin-top: 0.5rem; }
+.pb-3 { padding-bottom: 1rem; }
+.border-bottom { border-bottom: 1px solid #000; }
+
+.btn-sm {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+}
+
+.split-footer {
+    display: flex;
+    justify-content: space-between !important;
+    padding-top: 1rem;
+    margin-top: 1rem;
+    border-top: 1px solid #000;
+}
+
+.btn-cancel {
+    background-color: #6c757d;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.btn-cancel:hover {
+    background-color: #5c636a;
+}

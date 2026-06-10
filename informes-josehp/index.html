@@ -125,44 +125,127 @@
 
     <!-- Modal para Agregar/Editar Paciente -->
     <div class="modal-overlay" id="patientModal">
-        <div class="modal-card">
+        <div class="modal-card advanced-modal">
             <div class="modal-header">
-                <h3 id="modalTitle">Registrar Nuevo Paciente</h3>
+                <h3 id="modalTitle">Registro Paciente</h3>
                 <button class="modal-close" id="closeModalBtn">&times;</button>
             </div>
             <form id="modalForm" class="modal-form">
-                <div class="modal-grid">
-                    <div class="input-group">
-                        <label for="mCodAtencion">Código de Atención</label>
-                        <input type="text" id="mCodAtencion" required>
+                <div class="modal-body-scroll">
+                    <!-- Fila 1: Tipo Servicio -->
+                    <div class="form-row">
+                        <label for="mTipoServicio">Tipo Servicio</label>
+                        <select id="mTipoServicio" class="full-width">
+                            <option value="">SELECCIONAR</option>
+                            <option value="HE">HE (Q)</option>
+                            <option value="IHC">Inmunohistoquímica (I)</option>
+                            <option value="CITO">Citología (C)</option>
+                        </select>
                     </div>
-                    <div class="input-group">
+                    <!-- Fila 2: Cod Atencion -->
+                    <div class="form-row">
+                        <label for="mCodAtencion">Cod. Atención</label>
+                        <div class="input-with-btn">
+                            <input type="text" id="mCodAtencion" placeholder="Forma consulta: Q,I,C-#" required>
+                            <button type="button" class="btn btn-primary btn-sm">Validar</button>
+                        </div>
+                    </div>
+                    <!-- Fila 3: DNI -->
+                    <div class="form-row">
                         <label for="mDni">DNI</label>
-                        <input type="text" id="mDni" required>
+                        <div class="input-with-btn">
+                            <input type="text" id="mDni" placeholder="DNI" required>
+                            <button type="button" class="btn btn-primary btn-sm">Buscar</button>
+                        </div>
                     </div>
-                    <div class="input-group">
-                        <label for="mPaciente">Nombres y Apellidos del Paciente</label>
-                        <input type="text" id="mPaciente" required>
+                    <!-- Fila 4: Nombres -->
+                    <div class="form-row">
+                        <label for="mNombres">Nombres</label>
+                        <input type="text" id="mNombres" placeholder="Nombre completos" class="full-width" required>
                     </div>
-                    <div class="input-group">
-                        <label for="mMedSolicitante">Médico Solicitante</label>
-                        <input type="text" id="mMedSolicitante" required>
+                    <!-- Fila 5: Apellidos -->
+                    <div class="form-row">
+                        <label for="mApellidos">Apellidos</label>
+                        <input type="text" id="mApellidos" placeholder="Apellidos Completos" class="full-width" required>
                     </div>
-                    <div class="input-group">
-                        <label for="mCosto">Costo Servicio (S/.)</label>
-                        <input type="number" id="mCosto" min="0" step="0.1" value="0.0" required>
+                    <!-- Fila 6: Edad -->
+                    <div class="form-row">
+                        <label for="mEdad">Edad</label>
+                        <input type="text" id="mEdad" placeholder="Edad" class="full-width">
                     </div>
-                    <div class="input-group">
-                        <label for="mAdelanto">Adelanto (S/.)</label>
-                        <input type="number" id="mAdelanto" min="0" step="0.1" value="0.0" required>
+                    <!-- Fila 7: Telefono -->
+                    <div class="form-row">
+                        <label for="mTelefono">Telefono</label>
+                        <input type="text" id="mTelefono" placeholder="Telefono" class="full-width">
                     </div>
-                    <div class="input-group">
-                        <label for="mFechaEntrega">Fecha de Entrega</label>
-                        <input type="date" id="mFechaEntrega" required>
+                    <!-- Fila 8: Sexo -->
+                    <div class="form-row">
+                        <label for="mSexo">Sexo</label>
+                        <select id="mSexo" class="full-width">
+                            <option value="">SELECCIONAR</option>
+                            <option value="M">Masculino</option>
+                            <option value="F">Femenino</option>
+                        </select>
+                    </div>
+                    <!-- Fila 9: F. Contacto -->
+                    <div class="form-row">
+                        <label for="mFContacto">F. Contacto</label>
+                        <input type="text" id="mFContacto" placeholder="Contacto" class="full-width">
+                    </div>
+                    <!-- Fila 10: Tel. Contacto -->
+                    <div class="form-row">
+                        <label for="mTelContacto">Tel. Contacto</label>
+                        <input type="text" id="mTelContacto" placeholder="Telefono" class="full-width">
+                    </div>
+                    <!-- Fila 11: Med Solicitante -->
+                    <div class="form-row">
+                        <label for="mMedSolicitante">Med. Solicitante</label>
+                        <div class="input-with-btn">
+                            <select id="mMedSolicitante" class="full-width" required>
+                                <option value="">SELECCIONAR</option>
+                                <option value="Dr. Ejemplo 1">Dr. Ejemplo 1</option>
+                                <option value="Dra. Ejemplo 2">Dra. Ejemplo 2</option>
+                            </select>
+                            <button type="button" class="btn btn-secondary btn-sm">Copiar</button>
+                            <button type="button" class="btn btn-primary btn-sm">Registro</button>
+                        </div>
+                    </div>
+                    <!-- Fila 12: Motivo Estudio -->
+                    <div class="form-row align-top">
+                        <label for="mMotivoEstudio">Motivo Estudio</label>
+                        <textarea id="mMotivoEstudio" rows="4" class="full-width"></textarea>
+                    </div>
+                    <!-- Fila 13: Costo Transp. -->
+                    <div class="form-row">
+                        <label for="mCosto">Costo Transp.</label>
+                        <div class="input-stacked">
+                            <input type="number" id="mCosto" value="0" class="full-width">
+                            <label class="checkbox-inline"><input type="checkbox" id="mPagoPendiente"> <strong>Pago Pendiente</strong></label>
+                        </div>
+                    </div>
+                    <!-- Fila 14: Adelanto -->
+                    <div class="form-row">
+                        <label for="mAdelanto">Adelanto</label>
+                        <input type="number" id="mAdelanto" value="0" class="full-width">
+                    </div>
+                    <!-- Fila 15: Clinica -->
+                    <div class="form-row">
+                        <label for="mClinica">Clinica</label>
+                        <input type="text" id="mClinica" placeholder="Ingreso de la clinica" class="full-width">
+                    </div>
+                    <!-- Fila 16: Orden Servicio -->
+                    <div class="form-row">
+                        <label for="mOrdenServicio">Orden Servicio</label>
+                        <input type="file" id="mOrdenServicio" class="full-width">
+                    </div>
+                    <!-- Fila 17: Fec. Probable -->
+                    <div class="form-row pb-3 border-bottom">
+                        <label for="mFechaEntrega"><strong>Fec. Probable-Entrega</strong></label>
+                        <input type="date" id="mFechaEntrega" class="full-width bg-gray" required>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" id="cancelModalBtn">Cancelar</button>
+                <div class="modal-footer split-footer">
+                    <button type="button" class="btn btn-cancel" id="cancelModalBtn">Salir</button>
                     <button type="submit" class="btn btn-primary" id="saveModalBtn">Guardar</button>
                 </div>
             </form>
