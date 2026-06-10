@@ -8,33 +8,39 @@
 :root {
     /* Premium Color Palette (HSL Tailored for Clinial Precision & Trust) */
     --primary-hue: 221;
-    --primary: hsl(var(--primary-hue), 83%, 34%);       /* Deep Indigo Cobalt */
+    --primary: hsl(var(--primary-hue), 83%, 34%);
+    /* Deep Indigo Cobalt */
     --primary-light: hsl(var(--primary-hue), 83%, 45%);
     --primary-dark: hsl(var(--primary-hue), 83%, 15%);
-    
+
     --secondary-hue: 174;
-    --secondary: hsl(var(--secondary-hue), 84%, 31%);   /* Pure Emerald Teal */
+    --secondary: hsl(var(--secondary-hue), 84%, 31%);
+    /* Pure Emerald Teal */
     --secondary-light: hsl(var(--secondary-hue), 84%, 40%);
-    
+
     --accent-hue: 188;
-    --accent: hsl(var(--accent-hue), 93%, 47%);         /* Electric Neon Blue */
+    --accent: hsl(var(--accent-hue), 93%, 47%);
+    /* Electric Neon Blue */
     --accent-glow: hsla(var(--accent-hue), 93%, 47%, 0.15);
-    
-    --success: hsl(142, 70%, 45%);                      /* Healthy Mint Green */
-    --warning: hsl(35, 92%, 50%);                       /* Amber Alert */
-    
+
+    --success: hsl(142, 70%, 45%);
+    /* Healthy Mint Green */
+    --warning: hsl(35, 92%, 50%);
+    /* Amber Alert */
+
     /* Neutral Shades */
     --bg-main: #fafbfd;
     --bg-card: rgba(255, 255, 255, 0.75);
-    --text-main: hsl(222, 47%, 11%);                    /* Deep Slate Blue */
+    --text-main: hsl(222, 47%, 11%);
+    /* Deep Slate Blue */
     --text-muted: hsl(215, 16%, 47%);
-    
+
     /* Glassmorphism & Visual Anchors */
     --glass: rgba(255, 255, 255, 0.7);
     --glass-border: rgba(255, 255, 255, 0.5);
     --border-radius-lg: 24px;
     --border-radius-md: 16px;
-    
+
     /* 3D Shadows & Auras */
     --shadow-lux: 0 10px 40px -10px rgba(15, 23, 42, 0.06), 0 20px 50px -20px rgba(15, 23, 42, 0.04);
     --shadow-neon: 0 0 40px rgba(16, 185, 129, 0.1);
@@ -57,7 +63,12 @@ body {
     overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
     letter-spacing: -0.025em;
@@ -103,7 +114,7 @@ header {
     position: relative;
     padding: 8rem 0 6rem;
     background: radial-gradient(circle at 10% 20%, rgba(224, 242, 254, 0.4) 0%, rgba(255, 255, 255, 0) 50%),
-                radial-gradient(circle at 90% 80%, rgba(204, 251, 241, 0.4) 0%, rgba(255, 255, 255, 0) 50%);
+        radial-gradient(circle at 90% 80%, rgba(204, 251, 241, 0.4) 0%, rgba(255, 255, 255, 0) 50%);
 }
 
 .text-gradient {
@@ -116,7 +127,8 @@ header {
 }
 
 /* ─── PREMIUM CARD LAYOUT (Glassmorphism & Neon Borders) ─────────────────── */
-.trust-card, .premium-card {
+.trust-card,
+.premium-card {
     background: var(--bg-card);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
@@ -129,7 +141,8 @@ header {
     overflow: hidden;
 }
 
-.trust-card::before, .premium-card::before {
+.trust-card::before,
+.premium-card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -141,7 +154,8 @@ header {
     z-index: 1;
 }
 
-.trust-card:hover, .premium-card:hover {
+.trust-card:hover,
+.premium-card:hover {
     transform: translateY(-8px) scale(1.01);
     box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.1), 0 0 50px rgba(16, 185, 129, 0.15);
     border-color: rgba(16, 185, 129, 0.4);
@@ -289,9 +303,17 @@ header {
 }
 
 @keyframes glowing-ring {
-    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
-    70% { box-shadow: 0 0 0 20px rgba(16, 185, 129, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5);
+    }
+
+    70% {
+        box-shadow: 0 0 0 20px rgba(16, 185, 129, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    }
 }
 
 #chat-toggle {
