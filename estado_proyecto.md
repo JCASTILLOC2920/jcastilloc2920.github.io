@@ -18,4 +18,5 @@
 
 ## El siguiente paso exacto para la siguiente interacción
 - Revisar la velocidad de carga y fluidez final.
+- Despliegue forzado a las %TIME% del día %DATE%
 - Proceder al despliegue final en GitHub Pages (`git commit` / `git push`).
