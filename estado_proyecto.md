@@ -1,19 +1,18 @@
 # ESTADO DEL PROYECTO: INFRAESTRUCTURA CLÍNICA 2026 (COLMENA TITAN)
-**Fecha de Actualización:** 10 de Junio de 2026
-**Agente en Operación:** PRIME / ANTIGRAVITY_SYSTEM_OPERATOR
-**Hito:** Protocolo de Reseteo Ejecutado
+**Fecha de Actualización:** 11 de Junio de 2026
+**Agente en Operación:** TITAN / ANTIGRAVITY_SYSTEM_OPERATOR
+**Hito:** Publicación de la Segunda Web Operativa e Integración F2
 
 ## LO QUE HICIMOS HOY
-1. **Auditoría del Motor de Dictado (Macrorecorder):** Se detectó y diagnosticó el problema de escritura automática ("texto fantasma") y falta de precisión. Se proporcionaron las pautas exactas para ajustar el `energy_threshold` y la limpieza de buffers en `nucleo_voz.py`.
-2. **Desarrollo de la Extranet Clínica (UI/UX):** Se diseñó e implementó desde cero una interfaz web de grado Premium (Glassmorphism, variables CSS, Google Fonts) en la ruta `C:\repositorio\INFORMES JOSEHP`.
-3. **Lógica de Datos de la Interfaz:** Se programó `script.js` con un CRUD completo en memoria, buscador en tiempo real, modales de edición y cálculo automatizado de saldos para gestionar pacientes.
-4. **Despliegue a Producción:** Se inyectó la plataforma en la subcarpeta `informes-josehp` dentro del repositorio principal (`jcastilloc2920.github.io`) y se subió exitosamente a GitHub Pages bajo el Commit `a8e91b1`.
+1. **Reparación del Núcleo F2 (MacroRecorder):** Se recableó la tecla F2 en `main.py` y el botón gráfico "PLANTILLA" en la interfaz (`gui_cortana.py`) para que abran instantáneamente el Gestor de Plantillas en lugar de bloquearse en un estado inactivo.
+2. **Optimización Térmica de CPU/RAM:** Se aplicó el perfil energético "TITAN Military" mediante `powercfg` y se purgó la memoria caché (Standby List) forzando el `MinWorkingSet` a cero, previniendo sobrecalentamientos sin pérdida de desempeño de IA.
+3. **Migración de Activos y Despliegue Git:** Se empaquetó toda la nueva infraestructura del laboratorio local (`C:\repositorio\laboratorio jc path lab`) y se insertó como una sub-plataforma dentro del repositorio principal (`jcastilloc2920.github.io/laboratorio`).
+4. **Mapa Oscuro Dinámico:** Se inyectó un iFrame real de Google Maps apuntando a Puente Piedra en la página de Contacto de la nueva web, aplicando un filtro CSS `invert(90%) hue-rotate(180deg)` para forzar un Modo Oscuro coherente.
 
 ## DECISIONES TÉCNICAS TOMADAS
-*   **Arquitectura Híbrida (Web + Local):** Se validó que el enfoque más efectivo para la escalabilidad del laboratorio es usar un Frontend web moderno en lugar de un software pesado de escritorio.
-*   **Apertura a Clientes (Extranet):** Se modificó la visión arquitectónica: la página no será solo local, sino un portal para que las clínicas externas (clientes) busquen y descarguen los informes de sus pacientes.
-*   **Migración a BaaS (Pendiente):** Al requerir acceso externo, se acordó abandonar el almacenamiento estático de GitHub en favor de un backend remoto. Las opciones finales son **Vercel+Supabase (Soberano)** o **Firebase (Rápido)**.
+*   **Aislamiento de Entornos (Carpetas Secundarias):** En lugar de sobrescribir el sitio principal y correr el riesgo de perder posicionamiento o funciones, se optó por crear la carpeta `/laboratorio` en la raíz de GitHub Pages. Ahora existen dos webs vivas y soberanas simultáneamente.
+*   **Balanceo Energético:** Se determinó que la optimización de temperatura por comandos OS (PowerShell / `powercfg`) es superior y más segura que intentar ajustar afinidades o *underclocking* por scripts invasivos.
 
 ## SIGUIENTE PASO EXACTO PARA LA SIGUIENTE INTERACCIÓN
-*   **Elección de Base de Datos:** El Comandante debe confirmar si la plataforma de descarga para clínicas se construirá sobre Supabase o Firebase.
-*   **Construcción del Backend:** Una vez elegido, el Agente programará el puente de conexión en Python para subir los PDFs automáticamente y modificará el `script.js` para extraerlos desde la nube en tiempo real mediante DNI.
+*   **Conectar Tráfico y Enlaces:** Coordinar hipervínculos entre la página original (`jcastilloc2920.github.io`) y la nueva página (`jcastilloc2920.github.io/laboratorio`) para trasladar autoridad de dominio (SEO).
+*   **Módulos Faltantes:** Integrar el Chatbot Valeria V2 en el contenedor Bento Grid de la nueva web para iniciar la captación de leads en automático.
