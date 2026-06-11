@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios Médicos | JC PATH LAB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-header { text-align: center; margin: 8rem 0 4rem 0; }
+        .service-section { max-width: 1000px; margin: 0 auto 4rem auto; padding: 0 2rem; }
+        .service-section h2 { color: var(--accent-blue); margin-bottom: 1.5rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; }
+        .service-list { list-style: none; }
+        .service-list li { background: var(--glass-bg); margin-bottom: 1rem; padding: 1.5rem; border-radius: 8px; border: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center;}
+        .service-info h4 { font-size: 1.2rem; margin-bottom: 0.3rem; }
+        .service-info p { color: var(--text-muted); font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <div class="logo">JC <span>PATH LAB</span></div>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="servicios.html" class="active">Servicios Médicos</a>
+                <a href="contacto.html">Contacto</a>
+            </div>
+            <a href="https://wa.me/51986396733" class="btn-primary" target="_blank">Atención Rápida</a>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <h1>Catálogo de <span class="text-gradient">Servicios</span></h1>
+        <p>Procesamiento de alta precisión para diagnóstico oncológico definitivo.</p>
+    </div>
+
+    <section class="service-section" id="biopsias">
+        <h2>Biopsias Histopatológicas</h2>
+        <ul class="service-list">
+            <li>
+                <div class="service-info">
+                    <h4>Biopsias Convencionales</h4>
+                    <p>Estómago, Esófago, Intestino Delgado, Colon o Cérvix. Diagnóstico morfológico con tinción H&E.</p>
+                </div>
+            </li>
+            <li>
+                <div class="service-info">
+                    <h4>Cono Cervical</h4>
+                    <p>Estudio completo de márgenes quirúrgicos y profundidad invasiva cervical.</p>
+                </div>
+            </li>
+            <li>
+                <div class="service-info">
+                    <h4>Biopsia de Próstata (6 Frascos)</h4>
+                    <p>Panel completo para mapeo prostático oncológico detallado.</p>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <section class="service-section" id="citologia">
+        <h2>Estudios Citológicos</h2>
+        <ul class="service-list">
+            <li>
+                <div class="service-info">
+                    <h4>Papanicolaou (PAP)</h4>
+                    <p>Tinción policromática para estudio detallado de la cromatina y prevención del VPH.</p>
+                </div>
+            </li>
+            <li>
+                <div class="service-info">
+                    <h4>Bloque Celular (Líquidos)</h4>
+                    <p>Procesamiento de líquidos cavitarios para máxima retención celular.</p>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <section class="service-section" id="ihq">
+        <h2>Inmunohistoquímica (Paneles Predictivos)</h2>
+        <p style="margin-bottom: 2rem; color: var(--text-muted);">Inmunotipificación de tumores mediante el reconocimiento antígeno-anticuerpo.</p>
+        <ul class="service-list">
+            <li>
+                <div class="service-info">
+                    <h4>Marcadores de Linaje (Tórax y Abdomen)</h4>
+                    <p>Pulmón (TTF-1, Napsina A), Mama (GATA3, RE), Gastrointestinal (SATB2, CDX2, CK20).</p>
+                </div>
+            </li>
+            <li>
+                <div class="service-info">
+                    <h4>Marcadores Urogenitales</h4>
+                    <p>Riñón (PAX8, pVHL), Próstata (NKX3.1, PSA), Urotelio (GATA3, p40).</p>
+                </div>
+            </li>
+            <li>
+                <div class="service-info">
+                    <h4>Marcadores de Membrana</h4>
+                    <p>HER2, PD-L1, CD20, CD3, E-cadherina.</p>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <section class="service-section" id="medicos">
+        <h2>Soporte Exclusivo para Médicos</h2>
+        <div class="glass-card" style="text-align: center;">
+            <p style="margin-bottom: 1.5rem;">Biopsias Intraoperatorias, Análisis Rápido y Convenios Preferenciales.</p>
+            <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20soy%20médico%20y%20deseo%20coordinar%20interconsulta" class="btn-primary">Contacto Exclusivo para Cirujanos</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">JC PATH LAB</div>
+            <p>&copy; 2026 JC PATH LAB. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

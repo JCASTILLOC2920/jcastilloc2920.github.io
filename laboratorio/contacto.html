@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto y Envíos | JC PATH LAB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .contact-container { max-width: 1000px; margin: 8rem auto 4rem auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+        .contact-info h2 { color: var(--accent-blue); margin-bottom: 1.5rem; }
+        .contact-info p { margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .map-box { background: var(--glass-bg); padding: 1rem; border-radius: 12px; border: 1px solid var(--glass-border); text-align: center; }
+        @media (max-width: 768px) { .contact-container { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <div class="logo">JC <span>PATH LAB</span></div>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="servicios.html">Servicios Médicos</a>
+                <a href="contacto.html" class="active">Contacto</a>
+            </div>
+            <a href="https://wa.me/51986396733" class="btn-primary" target="_blank">Atención Rápida</a>
+        </div>
+    </nav>
+
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2>Comunícate con Nosotros</h2>
+            <p>Atendemos urgencias oncológicas y coordinamos recojo de muestras a domicilio o en clínicas a nivel de Lima Norte.</p>
+            
+            <div style="margin-top: 2rem;">
+                <p>📍 <strong>Sede Central:</strong> Mz M2 lote 13 Jardines de Chillón, Puente Piedra, Lima</p>
+                <p>📞 <strong>Teléfono de Urgencias:</strong> +51 986396733</p>
+                <p>📧 <strong>Correo Institucional:</strong> jclab59@gmail.com</p>
+                <p>🕒 <strong>Horario de Recepción:</strong> Lunes a Viernes 9:00 AM - 6:00 PM</p>
+            </div>
+            
+            <div style="margin-top: 3rem;">
+                <a href="https://wa.me/51986396733?text=Hola,%20necesito%20coordinar%20el%20recojo%20de%20una%20muestra" class="btn-primary" target="_blank">Coordinar Recojo por WhatsApp</a>
+            </div>
+        </div>
+        
+        <div class="map-box">
+            <h3>Cobertura Logística</h3>
+            <p style="margin: 1rem 0; color: var(--text-muted);">Cobertura preferencial en Comas, Puente Piedra, Carabayllo, Los Olivos e Independencia. Envíos nacionales disponibles bajo coordinación.</p>
+            <div style="width: 100%; height: 250px; border-radius: 8px; overflow: hidden; border: 1px solid rgba(0, 242, 254, 0.3);">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3903.626245137255!2d-77.08638108465076!3d-11.8614603915155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105d15b2e95fb79%3A0x2806b7d1591823eb!2sJardines%20de%20Chillon%2C%20Puente%20Piedra!5e0!3m2!1ses!2spe!4v1689133486164!5m2!1ses!2spe" width="100%" height="100%" style="border:0; filter: invert(90%) hue-rotate(180deg);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">JC PATH LAB</div>
+            <p>&copy; 2026 JC PATH LAB. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
