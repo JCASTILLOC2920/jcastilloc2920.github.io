@@ -3,18 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patología Digital & Whole Slide Imaging (WSI) | JC PATH LAB</title>
-    <meta name="description" content="Una imagen vale más que mil palabras: explore una lámina histológica real escaneada y digitalizada en alta resolución con zoom y paneo continuo.">
+    <title>Patología Digital & Visor WSI de Alta Resolución | JC PATH LAB</title>
+    <meta name="description" content="Una imagen vale más que mil palabras: explore láminas histopatológicas reales digitalizadas en alta resolución con microscopio virtual OpenSeadragon a 40x.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- OpenSeadragon Engine Oficial -->
+    <script src="vendor/openseadragon/openseadragon.min.js"></script>
+
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #030712; color: #f8fafc; }
-        .neuro-glass { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(56, 189, 248, 0.18); }
-        .slide-viewport { cursor: grab; user-select: none; touch-action: none; }
-        .slide-viewport:active { cursor: grabbing; }
+        .neuro-glass { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(56, 189, 248, 0.2); }
+        .slide-tab.active {
+            border-color: #38bdf8;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.25) 0%, rgba(15, 23, 42, 0.9) 100%);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+        }
+        .openseadragon-container {
+            outline: none !important;
+            background-color: #030712 !important;
+        }
+        /* Contenedor maximizado que aprovecha la pantalla */
+        .wsi-screen-box {
+            height: clamp(520px, 74vh, 840px);
+        }
     </style>
     <script>
       // Anti-cache & Service Worker auto-purger to prevent loading old versions
@@ -71,93 +85,185 @@
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
         
-        <div class="text-center max-w-3xl mx-auto space-y-2">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950 border border-cyan-500/40 text-cyan-300 text-xs font-semibold uppercase tracking-wider">
-                <i class="fas fa-microchip"></i> Telepatología de Alta Resolución
+        <!-- ENCABEZADO PERSUASIVO -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950 border border-cyan-500/40 text-cyan-300 text-xs font-semibold uppercase tracking-wider mb-2">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                    Microscopía Digital WSI (Whole Slide Imaging)
+                </div>
+                <h1 class="text-2xl sm:text-4xl font-black text-white font-['Outfit']">
+                    Una imagen vale más que <span class="bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">mil palabras</span>
+                </h1>
+                <p class="text-slate-400 text-xs sm:text-sm mt-1 max-w-2xl">
+                    Explore láminas histopatológicas escaneadas en alta resolución con tecnología <strong>OpenSeadragon</strong>. Arrastre, haga zoom continuo con la rueda o pellizco, y alterne entre los aumentos de 2x a 40x.
+                </p>
             </div>
-            <h1 class="text-3xl sm:text-5xl font-black text-white font-['Outfit']">
-                Una imagen vale más que <span class="bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">mil palabras</span>
-            </h1>
-            <p class="text-slate-400 text-sm sm:text-base">
-                Muestra interactiva digitalizada en alta resolución. <strong>Arrastra con el ratón o el dedo para mover la lámina</strong> y utiliza los controles para ampliar el campo celular hasta 40x.
-            </p>
+            <div class="flex items-center gap-3">
+                <span class="text-xs text-slate-400 font-mono hidden sm:inline">Modo: WSI Client Standalone</span>
+                <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20interconsulta%20sobre%20una%20l%C3%A1mina%20digital" target="_blank" class="px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 hover:border-emerald-500 text-slate-200 hover:text-emerald-400 font-semibold text-xs flex items-center gap-2 transition">
+                    <i class="fab fa-whatsapp text-emerald-400"></i> Interconsulta Digital
+                </a>
+            </div>
         </div>
 
-        <div class="neuro-glass rounded-2xl overflow-hidden border border-slate-700 shadow-2xl">
+        <!-- SELECTOR DE LÁMINAS EN FORMATO TARJETAS INTERACTIVAS (4 LÁMINAS REALES) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5" id="slide-selector">
             
-            <div class="bg-slate-900/90 px-4 py-3 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs">
-                <div class="flex items-center gap-3">
-                    <span class="flex items-center gap-1.5 text-emerald-400 font-mono font-bold">
-                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                        Lámina Escaneada: Biopsia Gástrica (H&E)
-                    </span>
-                    <span class="hidden sm:inline text-slate-500">|</span>
-                    <span class="hidden sm:inline text-slate-400 font-mono">Resolución: 0.25 µm/px</span>
+            <!-- Lámina 1: Histiocitosis Cefálica Benigna -->
+            <button type="button" onclick="loadSlide(0)" id="tab-slide-0" class="slide-tab active text-left p-3 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-cyan-500/50 transition flex items-center gap-3">
+                <div class="w-16 h-14 rounded-lg overflow-hidden flex-shrink-0 bg-slate-950 border border-slate-800 relative">
+                    <img src="wsi_slides/benign_cephalic_histiocytosis_thumb.webp" alt="Histiocitosis" class="w-full h-full object-cover">
+                    <span class="absolute bottom-0 right-0 bg-cyan-950 text-cyan-300 text-[9px] font-bold px-1 rounded-tl">H&E</span>
                 </div>
-
-                <div class="flex items-center gap-2">
-                    <button type="button" id="btn-zoom-out" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold transition">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <span id="zoom-label" class="px-2.5 py-1.5 rounded-lg bg-slate-950 font-mono font-bold text-cyan-400 border border-slate-800 min-w-[65px] text-center">
-                        10.0x
-                    </span>
-                    <button type="button" id="btn-zoom-in" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold transition">
-                        <i class="fas fa-plus"></i>
-                    </button>
-                    <button type="button" id="btn-reset" class="px-3 py-1.5 rounded-lg bg-cyan-950 hover:bg-cyan-900 text-cyan-300 font-semibold border border-cyan-800 transition">
-                        <i class="fas fa-redo-alt mr-1"></i> Centrar
-                    </button>
+                <div class="min-w-0">
+                    <div class="text-[11px] font-bold text-cyan-400 uppercase tracking-wide truncate">Lámina 01 &bull; Piel Facial</div>
+                    <div class="text-xs font-bold text-white truncate">Histiocitosis Cefálica</div>
+                    <div class="text-[10px] text-slate-400 truncate">Histiocitos no-Langerhans</div>
                 </div>
-            </div>
+            </button>
 
-            <div id="slide-container" class="relative w-full h-[480px] sm:h-[560px] bg-slate-950 overflow-hidden slide-viewport">
+            <!-- Lámina 2: Foliculitis Dermatofítica -->
+            <button type="button" onclick="loadSlide(1)" id="tab-slide-1" class="slide-tab text-left p-3 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-cyan-500/50 transition flex items-center gap-3">
+                <div class="w-16 h-14 rounded-lg overflow-hidden flex-shrink-0 bg-slate-950 border border-slate-800 relative">
+                    <img src="wsi_slides/dermatophytic_folliculitis_thumb.webp" alt="Foliculitis" class="w-full h-full object-cover">
+                    <span class="absolute bottom-0 right-0 bg-emerald-950 text-emerald-300 text-[9px] font-bold px-1 rounded-tl">H&E</span>
+                </div>
+                <div class="min-w-0">
+                    <div class="text-[11px] font-bold text-emerald-400 uppercase tracking-wide truncate">Lámina 02 &bull; Folículo</div>
+                    <div class="text-xs font-bold text-white truncate">Foliculitis Micótica</div>
+                    <div class="text-[10px] text-slate-400 truncate">Neutrófilos y células gigantes</div>
+                </div>
+            </button>
+
+            <!-- Lámina 3: Púrpura Pigmentada Liquenoide -->
+            <button type="button" onclick="loadSlide(2)" id="tab-slide-2" class="slide-tab text-left p-3 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-cyan-500/50 transition flex items-center gap-3">
+                <div class="w-16 h-14 rounded-lg overflow-hidden flex-shrink-0 bg-slate-950 border border-slate-800 relative">
+                    <img src="wsi_slides/lichenoid_purpura_aureus_thumb.webp" alt="Púrpura" class="w-full h-full object-cover">
+                    <span class="absolute bottom-0 right-0 bg-amber-950 text-amber-300 text-[9px] font-bold px-1 rounded-tl">H&E</span>
+                </div>
+                <div class="min-w-0">
+                    <div class="text-[11px] font-bold text-amber-400 uppercase tracking-wide truncate">Lámina 03 &bull; Dermis Papilar</div>
+                    <div class="text-xs font-bold text-white truncate">Púrpura Liquenoide</div>
+                    <div class="text-[10px] text-slate-400 truncate">Hemosiderina y eritrocitos</div>
+                </div>
+            </button>
+
+            <!-- Lámina 4: Tumor de Infundíbulo Folicular -->
+            <button type="button" onclick="loadSlide(3)" id="tab-slide-3" class="slide-tab text-left p-3 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-cyan-500/50 transition flex items-center gap-3">
+                <div class="w-16 h-14 rounded-lg overflow-hidden flex-shrink-0 bg-slate-950 border border-slate-800 relative">
+                    <img src="wsi_slides/tumor_follicular_infundibulum_thumb.webp" alt="Infundíbulo" class="w-full h-full object-cover">
+                    <span class="absolute bottom-0 right-0 bg-indigo-950 text-indigo-300 text-[9px] font-bold px-1 rounded-tl">H&E</span>
+                </div>
+                <div class="min-w-0">
+                    <div class="text-[11px] font-bold text-indigo-400 uppercase tracking-wide truncate">Lámina 04 &bull; Epidermis</div>
+                    <div class="text-xs font-bold text-white truncate">Infundíbulo Folicular</div>
+                    <div class="text-[10px] text-slate-400 truncate">Placa horizontal epidérmica</div>
+                </div>
+            </button>
+
+        </div>
+
+        <!-- CONTENEDOR DEL VISOR HISTOLÓGICO MAXIMIZADO -->
+        <div class="neuro-glass rounded-2xl overflow-hidden border border-slate-700/80 shadow-2xl flex flex-col">
+            
+            <!-- BARRA DE CONTROLES DEL VISOR (ESTILO WSI PATHPRESENTER) -->
+            <div class="bg-slate-900 px-4 py-2.5 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs">
                 
-                <div id="slide-wrapper" class="absolute inset-0 flex items-center justify-center transition-transform duration-75 ease-out">
-                    <img id="slide-img" src="BIOPSIAGASTRICA.webp" alt="Lámina histológica escaneada digitalizada" class="max-w-none w-[1400px] h-auto pointer-events-none drop-shadow-2xl">
+                <div class="flex items-center gap-3">
+                    <span class="flex items-center gap-2 text-cyan-400 font-bold">
+                        <i class="fas fa-eye text-cyan-400"></i>
+                        <span id="slide-title-display">Histiocitosis Cefálica Benigna</span>
+                    </span>
+                    <span class="hidden sm:inline text-slate-600">|</span>
+                    <span id="slide-stain-display" class="hidden sm:inline px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono text-[11px]">Tinción: H&E &bull; Piel Facial</span>
+                    <span class="hidden md:inline px-2 py-0.5 rounded bg-slate-800 text-slate-400 font-mono text-[11px]">Calibración: 0.25 µm/px</span>
                 </div>
 
-                <div class="absolute inset-0 bg-[linear-gradient(to_right,#334155_1px,transparent_1px),linear-gradient(to_bottom,#334155_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-20 pointer-events-none"></div>
-
-                <div class="absolute bottom-4 left-4 bg-slate-900/90 backdrop-blur border border-slate-700 px-3 py-2 rounded-xl text-xs space-y-1 shadow-lg pointer-events-none">
-                    <div class="flex items-center gap-2">
-                        <i class="fas fa-hand-pointer text-cyan-400"></i>
-                        <span class="text-slate-200 font-medium">Arrastra para explorar diferentes campos celulares</span>
+                <!-- CONTROLES ÓPTICOS (OBJETIVOS 2x, 4x, 10x, 20x, 40x + ROTACIÓN) -->
+                <div class="flex items-center gap-1.5 sm:gap-2">
+                    
+                    <!-- Botonera de Objetivos Microscópicos -->
+                    <div class="inline-flex items-center bg-slate-950 p-1 rounded-lg border border-slate-800 gap-1 text-[11px]">
+                        <span class="text-slate-500 font-bold px-1 hidden md:inline">Obj:</span>
+                        <button type="button" onclick="setObjective(2)" class="px-2 py-1 rounded hover:bg-slate-800 text-slate-300 font-mono transition">2x</button>
+                        <button type="button" onclick="setObjective(4)" class="px-2 py-1 rounded hover:bg-slate-800 text-slate-300 font-mono transition">4x</button>
+                        <button type="button" onclick="setObjective(10)" class="px-2 py-1 rounded hover:bg-slate-800 text-slate-300 font-mono transition">10x</button>
+                        <button type="button" onclick="setObjective(20)" class="px-2 py-1 rounded hover:bg-slate-800 text-slate-300 font-mono transition">20x</button>
+                        <button type="button" onclick="setObjective(40)" class="px-2 py-1 rounded bg-cyan-600/30 text-cyan-300 border border-cyan-500/40 font-mono font-bold transition">40x</button>
                     </div>
-                    <div class="text-[11px] text-slate-400 font-mono">
-                        Foco actual: Glándulas gástricas e infiltrado inflamatorio
-                    </div>
-                </div>
 
-                <div class="absolute top-4 right-4 w-28 h-20 bg-slate-900/90 border border-slate-700 rounded-lg overflow-hidden shadow-xl hidden sm:block pointer-events-none">
-                    <img src="BIOPSIAGASTRICA.webp" class="w-full h-full object-cover opacity-60">
-                    <div class="absolute inset-0 border border-cyan-400 bg-cyan-500/20"></div>
+                    <!-- Botones de Navegación Zoom -->
+                    <div class="flex items-center gap-1">
+                        <button type="button" id="btn-zoom-in" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center justify-center transition" title="Acercar (+)">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <button type="button" id="btn-zoom-out" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center justify-center transition" title="Alejar (-)">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" id="btn-home" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center justify-center transition" title="Vista Panorámica">
+                            <i class="fas fa-compress"></i>
+                        </button>
+                        <button type="button" id="btn-rotate" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center justify-center transition" title="Rotar 90°">
+                            <i class="fas fa-rotate-right"></i>
+                        </button>
+                        <button type="button" id="btn-fullscreen" class="w-8 h-8 rounded-lg bg-cyan-950 border border-cyan-700 hover:bg-cyan-900 text-cyan-300 flex items-center justify-center transition" title="Pantalla Completa">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                    </div>
+
                 </div>
 
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-5 bg-slate-900/80 border-t border-slate-800 text-xs">
+            <!-- LIENZO OPENSEADRAGON MAXIMIZADO -->
+            <div class="relative w-full wsi-screen-box bg-slate-950">
+                
+                <!-- Visor OSD -->
+                <div id="openseadragon-viewer" class="w-full h-full"></div>
+
+                <!-- HUD flotante con diagnóstico microscópico -->
+                <div class="absolute bottom-4 left-4 max-w-md bg-slate-900/90 backdrop-blur-md border border-slate-700/90 p-3 rounded-xl text-xs space-y-1 shadow-2xl pointer-events-none z-10">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                        <strong class="text-white font-bold" id="hud-diagnosis-title">Histiocitosis Cefálica Benigna</strong>
+                    </div>
+                    <p class="text-[11px] text-slate-300 leading-relaxed" id="hud-diagnosis-desc">
+                        Infiltrado dérmico superficial compuesto por histiocitos no-Langerhans con citoplasma eosinófilo y núcleos arriñonados característicos.
+                    </p>
+                    <div class="text-[10px] text-cyan-400 font-mono pt-0.5">
+                        <i class="fas fa-info-circle mr-1"></i> Use la rueda del ratón o dos dedos para zoom a nivel celular
+                    </div>
+                </div>
+
+                <!-- Cuadrícula médica sutil -->
+                <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-15 pointer-events-none"></div>
+
+            </div>
+
+            <!-- FOOTER INFORMATIVO DEL VISOR -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-slate-900/90 border-t border-slate-800 text-xs">
                 <div class="flex items-start gap-2.5">
-                    <i class="fas fa-cloud-upload-alt text-cyan-400 text-base mt-0.5"></i>
+                    <i class="fas fa-layer-group text-cyan-400 text-base mt-0.5"></i>
                     <div>
-                        <strong class="text-white block">Archivo Clínico Permanente</strong>
-                        <span class="text-slate-400">Las láminas nunca se rompen, degradan ni extravían. Se conservan digitalmente en la nube.</span>
+                        <strong class="text-white block">Pirámide Multirresolución</strong>
+                        <span class="text-slate-400">Carga progresiva ultra-rápida sin congelar la memoria del dispositivo.</span>
                     </div>
                 </div>
                 <div class="flex items-start gap-2.5">
-                    <i class="fas fa-user-md text-emerald-400 text-base mt-0.5"></i>
+                    <i class="fas fa-check-double text-emerald-400 text-base mt-0.5"></i>
                     <div>
-                        <strong class="text-white block">Segunda Opinión Inmediata</strong>
-                        <span class="text-slate-400">Permite interconsultas en segundos con patólogos y oncólogos de cualquier parte del mundo.</span>
+                        <strong class="text-white block">Calibración Microscópica</strong>
+                        <span class="text-slate-400">Escaneado a 0.25 µm por píxel para evaluación rigurosa de núcleos y mitosis.</span>
                     </div>
                 </div>
                 <div class="flex items-start gap-2.5">
-                    <i class="fas fa-ruler-combined text-indigo-400 text-base mt-0.5"></i>
+                    <i class="fas fa-shield-halved text-indigo-400 text-base mt-0.5"></i>
                     <div>
-                        <strong class="text-white block">Márgenes Milimétricos Exactos</strong>
-                        <span class="text-slate-400">Medición precisa de la distancia a los bordes quirúrgicos para guiar re-resecciones.</span>
+                        <strong class="text-white block">Confidencialidad Médica</strong>
+                        <span class="text-slate-400">Datos del paciente disociados bajo estándares HIPAA para docencia e interconsulta.</span>
                     </div>
                 </div>
             </div>
@@ -183,89 +289,158 @@
         </a>
     </div>
 
+    <!-- SCRIPT DEL MOTOR WSI Y OPENSEADRAGON -->
     <script>
-        (function initWSIViewer() {
-            const container = document.getElementById('slide-container');
-            const wrapper = document.getElementById('slide-wrapper');
-            const zoomLabel = document.getElementById('zoom-label');
-            const btnZoomIn = document.getElementById('btn-zoom-in');
-            const btnZoomOut = document.getElementById('btn-zoom-out');
-            const btnReset = document.getElementById('btn-reset');
+        const SLIDES_CATALOG = [
+            {
+                id: "benign_cephalic_histiocytosis",
+                title: "Histiocitosis Cefálica Benigna",
+                organ: "Piel Facial",
+                stain: "H&E",
+                url: "wsi_slides/benign_cephalic_histiocytosis.webp",
+                width: 3200,
+                height: 3039,
+                diagnosis: "Infiltrado dérmico superficial compuesto por histiocitos no-Langerhans con citoplasma eosinófilo y núcleos arriñonados característicos."
+            },
+            {
+                id: "dermatophytic_folliculitis",
+                title: "Foliculitis Dermatofítica (Micosis)",
+                organ: "Folículo Piloso",
+                stain: "H&E",
+                url: "wsi_slides/dermatophytic_folliculitis.webp",
+                width: 3600,
+                height: 2016,
+                diagnosis: "Infiltrado inflamatorio mixto perifolicular destructivo con neutrófilos, células gigantes y fragmentación queratínica folicular."
+            },
+            {
+                id: "lichenoid_purpura_aureus",
+                title: "Púrpura Pigmentada Liquenoide",
+                organ: "Dermis Papilar",
+                stain: "H&E",
+                url: "wsi_slides/lichenoid_purpura_aureus.webp",
+                width: 3600,
+                height: 1927,
+                diagnosis: "Dermatitis de interfase liquenoide densa en banda, eritrocitos extravasados y depósitos prominentes de hemosiderina."
+            },
+            {
+                id: "tumor_follicular_infundibulum",
+                title: "Tumor de Infundíbulo Folicular",
+                organ: "Epidermis y Dermis",
+                stain: "H&E",
+                url: "wsi_slides/tumor_follicular_infundibulum.webp",
+                width: 3600,
+                height: 2110,
+                diagnosis: "Proliferación epitelial benigna fenestrada dispuesta en placa horizontal paralelamente a la epidermis."
+            }
+        ];
 
-            let scale = 1.0;
-            let posX = 0;
-            let posY = 0;
-            let isDragging = false;
-            let startX = 0;
-            let startY = 0;
+        let viewer = null;
+        let activeIndex = 0;
 
-            function updateTransform() {
-                wrapper.style.transform = 'translate(' + posX + 'px, ' + posY + 'px) scale(' + scale + ')';
-                zoomLabel.textContent = (scale * 10).toFixed(1) + 'x';
+        function initWSI() {
+            viewer = OpenSeadragon({
+                id: "openseadragon-viewer",
+                prefixUrl: "vendor/openseadragon/images/",
+                showNavigationControl: false,
+                immediateRender: true,
+                maxZoomPixelRatio: 4.0,
+                minZoomImageRatio: 0.8,
+                visibilityRatio: 1.0,
+                constrainDuringPan: true,
+                animationTime: 0.25,
+                blendTime: 0.1,
+                autoResize: true,
+                showNavigator: true,
+                navigatorPosition: "TOP_RIGHT",
+                navigatorSizeRatio: 0.18,
+                navigatorBorderColor: "#38bdf8",
+                navigatorDisplayRegionColor: "rgba(56, 189, 248, 0.35)",
+                navigatorBackground: "#090d16",
+                gestureSettingsTouch: {
+                    pinchToZoom: true,
+                    pan: true,
+                    dblClickToZoom: true
+                }
+            });
+
+            // Enlazar controles de la barra
+            document.getElementById('btn-zoom-in').addEventListener('click', () => {
+                viewer.viewport.zoomBy(1.4);
+                viewer.viewport.applyConstraints();
+            });
+            document.getElementById('btn-zoom-out').addEventListener('click', () => {
+                viewer.viewport.zoomBy(0.7);
+                viewer.viewport.applyConstraints();
+            });
+            document.getElementById('btn-home').addEventListener('click', () => {
+                viewer.viewport.goHome();
+            });
+            document.getElementById('btn-rotate').addEventListener('click', () => {
+                const cur = viewer.viewport.getRotation();
+                viewer.viewport.setRotation((cur + 90) % 360);
+            });
+            document.getElementById('btn-fullscreen').addEventListener('click', () => {
+                if (viewer.isFullPage()) {
+                    viewer.setFullPage(false);
+                } else {
+                    viewer.setFullPage(true);
+                }
+            });
+
+            // Cargar lámina inicial
+            loadSlide(0);
+        }
+
+        function loadSlide(index) {
+            if (!viewer || index < 0 || index >= SLIDES_CATALOG.length) return;
+            activeIndex = index;
+            const slide = SLIDES_CATALOG[index];
+
+            // Actualizar pestañas activas
+            for (let i = 0; i < SLIDES_CATALOG.length; i++) {
+                const tab = document.getElementById(`tab-slide-${i}`);
+                if (tab) {
+                    if (i === index) {
+                        tab.classList.add('active');
+                    } else {
+                        tab.classList.remove('active');
+                    }
+                }
             }
 
-            container.addEventListener('mousedown', function(e) {
-                isDragging = true;
-                startX = e.clientX - posX;
-                startY = e.clientY - posY;
+            // Actualizar textos informativos
+            document.getElementById('slide-title-display').textContent = slide.title;
+            document.getElementById('slide-stain-display').textContent = `Tinción: ${slide.stain} • ${slide.organ}`;
+            document.getElementById('hud-diagnosis-title').textContent = slide.title;
+            document.getElementById('hud-diagnosis-desc').textContent = slide.diagnosis;
+
+            // Abrir imagen en OpenSeadragon con su tamaño natural
+            viewer.open({
+                type: 'image',
+                url: slide.url,
+                buildPyramid: false
             });
 
-            window.addEventListener('mousemove', function(e) {
-                if (!isDragging) return;
-                posX = e.clientX - startX;
-                posY = e.clientY - startY;
-                updateTransform();
-            });
+            viewer.viewport.setRotation(0);
+        }
 
-            window.addEventListener('mouseup', function() {
-                isDragging = false;
-            });
+        function setObjective(zoomLevel) {
+            if (!viewer || !viewer.viewport) return;
+            const baseHomeZoom = viewer.viewport.getHomeZoom();
+            let multiplier = 1.0;
+            switch(zoomLevel) {
+                case 2: multiplier = 1.0; break;
+                case 4: multiplier = 1.8; break;
+                case 10: multiplier = 3.2; break;
+                case 20: multiplier = 5.5; break;
+                case 40: multiplier = 9.0; break;
+                default: multiplier = 1.0;
+            }
+            viewer.viewport.zoomTo(baseHomeZoom * multiplier);
+            viewer.viewport.applyConstraints();
+        }
 
-            container.addEventListener('touchstart', function(e) {
-                if (e.touches.length === 1) {
-                    isDragging = true;
-                    startX = e.touches[0].clientX - posX;
-                    startY = e.touches[0].clientY - posY;
-                }
-            }, { passive: true });
-
-            container.addEventListener('touchmove', function(e) {
-                if (!isDragging || e.touches.length !== 1) return;
-                posX = e.touches[0].clientX - startX;
-                posY = e.touches[0].clientY - startY;
-                updateTransform();
-            }, { passive: true });
-
-            container.addEventListener('touchend', function() {
-                isDragging = false;
-            });
-
-            container.addEventListener('wheel', function(e) {
-                e.preventDefault();
-                const delta = e.deltaY * -0.0015;
-                scale = Math.min(Math.max(0.6, scale + delta), 4.0);
-                updateTransform();
-            }, { passive: false });
-
-            btnZoomIn.addEventListener('click', function() {
-                scale = Math.min(scale + 0.4, 4.0);
-                updateTransform();
-            });
-
-            btnZoomOut.addEventListener('click', function() {
-                scale = Math.max(scale - 0.4, 0.6);
-                updateTransform();
-            });
-
-            btnReset.addEventListener('click', function() {
-                scale = 1.0;
-                posX = 0;
-                posY = 0;
-                updateTransform();
-            });
-
-            updateTransform();
-        })();
+        document.addEventListener('DOMContentLoaded', initWSI);
     </script>
 
 </body>
