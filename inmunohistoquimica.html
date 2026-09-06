@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inmunohistoquímica Oncológica y Biomarcadores | JC PATH LAB</title>
+    <meta name="description" content="Catálogo completo de inmunohistoquímica diagnóstica y predictiva en Lima. Ki-67, HER2, CK7, CK20, PD-L1, Receptores Hormonales.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #030712; color: #f8fafc; }
+        .neuro-glass { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(56, 189, 248, 0.18); }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-cyan-500 selection:text-white">
+
+    <header class="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-xl border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2.5 text-2xl font-black text-white group">
+                <span class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-600 to-emerald-500 flex items-center justify-center text-white shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+                    <i class="fas fa-microscope text-base"></i>
+                </span>
+                <span class="font-['Outfit'] font-extrabold tracking-tight">JC <span class="text-cyan-400">PATH LAB</span></span>
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-6 text-sm font-medium">
+                <a href="index.html" class="text-slate-300 hover:text-cyan-400 transition">Inicio</a>
+                <a href="inmunohistoquimica.html" class="text-cyan-400 font-bold border-b-2 border-cyan-400 pb-1">Inmunohistoquímica</a>
+                <a href="patologia-digital.html" class="text-slate-300 hover:text-cyan-400 transition">Patología Digital</a>
+                <a href="macroscopia-360.html" class="text-slate-300 hover:text-cyan-400 transition">Visor 360°</a>
+                <a href="academica.html" class="text-slate-300 hover:text-cyan-400 transition">Área Académica</a>
+                <a href="contacto.html" class="text-slate-300 hover:text-cyan-400 transition">Sede & Contacto</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20coordinar%20el%20estudio%20de%20una%20biopsia" target="_blank" class="px-4 py-2 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-emerald-600/30 transition transform hover:-translate-y-0.5">
+                    <i class="fab fa-whatsapp text-base"></i>
+                    <span>Contactar al Patólogo</span>
+                </a>
+                <button type="button" class="lg:hidden text-slate-300 hover:text-white p-2" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" aria-label="Abrir Menú">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-nav" class="hidden lg:hidden bg-slate-900 border-b border-slate-800 px-6 py-4 space-y-3 text-sm">
+            <a href="index.html" class="block py-1 hover:text-cyan-400">Inicio</a>
+            <a href="inmunohistoquimica.html" class="block py-1 hover:text-cyan-400">Inmunohistoquímica (Biomarcadores)</a>
+            <a href="patologia-digital.html" class="block py-1 hover:text-cyan-400">Patología Digital (Lámina Interactiva)</a>
+            <a href="macroscopia-360.html" class="block py-1 hover:text-cyan-400">Visor Macroscópico 360°</a>
+            <a href="academica.html" class="block py-1 hover:text-cyan-400">Área Académica para Residentes</a>
+            <a href="contacto.html" class="block py-1 hover:text-cyan-400">Sede Central y Mapa</a>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
+        
+        <div class="text-center max-w-3xl mx-auto space-y-2">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950 border border-cyan-500/40 text-cyan-300 text-xs font-semibold uppercase tracking-wider">
+                <i class="fas fa-dna"></i> Terapia Dirigida & Medicina de Precisión
+            </div>
+            <h1 class="text-3xl sm:text-5xl font-black text-white font-['Outfit']">
+                Panel de <span class="bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">Inmunohistoquímica (IHQ)</span>
+            </h1>
+            <p class="text-slate-400 text-sm sm:text-base">
+                Biomarcadores con controles de calidad validados. Determinación precisa de subtipos tumorales, estadios pronósticos y respuesta a inmunoterapia. Entrega en <strong>4 días hábiles</strong>.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            
+            <div class="neuro-glass p-5 rounded-2xl border border-slate-800 hover:border-cyan-400 transition">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-cyan-950 text-cyan-300 border border-cyan-800">Ki-67</span>
+                    <span class="text-xs text-slate-400">Nuclear</span>
+                </div>
+                <h3 class="text-base font-bold text-white mb-1">Índice Proliferativo Tumoral</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Esencial en carcinoma de mama (clasificación luminal A vs B), linfomas y tumores neuroendocrinos (grado 1, 2, 3).
+                </p>
+            </div>
+
+            <div class="neuro-glass p-5 rounded-2xl border border-slate-800 hover:border-purple-400 transition">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-purple-950 text-purple-300 border border-purple-800">HER2 / neu</span>
+                    <span class="text-xs text-slate-400">Membrana (4B5)</span>
+                </div>
+                <h3 class="text-base font-bold text-white mb-1">Terapia Biológica Dirigida</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Score ASCO/CAP (0, 1+, 2+, 3+) para decidir indicación de Trastuzumab en cáncer mamario y adenocarcinoma gástrico.
+                </p>
+            </div>
+
+            <div class="neuro-glass p-5 rounded-2xl border border-slate-800 hover:border-blue-400 transition">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-blue-950 text-blue-300 border border-blue-800">CK7 / CK20</span>
+                    <span class="text-xs text-slate-400">Citoplasmático</span>
+                </div>
+                <h3 class="text-base font-bold text-white mb-1">Algoritmo de Origen Primario</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Diferenciación crucial en metástasis: colon (CK7-/CK20+), pulmón/mama (CK7+/CK20-) y tumores gastrointestinales.
+                </p>
+            </div>
+
+            <div class="neuro-glass p-5 rounded-2xl border border-slate-800 hover:border-amber-400 transition">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-amber-950 text-amber-300 border border-amber-800">PD-L1</span>
+                    <span class="text-xs text-slate-400">TPS / CPS Score</span>
+                </div>
+                <h3 class="text-base font-bold text-white mb-1">Inmunoterapia Predictiva</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Evaluación de receptores de muerte celular programada para selección de tratamientos con inhibidores de checkpoint.
+                </p>
+            </div>
+
+            <div class="neuro-glass p-5 rounded-2xl border border-slate-800 hover:border-pink-400 transition">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-pink-950 text-pink-300 border border-pink-800">RE / RP</span>
+                    <span class="text-xs text-slate-400">Allred Score</span>
+                </div>
+                <h3 class="text-base font-bold text-white mb-1">Receptores Hormonales</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Cuantificación porcentual de receptores de estrógeno y progesterona para predicción de respuesta a hormonoterapia.
+                </p>
+            </div>
+
+            <div class="neuro-glass p-5 rounded-2xl border border-slate-800 hover:border-emerald-400 transition">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="px-2.5 py-1 rounded text-xs font-mono font-bold bg-emerald-950 text-emerald-300 border border-emerald-800">P40 / TTF-1</span>
+                    <span class="text-xs text-slate-400">Pulmón</span>
+                </div>
+                <h3 class="text-base font-bold text-white mb-1">Diferenciación Pulmonar</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Separación inequívoca entre Adenocarcinoma (TTF-1+) y Carcinoma Escamoso de pulmón (P40+).
+                </p>
+            </div>
+
+        </div>
+
+        <div class="bg-gradient-to-r from-slate-900 to-indigo-950 border border-slate-800 p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4">
+            <div>
+                <h2 class="text-lg font-bold text-white">¿Requiere un anticuerpo específico no listado?</h2>
+                <p class="text-xs text-slate-300 mt-1">Disponemos de un vademécum con más de 60 anticuerpos y paneles para linfomas, sarcomas y tumores germinales.</p>
+            </div>
+            <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20consultar%20disponibilidad%20de%20anticuerpos%20IHQ" target="_blank" class="px-5 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs shrink-0 transition flex items-center gap-2">
+                <i class="fab fa-whatsapp"></i> Consultar Disponibilidad
+            </a>
+        </div>
+
+    </main>
+
+    <footer class="bg-slate-950 border-t border-slate-800/80 py-8 text-center text-xs text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 space-y-2">
+            <div class="flex items-center justify-center gap-2 text-white font-extrabold text-base">
+                <span class="text-cyan-400">JC</span> PATH LAB
+            </div>
+            <p>Laboratorio Especializado en Anatomía Patológica, Oncopatología y Biopsias.</p>
+            <p>© 2026 JC PATH LAB. Dirigido por el Dr. Josehp Castillo (CMP 56435). Sede Central: Puente Piedra, Lima - Perú.</p>
+            <p class="text-[11px] text-slate-500">Privacidad Médica: La entrega de resultados diagnósticos se realiza exclusivamente de manera confidencial y directa.</p>
+        </div>
+    </footer>
+
+    <div class="fixed bottom-6 right-6 z-50">
+        <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20hacer%20una%20consulta%20m%C3%A9dica" target="_blank" class="w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white flex items-center justify-center text-2xl shadow-2xl shadow-emerald-500/50 transition transform hover:scale-110" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+</body>
+</html>

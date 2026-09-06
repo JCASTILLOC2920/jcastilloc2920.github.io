@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patología Digital & Whole Slide Imaging (WSI) | JC PATH LAB</title>
+    <meta name="description" content="Una imagen vale más que mil palabras: explore una lámina histológica real escaneada y digitalizada en alta resolución con zoom y paneo continuo.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #030712; color: #f8fafc; }
+        .neuro-glass { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(56, 189, 248, 0.18); }
+        .slide-viewport { cursor: grab; user-select: none; touch-action: none; }
+        .slide-viewport:active { cursor: grabbing; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-cyan-500 selection:text-white">
+
+    <header class="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-xl border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2.5 text-2xl font-black text-white group">
+                <span class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-600 to-emerald-500 flex items-center justify-center text-white shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+                    <i class="fas fa-microscope text-base"></i>
+                </span>
+                <span class="font-['Outfit'] font-extrabold tracking-tight">JC <span class="text-cyan-400">PATH LAB</span></span>
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-6 text-sm font-medium">
+                <a href="index.html" class="text-slate-300 hover:text-cyan-400 transition">Inicio</a>
+                <a href="inmunohistoquimica.html" class="text-slate-300 hover:text-cyan-400 transition">Inmunohistoquímica</a>
+                <a href="patologia-digital.html" class="text-cyan-400 font-bold border-b-2 border-cyan-400 pb-1">Patología Digital</a>
+                <a href="macroscopia-360.html" class="text-slate-300 hover:text-cyan-400 transition">Visor 360°</a>
+                <a href="academica.html" class="text-slate-300 hover:text-cyan-400 transition">Área Académica</a>
+                <a href="contacto.html" class="text-slate-300 hover:text-cyan-400 transition">Sede & Contacto</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20coordinar%20el%20estudio%20de%20una%20biopsia" target="_blank" class="px-4 py-2 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-emerald-600/30 transition transform hover:-translate-y-0.5">
+                    <i class="fab fa-whatsapp text-base"></i>
+                    <span>Contactar al Patólogo</span>
+                </a>
+                <button type="button" class="lg:hidden text-slate-300 hover:text-white p-2" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" aria-label="Abrir Menú">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-nav" class="hidden lg:hidden bg-slate-900 border-b border-slate-800 px-6 py-4 space-y-3 text-sm">
+            <a href="index.html" class="block py-1 hover:text-cyan-400">Inicio</a>
+            <a href="inmunohistoquimica.html" class="block py-1 hover:text-cyan-400">Inmunohistoquímica (Biomarcadores)</a>
+            <a href="patologia-digital.html" class="block py-1 hover:text-cyan-400">Patología Digital (Lámina Interactiva)</a>
+            <a href="macroscopia-360.html" class="block py-1 hover:text-cyan-400">Visor Macroscópico 360°</a>
+            <a href="academica.html" class="block py-1 hover:text-cyan-400">Área Académica para Residentes</a>
+            <a href="contacto.html" class="block py-1 hover:text-cyan-400">Sede Central y Mapa</a>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+        
+        <div class="text-center max-w-3xl mx-auto space-y-2">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950 border border-cyan-500/40 text-cyan-300 text-xs font-semibold uppercase tracking-wider">
+                <i class="fas fa-microchip"></i> Telepatología de Alta Resolución
+            </div>
+            <h1 class="text-3xl sm:text-5xl font-black text-white font-['Outfit']">
+                Una imagen vale más que <span class="bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">mil palabras</span>
+            </h1>
+            <p class="text-slate-400 text-sm sm:text-base">
+                Muestra interactiva digitalizada en alta resolución. <strong>Arrastra con el ratón o el dedo para mover la lámina</strong> y utiliza los controles para ampliar el campo celular hasta 40x.
+            </p>
+        </div>
+
+        <div class="neuro-glass rounded-2xl overflow-hidden border border-slate-700 shadow-2xl">
+            
+            <div class="bg-slate-900/90 px-4 py-3 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs">
+                <div class="flex items-center gap-3">
+                    <span class="flex items-center gap-1.5 text-emerald-400 font-mono font-bold">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                        Lámina Escaneada: Biopsia Gástrica (H&E)
+                    </span>
+                    <span class="hidden sm:inline text-slate-500">|</span>
+                    <span class="hidden sm:inline text-slate-400 font-mono">Resolución: 0.25 µm/px</span>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <button type="button" id="btn-zoom-out" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold transition">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <span id="zoom-label" class="px-2.5 py-1.5 rounded-lg bg-slate-950 font-mono font-bold text-cyan-400 border border-slate-800 min-w-[65px] text-center">
+                        10.0x
+                    </span>
+                    <button type="button" id="btn-zoom-in" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold transition">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button type="button" id="btn-reset" class="px-3 py-1.5 rounded-lg bg-cyan-950 hover:bg-cyan-900 text-cyan-300 font-semibold border border-cyan-800 transition">
+                        <i class="fas fa-redo-alt mr-1"></i> Centrar
+                    </button>
+                </div>
+            </div>
+
+            <div id="slide-container" class="relative w-full h-[480px] sm:h-[560px] bg-slate-950 overflow-hidden slide-viewport">
+                
+                <div id="slide-wrapper" class="absolute inset-0 flex items-center justify-center transition-transform duration-75 ease-out">
+                    <img id="slide-img" src="BIOPSIAGASTRICA.webp" alt="Lámina histológica escaneada digitalizada" class="max-w-none w-[1400px] h-auto pointer-events-none drop-shadow-2xl">
+                </div>
+
+                <div class="absolute inset-0 bg-[linear-gradient(to_right,#334155_1px,transparent_1px),linear-gradient(to_bottom,#334155_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-20 pointer-events-none"></div>
+
+                <div class="absolute bottom-4 left-4 bg-slate-900/90 backdrop-blur border border-slate-700 px-3 py-2 rounded-xl text-xs space-y-1 shadow-lg pointer-events-none">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-hand-pointer text-cyan-400"></i>
+                        <span class="text-slate-200 font-medium">Arrastra para explorar diferentes campos celulares</span>
+                    </div>
+                    <div class="text-[11px] text-slate-400 font-mono">
+                        Foco actual: Glándulas gástricas e infiltrado inflamatorio
+                    </div>
+                </div>
+
+                <div class="absolute top-4 right-4 w-28 h-20 bg-slate-900/90 border border-slate-700 rounded-lg overflow-hidden shadow-xl hidden sm:block pointer-events-none">
+                    <img src="BIOPSIAGASTRICA.webp" class="w-full h-full object-cover opacity-60">
+                    <div class="absolute inset-0 border border-cyan-400 bg-cyan-500/20"></div>
+                </div>
+
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-5 bg-slate-900/80 border-t border-slate-800 text-xs">
+                <div class="flex items-start gap-2.5">
+                    <i class="fas fa-cloud-upload-alt text-cyan-400 text-base mt-0.5"></i>
+                    <div>
+                        <strong class="text-white block">Archivo Clínico Permanente</strong>
+                        <span class="text-slate-400">Las láminas nunca se rompen, degradan ni extravían. Se conservan digitalmente en la nube.</span>
+                    </div>
+                </div>
+                <div class="flex items-start gap-2.5">
+                    <i class="fas fa-user-md text-emerald-400 text-base mt-0.5"></i>
+                    <div>
+                        <strong class="text-white block">Segunda Opinión Inmediata</strong>
+                        <span class="text-slate-400">Permite interconsultas en segundos con patólogos y oncólogos de cualquier parte del mundo.</span>
+                    </div>
+                </div>
+                <div class="flex items-start gap-2.5">
+                    <i class="fas fa-ruler-combined text-indigo-400 text-base mt-0.5"></i>
+                    <div>
+                        <strong class="text-white block">Márgenes Milimétricos Exactos</strong>
+                        <span class="text-slate-400">Medición precisa de la distancia a los bordes quirúrgicos para guiar re-resecciones.</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="bg-slate-950 border-t border-slate-800/80 py-8 text-center text-xs text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 space-y-2">
+            <div class="flex items-center justify-center gap-2 text-white font-extrabold text-base">
+                <span class="text-cyan-400">JC</span> PATH LAB
+            </div>
+            <p>Laboratorio Especializado en Anatomía Patológica, Oncopatología y Biopsias.</p>
+            <p>© 2026 JC PATH LAB. Dirigido por el Dr. Josehp Castillo (CMP 56435). Sede Central: Puente Piedra, Lima - Perú.</p>
+            <p class="text-[11px] text-slate-500">Privacidad Médica: La entrega de resultados diagnósticos se realiza exclusivamente de manera confidencial y directa.</p>
+        </div>
+    </footer>
+
+    <div class="fixed bottom-6 right-6 z-50">
+        <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20hacer%20una%20consulta%20m%C3%A9dica" target="_blank" class="w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white flex items-center justify-center text-2xl shadow-2xl shadow-emerald-500/50 transition transform hover:scale-110" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script>
+        (function initWSIViewer() {
+            const container = document.getElementById('slide-container');
+            const wrapper = document.getElementById('slide-wrapper');
+            const zoomLabel = document.getElementById('zoom-label');
+            const btnZoomIn = document.getElementById('btn-zoom-in');
+            const btnZoomOut = document.getElementById('btn-zoom-out');
+            const btnReset = document.getElementById('btn-reset');
+
+            let scale = 1.0;
+            let posX = 0;
+            let posY = 0;
+            let isDragging = false;
+            let startX = 0;
+            let startY = 0;
+
+            function updateTransform() {
+                wrapper.style.transform = 'translate(' + posX + 'px, ' + posY + 'px) scale(' + scale + ')';
+                zoomLabel.textContent = (scale * 10).toFixed(1) + 'x';
+            }
+
+            container.addEventListener('mousedown', function(e) {
+                isDragging = true;
+                startX = e.clientX - posX;
+                startY = e.clientY - posY;
+            });
+
+            window.addEventListener('mousemove', function(e) {
+                if (!isDragging) return;
+                posX = e.clientX - startX;
+                posY = e.clientY - startY;
+                updateTransform();
+            });
+
+            window.addEventListener('mouseup', function() {
+                isDragging = false;
+            });
+
+            container.addEventListener('touchstart', function(e) {
+                if (e.touches.length === 1) {
+                    isDragging = true;
+                    startX = e.touches[0].clientX - posX;
+                    startY = e.touches[0].clientY - posY;
+                }
+            }, { passive: true });
+
+            container.addEventListener('touchmove', function(e) {
+                if (!isDragging || e.touches.length !== 1) return;
+                posX = e.touches[0].clientX - startX;
+                posY = e.touches[0].clientY - startY;
+                updateTransform();
+            }, { passive: true });
+
+            container.addEventListener('touchend', function() {
+                isDragging = false;
+            });
+
+            container.addEventListener('wheel', function(e) {
+                e.preventDefault();
+                const delta = e.deltaY * -0.0015;
+                scale = Math.min(Math.max(0.6, scale + delta), 4.0);
+                updateTransform();
+            }, { passive: false });
+
+            btnZoomIn.addEventListener('click', function() {
+                scale = Math.min(scale + 0.4, 4.0);
+                updateTransform();
+            });
+
+            btnZoomOut.addEventListener('click', function() {
+                scale = Math.max(scale - 0.4, 0.6);
+                updateTransform();
+            });
+
+            btnReset.addEventListener('click', function() {
+                scale = 1.0;
+                posX = 0;
+                posY = 0;
+                updateTransform();
+            });
+
+            updateTransform();
+        })();
+    </script>
+
+</body>
+</html>
