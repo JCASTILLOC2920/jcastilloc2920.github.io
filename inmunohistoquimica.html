@@ -11,8 +11,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #030712; color: #f8fafc; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #030712; 
+            color: #f8fafc;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
         .neuro-glass { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(56, 189, 248, 0.18); }
+        /* Mobile Thumb Zone Nav */
+        .thumb-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: calc(62px + env(safe-area-inset-bottom, 0px));
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+            background: rgba(3, 7, 18, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-top: 1px solid rgba(56, 189, 248, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            z-index: 9999;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.6);
+        }
+        @media (min-width: 1024px) {
+            .thumb-nav { display: none !important; }
+        }
+        @media (max-width: 1023px) {
+            body { padding-bottom: 76px !important; }
+            .desktop-wa-fab { display: none !important; }
+        }
     </style>
     <script>
       // Anti-cache & Service Worker auto-purger to prevent loading old versions
@@ -176,11 +207,38 @@
         </div>
     </footer>
 
-    <div class="fixed bottom-6 right-6 z-50">
+    <!-- Botón Flotante Desktop de WhatsApp -->
+    <div class="desktop-wa-fab fixed bottom-6 right-6 z-40">
         <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20hacer%20una%20consulta%20m%C3%A9dica" target="_blank" class="w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white flex items-center justify-center text-2xl shadow-2xl shadow-emerald-500/50 transition transform hover:scale-110" aria-label="WhatsApp">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
+
+    <!-- Barra de Navegación Ergonómica Móvil 'Thumb Zone' (Boceto 3) -->
+    <nav class="thumb-nav" aria-label="Navegación Móvil Principal">
+        <a href="index.html" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-400 hover:text-cyan-400 transition text-[10px]">
+            <i class="fas fa-house text-base mb-0.5"></i>
+            <span>Inicio</span>
+        </a>
+        <a href="patologia-digital.html" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-400 hover:text-cyan-400 transition text-[10px]">
+            <i class="fas fa-desktop text-base mb-0.5"></i>
+            <span>Láminas WSI</span>
+        </a>
+        <a href="index.html#visor-microscopio-360" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-400 hover:text-cyan-400 transition text-[10px]">
+            <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-cyan-600 to-emerald-500 -mt-5 flex items-center justify-center text-white shadow-lg shadow-cyan-500/40 border-2 border-slate-950">
+                <i class="fas fa-arrows-rotate text-sm"></i>
+            </div>
+            <span class="mt-0.5 text-white font-bold">Visor 360°</span>
+        </a>
+        <a href="inmunohistoquimica.html" class="flex flex-col items-center justify-center flex-1 py-1 text-cyan-400 font-semibold text-[10px]">
+            <i class="fas fa-dna text-base mb-0.5"></i>
+            <span>Biomarcadores</span>
+        </a>
+        <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20hacer%20una%20consulta%20m%C3%A9dica" target="_blank" class="flex flex-col items-center justify-center flex-1 py-1 text-emerald-400 font-semibold text-[10px]">
+            <i class="fab fa-whatsapp text-base mb-0.5"></i>
+            <span>WhatsApp</span>
+        </a>
+    </nav>
 
 </body>
 </html>
