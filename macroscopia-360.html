@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visor Macroscópico 360° Quirúrgico | JC PATH LAB</title>
-    <meta name="description" content="Visualización tridimensional 360 grados de piezas quirúrgicas y biopsias complejas. Inspección de márgenes y orientación anatómica.">
+    <title>Visor Interactivo 360° | JC PATH LAB - Dr. Josehp Castillo</title>
+    <meta name="description" content="Visor interactivo en 360 grados: explore el microscopio óptico de alta resolución y piezas macroscópicas con rotación táctil fluida a 60 FPS.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -12,7 +12,21 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #030712; color: #f8fafc; }
-        .neuro-glass { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(56, 189, 248, 0.18); }
+        .neuro-glass { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(56, 189, 248, 0.2); }
+        .viewer-stage {
+            cursor: grab;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: none;
+        }
+        .viewer-stage:active {
+            cursor: grabbing;
+        }
+        .specimen-tab.active {
+            border-color: #38bdf8;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.25) 0%, rgba(15, 23, 42, 0.9) 100%);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+        }
     </style>
     <script>
       // Anti-cache & Service Worker auto-purger to prevent loading old versions
@@ -63,61 +77,138 @@
             <a href="index.html" class="block py-1 hover:text-cyan-400">Inicio</a>
             <a href="inmunohistoquimica.html" class="block py-1 hover:text-cyan-400">Inmunohistoquímica (Biomarcadores)</a>
             <a href="patologia-digital.html" class="block py-1 hover:text-cyan-400">Patología Digital (Lámina Interactiva)</a>
-            <a href="macroscopia-360.html" class="block py-1 hover:text-cyan-400">Visor Macroscópico 360°</a>
+            <a href="macroscopia-360.html" class="block py-1 hover:text-cyan-400">Visor 360°</a>
             <a href="academica.html" class="block py-1 hover:text-cyan-400">Área Académica para Residentes</a>
             <a href="contacto.html" class="block py-1 hover:text-cyan-400">Sede Central y Mapa</a>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
         
-        <div class="text-center max-w-3xl mx-auto space-y-2">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950 border border-emerald-500/40 text-emerald-300 text-xs font-semibold uppercase tracking-wider">
-                <i class="fas fa-cube"></i> Correlación Anatomo-Quirúrgica
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950 border border-cyan-500/40 text-cyan-300 text-xs font-semibold uppercase tracking-wider mb-2">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                    Rotación Cinemática 360° &bull; 60 FPS
+                </div>
+                <h1 class="text-2xl sm:text-4xl font-black text-white font-['Outfit']">
+                    Visor Interactivo <span class="bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">360 Grados</span>
+                </h1>
+                <p class="text-slate-400 text-xs sm:text-sm mt-1 max-w-2xl">
+                    Arrastra con el ratón o desliza con el dedo para girar el microscopio en 360°. Inspeccione la óptica trinocular, los objetivos, la platina y la cámara digital de alta definición.
+                </p>
             </div>
-            <h1 class="text-3xl sm:text-5xl font-black text-white font-['Outfit']">
-                Visor Macroscópico <span class="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">360° en Alta Definición</span>
-            </h1>
-            <p class="text-slate-400 text-sm sm:text-base">
-                Permite al cirujano rotar tridimensionalmente la pieza anatómica previo al corte histológico, inspeccionando márgenes quirúrgicos y relaciones con órganos vecinos.
-            </p>
+            <div class="flex items-center gap-3">
+                <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20hacer%20una%20consulta%20m%C3%A9dica" target="_blank" class="px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 hover:border-emerald-500 text-slate-200 hover:text-emerald-400 font-semibold text-xs flex items-center gap-2 transition">
+                    <i class="fab fa-whatsapp text-emerald-400"></i> Contactar al Especialista
+                </a>
+            </div>
         </div>
 
-        <div class="neuro-glass rounded-2xl overflow-hidden border border-slate-700 shadow-2xl p-4">
+        <!-- SELECTOR DE MODELO 360° -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 max-w-xl">
+            <button type="button" class="specimen-tab active text-left p-3 rounded-xl border border-slate-800 bg-slate-900/60 flex items-center gap-3">
+                <div class="w-12 h-12 rounded-lg bg-slate-950 border border-slate-800 flex items-center justify-center text-cyan-400 text-xl">
+                    <i class="fas fa-microscope"></i>
+                </div>
+                <div>
+                    <span class="text-[10px] font-bold text-cyan-400 uppercase tracking-wide">Estación Óptica</span>
+                    <h3 class="text-xs font-bold text-white">Microscopio de Patología</h3>
+                    <span class="text-[10px] text-slate-400">36 fotogramas WebP en órbita</span>
+                </div>
+            </button>
+            <div class="text-left p-3 rounded-xl border border-slate-800/40 bg-slate-900/30 flex items-center gap-3 opacity-60">
+                <div class="w-12 h-12 rounded-lg bg-slate-950 border border-slate-800 flex items-center justify-center text-slate-500 text-xl">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <div>
+                    <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wide">Pieza Quirúrgica</span>
+                    <h3 class="text-xs font-bold text-slate-300">Macroscopía y Márgenes</h3>
+                    <span class="text-[10px] text-slate-500">Documentación de cortes</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENEDOR PRINCIPAL DEL VISOR 360° -->
+        <div class="neuro-glass rounded-2xl overflow-hidden border border-slate-700/80 shadow-2xl flex flex-col">
             
-            <div class="relative bg-slate-950 rounded-xl overflow-hidden min-h-[420px] sm:min-h-[500px] flex items-center justify-center">
-                <img id="macro-img" src="area-macroscopia.jpg" alt="Área de macroscopía quirúrgica" class="w-full h-[450px] sm:h-[500px] object-cover opacity-80 select-none">
+            <!-- Barra superior del visor -->
+            <div class="bg-slate-900 px-4 py-2.5 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs">
+                <div class="flex items-center gap-2.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
+                    <strong class="text-white font-mono" id="view-angle-text">Ángulo: 0° &bull; Frente</strong>
+                    <span class="hidden sm:inline text-slate-600">|</span>
+                    <span class="hidden sm:inline text-slate-400 text-[11px]">36 Fotogramas UHD (0.99 MB)</span>
+                </div>
 
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent flex flex-col justify-between p-6 pointer-events-none">
-                    
-                    <div class="self-start px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-cyan-500/50 text-xs text-cyan-300 flex items-center gap-2 shadow-lg">
-                        <i class="fas fa-hand-pointer animate-bounce"></i>
-                        <span>Inspección Macroscópica Pre-Corte</span>
-                    </div>
-
-                    <div class="bg-slate-900/90 backdrop-blur border border-slate-800 p-5 rounded-xl max-w-lg text-left">
-                        <span class="text-xs font-mono font-bold text-emerald-400 uppercase">Estación Macroscópica Calibrada</span>
-                        <h2 class="text-base font-bold text-white mt-1">Inspección de Bordes y Tinta China</h2>
-                        <p class="text-xs text-slate-300 mt-1 leading-relaxed">
-                            Las piezas complejas son orientadas con hilos de sutura, marcadas con tinta china indeleble en márgenes quirúrgicos y fotografíadas panorámicamente para correlación con los cortes microscópicos.
-                        </p>
-                    </div>
-
+                <!-- Botonera de control -->
+                <div class="flex items-center gap-2">
+                    <button type="button" id="btn-auto-spin" class="px-3 py-1.5 rounded-lg bg-cyan-950 border border-cyan-700 text-cyan-300 font-semibold hover:bg-cyan-900 transition flex items-center gap-1.5">
+                        <i class="fas fa-play text-[10px]" id="spin-icon"></i>
+                        <span id="spin-label">Giro Automático</span>
+                    </button>
+                    <button type="button" id="btn-reset-360" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center justify-center transition" title="Restablecer a 0°">
+                        <i class="fas fa-redo-alt text-xs"></i>
+                    </button>
+                    <button type="button" id="btn-fullscreen-360" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center justify-center transition" title="Pantalla Completa">
+                        <i class="fas fa-expand text-xs"></i>
+                    </button>
                 </div>
             </div>
 
-            <div class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-slate-300">
-                <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
-                    <strong class="text-cyan-400 block mb-1">Rotación Suave</strong>
-                    <span>Control cinemático a 60 FPS sin tirones de imagen.</span>
+            <!-- Escenario interactivo -->
+            <div id="stage-360" class="relative w-full h-[520px] sm:h-[620px] bg-slate-950 flex items-center justify-center overflow-hidden viewer-stage">
+                
+                <!-- Imagen del fotograma actual -->
+                <img id="img-360" src="microscopio_360/frame_00.webp" alt="Microscopio en rotación 360" class="max-h-[92%] max-w-[92%] object-contain pointer-events-none drop-shadow-2xl">
+
+                <!-- HUD flotante con instrucciones y ángulo -->
+                <div class="absolute bottom-5 left-5 bg-slate-900/90 backdrop-blur border border-slate-700/80 px-3.5 py-2.5 rounded-xl text-xs space-y-1 shadow-xl pointer-events-none z-10">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-arrows-left-right text-cyan-400"></i>
+                        <span class="text-slate-200 font-medium">Arrastre horizontalmente para rotar</span>
+                    </div>
+                    <div class="text-[11px] text-slate-400 font-mono" id="sub-angle-detail">
+                        Perspectiva: Cabezal trinocular y torreta de objetivos
+                    </div>
                 </div>
-                <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
-                    <strong class="text-emerald-400 block mb-1">Márgenes Quirúrgicos</strong>
-                    <span>Documentación previa de los bordes profundo, lateral y medial.</span>
+
+                <!-- Píldora circular central de rotación -->
+                <div class="absolute top-5 right-5 bg-slate-900/90 border border-slate-700 px-3 py-1.5 rounded-full text-xs font-mono font-bold text-cyan-400 shadow-lg pointer-events-none">
+                    <i class="fas fa-compass mr-1"></i> <span id="badge-degrees">0°</span>
                 </div>
-                <div class="bg-slate-900/60 p-3 rounded-xl border border-slate-800">
-                    <strong class="text-indigo-400 block mb-1">Compatibilidad Móvil</strong>
-                    <span>Acceso directo desde el celular del cirujano en quirófano.</span>
+
+                <!-- Slider interactivo inferior en el borde -->
+                <div class="absolute bottom-0 inset-x-0 bg-slate-900/80 backdrop-blur border-t border-slate-800/80 px-6 py-2 flex items-center gap-3">
+                    <span class="text-[10px] text-slate-400 font-mono">0°</span>
+                    <input type="range" id="range-slider" min="0" max="35" value="0" class="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-400">
+                    <span class="text-[10px] text-slate-400 font-mono">360°</span>
+                </div>
+
+            </div>
+
+            <!-- Ficha técnica del equipo -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-5 bg-slate-900/90 border-t border-slate-800 text-xs">
+                <div class="flex items-start gap-2.5">
+                    <i class="fas fa-microscope text-cyan-400 text-base mt-0.5"></i>
+                    <div>
+                        <strong class="text-white block">Microscopio de Grado Médico</strong>
+                        <span class="text-slate-400">Sistema óptico con objetivos plan-acromáticos para diagnóstico histopatológico oncológico.</span>
+                    </div>
+                </div>
+                <div class="flex items-start gap-2.5">
+                    <i class="fas fa-camera text-emerald-400 text-base mt-0.5"></i>
+                    <div>
+                        <strong class="text-white block">Digitalización y Telepatología</strong>
+                        <span class="text-slate-400">Cámara digital de alta resolución montada en tubo trinocular para captura de microfotografías.</span>
+                    </div>
+                </div>
+                <div class="flex items-start gap-2.5">
+                    <i class="fas fa-bolt text-indigo-400 text-base mt-0.5"></i>
+                    <div>
+                        <strong class="text-white block">Carga Instantánea WebP</strong>
+                        <span class="text-slate-400">Los 36 fotogramas pesan menos de 1 MB en conjunto, cargando al instante en smartphones 4G.</span>
+                    </div>
                 </div>
             </div>
 
@@ -141,6 +232,163 @@
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
+
+    <!-- SCRIPT DEL MOTOR 360° FLUIDO -->
+    <script>
+        (function init360Viewer() {
+            const TOTAL_FRAMES = 36;
+            const frames = [];
+            for (let i = 0; i < TOTAL_FRAMES; i++) {
+                const pad = String(i).padStart(2, '0');
+                frames.push(`microscopio_360/frame_${pad}.webp`);
+            }
+
+            // Precarga en memoria para 60 FPS
+            const preloadedImages = [];
+            frames.forEach(src => {
+                const img = new Image();
+                img.src = src;
+                preloadedImages.push(img);
+            });
+
+            const stage = document.getElementById('stage-360');
+            const mainImg = document.getElementById('img-360');
+            const angleText = document.getElementById('view-angle-text');
+            const subAngle = document.getElementById('sub-angle-detail');
+            const badgeDegrees = document.getElementById('badge-degrees');
+            const slider = document.getElementById('range-slider');
+            const btnAutoSpin = document.getElementById('btn-auto-spin');
+            const spinIcon = document.getElementById('spin-icon');
+            const spinLabel = document.getElementById('spin-label');
+            const btnReset = document.getElementById('btn-reset-360');
+            const btnFullscreen = document.getElementById('btn-fullscreen-360');
+
+            let currentIndex = 0;
+            let isDragging = false;
+            let startX = 0;
+            let isAutoSpinning = false;
+            let spinInterval = null;
+
+            function updateFrame(index) {
+                currentIndex = (index + TOTAL_FRAMES) % TOTAL_FRAMES;
+                mainImg.src = frames[currentIndex];
+                slider.value = currentIndex;
+
+                const degrees = Math.round((currentIndex / TOTAL_FRAMES) * 360);
+                badgeDegrees.textContent = `${degrees}°`;
+
+                let orientation = 'Frente';
+                let detail = 'Cabezal trinocular y torreta de objetivos';
+                if (degrees >= 45 && degrees < 135) {
+                    orientation = 'Lateral Derecho';
+                    detail = 'Enfoque macrométrico, micrométrico y platina mecánica';
+                } else if (degrees >= 135 && degrees < 225) {
+                    orientation = 'Cara Posterior';
+                    detail = 'Fuente de luz halógena/LED, columna y conexión de cámara';
+                } else if (degrees >= 225 && degrees < 315) {
+                    orientation = 'Lateral Izquierdo';
+                    detail = 'Regulador de campo, condensador y diafragma iris';
+                }
+
+                angleText.innerHTML = `Ángulo: ${degrees}° &bull; ${orientation}`;
+                subAngle.textContent = `Perspectiva: ${detail}`;
+            }
+
+            // Arrastre con ratón
+            stage.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startX = e.clientX;
+                stopAutoSpin();
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                const deltaX = e.clientX - startX;
+                const sensitivity = 12; // píxeles por fotograma
+                if (Math.abs(deltaX) > sensitivity) {
+                    const step = Math.sign(deltaX);
+                    updateFrame(currentIndex - step);
+                    startX = e.clientX;
+                }
+            });
+
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+
+            // Arrastre táctil en móviles
+            stage.addEventListener('touchstart', (e) => {
+                if (e.touches.length === 1) {
+                    isDragging = true;
+                    startX = e.touches[0].clientX;
+                    stopAutoSpin();
+                }
+            }, { passive: true });
+
+            stage.addEventListener('touchmove', (e) => {
+                if (!isDragging || e.touches.length !== 1) return;
+                const deltaX = e.touches[0].clientX - startX;
+                const sensitivity = 12;
+                if (Math.abs(deltaX) > sensitivity) {
+                    const step = Math.sign(deltaX);
+                    updateFrame(currentIndex - step);
+                    startX = e.touches[0].clientX;
+                }
+            }, { passive: true });
+
+            stage.addEventListener('touchend', () => {
+                isDragging = false;
+            });
+
+            // Slider
+            slider.addEventListener('input', (e) => {
+                stopAutoSpin();
+                updateFrame(parseInt(e.target.value, 10));
+            });
+
+            // Auto-Giro
+            function startAutoSpin() {
+                isAutoSpinning = true;
+                spinIcon.className = 'fas fa-pause text-[10px]';
+                spinLabel.textContent = 'Pausar Giro';
+                spinInterval = setInterval(() => {
+                    updateFrame(currentIndex + 1);
+                }, 100);
+            }
+
+            function stopAutoSpin() {
+                if (!isAutoSpinning) return;
+                isAutoSpinning = false;
+                spinIcon.className = 'fas fa-play text-[10px]';
+                spinLabel.textContent = 'Giro Automático';
+                clearInterval(spinInterval);
+            }
+
+            btnAutoSpin.addEventListener('click', () => {
+                if (isAutoSpinning) {
+                    stopAutoSpin();
+                } else {
+                    startAutoSpin();
+                }
+            });
+
+            btnReset.addEventListener('click', () => {
+                stopAutoSpin();
+                updateFrame(0);
+            });
+
+            btnFullscreen.addEventListener('click', () => {
+                if (!document.fullscreenElement) {
+                    stage.requestFullscreen().catch(() => {});
+                } else {
+                    document.exitFullscreen().catch(() => {});
+                }
+            });
+
+            // Iniciar en fotograma 0
+            updateFrame(0);
+        })();
+    </script>
 
 </body>
 </html>

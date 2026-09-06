@@ -115,17 +115,27 @@
             </div>
 
             <div class="lg:col-span-5 relative">
-                <div class="neuro-glass rounded-3xl p-3 shadow-2xl relative overflow-hidden border border-cyan-500/30">
-                    <img src="microscopio-patologia.jpg" alt="Dr. Josehp Castillo al Microscopio" class="w-full h-80 sm:h-96 object-cover rounded-2xl">
-                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80 rounded-2xl"></div>
-                    <div class="absolute bottom-6 left-6 right-6">
-                        <span class="px-2.5 py-1 rounded-md bg-cyan-950/90 border border-cyan-500/50 text-[11px] font-bold text-cyan-300 uppercase tracking-wider">
-                            Oncopatología Quirúrgica
-                        </span>
-                        <h2 class="text-lg font-bold text-white mt-1">Dr. Josehp Castillo Cuenca</h2>
-                        <p class="text-xs text-slate-300">Médico Especialista en Anatomía Patológica</p>
+                <a href="macroscopia-360.html" class="block group">
+                    <div class="neuro-glass rounded-3xl p-3 shadow-2xl relative overflow-hidden border border-cyan-500/30 group-hover:border-cyan-400 transition-all transform group-hover:scale-[1.01]">
+                        <img src="microscopio_360/frame_00.webp" alt="Microscopio Óptico Digital 360°" class="w-full h-80 sm:h-96 object-contain bg-slate-950/80 rounded-2xl">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80 rounded-2xl"></div>
+                        
+                        <!-- Píldora interactiva 360 flotante -->
+                        <div class="absolute top-6 right-6 px-3 py-1.5 rounded-full bg-cyan-950/90 border border-cyan-400 text-cyan-300 text-xs font-bold flex items-center gap-1.5 shadow-lg group-hover:scale-105 transition-transform">
+                            <i class="fas fa-arrows-rotate animate-spin" style="animation-duration: 4s;"></i>
+                            <span>Ver en 360°</span>
+                        </div>
+
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <span class="px-2.5 py-1 rounded-md bg-cyan-950/90 border border-cyan-500/50 text-[11px] font-bold text-cyan-300 uppercase tracking-wider">
+                                Oncopatología Quirúrgica &bull; Estación Óptica
+                            </span>
+                            <h2 class="text-lg font-bold text-white mt-1 group-hover:text-cyan-400 transition">Dr. Josehp Castillo Cuenca</h2>
+                            <p class="text-xs text-slate-300">Médico Especialista en Anatomía Patológica (CMP 56435)</p>
+                            <span class="inline-block mt-2 text-xs font-bold text-cyan-400 group-hover:underline">Girar Microscopio en 360° con el dedo →</span>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         </section>
 
