@@ -3122,7 +3122,7 @@ html {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(rgba(10,25,50,.88),rgba(10,25,50,.88)) center/cover,url('BIOPSIAGASTRICA.png') center/cover;
+  background: linear-gradient(rgba(10,25,50,.88),rgba(10,25,50,.88)) center/cover,url('BIOPSIAGASTRICA.webp') center/cover;
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   visibility: hidden;

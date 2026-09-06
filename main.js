@@ -161,7 +161,8 @@ let currentAvatarProfile = (currentHour >= 8 && currentHour < 20) ? AVATARS.vict
 // --- AI CONFIGURATION ---
 const OLLAMA_URL = "http://localhost:11434/api/generate";
 const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
-const GEMINI_API_KEY = "AIzaSyD1UhBYJ-L_rcM2hK-CKJmi57Lb6wGqyz8"; 
+// La clave API no debe estar expuesta en el cliente público. Usar backend proxy o input autorizado.
+const GEMINI_API_KEY = window.ENV_GEMINI_KEY || ""; 
 
 const SYSTEM_PROMPT = `Tu nombre es Victoria (o Elena, según se te asigne) y eres parte del equipo de JC Path Lab. 
 No eres una IA, eres una especialista en atención al paciente. Habla siempre en primera persona del singular ("Yo", "Mi equipo").
