@@ -55,7 +55,149 @@
             body { padding-bottom: 76px !important; }
             .desktop-wa-fab { display: none !important; }
         }
-    </style>
+
+        /* ==========================================================
+           BOTONES PSICO-MECÁNICOS 3D (SE HUNDEN AL PRESIONAR)
+           ========================================================== */
+        .btn-3d-tactile {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 700;
+            color: #ffffff !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            cursor: pointer;
+            user-select: none;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+            will-change: transform, box-shadow;
+            transform: translateY(0);
+            transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        box-shadow 0.12s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        filter 0.2s ease;
+        }
+
+        /* Variante Primaria Cian/Azul Médico */
+        .btn-3d-cyan {
+            background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%) !important;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.45),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+                0 4px 0 #075985,
+                0 8px 18px rgba(3, 105, 161, 0.5) !important;
+        }
+        .btn-3d-cyan:hover {
+            transform: translateY(-1.5px);
+            background: linear-gradient(180deg, #0ea5e9 0%, #0284c7 100%) !important;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                0 5px 0 #075985,
+                0 12px 24px rgba(3, 105, 161, 0.6) !important;
+        }
+        .btn-3d-cyan:active {
+            transform: translateY(4px) !important;
+            box-shadow: 
+                inset 0 2px 5px rgba(0, 0, 0, 0.6),
+                inset 0 0 2px rgba(0, 0, 0, 0.4),
+                0 0 0 transparent,
+                0 1px 2px rgba(0, 0, 0, 0.2) !important;
+            transition: transform 0.04s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.04s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        /* Variante Esmeralda Bio-Luminosa (WhatsApp / Muestra) */
+        .btn-3d-emerald {
+            background: linear-gradient(180deg, #059669 0%, #047857 100%) !important;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.45),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+                0 4px 0 #065f46,
+                0 8px 18px rgba(5, 150, 105, 0.45) !important;
+            overflow: hidden;
+        }
+        .btn-3d-emerald:hover {
+            transform: translateY(-1.5px);
+            background: linear-gradient(180deg, #10b981 0%, #059669 100%) !important;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                0 5px 0 #065f46,
+                0 12px 24px rgba(5, 150, 105, 0.6) !important;
+        }
+        .btn-3d-emerald:active {
+            transform: translateY(4px) !important;
+            box-shadow: 
+                inset 0 2px 5px rgba(0, 0, 0, 0.6),
+                inset 0 0 2px rgba(0, 0, 0, 0.4),
+                0 0 0 transparent,
+                0 1px 2px rgba(0, 0, 0, 0.2) !important;
+            transition: transform 0.04s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.04s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        /* Variante Sede / Neutra Slate 3D */
+        .btn-3d-slate {
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%) !important;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+                0 4px 0 #020617,
+                0 6px 14px rgba(0, 0, 0, 0.5) !important;
+        }
+        .btn-3d-slate:hover {
+            transform: translateY(-1.5px);
+            background: linear-gradient(180deg, #334155 0%, #1e293b 100%) !important;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 5px 0 #020617,
+                0 10px 20px rgba(0, 0, 0, 0.6) !important;
+        }
+        .btn-3d-slate:active {
+            transform: translateY(4px) !important;
+            box-shadow: 
+                inset 0 2px 5px rgba(0, 0, 0, 0.7),
+                0 0 0 transparent,
+                0 1px 2px rgba(0, 0, 0, 0.3) !important;
+            transition: transform 0.04s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.04s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        /* Efecto Haz de Luz Especular en Botones (Shimmer) */
+        .btn-3d-tactile::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -130%;
+            width: 50%;
+            height: 200%;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.25) 50%, transparent 100%);
+            transform: rotate(25deg);
+            pointer-events: none;
+            transition: left 0.7s ease;
+        }
+        .btn-3d-tactile:hover::after {
+            left: 150%;
+        }
+
+        /* Reflejo Especular Dinámico en Tarjeta Portaobjetos 360 */
+        .specular-slide {
+            position: relative;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            box-shadow: 0 12px 35px -5px rgba(0, 0, 0, 0.7), 0 0 15px rgba(56, 189, 248, 0.15);
+        }
+        .specular-slide::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, transparent 40%, rgba(56, 189, 248, 0.05) 100%);
+            pointer-events: none;
+        }
     <script>
       // Anti-cache & Service Worker auto-purger to prevent loading old versions
       if ('serviceWorker' in navigator) {
@@ -129,16 +271,16 @@
                     Evaluación histopatológica rigurosa de biopsias y piezas quirúrgicas dirigida personalmente por el <strong>Dr. Josehp Castillo Cuenca</strong> (CMP 56435) con protocolos estandarizados del College of American Pathologists (CAP).
                 </p>
 
-                <div class="flex flex-wrap items-center gap-3.5 pt-2">
-                    <button type="button" onclick="document.getElementById('quickSearchModal').classList.remove('hidden'); document.getElementById('quickSearchModal').classList.add('flex');" class="px-5 py-3.5 rounded-xl bg-gradient-to-r from-cyan-600 to-sky-600 hover:from-cyan-500 hover:to-sky-500 text-white font-bold text-sm flex items-center gap-2 shadow-xl shadow-cyan-950 transition transform hover:-translate-y-0.5 cursor-pointer">
+                <div class="flex flex-wrap items-center gap-4 pt-2">
+                    <button type="button" onclick="document.getElementById('quickSearchModal').classList.remove('hidden'); document.getElementById('quickSearchModal').classList.add('flex');" class="btn-3d-tactile btn-3d-cyan px-5 py-3.5 text-sm">
                         <i class="fas fa-search text-base"></i>
                         <span>Consultar Mi Informe</span>
                     </button>
-                    <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20coordinar%20la%20entrega%20de%20una%20muestra%20biopsia" target="_blank" class="px-5 py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-sm flex items-center gap-2 shadow-xl shadow-emerald-950 transition transform hover:-translate-y-0.5">
+                    <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20coordinar%20la%20entrega%20de%20una%20muestra%20biopsia" target="_blank" class="btn-3d-tactile btn-3d-emerald px-5 py-3.5 text-sm">
                         <i class="fab fa-whatsapp text-lg"></i>
                         <span>Coordinar Muestra</span>
                     </a>
-                    <a href="contacto.html" class="px-5 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-semibold text-sm flex items-center gap-2 transition">
+                    <a href="contacto.html" class="btn-3d-tactile btn-3d-slate px-5 py-3.5 text-sm">
                         <i class="fas fa-map-marker-alt text-cyan-400"></i>
                         <span>Sede</span>
                     </a>
@@ -161,7 +303,7 @@
             </div>
 
             <div class="lg:col-span-5 relative" id="visor-microscopio-360">
-                <div id="microscope360Container" class="neuro-glass rounded-3xl p-3 shadow-2xl relative overflow-hidden border border-cyan-500/40 hover:border-cyan-400 transition-all select-none cursor-grab" style="touch-action: pan-y;">
+                <div id="microscope360Container" class="specular-slide rounded-3xl p-3 shadow-2xl relative overflow-hidden transition-all select-none cursor-grab" style="touch-action: pan-y;">
                     <!-- Imagen 360 interactiva -->
                     <img id="microscope360Img" src="microscopio_360/frame_00.webp" alt="Microscopio Óptico Digital 360°" class="w-full h-80 sm:h-96 object-contain bg-slate-950/80 rounded-2xl pointer-events-none select-none transition-opacity duration-75">
                     
@@ -274,11 +416,11 @@
                 <input type="text" id="inputQuickSearchCod" placeholder="Ej: 26Q-261 o 70889234" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white font-mono text-sm uppercase focus:outline-none focus:border-cyan-400 transition" autocomplete="off">
             </div>
             <div class="flex gap-2 pt-2">
-                <button type="button" onclick="handleQuickSearchRedirect()" class="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-cyan-600 to-emerald-600 hover:from-cyan-500 hover:to-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-cyan-950 transition">
+                <button type="button" onclick="handleQuickSearchRedirect()" class="flex-1 py-2.5 rounded-xl btn-3d-tactile btn-3d-cyan text-xs">
                     <i class="fas fa-file-medical"></i>
                     <span>Verificar Estado</span>
                 </button>
-                <button type="button" onclick="document.getElementById('quickSearchModal').classList.add('hidden'); document.getElementById('quickSearchModal').classList.remove('flex');" class="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-300 text-xs font-semibold transition">
+                <button type="button" onclick="document.getElementById('quickSearchModal').classList.add('hidden'); document.getElementById('quickSearchModal').classList.remove('flex');" class="px-4 py-2.5 rounded-xl btn-3d-tactile btn-3d-slate text-xs">
                     Cancelar
                 </button>
             </div>
