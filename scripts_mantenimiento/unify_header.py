@@ -14,7 +14,7 @@ HEAD_RESOURCES = """    <!-- Fonts -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="mobile-app.css">"""
 
-# Standard Header Snippet
+# Standard Header Snippet (Updated: Modern Clean Navigation)
 STANDARD_HEADER_TEMPLATE = """    <!-- Header Section -->
     <header class="header">
         <div class="header-container">
@@ -30,36 +30,12 @@ STANDARD_HEADER_TEMPLATE = """    <!-- Header Section -->
             <nav>
                 <ul class="nav-menu">
                     <li class="nav-item"><a href="index.html" class="nav-link {active_inicio}">Inicio</a></li>
-                    <li class="nav-item"><a href="index.html#servicios" class="nav-link">Servicios</a></li>
-
-                    <!-- Dropdown: Institucional -->
-                    <li class="nav-item has-dropdown">
-                        <a href="#" class="nav-link {active_institucional}">Institucional <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-item"><a href="index.html#quienes-somos">Quiénes Somos</a></li>
-                            <li class="dropdown-item"><a href="cv.html" class="{active_cv}">Curriculum Vitae</a></li>
-                            <li class="dropdown-item"><a href="index.html#protocolos">Nuestros Protocolos</a></li>
-                        </ul>
-                    </li>
-
-                    <!-- Dropdown: Área Académica -->
-                    <li class="nav-item has-dropdown">
-                        <a href="#" class="nav-link {active_academica}">Área Académica <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-item"><a href="educacion-medica.html" class="{active_zona_medica}">Zona Médica</a></li>
-                            <li class="dropdown-item"><a href="classroom.html" class="{active_classroom}">Classroom</a></li>
-                            <li class="dropdown-item"><a href="blogs.html" class="{active_blogs}">Blogs</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="solicitud.html" class="nav-link nav-cta {active_solicitud}">Solicitud de Estudio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="https://informes-srjunco.vercel.app/login" class="nav-link"
-                            style="color: #007bff; font-weight: 700;"><i class="fas fa-file-medical"></i> Resultados</a>
-                    </li>
-                    <li class="nav-item"><a href="index.html#contacto" class="nav-link">Contacto</a></li>
+                    <li class="nav-item"><a href="inmunohistoquimica.html" class="nav-link">Inmunohistoquímica</a></li>
+                    <li class="nav-item"><a href="patologia-digital.html" class="nav-link">Patología Digital</a></li>
+                    <li class="nav-item"><a href="macroscopia-360.html" class="nav-link">Visor 360°</a></li>
+                    <li class="nav-item"><a href="academica.html" class="nav-link {active_academica}">Área Académica</a></li>
+                    <li class="nav-item"><a href="contacto.html" class="nav-link">Sede & Contacto</a></li>
+                    <li class="nav-item"><a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20coordinar%20el%20estudio%20de%20una%20biopsia" target="_blank" class="nav-link" style="color:#10b981;font-weight:700;"><i class="fab fa-whatsapp"></i> Contactar</a></li>
                 </ul>
             </nav>
 

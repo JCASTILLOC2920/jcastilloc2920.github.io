@@ -1,27 +1,20 @@
-const CACHE_NAME = 'jcpathlab-cache-v1';
-const urlsToCache = [
-  '/',
-  '/index.html',
-  '/style.css',
-  '/main.js',
-  '/logo-jcpathlab.png'
-];
-
+// Purge and unregister all legacy caches
 self.addEventListener('install', event => {
+  self.skipWaiting();
+});
+
+self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
+    caches.keys().then(keys => {
+      return Promise.all(
+        keys.map(key => caches.delete(key))
+      );
+    }).then(() => self.clients.claim())
   );
 });
 
+// Network only - bypass cache completely
 self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        if (response) {
-          return response;
-        }
-        return fetch(event.request);
-      })
-  );
+  event.respondWith(fetch(event.request));
 });
+

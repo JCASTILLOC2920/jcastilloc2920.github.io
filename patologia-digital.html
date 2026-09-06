@@ -16,6 +16,19 @@
         .slide-viewport { cursor: grab; user-select: none; touch-action: none; }
         .slide-viewport:active { cursor: grabbing; }
     </style>
+    <script>
+      // Anti-cache & Service Worker auto-purger to prevent loading old versions
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+          for (var reg of registrations) { reg.unregister(); }
+        });
+      }
+      if ('caches' in window) {
+        caches.keys().then(function(names) {
+          for (var name of names) { caches.delete(name); }
+        });
+      }
+    </script>
 </head>
 <body class="bg-slate-950 text-slate-100 antialiased selection:bg-cyan-500 selection:text-white">
 
