@@ -43,7 +43,7 @@
                 <a href="index.html" class="text-cyan-400 font-bold border-b-2 border-cyan-400 pb-1">Inicio</a>
                 <a href="inmunohistoquimica.html" class="text-slate-300 hover:text-cyan-400 transition">Inmunohistoquímica</a>
                 <a href="patologia-digital.html" class="text-slate-300 hover:text-cyan-400 transition">Patología Digital</a>
-                <a href="macroscopia-360.html" class="text-slate-300 hover:text-cyan-400 transition">Visor 360°</a>
+                <a href="#visor-microscopio-360" class="text-slate-300 hover:text-cyan-400 transition">Visor 360°</a>
                 <a href="academica.html" class="text-slate-300 hover:text-cyan-400 transition">Área Académica</a>
                 <a href="contacto.html" class="text-slate-300 hover:text-cyan-400 transition">Sede & Contacto</a>
             </nav>
@@ -63,7 +63,7 @@
             <a href="index.html" class="block py-1 hover:text-cyan-400">Inicio</a>
             <a href="inmunohistoquimica.html" class="block py-1 hover:text-cyan-400">Inmunohistoquímica (Biomarcadores)</a>
             <a href="patologia-digital.html" class="block py-1 hover:text-cyan-400">Patología Digital (Lámina Interactiva)</a>
-            <a href="macroscopia-360.html" class="block py-1 hover:text-cyan-400">Visor Macroscópico 360°</a>
+            <a href="#visor-microscopio-360" class="block py-1 hover:text-cyan-400">Visor 360° (Interactivo)</a>
             <a href="academica.html" class="block py-1 hover:text-cyan-400">Área Académica para Residentes</a>
             <a href="contacto.html" class="block py-1 hover:text-cyan-400">Sede Central y Mapa</a>
         </div>
@@ -114,28 +114,35 @@
                 </div>
             </div>
 
-            <div class="lg:col-span-5 relative">
-                <a href="macroscopia-360.html" class="block group">
-                    <div class="neuro-glass rounded-3xl p-3 shadow-2xl relative overflow-hidden border border-cyan-500/30 group-hover:border-cyan-400 transition-all transform group-hover:scale-[1.01]">
-                        <img src="microscopio_360/frame_00.webp" alt="Microscopio Óptico Digital 360°" class="w-full h-80 sm:h-96 object-contain bg-slate-950/80 rounded-2xl">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80 rounded-2xl"></div>
-                        
-                        <!-- Píldora interactiva 360 flotante -->
-                        <div class="absolute top-6 right-6 px-3 py-1.5 rounded-full bg-cyan-950/90 border border-cyan-400 text-cyan-300 text-xs font-bold flex items-center gap-1.5 shadow-lg group-hover:scale-105 transition-transform">
-                            <i class="fas fa-arrows-rotate animate-spin" style="animation-duration: 4s;"></i>
-                            <span>Ver en 360°</span>
-                        </div>
+            <div class="lg:col-span-5 relative" id="visor-microscopio-360">
+                <div id="microscope360Container" class="neuro-glass rounded-3xl p-3 shadow-2xl relative overflow-hidden border border-cyan-500/40 hover:border-cyan-400 transition-all select-none cursor-grab" style="touch-action: pan-y;">
+                    <!-- Imagen 360 interactiva -->
+                    <img id="microscope360Img" src="microscopio_360/frame_00.webp" alt="Microscopio Óptico Digital 360°" class="w-full h-80 sm:h-96 object-contain bg-slate-950/80 rounded-2xl pointer-events-none select-none transition-opacity duration-75">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/25 to-transparent opacity-90 rounded-2xl pointer-events-none"></div>
+                    
+                    <!-- Píldora interactiva 360 flotante -->
+                    <div class="absolute top-6 right-6 flex items-center gap-2 z-10">
+                        <span id="microscope360Angle" class="px-2.5 py-1 rounded-full bg-slate-900/90 border border-slate-700 text-cyan-300 text-xs font-mono font-bold shadow-lg">0°</span>
+                        <button type="button" id="microscope360Pill" class="px-3 py-1.5 rounded-full bg-cyan-950/90 border border-cyan-400 text-cyan-300 text-xs font-bold flex items-center gap-1.5 shadow-lg hover:bg-cyan-900 transition-colors cursor-pointer" title="Pausar / Reanudar Rotación">
+                            <i id="microscope360Icon" class="fas fa-arrows-rotate animate-spin" style="animation-duration: 4s;"></i>
+                            <span id="microscope360PillText">Girar 360°</span>
+                        </button>
+                    </div>
 
-                        <div class="absolute bottom-6 left-6 right-6">
-                            <span class="px-2.5 py-1 rounded-md bg-cyan-950/90 border border-cyan-500/50 text-[11px] font-bold text-cyan-300 uppercase tracking-wider">
-                                Oncopatología Quirúrgica &bull; Estación Óptica
-                            </span>
-                            <h2 class="text-lg font-bold text-white mt-1 group-hover:text-cyan-400 transition">Dr. Josehp Castillo Cuenca</h2>
-                            <p class="text-xs text-slate-300">Médico Especialista en Anatomía Patológica (CMP 56435)</p>
-                            <span class="inline-block mt-2 text-xs font-bold text-cyan-400 group-hover:underline">Girar Microscopio en 360° con el dedo →</span>
+                    <!-- Datos y llamada a la acción -->
+                    <div class="absolute bottom-6 left-6 right-6 pointer-events-none">
+                        <span class="px-2.5 py-1 rounded-md bg-cyan-950/90 border border-cyan-500/50 text-[11px] font-bold text-cyan-300 uppercase tracking-wider">
+                            Oncopatología Quirúrgica &bull; Estación Óptica
+                        </span>
+                        <h2 class="text-lg font-bold text-white mt-1">Dr. Josehp Castillo Cuenca</h2>
+                        <p class="text-xs text-slate-300">Médico Especialista en Anatomía Patológica (CMP 56435)</p>
+                        <div class="mt-2.5 flex items-center gap-2 text-xs font-bold text-cyan-400 bg-slate-950/80 py-1.5 px-3 rounded-lg border border-cyan-500/30 w-fit backdrop-blur-sm">
+                            <i class="fas fa-hand-pointer text-cyan-300 animate-pulse"></i>
+                            <span>Arrastra con el dedo o mouse para girar 360°</span>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
         </section>
 
@@ -165,13 +172,13 @@
                     <span class="inline-block mt-4 text-xs font-bold text-emerald-400">Explorar Lámina WSI →</span>
                 </a>
 
-                <a href="macroscopia-360.html" class="neuro-glass p-6 rounded-2xl hover:border-blue-400 transition group block">
-                    <div class="w-12 h-12 rounded-xl bg-blue-950 border border-blue-500/30 flex items-center justify-center text-blue-400 text-xl mb-4 group-hover:scale-110 transition-transform">
+                <a href="#visor-microscopio-360" class="neuro-glass p-6 rounded-2xl hover:border-cyan-400 transition group block">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-950 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-xl mb-4 group-hover:scale-110 transition-transform">
                         <i class="fas fa-arrows-rotate"></i>
                     </div>
-                    <h3 class="text-base font-bold text-white mb-1.5 group-hover:text-blue-400 transition">Visor Macroscópico 360°</h3>
-                    <p class="text-xs text-slate-400 leading-relaxed">Rotación tridimensional interactiva de piezas quirúrgicas para verificación de márgenes.</p>
-                    <span class="inline-block mt-4 text-xs font-bold text-blue-400">Abrir Visor 360° →</span>
+                    <h3 class="text-base font-bold text-white mb-1.5 group-hover:text-cyan-400 transition">Visor Microscopio 360°</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Rotación tridimensional interactiva de la estación óptica de patología con el dedo.</p>
+                    <span class="inline-block mt-4 text-xs font-bold text-cyan-400">Ver Aquí en 360° ↑</span>
                 </a>
 
                 <a href="academica.html" class="neuro-glass p-6 rounded-2xl hover:border-indigo-400 transition group block">
@@ -205,5 +212,120 @@
         </a>
     </div>
 
+    <!-- Visor 360° Interactivo Integrado en la Misma Página -->
+    <script>
+    (function initInline360Viewer() {
+        const totalFrames = 36;
+        const framePath = (idx) => `microscopio_360/frame_${String(idx).padStart(2, '0')}.webp`;
+        
+        // Precarga de todos los 36 fotogramas en segundo plano
+        const cachedFrames = [];
+        for (let i = 0; i < totalFrames; i++) {
+            const img = new Image();
+            img.src = framePath(i);
+            cachedFrames.push(img);
+        }
+
+        const viewerImg = document.getElementById('microscope360Img');
+        const container = document.getElementById('microscope360Container');
+        const angleBadge = document.getElementById('microscope360Angle');
+        const pillBtn = document.getElementById('microscope360Pill');
+        const pillIcon = document.getElementById('microscope360Icon');
+        const pillText = document.getElementById('microscope360PillText');
+
+        if (!viewerImg || !container) return;
+
+        let currentFrame = 0;
+        let isDragging = false;
+        let startX = 0;
+        let startFrame = 0;
+        let autoRotate = true;
+        let autoRotateInterval = null;
+        let resumeTimer = null;
+
+        function setFrame(idx) {
+            currentFrame = ((idx % totalFrames) + totalFrames) % totalFrames;
+            viewerImg.src = framePath(currentFrame);
+            const deg = Math.round((currentFrame / totalFrames) * 360);
+            if (angleBadge) {
+                angleBadge.textContent = `${deg}°`;
+            }
+        }
+
+        function startAutoRotate() {
+            if (autoRotateInterval) return;
+            autoRotate = true;
+            if (pillIcon) pillIcon.classList.add('animate-spin');
+            if (pillText) pillText.textContent = 'Pausar';
+            autoRotateInterval = setInterval(() => {
+                setFrame(currentFrame + 1);
+            }, 100);
+        }
+
+        function stopAutoRotate() {
+            autoRotate = false;
+            if (autoRotateInterval) {
+                clearInterval(autoRotateInterval);
+                autoRotateInterval = null;
+            }
+            if (pillIcon) pillIcon.classList.remove('animate-spin');
+            if (pillText) pillText.textContent = 'Girar 360°';
+            if (resumeTimer) clearTimeout(resumeTimer);
+        }
+
+        function scheduleAutoResume() {
+            if (resumeTimer) clearTimeout(resumeTimer);
+            resumeTimer = setTimeout(() => {
+                startAutoRotate();
+            }, 3500);
+        }
+
+        // Eventos táctiles y mouse unificados (Pointer Events)
+        container.addEventListener('pointerdown', (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            startFrame = currentFrame;
+            try { container.setPointerCapture(e.pointerId); } catch(err) {}
+            container.classList.remove('cursor-grab');
+            container.classList.add('cursor-grabbing');
+            stopAutoRotate();
+        });
+
+        container.addEventListener('pointermove', (e) => {
+            if (!isDragging) return;
+            const deltaX = e.clientX - startX;
+            // Sensibilidad: cada 9 píxeles de arrastre avanza 1 fotograma
+            const frameOffset = Math.floor(-deltaX / 9);
+            setFrame(startFrame + frameOffset);
+        });
+
+        function endPointerDrag(e) {
+            if (!isDragging) return;
+            isDragging = false;
+            container.classList.remove('cursor-grabbing');
+            container.classList.add('cursor-grab');
+            try { container.releasePointerCapture(e.pointerId); } catch(err) {}
+            scheduleAutoResume();
+        }
+
+        container.addEventListener('pointerup', endPointerDrag);
+        container.addEventListener('pointercancel', endPointerDrag);
+
+        // Control del botón de la píldora
+        if (pillBtn) {
+            pillBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (autoRotate) {
+                    stopAutoRotate();
+                } else {
+                    startAutoRotate();
+                }
+            });
+        }
+
+        // Iniciar auto-rotación suave después de 1 segundo
+        setTimeout(startAutoRotate, 1000);
+    })();
+    </script>
 </body>
 </html>
