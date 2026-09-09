@@ -3,72 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patología Digital & Visor WSI de Alta Resolución | JC PATH LAB</title>
+    <title>Patología Digital &amp; Visor WSI de Alta Resolución | JC PATH LAB</title>
     <meta name="description" content="Una imagen vale más que mil palabras: explore láminas histopatológicas reales digitalizadas en alta resolución con microscopio virtual OpenSeadragon a 40x.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- OpenSeadragon Engine Oficial -->
     <script src="vendor/openseadragon/openseadragon.min.js"></script>
-
     <style>
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #030712; 
+        :root {
+            --phi:      1.618;
+            --col-left: 38.2%;
+            --col-right:61.8%;
+            --nav-h:    80px;
+            --ctrl-h:   44px;
+            --gap:      12px;
+            --pad-v:    10px;
+            --pad-h:    16px;
+        }
+        *,*::before,*::after { box-sizing: border-box; }
+        html, body { height: 100%; overflow: hidden; }
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: #030712;
             color: #f8fafc;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-        }
-        .neuro-glass { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(56, 189, 248, 0.2); }
-        .slide-tab.active {
-            border-color: #38bdf8;
-            background: linear-gradient(135deg, rgba(14, 165, 233, 0.25) 0%, rgba(15, 23, 42, 0.9) 100%);
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
-        }
-        .openseadragon-container {
-            outline: none !important;
-            background-color: #030712 !important;
-        }
-        /* Contenedor maximizado que aprovecha la pantalla */
-        .wsi-screen-box {
-            height: clamp(480px, 72vh, 840px);
-        }
-        /* Mobile Thumb Zone Nav */
-        .thumb-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: calc(62px + env(safe-area-inset-bottom, 0px));
-            padding-bottom: env(safe-area-inset-bottom, 0px);
-            background: rgba(3, 7, 18, 0.92);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-top: 1px solid rgba(56, 189, 248, 0.2);
             display: flex;
-            align-items: center;
-            justify-content: space-around;
-            z-index: 9999;
-            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.6);
+            flex-direction: column;
         }
-        @media (min-width: 1024px) {
-            .thumb-nav { display: none !important; }
+        header { flex: 0 0 var(--nav-h); height: var(--nav-h); }
+        main.phi-grid {
+            flex: 1 1 0;
+            min-height: 0;
+            display: grid;
+            grid-template-columns: var(--col-left) var(--col-right);
+            gap: var(--gap);
+            padding: var(--pad-v) var(--pad-h);
+            overflow: hidden;
         }
-        @media (max-width: 1023px) {
-            body { padding-bottom: 76px !important; }
-            .desktop-wa-fab { display: none !important; }
+        .col-left { display:flex; flex-direction:column; gap:8px; min-height:0; overflow:hidden; }
+        .badge-wsi {
+            display:inline-flex; align-items:center; gap:6px;
+            padding:4px 10px; border-radius:999px;
+            background:rgba(8,47,73,.85); border:1px solid rgba(56,189,248,.45);
+            color:#67e8f9; font-size:10px; font-weight:700;
+            letter-spacing:.06em; text-transform:uppercase; width:fit-content;
+        }
+        .badge-wsi .dot {
+            width:7px; height:7px; border-radius:50%;
+            background:#22d3ee; animation:pulse-dot 1.8s infinite;
+        }
+        @keyframes pulse-dot {
+            0%,100%{opacity:1;transform:scale(1);}
+            50%{opacity:.5;transform:scale(1.4);}
+        }
+        .main-title {
+            font-family:"Outfit",sans-serif;
+            font-size:clamp(1.25rem,2vw,2rem);
+            font-weight:900; line-height:1.18; color:#fff; margin:0;
+        }
+        .main-title .highlight {
+            background:linear-gradient(90deg,#22d3ee,#34d399);
+            -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+        }
+        .main-sub { font-size:.7rem; color:#94a3b8; line-height:1.4; margin:0; }
+        .divider { height:1px; background:linear-gradient(90deg,rgba(56,189,248,.3),transparent); flex-shrink:0; }
+        .section-label { font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#475569; }
+        #slide-selector { display:flex; flex-direction:column; gap:5px; overflow:hidden; flex-shrink:0; }
+        .slide-tab {
+            display:flex; align-items:center; gap:8px; padding:7px 9px;
+            border-radius:10px; border:1px solid #1e293b; background:rgba(15,23,42,.65);
+            cursor:pointer; transition:border-color .2s,background .2s,box-shadow .2s;
+            text-align:left; width:100%;
+        }
+        .slide-tab:hover { border-color:rgba(56,189,248,.4); }
+        .slide-tab.active {
+            border-color:#38bdf8;
+            background:linear-gradient(135deg,rgba(14,165,233,.22) 0%,rgba(15,23,42,.9) 100%);
+            box-shadow:0 0 12px rgba(56,189,248,.18);
+        }
+        .slide-thumb { width:56px; height:44px; border-radius:7px; overflow:hidden; flex-shrink:0; background:#090d16; border:1px solid #1e293b; position:relative; }
+        .slide-thumb img { width:100%; height:100%; object-fit:cover; }
+        .stain-badge { position:absolute; bottom:0; right:0; font-size:8px; font-weight:700; padding:1px 4px; border-radius:4px 0 0 0; }
+        .slide-meta { min-width:0; }
+        .slide-num  { font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; }
+        .slide-name { font-size:11px; font-weight:700; color:#f1f5f9; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .slide-desc { font-size:9px; color:#64748b; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .info-badges { display:flex; gap:6px; flex-shrink:0; }
+        .info-badge {
+            flex:1; display:flex; align-items:center; gap:5px; padding:5px 6px;
+            border-radius:8px; background:rgba(15,23,42,.7); border:1px solid #1e293b;
+            font-size:9px; color:#94a3b8; line-height:1.3; min-width:0;
+        }
+        .info-badge i { flex-shrink:0; font-size:11px; }
+        .btn-cta-wa {
+            display:flex; align-items:center; justify-content:center; gap:7px;
+            width:100%; padding:9px 12px; border-radius:10px;
+            background:linear-gradient(135deg,#059669,#047857);
+            color:#fff; font-size:11px; font-weight:700; text-decoration:none;
+            border:none; cursor:pointer; transition:transform .15s,box-shadow .15s;
+            box-shadow:0 4px 16px rgba(5,150,105,.35); flex-shrink:0;
+        }
+        .btn-cta-wa:hover { transform:translateY(-1px); box-shadow:0 6px 20px rgba(5,150,105,.5); }
+        .col-right {
+            display:flex; flex-direction:column; min-height:0; overflow:hidden;
+            border-radius:14px; border:1px solid rgba(56,189,248,.18);
+            background:rgba(15,23,42,.85); backdrop-filter:blur(16px);
+            box-shadow:0 8px 40px rgba(0,0,0,.6);
+        }
+        .ctrl-bar {
+            flex:0 0 var(--ctrl-h); height:var(--ctrl-h);
+            display:flex; align-items:center; justify-content:space-between; gap:8px;
+            padding:0 10px; background:#0f172a; border-bottom:1px solid #1e293b; overflow:hidden;
+        }
+        .ctrl-slide-info { display:flex; align-items:center; gap:6px; min-width:0; overflow:hidden; }
+        .ctrl-slide-title { font-size:11px; font-weight:700; color:#38bdf8; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:180px; }
+        .ctrl-stain-tag { font-size:10px; font-family:monospace; background:#1e293b; color:#cbd5e1; padding:1px 6px; border-radius:4px; white-space:nowrap; }
+        .obj-group { display:inline-flex; align-items:center; background:#020617; border:1px solid #1e293b; border-radius:8px; padding:3px; gap:1px; flex-shrink:0; }
+        .obj-label { font-size:9px; font-weight:700; color:#475569; padding:0 4px; }
+        .obj-btn { padding:2px 7px; border-radius:5px; border:none; background:transparent; color:#94a3b8; font-family:monospace; font-size:11px; cursor:pointer; transition:background .15s,color .15s; }
+        .obj-btn:hover { background:#1e293b; color:#e2e8f0; }
+        .obj-btn.obj-active { background:rgba(14,165,233,.28); color:#67e8f9; border:1px solid rgba(56,189,248,.4); font-weight:700; }
+        .zoom-btns { display:flex; gap:3px; flex-shrink:0; }
+        .icon-btn { width:28px; height:28px; display:flex; align-items:center; justify-content:center; border-radius:7px; border:none; background:#1e293b; color:#cbd5e1; font-size:11px; cursor:pointer; transition:background .15s; }
+        .icon-btn:hover { background:#334155; }
+        .icon-btn.fullscreen-btn { background:rgba(8,47,73,.8); border:1px solid rgba(56,189,248,.35); color:#67e8f9; }
+        .icon-btn.fullscreen-btn:hover { background:rgba(14,116,144,.5); }
+        .osd-wrap { flex:1 1 0; min-height:0; position:relative; background:#030712; }
+        #openseadragon-viewer { width:100%; height:100%; }
+        .openseadragon-container { outline:none !important; background-color:#030712 !important; }
+        .hud-panel {
+            position:absolute; bottom:10px; left:10px; max-width:320px;
+            background:rgba(9,13,22,.88); backdrop-filter:blur(10px);
+            border:1px solid rgba(51,65,85,.9); padding:8px 10px;
+            border-radius:10px; pointer-events:none; z-index:10;
+        }
+        .hud-title-row { display:flex; align-items:center; gap:6px; margin-bottom:3px; }
+        .hud-dot { width:7px; height:7px; border-radius:50%; background:#34d399; flex-shrink:0; }
+        .hud-title { font-size:11px; font-weight:700; color:#f1f5f9; }
+        .hud-desc { font-size:10px; color:#94a3b8; line-height:1.4; }
+        .hud-tip  { font-size:9px; color:#38bdf8; font-family:monospace; margin-top:3px; }
+        .grid-overlay {
+            position:absolute; inset:0;
+            background:linear-gradient(to right,#1e293b 1px,transparent 1px),linear-gradient(to bottom,#1e293b 1px,transparent 1px);
+            background-size:4rem 4rem; opacity:.12; pointer-events:none;
+        }
+        .thumb-nav {
+            position:fixed; bottom:0; left:0; right:0;
+            height:calc(62px + env(safe-area-inset-bottom,0px));
+            padding-bottom:env(safe-area-inset-bottom,0px);
+            background:rgba(3,7,18,.92); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+            border-top:1px solid rgba(56,189,248,.2);
+            display:flex; align-items:center; justify-content:space-around;
+            z-index:9999; box-shadow:0 -4px 20px rgba(0,0,0,.6);
+        }
+        @media (min-width:1024px) { .thumb-nav { display:none !important; } }
+        @media (max-width:1023px) {
+            html,body { overflow:auto; height:auto; }
+            main.phi-grid { grid-template-columns:1fr; padding-bottom:80px; }
+            .col-right { min-height:480px; }
+            .osd-wrap  { min-height:400px; }
+            body { padding-bottom:76px; }
+            .desktop-wa-fab { display:none !important; }
         }
     </style>
     <script>
-      // Anti-cache & Service Worker auto-purger to prevent loading old versions
-      if ('serviceWorker' in navigator) {
+      if ("serviceWorker" in navigator) {
         navigator.serviceWorker.getRegistrations().then(function(registrations) {
           for (var reg of registrations) { reg.unregister(); }
         });
       }
-      if ('caches' in window) {
+      if ("caches" in window) {
         caches.keys().then(function(names) {
           for (var name of names) { caches.delete(name); }
         });
@@ -78,317 +185,238 @@
 <body class="bg-slate-950 text-slate-100 antialiased selection:bg-cyan-500 selection:text-white">
 
     <header class="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-xl border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div class="max-w-full px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-2.5 text-2xl font-black text-white group">
                 <span class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-600 to-emerald-500 flex items-center justify-center text-white shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
                     <i class="fas fa-microscope text-base"></i>
                 </span>
                 <span class="font-['Outfit'] font-extrabold tracking-tight">JC <span class="text-cyan-400">PATH LAB</span></span>
             </a>
-
             <nav class="hidden lg:flex items-center gap-6 text-sm font-medium">
                 <a href="index.html" class="text-slate-300 hover:text-cyan-400 transition">Inicio</a>
-                <a href="inmunohistoquimica.html" class="text-slate-300 hover:text-cyan-400 transition">Inmunohistoquímica</a>
-                <a href="patologia-digital.html" class="text-cyan-400 font-bold border-b-2 border-cyan-400 pb-1">Patología Digital</a>
-                <a href="macroscopia-360.html" class="text-slate-300 hover:text-cyan-400 transition">Visor 360°</a>
-                <a href="academica.html" class="text-slate-300 hover:text-cyan-400 transition">Área Académica</a>
-                <a href="contacto.html" class="text-slate-300 hover:text-cyan-400 transition">Sede & Contacto</a>
+                <a href="inmunohistoquimica.html" class="text-slate-300 hover:text-cyan-400 transition">Inmunohistoquimica</a>
+                <a href="patologia-digital.html" class="text-cyan-400 font-bold border-b-2 border-cyan-400 pb-1">Patologia Digital</a>
+                <a href="macroscopia-360.html" class="text-slate-300 hover:text-cyan-400 transition">Visor 360</a>
+                <a href="academica.html" class="text-slate-300 hover:text-cyan-400 transition">Area Academica</a>
+                <a href="contacto.html" class="text-slate-300 hover:text-cyan-400 transition">Sede y Contacto</a>
             </nav>
-
             <div class="flex items-center gap-3">
                 <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20coordinar%20el%20estudio%20de%20una%20biopsia" target="_blank" class="px-4 py-2 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-emerald-600/30 transition transform hover:-translate-y-0.5">
                     <i class="fab fa-whatsapp text-base"></i>
-                    <span>Contactar al Patólogo</span>
+                    <span>Contactar al Patologo</span>
                 </a>
-                <button type="button" class="lg:hidden text-slate-300 hover:text-white p-2" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" aria-label="Abrir Menú">
+                <button type="button" class="lg:hidden text-slate-300 hover:text-white p-2" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" aria-label="Abrir Menu">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
         </div>
-
         <div id="mobile-nav" class="hidden lg:hidden bg-slate-900 border-b border-slate-800 px-6 py-4 space-y-3 text-sm">
             <a href="index.html" class="block py-1 hover:text-cyan-400">Inicio</a>
-            <a href="inmunohistoquimica.html" class="block py-1 hover:text-cyan-400">Inmunohistoquímica (Biomarcadores)</a>
-            <a href="patologia-digital.html" class="block py-1 hover:text-cyan-400">Patología Digital (Lámina Interactiva)</a>
-            <a href="macroscopia-360.html" class="block py-1 hover:text-cyan-400">Visor Macroscópico 360°</a>
-            <a href="academica.html" class="block py-1 hover:text-cyan-400">Área Académica para Residentes</a>
+            <a href="inmunohistoquimica.html" class="block py-1 hover:text-cyan-400">Inmunohistoquimica (Biomarcadores)</a>
+            <a href="patologia-digital.html" class="block py-1 hover:text-cyan-400">Patologia Digital (Lamina Interactiva)</a>
+            <a href="macroscopia-360.html" class="block py-1 hover:text-cyan-400">Visor Macroscopico 360</a>
+            <a href="academica.html" class="block py-1 hover:text-cyan-400">Area Academica para Residentes</a>
             <a href="contacto.html" class="block py-1 hover:text-cyan-400">Sede Central y Mapa</a>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
-        
-        <!-- ENCABEZADO PERSUASIVO -->
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-            <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950 border border-cyan-500/40 text-cyan-300 text-xs font-semibold uppercase tracking-wider mb-2">
-                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                    Microscopía Digital WSI (Whole Slide Imaging)
+    <main class="phi-grid">
+
+        <!-- COLUMNA IZQUIERDA 38.2% -->
+        <div class="col-left">
+            <div class="badge-wsi">
+                <span class="dot"></span>
+                Microscopia Digital WSI
+            </div>
+            <h1 class="main-title">
+                Una imagen vale mas que <span class="highlight">mil palabras</span>
+            </h1>
+            <p class="main-sub">
+                Explore laminas histopatologicas digitalizadas con <strong>OpenSeadragon</strong>. Zoom continuo 2x a 40x, arrastre y rotacion libre.
+            </p>
+            <div class="divider"></div>
+            <span class="section-label">Selecciona una lamina</span>
+            <div id="slide-selector">
+                <button type="button" onclick="loadSlide(0)" id="tab-slide-0" class="slide-tab active">
+                    <div class="slide-thumb">
+                        <img src="wsi_slides/benign_cephalic_histiocytosis_thumb.webp" alt="Histiocitosis">
+                        <span class="stain-badge bg-cyan-950 text-cyan-300">H&E</span>
+                    </div>
+                    <div class="slide-meta">
+                        <div class="slide-num text-cyan-400">Lamina 01 - Piel Facial</div>
+                        <div class="slide-name">Histiocitosis Cefalica</div>
+                        <div class="slide-desc">Histiocitos no-Langerhans</div>
+                    </div>
+                </button>
+                <button type="button" onclick="loadSlide(1)" id="tab-slide-1" class="slide-tab">
+                    <div class="slide-thumb">
+                        <img src="wsi_slides/dermatophytic_folliculitis_thumb.webp" alt="Foliculitis">
+                        <span class="stain-badge bg-emerald-950 text-emerald-300">H&E</span>
+                    </div>
+                    <div class="slide-meta">
+                        <div class="slide-num text-emerald-400">Lamina 02 - Foliculo</div>
+                        <div class="slide-name">Foliculitis Micotica</div>
+                        <div class="slide-desc">Neutrofilos y celulas gigantes</div>
+                    </div>
+                </button>
+                <button type="button" onclick="loadSlide(2)" id="tab-slide-2" class="slide-tab">
+                    <div class="slide-thumb">
+                        <img src="wsi_slides/lichenoid_purpura_aureus_thumb.webp" alt="Purpura">
+                        <span class="stain-badge bg-amber-950 text-amber-300">H&E</span>
+                    </div>
+                    <div class="slide-meta">
+                        <div class="slide-num text-amber-400">Lamina 03 - Dermis Papilar</div>
+                        <div class="slide-name">Purpura Liquenoide</div>
+                        <div class="slide-desc">Hemosiderina y eritrocitos</div>
+                    </div>
+                </button>
+                <button type="button" onclick="loadSlide(3)" id="tab-slide-3" class="slide-tab">
+                    <div class="slide-thumb">
+                        <img src="wsi_slides/tumor_follicular_infundibulum_thumb.webp" alt="Infundibulo">
+                        <span class="stain-badge bg-indigo-950 text-indigo-300">H&E</span>
+                    </div>
+                    <div class="slide-meta">
+                        <div class="slide-num text-indigo-400">Lamina 04 - Epidermis</div>
+                        <div class="slide-name">Infundibulo Folicular</div>
+                        <div class="slide-desc">Placa horizontal epidermica</div>
+                    </div>
+                </button>
+            </div>
+            <div class="divider"></div>
+            <div class="info-badges">
+                <div class="info-badge">
+                    <i class="fas fa-layer-group text-cyan-400"></i>
+                    <span><strong class="text-white block" style="font-size:9px">Piramide Multi-res</strong>Carga ultra-rapida</span>
                 </div>
-                <h1 class="text-2xl sm:text-4xl font-black text-white font-['Outfit']">
-                    Una imagen vale más que <span class="bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">mil palabras</span>
-                </h1>
-                <p class="text-slate-400 text-xs sm:text-sm mt-1 max-w-2xl">
-                    Explore láminas histopatológicas escaneadas en alta resolución con tecnología <strong>OpenSeadragon</strong>. Arrastre, haga zoom continuo con la rueda o pellizco, y alterne entre los aumentos de 2x a 40x.
-                </p>
+                <div class="info-badge">
+                    <i class="fas fa-check-double text-emerald-400"></i>
+                    <span><strong class="text-white block" style="font-size:9px">Cal. 0.25 um/px</strong>Escaneo de precision</span>
+                </div>
+                <div class="info-badge">
+                    <i class="fas fa-shield-halved text-indigo-400"></i>
+                    <span><strong class="text-white block" style="font-size:9px">HIPAA</strong>Datos disociados</span>
+                </div>
             </div>
-            <div class="flex items-center gap-3">
-                <span class="text-xs text-slate-400 font-mono hidden sm:inline">Modo: WSI Client Standalone</span>
-                <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20interconsulta%20sobre%20una%20l%C3%A1mina%20digital" target="_blank" class="px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 hover:border-emerald-500 text-slate-200 hover:text-emerald-400 font-semibold text-xs flex items-center gap-2 transition">
-                    <i class="fab fa-whatsapp text-emerald-400"></i> Interconsulta Digital
-                </a>
-            </div>
+            <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20interconsulta%20sobre%20una%20l%C3%A1mina%20digital"
+               target="_blank" class="btn-cta-wa">
+                <i class="fab fa-whatsapp text-sm"></i>
+                Interconsulta Digital por WhatsApp
+            </a>
         </div>
 
-        <!-- SELECTOR DE LÁMINAS EN FORMATO TARJETAS INTERACTIVAS (4 LÁMINAS REALES) -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5" id="slide-selector">
-            
-            <!-- Lámina 1: Histiocitosis Cefálica Benigna -->
-            <button type="button" onclick="loadSlide(0)" id="tab-slide-0" class="slide-tab active text-left p-3 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-cyan-500/50 transition flex items-center gap-3">
-                <div class="w-16 h-14 rounded-lg overflow-hidden flex-shrink-0 bg-slate-950 border border-slate-800 relative">
-                    <img src="wsi_slides/benign_cephalic_histiocytosis_thumb.webp" alt="Histiocitosis" class="w-full h-full object-cover">
-                    <span class="absolute bottom-0 right-0 bg-cyan-950 text-cyan-300 text-[9px] font-bold px-1 rounded-tl">H&E</span>
+        <!-- COLUMNA DERECHA 61.8% -->
+        <div class="col-right">
+            <div class="ctrl-bar">
+                <div class="ctrl-slide-info">
+                    <i class="fas fa-eye text-cyan-400" style="font-size:11px;flex-shrink:0"></i>
+                    <span class="ctrl-slide-title" id="slide-title-display">Histiocitosis Cefalica Benigna</span>
+                    <span class="ctrl-stain-tag hidden sm:inline" id="slide-stain-display">H&E - Piel Facial</span>
                 </div>
-                <div class="min-w-0">
-                    <div class="text-[11px] font-bold text-cyan-400 uppercase tracking-wide truncate">Lámina 01 &bull; Piel Facial</div>
-                    <div class="text-xs font-bold text-white truncate">Histiocitosis Cefálica</div>
-                    <div class="text-[10px] text-slate-400 truncate">Histiocitos no-Langerhans</div>
+                <div class="obj-group">
+                    <span class="obj-label hidden md:inline">Obj:</span>
+                    <button type="button" class="obj-btn" onclick="setObjective(2)">2x</button>
+                    <button type="button" class="obj-btn" onclick="setObjective(4)">4x</button>
+                    <button type="button" class="obj-btn" onclick="setObjective(10)">10x</button>
+                    <button type="button" class="obj-btn" onclick="setObjective(20)">20x</button>
+                    <button type="button" class="obj-btn obj-active" onclick="setObjective(40)">40x</button>
                 </div>
-            </button>
-
-            <!-- Lámina 2: Foliculitis Dermatofítica -->
-            <button type="button" onclick="loadSlide(1)" id="tab-slide-1" class="slide-tab text-left p-3 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-cyan-500/50 transition flex items-center gap-3">
-                <div class="w-16 h-14 rounded-lg overflow-hidden flex-shrink-0 bg-slate-950 border border-slate-800 relative">
-                    <img src="wsi_slides/dermatophytic_folliculitis_thumb.webp" alt="Foliculitis" class="w-full h-full object-cover">
-                    <span class="absolute bottom-0 right-0 bg-emerald-950 text-emerald-300 text-[9px] font-bold px-1 rounded-tl">H&E</span>
+                <div class="zoom-btns">
+                    <button type="button" class="icon-btn" id="btn-zoom-in"   title="Acercar (+)"><i class="fas fa-plus"></i></button>
+                    <button type="button" class="icon-btn" id="btn-zoom-out"  title="Alejar (-)"><i class="fas fa-minus"></i></button>
+                    <button type="button" class="icon-btn" id="btn-home"      title="Vista Panoramica"><i class="fas fa-compress"></i></button>
+                    <button type="button" class="icon-btn" id="btn-rotate"    title="Rotar 90"><i class="fas fa-rotate-right"></i></button>
+                    <button type="button" class="icon-btn fullscreen-btn" id="btn-fullscreen" title="Pantalla Completa"><i class="fas fa-expand"></i></button>
                 </div>
-                <div class="min-w-0">
-                    <div class="text-[11px] font-bold text-emerald-400 uppercase tracking-wide truncate">Lámina 02 &bull; Folículo</div>
-                    <div class="text-xs font-bold text-white truncate">Foliculitis Micótica</div>
-                    <div class="text-[10px] text-slate-400 truncate">Neutrófilos y células gigantes</div>
-                </div>
-            </button>
-
-            <!-- Lámina 3: Púrpura Pigmentada Liquenoide -->
-            <button type="button" onclick="loadSlide(2)" id="tab-slide-2" class="slide-tab text-left p-3 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-cyan-500/50 transition flex items-center gap-3">
-                <div class="w-16 h-14 rounded-lg overflow-hidden flex-shrink-0 bg-slate-950 border border-slate-800 relative">
-                    <img src="wsi_slides/lichenoid_purpura_aureus_thumb.webp" alt="Púrpura" class="w-full h-full object-cover">
-                    <span class="absolute bottom-0 right-0 bg-amber-950 text-amber-300 text-[9px] font-bold px-1 rounded-tl">H&E</span>
-                </div>
-                <div class="min-w-0">
-                    <div class="text-[11px] font-bold text-amber-400 uppercase tracking-wide truncate">Lámina 03 &bull; Dermis Papilar</div>
-                    <div class="text-xs font-bold text-white truncate">Púrpura Liquenoide</div>
-                    <div class="text-[10px] text-slate-400 truncate">Hemosiderina y eritrocitos</div>
-                </div>
-            </button>
-
-            <!-- Lámina 4: Tumor de Infundíbulo Folicular -->
-            <button type="button" onclick="loadSlide(3)" id="tab-slide-3" class="slide-tab text-left p-3 rounded-xl border border-slate-800 bg-slate-900/60 hover:border-cyan-500/50 transition flex items-center gap-3">
-                <div class="w-16 h-14 rounded-lg overflow-hidden flex-shrink-0 bg-slate-950 border border-slate-800 relative">
-                    <img src="wsi_slides/tumor_follicular_infundibulum_thumb.webp" alt="Infundíbulo" class="w-full h-full object-cover">
-                    <span class="absolute bottom-0 right-0 bg-indigo-950 text-indigo-300 text-[9px] font-bold px-1 rounded-tl">H&E</span>
-                </div>
-                <div class="min-w-0">
-                    <div class="text-[11px] font-bold text-indigo-400 uppercase tracking-wide truncate">Lámina 04 &bull; Epidermis</div>
-                    <div class="text-xs font-bold text-white truncate">Infundíbulo Folicular</div>
-                    <div class="text-[10px] text-slate-400 truncate">Placa horizontal epidérmica</div>
-                </div>
-            </button>
-
-        </div>
-
-        <!-- CONTENEDOR DEL VISOR HISTOLÓGICO MAXIMIZADO -->
-        <div class="neuro-glass rounded-2xl overflow-hidden border border-slate-700/80 shadow-2xl flex flex-col">
-            
-            <!-- BARRA DE CONTROLES DEL VISOR (ESTILO WSI PATHPRESENTER) -->
-            <div class="bg-slate-900 px-4 py-2.5 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs">
-                
-                <div class="flex items-center gap-3">
-                    <span class="flex items-center gap-2 text-cyan-400 font-bold">
-                        <i class="fas fa-eye text-cyan-400"></i>
-                        <span id="slide-title-display">Histiocitosis Cefálica Benigna</span>
-                    </span>
-                    <span class="hidden sm:inline text-slate-600">|</span>
-                    <span id="slide-stain-display" class="hidden sm:inline px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono text-[11px]">Tinción: H&E &bull; Piel Facial</span>
-                    <span class="hidden md:inline px-2 py-0.5 rounded bg-slate-800 text-slate-400 font-mono text-[11px]">Calibración: 0.25 µm/px</span>
-                </div>
-
-                <!-- CONTROLES ÓPTICOS (OBJETIVOS 2x, 4x, 10x, 20x, 40x + ROTACIÓN) -->
-                <div class="flex items-center gap-1.5 sm:gap-2">
-                    
-                    <!-- Botonera de Objetivos Microscópicos -->
-                    <div class="inline-flex items-center bg-slate-950 p-1 rounded-lg border border-slate-800 gap-1 text-[11px]">
-                        <span class="text-slate-500 font-bold px-1 hidden md:inline">Obj:</span>
-                        <button type="button" onclick="setObjective(2)" class="px-2 py-1 rounded hover:bg-slate-800 text-slate-300 font-mono transition">2x</button>
-                        <button type="button" onclick="setObjective(4)" class="px-2 py-1 rounded hover:bg-slate-800 text-slate-300 font-mono transition">4x</button>
-                        <button type="button" onclick="setObjective(10)" class="px-2 py-1 rounded hover:bg-slate-800 text-slate-300 font-mono transition">10x</button>
-                        <button type="button" onclick="setObjective(20)" class="px-2 py-1 rounded hover:bg-slate-800 text-slate-300 font-mono transition">20x</button>
-                        <button type="button" onclick="setObjective(40)" class="px-2 py-1 rounded bg-cyan-600/30 text-cyan-300 border border-cyan-500/40 font-mono font-bold transition">40x</button>
-                    </div>
-
-                    <!-- Botones de Navegación Zoom -->
-                    <div class="flex items-center gap-1">
-                        <button type="button" id="btn-zoom-in" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center justify-center transition" title="Acercar (+)">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                        <button type="button" id="btn-zoom-out" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center justify-center transition" title="Alejar (-)">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <button type="button" id="btn-home" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center justify-center transition" title="Vista Panorámica">
-                            <i class="fas fa-compress"></i>
-                        </button>
-                        <button type="button" id="btn-rotate" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center justify-center transition" title="Rotar 90°">
-                            <i class="fas fa-rotate-right"></i>
-                        </button>
-                        <button type="button" id="btn-fullscreen" class="w-8 h-8 rounded-lg bg-cyan-950 border border-cyan-700 hover:bg-cyan-900 text-cyan-300 flex items-center justify-center transition" title="Pantalla Completa">
-                            <i class="fas fa-expand"></i>
-                        </button>
-                    </div>
-
-                </div>
-
             </div>
-
-            <!-- LIENZO OPENSEADRAGON MAXIMIZADO -->
-            <div class="relative w-full wsi-screen-box bg-slate-950">
-                
-                <!-- Visor OSD -->
+            <div class="osd-wrap">
                 <div id="openseadragon-viewer" class="w-full h-full"></div>
-
-                <!-- HUD flotante con diagnóstico microscópico -->
-                <div class="absolute bottom-4 left-4 max-w-md bg-slate-900/90 backdrop-blur-md border border-slate-700/90 p-3 rounded-xl text-xs space-y-1 shadow-2xl pointer-events-none z-10">
-                    <div class="flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                        <strong class="text-white font-bold" id="hud-diagnosis-title">Histiocitosis Cefálica Benigna</strong>
+                <div class="hud-panel">
+                    <div class="hud-title-row">
+                        <span class="hud-dot"></span>
+                        <strong class="hud-title" id="hud-diagnosis-title">Histiocitosis Cefalica Benigna</strong>
                     </div>
-                    <p class="text-[11px] text-slate-300 leading-relaxed" id="hud-diagnosis-desc">
-                        Infiltrado dérmico superficial compuesto por histiocitos no-Langerhans con citoplasma eosinófilo y núcleos arriñonados característicos.
+                    <p class="hud-desc" id="hud-diagnosis-desc">
+                        Infiltrado dermico superficial compuesto por histiocitos no-Langerhans con citoplasma eosinofilo y nucleos arrinonados caracteristicos.
                     </p>
-                    <div class="text-[10px] text-cyan-400 font-mono pt-0.5">
-                        <i class="fas fa-info-circle mr-1"></i> Use la rueda del ratón o dos dedos para zoom a nivel celular
+                    <div class="hud-tip">
+                        <i class="fas fa-info-circle mr-1"></i>Rueda del raton o pellizco para zoom celular
                     </div>
                 </div>
-
-                <!-- Cuadrícula médica sutil -->
-                <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-15 pointer-events-none"></div>
-
+                <div class="grid-overlay"></div>
             </div>
-
-            <!-- FOOTER INFORMATIVO DEL VISOR -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-slate-900/90 border-t border-slate-800 text-xs">
-                <div class="flex items-start gap-2.5">
-                    <i class="fas fa-layer-group text-cyan-400 text-base mt-0.5"></i>
-                    <div>
-                        <strong class="text-white block">Pirámide Multirresolución</strong>
-                        <span class="text-slate-400">Carga progresiva ultra-rápida sin congelar la memoria del dispositivo.</span>
-                    </div>
-                </div>
-                <div class="flex items-start gap-2.5">
-                    <i class="fas fa-check-double text-emerald-400 text-base mt-0.5"></i>
-                    <div>
-                        <strong class="text-white block">Calibración Microscópica</strong>
-                        <span class="text-slate-400">Escaneado a 0.25 µm por píxel para evaluación rigurosa de núcleos y mitosis.</span>
-                    </div>
-                </div>
-                <div class="flex items-start gap-2.5">
-                    <i class="fas fa-shield-halved text-indigo-400 text-base mt-0.5"></i>
-                    <div>
-                        <strong class="text-white block">Confidencialidad Médica</strong>
-                        <span class="text-slate-400">Datos del paciente disociados bajo estándares HIPAA para docencia e interconsulta.</span>
-                    </div>
-                </div>
-            </div>
-
         </div>
 
     </main>
 
-    <footer class="bg-slate-950 border-t border-slate-800/80 py-8 text-center text-xs text-slate-400">
-        <div class="max-w-7xl mx-auto px-4 space-y-2">
-            <div class="flex items-center justify-center gap-2 text-white font-extrabold text-base">
-                <span class="text-cyan-400">JC</span> PATH LAB
-            </div>
-            <p>Laboratorio Especializado en Anatomía Patológica, Oncopatología y Biopsias.</p>
-            <p>© 2026 JC PATH LAB. Dirigido por el Dr. Josehp Castillo (CMP 56435). Sede Central: Puente Piedra, Lima - Perú.</p>
-            <p class="text-[11px] text-slate-500">Privacidad Médica: La entrega de resultados diagnósticos se realiza exclusivamente de manera confidencial y directa.</p>
-        </div>
-    </footer>
-
-    <!-- Botón Flotante Desktop de WhatsApp -->
     <div class="desktop-wa-fab fixed bottom-6 right-6 z-40">
-        <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20hacer%20una%20consulta%20m%C3%A9dica" target="_blank" class="w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white flex items-center justify-center text-2xl shadow-2xl shadow-emerald-500/50 transition transform hover:scale-110" aria-label="WhatsApp">
+        <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20hacer%20una%20consulta%20m%C3%A9dica" target="_blank"
+           class="w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white flex items-center justify-center text-2xl shadow-2xl shadow-emerald-500/50 transition transform hover:scale-110" aria-label="WhatsApp">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>
 
-    <!-- Barra de Navegación Ergonómica Móvil 'Thumb Zone' (Boceto 3) -->
-    <nav class="thumb-nav" aria-label="Navegación Móvil Principal">
+    <nav class="thumb-nav" aria-label="Navegacion Movil Principal">
         <a href="index.html" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-400 hover:text-cyan-400 transition text-[10px]">
-            <i class="fas fa-house text-base mb-0.5"></i>
-            <span>Inicio</span>
+            <i class="fas fa-house text-base mb-0.5"></i><span>Inicio</span>
         </a>
         <a href="patologia-digital.html" class="flex flex-col items-center justify-center flex-1 py-1 text-cyan-400 font-semibold text-[10px]">
-            <i class="fas fa-desktop text-base mb-0.5"></i>
-            <span>Láminas WSI</span>
+            <i class="fas fa-desktop text-base mb-0.5"></i><span>Laminas WSI</span>
         </a>
         <a href="index.html#visor-microscopio-360" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-400 hover:text-cyan-400 transition text-[10px]">
             <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-cyan-600 to-emerald-500 -mt-5 flex items-center justify-center text-white shadow-lg shadow-cyan-500/40 border-2 border-slate-950">
                 <i class="fas fa-arrows-rotate text-sm"></i>
             </div>
-            <span class="mt-0.5 text-white font-bold">Visor 360°</span>
+            <span class="mt-0.5 text-white font-bold">Visor 360</span>
         </a>
         <a href="inmunohistoquimica.html" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-400 hover:text-cyan-400 transition text-[10px]">
-            <i class="fas fa-dna text-base mb-0.5"></i>
-            <span>Biomarcadores</span>
+            <i class="fas fa-dna text-base mb-0.5"></i><span>Biomarcadores</span>
         </a>
         <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20hacer%20una%20consulta%20m%C3%A9dica" target="_blank" class="flex flex-col items-center justify-center flex-1 py-1 text-emerald-400 font-semibold text-[10px]">
-            <i class="fab fa-whatsapp text-base mb-0.5"></i>
-            <span>WhatsApp</span>
+            <i class="fab fa-whatsapp text-base mb-0.5"></i><span>WhatsApp</span>
         </a>
     </nav>
 
-    <!-- SCRIPT DEL MOTOR WSI Y OPENSEADRAGON -->
     <script>
         const SLIDES_CATALOG = [
             {
                 id: "benign_cephalic_histiocytosis",
-                title: "Histiocitosis Cefálica Benigna",
+                title: "Histiocitosis Cefalica Benigna",
                 organ: "Piel Facial",
                 stain: "H&E",
                 url: "wsi_slides/benign_cephalic_histiocytosis.webp",
                 width: 3200,
                 height: 3039,
-                diagnosis: "Infiltrado dérmico superficial compuesto por histiocitos no-Langerhans con citoplasma eosinófilo y núcleos arriñonados característicos."
+                diagnosis: "Infiltrado dermico superficial compuesto por histiocitos no-Langerhans con citoplasma eosinofilo y nucleos arrinonados caracteristicos."
             },
             {
                 id: "dermatophytic_folliculitis",
-                title: "Foliculitis Dermatofítica (Micosis)",
-                organ: "Folículo Piloso",
+                title: "Foliculitis Dermatofitica (Micosis)",
+                organ: "Foliculo Piloso",
                 stain: "H&E",
                 url: "wsi_slides/dermatophytic_folliculitis.webp",
                 width: 3600,
                 height: 2016,
-                diagnosis: "Infiltrado inflamatorio mixto perifolicular destructivo con neutrófilos, células gigantes y fragmentación queratínica folicular."
+                diagnosis: "Infiltrado inflamatorio mixto perifolicular destructivo con neutrofilos, celulas gigantes y fragmentacion queratínica folicular."
             },
             {
                 id: "lichenoid_purpura_aureus",
-                title: "Púrpura Pigmentada Liquenoide",
+                title: "Purpura Pigmentada Liquenoide",
                 organ: "Dermis Papilar",
                 stain: "H&E",
                 url: "wsi_slides/lichenoid_purpura_aureus.webp",
                 width: 3600,
                 height: 1927,
-                diagnosis: "Dermatitis de interfase liquenoide densa en banda, eritrocitos extravasados y depósitos prominentes de hemosiderina."
+                diagnosis: "Dermatitis de interfase liquenoide densa en banda, eritrocitos extravasados y depositos prominentes de hemosiderina."
             },
             {
                 id: "tumor_follicular_infundibulum",
-                title: "Tumor de Infundíbulo Folicular",
+                title: "Tumor de Infundibulo Folicular",
                 organ: "Epidermis y Dermis",
                 stain: "H&E",
                 url: "wsi_slides/tumor_follicular_infundibulum.webp",
                 width: 3600,
                 height: 2110,
-                diagnosis: "Proliferación epitelial benigna fenestrada dispuesta en placa horizontal paralelamente a la epidermis."
+                diagnosis: "Proliferacion epitelial benigna fenestrada dispuesta en placa horizontal paralelamente a la epidermis."
             }
         ];
 
@@ -421,23 +449,22 @@
                 }
             });
 
-            // Enlazar controles de la barra
-            document.getElementById('btn-zoom-in').addEventListener('click', () => {
+            document.getElementById("btn-zoom-in").addEventListener("click", () => {
                 viewer.viewport.zoomBy(1.4);
                 viewer.viewport.applyConstraints();
             });
-            document.getElementById('btn-zoom-out').addEventListener('click', () => {
+            document.getElementById("btn-zoom-out").addEventListener("click", () => {
                 viewer.viewport.zoomBy(0.7);
                 viewer.viewport.applyConstraints();
             });
-            document.getElementById('btn-home').addEventListener('click', () => {
+            document.getElementById("btn-home").addEventListener("click", () => {
                 viewer.viewport.goHome();
             });
-            document.getElementById('btn-rotate').addEventListener('click', () => {
+            document.getElementById("btn-rotate").addEventListener("click", () => {
                 const cur = viewer.viewport.getRotation();
                 viewer.viewport.setRotation((cur + 90) % 360);
             });
-            document.getElementById('btn-fullscreen').addEventListener('click', () => {
+            document.getElementById("btn-fullscreen").addEventListener("click", () => {
                 if (viewer.isFullPage()) {
                     viewer.setFullPage(false);
                 } else {
@@ -445,7 +472,6 @@
                 }
             });
 
-            // Cargar lámina inicial
             loadSlide(0);
         }
 
@@ -454,27 +480,21 @@
             activeIndex = index;
             const slide = SLIDES_CATALOG[index];
 
-            // Actualizar pestañas activas
             for (let i = 0; i < SLIDES_CATALOG.length; i++) {
-                const tab = document.getElementById(`tab-slide-${i}`);
+                const tab = document.getElementById("tab-slide-" + i);
                 if (tab) {
-                    if (i === index) {
-                        tab.classList.add('active');
-                    } else {
-                        tab.classList.remove('active');
-                    }
+                    if (i === index) { tab.classList.add("active"); }
+                    else { tab.classList.remove("active"); }
                 }
             }
 
-            // Actualizar textos informativos
-            document.getElementById('slide-title-display').textContent = slide.title;
-            document.getElementById('slide-stain-display').textContent = `Tinción: ${slide.stain} • ${slide.organ}`;
-            document.getElementById('hud-diagnosis-title').textContent = slide.title;
-            document.getElementById('hud-diagnosis-desc').textContent = slide.diagnosis;
+            document.getElementById("slide-title-display").textContent = slide.title;
+            document.getElementById("slide-stain-display").textContent = slide.stain + " - " + slide.organ;
+            document.getElementById("hud-diagnosis-title").textContent = slide.title;
+            document.getElementById("hud-diagnosis-desc").textContent = slide.diagnosis;
 
-            // Abrir imagen en OpenSeadragon con su tamaño natural
             viewer.open({
-                type: 'image',
+                type: "image",
                 url: slide.url,
                 buildPyramid: false
             });
@@ -498,7 +518,7 @@
             viewer.viewport.applyConstraints();
         }
 
-        document.addEventListener('DOMContentLoaded', initWSI);
+        document.addEventListener("DOMContentLoaded", initWSI);
     </script>
 
 </body>
