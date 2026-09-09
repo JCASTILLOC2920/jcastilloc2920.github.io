@@ -2,7 +2,7 @@
 <html lang="es-PE">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Sede Central, Ubicación y Canales de Contacto | JC PATH LAB</title>
     <meta name="description" content="Ubicación oficial del laboratorio JC PATH LAB en Puente Piedra, Lima. Contacto directo con el Dr. Josehp Castillo y mapa satelital.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,6 +43,106 @@
         @media (max-width: 1023px) {
             body { padding-bottom: 76px !important; }
             .desktop-wa-fab { display: none !important; }
+        }
+
+        /* ═══════════════════════════════════════
+           RESPONSIVE UNIVERSAL — Todos los tamaños
+           xs:<480 sm:480-640 md:640-1024 lg:1024+
+        ═══════════════════════════════════════ */
+
+        /* Prevenir overflow horizontal */
+        html { overflow-x: hidden; }
+        *, *::before, *::after { max-width: 100%; box-sizing: border-box; }
+        img, video, iframe { max-width: 100%; height: auto; }
+
+        /* Tipografía fluida */
+        body { font-size: clamp(0.875rem, 1.5vw + 0.5rem, 1rem); }
+        h1 { font-size: clamp(1.5rem, 4vw, 2.5rem); line-height: 1.2; }
+        h2 { font-size: clamp(1.25rem, 3vw, 2rem); }
+        h3 { font-size: clamp(1.1rem, 2.5vw, 1.5rem); }
+
+        /* Contenedores fluidos */
+        .max-w-7xl, .max-w-6xl, .max-w-5xl, .max-w-4xl {
+            width: 100%;
+            padding-left: max(1rem, env(safe-area-inset-left));
+            padding-right: max(1rem, env(safe-area-inset-right));
+        }
+
+        /* Header adaptativo */
+        @media (max-width: 480px) {
+            header { padding: 0 12px !important; }
+            header h1, header .text-2xl, header .text-xl { font-size: 1rem !important; }
+            header .h-20 { height: 52px !important; }
+            header nav { display: none !important; }
+        }
+
+        /* Grids adaptativos */
+        @media (max-width: 640px) {
+            [class*='grid-cols-'] { grid-template-columns: 1fr !important; }
+            [class*='lg:grid-cols-'] { grid-template-columns: 1fr !important; }
+            [class*='md:grid-cols-'] { grid-template-columns: 1fr !important; }
+            [class*='sm:grid-cols-2'] { grid-template-columns: 1fr 1fr !important; }
+            .gap-8 { gap: 1rem !important; }
+            .gap-6 { gap: 0.75rem !important; }
+        }
+        @media (min-width: 641px) and (max-width: 1023px) {
+            [class*='lg:grid-cols-3'] { grid-template-columns: repeat(2, 1fr) !important; }
+            [class*='lg:grid-cols-4'] { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+
+        /* Padding/margin adaptativos */
+        @media (max-width: 768px) {
+            .py-20 { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+            .py-16 { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+            .py-12 { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
+            .px-8  { padding-left: 1rem !important; padding-right: 1rem !important; }
+            .space-y-8 > * + * { margin-top: 1.5rem !important; }
+        }
+
+        /* Touch targets */
+        @media (max-width: 768px) {
+            button, a[href], input, select, textarea { min-height: 44px; }
+            input, select, textarea { font-size: 16px !important; }
+        }
+
+        /* Flex adaptativos */
+        @media (max-width: 640px) {
+            .flex-row { flex-direction: column !important; }
+            [class*='flex items-center gap'] { flex-wrap: wrap !important; }
+            .hidden.sm\:inline { display: none !important; }
+        }
+
+        /* Safe area para notch/punch-hole phones */
+        .thumb-nav, footer, .sticky {
+            padding-bottom: max(env(safe-area-inset-bottom, 0px), 0px);
+            padding-left:  max(env(safe-area-inset-left,   0px), 0px);
+            padding-right: max(env(safe-area-inset-right,  0px), 0px);
+        }
+
+        /* Tablas responsivas */
+        table { display: block; overflow-x: auto; white-space: nowrap; max-width: 100%; }
+
+        /* Formularios en móvil */
+        @media (max-width: 640px) {
+            form { padding: 1rem !important; }
+            form .grid { grid-template-columns: 1fr !important; }
+            form input, form select, form textarea { width: 100%; padding: 10px 12px; }
+        }
+
+        /* Navegación móvil mejorada */
+        @media (max-width: 1023px) {
+            header { position: sticky; top: 0; z-index: 50; }
+        }
+
+        /* Contacto — mapa e iframe al 100% en móvil */
+        @media (max-width: 640px) {
+            iframe[src*="google.com/maps"],
+            iframe[src*="maps.google"],
+            .map-container,
+            [class*="h-64"], [class*="h-96"] {
+                width: 100% !important;
+                min-width: unset !important;
+            }
         }
     </style>
     <script>
