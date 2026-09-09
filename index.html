@@ -265,6 +265,72 @@
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, transparent 40%, rgba(56, 189, 248, 0.05) 100%);
             pointer-events: none;
         }
+
+        /* =====================================================
+           RESPONSIVE UNIVERSAL — index.html
+           xs:<480  sm:480-640  md:640-1024  lg:1024+
+           Compatible con zoom de navegador (clamp usa rem+vw)
+        ===================================================== */
+
+        /* Prevenir scroll horizontal en cualquier pantalla */
+        html { overflow-x: hidden; }
+        *, *::before, *::after { box-sizing: border-box; }
+        img, video, iframe, svg { max-width: 100%; height: auto; }
+
+        /* Viewport con soporte para notch iOS / Android */
+        .thumb-nav {
+            padding-bottom: max(env(safe-area-inset-bottom, 0px), 8px) !important;
+        }
+
+        /* Visor 360: limitar altura en móvil */
+        @media (max-width: 768px) {
+            #microscope360Container { height: min(60vw, 320px) !important; }
+            body { padding-bottom: max(76px, env(safe-area-inset-bottom, 76px)); }
+        }
+
+        /* Hero h1 fluido — respeta zoom del navegador */
+        @media (max-width: 640px) {
+            .font-black { word-break: break-word; }
+            /* Botones: mínimo 44px para touch targets */
+            a[class*="px-"][class*="py-"],
+            button[class*="px-"][class*="py-"] { min-height: 44px; }
+            /* Evitar que inputs provoquen zoom en iOS */
+            input, select, textarea { font-size: 16px !important; }
+            /* Padding de sección reducido en móvil */
+            .py-20 { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+            .py-16 { padding-top: 2rem !important;   padding-bottom: 2rem !important; }
+            .gap-16 { gap: 1.5rem !important; }
+            .gap-12 { gap: 1rem !important; }
+            /* Texto del hero fluido */
+            .text-4xl { font-size: clamp(1.75rem, 7vw, 2.5rem) !important; }
+            .text-5xl { font-size: clamp(2rem, 8vw, 3rem) !important; }
+            .text-3xl { font-size: clamp(1.4rem, 6vw, 2rem) !important; }
+            /* Grids → columna única */
+            [class*="lg:grid-cols-3"]:not(.thumb-nav) { grid-template-columns: 1fr !important; }
+            [class*="lg:grid-cols-2"]:not(.thumb-nav) { grid-template-columns: 1fr !important; }
+            [class*="md:grid-cols-2"]:not(.thumb-nav) { grid-template-columns: 1fr !important; }
+            /* Horizontal scroll en selectores de tarjetas */
+            .grid.grid-cols-4 { grid-template-columns: repeat(2, 1fr) !important; }
+            /* Modal de búsqueda rápida centrado */
+            #quickSearchModal > div { width: 95vw !important; max-width: 100% !important; }
+        }
+
+        /* Tablet (641-1023px): 2 columnas donde había 3-4 */
+        @media (min-width: 641px) and (max-width: 1023px) {
+            [class*="lg:grid-cols-3"] { grid-template-columns: repeat(2, 1fr) !important; }
+            [class*="lg:grid-cols-4"] { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+
+        /* Pantallas XL (>1440px): no estirar contenido sin límite */
+        @media (min-width: 1440px) {
+            .max-w-7xl { max-width: 80rem; }
+        }
+
+        /* Pantallas muy pequeñas (<360px): ajuste fino */
+        @media (max-width: 360px) {
+            .text-2xl { font-size: 1.25rem !important; }
+            .px-4 { padding-left: 0.625rem !important; padding-right: 0.625rem !important; }
+        }
     </style>
     <script>
       // Anti-cache & Service Worker auto-purger to prevent loading old versions
