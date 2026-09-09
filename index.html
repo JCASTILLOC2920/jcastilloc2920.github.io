@@ -24,6 +24,73 @@
             -moz-osx-font-smoothing: grayscale;
             padding-bottom: env(safe-area-inset-bottom, 0px);
         }
+        /* ====================================================
+           FIX PANTALLA NEGRA: Loading overlay instantáneo
+           Oculta el FOUC (Flash Of Unstyled Content) mientras
+           Tailwind CDN y Google Fonts cargan
+        ==================================================== */
+        #page-loader {
+            position: fixed;
+            inset: 0;
+            background: #030712;
+            z-index: 999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+        #page-loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        #page-loader .loader-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        #page-loader .loader-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #0891b2, #10b981);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            box-shadow: 0 0 30px rgba(8, 145, 178, 0.4);
+        }
+        #page-loader .loader-text {
+            color: #38bdf8;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+        #page-loader .loader-bar {
+            width: 120px;
+            height: 2px;
+            background: rgba(56, 189, 248, 0.2);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+        #page-loader .loader-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0891b2, #10b981);
+            border-radius: 999px;
+            animation: loadbar 1.2s ease-in-out infinite;
+        }
+        @keyframes loadbar {
+            0%   { width: 0%;   margin-left: 0%; }
+            50%  { width: 60%;  margin-left: 20%; }
+            100% { width: 0%;   margin-left: 100%; }
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.75; }
+        }
         .neuro-glass { 
             background: rgba(15, 23, 42, 0.75); 
             backdrop-filter: blur(16px); 
@@ -213,6 +280,18 @@
     </script>
 </head>
 <body class="bg-slate-950 text-slate-100 antialiased selection:bg-cyan-500 selection:text-white">
+
+    <!-- ====================================================
+         LOADER: Se muestra mientras Tailwind CDN carga
+         Elimina la pantalla negra en primera visita
+    ==================================================== -->
+    <div id="page-loader">
+        <div class="loader-logo">
+            <div class="loader-icon">🔬</div>
+            <div class="loader-text">JC Path Lab</div>
+            <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+        </div>
+    </div>
 
     <header class="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-xl border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
@@ -607,6 +686,28 @@
             });
         }
     });
+    </script>
+
+    <!-- FIX: Ocultar loader cuando la pagina este lista -->
+    <script>
+        (function() {
+            function hideLoader() {
+                var loader = document.getElementById('page-loader');
+                if (loader) {
+                    loader.classList.add('hidden');
+                    setTimeout(function() {
+                        if (loader.parentNode) loader.parentNode.removeChild(loader);
+                    }, 600);
+                }
+            }
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', hideLoader);
+            } else {
+                hideLoader();
+            }
+            // Fallback: ocultar a los 4 segundos sin importar que
+            setTimeout(hideLoader, 4000);
+        })();
     </script>
 </body>
 </html>
