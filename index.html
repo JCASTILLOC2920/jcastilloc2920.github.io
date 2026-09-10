@@ -328,54 +328,66 @@
 
         /* ==========================================================
            PRODUCTO ESTRELLA: COMPARADOR DE CARCINOMA ACINAR PROSTÁTICO
+           (PANTALLA COMPLETA, ZOOM DIGITAL Y PANEO INTERACTIVO)
            ========================================================== */
         .star-product-card {
             position: relative;
-            background: rgba(10, 15, 29, 0.9);
+            background: radial-gradient(circle at top, rgba(15, 23, 42, 0.95), rgba(3, 7, 18, 0.98));
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(56, 189, 248, 0.35);
+            border: 1px solid rgba(56, 189, 248, 0.4);
             border-radius: 1.25rem;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(56, 189, 248, 0.18);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85), 0 0 30px rgba(56, 189, 248, 0.2);
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            width: 100%;
         }
 
         .star-split-frame {
             position: relative;
             width: 100%;
-            aspect-ratio: 16 / 9;
-            max-height: clamp(220px, 38vh, 380px);
-            border-radius: 0.75rem;
+            height: clamp(340px, 52vh, 620px);
+            border-radius: 0.85rem;
             overflow: hidden;
             user-select: none;
             cursor: ew-resize;
             background: #020617;
-            touch-action: pan-y;
+            touch-action: none; /* Pointer events pan + pinch */
+        }
+
+        .star-split-frame.is-panning {
+            cursor: grab;
+        }
+
+        .star-split-frame.is-dragging-pan {
+            cursor: grabbing !important;
         }
 
         .star-layer {
             position: absolute;
             inset: 0;
             overflow: hidden;
+            pointer-events: none;
         }
 
         .star-layer img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: left center;
+            object-position: center center;
             display: block;
             pointer-events: none;
-            transition: transform 0.25s ease;
+            transform-origin: center center;
+            will-change: transform;
+            transition: transform 0.08s ease-out;
         }
 
         .star-before {
             z-index: 2;
             width: 50%;
             border-right: 2px solid #38bdf8;
-            box-shadow: 3px 0 16px rgba(0, 0, 0, 0.6);
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.7);
             background: #000000;
         }
 
@@ -390,7 +402,7 @@
             left: 50%;
             width: 3px;
             background: #38bdf8;
-            box-shadow: 0 0 14px #38bdf8;
+            box-shadow: 0 0 16px #38bdf8;
             z-index: 10;
             pointer-events: none;
             transform: translateX(-50%);
@@ -404,45 +416,59 @@
             background: #090d16;
             border: 2px solid #38bdf8;
             color: #38bdf8;
-            padding: 4px 9px;
+            padding: 5px 12px;
             border-radius: 9999px;
             display: flex;
             align-items: center;
-            gap: 5px;
-            font-size: 0.62rem;
+            gap: 6px;
+            font-size: 0.7rem;
             font-weight: 800;
             white-space: nowrap;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8), 0 0 12px rgba(56, 189, 248, 0.5);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.8), 0 0 14px rgba(56, 189, 248, 0.6);
         }
 
         .star-badge {
             position: absolute;
-            top: 8px;
-            padding: 3px 8px;
-            border-radius: 6px;
-            font-size: 0.62rem;
+            top: 10px;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.7rem;
             font-weight: 800;
             letter-spacing: 0.03em;
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(10px);
             z-index: 5;
             pointer-events: none;
         }
         .star-badge-before {
-            left: 8px;
-            background: rgba(15, 23, 42, 0.85);
+            left: 10px;
+            background: rgba(15, 23, 42, 0.88);
             color: #38bdf8;
-            border: 1px solid rgba(56, 189, 248, 0.4);
+            border: 1px solid rgba(56, 189, 248, 0.45);
         }
         .star-badge-after {
-            right: 8px;
-            background: rgba(236, 72, 153, 0.85);
+            right: 10px;
+            background: rgba(236, 72, 153, 0.88);
             color: #fdf2f8;
-            border: 1px solid rgba(244, 114, 182, 0.6);
+            border: 1px solid rgba(244, 114, 182, 0.65);
         }
 
         .active-mode {
             background: #0284c7 !important;
             color: #ffffff !important;
+        }
+
+        /* Modo Pantalla Completa para el Comparador */
+        .star-product-card:fullscreen {
+            border-radius: 0 !important;
+            padding: 16px !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            max-height: 100vh !important;
+            justify-content: space-between;
+        }
+        .star-product-card:fullscreen .star-split-frame {
+            height: calc(100vh - 120px) !important;
+            max-height: calc(100vh - 120px) !important;
         }
     </style>
     <script>
@@ -512,137 +538,150 @@
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 lg:py-4 space-y-12">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 lg:py-5 space-y-12">
         
-        <!-- PANTALLA 1: HERO VIEWPORT ZERO-SCROLL CON PRODUCTO ESTRELLA -->
-        <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center min-h-[calc(100vh-5.5rem)] lg:max-h-[calc(100vh-5.5rem)]">
+        <!-- PANTALLA 1: HERO VIEWPORT COMPLETO CON PRODUCTO ESTRELLA PROTAGÓNICO -->
+        <section class="space-y-4">
             
-            <!-- Columna Izquierda: Acreditación y Llamados a la Acción -->
-            <div class="lg:col-span-6 space-y-3.5 lg:space-y-4">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/90 border border-cyan-500/30 text-xs font-semibold text-cyan-300">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    Laboratorio Especializado en Anatomía Patológica &amp; Patología Digital
+            <!-- Barra Superior del Hero: Acreditación y Llamados a la Acción Compactos -->
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-slate-900/60 p-4 sm:p-5 rounded-2xl border border-slate-800 backdrop-blur-xl">
+                <div class="space-y-1.5 max-w-2xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-slate-950 border border-cyan-500/30 text-xs font-semibold text-cyan-300">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        Laboratorio Especializado en Anatomía Patológica &amp; Patología Digital &bull; Dr. Josehp Castillo (CMP 56435)
+                    </div>
+                    <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight font-['Outfit']">
+                        Certeza diagnóstica con <span class="bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent">Morfometría Computacional e IA</span>
+                    </h1>
+                    <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                        Biopsias y piezas quirúrgicas con doble lectura patológica, entrega en <strong>4 días hábiles</strong> y detección de biomarcadores morfológicos de precisión.
+                    </p>
                 </div>
 
-                <h1 class="text-3xl sm:text-4xl lg:text-[2.65rem] font-black text-white tracking-tight leading-tight font-['Outfit']">
-                    Certeza diagnóstica <br>
-                    <span class="bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent">cuando cada minuto cuenta</span>
-                </h1>
-
-                <p class="text-slate-300 text-xs sm:text-sm lg:text-base max-w-xl leading-relaxed">
-                    Evaluación histopatológica rigurosa de biopsias y piezas quirúrgicas dirigida personalmente por el <strong>Dr. Josehp Castillo Cuenca</strong> (CMP 56435) con protocolos estandarizados CAP y tecnología de morfometría computacional por IA.
-                </p>
-
-                <div class="flex flex-wrap items-center gap-3 pt-1">
-                    <button type="button" onclick="document.getElementById('quickSearchModal').classList.remove('hidden'); document.getElementById('quickSearchModal').classList.add('flex');" class="btn-3d-tactile btn-3d-cyan px-4 py-3 text-xs sm:text-sm">
-                        <i class="fas fa-search text-sm"></i>
+                <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 shrink-0">
+                    <button type="button" onclick="document.getElementById('quickSearchModal').classList.remove('hidden'); document.getElementById('quickSearchModal').classList.add('flex');" class="btn-3d-tactile btn-3d-cyan px-4 py-2.5 text-xs sm:text-sm">
+                        <i class="fas fa-search text-xs"></i>
                         <span>Consultar Mi Informe</span>
                     </button>
-                    <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20coordinar%20la%20entrega%20de%20una%20muestra%20biopsia" target="_blank" class="btn-3d-tactile btn-3d-emerald px-4 py-3 text-xs sm:text-sm">
-                        <i class="fab fa-whatsapp text-base"></i>
+                    <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20coordinar%20la%20entrega%20de%20una%20muestra%20biopsia" target="_blank" class="btn-3d-tactile btn-3d-emerald px-4 py-2.5 text-xs sm:text-sm">
+                        <i class="fab fa-whatsapp text-sm"></i>
                         <span>Coordinar Muestra</span>
                     </a>
-                    <a href="contacto.html" class="btn-3d-tactile btn-3d-slate px-4 py-3 text-xs sm:text-sm">
+                    <a href="contacto.html" class="btn-3d-tactile btn-3d-slate px-3.5 py-2.5 text-xs sm:text-sm">
                         <i class="fas fa-map-marker-alt text-cyan-400"></i>
                         <span>Sede</span>
                     </a>
                 </div>
-
-                <div class="pt-3 border-t border-slate-800/80 grid grid-cols-3 gap-3 text-left">
-                    <div>
-                        <span class="block text-xl sm:text-2xl font-black text-cyan-400 font-['Outfit']">4 Días</span>
-                        <span class="text-[11px] text-slate-400">Entrega TAT</span>
-                    </div>
-                    <div>
-                        <span class="block text-xl sm:text-2xl font-black text-white font-['Outfit']">CMP 56435</span>
-                        <span class="text-[11px] text-slate-400">Dr. Josehp Castillo</span>
-                    </div>
-                    <div>
-                        <span class="block text-xl sm:text-2xl font-black text-emerald-400 font-['Outfit']">100%</span>
-                        <span class="text-[11px] text-slate-400">Doble Lectura</span>
-                    </div>
-                </div>
             </div>
 
-            <!-- Columna Derecha: PRODUCTO ESTRELLA - COMPARADOR INTERACTIVO DE CARCINOMA ACINAR PROSTÁTICO -->
-            <div class="lg:col-span-6 relative">
-                <div class="star-product-card p-3 sm:p-3.5">
-                    <!-- Cabecera de la Tarjeta del Producto Estrella -->
-                    <div class="flex items-center justify-between gap-2 mb-2">
-                        <div class="flex items-center gap-2">
-                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                            <span class="text-[11px] font-extrabold tracking-wide uppercase text-cyan-300 font-mono">PRODUCTO ESTRELLA &bull; IA PATOLOGÍA</span>
+            <!-- PRODUCTO ESTRELLA: COMPARADOR A TODO EL ANCHO DE LA PANTALLA CON PANEO Y ZOOM -->
+            <div class="star-product-card p-3 sm:p-4">
+                
+                <!-- Barra de Herramientas y Encabezado del Visor -->
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-2.5 pb-2 border-b border-slate-800/80">
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse shadow-lg shadow-emerald-400/50"></span>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs sm:text-sm font-black tracking-wide uppercase text-white font-mono">PRODUCTO ESTRELLA: CARCINOMA ACINAR PROSTÁTICO</span>
+                                <span class="hidden md:inline px-2 py-0.5 rounded bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 font-mono text-[10px] font-bold">WSI 40X</span>
+                            </div>
+                            <span class="text-[11px] text-slate-400 hidden sm:block">Detección de mitosis celulares &bull; Mapeo espectral de grado de pleomorfismo nuclear</span>
                         </div>
-                        <!-- Selector de Modo de Comparación -->
-                        <div class="flex items-center gap-1 bg-slate-900/90 p-0.5 rounded-lg border border-slate-700 text-[11px]">
-                            <button type="button" id="btnModeSplit" onclick="setComparatorMode('split')" class="px-2 py-1 rounded font-bold transition active-mode" title="Comparador Deslizable Dual">
-                                <i class="fas fa-arrows-split-up-and-left rotate-90 text-[10px]"></i> Split
+                    </div>
+
+                    <!-- Controles Interactivos: Modos, Pan/Split, Zoom y Fullscreen -->
+                    <div class="flex flex-wrap items-center gap-2">
+                        
+                        <!-- Selector de Modo de Interacción (Split vs Mover) -->
+                        <div class="flex items-center bg-slate-900 p-0.5 rounded-lg border border-slate-700 text-[11px]">
+                            <button type="button" id="btnToolSplit" onclick="setToolMode('split')" class="px-2.5 py-1 rounded font-bold transition active-mode" title="Deslizar divisor para contrastar">
+                                <i class="fas fa-arrows-split-up-and-left rotate-90 text-[10px] mr-1"></i> Cortina
                             </button>
-                            <button type="button" id="btnModeHE" onclick="setComparatorMode('he')" class="px-2 py-1 rounded font-bold transition text-slate-400 hover:text-white" title="Ver solo Histología H&E Óptica">
+                            <button type="button" id="btnToolPan" onclick="setToolMode('pan')" class="px-2.5 py-1 rounded font-bold transition text-slate-400 hover:text-white" title="Arrastrar lámina con el ratón o dedo">
+                                <i class="fas fa-hand text-[10px] mr-1"></i> Mover
+                            </button>
+                        </div>
+
+                        <!-- Selector de Capas -->
+                        <div class="flex items-center bg-slate-900 p-0.5 rounded-lg border border-slate-700 text-[11px]">
+                            <button type="button" id="btnModeSplit" onclick="setComparatorMode('split')" class="px-2 py-1 rounded font-bold transition active-mode" title="Comparar ambas capas">
+                                Split
+                            </button>
+                            <button type="button" id="btnModeHE" onclick="setComparatorMode('he')" class="px-2 py-1 rounded font-bold transition text-slate-400 hover:text-white" title="Ver solo H&E">
                                 H&amp;E
                             </button>
-                            <button type="button" id="btnModeIA" onclick="setComparatorMode('ia')" class="px-2 py-1 rounded font-bold transition text-slate-400 hover:text-white" title="Ver Detección de Mitosis &amp; Pleomorfismo">
+                            <button type="button" id="btnModeIA" onclick="setComparatorMode('ia')" class="px-2 py-1 rounded font-bold transition text-slate-400 hover:text-white" title="Ver detección IA">
                                 IA Mitosis
                             </button>
                         </div>
+
+                        <!-- Botones de Aumento Digital -->
+                        <div class="flex items-center bg-slate-900 p-0.5 rounded-lg border border-slate-700 text-[11px]">
+                            <span class="text-[10px] text-slate-400 px-1.5 font-bold">Zoom:</span>
+                            <button type="button" onclick="setProstateZoom(1, this)" class="prostate-zoom-btn px-2 py-0.5 rounded bg-cyan-500 text-black font-bold font-mono text-[10px]">1x</button>
+                            <button type="button" onclick="setProstateZoom(1.5, this)" class="prostate-zoom-btn px-2 py-0.5 rounded bg-slate-800 text-slate-300 hover:text-white font-mono text-[10px]">2x</button>
+                            <button type="button" onclick="setProstateZoom(2.2, this)" class="prostate-zoom-btn px-2 py-0.5 rounded bg-slate-800 text-slate-300 hover:text-white font-mono text-[10px]">4x</button>
+                            <button type="button" onclick="setProstateZoom(3.2, this)" class="prostate-zoom-btn px-2 py-0.5 rounded bg-slate-800 text-slate-300 hover:text-white font-mono text-[10px]">10x</button>
+                            <button type="button" onclick="setProstateZoom(4.5, this)" class="prostate-zoom-btn px-2 py-0.5 rounded bg-slate-800 text-slate-300 hover:text-white font-mono text-[10px]">40x</button>
+                            <button type="button" onclick="resetPanAndZoom()" class="px-1.5 py-0.5 text-slate-400 hover:text-white ml-0.5" title="Centrar lámina"><i class="fas fa-crosshairs text-[10px]"></i></button>
+                        </div>
+
+                        <!-- Botón Pantalla Completa -->
+                        <button type="button" onclick="toggleFullscreenComparator()" class="p-1.5 px-2 rounded-lg bg-slate-900 border border-slate-700 text-cyan-300 hover:bg-slate-800 text-xs transition" title="Maximizar a Pantalla Completa">
+                            <i class="fas fa-expand text-xs"></i>
+                        </button>
                     </div>
+                </div>
 
-                    <!-- Marco Interactivo Antes y Después -->
-                    <div class="star-split-frame" id="starSplitFrame" title="Arrastre el divisor central para contrastar H&E vs Detección IA">
-                        <!-- Capa DESPUÉS (Fondo): Detección IA de Mitosis y Pleomorfismo en Carcinoma Acinar Prostático -->
-                        <div class="star-layer star-after">
-                            <img src="carcinoma_acinar_ia_mitosis_pleomorfismo.webp" alt="Detección IA de Mitosis y Pleomorfismo en Carcinoma Prostático" id="starImgAfter">
-                            <div class="star-badge star-badge-after">
-                                <span>✨ IA: MITOSIS &amp; PLEOMORFISMO (Gleason 4)</span>
-                            </div>
-                        </div>
-
-                        <!-- Capa ANTES (Recorte): Histología Óptica H&E Convencional -->
-                        <div class="star-layer star-before" id="starBeforeLayer">
-                            <img src="carcinoma_acinar_he.webp" alt="Histopatología H&E Óptica Estándar de Próstata" id="starImgBefore">
-                            <div class="star-badge star-badge-before">
-                                <span>🔬 H&amp;E ÓPTICO ESTÁNDAR</span>
-                            </div>
-                        </div>
-
-                        <!-- Divisor Central con Mango Arrastrable -->
-                        <div class="star-divider" id="starDivider">
-                            <div class="star-handle">
-                                <span>◀ H&amp;E</span>
-                                <span>|</span>
-                                <span>IA MITOSIS ▶</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Mini Barra de Controles y Aumentos Digitales -->
-                    <div class="flex items-center justify-between pt-2 pb-1 text-[11px] text-slate-400 border-b border-slate-800/80">
-                        <div class="flex items-center gap-1.5 font-mono">
-                            <span class="text-cyan-400 font-bold">CARCINOMA ACINAR PROSTÁTICO</span>
-                            <span class="text-slate-600">|</span>
-                            <span class="text-pink-400 font-bold">3 MITOSIS DETECTADAS</span>
-                        </div>
-                        <div class="flex items-center gap-1">
-                            <span class="text-[10px] text-slate-500 mr-1">Zoom:</span>
-                            <button type="button" onclick="setProstateZoom(1, this)" class="prostate-zoom-btn px-1.5 py-0.5 rounded bg-cyan-500 text-black font-bold font-mono text-[10px]">2x</button>
-                            <button type="button" onclick="setProstateZoom(1.2, this)" class="prostate-zoom-btn px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 hover:text-white font-mono text-[10px]">4x</button>
-                            <button type="button" onclick="setProstateZoom(1.45, this)" class="prostate-zoom-btn px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 hover:text-white font-mono text-[10px]">10x</button>
-                            <button type="button" onclick="setProstateZoom(1.8, this)" class="prostate-zoom-btn px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 hover:text-white font-mono text-[10px]">20x</button>
-                            <button type="button" onclick="setProstateZoom(2.2, this)" class="prostate-zoom-btn px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 hover:text-white font-mono text-[10px]">40x</button>
+                <!-- Marco Interactivo Antes y Después (Con Paneo y Zoom Síncrono) -->
+                <div class="star-split-frame" id="starSplitFrame" title="Arrastra el divisor o activa 'Mover' para desplazarte por la lámina">
+                    
+                    <!-- Capa DESPUÉS (Fondo): Detección IA de Mitosis y Pleomorfismo en Carcinoma Acinar Prostático -->
+                    <div class="star-layer star-after">
+                        <img src="carcinoma_acinar_ia_mitosis_pleomorfismo.webp" alt="Detección IA de Mitosis y Pleomorfismo en Carcinoma Prostático" id="starImgAfter">
+                        <div class="star-badge star-badge-after">
+                            <span>✨ IA: MITOSIS &amp; PLEOMORFISMO (Gleason 4)</span>
                         </div>
                     </div>
 
-                    <!-- HUD Médico Inferior -->
-                    <div class="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
-                        <div class="flex items-center gap-2">
-                            <span class="px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-semibold text-[11px]">
-                                Gleason 4 &bull; Score Atipia: 0.96
-                            </span>
-                            <span class="text-[11px] text-slate-400">Anisocariosis +184% &bull; Ratio N:C 0.82</span>
+                    <!-- Capa ANTES (Recorte): Histología Óptica H&E Convencional -->
+                    <div class="star-layer star-before" id="starBeforeLayer">
+                        <img src="carcinoma_acinar_he.webp" alt="Histopatología H&E Óptica Estándar de Próstata" id="starImgBefore">
+                        <div class="star-badge star-badge-before">
+                            <span>🔬 H&amp;E ÓPTICO ESTÁNDAR</span>
                         </div>
-                        <div class="flex items-center gap-1.5 text-[11px] text-cyan-400 font-semibold">
-                            <i class="fas fa-hand-pointer text-cyan-300 animate-pulse"></i>
-                            <span>Desliza para contrastar en vivo</span>
+                    </div>
+
+                    <!-- Divisor Central con Mango Arrastrable -->
+                    <div class="star-divider" id="starDivider">
+                        <div class="star-handle">
+                            <span>◀ H&amp;E</span>
+                            <span>|</span>
+                            <span>IA MITOSIS ▶</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HUD Médico Inferior con Datos Cuantitativos y Guía de Interacción -->
+                <div class="pt-2.5 flex flex-col md:flex-row md:items-center justify-between gap-2.5 text-xs">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="px-2.5 py-1 rounded-md bg-emerald-950/90 border border-emerald-500/40 text-emerald-300 font-bold font-mono text-xs">
+                            <i class="fas fa-microscope text-emerald-400 mr-1"></i> Gleason 4 &bull; Score Atipia: 0.96
+                        </span>
+                        <span class="px-2.5 py-1 rounded-md bg-pink-950/90 border border-pink-500/40 text-pink-300 font-bold font-mono text-xs">
+                            <i class="fas fa-crosshairs text-pink-400 mr-1"></i> 3 Mitosis Atípicas Segmentadas
+                        </span>
+                        <span class="text-slate-400 text-xs hidden lg:inline">
+                            Anisocariosis +184% &bull; Ratio N:C 0.82 &bull; Hotspots 01 y 02 mapeados
+                        </span>
+                    </div>
+
+                    <div class="flex items-center gap-3 text-cyan-300 text-xs font-semibold">
+                        <span class="hidden sm:inline text-slate-400 text-[11px]"><i class="fas fa-mouse mr-1"></i>Usa la rueda del ratón para Zoom</span>
+                        <div class="flex items-center gap-1.5 bg-cyan-950/60 px-2.5 py-1 rounded-lg border border-cyan-500/30">
+                            <i class="fas fa-hand-pointer text-cyan-400 animate-pulse"></i>
+                            <span id="starInteractionHint">Desliza la cortina central para contrastar</span>
                         </div>
                     </div>
                 </div>
@@ -959,6 +998,7 @@
     <!-- CONTROLADOR INTERACTIVO DEL COMPARADOR DE PRODUCTO ESTRELLA: CARCINOMA ACINAR PROSTÁTICO -->
     <script>
     (function() {
+        const card = document.querySelector('.star-product-card');
         const frame = document.getElementById('starSplitFrame');
         const beforeLayer = document.getElementById('starBeforeLayer');
         const divider = document.getElementById('starDivider');
@@ -967,13 +1007,39 @@
         const btnSplit = document.getElementById('btnModeSplit');
         const btnHE = document.getElementById('btnModeHE');
         const btnIA = document.getElementById('btnModeIA');
+        const btnToolSplit = document.getElementById('btnToolSplit');
+        const btnToolPan = document.getElementById('btnToolPan');
+        const interactionHint = document.getElementById('starInteractionHint');
 
         if (!frame || !beforeLayer || !divider) return;
 
         let currentSplitPercent = 50;
         let isDraggingSplit = false;
+        let isDraggingPan = false;
         let currentMode = 'split'; // 'split', 'he', 'ia'
-        let currentZoom = 1;
+        let currentTool = 'split'; // 'split', 'pan'
+        
+        // Paneo y Zoom síncrono
+        let scale = 1.0;
+        let panX = 0;
+        let panY = 0;
+        let panStartX = 0;
+        let panStartY = 0;
+
+        function applyTransform() {
+            // Limitar el paneo según el zoom para que no se pierda la lámina
+            const maxPan = (scale - 1) * 350;
+            if (scale <= 1) {
+                panX = 0;
+                panY = 0;
+            } else {
+                panX = Math.max(-maxPan, Math.min(maxPan, panX));
+                panY = Math.max(-maxPan, Math.min(maxPan, panY));
+            }
+            const transformVal = `scale(${scale}) translate(${panX / scale}px, ${panY / scale}px)`;
+            if (imgBefore) imgBefore.style.transform = transformVal;
+            if (imgAfter) imgAfter.style.transform = transformVal;
+        }
 
         function updateSplit(percent) {
             currentSplitPercent = Math.max(0, Math.min(100, percent));
@@ -984,37 +1050,98 @@
         // Inicializar al 50%
         updateSplit(50);
 
-        function setPointerDrag(clientX) {
-            const rect = frame.getBoundingClientRect();
-            if (rect.width <= 0) return;
-            const x = clientX - rect.left;
-            const pct = (x / rect.width) * 100;
-            updateSplit(pct);
-        }
-
-        frame.addEventListener('pointerdown', (e) => {
-            if (currentMode !== 'split') {
-                // Si estaba en modo HE o IA y el usuario toca la imagen, regresar a Split
-                setComparatorMode('split');
+        // Herramientas: Cortina Split vs Mover Pan
+        window.setToolMode = function(tool) {
+            currentTool = tool;
+            if (btnToolSplit && btnToolPan) {
+                if (tool === 'split') {
+                    btnToolSplit.classList.add('active-mode');
+                    btnToolSplit.classList.remove('text-slate-400');
+                    btnToolPan.classList.remove('active-mode');
+                    btnToolPan.classList.add('text-slate-400');
+                    frame.classList.remove('is-panning');
+                    if (interactionHint) interactionHint.textContent = 'Desliza la cortina central para contrastar';
+                } else {
+                    btnToolPan.classList.add('active-mode');
+                    btnToolPan.classList.remove('text-slate-400');
+                    btnToolSplit.classList.remove('active-mode');
+                    btnToolSplit.classList.add('text-slate-400');
+                    frame.classList.add('is-panning');
+                    if (interactionHint) interactionHint.textContent = 'Arrastra con el ratón o dedo para explorar la lámina';
+                }
             }
-            isDraggingSplit = true;
-            try { frame.setPointerCapture(e.pointerId); } catch(err) {}
-            setPointerDrag(e.clientX);
+        };
+
+        // Eventos Unificados Pointer para Split y Paneo
+        frame.addEventListener('pointerdown', (e) => {
+            const rect = frame.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const dividerX = (currentSplitPercent / 100) * rect.width;
+
+            // Si el usuario toca cerca del divisor (±30px) o estamos en modo split forzado
+            if (currentTool === 'split' || Math.abs(clickX - dividerX) <= 30) {
+                if (currentMode !== 'split') {
+                    setComparatorMode('split');
+                }
+                isDraggingSplit = true;
+                isDraggingPan = false;
+                try { frame.setPointerCapture(e.pointerId); } catch(err) {}
+                const pct = (clickX / rect.width) * 100;
+                updateSplit(pct);
+            } else {
+                // Modo Mover / Paneo
+                isDraggingPan = true;
+                isDraggingSplit = false;
+                frame.classList.add('is-dragging-pan');
+                panStartX = e.clientX - panX;
+                panStartY = e.clientY - panY;
+                try { frame.setPointerCapture(e.pointerId); } catch(err) {}
+            }
         });
 
         frame.addEventListener('pointermove', (e) => {
-            if (!isDraggingSplit) return;
-            setPointerDrag(e.clientX);
+            if (isDraggingSplit) {
+                const rect = frame.getBoundingClientRect();
+                if (rect.width <= 0) return;
+                const x = e.clientX - rect.left;
+                const pct = (x / rect.width) * 100;
+                updateSplit(pct);
+            } else if (isDraggingPan) {
+                panX = e.clientX - panStartX;
+                panY = e.clientY - panStartY;
+                applyTransform();
+            }
         });
 
-        function endSplitDrag(e) {
-            if (!isDraggingSplit) return;
-            isDraggingSplit = false;
-            try { frame.releasePointerCapture(e.pointerId); } catch(err) {}
+        function endPointerDrag(e) {
+            if (isDraggingSplit) {
+                isDraggingSplit = false;
+                try { frame.releasePointerCapture(e.pointerId); } catch(err) {}
+            }
+            if (isDraggingPan) {
+                isDraggingPan = false;
+                frame.classList.remove('is-dragging-pan');
+                try { frame.releasePointerCapture(e.pointerId); } catch(err) {}
+            }
         }
 
-        frame.addEventListener('pointerup', endSplitDrag);
-        frame.addEventListener('pointercancel', endSplitDrag);
+        frame.addEventListener('pointerup', endPointerDrag);
+        frame.addEventListener('pointercancel', endPointerDrag);
+
+        // Zoom con Rueda del Ratón
+        frame.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const delta = e.deltaY > 0 ? -0.2 : 0.2;
+            const newScale = Math.max(1.0, Math.min(5.0, scale + delta));
+            if (newScale !== scale) {
+                scale = newScale;
+                applyTransform();
+                // Si hace zoom in automáticamente habilitar herramienta mover si no estaba
+                if (scale > 1.2 && currentTool === 'split') {
+                    // Mantener sugerencia amigable
+                }
+            }
+        }, { passive: false });
 
         // Modos: Split, Sólo H&E, Sólo IA
         window.setComparatorMode = function(mode) {
@@ -1050,15 +1177,15 @@
             }
         };
 
-        // Zoom Digital en tiempo real (2x, 4x, 10x, 20x, 40x)
-        window.setProstateZoom = function(scale, btn) {
-            currentZoom = scale;
-            if (imgBefore) {
-                imgBefore.style.transform = `scale(${scale})`;
+        // Zoom Digital en tiempo real (1x, 2x, 4x, 10x, 40x)
+        window.setProstateZoom = function(newScale, btn) {
+            scale = newScale;
+            if (scale === 1.0) {
+                panX = 0;
+                panY = 0;
             }
-            if (imgAfter) {
-                imgAfter.style.transform = `scale(${scale})`;
-            }
+            applyTransform();
+
             document.querySelectorAll('.prostate-zoom-btn').forEach(b => {
                 b.classList.remove('bg-cyan-500', 'text-black');
                 b.classList.add('bg-slate-800', 'text-slate-300');
@@ -1066,6 +1193,41 @@
             if (btn) {
                 btn.classList.remove('bg-slate-800', 'text-slate-300');
                 btn.classList.add('bg-cyan-500', 'text-black');
+            }
+            if (scale > 1.0 && currentTool === 'split') {
+                // Notificar que se puede mover
+                if (interactionHint) interactionHint.textContent = 'Zoom activo: usa "Mover" o arrastra para explorar';
+            }
+        };
+
+        // Resetear Paneo y Zoom al estado inicial
+        window.resetPanAndZoom = function() {
+            scale = 1.0;
+            panX = 0;
+            panY = 0;
+            applyTransform();
+            const firstZoomBtn = document.querySelector('.prostate-zoom-btn');
+            if (firstZoomBtn) {
+                document.querySelectorAll('.prostate-zoom-btn').forEach(b => {
+                    b.classList.remove('bg-cyan-500', 'text-black');
+                    b.classList.add('bg-slate-800', 'text-slate-300');
+                });
+                firstZoomBtn.classList.add('bg-cyan-500', 'text-black');
+            }
+        };
+
+        // Maximizar a Pantalla Completa
+        window.toggleFullscreenComparator = function() {
+            if (!document.fullscreenElement) {
+                if (card && card.requestFullscreen) {
+                    card.requestFullscreen();
+                } else if (card && card.webkitRequestFullscreen) {
+                    card.webkitRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
             }
         };
     })();
