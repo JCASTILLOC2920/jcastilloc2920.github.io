@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brochure Oficial de Patología de Partes Blandas y Sarcomas | JC PATH LAB</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700;800&family=Outfit:wght@500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 0;
+        }
+        :root {
+            --primary-navy: #071527;
+            --deep-blue: #0b1c33;
+            --accent-amber: #d97706;
+            --accent-gold: #f59e0b;
+            --accent-crimson: #be123c;
+            --accent-cyan: #0284c7;
+            --accent-purple: #7c3aed;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --bg-light: #f8fafc;
+            --border-color: #e2e8f0;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #0f172a;
+            color: var(--text-dark);
+            line-height: 1.34;
+            -webkit-font-smoothing: antialiased;
+        }
+        .page-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 24px 0;
+            gap: 26px;
+        }
+        .page {
+            width: 210mm;
+            height: 297mm;
+            background: #ffffff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            page-break-after: always;
+            page-break-inside: avoid;
+            padding: 12mm 16mm 10mm 16mm;
+        }
+        @media print {
+            body { background: transparent; }
+            .page-container { padding: 0; gap: 0; }
+            .page { box-shadow: none; margin: 0; width: 210mm; height: 297mm; }
+            .no-print { display: none !important; }
+        }
+
+        /* TOOLBAR */
+        .toolbar {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            z-index: 9999;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 8px 18px;
+            border-radius: 40px;
+            display: flex;
+            gap: 10px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.45);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .btn-action {
+            background: #d97706;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .btn-action:hover {
+            background: #b45309;
+            transform: translateY(-1px);
+        }
+        .btn-wa { background: #16a34a; }
+        .btn-wa:hover { background: #15803d; }
+        .btn-back { background: #334155; }
+        .btn-back:hover { background: #475569; }
+
+        /* HEADER DE PÁGINA */
+        .page-header-strip {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1.5px solid #0f172a;
+            padding-bottom: 6px;
+            margin-bottom: 8px;
+        }
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+        .header-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+        .brand-text h1 {
+            font-size: 15px;
+            font-weight: 900;
+            color: var(--primary-navy);
+            letter-spacing: -0.4px;
+            font-family: 'Outfit', sans-serif;
+        }
+        .brand-text span {
+            font-size: 8px;
+            font-weight: 700;
+            color: var(--accent-amber);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            display: block;
+        }
+        .header-meta {
+            text-align: right;
+            font-size: 8px;
+            color: var(--text-muted);
+            line-height: 1.3;
+        }
+        .header-meta strong {
+            color: var(--primary-navy);
+            font-weight: 700;
+        }
+        .badge-specialty {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 8px;
+            font-weight: 800;
+            margin-top: 2px;
+            border: 1px solid #fde68a;
+        }
+
+        /* FOOTER DE PÁGINA */
+        .page-footer-strip {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #cbd5e1;
+            padding-top: 5px;
+            margin-top: 4px;
+            font-size: 8px;
+            color: #64748b;
+        }
+        .page-footer-strip strong {
+            color: var(--primary-navy);
+        }
+
+        /* SECCIÓN */
+        .section-banner {
+            border-left: 4px solid var(--accent-amber);
+            padding-left: 10px;
+            margin-bottom: 8px;
+        }
+        .section-banner h2 {
+            font-size: 13.5px;
+            font-weight: 900;
+            color: var(--primary-navy);
+            letter-spacing: -0.2px;
+        }
+        .section-banner span {
+            font-size: 8px;
+            font-weight: 700;
+            color: var(--accent-amber);
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            display: block;
+        }
+
+        /* PÁGINA 1: CARTA & VALOR */
+        .recipient-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid var(--primary-navy);
+            padding: 7px 12px;
+            border-radius: 6px;
+            margin-bottom: 7px;
+        }
+        .recipient-card .tag {
+            font-size: 7.5px;
+            font-weight: 800;
+            color: var(--accent-amber);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+        .recipient-card h3 {
+            font-size: 11px;
+            font-weight: 900;
+            color: var(--primary-navy);
+        }
+        .recipient-card p {
+            font-size: 8.5px;
+            color: var(--text-muted);
+        }
+
+        .subject-bar {
+            background: var(--primary-navy);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 8.8px;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 7px;
+        }
+
+        .letter-content {
+            font-size: 8.8px;
+            color: #334155;
+            line-height: 1.42;
+            text-align: justify;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 7px;
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 7px;
+        }
+        .pillar-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-top: 3px solid var(--accent-amber);
+            padding: 8px;
+            border-radius: 6px;
+        }
+        .pillar-card h4 {
+            font-size: 8.8px;
+            font-weight: 800;
+            color: var(--primary-navy);
+            margin-bottom: 3px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .pillar-card p {
+            font-size: 7.8px;
+            color: #64748b;
+            line-height: 1.3;
+        }
+
+        .seal-signature-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 6px;
+            margin-top: 4px;
+        }
+        .signature-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .signature-img {
+            height: 44px;
+            object-fit: contain;
+        }
+        .doctor-info h5 {
+            font-size: 10px;
+            font-weight: 900;
+            color: var(--primary-navy);
+        }
+        .doctor-info span {
+            font-size: 8px;
+            color: #64748b;
+            display: block;
+        }
+
+        /* PÁGINA 2: FNCLCC & LINAJES */
+        .fnclcc-container {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 10px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 8px 10px;
+            margin-bottom: 8px;
+        }
+        .fnclcc-scores {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            font-size: 7.8px;
+            color: #334155;
+        }
+        .score-item {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            padding: 4px 6px;
+            border-radius: 4px;
+        }
+        .score-item strong {
+            color: var(--primary-navy);
+        }
+        .fnclcc-grades {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            justify-content: center;
+        }
+        .grade-badge-card {
+            border-radius: 5px;
+            padding: 5px 8px;
+            text-align: center;
+        }
+        .grade-1 { background: #dcfce7; border: 1px solid #86efac; color: #166534; }
+        .grade-2 { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; }
+        .grade-3 { background: #fee2e2; border: 1px solid #fca5a5; color: #991b1b; }
+        .grade-badge-card strong { font-size: 9px; display: block; }
+        .grade-badge-card span { font-size: 7px; }
+
+        .lineage-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 7.6px;
+            margin-top: 4px;
+        }
+        .lineage-table th {
+            background: var(--primary-navy);
+            color: white;
+            padding: 4px 6px;
+            text-align: left;
+            font-weight: 700;
+        }
+        .lineage-table td {
+            padding: 4px 6px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #334155;
+            vertical-align: top;
+        }
+        .lineage-table tr:nth-child(even) { background: #f8fafc; }
+
+        /* PÁGINA 3: PANEL IHC & TAT */
+        .ihc-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 7.6px;
+            margin-bottom: 8px;
+        }
+        .ihc-table th {
+            background: var(--primary-navy);
+            color: white;
+            padding: 5px 7px;
+            text-align: left;
+            font-weight: 800;
+        }
+        .ihc-table td {
+            padding: 4px 7px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #334155;
+            vertical-align: top;
+        }
+        .ihc-table tr:hover { background: #fffbeb; }
+        .marker-tag {
+            display: inline-block;
+            background: #0f172a;
+            color: #fbbf24;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 6.8px;
+            padding: 1px 4px;
+            border-radius: 3px;
+            margin: 1px;
+        }
+
+        .tech-showcase-row {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 10px;
+            align-items: center;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 7px 10px;
+            margin-bottom: 7px;
+        }
+        .tech-bullets {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            font-size: 7.8px;
+            color: #334155;
+        }
+        .tech-bullets h4 {
+            font-size: 9px;
+            font-weight: 800;
+            color: var(--primary-navy);
+        }
+
+        .tat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            margin-bottom: 7px;
+        }
+        .tat-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-top: 2.5px solid var(--accent-amber);
+            border-radius: 5px;
+            padding: 5px;
+            text-align: center;
+        }
+        .tat-card span {
+            font-size: 6.8px;
+            color: #64748b;
+            text-transform: uppercase;
+            font-weight: 700;
+            display: block;
+        }
+        .tat-card strong {
+            font-size: 10.5px;
+            font-weight: 900;
+            color: var(--primary-navy);
+            display: block;
+            margin: 1px 0;
+        }
+        .tat-card small {
+            font-size: 6.5px;
+            color: #d97706;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="toolbar no-print">
+        <button class="btn-action" onclick="window.print()" title="Imprimir o Exportar en PDF (A4)">
+            <i class="fas fa-print"></i>
+            <span>Imprimir / Exportar PDF</span>
+        </button>
+        <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Joseph%20Castillo,%20deseo%20coordinar%20estudios%20de%20partes%20blandas%20y%20sarcomas" target="_blank" class="btn-action btn-wa">
+            <i class="fab fa-whatsapp"></i>
+            <span>Interconsulta de Sarcomas</span>
+        </a>
+        <a href="academica.html" class="btn-action btn-back">
+            <i class="fas fa-arrow-left"></i>
+            <span>Volver a Plataforma</span>
+        </a>
+    </div>
+
+    <div class="page-container">
+
+        <!-- ================= PÁGINA 1: PRESENTACIÓN Y VALOR CLÍNICO ================= -->
+        <div class="page">
+            <div>
+                <div class="page-header-strip">
+                    <div class="header-brand">
+                        <img src="logo-jcpathlab.png" alt="JC PATH LAB" class="header-logo" onerror="this.style.display='none'">
+                        <div class="brand-text">
+                            <h1>JC PATH LAB</h1>
+                            <span>División Especializada en Patología de Partes Blandas & Sarcomas</span>
+                        </div>
+                    </div>
+                    <div class="header-meta">
+                        <div><strong>Sede Central:</strong> Lima, Perú</div>
+                        <div><strong>Directorio Médico:</strong> Dr. Joseph C. Castillo Cuenca</div>
+                        <div class="badge-specialty"><i class="fas fa-dna"></i> Centro de Referencia en Tumores Mesenquimales</div>
+                    </div>
+                </div>
+
+                <div class="recipient-card">
+                    <div class="tag">Comunicación Médica Especializada</div>
+                    <h3>A: Médicos Cirujanos Oncólogos, Traumatólogos Ortopédicos y Comités de Tumores</h3>
+                    <p>Referencia de Alta Complejidad en Biopsias por Tru-cut, Resecciones Compartimentales y Márgenes</p>
+                </div>
+
+                <div class="subject-bar">
+                    <span><i class="fas fa-bone"></i> DIAGNÓSTICO INTEGRAL DE TUMORES MESENQUIMALES, SARCOMAS Y PROTOCOLO FNCLCC</span>
+                    <span style="font-family:'JetBrains Mono'; font-size:8px;">REF: PB-SARCOMA-2026</span>
+                </div>
+
+                <div class="letter-content">
+                    <p>
+                        <strong>Estimados Colegas y Equipos Quirúrgicos:</strong> La patología de partes blandas representa uno de los retos diagnósticos más demandantes de la oncología moderna. La coexistencia de más de un centenar de subtipos histológicos morfológicamente superpuestos exige una integración estricta entre macroscopía minuciosa, graduación histológica de la FNCLCC, mapeo de márgenes compartimentales y un panel inmunohistoquímico / molecular dirigido.
+                    </p>
+                    <p>
+                        <strong>JC PATH LAB</strong> pone a su disposición nuestra infraestructura especializada como centro de interconsulta en tumores de tejidos blandos y sarcomas del adulto y pediátricos. Aplicamos con máxima rigurosidad los criterios diagnósticos de la 5.ª Edición de la Clasificación de la OMS y las guías internacionales NCCN / ESMO para el manejo óptimo de piezas operatorias y biopsias cilíndricas tru-cut.
+                    </p>
+                    <p>
+                        Reconocemos que en la cirugía de sarcomas, la distancia milimétrica real del tumor a la fascia profunda no comprometida o al haz neurovascular determina la indicación de radioterapia adyuvante o amputación. Por ello, garantizamos un muestreo tridimensional orientado con tintas, determinación exacta de R0/R1/R2 y soporte continuo en comités multidisciplinarios de tumores (Tumor Boards).
+                    </p>
+                </div>
+
+                <div class="section-banner">
+                    <span>Compromiso Diagnóstico Quirúrgico</span>
+                    <h2>Pilares de Nuestra Práctica en Partes Blandas</h2>
+                </div>
+
+                <div class="pillars-grid">
+                    <div class="pillar-card">
+                        <h4><i class="fas fa-layer-group" style="color:#d97706;"></i> Mapeo Fascial Tridimensional</h4>
+                        <p>Inking multiculor de márgenes quirúrgicos (adventicia vascular, fascia profunda, músculo esquelético y dermis) con medición exacta en milímetros.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <h4><i class="fas fa-chart-line" style="color:#be123c;"></i> Graduación Estricta FNCLCC</h4>
+                        <p>Score francés estandarizado: cuantificación de mitosis en 10 HPF consecutivos, porcentaje real de necrosis tumoral y grado de diferenciación.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <h4><i class="fas fa-microscope" style="color:#0284c7;"></i> Digitalización WSI Multicéntrica</h4>
+                        <p>Whole Slide Imaging en tiempo real para presentación directa en sus ateneos médicos y discusión clínica sin demoras por traslados físicos de láminas.</p>
+                    </div>
+                </div>
+
+                <div style="background:#fffbeb; border:1px solid #fde68a; border-radius:6px; padding:6px 10px; margin-top:4px;">
+                    <div style="font-size:8.5px; font-weight:800; color:#92400e; display:flex; align-items:center; gap:5px; margin-bottom:2px;">
+                        <i class="fas fa-users-medical"></i> Participación Sincrónica en Comités Multidisciplinarios
+                    </div>
+                    <p style="font-size:7.5px; color:#78350f; line-height:1.3;">
+                        Participamos de manera presencial o remota en los comités oncológicos de su clínica u hospital para correlacionar la resonancia magnética prequirúrgica con las secciones de patología, optimizando el tratamiento complementario postoperatorio del paciente.
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <div class="seal-signature-box">
+                    <div class="signature-group">
+                        <img src="firma_sello.png" alt="Firma Dr. Castillo" class="signature-img" onerror="this.style.display='none'">
+                        <div class="doctor-info">
+                            <h5>Dr. Joseph C. Castillo Cuenca</h5>
+                            <span>Médico Especialista en Anatomía Patológica</span>
+                            <span>C.M.P. 56435 • R.N.E. 029505</span>
+                            <span style="color:#d97706; font-weight:700;">Director Médico — JC PATH LAB</span>
+                        </div>
+                    </div>
+                    <div style="text-align:right;">
+                        <div style="font-size:7.5px; color:#64748b;">Coordinación Directa de Sarcomas:</div>
+                        <div style="font-size:9.5px; font-weight:800; color:var(--primary-navy); font-family:'JetBrains Mono';">+51 986 396 733</div>
+                        <div style="font-size:7.5px; color:#d97706; font-weight:700;">oncologia@jcpathlab.com</div>
+                    </div>
+                </div>
+                <div class="page-footer-strip">
+                    <div><strong>JC PATH LAB</strong> • Dossier de Partes Blandas y Sarcomas 2026</div>
+                    <div>Página 1 de 3</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PÁGINA 2: FNCLCC & LINAJES ================= -->
+        <div class="page">
+            <div>
+                <div class="page-header-strip">
+                    <div class="header-brand">
+                        <img src="logo-jcpathlab.png" alt="JC PATH LAB" class="header-logo" onerror="this.style.display='none'">
+                        <div class="brand-text">
+                            <h1>JC PATH LAB</h1>
+                            <span>Sistema de Graduación FNCLCC y Linajes Mesenquimales (OMS)</span>
+                        </div>
+                    </div>
+                    <div class="header-meta">
+                        <div><strong>Referencia:</strong> OMS Tumores de Partes Blandas 5.ª Ed.</div>
+                        <div><strong>Estandarización:</strong> FNCLCC / CAP Soft Tissue Protocol</div>
+                    </div>
+                </div>
+
+                <div class="section-banner">
+                    <span>Estratificación Pronóstica Internacional</span>
+                    <h2>Sistema de Graduación Histológica FNCLCC (Federación Francesa)</h2>
+                </div>
+
+                <div class="fnclcc-container">
+                    <div class="fnclcc-scores">
+                        <div class="score-item">
+                            <strong>1. Diferenciación Tumoral (Score 1 a 3):</strong><br>
+                            • Score 1: Sarcomas que asemejan estrechamente tejido adulto normal (Liposarcoma bien diferenciado).<br>
+                            • Score 2: Sarcomas con tipo histológico certero (Leiomiosarcoma, Liposarcoma mixoide).<br>
+                            • Score 3: Sarcomas indiferenciados, pleomórficos (UPS) o sinoviales bifásicos/pobremente diferenciados.
+                        </div>
+                        <div class="score-item">
+                            <strong>2. Conteo Mitótico por 10 HPF (0.1734 mm² por campo):</strong><br>
+                            • Score 1: 0 a 9 mitosis / 10 HPF.<br>
+                            • Score 2: 10 a 19 mitosis / 10 HPF.<br>
+                            • Score 3: 20 o más mitosis / 10 HPF.
+                        </div>
+                        <div class="score-item">
+                            <strong>3. Necrosis Tumoral:</strong><br>
+                            • Score 0: Ausencia de necrosis tumoral.<br>
+                            • Score 1: Necrosis tumoral microscópica <50% de la superficie tumoral.<br>
+                            • Score 2: Necrosis tumoral confluente o masiva ≥50%.
+                        </div>
+                    </div>
+                    <div class="fnclcc-grades">
+                        <div class="grade-badge-card grade-1">
+                            <strong>GRADO 1 (Bajo Grado)</strong>
+                            <span>Score Total: 2 o 3 puntos</span>
+                            <div style="font-size:6.5px; margin-top:2px;">Bajo riesgo de metástasis a distancia</div>
+                        </div>
+                        <div class="grade-badge-card grade-2">
+                            <strong>GRADO 2 (Grado Intermedio)</strong>
+                            <span>Score Total: 4 o 5 puntos</span>
+                            <div style="font-size:6.5px; margin-top:2px;">Riesgo metastásico moderado</div>
+                        </div>
+                        <div class="grade-badge-card grade-3">
+                            <strong>GRADO 3 (Alto Grado)</strong>
+                            <span>Score Total: 6 a 8 puntos</span>
+                            <div style="font-size:6.5px; margin-top:2px;">Alta agresividad biológica y sistémica</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-banner">
+                    <span>Clasificación Histogenética</span>
+                    <h2>Abordaje por Linaje Tisular y Entidades Clave (OMS)</h2>
+                </div>
+
+                <table class="lineage-table">
+                    <thead>
+                        <tr>
+                            <th style="width:22%;">Linaje Tisular</th>
+                            <th style="width:38%;">Entidades Histológicas Principales</th>
+                            <th style="width:40%;">Criterio Arquitectural y Patognomónico</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Tumores Adipocíticos</strong></td>
+                            <td>
+                                • Lipoma convencional.<br>
+                                • Tumor Lipomatoso Atípico / WDLPS.<br>
+                                • Liposarcoma Mixoide.<br>
+                                • Liposarcoma Pleomórfico y Desdiferenciado.
+                            </td>
+                            <td>
+                                Variación en tamaño de adipocitos, atipia nuclear en septos fibrosos e hiperneocromasia estromal. En mixoide: red capilar en 'alambre de gallinero' y lipoblastos en anillo de sello sobre matriz estromal mixoide.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fibroblásticos & Miofibroblásticos</strong></td>
+                            <td>
+                                • Fascitis nodular (USP6).<br>
+                                • Fibromatosis tipo desmoide.<br>
+                                • Dermatofibrosarcoma protuberans (DFSP).<br>
+                                • Sarcoma Pleomórfico Indiferenciado (UPS).
+                            </td>
+                            <td>
+                                En desmoide: fascículos largos y amplios de fibroblastos uniformes que infiltran músculo estriado sin atipia marcada. En DFSP: patrón estoriforme en 'rueda de carreta' con infiltración grasa en panal de abejas.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Músculo Liso & Vasculares</strong></td>
+                            <td>
+                                • Leiomioma vs Leiomiosarcoma.<br>
+                                • Angiomas, Epitelioide hemangioendotelioma.<br>
+                                • Angiosarcoma óseo y de partes blandas.
+                            </td>
+                            <td>
+                                En leiomiosarcoma: fascículos entrecruzados en ángulo recto con núcleos en 'cigarro habano', atipia nuclear pleomórfica y mitosis atípicas. En angiosarcoma: canales vasculares anastomosados con atipia endotelial marcada.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vaina Nerviosa & GIST</strong></td>
+                            <td>
+                                • Schwannoma (Antoni A/B, Verocay).<br>
+                                • Neurofibroma plexiforme.<br>
+                                • MPNST (Sarcoma vaina nerviosa periférica).<br>
+                                • GIST (Tumor estromal gastrointestinal).
+                            </td>
+                            <td>
+                                Cuerpos de Verocay con empalizada nuclear en Schwannoma. En GIST: células fusiformes o epitelioides en fascículos arremolinados; correlación estricta con índice mitótico por 5 mm² y tamaño.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <div class="page-footer-strip">
+                    <div><strong>JC PATH LAB</strong> • Patología Especializada de Partes Blandas</div>
+                    <div>Página 2 de 3</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PÁGINA 3: PANEL IHC & LOGÍSTICA ================= -->
+        <div class="page">
+            <div>
+                <div class="page-header-strip">
+                    <div class="header-brand">
+                        <img src="logo-jcpathlab.png" alt="JC PATH LAB" class="header-logo" onerror="this.style.display='none'">
+                        <div class="brand-text">
+                            <h1>JC PATH LAB</h1>
+                            <span>Inmunohistoquímica Mesenquimal, Soporte Multidisciplinario y Tiempos</span>
+                        </div>
+                    </div>
+                    <div class="header-meta">
+                        <div><strong>Panel de Anticuerpos:</strong> Alta Fidelidad Diagnóstica</div>
+                        <div><strong>Resolución Quirúrgica:</strong> Margen Microscópico R0/R1/R2</div>
+                    </div>
+                </div>
+
+                <div class="section-banner">
+                    <span>Marcadores Moleculares e Inmunofenotipo</span>
+                    <h2>Panel Especializado de Inmunohistoquímica en Partes Blandas</h2>
+                </div>
+
+                <table class="ihc-table">
+                    <thead>
+                        <tr>
+                            <th style="width:24%;">Biomarcador IHC</th>
+                            <th style="width:36%;">Patrón de Tinción / Especificidad</th>
+                            <th style="width:40%;">Diagnóstico Diferencial Crítico</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="marker-tag">MDM2</span> <span class="marker-tag">CDK4</span></td>
+                            <td>Nuclear difusa (correlato con amplificación 12q13-15)</td>
+                            <td><strong>WDLPS / Liposarcoma Desdiferenciado</strong> (+) vs Lipoma benigno (-) y sarcomas pleomórficos primarios.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="marker-tag">STAT6</span></td>
+                            <td>Nuclear fuerte y difusa (fusión NAB2::STAT6)</td>
+                            <td><strong>Tumor Fibroso Solitario (SFT)</strong> (+) vs Meningioma, Schwanoma y Sarcoma Sinovial (-).</td>
+                        </tr>
+                        <tr>
+                            <td><span class="marker-tag">Beta-Catenina</span></td>
+                            <td>Translocación aberrante intranuclear</td>
+                            <td><strong>Fibromatosis Desmoide</strong> (+) vs Cicatriz hipertrófica, Fascitis nodular y Fibrosarcoma (-).</td>
+                        </tr>
+                        <tr>
+                            <td><span class="marker-tag">CD34</span></td>
+                            <td>Membranal citoplasmática difusa</td>
+                            <td><strong>DFSP</strong> (+ difuso), GIST (+), SFT (+), Hemangiopericitoma vs Leiomiosarcoma (-).</td>
+                        </tr>
+                        <tr>
+                            <td><span class="marker-tag">TLE1</span></td>
+                            <td>Nuclear difusa (>90% de células tumorales)</td>
+                            <td><strong>Sarcoma Sinovial</strong> (+) vs Tumor de vaina nerviosa periférica (MPNST) y carcinomas escamosos.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="marker-tag">CD117</span> <span class="marker-tag">DOG1</span></td>
+                            <td>Membrana y paranuclear en 'dot' (c-kit/anoctamin-1)</td>
+                            <td><strong>GIST</strong> (+ en >95% de casos) vs Leiomioma peritoneal (-), Schwannoma GI (-) y Desmoide (-).</td>
+                        </tr>
+                        <tr>
+                            <td><span class="marker-tag">H3K27me3</span></td>
+                            <td>Pérdida completa de la expresión nuclear</td>
+                            <td><strong>MPNST de alto grado</strong> (pérdida de trimetilación) vs Neurofibroma y Schwannoma benigno (retenida).</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="section-banner">
+                    <span>Soporte Quirúrgico y Logística</span>
+                    <h2>Ecosistema Integral de Respaldo al Cirujano Oncólogo</h2>
+                </div>
+
+                <div class="tech-showcase-row">
+                    <div class="tech-bullets">
+                        <h4><i class="fas fa-microscope" style="color:#d97706;"></i> Muestreo Macroscópico Estandarizado</h4>
+                        <p>Realizamos 1 bloque por centímetro de tumor más muestreo exhaustivo de áreas de transición, necrosis y relación estrecha con márgenes fasciales.</p>
+                        <p><strong>Correlación con RM:</strong> Cotejamos la imagen radiológica previa al corte de la pieza para localizar el lecho de la biopsia percutánea anterior.</p>
+                    </div>
+                    <div style="background:#071527; padding:8px 10px; border-radius:6px; color:white; font-size:7.5px; display:flex; flex-direction:column; gap:4px;">
+                        <div style="font-weight:800; color:#fbbf24; font-size:8.5px;"><i class="fas fa-file-medical"></i> Informe Sinóptico de Alta Calidad</div>
+                        <div>• Estado de márgenes con distancia milimétrica real a la fascia más cercana.</div>
+                        <div>• Porcentaje histológico de respuesta a quimioterapia neoadyuvante.</div>
+                        <div>• Disponibilidad de bloques para envío de segundas opiniones internacionales.</div>
+                    </div>
+                </div>
+
+                <div class="section-banner">
+                    <span>Tiempos de Respuesta Quirúrgica</span>
+                    <h2>Tiempos de Entrega Estandarizados (TAT)</h2>
+                </div>
+
+                <div class="tat-grid">
+                    <div class="tat-card">
+                        <span>Biopsia Tru-Cut</span>
+                        <strong>24 a 48 h</strong>
+                        <small>H&E Preliminar</small>
+                    </div>
+                    <div class="tat-card">
+                        <span>Panel IHC Completo</span>
+                        <strong>3 a 4 días</strong>
+                        <small>MDM2 / STAT6 / TLE1</small>
+                    </div>
+                    <div class="tat-card">
+                        <span>Pieza Compartimental</span>
+                        <strong>4 a 5 días</strong>
+                        <small>Mapeo 3D de Márgenes</small>
+                    </div>
+                    <div class="tat-card" style="border-top-color:#be123c;">
+                        <span style="color:#be123c;">Urgencia Quirúrgica</span>
+                        <strong style="color:#991b1b;">24 a 36 h</strong>
+                        <small style="color:#991b1b;">Coordinación Personal</small>
+                    </div>
+                </div>
+
+                <div style="background:#f1f5f9; border:1px solid #cbd5e1; border-radius:6px; padding:6px 10px; display:flex; justify-content:space-between; align-items:center;">
+                    <div style="font-size:8px; color:#334155;">
+                        <strong>Logística Especializada de Piezas Quirúrgicas:</strong> Brindamos frascos herméticos de gran volumen con formol tamponado para resecciones en bloque en sala de operaciones.
+                    </div>
+                    <a href="https://wa.me/51986396733?text=Deseo%20coordinar%20el%20envio%20de%20una%20pieza%20de%20partes%20blandas" target="_blank" style="background:#16a34a; color:white; padding:4px 10px; border-radius:15px; font-size:7.5px; font-weight:800; text-decoration:none; display:flex; align-items:center; gap:4px;">
+                        <i class="fab fa-whatsapp"></i> Coordinar Entrega de Pieza
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <div class="page-footer-strip">
+                    <div><strong>JC PATH LAB</strong> • Consultas y Recepción: Central (+51) 986 396 733</div>
+                    <div>Página 3 de 3</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

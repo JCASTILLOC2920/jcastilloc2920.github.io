@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brochure Oficial de Dermatopatología Quirúrgica y Oncológica | JC PATH LAB</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700;800&family=Outfit:wght@500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 0;
+        }
+        :root {
+            --primary-navy: #071527;
+            --deep-blue: #0a2540;
+            --accent-teal: #0d9488;
+            --accent-cyan: #0284c7;
+            --accent-glow: #38bdf8;
+            --accent-emerald: #059669;
+            --accent-rose: #e11d48;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --bg-light: #f8fafc;
+            --border-color: #e2e8f0;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #1e293b;
+            color: var(--text-dark);
+            line-height: 1.34;
+            -webkit-font-smoothing: antialiased;
+        }
+        .page-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 24px 0;
+            gap: 26px;
+        }
+        .page {
+            width: 210mm;
+            height: 297mm;
+            background: #ffffff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            page-break-after: always;
+            page-break-inside: avoid;
+            padding: 12mm 16mm 10mm 16mm;
+        }
+        @media print {
+            body { background: transparent; }
+            .page-container { padding: 0; gap: 0; }
+            .page { box-shadow: none; margin: 0; width: 210mm; height: 297mm; }
+            .no-print { display: none !important; }
+        }
+
+        /* TOOLBAR FLOTANTE */
+        .toolbar {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            z-index: 9999;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 8px 18px;
+            border-radius: 40px;
+            display: flex;
+            gap: 10px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.45);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .btn-action {
+            background: #0284c7;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .btn-action:hover {
+            background: #0369a1;
+            transform: translateY(-1px);
+        }
+        .btn-wa { background: #16a34a; }
+        .btn-wa:hover { background: #15803d; }
+        .btn-back { background: #334155; }
+        .btn-back:hover { background: #475569; }
+
+        /* HEADER DE CADA PÁGINA */
+        .page-header-strip {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1.5px solid #0f172a;
+            padding-bottom: 6px;
+            margin-bottom: 8px;
+        }
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+        .header-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+        .brand-text h1 {
+            font-size: 15px;
+            font-weight: 900;
+            color: var(--primary-navy);
+            letter-spacing: -0.4px;
+            font-family: 'Outfit', sans-serif;
+        }
+        .brand-text span {
+            font-size: 8px;
+            font-weight: 700;
+            color: var(--accent-teal);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            display: block;
+        }
+        .header-meta {
+            text-align: right;
+            font-size: 8px;
+            color: var(--text-muted);
+            line-height: 1.3;
+        }
+        .header-meta strong {
+            color: var(--primary-navy);
+            font-weight: 700;
+        }
+        .badge-specialty {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #ccfbf1;
+            color: #0f766e;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 8px;
+            font-weight: 800;
+            margin-top: 2px;
+            border: 1px solid #99f6e4;
+        }
+
+        /* FOOTER DE CADA PÁGINA */
+        .page-footer-strip {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #cbd5e1;
+            padding-top: 5px;
+            margin-top: 4px;
+            font-size: 8px;
+            color: #64748b;
+        }
+        .page-footer-strip strong {
+            color: var(--primary-navy);
+        }
+
+        /* ESTILOS COMUNES */
+        .section-banner {
+            border-left: 4px solid var(--accent-teal);
+            padding-left: 10px;
+            margin-bottom: 8px;
+        }
+        .section-banner h2 {
+            font-size: 13.5px;
+            font-weight: 900;
+            color: var(--primary-navy);
+            letter-spacing: -0.2px;
+        }
+        .section-banner span {
+            font-size: 8px;
+            font-weight: 700;
+            color: var(--accent-teal);
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            display: block;
+        }
+
+        /* PÁGINA 1: CARTA & PILARES */
+        .recipient-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid var(--primary-navy);
+            padding: 7px 12px;
+            border-radius: 6px;
+            margin-bottom: 7px;
+        }
+        .recipient-card .tag {
+            font-size: 7.5px;
+            font-weight: 800;
+            color: var(--accent-teal);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+        .recipient-card h3 {
+            font-size: 11px;
+            font-weight: 900;
+            color: var(--primary-navy);
+        }
+        .recipient-card p {
+            font-size: 8.5px;
+            color: var(--text-muted);
+        }
+
+        .subject-bar {
+            background: var(--primary-navy);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 8.8px;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 7px;
+        }
+
+        .letter-content {
+            font-size: 8.8px;
+            color: #334155;
+            line-height: 1.42;
+            text-align: justify;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 7px;
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 7px;
+        }
+        .pillar-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-top: 3px solid var(--accent-teal);
+            padding: 8px;
+            border-radius: 6px;
+        }
+        .pillar-card h4 {
+            font-size: 8.8px;
+            font-weight: 800;
+            color: var(--primary-navy);
+            margin-bottom: 3px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .pillar-card p {
+            font-size: 7.8px;
+            color: #64748b;
+            line-height: 1.3;
+        }
+
+        .seal-signature-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 6px;
+            margin-top: 4px;
+        }
+        .signature-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .signature-img {
+            height: 44px;
+            object-fit: contain;
+        }
+        .doctor-info h5 {
+            font-size: 10px;
+            font-weight: 900;
+            color: var(--primary-navy);
+        }
+        .doctor-info span {
+            font-size: 8px;
+            color: #64748b;
+            display: block;
+        }
+
+        /* PÁGINA 2: ALGORITMOS & PROTOCOLOS */
+        .derm-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 9px;
+            margin-bottom: 9px;
+        }
+        .derm-box {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 7px 9px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .derm-box-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+            padding-bottom: 3px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .derm-box-header h3 {
+            font-size: 9.5px;
+            font-weight: 800;
+            color: var(--primary-navy);
+        }
+        .badge-cat {
+            font-size: 7px;
+            font-weight: 800;
+            padding: 1px 6px;
+            border-radius: 8px;
+            text-transform: uppercase;
+        }
+        .cat-inflam { background: #e0f2fe; color: #0369a1; }
+        .cat-onco { background: #ffe4e6; color: #be123c; }
+
+        .feature-list {
+            list-style: none;
+            font-size: 7.8px;
+            color: #475569;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 4px;
+            line-height: 1.25;
+        }
+        .feature-list li i {
+            color: var(--accent-teal);
+            font-size: 7px;
+            margin-top: 2px;
+        }
+
+        .protocol-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 7.6px;
+            margin-top: 4px;
+        }
+        .protocol-table th {
+            background: #0f172a;
+            color: white;
+            padding: 4px 6px;
+            text-align: left;
+            font-weight: 700;
+        }
+        .protocol-table td {
+            padding: 4px 6px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #334155;
+            vertical-align: top;
+        }
+        .protocol-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        /* PÁGINA 3: INMUNOHISTOQUÍMICA & APP & TAT */
+        .ihc-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 7.6px;
+            margin-bottom: 8px;
+        }
+        .ihc-table th {
+            background: var(--primary-navy);
+            color: white;
+            padding: 5px 7px;
+            text-align: left;
+            font-weight: 800;
+        }
+        .ihc-table td {
+            padding: 4px 7px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #334155;
+            vertical-align: top;
+        }
+        .ihc-table tr:hover { background: #f0fdfa; }
+        .marker-tag {
+            display: inline-block;
+            background: #0f172a;
+            color: #38bdf8;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 6.8px;
+            padding: 1px 4px;
+            border-radius: 3px;
+            margin: 1px;
+        }
+
+        .tech-showcase-row {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 10px;
+            align-items: center;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 7px 10px;
+            margin-bottom: 7px;
+        }
+        .tech-bullets {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            font-size: 7.8px;
+            color: #334155;
+        }
+        .tech-bullets h4 {
+            font-size: 9px;
+            font-weight: 800;
+            color: var(--primary-navy);
+        }
+
+        .tat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            margin-bottom: 7px;
+        }
+        .tat-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-top: 2.5px solid var(--accent-teal);
+            border-radius: 5px;
+            padding: 5px;
+            text-align: center;
+        }
+        .tat-card span {
+            font-size: 6.8px;
+            color: #64748b;
+            text-transform: uppercase;
+            font-weight: 700;
+            display: block;
+        }
+        .tat-card strong {
+            font-size: 10.5px;
+            font-weight: 900;
+            color: var(--primary-navy);
+            display: block;
+            margin: 1px 0;
+        }
+        .tat-card small {
+            font-size: 6.5px;
+            color: #0d9488;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="toolbar no-print">
+        <button class="btn-action" onclick="window.print()" title="Imprimir o Exportar en PDF (A4)">
+            <i class="fas fa-print"></i>
+            <span>Imprimir / Exportar PDF</span>
+        </button>
+        <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Joseph%20Castillo,%20deseo%20coordinar%20estudios%20de%20dermatopatologia" target="_blank" class="btn-action btn-wa">
+            <i class="fab fa-whatsapp"></i>
+            <span>Interconsulta Directa</span>
+        </a>
+        <a href="academica.html" class="btn-action btn-back">
+            <i class="fas fa-arrow-left"></i>
+            <span>Volver a Plataforma</span>
+        </a>
+    </div>
+
+    <div class="page-container">
+
+        <!-- ================= PÁGINA 1: PRESENTACIÓN Y VALOR CLÍNICO ================= -->
+        <div class="page">
+            <div>
+                <div class="page-header-strip">
+                    <div class="header-brand">
+                        <img src="logo-jcpathlab.png" alt="JC PATH LAB" class="header-logo" onerror="this.style.display='none'">
+                        <div class="brand-text">
+                            <h1>JC PATH LAB</h1>
+                            <span>Instituto Especializado en Anatomía Patológica & Dermatopatología</span>
+                        </div>
+                    </div>
+                    <div class="header-meta">
+                        <div><strong>Sede Central:</strong> Lima, Perú</div>
+                        <div><strong>Directorio Médico:</strong> Dr. Joseph C. Castillo Cuenca</div>
+                        <div class="badge-specialty"><i class="fas fa-shield-alt"></i> División Dermatopatología de Precisión</div>
+                    </div>
+                </div>
+
+                <div class="recipient-card">
+                    <div class="tag">Comunicación Oficial para Especialistas</div>
+                    <h3>A: Médicos Dermatólogos, Cirujanos Plásticos y Oncólogos Quirúrgicos</h3>
+                    <p>Referencia Oficial para Manejo Diagnóstico de Biopsias de Piel y Cirugía de Márgenes</p>
+                </div>
+
+                <div class="subject-bar">
+                    <span><i class="fas fa-microscope"></i> SERVICIOS DE ALTO VALOR EN DERMATOPATOLOGÍA QUIRÚRGICA, INFLAMATORIA Y ONCOLÓGICA</span>
+                    <span style="font-family:'JetBrains Mono'; font-size:8px;">REF: DERM-2026-JC</span>
+                </div>
+
+                <div class="letter-content">
+                    <p>
+                        <strong>Estimados Colegas y Especialistas:</strong> En la dermatología contemporánea, la toma de decisiones clínicas y quirúrgicas depende críticamente de una biopsia de piel interpretada con máximo rigor histopatológico. Un margen libre milimétrico, una adecuada correlación clinicopatológica y la determinación exacta del espesor de invasión transforman por completo el pronóstico de supervivencia y la radicalidad quirúrgica del paciente.
+                    </p>
+                    <p>
+                        <strong>JC PATH LAB</strong> pone a disposición de su práctica privada y hospitalaria nuestra infraestructura de <em>Dermatopatología Diagnóstica de Vanguardia</em>. Integramos los criterios de la 11.ª Edición de Robbins, protocolos internacionales del CAP (College of American Pathologists) y la clasificación de la OMS para biopsias por punch, shave, escisión elíptica y ampliaciones de márgenes oncológicos.
+                    </p>
+                    <p>
+                        Nuestro compromiso es superar las limitaciones de los laboratorios tradicionales: garantizamos procesamiento histológico estandarizado con orientación espacial rigurosa de márgenes 3D, digitalización de láminas en Whole Slide Imaging (WSI) y entrega directa de informes diagnósticos al aplicativo móvil del especialista, permitiendo discusión de casos en tiempo real mediante WhatsApp.
+                    </p>
+                </div>
+
+                <div class="section-banner">
+                    <span>Pilares de Diferenciación</span>
+                    <h2>Ventajas Competitivas para su Paciente y su Consultorio</h2>
+                </div>
+
+                <div class="pillars-grid">
+                    <div class="pillar-card">
+                        <h4><i class="fas fa-ruler-combined" style="color:#0d9488;"></i> Mapeo 3D de Márgenes</h4>
+                        <p>Orientación con tintas quirúrgicas de múltiples colores (superior, inferior, lateral, profundo). Medición micrométrica precisa para carcinoma basocelular y epidermoide.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <h4><i class="fas fa-laptop-medical" style="color:#0284c7;"></i> Digitalización WSI</h4>
+                        <p>Escaneo de cortes histológicos completos en alta definición para discusión en comités oncológicos o visualización panorámica y celular desde su celular.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <h4><i class="fas fa-dna" style="color:#e11d48;"></i> Inmunohistoquímica Rápida</h4>
+                        <p>Panel completo para melanocíticos (Melan-A, SOX-10, PRAME), queratinocíticos (p63, BerEP4) y partes blandas dérmicas (CD34 para DFSP) con tiempos récord.</p>
+                    </div>
+                </div>
+
+                <div style="background:#f0fdfa; border:1px solid #99f6e4; border-radius:6px; padding:6px 10px; margin-top:4px;">
+                    <div style="font-size:8.5px; font-weight:800; color:#0f766e; display:flex; align-items:center; gap:5px; margin-bottom:2px;">
+                        <i class="fas fa-check-circle"></i> Protocolo de Correlación Clinicopatológica Continua
+                    </div>
+                    <p style="font-size:7.5px; color:#134e4a; line-height:1.3;">
+                        Recibimos fotografías clínicas y dermatoscópicas directamente vía digital para fusionar los hallazgos macroscópicos con la arquitectura tisular, resolviendo casos desafiantes de erupciones liquenoides, alopecias cicatriciales y lesiones melanocíticas de potencial maligno incierto.
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <div class="seal-signature-box">
+                    <div class="signature-group">
+                        <img src="firma_sello.png" alt="Firma Dr. Castillo" class="signature-img" onerror="this.style.display='none'">
+                        <div class="doctor-info">
+                            <h5>Dr. Joseph C. Castillo Cuenca</h5>
+                            <span>Médico Especialista en Anatomía Patológica</span>
+                            <span>C.M.P. 56435 • R.N.E. 029505</span>
+                            <span style="color:#0d9488; font-weight:700;">Director Médico — JC PATH LAB</span>
+                        </div>
+                    </div>
+                    <div style="text-align:right;">
+                        <div style="font-size:7.5px; color:#64748b;">Canal de Coordinación Médica:</div>
+                        <div style="font-size:9.5px; font-weight:800; color:var(--primary-navy); font-family:'JetBrains Mono';">+51 986 396 733</div>
+                        <div style="font-size:7.5px; color:#0d9488; font-weight:700;">atencion@jcpathlab.com</div>
+                    </div>
+                </div>
+                <div class="page-footer-strip">
+                    <div><strong>JC PATH LAB</strong> • Dossier Técnico de Dermatopatología 2026</div>
+                    <div>Página 1 de 3</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PÁGINA 2: PROTOCOLOS DIAGNÓSTICOS ================= -->
+        <div class="page">
+            <div>
+                <div class="page-header-strip">
+                    <div class="header-brand">
+                        <img src="logo-jcpathlab.png" alt="JC PATH LAB" class="header-logo" onerror="this.style.display='none'">
+                        <div class="brand-text">
+                            <h1>JC PATH LAB</h1>
+                            <span>Algoritmos Diagnósticos y Criterios Histopatológicos</span>
+                        </div>
+                    </div>
+                    <div class="header-meta">
+                        <div><strong>Referencia Normativa:</strong> Robbins 11.ª Ed. / OMS Piel 5.ª Ed.</div>
+                        <div><strong>Estandarización:</strong> College of American Pathologists (CAP)</div>
+                    </div>
+                </div>
+
+                <div class="section-banner">
+                    <span>Abordaje Sistemático</span>
+                    <h2>Dermatopatología Inflamatoria & Patrones de Ackerman y McKee</h2>
+                </div>
+
+                <div class="derm-grid">
+                    <div class="derm-box">
+                        <div class="derm-box-header">
+                            <h3>1. Dermatitis de Interfaz</h3>
+                            <span class="badge-cat cat-inflam">Patrón Tisular</span>
+                        </div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-caret-right"></i> <strong>Variante vacuolar:</strong> Lupus eritematoso, eritema multiforme, toxicodermias.</li>
+                            <li><i class="fas fa-caret-right"></i> <strong>Variante liquenoide:</strong> Liquen plano (hipergranulosis en cuña, papilas en sierra, banda linfoide densa y cuerpos de Civatte).</li>
+                            <li><i class="fas fa-caret-right"></i> <strong>Reporte:</strong> Grado de apoptosis basal y daño de membrana basal.</li>
+                        </ul>
+                    </div>
+
+                    <div class="derm-box">
+                        <div class="derm-box-header">
+                            <h3>2. Dermatitis Espongiótica</h3>
+                            <span class="badge-cat cat-inflam">Edema Intercelular</span>
+                        </div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-caret-right"></i> <strong>Eccema / Dermatitis de contacto:</strong> Puentes intercelulares distendidos, microvesículas y eosinófilos dérmicos.</li>
+                            <li><i class="fas fa-caret-right"></i> <strong>Pitiriasis rosada:</strong> Paraqueratosis en montículos y microespongiosis focal.</li>
+                            <li><i class="fas fa-caret-right"></i> <strong>Reporte:</strong> Agudeza de la fase (aguda, subaguda, liquenificada).</li>
+                        </ul>
+                    </div>
+
+                    <div class="derm-box">
+                        <div class="derm-box-header">
+                            <h3>3. Patrón Psoriasiforme</h3>
+                            <span class="badge-cat cat-inflam">Hiperplasia Regular</span>
+                        </div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-caret-right"></i> <strong>Psoriasis vulgar:</strong> Elongación regular de crestas epiteliales en 'palillo de tambor', hipogranulosis y microabscesos de Munro.</li>
+                            <li><i class="fas fa-caret-right"></i> <strong>Diagnóstico diferencial:</strong> Tiña incógnita (tinción PAS de rutina en estrato córneo), dermatofitosis y sífilis secundaria.</li>
+                        </ul>
+                    </div>
+
+                    <div class="derm-box">
+                        <div class="derm-box-header">
+                            <h3>4. Paniculitis & Vasculitis</h3>
+                            <span class="badge-cat cat-inflam">Hipodermis & Vasos</span>
+                        </div>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-caret-right"></i> <strong>Septal:</strong> Eritema nodoso (fibrosis septal, histiocitos de Miescher, sin vasculitis verdadera).</li>
+                            <li><i class="fas fa-caret-right"></i> <strong>Lobulillar:</strong> Eritema indurado de Bazin (necrosis caseosa), lupus profundo.</li>
+                            <li><i class="fas fa-caret-right"></i> <strong>Vasculitis leucocitoclástica:</strong> Polvo nuclear, necrosis fibrinoide y extravasación eritrocitaria.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section-banner">
+                    <span>Protocolos Oncológicos Quirúrgicos</span>
+                    <h2>Oncología Cutánea y Sinóptico de Melanoma Maligno (CAP)</h2>
+                </div>
+
+                <table class="protocol-table">
+                    <thead>
+                        <tr>
+                            <th style="width:25%;">Patología Oncológica</th>
+                            <th style="width:40%;">Parámetros Histopatológicos Críticos Reportados</th>
+                            <th style="width:35%;">Implicancia Clínica y Quirúrgica</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Carcinoma Basocelular (CBC)</strong></td>
+                            <td>
+                                • Subtipo: Nodular, infiltrativo, morfeiforme, micronodular, basoescamoso.<br>
+                                • Empalizada periférica, retracción estromal artefactual.<br>
+                                • Invasión perineural (IPN) y compromiso de planos profundos.
+                            </td>
+                            <td>
+                                Los subtipos morfeiforme e infiltrativo conllevan alto riesgo de recidiva local; definen márgenes de reescisión de 4 mm a 10 mm o evaluación micrográfica.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Carcinoma Epidermoide (CCE)</strong></td>
+                            <td>
+                                • Grado histológico (bien, mod, indiferenciado según queratinización).<br>
+                                • Espesor tumoral (mm) y nivel de Clark (compromiso de hipodermis).<br>
+                                • Invasión linfovascular (ILV) y neurotropismo perineural.
+                            </td>
+                            <td>
+                                Tumores >2 mm de espesor o con neurotropismo clasifican como alto riesgo por NCCN y ameritan etapificación ganglionar locorregional.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Melanoma Maligno (Protocolo CAP Completo)</strong></td>
+                            <td>
+                                • <strong>Espesor de Breslow micrométrico:</strong> Medido con micrómetro calibrado desde el estrato granuloso hasta la célula tumoral más profunda.<br>
+                                • <strong>Ulceración:</strong> Presente / ausente y extensión en mm.<br>
+                                • <strong>Tasa mitótica:</strong> Mitosis por mm² en la dermis tumoral.<br>
+                                • <strong>Microsatelitosis:</strong> Nidos tumorales discontinuos >0.05 mm.<br>
+                                • <strong>Fase de crecimiento:</strong> Radial vs vertical.<br>
+                                • <strong>Infiltrado TILs:</strong> Presente, concurrido o ausente.<br>
+                                • <strong>Márgenes quirúrgicos:</strong> Distancia exacta a borde lateral y profundo.
+                            </td>
+                            <td>
+                                El espesor de Breslow define la necesidad de biopsia de ganglio centinela (SLNB en Breslow >0.8 mm o <0.8 mm con ulceración) y determina la ampliación definitiva del margen quirúrgico (1 cm o 2 cm).
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <div class="page-footer-strip">
+                    <div><strong>JC PATH LAB</strong> • Protocolos de Anatomía Patológica Cutánea</div>
+                    <div>Página 2 de 3</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PÁGINA 3: INMUNOHISTOQUÍMICA & APP & TAT ================= -->
+        <div class="page">
+            <div>
+                <div class="page-header-strip">
+                    <div class="header-brand">
+                        <img src="logo-jcpathlab.png" alt="JC PATH LAB" class="header-logo" onerror="this.style.display='none'">
+                        <div class="brand-text">
+                            <h1>JC PATH LAB</h1>
+                            <span>Inmunohistoquímica Cutánea, Plataforma Digital y Tiempos de Entrega</span>
+                        </div>
+                    </div>
+                    <div class="header-meta">
+                        <div><strong>Laboratorio Automatizado:</strong> Ventana Benchmark / Dako</div>
+                        <div><strong>Entrega Móvil:</strong> App JC PATH LAB para Dermatólogos</div>
+                    </div>
+                </div>
+
+                <div class="section-banner">
+                    <span>Biomarcadores de Precisión</span>
+                    <h2>Panel Especializado de Inmunohistoquímica (IHC) en Piel</h2>
+                </div>
+
+                <table class="ihc-table">
+                    <thead>
+                        <tr>
+                            <th style="width:22%;">Panel / Diagnóstico</th>
+                            <th style="width:38%;">Anticuerpos y Biomarcadores Clave</th>
+                            <th style="width:40%;">Utilidad Diagnóstica y Diagnóstico Diferencial</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Panel Melanoma & Nevos Atípicos</strong></td>
+                            <td>
+                                <span class="marker-tag">Melan-A</span>
+                                <span class="marker-tag">SOX-10</span>
+                                <span class="marker-tag">HMB-45</span>
+                                <span class="marker-tag">PRAME</span>
+                                <span class="marker-tag">Ki-67</span>
+                                <span class="marker-tag">p16</span>
+                            </td>
+                            <td>
+                                <strong>PRAME:</strong> Expresión nuclear difusa (>75%) apoya malignidad en lesiones atípicas limítrofes.<br>
+                                <strong>HMB-45:</strong> Pérdida de gradiente en la base del nido confirma invasión.<br>
+                                <strong>Ki-67:</strong> Cuantificación de índice mitótico dérmico.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Carcinoma Basocelular vs Epidermoide vs Anexial</strong></td>
+                            <td>
+                                <span class="marker-tag">BerEP4</span>
+                                <span class="marker-tag">EMA</span>
+                                <span class="marker-tag">p63</span>
+                                <span class="marker-tag">p40</span>
+                                <span class="marker-tag">CK7</span>
+                                <span class="marker-tag">CD10</span>
+                            </td>
+                            <td>
+                                <strong>BerEP4 (+) / EMA (-):</strong> Carcinoma basocelular.<br>
+                                <strong>BerEP4 (-) / EMA (+):</strong> Carcinoma epidermoide.<br>
+                                <strong>CK7 / CEA:</strong> Diferenciación por carcinomas de anexos ecrinos/apocrinos.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>DFSP vs Dermatofibroma (Partes Blandas Cutáneas)</strong></td>
+                            <td>
+                                <span class="marker-tag">CD34</span>
+                                <span class="marker-tag">Factor XIIIa</span>
+                                <span class="marker-tag">CD68</span>
+                                <span class="marker-tag">Ki-67</span>
+                            </td>
+                            <td>
+                                <strong>Dermatofibrosarcoma protuberans:</strong> CD34 difuso y fuerte (+), Factor XIIIa (-).<br>
+                                <strong>Dermatofibroma (HCL):</strong> Factor XIIIa (+), CD34 negativo en el centro de la lesión.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Linfomas Cutáneos (Micosis Fungoide vs Pseudolinfoma)</strong></td>
+                            <td>
+                                <span class="marker-tag">CD3</span>
+                                <span class="marker-tag">CD4</span>
+                                <span class="marker-tag">CD8</span>
+                                <span class="marker-tag">CD20</span>
+                                <span class="marker-tag">CD30</span>
+                                <span class="marker-tag">CD56</span>
+                            </td>
+                            <td>
+                                Detección de epidermotropismo de linfocitos T atípicos CD4+ con pérdida de CD7 en Micosis Fungoide temprana; caracterización de trastornos linfoproliferativos CD30+.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="section-banner">
+                    <span>Ecosistema de Entrega Rápida</span>
+                    <h2>Infraestructura Digital y App Móvil para su Teléfono</h2>
+                </div>
+
+                <div class="tech-showcase-row">
+                    <div class="tech-bullets">
+                        <h4><i class="fas fa-mobile-screen-button" style="color:#0284c7;"></i> Informes Notificados Automáticamente</h4>
+                        <p>Apenas el informe es firmado por el Dr. Castillo, usted recibe una notificación directa a su WhatsApp y a su panel privado con el PDF firmado digitalmente.</p>
+                        <p><strong>Visor de Láminas WSI Integrado:</strong> Acceda con un clic a la microfotografía del caso en aumentos 4X, 10X y 40X para mostrar al paciente o debatir con el cirujano.</p>
+                    </div>
+                    <div style="background:#071527; padding:8px 10px; border-radius:6px; color:white; font-size:7.5px; display:flex; flex-direction:column; gap:4px;">
+                        <div style="font-weight:800; color:#38bdf8; font-size:8.5px;"><i class="fas fa-lock"></i> Trazabilidad y Seguridad de Datos</div>
+                        <div>• Identificación unívoca con código de barras por casete y lámina.</div>
+                        <div>• Resguardo en la nube con acceso permanente a históricos de biopsias.</div>
+                        <div>• Interfaz optimizada para teléfonos iPhone y Android.</div>
+                    </div>
+                </div>
+
+                <div class="section-banner">
+                    <span>Compromiso de Tiempos de Respuesta</span>
+                    <h2>Tiempos de Entrega Diagnóstica (TAT Estandarizado)</h2>
+                </div>
+
+                <div class="tat-grid">
+                    <div class="tat-card">
+                        <span>Biopsia Punch / Shave</span>
+                        <strong>24 a 48 h</strong>
+                        <small>H&E Rutinaria</small>
+                    </div>
+                    <div class="tat-card">
+                        <span>Escisión con Márgenes</span>
+                        <strong>48 a 72 h</strong>
+                        <small>Mapeo 3D Completo</small>
+                    </div>
+                    <div class="tat-card">
+                        <span>Panel IHC de Melanoma</span>
+                        <strong>3 a 4 días</strong>
+                        <small>PRAME / SOX-10 / Ki-67</small>
+                    </div>
+                    <div class="tat-card" style="border-top-color:#e11d48;">
+                        <span style="color:#e11d48;">Biopsia Urgente</span>
+                        <strong style="color:#be123c;">24 horas</strong>
+                        <small style="color:#be123c;">Coordinación Directa</small>
+                    </div>
+                </div>
+
+                <div style="background:#f1f5f9; border:1px solid #cbd5e1; border-radius:6px; padding:6px 10px; display:flex; justify-content:space-between; align-items:center;">
+                    <div style="font-size:8px; color:#334155;">
+                        <strong>Servicio de Recojo Clínico Motorizado:</strong> Disponemos de recojo de frascos con formol tamponado al 10% en su consultorio o clínica en Lima Metropolitana.
+                    </div>
+                    <a href="https://wa.me/51986396733?text=Deseo%20solicitar%20el%20recojo%20de%20biopsias%20de%20piel" target="_blank" style="background:#16a34a; color:white; padding:4px 10px; border-radius:15px; font-size:7.5px; font-weight:800; text-decoration:none; display:flex; align-items:center; gap:4px;">
+                        <i class="fab fa-whatsapp"></i> Solicitar Frascos / Recojo
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <div class="page-footer-strip">
+                    <div><strong>JC PATH LAB</strong> • Consultas y Recepción: Central (+51) 986 396 733</div>
+                    <div>Página 3 de 3</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
