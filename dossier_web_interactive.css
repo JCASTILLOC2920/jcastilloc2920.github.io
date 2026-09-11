@@ -1,0 +1,1700 @@
+/* ==========================================================================
+   JC PATH LAB • ESTILOS DE LA PLATAFORMA WEB INTERACTIVA MULTIESPECIALIDAD
+   ========================================================================== */
+
+:root {
+    --primary-navy: #071527;
+    --deep-blue: #0a192f;
+    --surface-dark: #0f172a;
+    --surface-card: rgba(15, 23, 42, 0.85);
+    --accent-cyan: #0284c7;
+    --accent-sky: #38bdf8;
+    --accent-teal: #0d9488;
+    --accent-emerald: #10b981;
+    --accent-purple: #6366f1;
+    --accent-amber: #f59e0b;
+    --accent-rose: #ef4444;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --border-glass: rgba(56, 189, 248, 0.18);
+    --border-light: rgba(255, 255, 255, 0.1);
+    --glow-cyan: rgba(56, 189, 248, 0.35);
+    --glow-emerald: rgba(16, 185, 129, 0.3);
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 22px;
+    --radius-xl: 32px;
+    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #030712;
+    color: var(--text-primary);
+    line-height: 1.5;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Tipografía Monospace para Datos Patológicos */
+.font-mono {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* Efectos de Iluminación Ambiental */
+.ambient-glow {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(140px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.15;
+}
+.glow-top-left {
+    top: -200px;
+    left: -200px;
+    background: radial-gradient(circle, #0284c7, transparent 70%);
+}
+.glow-mid-right {
+    top: 40%;
+    right: -250px;
+    background: radial-gradient(circle, #6366f1, transparent 70%);
+}
+.glow-bottom-left {
+    bottom: -150px;
+    left: 10%;
+    background: radial-gradient(circle, #10b981, transparent 70%);
+}
+
+/* Glassmorphism Reutilizable */
+.glass-panel {
+    background: var(--surface-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-md);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.glass-pill {
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-glass);
+    border-radius: 30px;
+}
+
+/* ==========================================================================
+   CABECERA SUPERIOR Y NAVEGACIÓN INSTITUCIONAL
+   ========================================================================== */
+.top-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(3, 7, 18, 0.88);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+    padding: 10px 24px;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.brand-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.brand-logo-glow {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0284c7, #10b981);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 20px;
+    box-shadow: 0 0 18px var(--glow-cyan);
+}
+
+.brand-title-group h1 {
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+    line-height: 1.1;
+}
+
+.brand-title-group span {
+    font-size: 9.5px;
+    font-weight: 700;
+    color: var(--accent-sky);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Menú Central con Enlaces del Dossier */
+.nav-links-menu {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    list-style: none;
+}
+
+.nav-link-btn {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 7px 12px;
+    border-radius: 8px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav-link-btn:hover, .nav-link-btn.active {
+    color: #ffffff;
+    background: rgba(2, 132, 199, 0.25);
+    border: 1px solid var(--accent-cyan);
+    box-shadow: 0 0 12px rgba(2, 132, 199, 0.3);
+}
+
+.nav-link-btn i {
+    font-size: 13px;
+    color: var(--accent-sky);
+}
+
+/* Botones de Acción Rápida en Header */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-header {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 16px;
+    border-radius: 24px;
+    font-size: 12.5px;
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-header-portal {
+    background: linear-gradient(135deg, #0284c7, #0369a1);
+    color: #ffffff;
+    border: 1px solid var(--accent-sky);
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
+}
+
+.btn-header-portal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--glow-cyan);
+}
+
+.btn-header-wa {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: #ffffff;
+    border: 1px solid #34d399;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+}
+
+.btn-header-wa:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--glow-emerald);
+}
+
+/* Barra de Switcher de 5 Especialidades */
+.specialties-subnav {
+    background: rgba(7, 21, 39, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 6px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.specialty-tab {
+    background: transparent;
+    border: 1px solid transparent;
+    color: #94a3b8;
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.specialty-tab:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.specialty-tab.active {
+    color: #38bdf8;
+    background: rgba(2, 132, 199, 0.18);
+    border-color: rgba(56, 189, 248, 0.4);
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+}
+
+/* ==========================================================================
+   SECCIONES Y CONTENEDORES PRINCIPALES
+   ========================================================================== */
+.main-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px 20px 80px 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.section-block {
+    margin-bottom: 70px;
+    scroll-margin-top: 130px;
+}
+
+.section-badge-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: rgba(2, 132, 199, 0.15);
+    color: var(--accent-sky);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.section-title {
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    color: #ffffff;
+    margin-bottom: 8px;
+    line-height: 1.2;
+}
+
+.section-subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+    max-width: 900px;
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+
+/* ==========================================================================
+   HERO / CARTA OFICIAL DIRIGIDA & INFRAESTRUCTURA (PÁGINA 1)
+   ========================================================================== */
+.hero-letter-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 24px;
+    align-items: stretch;
+}
+
+.official-letter-card {
+    padding: 30px;
+    position: relative;
+    border-left: 5px solid var(--accent-cyan);
+}
+
+.letter-recipient-badge {
+    background: rgba(2, 132, 199, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    margin-bottom: 18px;
+}
+
+.letter-recipient-badge .label {
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--accent-sky);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 3px;
+}
+
+.letter-recipient-badge .title {
+    font-size: 16px;
+    font-weight: 900;
+    color: #ffffff;
+}
+
+.letter-recipient-badge .inst {
+    font-size: 12.5px;
+    color: #94a3b8;
+    font-weight: 600;
+}
+
+.letter-body-text {
+    font-size: 13.5px;
+    color: #cbd5e1;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: justify;
+}
+
+.letter-body-text strong {
+    color: #ffffff;
+}
+
+/* Firma Médica Oficial */
+.letter-signature-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border-light);
+    padding-top: 16px;
+    margin-top: 20px;
+}
+
+.seal-signature-box {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.signature-png {
+    height: 52px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+}
+
+.doctor-cred h4 {
+    font-size: 13.5px;
+    font-weight: 900;
+    color: #ffffff;
+}
+
+.doctor-cred span {
+    font-size: 11px;
+    color: var(--text-secondary);
+    display: block;
+}
+
+/* 3 Cards de Pilares Tecnológicos */
+.pillars-col {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.pillar-card {
+    padding: 18px;
+    transition: var(--transition);
+    cursor: pointer;
+    border-left: 4px solid var(--accent-cyan);
+}
+
+.pillar-card:hover {
+    transform: translateX(4px);
+    border-color: var(--accent-sky);
+    box-shadow: 0 8px 24px rgba(2, 132, 199, 0.25);
+}
+
+.pillar-card.emerald { border-left-color: var(--accent-emerald); }
+.pillar-card.emerald:hover { border-color: #34d399; box-shadow: 0 8px 24px var(--glow-emerald); }
+.pillar-card.purple { border-left-color: var(--accent-purple); }
+.pillar-card.purple:hover { border-color: #818cf8; box-shadow: 0 8px 24px rgba(99, 102, 241, 0.25); }
+
+.pillar-card h4 {
+    font-size: 14px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pillar-card p {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.45;
+}
+
+/* ==========================================================================
+   EJE 01 • SMARTPHONE QUIRÚRGICO INTERACTIVO (PÁGINA 2)
+   ========================================================================== */
+.app-showcase-layout {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 32px;
+    align-items: center;
+}
+
+/* Marco Físico del Teléfono */
+.phone-mockup-container {
+    width: 340px;
+    height: 680px;
+    background: #020617;
+    border: 4px solid #334155;
+    border-radius: 46px;
+    padding: 12px;
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(56, 189, 248, 0.2);
+    position: relative;
+    margin: 0 auto;
+}
+
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    background: #090f1d;
+    border-radius: 36px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.phone-dynamic-notch {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 22px;
+    background: #000000;
+    border-radius: 20px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.phone-camera-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #1e293b;
+}
+
+/* Contenido Interno de la App del Urólogo/Cirujano */
+.phone-status-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 18px 4px 18px;
+    font-size: 10px;
+    color: #94a3b8;
+    font-weight: 700;
+}
+
+.phone-app-header {
+    background: #071527;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border-glass);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.phone-app-brand {
+    font-size: 11px;
+    font-weight: 900;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.phone-app-brand span { color: var(--accent-sky); }
+
+.phone-search-box {
+    padding: 8px 12px;
+    background: #0b1320;
+}
+
+.phone-search-input {
+    width: 100%;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-size: 11px;
+    color: #ffffff;
+    outline: none;
+}
+
+/* Lista de Pacientes en el Teléfono */
+.phone-patients-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.phone-patient-card {
+    background: #111d33;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 10px;
+    padding: 9px 10px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.phone-patient-card.active, .phone-patient-card:hover {
+    border-color: var(--accent-sky);
+    background: #162542;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+}
+
+.p-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 4px;
+}
+
+.p-card-name {
+    font-size: 11px;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.p-card-status {
+    font-size: 8px;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 10px;
+    text-transform: uppercase;
+}
+
+.status-ready { background: #064e3b; color: #34d399; border: 1px solid #059669; }
+.status-process { background: #78350f; color: #fbbf24; border: 1px solid #d97706; }
+.status-completed { background: #1e1b4b; color: #a5b4fc; border: 1px solid #6366f1; }
+
+.p-card-meta {
+    font-size: 9px;
+    color: #94a3b8;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.p-card-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.btn-phone-action {
+    flex: 1;
+    padding: 4px 6px;
+    border-radius: 5px;
+    font-size: 9px;
+    font-weight: 800;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    transition: var(--transition);
+}
+
+.btn-phone-pdf {
+    background: var(--accent-cyan);
+    color: #ffffff;
+}
+.btn-phone-pdf:hover { background: #0284c7; }
+
+.btn-phone-360 {
+    background: #334155;
+    color: #cbd5e1;
+}
+.btn-phone-360:hover { background: #475569; color: #ffffff; }
+
+/* Modal Flotante de Informe en Teléfono */
+.phone-report-preview-modal {
+    position: absolute;
+    inset: 0;
+    background: rgba(3, 7, 18, 0.96);
+    backdrop-filter: blur(10px);
+    z-index: 200;
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 36px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+.phone-report-preview-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Columna de Características del App */
+.app-features-col {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.app-feature-box {
+    padding: 16px 20px;
+    border-left: 4px solid var(--accent-cyan);
+}
+
+.app-feature-box.featured {
+    border-left-color: var(--accent-emerald);
+    background: rgba(16, 185, 129, 0.08);
+}
+
+.app-feature-box h4 {
+    font-size: 15px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.app-feature-box p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.45;
+}
+
+/* ==========================================================================
+   EJE 02 • VISOR WSI GIGAPÍXEL INTERACTIVO (PÁGINA 3)
+   ========================================================================== */
+.wsi-viewer-wrapper {
+    background: #020617;
+    border: 1.5px solid var(--accent-cyan);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(2, 132, 199, 0.2);
+}
+
+/* Barra de Herramientas del Microscopio WSI */
+.wsi-toolbar {
+    background: #071527;
+    padding: 10px 18px;
+    border-bottom: 1px solid var(--border-glass);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.wsi-controls-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.wsi-btn-tool {
+    background: #0f172a;
+    border: 1px solid #334155;
+    color: #cbd5e1;
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.wsi-btn-tool:hover {
+    background: #1e293b;
+    color: #ffffff;
+    border-color: var(--accent-sky);
+}
+
+.wsi-btn-tool.active {
+    background: var(--accent-cyan);
+    color: #ffffff;
+    border-color: var(--accent-sky);
+    box-shadow: 0 0 10px var(--glow-cyan);
+}
+
+.wsi-zoom-pill {
+    background: #0f172a;
+    border: 1px solid var(--border-glass);
+    border-radius: 20px;
+    padding: 2px 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.wsi-zoom-btn {
+    background: transparent;
+    border: none;
+    color: #cbd5e1;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 4px 8px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.wsi-zoom-btn:hover { color: #ffffff; background: #334155; }
+.wsi-zoom-btn.active { background: var(--accent-cyan); color: #ffffff; }
+
+/* Lienzo / Canvas del Visor WSI */
+.wsi-viewport {
+    height: 480px;
+    position: relative;
+    overflow: hidden;
+    cursor: grab;
+    background: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wsi-viewport:active { cursor: grabbing; }
+
+.wsi-slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform-origin: center center;
+    transition: transform 0.2s ease-out, filter 0.3s ease;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* Filtros Espectrales Digitales */
+.wsi-slide-image.filter-contrast { filter: contrast(145%) saturate(125%); }
+.wsi-slide-image.filter-dic { filter: contrast(160%) brightness(95%) sepia(20%) drop-shadow(1px 1px 0px rgba(0,0,0,0.6)); }
+.wsi-slide-image.filter-polarized { filter: contrast(180%) hue-rotate(190deg) brightness(110%); }
+
+/* HUD de Telemetría Superpuesto en WSI */
+.wsi-hud-overlay {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    background: rgba(15, 23, 42, 0.88);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-glass);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    pointer-events: none;
+}
+
+.wsi-scale-bar-line {
+    width: 50px;
+    height: 3px;
+    background: #ffffff;
+    display: inline-block;
+    margin-right: 5px;
+    position: relative;
+}
+
+/* ==========================================================================
+   EJE 03 • COMPARADOR SPLIT-SCREEN MORFOMETRÍA IA (PÁGINA 4)
+   ========================================================================== */
+.morph-split-container {
+    background: #020617;
+    border: 1.5px solid var(--accent-cyan);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    position: relative;
+    height: 460px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    user-select: none;
+}
+
+.morph-layer {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.morph-img-full {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.morph-layer-ai {
+    z-index: 2;
+    width: 50%;
+    border-right: 2px solid var(--accent-sky);
+    box-shadow: 2px 0 15px rgba(56, 189, 248, 0.6);
+}
+
+.morph-layer-ai .morph-img-full {
+    width: 100%;
+    min-width: 100%;
+}
+
+/* Manija Deslizante Central */
+.morph-split-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 38px;
+    margin-left: -19px;
+    z-index: 10;
+    cursor: ew-resize;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.handle-circle {
+    width: 38px;
+    height: 38px;
+    background: #0284c7;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 13px;
+    box-shadow: 0 0 18px var(--glow-cyan);
+    transition: transform 0.15s;
+}
+
+.morph-split-handle:hover .handle-circle {
+    transform: scale(1.15);
+}
+
+/* Etiquetas Superpuestas Before / After */
+.morph-badge-corner {
+    position: absolute;
+    top: 14px;
+    z-index: 5;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.badge-left-ai {
+    left: 14px;
+    background: rgba(3, 105, 161, 0.9);
+    color: #ffffff;
+    border: 1px solid var(--accent-sky);
+}
+
+.badge-right-raw {
+    right: 14px;
+    background: rgba(15, 23, 42, 0.9);
+    color: #94a3b8;
+    border: 1px solid #334155;
+}
+
+/* Cuadrícula de Métricas de Morfometría */
+.morph-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-top: 18px;
+}
+
+.metric-card {
+    padding: 16px;
+    border-top: 3px solid var(--accent-cyan);
+    text-align: center;
+}
+
+.metric-value {
+    font-size: 22px;
+    font-weight: 900;
+    color: #38bdf8;
+    line-height: 1.1;
+    margin-bottom: 4px;
+}
+
+.metric-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+
+.metric-desc {
+    font-size: 11px;
+    color: var(--text-secondary);
+    line-height: 1.35;
+}
+
+/* ==========================================================================
+   EJE 04 • COPILOTO GÉMINI WSI & TRIAJE DIAGNÓSTICO (PÁGINA 5)
+   ========================================================================== */
+.gemini-copilot-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 24px;
+}
+
+.gemini-roi-viewer {
+    background: #020617;
+    border: 1.5px solid var(--accent-purple);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    position: relative;
+    height: 420px;
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+}
+
+.gemini-roi-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Caja de Selección de Región de Interés (ROI) */
+.roi-bounding-box {
+    position: absolute;
+    top: 25%;
+    left: 20%;
+    width: 180px;
+    height: 140px;
+    border: 2px dashed #f43f5e;
+    background: rgba(244, 63, 94, 0.12);
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(244, 63, 94, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 6px;
+    transition: all 0.3s ease;
+}
+
+.roi-tag {
+    background: #dc2626;
+    color: #ffffff;
+    font-size: 8.5px;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 4px;
+    width: fit-content;
+}
+
+/* Panel de Triaje Diagnóstico Diferencial */
+.differentials-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.diff-card-interactive {
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: var(--transition);
+    border-left: 4px solid #475569;
+}
+
+.diff-card-interactive:hover {
+    background: rgba(15, 23, 42, 0.95);
+    border-color: var(--accent-sky);
+    transform: translateX(4px);
+}
+
+.diff-card-interactive.active {
+    background: rgba(30, 27, 75, 0.85);
+    border-left-color: #f43f5e;
+    border-top: 1px solid rgba(244, 63, 94, 0.4);
+    box-shadow: 0 4px 20px rgba(244, 63, 94, 0.2);
+}
+
+.diff-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.diff-title {
+    font-size: 13px;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.diff-prob-tag {
+    font-size: 11px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.prob-high { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #ef4444; }
+.prob-mid { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid #f59e0b; }
+.prob-low { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid #10b981; }
+
+.prob-progress-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.prob-fill {
+    height: 100%;
+    background: #f43f5e;
+    border-radius: 2px;
+    transition: width 0.5s ease;
+}
+
+.diff-ihq-formula {
+    background: rgba(2, 6, 23, 0.7);
+    border: 1px dashed rgba(56, 189, 248, 0.3);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 11.5px;
+    color: #cbd5e1;
+    line-height: 1.4;
+}
+
+/* Consola de Consulta IA Gémini */
+.gemini-chat-console {
+    margin-top: 14px;
+    padding: 14px;
+    background: linear-gradient(135deg, #071527, #0a192f);
+    border: 1px solid var(--accent-purple);
+    border-radius: var(--radius-sm);
+}
+
+.chat-input-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.chat-input-field {
+    flex: 1;
+    background: #020617;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 12.5px;
+    color: #ffffff;
+    outline: none;
+}
+
+.chat-input-field:focus { border-color: var(--accent-purple); }
+
+.btn-ask-gemini {
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: var(--transition);
+}
+
+.btn-ask-gemini:hover {
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+    transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   EJE 05 • ASISTENTE VIRTUAL & VADEMÉCUM DE 145 ANTICUERPOS (NUEVO)
+   ========================================================================== */
+.ihq-assistant-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.ihq-search-card {
+    padding: 24px;
+    background: linear-gradient(135deg, rgba(7, 21, 39, 0.95), rgba(10, 25, 47, 0.95));
+    border: 1.5px solid var(--accent-cyan);
+    position: relative;
+    overflow: hidden;
+}
+
+.ihq-search-bar-wrapper {
+    display: flex;
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.ihq-input-group {
+    flex: 1;
+    position: relative;
+}
+
+.ihq-input-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent-sky);
+    font-size: 16px;
+}
+
+.ihq-search-input {
+    width: 100%;
+    background: #020617;
+    border: 1.5px solid #334155;
+    border-radius: 12px;
+    padding: 12px 14px 12px 42px;
+    font-size: 14px;
+    color: #ffffff;
+    outline: none;
+    transition: var(--transition);
+}
+
+.ihq-search-input:focus {
+    border-color: var(--accent-sky);
+    box-shadow: 0 0 18px var(--glow-cyan);
+}
+
+.btn-ihq-search {
+    background: linear-gradient(135deg, #0284c7, #0369a1);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-size: 13.5px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-ihq-search:hover {
+    box-shadow: 0 0 20px var(--glow-cyan);
+    transform: translateY(-2px);
+}
+
+/* Tarjeta Dinámica de Resultado de Disponibilidad */
+.ihq-result-card {
+    margin-top: 18px;
+    padding: 18px;
+    background: #071527;
+    border: 1.5px solid var(--accent-emerald);
+    border-radius: var(--radius-sm);
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.ihq-result-card.active { display: block; }
+
+.ihq-result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.ihq-result-name {
+    font-size: 18px;
+    font-weight: 900;
+    color: #ffffff;
+}
+
+.badge-in-stock {
+    background: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+    border: 1px solid #10b981;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.badge-not-stock {
+    background: rgba(239, 68, 68, 0.2);
+    color: #f87171;
+    border: 1px solid #ef4444;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.ihq-result-body {
+    font-size: 13px;
+    color: #cbd5e1;
+    line-height: 1.5;
+    margin-bottom: 14px;
+}
+
+/* Tabla Maestra de 145 Anticuerpos */
+.ihq-table-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.ihq-category-pills {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.pill-filter {
+    background: #0f172a;
+    border: 1px solid #334155;
+    color: #94a3b8;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.pill-filter:hover { color: #ffffff; background: #1e293b; }
+.pill-filter.active { background: var(--accent-cyan); color: #ffffff; border-color: var(--accent-sky); }
+
+.ihq-table-box {
+    max-height: 480px;
+    overflow-y: auto;
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-sm);
+}
+
+.ihq-master-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+}
+
+.ihq-master-table thead {
+    position: sticky;
+    top: 0;
+    background: #071527;
+    z-index: 5;
+    border-bottom: 2px solid var(--accent-cyan);
+}
+
+.ihq-master-table th {
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--accent-sky);
+}
+
+.ihq-master-table td {
+    padding: 9px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    color: #e2e8f0;
+}
+
+.ihq-master-table tbody tr:hover {
+    background: rgba(2, 132, 199, 0.08);
+}
+
+/* ==========================================================================
+   EJE 06 • MAPEO DE PIEZA QUIRÚRGICA 3D 360° (PÁGINA 7)
+   ========================================================================== */
+.specimen-3d-wrapper {
+    background: #020617;
+    border: 1.5px solid var(--accent-cyan);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+}
+
+.specimen-3d-toolbar {
+    background: #071527;
+    padding: 10px 18px;
+    border-bottom: 1px solid var(--border-glass);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.specimen-360-viewport {
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+    cursor: grab;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000000;
+}
+
+.specimen-360-viewport:active { cursor: grabbing; }
+
+.specimen-frame-img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* Pines Histológicos Pulsantes 3D */
+.pin-marker {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0,0,0,0.8);
+    transition: transform 0.2s;
+    z-index: 20;
+}
+
+.pin-marker::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px solid currentColor;
+    animation: pulsePin 2s infinite;
+}
+
+.pin-marker:hover {
+    transform: scale(1.25);
+    z-index: 25;
+}
+
+.pin-green { background: #10b981; color: #10b981; }
+.pin-red { background: #ef4444; color: #ef4444; }
+.pin-blue { background: #0284c7; color: #0284c7; }
+.pin-purple { background: #a855f7; color: #a855f7; }
+
+.pin-marker span { color: #ffffff; z-index: 2; }
+
+@keyframes pulsePin {
+    0% { transform: scale(0.9); opacity: 1; }
+    100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* Cuadrícula de Pines con Explicación Clínica */
+.pins-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    padding: 18px;
+    background: #071527;
+    border-top: 1px solid var(--border-glass);
+}
+
+.pin-desc-card {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.pin-desc-card:hover {
+    border-color: var(--accent-sky);
+    background: #1e293b;
+    transform: translateY(-2px);
+}
+
+.pin-desc-card h5 {
+    font-size: 12px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.pin-desc-card p {
+    font-size: 11px;
+    color: var(--text-secondary);
+    line-height: 1.35;
+}
+
+/* Modal de Correlación Microscópica al hacer clic en Pin */
+.pin-micro-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(3, 7, 18, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.pin-micro-modal.active { display: flex; }
+
+.micro-modal-content {
+    background: #0f172a;
+    border: 1.5px solid var(--accent-cyan);
+    border-radius: var(--radius-md);
+    width: 100%;
+    max-width: 800px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+}
+
+/* ==========================================================================
+   EJE 07 • TARIFARIO CORPORATIVO PREFERENCIAL 2026 (PÁGINA 6)
+   ========================================================================== */
+.pricing-calculator-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 24px;
+    align-items: stretch;
+}
+
+.pricing-table-wrap {
+    overflow-x: auto;
+}
+
+.p-table-corporate {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.p-table-corporate thead {
+    background: #071527;
+}
+
+.p-table-corporate th {
+    padding: 12px 14px;
+    text-align: left;
+    font-size: 11.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--accent-sky);
+    border-bottom: 2px solid var(--accent-cyan);
+}
+
+.p-table-corporate td {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: #e2e8f0;
+}
+
+.p-table-corporate tr:hover {
+    background: rgba(2, 132, 199, 0.06);
+}
+
+.price-pill-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 800;
+    color: #38bdf8;
+    background: rgba(2, 132, 199, 0.15);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    padding: 4px 10px;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+.time-pill-tag {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #34d399;
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 3px 8px;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+/* Calculadora Interactiva de Convenio */
+.calculator-card {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.calc-control-group {
+    margin-bottom: 18px;
+}
+
+.calc-label {
+    font-size: 12.5px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.calc-range-slider {
+    width: 100%;
+    accent-color: var(--accent-cyan);
+}
+
+.calc-summary-box {
+    background: #071527;
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    margin: 16px 0;
+}
+
+.calc-sum-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-bottom: 6px;
+    color: #94a3b8;
+}
+
+.calc-sum-row strong { color: #ffffff; }
+
+/* ==========================================================================
+   FOOTER INSTITUCIONAL
+   ========================================================================== */
+.footer-corporate {
+    background: #020617;
+    border-top: 1px solid var(--border-light);
+    padding: 40px 20px 20px 20px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+.footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-col h5 {
+    font-size: 13px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-col a {
+    color: #94a3b8;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-col a:hover { color: var(--accent-sky); }
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   RESPONSIVIDAD MÓVIL Y TABLET
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .hero-letter-grid, .app-showcase-layout, .gemini-copilot-grid, .pricing-calculator-grid {
+        grid-template-columns: 1fr;
+    }
+    .morph-metrics-grid, .pins-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+    }
+    .nav-links-menu { display: none; }
+}
+
+@media (max-width: 640px) {
+    .morph-metrics-grid, .pins-cards-grid, .footer-container {
+        grid-template-columns: 1fr;
+    }
+    .phone-mockup-container {
+        width: 100%;
+        max-width: 320px;
+        height: 600px;
+    }
+    .section-title { font-size: 21px; }
+}
