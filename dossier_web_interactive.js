@@ -49,7 +49,7 @@ function handleSpecialtyChange(spec) {
         const btnRenal = document.getElementById('btnSampleRenal') || document.getElementById('btnSampleAcinar');
         if (btnRenal) btnRenal.click();
     }
-}
+
     // Filtrar tabla de IHQ según especialidad
     const catMap = {
         'uro': 'Urológicos & Germinales',
@@ -203,10 +203,16 @@ const PATIENTS_DATA = [
     }
 ];
 
-// Estado interactivo del simulador
+// Estado interactivo del simulador y Demo Quirófano
 let currentPhoneFilter = 'all';
 let currentPhoneQuery = '';
 let currentPhoneTab = 'reports';
+
+// Variables de la Simulación Autónoma "Live Demo Quirófano"
+let isPhoneDemoRunning = false;
+let phoneDemoStep = 0;
+let phoneDemoTimer = null;
+let userInterruptedDemo = false;
 
 function initSmartphoneSimulator() {
     const listContainer = document.getElementById('phonePatientsList');
@@ -233,14 +239,240 @@ function initSmartphoneSimulator() {
                 clearBtn.style.display = currentPhoneQuery.length > 0 ? 'block' : 'none';
             }
             applyPhoneFilters();
+            handlePhoneUserActivity();
         });
     }
 
+    // Escuchar interacción manual en el teléfono para responder 100% como app nativa
+    const phoneFit = document.querySelector('.phone-mockup-fit');
+    if (phoneFit) {
+        phoneFit.addEventListener('pointerdown', (e) => {
+            // Si el usuario toca controles manuales pero no es la notificación notch
+            if (!e.target.closest('#phoneDynamicNotch') && !e.target.closest('#btnPhoneStartDemo')) {
+                // Registrar actividad de usuario para no pelear con la demo si está operando manualmente
+                handlePhoneUserActivity();
+            }
+        });
+    }
+
+    // Disparador cuando se navega a la pantalla 3
     window.addEventListener('appmovil-activated', () => {
         updatePhoneClock();
         applyPhoneFilters();
+        // Iniciar Live Demo si no fue pausada manualmente
+        if (!userInterruptedDemo) {
+            setTimeout(() => {
+                startPhoneAutonomousDemo(false);
+            }, 600);
+        }
+    });
+
+    // Iniciar automáticamente demostración con temporizador inicial suave
+    setTimeout(() => {
+        const slide = document.getElementById('pantalla-appmovil');
+        if (slide && slide.classList.contains('active-screen') && !userInterruptedDemo) {
+            startPhoneAutonomousDemo(false);
+        }
+    }, 1200);
+}
+
+/**
+ * Registra interacción manual del médico para pausar la demo automática si lo desea
+ */
+function handlePhoneUserActivity() {
+    // Si la demo está corriendo, no cancelamos bruscamente si el médico sólo explora,
+    // pero si toca controles explícitos le damos prioridad fluida
+}
+
+/**
+ * Inicia la demostración interactiva autónoma ("Live Demo Quirófano")
+ */
+window.startPhoneAutonomousDemo = function(isUserClick = false) {
+    if (isUserClick) {
+        userInterruptedDemo = false;
+        showPhoneToast('Iniciando Live Demo Quirófano en vivo', 'fa-play');
+    }
+
+    isPhoneDemoRunning = true;
+    updateDemoHUDButtons(true);
+
+    if (phoneDemoTimer) clearTimeout(phoneDemoTimer);
+    phoneDemoStep = 0;
+    executePhoneDemoStep();
+};
+
+/**
+ * Detiene la demo y activa el modo libre
+ */
+window.stopPhoneAutonomousDemo = function(isUserClick = false) {
+    isPhoneDemoRunning = false;
+    if (isUserClick) {
+        userInterruptedDemo = true;
+        showPhoneToast('Modo Libre activo: interactúa con cualquier biopsia', 'fa-hand');
+    }
+    if (phoneDemoTimer) {
+        clearTimeout(phoneDemoTimer);
+        phoneDemoTimer = null;
+    }
+    // Restablecer estilos visuales de demo
+    resetDemoVisualState();
+    updateDemoHUDButtons(false);
+};
+
+window.toggleAutonomousDemoMode = function() {
+    if (isPhoneDemoRunning) {
+        window.stopPhoneAutonomousDemo(true);
+    } else {
+        window.startPhoneAutonomousDemo(true);
+    }
+};
+
+function updateDemoHUDButtons(running) {
+    const btnStart = document.getElementById('btnPhoneStartDemo');
+    const btnFree = document.getElementById('btnPhoneFreeMode');
+    const floatBtn = document.getElementById('btnFloatDemoToggle');
+    const floatLbl = document.getElementById('lblFloatDemoText');
+
+    if (btnStart) btnStart.classList.toggle('active', running);
+    if (btnFree) btnFree.classList.toggle('active', !running);
+
+    if (floatBtn && floatLbl) {
+        if (running) {
+            floatBtn.style.background = 'linear-gradient(135deg, #059669 0%, #047857 100%)';
+            floatBtn.innerHTML = '<i class="fa-solid fa-pause"></i> <span>Pausar a Modo Libre</span>';
+        } else {
+            floatBtn.style.background = 'linear-gradient(135deg, #0284c7 0%, #0369a1 100%)';
+            floatBtn.innerHTML = '<i class="fa-solid fa-play"></i> <span>Ver Demostración Quirófano en Vivo</span>';
+        }
+    }
+}
+
+function resetDemoVisualState() {
+    const notch = document.getElementById('phoneDynamicNotch');
+    if (notch) {
+        notch.classList.remove('expanded', 'pulse-alert');
+    }
+    document.querySelectorAll('.phone-patient-card').forEach(c => {
+        c.classList.remove('sim-highlight');
     });
 }
+
+/**
+ * Máquina de Estados del "Live Demo Quirófano":
+ * Paso 1: Notificación Push en Vivo en Dynamic Notch
+ * Paso 2: Resalto de la tarjeta Jorge Huamán & despacho en 14 segundos
+ * Paso 3: Apertura autónoma del informe médico oficial con microfotografía 40x y firma
+ * Paso 4: Trazabilidad QR y despacho confirmado a móvil de cirujano en quirófano
+ */
+function executePhoneDemoStep() {
+    if (!isPhoneDemoRunning) return;
+
+    const notch = document.getElementById('phoneDynamicNotch');
+    const notchMsg = document.getElementById('phoneNotchMsg');
+
+    switch (phoneDemoStep) {
+        case 0:
+            // PASO 1: Notificación Push en Vivo en la Dynamic Notch
+            closePhoneModal();
+            setPhoneFilter('all');
+            resetDemoVisualState();
+
+            if (notch) {
+                notch.classList.add('pulse-alert', 'expanded');
+                if (notchMsg) {
+                    notchMsg.innerHTML = `🔴 NUEVA BIOPSIA RECIBIDA: Dr. Escalante &bull; Jorge Huamán (26Q-0289)`;
+                }
+            }
+            showPhoneToast('¡Alerta de Biopsia Quirófano recibida en vivo!', 'fa-bell');
+
+            phoneDemoStep = 1;
+            phoneDemoTimer = setTimeout(executePhoneDemoStep, 3400);
+            break;
+
+        case 1:
+            // PASO 2: Transición en la lista & badge 'Despachado en 14 segundos'
+            if (notch) {
+                notch.classList.remove('expanded', 'pulse-alert');
+            }
+
+            // Localizar tarjeta de Jorge Huamán (26Q-0289)
+            const targetCard = document.querySelector('.phone-patient-card[data-id="26Q-0289"]');
+            if (targetCard) {
+                targetCard.classList.add('sim-highlight');
+                targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                const statusBadge = targetCard.querySelector('.p-card-status');
+                if (statusBadge) {
+                    statusBadge.className = 'p-card-status status-instant';
+                    statusBadge.innerHTML = '<i class="fa-solid fa-bolt"></i> ✓ Despachado en 14 segundos';
+                }
+            }
+            showPhoneToast('✓ Biopsia analizada y validada por patología', 'fa-circle-check');
+
+            phoneDemoStep = 2;
+            phoneDemoTimer = setTimeout(executePhoneDemoStep, 2800);
+            break;
+
+        case 2:
+            // PASO 3: Apertura simulada del informe médico con microfotografía 40x y firma
+            openPhoneReport('26Q-0289');
+            showPhoneToast('Abriendo informe patológico oficial 26Q-0289...', 'fa-file-waveform');
+
+            // Efecto scroll sutil dentro del informe
+            setTimeout(() => {
+                const scrollWrapper = document.querySelector('.phone-report-scroll-wrapper');
+                if (scrollWrapper) {
+                    scrollWrapper.scrollTo({ top: 120, behavior: 'smooth' });
+                }
+            }, 1000);
+
+            phoneDemoStep = 3;
+            phoneDemoTimer = setTimeout(executePhoneDemoStep, 4600);
+            break;
+
+        case 3:
+            // PASO 4: Trazabilidad QR, firma médica de Dr. Joseph Castillo y despacho a quirófano
+            showPhoneToast('Informe entregado al móvil del cirujano en quirófano', 'fa-satellite-dish');
+
+            const scrollWrapper = document.querySelector('.phone-report-scroll-wrapper');
+            if (scrollWrapper) {
+                scrollWrapper.scrollTo({ top: scrollWrapper.scrollHeight, behavior: 'smooth' });
+            }
+
+            // Preparar el siguiente ciclo continuo
+            phoneDemoStep = 4;
+            phoneDemoTimer = setTimeout(executePhoneDemoStep, 4500);
+            break;
+
+        case 4:
+            // Reiniciar suavemente el ciclo continuo
+            closePhoneModal();
+            resetDemoVisualState();
+            // Restaurar badge original tras unos segundos
+            const origCard = document.querySelector('.phone-patient-card[data-id="26Q-0289"]');
+            if (origCard) {
+                const badge = origCard.querySelector('.p-card-status');
+                if (badge) {
+                    badge.className = 'p-card-status status-process';
+                    badge.innerHTML = 'En Proceso';
+                }
+            }
+
+            phoneDemoStep = 0;
+            phoneDemoTimer = setTimeout(executePhoneDemoStep, 2200);
+            break;
+    }
+}
+
+/**
+ * Clic en la barra Dynamic Notch: abre directamente el reporte del paciente notificado
+ */
+window.triggerNotchClick = function() {
+    openPhoneReport('26Q-0289');
+    const notch = document.getElementById('phoneDynamicNotch');
+    if (notch) notch.classList.remove('expanded', 'pulse-alert');
+    showPhoneToast('Abriendo caso 26Q-0289 desde la Dynamic Notch', 'fa-bell');
+};
 
 function updatePhoneClock() {
     const clockEl = document.getElementById('phoneLiveClock');
@@ -397,10 +629,12 @@ window.switchPhoneTab = function(tabName) {
     const viewList = document.getElementById('phoneListView');
     const viewNotif = document.getElementById('phoneNotificationsView');
     const viewSet = document.getElementById('phoneSettingsView');
+    const viewImmuno = document.getElementById('phoneImmunoView');
 
     if (viewList) viewList.style.display = tabName === 'reports' ? 'flex' : 'none';
     if (viewNotif) viewNotif.style.display = tabName === 'notifications' ? 'flex' : 'none';
     if (viewSet) viewSet.style.display = tabName === 'settings' ? 'flex' : 'none';
+    if (viewImmuno) viewImmuno.style.display = tabName === 'immunomaster' ? 'flex' : 'none';
 };
 
 window.focusPhoneSearch = function() {
@@ -546,6 +780,31 @@ window.openPhoneReport = function(id) {
                 <div class="p-rep-field" style="grid-column: span 2;">
                     <span class="p-rep-label">Procedimiento Quirúrgico</span>
                     <span class="p-rep-value" style="color: #93c5fd;">${p.procedure}</span>
+                </div>
+            </div>
+
+            <!-- Banner de Trazabilidad Quirúrgica en Quirófano -->
+            <div class="phone-trace-banner">
+                <div class="phone-trace-icon">
+                    <i class="fa-solid fa-satellite-dish"></i>
+                </div>
+                <div class="phone-trace-body">
+                    <span class="phone-trace-title"><i class="fa-solid fa-circle-check"></i> Despacho en Quirófano Verificado</span>
+                    <span class="phone-trace-desc">Informe entregado directamente al móvil del cirujano &bull; Latencia: 14 segundos</span>
+                </div>
+            </div>
+
+            <!-- Visor de Microfotografía 40x del Tumor con Calibración Diagnóstica -->
+            <div class="phone-report-micro-card">
+                <div class="phone-report-micro-header">
+                    <span><i class="fa-solid fa-microscope" style="color: #38bdf8;"></i> Microfotografía 40x de Alta Resolución</span>
+                    <span style="color: #34d399; font-size: 7.5px;"><i class="fa-solid fa-circle-check"></i> Calibración Digital</span>
+                </div>
+                <div class="phone-report-micro-img-wrap" onclick="showPhoneToast('Microfotografía 40x con zoom óptico activo', 'fa-magnifying-glass-plus')">
+                    <img src="${p.macroImg || 'morfologia_he_original.jpg'}" alt="Microfotografía 40x Tumor">
+                    <div class="phone-micro-badge-overlay">
+                        <strong>40x</strong> &bull; H&E Digital &bull; Corte 4&micro;m
+                    </div>
                 </div>
             </div>
 
@@ -1130,32 +1389,10 @@ function updateAiOverlayForSample(data) {
 function updateWSIIntroSidebar(data) {
     if (!data) return;
 
-    // 1. Actualización de elementos directos por ID en la columna derecha
+    // 1. Mantener título institucional de alto prestigio
     const sidebarTitle = document.getElementById('wsiSidebarTitle') || document.getElementById('wsiIntroTitle');
-    const sidebarDesc = document.getElementById('wsiSidebarDesc') || document.getElementById('wsiIntroDesc');
-    const sidebarDiagTitle = document.getElementById('wsiDiagnosisHeading') || document.getElementById('wsiSidebarDiagTitle');
-    const sidebarGleason = document.getElementById('wsiGleasonVal') || document.getElementById('wsiSidebarGleason');
-    const sidebarIsup = document.getElementById('wsiIsupVal') || document.getElementById('wsiSidebarIsup');
-
-    if (sidebarTitle) sidebarTitle.textContent = 'CENTRO DE PATOLOGÍA DIGITAL WSI 40X';
-    if (sidebarDesc && data.introText) sidebarDesc.textContent = data.introText;
-
-    if (data.id === 'prostate' || data.id === 'acinar') {
-        if (sidebarDiagTitle) sidebarDiagTitle.textContent = 'Adenocarcinoma Acinar de Próstata';
-        if (sidebarGleason) sidebarGleason.textContent = '4 + 3 = 7';
-        if (sidebarIsup) sidebarIsup.textContent = 'ISUP 3';
-    } else if (data.id === 'gastric') {
-        if (sidebarDiagTitle) sidebarDiagTitle.textContent = 'Biopsia Gástrica: Adenocarcinoma Infiltrante';
-        if (sidebarGleason) sidebarGleason.textContent = 'Laurén G2';
-        if (sidebarIsup) sidebarIsup.textContent = 'pT3 R0';
-    } else if (data.id === 'skin') {
-        if (sidebarDiagTitle) sidebarDiagTitle.textContent = 'Piel: Dermatopatología (Infiltrado Dérmico)';
-        if (sidebarGleason) sidebarGleason.textContent = 'Benigno';
-        if (sidebarIsup) sidebarIsup.textContent = 'No Neoplásico';
-    } else if (data.id === 'renal') {
-        if (sidebarDiagTitle) sidebarDiagTitle.textContent = 'Corte Quirúrgico Renal: Oncocitoma Benigno';
-        if (sidebarGleason) sidebarGleason.textContent = 'Benigno';
-        if (sidebarIsup) sidebarIsup.textContent = 'OMS Grado 1';
+    if (sidebarTitle) {
+        sidebarTitle.innerHTML = 'JC PATH LAB &bull; CENTRO DE REFERENCIA EN ANATOMÍA PATOLÓGICA Y TELEPATOLOGÍA';
     }
 
     // 2. Sincronizar botones de muestra activos en el panel lateral
@@ -2025,6 +2262,43 @@ function renderIHQMasterTable(antibodies) {
         tableBody.appendChild(row);
     });
 }
+
+/**
+ * Conmutador de Sub-Vistas dentro de Pantalla 4 (#pantalla-ihq)
+ * Permite alternar entre el Creador de Paneles AI (ImmunoMaster) y el Catálogo de 150 Anticuerpos
+ */
+window.switchIhqSubView = function(viewMode) {
+    const appView = document.getElementById('ihqAppNativeView');
+    const catalogView = document.getElementById('ihqCatalogNativeView');
+    const btnApp = document.getElementById('btnIhqSubViewApp');
+    const btnCatalog = document.getElementById('btnIhqSubViewCatalog');
+
+    if (!appView || !catalogView) return;
+
+    if (viewMode === 'catalog') {
+        appView.style.display = 'none';
+        catalogView.style.display = 'grid';
+        if (btnApp) {
+            btnApp.classList.remove('active');
+            btnApp.setAttribute('aria-selected', 'false');
+        }
+        if (btnCatalog) {
+            btnCatalog.classList.add('active');
+            btnCatalog.setAttribute('aria-selected', 'true');
+        }
+    } else {
+        catalogView.style.display = 'none';
+        appView.style.display = 'flex';
+        if (btnCatalog) {
+            btnCatalog.classList.remove('active');
+            btnCatalog.setAttribute('aria-selected', 'false');
+        }
+        if (btnApp) {
+            btnApp.classList.add('active');
+            btnApp.setAttribute('aria-selected', 'true');
+        }
+    }
+};
 
 /* ==========================================================================
    6. MAPEO DE PIEZA QUIRÚRGICA 3D 360° (EJE 06 / PÁGINA 7)

@@ -214,17 +214,21 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 clamp(16px, 2vw, 36px);
+            padding: 0 clamp(18px, 2.2vw, 36px);
             background: rgba(10, 19, 34, 0.85);
             border-bottom: 1px solid rgba(56, 189, 248, 0.12);
             z-index: 20;
             flex-shrink: 0;
+            overflow: hidden;
+            box-sizing: border-box;
         }
 
         .screen-hud-left {
             display: flex;
             align-items: center;
             gap: 12px;
+            min-width: 0;
+            overflow: hidden;
         }
 
         .screen-hud-title {
@@ -236,12 +240,16 @@
             align-items: center;
             gap: 8px;
             text-transform: uppercase;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .screen-hud-right {
             display: flex;
             align-items: center;
             gap: 8px;
+            flex-shrink: 0;
         }
 
         /* Escenario de Imagen al 85%-90% de la Pantalla */
@@ -449,16 +457,19 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 clamp(14px, 1.8vw, 32px);
+            padding: 0 clamp(18px, 2vw, 32px);
             z-index: 40;
             gap: clamp(10px, 1.2vw, 20px);
             flex-shrink: 0;
             overflow-x: auto;
             overflow-y: hidden;
             scrollbar-width: none;
+            box-sizing: border-box;
         }
         .wsi-top-bar::-webkit-scrollbar {
             display: none;
+            width: 0;
+            height: 0;
         }
 
         .wsi-bar-left {
@@ -466,14 +477,17 @@
             align-items: center;
             gap: 12px;
             flex-shrink: 0;
+            min-width: 0;
         }
 
         .wsi-pathologist-tag {
             display: flex;
             align-items: center;
             gap: 10px;
-            padding-right: 12px;
+            padding-left: 2px;
+            padding-right: 14px;
             border-right: 1px solid rgba(255, 255, 255, 0.12);
+            flex-shrink: 0;
         }
 
         .wsi-pulse-dot {
@@ -859,11 +873,11 @@
             background: var(--sapphire-950, #050b14);
         }
 
-        /* Columna del Visor WSI al 78% - 80% */
+        /* Columna del Visor WSI al 68% (Reducido 10% adicional para mayor espacio explicativo) */
         .wsi-viewport-col {
-            width: 80%;
-            flex: 0 0 80%;
-            max-width: 80%;
+            width: 68%;
+            flex: 0 0 68%;
+            max-width: 68%;
             height: 100%;
             position: relative;
             overflow: hidden !important;
@@ -938,11 +952,11 @@
             pointer-events: none !important;
         }
 
-        /* Columna Derecha: Panel de Introducción al 20% - 22% */
+        /* Columna Derecha: Panel de Introducción Institucional al 32% */
         .wsi-intro-sidebar {
-            width: 20%;
-            flex: 0 0 20%;
-            max-width: 20%;
+            width: 32%;
+            flex: 0 0 32%;
+            max-width: 32%;
             height: 100%;
             background: rgba(10, 19, 34, 0.95);
             backdrop-filter: blur(16px);
@@ -1233,14 +1247,19 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
+            cursor: -webkit-grab;
             cursor: grab;
             background: #02060d;
             display: flex;
             align-items: center;
             justify-content: center;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: none;
         }
 
         .wsi-full-viewport:active {
+            cursor: -webkit-grabbing;
             cursor: grabbing;
         }
 
@@ -1790,10 +1809,10 @@
 
         .wsi-viewport-col,
         .wsi-viewer-col {
-            flex: 0 0 79%;
-            width: 79%;
+            flex: 0 0 68%;
+            width: 68%;
             min-width: 0;
-            max-width: 80%;
+            max-width: 68%;
             height: 100%;
             max-height: 100%;
             position: relative;
@@ -1860,10 +1879,10 @@
         }
 
         .wsi-intro-sidebar {
-            flex: 0 0 21%;
-            width: 21%;
+            flex: 0 0 32%;
+            width: 32%;
             min-width: 280px;
-            max-width: 22%;
+            max-width: 32%;
             height: 100%;
             max-height: 100%;
             overflow-y: auto;
@@ -2690,9 +2709,92 @@
             text-transform: uppercase;
         }
 
-        /* Comportamiento Responsivo Panorámico y Móvil */
         .btn-header-ihq-builder .ihq-btn-text-short {
             display: none;
+        }
+
+        /* Botón Secundario de Expansión / Fullscreen para el Creador IHQ */
+        .btn-header-ihq-popout {
+            background: rgba(15, 29, 51, 0.7);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: #94a3b8 !important;
+            padding: 7px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            text-decoration: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        .btn-header-ihq-popout:hover {
+            color: #ffffff !important;
+            background: rgba(2, 132, 199, 0.3);
+            border-color: #38bdf8;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.35);
+        }
+
+        /* Conmutador de Vistas dentro de Pantalla 4 (#pantalla-ihq) */
+        .ihq-view-switcher-pill {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(15, 29, 51, 0.85);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 20px;
+            padding: 2px;
+            gap: 2px;
+        }
+        .ihq-subview-btn {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 16px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            white-space: nowrap;
+        }
+        .ihq-subview-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .ihq-subview-btn.active {
+            color: #ffffff;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.9), rgba(2, 132, 199, 0.9));
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+            border: 1px solid #38bdf8;
+        }
+        .ihq-subview-btn i {
+            font-size: 11px;
+        }
+
+        /* Contenedor Iframe Nativo 100% Responsivo en Pantalla 4 */
+        .ihq-app-iframe-container {
+            width: 100%;
+            height: 100%;
+            flex: 1;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background: #020617;
+            overflow: hidden;
+        }
+        .ihq-app-iframe {
+            width: 100%;
+            height: 100%;
+            flex: 1;
+            border: none;
+            outline: none;
+            background: #020617;
+            display: block;
         }
 
         @media (max-width: 1400px) {
@@ -2771,11 +2873,14 @@
 
             <!-- Acciones Rápidas (Creador IHQ AI, Portal y WhatsApp Oficial) -->
             <div class="header-actions">
-                <a href="creador-paneles-ihq.html" target="_blank" rel="noopener noreferrer" class="btn-header btn-header-ihq-builder" id="btnHeaderIhqBuilder" title="Abrir Creador de Paneles de Inmunohistoquímica (ImmunoMaster AI Universal)">
+                <button type="button" class="btn-header btn-header-ihq-builder" id="btnHeaderIhqBuilder" onclick="switchScreen('pantalla-ihq')" title="Abrir Suite Creador de Paneles de Inmunohistoquímica (ImmunoMaster AI Universal)">
                     <i class="fa-solid fa-wand-magic-sparkles"></i>
                     <span class="ihq-btn-text-full">Creador de Paneles IHQ</span>
                     <span class="ihq-btn-text-short">Paneles IHQ</span>
                     <span class="btn-badge-ai">AI</span>
+                </button>
+                <a href="creador-paneles-ihq.html" target="_blank" rel="noopener noreferrer" class="btn-header-ihq-popout" title="Abrir Creador de Paneles IHQ en Pestaña Independiente / Pantalla Completa">
+                    <i class="fa-solid fa-up-right-from-square"></i>
                 </a>
                 <a href="login.html" class="btn-header btn-header-portal" title="Acceso al Portal de Médicos y Clínicas">
                     <i class="fa-solid fa-arrow-right-to-bracket"></i> Portal Clínico
@@ -3041,135 +3146,134 @@
                 </div>
 
                 <!-- COLUMNA DERECHA (~22%): PANEL DE INTRODUCCIÓN & FICHA CLÍNICA (SURGICAL-GLASS & DISEÑO ABISAL) -->
-                <aside class="wsi-intro-sidebar" id="wsiIntroSidebar" aria-label="Introducción al Laboratorio y Ficha Diagnóstica">
+                <aside class="wsi-intro-sidebar" id="wsiIntroSidebar" aria-label="Presentación Institucional del Laboratorio y Capacidades Diagnósticas">
                     <!-- MANIJA TÁCTIL MÓVIL (DRAWER HANDLE) -->
-                    <div class="wsi-sidebar-mobile-handle" id="wsiMobileDrawerHandle" title="Deslizar para ver u ocultar detalles del caso clínico">
+                    <div class="wsi-sidebar-mobile-handle" id="wsiMobileDrawerHandle" title="Deslizar para ver u ocultar detalles del laboratorio">
                         <div class="wsi-sidebar-mobile-pill"></div>
                     </div>
 
-                    <!-- CABECERA INSTITUCIONAL -->
+                    <!-- CABECERA INSTITUCIONAL DE ALTO PRESTIGIO -->
                     <div class="wsi-sidebar-header">
                         <div class="wsi-sidebar-badge-strip">
                             <div class="wsi-brand-pill">
                                 <i class="fa-solid fa-microscope"></i> JC PATH LAB
                             </div>
                             <span class="wsi-status-live-chip">
-                                <span class="wsi-pulse-dot" style="width: 6px; height: 6px;"></span> WSI 40X LIVE
+                                <span class="wsi-pulse-dot" style="width: 6px; height: 6px;"></span> CENTRO DE REFERENCIA
                             </span>
                         </div>
-                        <h2 class="wsi-sidebar-title">CENTRO DE PATOLOGÍA DIGITAL WSI 40X</h2>
-                        <p class="wsi-sidebar-subtitle">Laboratorio de Referencia Nacional &bull; Dr. Joseph C. Castillo (C.M.P. 56435)</p>
-                    </div>
-
-                    <!-- INTRODUCCIÓN CONCISA Y ELEGANTE -->
-                    <div class="wsi-sidebar-card">
-                        <p class="wsi-intro-desc">
-                            Infraestructura diagnóstica histopatológica equipada con escaneo gigapíxel a <strong>0.25 µm/píxel</strong>, servidor físico in-house de <strong>3.5 TB</strong> y transmisión remota segura 24/7. Certidumbre diagnóstica en tiempo real con soporte de morfometría IA.
+                        <h2 class="wsi-sidebar-title" id="wsiSidebarTitle" style="font-size: 13.5px; line-height: 1.3; color: #ffffff; margin-top: 4px;">
+                            JC PATH LAB &bull; CENTRO DE REFERENCIA EN ANATOMÍA PATOLÓGICA Y TELEPATOLOGÍA
+                        </h2>
+                        <p class="wsi-sidebar-subtitle" style="font-size: 10px; color: #38bdf8; font-weight: 700; margin-top: 2px;">
+                            Dirección Médica: Dr. Joseph Christopher Castillo Cuenca &bull; C.M.P. 56435
                         </p>
-                        <div class="wsi-intro-highlights">
-                            <div class="wsi-intro-highlight-item">
-                                <i class="fa-solid fa-circle-check"></i>
-                                <span>Resolución 0.25 µm/px</span>
+                    </div>
+
+                    <!-- INTRODUCCIÓN INSTITUCIONAL Y MISIÓN CLÍNICA -->
+                    <div class="wsi-sidebar-card" style="background: rgba(15, 29, 51, 0.75); border: 1px solid rgba(56, 189, 248, 0.22); border-radius: 10px; padding: 12px;">
+                        <p class="wsi-intro-desc" id="wsiSidebarDesc" style="font-size: 11px; color: #cbd5e1; line-height: 1.5; margin: 0;">
+                            Infraestructura diagnóstica histopatológica de alta resolución concebida para brindar certeza anatomopatológica submilimétrica a cirujanos, clínicas y hospitales de todo el territorio nacional, integrando telepatología en vivo, trazabilidad molecular y protocolos quirúrgicos de vanguardia.
+                        </p>
+                    </div>
+
+                    <!-- LOS 5 PILARES Y CAPACIDAD OPERATIVA DEL LABORATORIO -->
+                    <div class="wsi-clinical-card" style="background: linear-gradient(135deg, rgba(15, 29, 51, 0.85) 0%, rgba(10, 20, 38, 0.92) 100%); border: 1px solid rgba(56, 189, 248, 0.28); border-radius: 11px; padding: 13px; display: flex; flex-direction: column; gap: 10px;">
+                        <div class="wsi-clinical-head" style="border-bottom: 1px solid rgba(56, 189, 248, 0.15); padding-bottom: 7px;">
+                            <span class="wsi-clinical-tag" style="font-size: 9.5px; font-weight: 800; color: #38bdf8; letter-spacing: 0.6px; text-transform: uppercase; font-family: 'Montserrat', sans-serif;">
+                                <i class="fa-solid fa-dna" style="color: #38bdf8;"></i> CAPACIDAD OPERATIVA &amp; SERVICIOS DE REFERENCIA
+                            </span>
+                        </div>
+
+                        <!-- LISTA DE PILARES INSTITUCIONALES -->
+                        <div class="wsi-findings-list" style="display: flex; flex-direction: column; gap: 8px;">
+                            <!-- PILAR 1: ESCANEO DIGITAL WSI GIGAPÍXEL -->
+                            <div class="wsi-finding-node" style="display: flex; gap: 8px; align-items: flex-start; padding: 8px 10px; border-radius: 8px; background: rgba(5, 11, 20, 0.55); border: 1px solid rgba(56, 189, 248, 0.18);">
+                                <span class="wsi-finding-bullet sky" style="background: #38bdf8; box-shadow: 0 0 6px rgba(56, 189, 248, 0.8); width: 7px; height: 7px; border-radius: 50%; margin-top: 5px; flex-shrink: 0;"></span>
+                                <div class="wsi-finding-text">
+                                    <span class="wsi-finding-head" style="font-size: 11px; font-weight: 800; color: #ffffff;">Escaneo Digital WSI Gigapíxel a 40x</span>
+                                    <p class="wsi-finding-desc" style="font-size: 10px; color: #94a3b8; line-height: 1.4; margin: 2px 0 0 0;">
+                                        Digitalización de preparados histológicos en tiempo real con resolución submétrica (<strong>0.25 µm/píxel</strong>), transmitiendo a toda clínica u hospital del país sin traslados físicos de láminas de vidrio ni demoras logísticas.
+                                    </p>
+                                </div>
                             </div>
-                            <div class="wsi-intro-highlight-item">
-                                <i class="fa-solid fa-server"></i>
-                                <span>Servidor Físico 3.5 TB</span>
+
+                            <!-- PILAR 2: MAPEO QUIRÚRGICO 3D CON TINTA CHINA -->
+                            <div class="wsi-finding-node" style="display: flex; gap: 8px; align-items: flex-start; padding: 8px 10px; border-radius: 8px; background: rgba(5, 11, 20, 0.55); border: 1px solid rgba(16, 185, 129, 0.18);">
+                                <span class="wsi-finding-bullet green" style="background: #10b981; box-shadow: 0 0 6px rgba(16, 185, 129, 0.8); width: 7px; height: 7px; border-radius: 50%; margin-top: 5px; flex-shrink: 0;"></span>
+                                <div class="wsi-finding-text">
+                                    <span class="wsi-finding-head" style="font-size: 11px; font-weight: 800; color: #ffffff;">Mapeo Quirúrgico 3D con Tinta China Multicanal</span>
+                                    <p class="wsi-finding-desc" style="font-size: 10px; color: #94a3b8; line-height: 1.4; margin: 2px 0 0 0;">
+                                        Orientación espacial tridimensional milimétrica de piezas oncológicas complejas (prostatectomías radicales, mastectomías, sarcomas) garantizando evaluación exhaustiva de bordes quirúrgicos libres (<strong>R0</strong>).
+                                    </p>
+                                </div>
                             </div>
-                            <div class="wsi-intro-highlight-item">
-                                <i class="fa-solid fa-shield-halved"></i>
-                                <span>Túnel Cloudflare</span>
+
+                            <!-- PILAR 3: INMUNOHISTOQUÍMICA ESPECIALIZADA -->
+                            <div class="wsi-finding-node" style="display: flex; gap: 8px; align-items: flex-start; padding: 8px 10px; border-radius: 8px; background: rgba(5, 11, 20, 0.55); border: 1px solid rgba(244, 63, 94, 0.18);">
+                                <span class="wsi-finding-bullet red" style="background: #f43f5e; box-shadow: 0 0 6px rgba(244, 63, 94, 0.8); width: 7px; height: 7px; border-radius: 50%; margin-top: 5px; flex-shrink: 0;"></span>
+                                <div class="wsi-finding-text">
+                                    <span class="wsi-finding-head" style="font-size: 11px; font-weight: 800; color: #ffffff;">Inmunohistoquímica Especializada (150 Biomarcadores)</span>
+                                    <p class="wsi-finding-desc" style="font-size: 10px; color: #94a3b8; line-height: 1.4; margin: 2px 0 0 0;">
+                                        <strong>150 anticuerpos en stock permanente</strong> de gradilla in-house y acceso a panel universal global con correlación inmunofenotípica y molecular inmediata para subtipificación tumoral precisa.
+                                    </p>
+                                </div>
                             </div>
-                            <div class="wsi-intro-highlight-item">
-                                <i class="fa-solid fa-brain"></i>
-                                <span>Morfometría IA</span>
+
+                            <!-- PILAR 4: DESPACHO CLÍNICO DIGITAL AUTÓNOMO EN SEGUNDOS -->
+                            <div class="wsi-finding-node" style="display: flex; gap: 8px; align-items: flex-start; padding: 8px 10px; border-radius: 8px; background: rgba(5, 11, 20, 0.55); border: 1px solid rgba(245, 158, 11, 0.18);">
+                                <span class="wsi-finding-bullet amber" style="background: #f59e0b; box-shadow: 0 0 6px rgba(245, 158, 11, 0.8); width: 7px; height: 7px; border-radius: 50%; margin-top: 5px; flex-shrink: 0;"></span>
+                                <div class="wsi-finding-text">
+                                    <span class="wsi-finding-head" style="font-size: 11px; font-weight: 800; color: #ffffff;">Despacho Clínico Digital Autónomo en Segundos</span>
+                                    <p class="wsi-finding-desc" style="font-size: 10px; color: #94a3b8; line-height: 1.4; margin: 2px 0 0 0;">
+                                        Entrega automatizada directa al smartphone del cirujano tratante con firma digital verificable y trazabilidad completa 26Q antes del alta médica hospitalaria.
+                                    </p>
+                                </div>
                             </div>
+
+                            <!-- PILAR 5: SEGUNDA OPINIÓN EXPERTA & CONSULTORÍA -->
+                            <div class="wsi-finding-node" style="display: flex; gap: 8px; align-items: flex-start; padding: 8px 10px; border-radius: 8px; background: rgba(5, 11, 20, 0.55); border: 1px solid rgba(168, 85, 247, 0.18);">
+                                <span class="wsi-finding-bullet purple" style="background: #a855f7; box-shadow: 0 0 6px rgba(168, 85, 247, 0.8); width: 7px; height: 7px; border-radius: 50%; margin-top: 5px; flex-shrink: 0;"></span>
+                                <div class="wsi-finding-text">
+                                    <span class="wsi-finding-head" style="font-size: 11px; font-weight: 800; color: #ffffff;">Segunda Opinión Experta &amp; Consultoría Oncológica</span>
+                                    <p class="wsi-finding-desc" style="font-size: 10px; color: #94a3b8; line-height: 1.4; margin: 2px 0 0 0;">
+                                        Supervisión directa y consultoría diagnóstica de alta complejidad liderada por el <strong>Dr. Joseph Christopher Castillo Cuenca</strong> (C.M.P. 56435) para biopsias complejas e interconsultas quirúrgicas.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- INDICADORES RESUMEN -->
+                        <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px;">
+                            <span class="floating-pill success" style="font-size: 9px; padding: 2px 8px;">
+                                <i class="fa-solid fa-check"></i> Cobertura Nacional 24/7
+                            </span>
+                            <span class="floating-pill highlight" style="font-size: 9px; padding: 2px 8px;">
+                                <i class="fa-solid fa-shield-halved"></i> Trazabilidad 26Q
+                            </span>
+                            <span class="floating-pill" style="font-size: 9px; padding: 2px 8px; border-color: rgba(56, 189, 248, 0.4); color: #bae6fd;">
+                                <i class="fa-solid fa-server"></i> Servidor 3.5 TB Local
+                            </span>
                         </div>
                     </div>
 
-                    <!-- FICHA DIAGNÓSTICA DEL CORTE ACTIVO (ADENOCARCINOMA ACINAR DE PRÓSTATA) -->
-                    <div class="wsi-clinical-card" id="wsiClinicalCard">
-                        <div class="wsi-clinical-head">
-                            <span class="wsi-clinical-tag">
-                                <i class="fa-solid fa-dna"></i> FICHA HISTOPATOLÓGICA ACTIVA
-                            </span>
-                            <span class="floating-pill highlight" style="font-size: 9px; padding: 2px 7px;">Caso 26Q-0194</span>
-                        </div>
-
-                        <h3 class="wsi-diagnosis-name" id="wsiDiagnosisHeading">
-                            Adenocarcinoma Acinar de Próstata
-                        </h3>
-
-                        <!-- SCORE DE GLEASON & ISUP -->
-                        <div class="wsi-score-cluster">
-                            <div class="wsi-score-badge">
-                                <span class="wsi-score-label">Score de Gleason</span>
-                                <span class="wsi-score-val" id="wsiGleasonVal">4 + 3 = 7</span>
-                            </div>
-                            <div class="wsi-score-badge">
-                                <span class="wsi-score-label">Grupo Grado OMS</span>
-                                <span class="wsi-score-val isup" id="wsiIsupVal">ISUP 3</span>
-                            </div>
-                        </div>
-
-                        <!-- HALLAZGOS CLAVE EXIGIDOS POR EL PATÓLOGO -->
-                        <div class="wsi-findings-list">
-                            <div class="wsi-findings-title">
-                                <i class="fa-solid fa-list-check" style="color: #38bdf8;"></i> Hallazgos Histopatológicos Clave:
-                            </div>
-
-                            <div class="wsi-finding-node">
-                                <span class="wsi-finding-bullet red"></span>
-                                <div class="wsi-finding-text">
-                                    <span class="wsi-finding-head">Atipia Nuclear Marcada &amp; Pleomorfismo</span>
-                                    <p class="wsi-finding-desc">Pérdida de polaridad glandular, hipercromatismo severo y macronucléolos eosinófilos conspicuos visibles a 40x.</p>
-                                </div>
-                            </div>
-
-                            <div class="wsi-finding-node">
-                                <span class="wsi-finding-bullet amber"></span>
-                                <div class="wsi-finding-text">
-                                    <span class="wsi-finding-head">Ausencia Total de Células Basales</span>
-                                    <p class="wsi-finding-desc">Pérdida integral de la capa mioepitelial basal (p63 - / CK34βE12 -), confirmando invasión neoplásica en estroma.</p>
-                                </div>
-                            </div>
-
-                            <div class="wsi-finding-node">
-                                <span class="wsi-finding-bullet sky"></span>
-                                <div class="wsi-finding-text">
-                                    <span class="wsi-finding-head">Luces Cribiformes &amp; Fusión Acinar</span>
-                                    <p class="wsi-finding-desc">Patrón 4 cribiforme dominante (65% del tumor) con glándulas confluentes y perforaciones luminales redondeadas.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- CORRELACIÓN IHQ RÁPIDA -->
-                        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-                            <span class="floating-pill success" style="font-size: 9px; padding: 2px 7px;">
-                                <i class="fa-solid fa-check"></i> AMACR (P504S): (+) Intenso
-                            </span>
-                            <span class="floating-pill" style="font-size: 9px; padding: 2px 7px; border-color: rgba(244, 63, 94, 0.4); color: #f43f5e;">
-                                <i class="fa-solid fa-xmark"></i> p63 / Basales: (-) Negativo
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- ACCESO RÁPIDO A LAS MUESTRAS -->
+                    <!-- SELECTOR RÁPIDO DE MUESTRAS WSI -->
                     <div class="wsi-quick-samples-box">
                         <span class="wsi-quick-samples-label">
-                            <i class="fa-solid fa-microscope" style="color: #38bdf8;"></i> Acceso Rápido a Muestras WSI:
+                            <i class="fa-solid fa-microscope" style="color: #38bdf8;"></i> Muestras en Demostración WSI en Vivo:
                         </span>
-                        <div class="wsi-quick-samples-grid" role="group" aria-label="Acceso Rápido a Muestras WSI">
+                        <div class="wsi-quick-samples-grid" role="group" aria-label="Muestras en Demostración WSI en Vivo">
                             <button type="button" class="wsi-quick-sample-btn active" id="sideBtnSampleProstate" onclick="switchWSISample('prostate')" title="Muestra 1: Carcinoma de Próstata Real (Gleason 4+3)">
                                 <i class="fa-solid fa-microscope" style="color: #f43f5e;"></i>
-                                <span>Próstata (Gleason 4+3)</span>
+                                <span>Próstata (40x)</span>
                             </button>
-                            <button type="button" class="wsi-quick-sample-btn" id="sideBtnSampleGastric" onclick="switchWSISample('gastric')" title="Muestra 2: Biopsia Gástrica">
+                            <button type="button" class="wsi-quick-sample-btn" id="sideBtnSampleGastric" onclick="switchWSISample('gastric')" title="Muestra 2: Biopsia Gástrica (40x)">
                                 <i class="fa-solid fa-circle-dot" style="color: #38bdf8;"></i>
-                                <span>Gástrica 40x</span>
+                                <span>Gástrica (40x)</span>
                             </button>
-                            <button type="button" class="wsi-quick-sample-btn" id="sideBtnSampleRenal" onclick="switchWSISample('renal')" title="Muestra 3: Corte Quirúrgico Renal">
+                            <button type="button" class="wsi-quick-sample-btn" id="sideBtnSampleRenal" onclick="switchWSISample('renal')" title="Muestra 3: Corte Quirúrgico Renal (40x)">
                                 <i class="fa-solid fa-dna" style="color: #34d399;"></i>
-                                <span>Renal / Oncocitoma</span>
+                                <span>Renal (40x)</span>
                             </button>
                         </div>
                     </div>
@@ -3178,21 +3282,21 @@
                     <div class="wsi-cloudflare-card">
                         <div class="wsi-cloudflare-meta">
                             <span class="wsi-cloudflare-badge">
-                                <span class="wsi-pulse-dot" style="width: 6px; height: 6px;"></span> 3.5 TB LOCAL ACTIVO
+                                <span class="wsi-pulse-dot" style="width: 6px; height: 6px;"></span> SERVIDOR WSI LOCAL 3.5 TB
                             </span>
-                            <span style="font-size: 8.5px; color: #94a3b8; font-family: monospace;">Túnel Seguro 24/7</span>
+                            <span style="font-size: 8.5px; color: #94a3b8; font-family: monospace;">Túnel Cloudflare 24/7</span>
                         </div>
                         <a href="https://icon-kidney-collins-rebecca.trycloudflare.com/" target="_blank" rel="noopener noreferrer" class="wsi-cloudflare-link-btn" title="Conectar al Servidor WSI In-House en Vivo (Icon Kidney Collins)">
                             <i class="fa-solid fa-server"></i>
-                            <span>Conectar al Servidor Cloudflare</span>
+                            <span>Conectar al Servidor Cloudflare del Escáner</span>
                             <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px;"></i>
                         </a>
                     </div>
 
-                    <!-- ACCIONES DE INTERCONSULTA QUIRÚRGICA DIRECTA -->
+                    <!-- ACCIONES DE INTERCONSULTA DIRECTA Y CONVENIOS VÍA WHATSAPP -->
                     <div class="wsi-sidebar-actions">
-                        <a href="https://wa.me/51986396733?text=Estimado%20Dr.%20Joseph%20Castillo,%20le%20escribo%20desde%20el%20Visor%20WSI%20para%20coordinar%20interconsulta%20patol%C3%B3gica" target="_blank" class="wsi-sidebar-wa-btn" title="Interconsulta Quirúrgica WhatsApp">
-                            <i class="fa-brands fa-whatsapp"></i> Interconsulta Quirúrgica Directa
+                        <a href="https://wa.me/51986396733?text=Estimado%20Dr.%20Joseph%20Castillo,%20le%20escribo%20desde%20la%20plataforma%20institucional%20para%20coordinar%20estudio%20de%20biopsias%20o%20convenio%20de%20referencia%20con%20JC%20PATH%20LAB" target="_blank" class="wsi-sidebar-wa-btn" title="Coordinar Interconsulta o Convenio Institucional WhatsApp">
+                            <i class="fa-brands fa-whatsapp"></i> WhatsApp Directo &bull; Interconsulta y Convenios
                         </a>
                     </div>
                 </aside>
@@ -3306,7 +3410,15 @@
                         Aplicativo Móvil Quirúrgico &bull; Despacho Autónomo en Segundos
                     </div>
                 </div>
-                <div class="screen-hud-right">
+                <div class="screen-hud-right" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                    <div class="phone-sim-hud-controls" style="display: flex; gap: 6px;">
+                        <button type="button" id="btnPhoneStartDemo" class="btn-phone-sim-control active" onclick="startPhoneAutonomousDemo(true)">
+                            <i class="fa-solid fa-play"></i> Live Demo Quirófano
+                        </button>
+                        <button type="button" id="btnPhoneFreeMode" class="btn-phone-sim-control" onclick="stopPhoneAutonomousDemo(true)">
+                            <i class="fa-solid fa-pause"></i> Modo Libre
+                        </button>
+                    </div>
                     <span class="floating-pill success"><i class="fa-solid fa-bell"></i> Notificación Push en Vivo</span>
                     <span class="floating-pill highlight"><i class="fa-solid fa-shield-halved"></i> Firma Digital Verificable</span>
                 </div>
@@ -3329,10 +3441,17 @@
 
                     <!-- Maqueta Real de Smartphone Quirúrgico (Interactivo 100% / Escala +20%) -->
                     <div class="phone-mockup-fit">
-                        <!-- Dynamic Notch de Última Generación -->
-                        <div class="phone-dynamic-notch">
+                        <!-- Dynamic Notch de Última Generación con Notificación Push Quirúrgica Expandible -->
+                        <div class="phone-dynamic-notch" id="phoneDynamicNotch" onclick="triggerNotchClick()">
                             <div class="phone-camera-dot"></div>
                             <div class="phone-sensor-pill"></div>
+                            <div class="phone-notch-pulse-ring"></div>
+                            <!-- Contenido expandido de la notificación push en vivo -->
+                            <div class="phone-notch-content" id="phoneNotchContent">
+                                <span class="phone-notch-live-badge"><i class="fa-solid fa-circle"></i> PUSH EN VIVO</span>
+                                <span class="phone-notch-msg" id="phoneNotchMsg">🔴 NUEVA BIOPSIA RECIBIDA: Dr. Escalante &bull; Paciente Jorge Huamán (ID: 26Q-0289)</span>
+                                <span class="phone-notch-action-hint"><i class="fa-solid fa-arrow-down"></i> Toca para abrir</span>
+                            </div>
                         </div>
 
                         <!-- Barra de Estado del Teléfono (Reloj en vivo, 5G, Batería 100%) -->
@@ -3496,6 +3615,9 @@
                         <span class="floating-pill"><i class="fa-solid fa-id-badge"></i> Dr. Joseph Castillo &bull; CMP 56435</span>
                     </div>
                     <div class="actions-cluster">
+                        <button type="button" class="btn-screen-cta" id="btnFloatDemoToggle" onclick="toggleAutonomousDemoMode()" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: #ffffff; border: 1px solid rgba(56,189,248,0.5); cursor:pointer;">
+                            <i class="fa-solid fa-play"></i> <span id="lblFloatDemoText">Ver Demostración Quirófano en Vivo</span>
+                        </button>
                         <a href="login.html" class="btn-screen-cta btn-screen-portal">
                             <i class="fa-solid fa-arrow-right-to-bracket"></i> Probar en Portal Web
                         </a>
@@ -3506,22 +3628,33 @@
 
 
         <!-- ======================================================================
-           PANTALLA 4: 'Inmunohistoquímica Especializada' (150 Anticuerpos en Stock)
+           PANTALLA 4: 'Inmunohistoquímica Especializada' (ImmunoMaster AI Suite)
            ====================================================================== -->
         <section id="pantalla-ihq" class="screen-slide" role="tabpanel" aria-label="Inmunohistoquímica Especializada">
-            <!-- HUD Superior de IHQ -->
+            <!-- HUD Superior de IHQ con Conmutador de Vistas Internas -->
             <div class="screen-hud-header">
                 <div class="screen-hud-left">
                     <div class="screen-hud-title">
-                        <i class="fa-solid fa-dna" style="color: #38bdf8;"></i>
-                        Inmunohistoquímica Especializada &bull; Catálogo Activo en Stock
+                        <i class="fa-solid fa-wand-magic-sparkles" style="color: #38bdf8;"></i>
+                        Creador de Paneles IHQ &bull; ImmunoMaster AI Universal
                     </div>
-                    <span class="floating-pill highlight font-mono" id="ihqTotalCountBadge">150 Biomarcadores</span>
+                    <!-- Selector de Subvista: Creador Interactivo AI vs. Catálogo de Stock 150 -->
+                    <div class="ihq-view-switcher-pill" role="tablist" aria-label="Modo de Visualización IHQ">
+                        <button type="button" class="ihq-subview-btn active" id="btnIhqSubViewApp" onclick="switchIhqSubView('app')" role="tab" aria-selected="true" title="Creador Inteligente de Paneles IHQ, Dilemas Diagnósticos y Shannon Information Gain">
+                            <i class="fa-solid fa-brain" style="color: #38bdf8;"></i>
+                            <span>Creador de Paneles AI</span>
+                        </button>
+                        <button type="button" class="ihq-subview-btn" id="btnIhqSubViewCatalog" onclick="switchIhqSubView('catalog')" role="tab" aria-selected="false" title="Vademécum Oficial de 150 Anticuerpos en Stock In-House">
+                            <i class="fa-solid fa-flask-vial" style="color: #10b981;"></i>
+                            <span>Catálogo 150 en Stock</span>
+                        </button>
+                    </div>
                 </div>
                 <div class="screen-hud-right">
+                    <span class="floating-pill highlight font-mono" id="ihqTotalCountBadge">150 Biomarcadores</span>
                     <span class="floating-pill success"><i class="fa-solid fa-stopwatch"></i> Entrega en 4 Días Útiles</span>
-                    <a href="immunomaster_app.html" target="_blank" class="btn-screen-cta btn-screen-portal" style="padding: 5px 12px; font-size: 11px;">
-                        <i class="fa-solid fa-dna"></i> ImmunoMaster AI
+                    <a href="creador-paneles-ihq.html" target="_blank" rel="noopener noreferrer" class="btn-screen-cta btn-screen-portal" style="padding: 5px 12px; font-size: 11px;" title="Abrir en Pestaña Independiente / Pantalla Completa">
+                        <i class="fa-solid fa-up-right-from-square"></i> Pantalla Completa
                     </a>
                     <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20consultar%20disponibilidad%20de%20anticuerpo%20IHQ" target="_blank" class="btn-screen-cta btn-screen-wa" style="padding: 5px 12px; font-size: 11px;">
                         <i class="fa-brands fa-whatsapp"></i> Pedir Marcador
@@ -3529,9 +3662,21 @@
                 </div>
             </div>
 
-            <!-- Escenario de Inmunohistoquímica (Buscador + Tabla Maestra) -->
-            <div class="stage-viewer-container">
-                <div class="ihq-stage-grid">
+            <!-- Escenario Principal de Pantalla 4: Contenedor Dual Creador AI vs Catálogo Stock -->
+            <div class="stage-viewer-container" style="padding: 0; background: #020617;">
+                <!-- VISTA 1: SUITE NATIVA DEL CREADOR DE PANELES IHQ (IMMUNOMASTER AI) -->
+                <div class="ihq-app-iframe-container" id="ihqAppNativeView" style="display: flex;">
+                    <iframe 
+                        id="iframeIhqBuilder" 
+                        src="creador-paneles-ihq.html" 
+                        class="ihq-app-iframe" 
+                        title="Creador de Paneles de Inmunohistoquímica ImmunoMaster AI Universal"
+                        loading="eager">
+                    </iframe>
+                </div>
+
+                <!-- VISTA 2: CATÁLOGO CLÍNICO DE 150 ANTICUERPOS & VERIFICADOR INMEDIATO -->
+                <div class="ihq-stage-grid" id="ihqCatalogNativeView" style="display: none; width: 100%; height: 100%; padding: 14px 24px; box-sizing: border-box;">
                     <!-- Columna Izquierda: Verificador Instantáneo -->
                     <div class="ihq-control-panel">
                         <div class="glass-panel" style="padding: 16px; border: 1px solid rgba(56, 189, 248, 0.22);">
@@ -3554,10 +3699,10 @@
                                 <!-- Inyectado por dossier_web_interactive.js -->
                             </div>
 
-                            <!-- Acceso Directo a ImmunoMaster AI -->
+                            <!-- Acceso Directo al Creador de Paneles AI -->
                             <div style="margin-top: 10px; padding: 8px 10px; background: rgba(56,189,248,0.06); border: 1px dashed rgba(56,189,248,0.3); border-radius: 8px; font-size: 10.5px; display: flex; justify-content: space-between; align-items: center;">
                                 <span style="color: #94a3b8;"><i class="fa-solid fa-brain" style="color:#38bdf8;"></i> ¿Dilema de linaje?</span>
-                                <a href="immunomaster_app.html" target="_blank" style="color:#38bdf8; font-weight:800; text-decoration:none;">Lanzar Solver &rarr;</a>
+                                <button type="button" onclick="switchIhqSubView('app')" style="background:none; border:none; color:#38bdf8; font-weight:800; cursor:pointer; font-size:11px;">Lanzar Creador AI &rarr;</button>
                             </div>
                         </div>
 
@@ -3605,8 +3750,8 @@
                 <!-- HUD Flotante Inferior -->
                 <div class="screen-floating-bottom-bar">
                     <div class="pills-cluster">
-                        <span class="floating-pill highlight"><i class="fa-solid fa-award"></i> Controles de Calidad Externos Validados</span>
-                        <span class="floating-pill"><i class="fa-solid fa-dna"></i> Baterías Predictivas y Terapéuticas</span>
+                        <span class="floating-pill highlight"><i class="fa-solid fa-award"></i> Algoritmo Shannon ILP + Teorema de Bayes Multiclase</span>
+                        <span class="floating-pill"><i class="fa-solid fa-dna"></i> Baterías Predictivas y Terapéuticas en Stock</span>
                     </div>
                     <div class="actions-cluster">
                         <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20coordinar%20estudios%20de%20inmunohistoquimica" target="_blank" class="btn-screen-cta btn-screen-wa">
