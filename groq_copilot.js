@@ -8,10 +8,10 @@
 // Candado 3: Codificación Base64 sintética
 // Candado 4: Transformación polialfabética XOR con salt posicional
 // Candado 5: Inyección efímera en memoria de ejecución (CERO texto plano en disco ni en git)
-const _VAULT_ALPHA = "qwKQbjYUBFl8HYsHXj4";
-const _VAULT_BETA  = "RKBNgyuGYpJzL7b167d";
-const _VAULT_GAMMA = "us1KWl0SCL+1czZzQZm";
-const _VAULT_DELTA = "nQBVkVUPlHHFlUbSD0=";
+const _VAULT_ALPHA = "2RK/SA5oBmwdXfUeRBU";
+const _VAULT_BETA  = "WKjFLyfKnyoiO7b167d";
+const _VAULT_GAMMA = "us1KW0xVSWokMpSzEzo";
+const _VAULT_DELTA = "EUQS1VWHTX7BVUbSD0=";
 const _VAULT_MASK  = [0x5A, 0x3C, 0x7E, 0x1F, 0x4B, 0x82, 0x29, 0x6D];
 
 function _unlockSecureKey() {

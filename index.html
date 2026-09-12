@@ -2400,94 +2400,7 @@
             }
         }
 
-        /* --- PANTALLA 2: MAPEO 3D ESPECÍFICO --- */
-        .specimen-3d-stage {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(circle at center, #0e2038 0%, #030812 75%);
-            cursor: grab;
-        }
-        .specimen-3d-stage:active {
-            cursor: grabbing;
-        }
-        .specimen-360-main-img {
-            max-height: 84vh;
-            max-width: 94vw;
-            object-fit: contain;
-            user-select: none;
-            -webkit-user-drag: none;
-            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));
-        }
-
-        /* Pins Flotantes sobre la Pieza 3D */
-        .pin-marker {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 12px;
-            color: #fff;
-            cursor: pointer;
-            z-index: 15;
-            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 0 15px currentColor;
-        }
-        .pin-marker:hover {
-            transform: scale(1.35);
-        }
-        .pin-green { background: #10b981; color: #fff; }
-        .pin-red { background: #ef4444; color: #fff; }
-        .pin-blue { background: #0284c7; color: #fff; }
-        .pin-purple { background: #a855f7; color: #fff; }
-
-        /* Tarjetas Flotantes Compactas de Pines 3D */
-        .pins-dock-bar {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            pointer-events: auto;
-        }
-        .pin-compact-card {
-            background: rgba(15, 29, 51, 0.88);
-            border: 1px solid rgba(56, 189, 248, 0.22);
-            backdrop-filter: blur(12px);
-            border-radius: 12px;
-            padding: 6px 12px;
-            cursor: pointer;
-            transition: all 0.2s;
-            max-width: 220px;
-        }
-        .pin-compact-card:hover {
-            border-color: #38bdf8;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(56, 189, 248, 0.25);
-        }
-        .pin-compact-card h6 {
-            font-size: 10px;
-            font-weight: 800;
-            color: #38bdf8;
-            margin-bottom: 2px;
-            text-transform: uppercase;
-        }
-        .pin-compact-card p {
-            font-size: 9.5px;
-            color: #e2edfa;
-            line-height: 1.25;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        /* --- PANTALLA 3: APP MÓVIL ESPECÍFICA (AGRANDADO +20% / ALTA FIDELIDAD) --- */
+        /* --- PANTALLA 2: SISTEMA EXPLICATIVO INTERACTIVO CON AVATAR, FLECHAS Y CUADROS --- */
         .app-movil-stage {
             position: absolute;
             inset: 0;
@@ -2496,19 +2409,22 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: clamp(24px, 3.2vw, 54px);
-            padding: 4px clamp(14px, 2vw, 36px) 44px clamp(14px, 2vw, 36px);
+            gap: clamp(14px, 1.8vw, 32px);
+            padding: 4px clamp(12px, 1.6vw, 30px) 44px clamp(12px, 1.6vw, 30px);
             box-sizing: border-box;
             overflow: hidden;
+            background: radial-gradient(circle at center, #091a33 0%, #030814 85%);
         }
+
+        /* Maqueta Real de Smartphone Quirúrgico */
         .phone-mockup-fit {
-            width: 420px;
+            width: clamp(340px, 24vw, 395px);
             max-width: calc(100vw - 20px);
-            height: 88vh;
-            max-height: 780px;
-            min-height: 520px;
+            height: calc(100vh - 128px);
+            max-height: 750px;
+            min-height: 500px;
             background: #020617;
-            border-radius: 44px;
+            border-radius: 42px;
             border: 7px solid #1e293b;
             box-shadow: 0 25px 65px -12px rgba(2, 6, 23, 0.95), 0 0 45px rgba(56, 189, 248, 0.28);
             position: relative;
@@ -2517,35 +2433,453 @@
             flex-direction: column;
             flex-shrink: 0;
             z-index: 10;
+            transition: all 0.3s ease;
         }
-        .phone-features-dock {
+
+        /* --- PANEL IZQUIERDO: ESTACIÓN DEL AVATAR VIRTUAL (DRA. VICTORIA) --- */
+        .app-avatar-station {
+            width: clamp(280px, 22vw, 345px);
+            max-height: calc(100vh - 128px);
+            background: rgba(10, 20, 38, 0.88);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 20px;
+            padding: 12px 14px;
             display: flex;
             flex-direction: column;
             gap: 10px;
-            max-width: 360px;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.65), 0 0 24px rgba(2, 132, 199, 0.2);
             flex-shrink: 1;
+            z-index: 15;
+            position: relative;
         }
-        .phone-feature-card {
-            background: rgba(15, 29, 51, 0.85);
-            border: 1px solid rgba(56, 189, 248, 0.16);
-            backdrop-filter: blur(14px);
-            border-radius: 14px;
-            padding: 12px 16px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.35);
-        }
-        .phone-feature-card h5 {
-            font-size: 12px;
-            font-weight: 800;
-            color: #ffffff;
+
+        .avatar-hud-top {
             display: flex;
             align-items: center;
+            justify-content: space-between;
             gap: 8px;
-            margin-bottom: 4px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.15);
         }
-        .phone-feature-card p {
+
+        .avatar-hud-tag {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 10px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .avatar-live-beacon {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 10px #10b981;
+            animation: pulseBeacon 1.8s infinite;
+        }
+
+        @keyframes pulseBeacon {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.3); }
+        }
+
+        .btn-avatar-audio {
+            background: rgba(2, 132, 199, 0.25);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            color: #38bdf8;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 9px;
+            border-radius: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s;
+        }
+
+        .btn-avatar-audio:hover {
+            background: rgba(2, 132, 199, 0.45);
+            color: #fff;
+        }
+
+        .btn-avatar-audio.muted {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: rgba(239, 68, 68, 0.4);
+            color: #f87171;
+        }
+
+        /* Marco de Video Holográfico del Avatar */
+        .avatar-video-frame {
+            position: relative;
+            width: 100%;
+            height: clamp(135px, 17vh, 175px);
+            border-radius: 14px;
+            overflow: hidden;
+            background: #000000;
+            border: 1.5px solid rgba(56, 189, 248, 0.35);
+            box-shadow: inset 0 0 20px rgba(2, 132, 199, 0.4);
+            flex-shrink: 0;
+        }
+
+        .avatar-station-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+
+        .avatar-scan-overlay {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(rgba(56, 189, 248, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            background-size: 100% 3px, 6px 100%;
+            opacity: 0.6;
+        }
+
+        .avatar-video-controls {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            display: flex;
+            gap: 5px;
+            z-index: 5;
+        }
+
+        .btn-avatar-mini-ctrl {
+            background: rgba(10, 19, 34, 0.85);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            color: #ffffff;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-avatar-mini-ctrl:hover {
+            background: #0284c7;
+            transform: scale(1.1);
+        }
+
+        /* Waveform de voz interactivo */
+        .avatar-wave-indicator {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 16px;
+            padding: 3px 6px;
+            background: rgba(10, 19, 34, 0.8);
+            border-radius: 6px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            z-index: 5;
+        }
+
+        .avatar-wave-indicator span {
+            width: 2px;
+            background: #38bdf8;
+            border-radius: 1px;
+            height: 4px;
+            transition: height 0.15s ease;
+        }
+
+        .avatar-wave-indicator.talking span:nth-child(1) { animation: waveAnim 0.6s infinite 0.1s; }
+        .avatar-wave-indicator.talking span:nth-child(2) { animation: waveAnim 0.6s infinite 0.25s; }
+        .avatar-wave-indicator.talking span:nth-child(3) { animation: waveAnim 0.6s infinite 0.05s; }
+        .avatar-wave-indicator.talking span:nth-child(4) { animation: waveAnim 0.6s infinite 0.35s; }
+        .avatar-wave-indicator.talking span:nth-child(5) { animation: waveAnim 0.6s infinite 0.2s; }
+
+        @keyframes waveAnim {
+            0%, 100% { height: 3px; }
+            50% { height: 14px; background: #34d399; }
+        }
+
+        /* Cuadro de Locución / Teleprompter */
+        .avatar-speech-box {
+            background: rgba(5, 12, 24, 0.85);
+            border: 1px solid rgba(56, 189, 248, 0.22);
+            border-radius: 12px;
+            padding: 10px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+            min-height: 0;
+            overflow-y: auto;
+        }
+
+        .speech-header {
+            font-size: 9px;
+            font-weight: 800;
+            color: #38bdf8;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .speech-paragraph {
             font-size: 11px;
+            line-height: 1.45;
+            color: #e2edfa;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* Controles de Tour */
+        .avatar-tour-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            padding-top: 4px;
+        }
+
+        .btn-tour-step {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            color: #e2edfa;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-tour-step:hover {
+            background: #0284c7;
+            color: #fff;
+            border-color: #38bdf8;
+        }
+
+        .tour-steps-dots {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tour-step-dot {
+            width: 14px;
+            height: 6px;
+            border-radius: 3px;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.25s;
+            padding: 0;
+        }
+
+        .tour-step-dot.active {
+            width: 26px;
+            background: #38bdf8;
+            box-shadow: 0 0 10px #38bdf8;
+        }
+
+        .btn-tour-auto {
+            background: linear-gradient(135deg, rgba(2, 132, 199, 0.4), rgba(16, 185, 129, 0.4));
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 5px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s;
+        }
+
+        .btn-tour-auto.active {
+            background: linear-gradient(135deg, #0284c7, #10b981);
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+        }
+
+        /* --- PANEL DERECHO: MATRIZ DE CUADROS EXPLICATIVOS TECNOLÓGICOS --- */
+        .app-callouts-matrix {
+            width: clamp(290px, 23vw, 360px);
+            max-height: calc(100vh - 128px);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            justify-content: center;
+            flex-shrink: 1;
+            z-index: 15;
+            position: relative;
+        }
+
+        .callouts-matrix-header {
+            margin-bottom: 2px;
+        }
+
+        .callouts-matrix-header h5 {
+            font-size: 11.5px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            margin: 0 0 2px 0;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .callouts-matrix-header span {
+            font-size: 9px;
+            color: var(--accent-sky, #38bdf8);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            display: block;
+        }
+
+        .tech-callout-card {
+            background: rgba(12, 23, 44, 0.85);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(56, 189, 248, 0.18);
+            border-radius: 12px;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-callout-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: transparent;
+            transition: all 0.2s;
+        }
+
+        .tech-callout-card:hover {
+            border-color: rgba(56, 189, 248, 0.5);
+            background: rgba(16, 32, 60, 0.92);
+            transform: translateX(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+
+        .tech-callout-card.active {
+            background: linear-gradient(135deg, rgba(2, 132, 199, 0.28) 0%, rgba(15, 23, 42, 0.95) 100%);
+            border-color: #38bdf8;
+            box-shadow: 0 0 22px rgba(56, 189, 248, 0.35), 0 8px 24px rgba(0, 0, 0, 0.5);
+            transform: translateX(-4px);
+        }
+
+        .tech-callout-card.active::before {
+            background: #38bdf8;
+            box-shadow: 0 0 8px #38bdf8;
+        }
+
+        .callout-card-tag {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 3px;
+        }
+
+        .badge-index {
+            font-size: 8.5px;
+            font-weight: 900;
+            background: rgba(56, 189, 248, 0.2);
+            color: #38bdf8;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .tech-callout-card.active .badge-index {
+            background: #38bdf8;
+            color: #020617;
+            font-weight: 900;
+        }
+
+        .badge-title {
+            font-size: 8px;
+            font-weight: 800;
             color: #94a3b8;
-            line-height: 1.35;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        .badge-arrow-signal {
+            font-size: 8px;
+            font-weight: 800;
+            color: #34d399;
+            display: none;
+            align-items: center;
+            gap: 4px;
+            animation: bounceArrow 1.2s infinite;
+        }
+
+        .tech-callout-card.active .badge-arrow-signal {
+            display: inline-flex;
+        }
+
+        @keyframes bounceArrow {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-3px); }
+        }
+
+        .tech-callout-card h6 {
+            font-size: 11px;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0 0 2px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tech-callout-card p {
+            font-size: 9px;
+            color: #cbd5e1;
+            line-height: 1.32;
+            margin: 0;
+        }
+
+        /* Halo y Spotlight en los Elementos del Smartphone */
+        .spotlight-active {
+            position: relative;
+            outline: 2px solid #38bdf8 !important;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.85), inset 0 0 15px rgba(56, 189, 248, 0.4) !important;
+            animation: spotlightPulse 1.6s infinite ease-in-out !important;
+            z-index: 25;
+            transition: all 0.3s ease;
+        }
+
+        @keyframes spotlightPulse {
+            0%, 100% {
+                outline-color: #38bdf8;
+                box-shadow: 0 0 16px rgba(56, 189, 248, 0.7), inset 0 0 12px rgba(56, 189, 248, 0.3);
+            }
+            50% {
+                outline-color: #34d399;
+                box-shadow: 0 0 28px rgba(52, 211, 153, 0.9), inset 0 0 20px rgba(52, 211, 153, 0.4);
+            }
         }
 
         /* --- PANTALLA 4: INMUNOHISTOQUÍMICA ESPECÍFICA --- */
@@ -2607,7 +2941,8 @@
                 font-size: 10.5px;
                 padding: 6px 9px;
             }
-            .phone-features-dock {
+            .app-avatar-station,
+            .app-callouts-matrix {
                 display: none;
             }
             .ihq-stage-grid {
@@ -2852,11 +3187,6 @@
                 <li>
                     <button type="button" class="nav-screen-btn active" data-screen="pantalla-wsi" role="tab" aria-selected="true">
                         <i class="fa-solid fa-microscope"></i> WSI Escáner 40x
-                    </button>
-                </li>
-                <li>
-                    <button type="button" class="nav-screen-btn" data-screen="pantalla-mapeo3d" role="tab" aria-selected="false">
-                        <i class="fa-solid fa-cube"></i> Mapeo 3D
                     </button>
                 </li>
                 <li>
@@ -3302,101 +3632,7 @@
 
 
         <!-- ======================================================================
-           PANTALLA 2: 'Mapeo Quirúrgico 3D' (Visor 3D de Pieza y Márgenes R0)
-           ====================================================================== -->
-        <section id="pantalla-mapeo3d" class="screen-slide" role="tabpanel" aria-label="Mapeo Quirúrgico 3D">
-            <!-- HUD Superior del Mapeo 3D -->
-            <div class="screen-hud-header">
-                <div class="screen-hud-left">
-                    <div class="screen-hud-title">
-                        <i class="fa-solid fa-cube" style="color: #38bdf8;"></i>
-                        Mapeo Quirúrgico 3D &bull; Prostatectomía Radical (Orientación R0)
-                    </div>
-                    <span class="floating-pill highlight font-mono" id="specimen360Angle">0°</span>
-                </div>
-
-                <div class="screen-hud-right">
-                    <button type="button" class="wsi-btn-tool active" id="btnToggle360Spin">
-                        <i class="fa-solid fa-pause"></i> Pausar Giro
-                    </button>
-                    <span class="floating-pill success"><i class="fa-solid fa-check"></i> Margen R0 Asegurado</span>
-                </div>
-            </div>
-
-            <!-- Escenario 3D de la Pieza Quirúrgica (85%-90% Pantalla) -->
-            <div class="stage-viewer-container">
-                <div class="specimen-3d-stage" id="specimen360Viewport" title="Arrastra hacia los lados para rotar la pieza quirúrgica 360°">
-                    <img src="macro360_clean/frame_00.webp" id="specimen360Img" class="specimen-360-main-img" alt="Pieza Quirúrgica 3D 360°">
-                    
-                    <!-- 4 Pines Histopatológicos Interactivos Flotantes -->
-                    <div class="pin-marker pin-green" data-pin-id="1" style="top: 38%; left: 36%;" title="PIN 1: Ápex Prostático (Margen R0)">
-                        <span>1</span>
-                    </div>
-                    <div class="pin-marker pin-red" data-pin-id="2" style="top: 47%; left: 47%;" title="PIN 2: Nódulo Dominante (Gleason 4+4)">
-                        <span>2</span>
-                    </div>
-                    <div class="pin-marker pin-blue" data-pin-id="3" style="top: 36%; left: 63%;" title="PIN 3: Cuello Vesical (Margen R0)">
-                        <span>3</span>
-                    </div>
-                    <div class="pin-marker pin-purple" data-pin-id="4" style="top: 54%; left: 53%;" title="PIN 4: Fascículo Neurovascular (PNI Negativo)">
-                        <span>4</span>
-                    </div>
-                </div>
-
-                <!-- HUD Flotante Inferior con Micro-Cards de Correlación R0 -->
-                <div class="screen-floating-bottom-bar">
-                    <div class="pins-dock-bar">
-                        <div class="pin-compact-card pin-desc-card" data-pin-id="1">
-                            <h6><i class="fa-solid fa-circle-dot" style="color: #10b981;"></i> PIN 1 &bull; Ápex</h6>
-                            <p>Margen R0 Libre (&gt; 3.2 mm)</p>
-                        </div>
-                        <div class="pin-compact-card pin-desc-card" data-pin-id="2">
-                            <h6><i class="fa-solid fa-circle-dot" style="color: #ef4444;"></i> PIN 2 &bull; Nódulo</h6>
-                            <p>Gleason 4+4=8 (ISUP 4)</p>
-                        </div>
-                        <div class="pin-compact-card pin-desc-card" data-pin-id="3">
-                            <h6><i class="fa-solid fa-circle-dot" style="color: #0284c7;"></i> PIN 3 &bull; Cuello</h6>
-                            <p>Margen Basal Libre R0</p>
-                        </div>
-                        <div class="pin-compact-card pin-desc-card" data-pin-id="4">
-                            <h6><i class="fa-solid fa-circle-dot" style="color: #a855f7;"></i> PIN 4 &bull; Nervios</h6>
-                            <p>Invasión PNI Negativa</p>
-                        </div>
-                    </div>
-
-                    <div class="actions-cluster">
-                        <span class="floating-pill"><i class="fa-solid fa-fingerprint"></i> Tinta China Multicanal Indeleble</span>
-                        <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20coordinar%20mapeo%20quirurgico%203D%20de%20pieza%20operatoria" target="_blank" class="btn-screen-cta btn-screen-wa">
-                            <i class="fa-brands fa-whatsapp"></i> Coordinar Mapeo 3D
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modal de Correlación Microscópica al pulsar Pin -->
-            <div class="pin-micro-modal" id="pinMicroModal">
-                <div class="micro-modal-content">
-                    <div style="background: #071527; padding: 12px 18px; border-bottom: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center;">
-                        <div>
-                            <h4 id="pinModalTitle" style="font-size: 14px; font-weight: 900; color: #ffffff;">PIN HISTOLÓGICO</h4>
-                            <span id="pinModalCasete" style="font-size: 11px; color: var(--accent-sky); font-weight: 700;">Casete B-02</span>
-                        </div>
-                        <button type="button" onclick="closePinModal()" style="background: #1e293b; border: none; color: #fff; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-weight: 800;">&times;</button>
-                    </div>
-                    <div style="height: 320px; overflow: hidden; background: #000; position: relative;">
-                        <img src="morfologia_he_original.jpg" id="pinModalMicroImg" style="width: 100%; height: 100%; object-fit: cover;" alt="Corte Microscópico">
-                    </div>
-                    <div style="padding: 14px 18px; background: #0f172a;">
-                        <h5 id="pinModalVerdict" style="font-size: 13px; font-weight: 800; color: #38bdf8; margin-bottom: 4px;">Veredicto Oncológico</h5>
-                        <p id="pinModalDetails" style="font-size: 11.5px; color: #cbd5e1; line-height: 1.45;">Detalles patológicos del margen con tinta china.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- ======================================================================
-           PANTALLA 3: 'App Móvil & Despacho' (Maqueta Interactiva de Smartphone)
+           PANTALLA 2: 'App Móvil & Despacho' (Maqueta Interactiva de Smartphone)
            ====================================================================== -->
         <section id="pantalla-appmovil" class="screen-slide" role="tabpanel" aria-label="App Móvil & Despacho">
             <!-- HUD Superior de la App Móvil -->
@@ -3409,30 +3645,80 @@
                 </div>
                 <div class="screen-hud-right" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
                     <div class="phone-sim-hud-controls" style="display: flex; gap: 6px;">
-                        <button type="button" id="btnPhoneStartDemo" class="btn-phone-sim-control active" onclick="startPhoneAutonomousDemo(true)">
-                            <i class="fa-solid fa-play"></i> Live Demo Quirófano
+                        <button type="button" id="btnPhoneStartDemo" class="btn-phone-sim-control active" onclick="toggleAvatarAutoTour(true)">
+                            <i class="fa-solid fa-play"></i> Tour Guiado Quirófano
                         </button>
-                        <button type="button" id="btnPhoneFreeMode" class="btn-phone-sim-control" onclick="stopPhoneAutonomousDemo(true)">
+                        <button type="button" id="btnPhoneFreeMode" class="btn-phone-sim-control" onclick="toggleAvatarAutoTour(false)">
                             <i class="fa-solid fa-pause"></i> Modo Libre
                         </button>
                     </div>
-                    <span class="floating-pill success"><i class="fa-solid fa-bell"></i> Notificación Push en Vivo</span>
-                    <span class="floating-pill highlight"><i class="fa-solid fa-shield-halved"></i> Firma Digital Verificable</span>
+                    <span class="floating-pill success"><i class="fa-solid fa-bell"></i> Despacho en Quirófano Verificado</span>
+                    <span class="floating-pill highlight"><i class="fa-solid fa-shield-halved"></i> Firma Criptográfica & QR 26Q</span>
                 </div>
             </div>
 
             <!-- Escenario del Smartphone Interactivo -->
             <div class="stage-viewer-container">
                 <div class="app-movil-stage">
-                    <!-- Tarjetas Laterales de Autoridad Clínica -->
-                    <div class="phone-features-dock">
-                        <div class="phone-feature-card">
-                            <h5><i class="fa-solid fa-bolt" style="color: #38bdf8;"></i> Despacho en Segundos</h5>
-                            <p>El cirujano recibe el informe directamente en su móvil antes de que el paciente abandone la sala de recuperación.</p>
+                    <!-- PANEL IZQUIERDO: ESTACIÓN DEL AVATAR VIRTUAL (DRA. VICTORIA) -->
+                    <div class="app-avatar-station" id="appAvatarStation">
+                        <div class="avatar-hud-top">
+                            <div class="avatar-hud-tag">
+                                <span class="avatar-live-beacon"></span>
+                                <span>DRA. VICTORIA &bull; IA QUIRÚRGICA</span>
+                            </div>
+                            <button type="button" class="btn-avatar-audio" id="btnAvatarAudioToggle" title="Activar/Silenciar Locución Hablada">
+                                <i class="fa-solid fa-volume-high" id="iconAvatarAudio"></i>
+                                <span id="lblAvatarAudio">Audio ON</span>
+                            </button>
                         </div>
-                        <div class="phone-feature-card">
-                            <h5><i class="fa-solid fa-file-pdf" style="color: #10b981;"></i> PDF de Ultra-Resolución</h5>
-                            <p>Microfotografías calibradas a 40x, márgenes documentados y firma médica oficial con validez médico-legal.</p>
+
+                        <!-- Marco de Video del Avatar -->
+                        <div class="avatar-video-frame">
+                            <video id="avatarVictoriaVideo" class="avatar-station-video" playsinline loop muted src="assets/media/victoriahablando.mp4" poster="assets/media/victoriaidle.mp4"></video>
+                            <div class="avatar-scan-overlay"></div>
+                            <div class="avatar-wave-indicator talking" id="avatarWaveIndicator">
+                                <span></span><span></span><span></span><span></span><span></span>
+                            </div>
+                            <div class="avatar-video-controls">
+                                <button type="button" class="btn-avatar-mini-ctrl" id="btnAvatarPlayPause" title="Pausar/Reanudar Locución">
+                                    <i class="fa-solid fa-pause" id="iconPlayPause"></i>
+                                </button>
+                                <button type="button" class="btn-avatar-mini-ctrl" id="btnAvatarRestart" title="Reiniciar Explicación">
+                                    <i class="fa-solid fa-rotate-left"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Teleprompter / Explicación Clínica Dinámica -->
+                        <div class="avatar-speech-box">
+                            <div class="speech-header">
+                                <i class="fa-solid fa-brain-circuit" style="color: #38bdf8;"></i>
+                                <span id="speechStepBadge">TOUR QUIRÚRGICO &bull; PASO 1/5</span>
+                            </div>
+                            <p class="speech-paragraph" id="avatarSpeechText">
+                                Bienvenido al sistema de despacho patológico autónomo en quirófano de JC PATH LAB.
+                            </p>
+                        </div>
+
+                        <!-- Controles del Tour Interactivo Guiado -->
+                        <div class="avatar-tour-controls">
+                            <button type="button" class="btn-tour-step" id="btnTourPrev" title="Hito Anterior">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <div class="tour-steps-dots" id="tourStepsDots">
+                                <button type="button" class="tour-step-dot active" data-step="0" title="1. Notificación Push"></button>
+                                <button type="button" class="tour-step-dot" data-step="1" title="2. Microfotografía 40x"></button>
+                                <button type="button" class="tour-step-dot" data-step="2" title="3. Diagnóstico R0"></button>
+                                <button type="button" class="tour-step-dot" data-step="3" title="4. Firma & QR 26Q"></button>
+                                <button type="button" class="tour-step-dot" data-step="4" title="5. PDF & WhatsApp"></button>
+                            </div>
+                            <button type="button" class="btn-tour-step" id="btnTourNext" title="Siguiente Hito">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                            <button type="button" class="btn-tour-auto active" id="btnTourAutoToggle" title="Tour Automático Guiado">
+                                <i class="fa-solid fa-play" id="iconTourAuto"></i> Auto
+                            </button>
                         </div>
                     </div>
 
@@ -3592,15 +3878,66 @@
                         </div>
                     </div>
 
-                    <!-- Tarjetas Derechas de Respaldo -->
-                    <div class="phone-features-dock">
-                        <div class="phone-feature-card">
-                            <h5><i class="fa-solid fa-arrows-spin" style="color: #a855f7;"></i> Visor 360° en Bolsillo</h5>
-                            <p>Acceso instantáneo a la fotografía de tallado macroscópico con los márgenes entintados en alta fidelidad.</p>
+                    <!-- PANEL DERECHO: MATRIZ DE CUADROS EXPLICATIVOS TECNOLÓGICOS -->
+                    <div class="app-callouts-matrix" id="appCalloutsMatrix">
+                        <div class="callouts-matrix-header">
+                            <h5><i class="fa-solid fa-microchip" style="color: #38bdf8;"></i> NÚCLEO OPERATIVO DEL APLICATIVO</h5>
+                            <span>5 Hitos de Alta Tecnología Quirúrgica</span>
                         </div>
-                        <div class="phone-feature-card">
-                            <h5><i class="fa-solid fa-qrcode" style="color: #f59e0b;"></i> Trazabilidad 26Q-...</h5>
-                            <p>Código de barras bidimensional que previene extravíos o confusiones de muestras entre sedes.</p>
+
+                        <!-- PUNTO A: Notificación y despacho -->
+                        <div class="tech-callout-card active" data-step="0" onclick="selectExplainerStep(0)">
+                            <div class="callout-card-tag">
+                                <span class="badge-index">A</span>
+                                <span class="badge-title">QUIRÓFANO VERIFICADO</span>
+                                <span class="badge-arrow-signal"><i class="fa-solid fa-arrow-left"></i> Señalando</span>
+                            </div>
+                            <h6><i class="fa-solid fa-bell" style="color: #38bdf8;"></i> Notificación Push en Quirófano</h6>
+                            <p>El cirujano recibe alerta push en tiempo real en la Dynamic Notch y banner superior en menos de 14s tras el veredicto patológico.</p>
+                        </div>
+
+                        <!-- PUNTO B: Microfotografía 40x -->
+                        <div class="tech-callout-card" data-step="1" onclick="selectExplainerStep(1)">
+                            <div class="callout-card-tag">
+                                <span class="badge-index">B</span>
+                                <span class="badge-title">ALTA RESOLUCIÓN ÓPTICA</span>
+                                <span class="badge-arrow-signal"><i class="fa-solid fa-arrow-left"></i> Señalando</span>
+                            </div>
+                            <h6><i class="fa-solid fa-microscope" style="color: #10b981;"></i> Microfotografía 40x Calibrada</h6>
+                            <p>Microscopía digital a nivel celular calibrada a 4µm incrustada en el informe para verificación morfológica inmediata de atipias.</p>
+                        </div>
+
+                        <!-- PUNTO C: Diagnóstico definitivo -->
+                        <div class="tech-callout-card" data-step="2" onclick="selectExplainerStep(2)">
+                            <div class="callout-card-tag">
+                                <span class="badge-index">C</span>
+                                <span class="badge-title">PRECISIÓN ONCOLÓGICA</span>
+                                <span class="badge-arrow-signal"><i class="fa-solid fa-arrow-left"></i> Señalando</span>
+                            </div>
+                            <h6><i class="fa-solid fa-dna" style="color: #a855f7;"></i> Diagnóstico Definitivo & Margen R0</h6>
+                            <p>Graduación histológica (Gleason/FNCLCC), reporte preliminar y estado milimétrico de márgenes según protocolos CAP 2026.</p>
+                        </div>
+
+                        <!-- PUNTO D: Firma criptográfica y QR -->
+                        <div class="tech-callout-card" data-step="3" onclick="selectExplainerStep(3)">
+                            <div class="callout-card-tag">
+                                <span class="badge-index">D</span>
+                                <span class="badge-title">SEGURIDAD CRIPTOGRÁFICA</span>
+                                <span class="badge-arrow-signal"><i class="fa-solid fa-arrow-left"></i> Señalando</span>
+                            </div>
+                            <h6><i class="fa-solid fa-fingerprint" style="color: #f59e0b;"></i> Firma Digital & QR 26Q</h6>
+                            <p>Firma médica del Dr. Joseph Castillo (CMP 56435) con sello pericial, hash SHA-256 inmutable y QR de custodia 26Q.</p>
+                        </div>
+
+                        <!-- PUNTO E: Descarga PDF y WhatsApp -->
+                        <div class="tech-callout-card" data-step="4" onclick="selectExplainerStep(4)">
+                            <div class="callout-card-tag">
+                                <span class="badge-index">E</span>
+                                <span class="badge-title">DESPACHO MULTICANAL</span>
+                                <span class="badge-arrow-signal"><i class="fa-solid fa-arrow-left"></i> Señalando</span>
+                            </div>
+                            <h6><i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> Descarga PDF & WhatsApp Directo</h6>
+                            <p>Descarga en un toque del PDF oficial de ultra-resolución y reenvío cifrado instantáneo a WhatsApp del equipo quirúrgico.</p>
                         </div>
                     </div>
                 </div>
@@ -3612,8 +3949,8 @@
                         <span class="floating-pill"><i class="fa-solid fa-id-badge"></i> Dr. Joseph Castillo &bull; CMP 56435</span>
                     </div>
                     <div class="actions-cluster">
-                        <button type="button" class="btn-screen-cta" id="btnFloatDemoToggle" onclick="toggleAutonomousDemoMode()" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: #ffffff; border: 1px solid rgba(56,189,248,0.5); cursor:pointer;">
-                            <i class="fa-solid fa-play"></i> <span id="lblFloatDemoText">Ver Demostración Quirófano en Vivo</span>
+                        <button type="button" class="btn-screen-cta" id="btnFloatDemoToggle" onclick="toggleAvatarAutoTour()" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: #ffffff; border: 1px solid rgba(56,189,248,0.5); cursor:pointer;">
+                            <i class="fa-solid fa-play"></i> <span id="lblFloatDemoText">Iniciar Tour Explicativo con Avatar</span>
                         </button>
                         <a href="login.html" class="btn-screen-cta btn-screen-portal">
                             <i class="fa-solid fa-arrow-right-to-bracket"></i> Probar en Portal Web
@@ -3625,101 +3962,10 @@
 
 
         <!-- ======================================================================
-           PANTALLA 4: 'Inmunohistoquímica Especializada' (ImmunoMaster AI Suite)
+           PANTALLA 4: 'Inmunohistoquímica Especializada' (ImmunoMaster AI Universal)
            ====================================================================== -->
-        <!-- ======================================================================
-           PANTALLA 4: 'Creador de Paneles IHQ' (Build Panel • Interfaz Limpia)
-           ====================================================================== -->
-        <section id="pantalla-ihq" class="screen-slide" role="tabpanel" aria-label="Creador de Paneles IHQ">
-            <div class="ihq-clean-app-container">
-                <!-- Barra Superior: Crear Panel + Casos Guardados -->
-                <div class="ihq-clean-topbar">
-                    <h1 class="ihq-clean-title">Crear Panel</h1>
-                    <button type="button" class="ihq-clean-btn-saved" id="btnIhqSavedCases" onclick="handleIhqSavedCases()">
-                        <span>Casos Guardados</span>
-                        <i class="fa-solid fa-chevron-right"></i>
-                    </button>
-                </div>
-
-                <!-- Pestañas Principales de Navegación: Diagnósticos | Anticuerpos -->
-                <div class="ihq-clean-nav-tabs" role="tablist">
-                    <button type="button" class="ihq-clean-tab" id="ihqTabDiagnostics" role="tab" aria-selected="false" onclick="switchIhqCleanTab('diagnostics')">
-                        Diagnósticos
-                    </button>
-                    <button type="button" class="ihq-clean-tab active" id="ihqTabAntibodies" role="tab" aria-selected="true" onclick="switchIhqCleanTab('antibodies')">
-                        Anticuerpos
-                    </button>
-                </div>
-
-                <!-- Cuerpo Principal Dividido: Columna Izquierda de Búsqueda y Columna Derecha de Selección (0/5) -->
-                <div class="ihq-clean-body-grid">
-                    <!-- Columna Izquierda: Buscador + Recientes / Lista de Elementos -->
-                    <div class="ihq-clean-search-col">
-                        <div class="ihq-clean-search-box">
-                            <i class="fa-solid fa-magnifying-glass ihq-clean-search-icon"></i>
-                            <input 
-                                type="text" 
-                                id="ihqCleanSearchInput" 
-                                class="ihq-clean-input" 
-                                placeholder="Buscar anticuerpos..." 
-                                autocomplete="off"
-                                spellcheck="false">
-                            <button type="button" class="ihq-clean-clear-btn" id="btnIhqCleanClear" onclick="clearIhqCleanSearch()" style="display: none;">
-                                &times;
-                            </button>
-                        </div>
-
-                        <!-- Sección de Lista / Recientes -->
-                        <div class="ihq-clean-items-section">
-                            <div class="ihq-clean-section-header">
-                                <span class="ihq-clean-section-label" id="ihqSectionListLabel">Recientes</span>
-                                <span class="ihq-clean-section-count" id="ihqSectionListCount">12 disponibles</span>
-                            </div>
-                            <div class="ihq-clean-items-list" id="ihqCleanItemsList">
-                                <!-- Poblado dinámicamente por dossier_web_interactive.js -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Columna Derecha: Panel de Seleccionados (0/5) -->
-                    <div class="ihq-clean-selection-col">
-                        <div class="ihq-clean-selection-card">
-                            <div class="ihq-clean-selection-header">
-                                <span class="ihq-clean-selection-title">Seleccionados</span>
-                                <span class="ihq-clean-counter-pill" id="ihqSelectedCounterBadge">0 / 5</span>
-                            </div>
-
-                            <!-- Estado Vacío (Empty State) -->
-                            <div class="ihq-clean-empty-state" id="ihqSelectionEmptyState">
-                                <p class="ihq-clean-empty-text">
-                                    Busque diagnósticos o anticuerpos en el cuadro de búsqueda de la izquierda. Haga clic en los resultados para seleccionar elementos para su panel.
-                                </p>
-                            </div>
-
-                            <!-- Lista de Chips / Tarjetas de Elementos Seleccionados -->
-                            <div class="ihq-clean-selected-list" id="ihqSelectedChipsList" style="display: none;">
-                                <!-- Chips insertados dinámicamente -->
-                            </div>
-
-                            <!-- Barra de Acciones del Panel Creado (Aparece al seleccionar) -->
-                            <div class="ihq-clean-panel-actions" id="ihqPanelActionsBar" style="display: none;">
-                                <button type="button" class="ihq-clean-action-btn primary" onclick="executeIhqPanelAction('generate')">
-                                    <i class="fa-solid fa-wand-magic-sparkles"></i>
-                                    <span>Calcular Panel Resolutivo</span>
-                                </button>
-                                <button type="button" class="ihq-clean-action-btn secondary" onclick="executeIhqPanelAction('clear')">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                    <span>Limpiar Selección</span>
-                                </button>
-                                <a id="ihqCleanWaShareBtn" href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20cotizar%20este%20panel%20IHQ" target="_blank" class="ihq-clean-action-btn whatsapp">
-                                    <i class="fa-brands fa-whatsapp"></i>
-                                    <span>Consultar con Patólogo</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <section id="pantalla-ihq" class="screen-slide" role="tabpanel" aria-label="Creador de Paneles de Inmunohistoquímica">
+            <iframe src="creador-paneles-ihq.html" id="ihqFullAppFrame" style="width: 100%; height: 100%; border: none; display: block; background: #020617;" title="Creador de Paneles IHQ - ImmunoMaster AI Universal"></iframe>
         </section>
 
 
@@ -3912,11 +4158,10 @@
             <i class="fa-solid fa-chevron-left"></i>
         </button>
         <button type="button" class="slide-dot-btn active" data-target-screen="pantalla-wsi" title="1. WSI Escáner 40x"></button>
-        <button type="button" class="slide-dot-btn" data-target-screen="pantalla-mapeo3d" title="2. Mapeo Quirúrgico 3D"></button>
-        <button type="button" class="slide-dot-btn" data-target-screen="pantalla-appmovil" title="3. App Móvil & Despacho"></button>
-        <button type="button" class="slide-dot-btn" data-target-screen="pantalla-ihq" title="4. Inmunohistoquímica"></button>
-        <button type="button" class="slide-dot-btn" data-target-screen="pantalla-tarifario" title="5. Tarifario & Contacto"></button>
-        <span class="slide-counter-badge" id="slideCounterText">1 / 5</span>
+        <button type="button" class="slide-dot-btn" data-target-screen="pantalla-appmovil" title="2. App Móvil & Despacho"></button>
+        <button type="button" class="slide-dot-btn" data-target-screen="pantalla-ihq" title="3. Inmunohistoquímica"></button>
+        <button type="button" class="slide-dot-btn" data-target-screen="pantalla-tarifario" title="4. Tarifario & Contacto"></button>
+        <span class="slide-counter-badge" id="slideCounterText">1 / 4</span>
         <button type="button" class="slide-nav-arrow" id="btnNextSlide" title="Siguiente Pantalla (Flecha Derecha)">
             <i class="fa-solid fa-chevron-right"></i>
         </button>

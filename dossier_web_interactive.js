@@ -9,10 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSmartphoneSimulator();
     initWSIViewer();
     initMorphSplitSlider();
-    initGeminiCopilot();
-    initIHQAssistant();
-    initIhqCleanPanel();
-    initSpecimen360Viewer();
+    initAvatarExplainerSystem();
     initPricingCalculator();
 });
 
@@ -286,45 +283,26 @@ function handlePhoneUserActivity() {
 }
 
 /**
- * Inicia la demostración interactiva autónoma ("Live Demo Quirófano")
+ * Inicia la demostración interactiva guiada por el Avatar de IA
  */
 window.startPhoneAutonomousDemo = function(isUserClick = false) {
-    if (isUserClick) {
-        userInterruptedDemo = false;
-        showPhoneToast('Iniciando Live Demo Quirófano en vivo', 'fa-play');
+    if (typeof window.toggleAvatarAutoTour === 'function') {
+        window.toggleAvatarAutoTour(true);
     }
-
-    isPhoneDemoRunning = true;
-    updateDemoHUDButtons(true);
-
-    if (phoneDemoTimer) clearTimeout(phoneDemoTimer);
-    phoneDemoStep = 0;
-    executePhoneDemoStep();
 };
 
 /**
  * Detiene la demo y activa el modo libre
  */
 window.stopPhoneAutonomousDemo = function(isUserClick = false) {
-    isPhoneDemoRunning = false;
-    if (isUserClick) {
-        userInterruptedDemo = true;
-        showPhoneToast('Modo Libre activo: interactúa con cualquier biopsia', 'fa-hand');
+    if (typeof window.toggleAvatarAutoTour === 'function') {
+        window.toggleAvatarAutoTour(false);
     }
-    if (phoneDemoTimer) {
-        clearTimeout(phoneDemoTimer);
-        phoneDemoTimer = null;
-    }
-    // Restablecer estilos visuales de demo
-    resetDemoVisualState();
-    updateDemoHUDButtons(false);
 };
 
 window.toggleAutonomousDemoMode = function() {
-    if (isPhoneDemoRunning) {
-        window.stopPhoneAutonomousDemo(true);
-    } else {
-        window.startPhoneAutonomousDemo(true);
+    if (typeof window.toggleAvatarAutoTour === 'function') {
+        window.toggleAvatarAutoTour();
     }
 };
 
@@ -2127,377 +2105,11 @@ function initGeminiCopilot() {
 }
 
 /* ==========================================================================
-   5. CREADOR DE PANELES IHQ LIMPIO & ELEGANTE (BUILD PANEL • IDÉNTICO IMAGEN 3)
-   Pestañas Diagnósticos / Anticuerpos, Búsqueda en vivo, Recientes y Seleccionados (0/5)
+   5. CREADOR DE PANELES IHQ (EJE 05)
+   NOTA: La Pantalla 4 está gestionada al 100% de forma autónoma por el iframe
+   de 'creador-paneles-ihq.html' (ImmunoMaster AI Universal con catálogo completo).
+   El mock previo y sus controladores locales han sido retirados para optimización.
    ========================================================================== */
-
-// Base de Conocimiento de Diagnósticos Patológicos para Crear Panel
-const IHQ_DIAGNOSTICS_DB = [
-    {
-        id: "diag_lung_adeno",
-        name: "Adenocarcinoma Pulmonar",
-        category: "Patología Pulmonar & Torácica",
-        meta: "CK7+, TTF-1+, Napsina A+, CK20-, p40-",
-        recommended: ["TTF-1", "Napsina A", "CK7", "CK20", "p40"]
-    },
-    {
-        id: "diag_lung_squam",
-        name: "Carcinoma Epidermoide Pulmonar",
-        category: "Patología Pulmonar & Torácica",
-        meta: "p40+, p63+, CK5/6+, TTF-1-, Napsina A-",
-        recommended: ["p40", "p63", "CK5/6", "TTF-1"]
-    },
-    {
-        id: "diag_meso_epi",
-        name: "Mesotelioma Epitelioide Pleural",
-        category: "Pleura & Mesotelio",
-        meta: "Calretinina+, WT1+, D2-40+, Claudina 4-, CEA-",
-        recommended: ["Calretinina", "WT1", "D2-40 (Podoplanina)", "Claudina 4"]
-    },
-    {
-        id: "diag_prostate_adeno",
-        name: "Adenocarcinoma Prostático Acinar",
-        category: "Uropatología & Próstata",
-        meta: "AMACR+, NKX3.1+, PSA+, p63-, CK-HMW-",
-        recommended: ["AMACR (Racemase)", "p63", "PSA", "CK-HMW"]
-    },
-    {
-        id: "diag_rcc_cc",
-        name: "Carcinoma Renal de Células Claras",
-        category: "Nefropatología Quirúrgica",
-        meta: "PAX8+, CD10+, Vimentina+, CA IX+, CK7-",
-        recommended: ["PAX8", "CD10", "A. CARBONICA IX (CA IX)", "CK7"]
-    },
-    {
-        id: "diag_urothelial_ca",
-        name: "Carcinoma Urotelial Infiltrante",
-        category: "Uropatología & Vejiga",
-        meta: "GATA3+, p63+, CK7+, CK20+, PAX8-",
-        recommended: ["GATA3", "p63", "CK7", "CK20"]
-    },
-    {
-        id: "diag_breast_ductal",
-        name: "Carcinoma Ductal Infiltrante de Mama",
-        category: "Mastopatología & Mama",
-        meta: "RE+, RP+, HER2, GATA3+, Mamaglobina+",
-        recommended: ["RECEPTOR ESTROGENO (RE)", "RECEPTOR PROGESTERONA (RP)", "HER2", "GATA3", "Ki-67"]
-    },
-    {
-        id: "diag_melanoma",
-        name: "Melanoma Maligno Cutáneo",
-        category: "Dermatopatología Oncológica",
-        meta: "SOX10+, S100+, HMB-45+, Melan-A+, Pan-CK-",
-        recommended: ["SOX10", "S-100", "HMB-45", "MELAN A"]
-    },
-    {
-        id: "diag_gist",
-        name: "Tumor del Estroma Gastrointestinal (GIST)",
-        category: "Partes Blandas & Gastrointestinal",
-        meta: "DOG1+, CD117 (c-Kit)+, CD34+, Desmina-",
-        recommended: ["DOG-1", "CD117(C-KIT)", "CD34", "DESMINA"]
-    },
-    {
-        id: "diag_dlbcl",
-        name: "Linfoma Difuso de Células Grandes B",
-        category: "Hematopatología & Linfomas",
-        meta: "CD20+, CD19+, PAX5+, CD10+/-, BCL-6+, Ki-67 alto",
-        recommended: ["CD20", "CD10", "BCL-6", "MUM-1", "Ki-67"]
-    },
-    {
-        id: "diag_colon_adeno",
-        name: "Adenocarcinoma Colorrectal",
-        category: "Gastroenterología & Colon",
-        meta: "CDX2+, CK20+, SATB2+, CK7-, MMR (MLH1/MSH2)",
-        recommended: ["CDX-2", "CK20", "SATB2", "MLH1", "MSH2"]
-    },
-    {
-        id: "diag_neuroendocrine",
-        name: "Tumor Neuroendocrino Bien Diferenciado",
-        category: "Neuroendocrino Sistémico",
-        meta: "Sinaptofisina+, Cromogranina A+, INSM1+, CD56+",
-        recommended: ["SINAPTOFISINA", "CROMOGRANINA A", "CD56", "Ki-67"]
-    }
-];
-
-// Estado global del Creador de Paneles Limpio
-let ihqCleanState = {
-    activeTab: 'antibodies', // 'diagnostics' | 'antibodies'
-    searchQuery: '',
-    selectedItems: [] // Máximo 5 elementos { id, name, type, meta }
-};
-
-function initIHQAssistant() {
-    initIHQCleanApp();
-}
-
-function initIHQCleanApp() {
-    const searchInput = document.getElementById('ihqCleanSearchInput');
-    const clearBtn = document.getElementById('btnIhqCleanClear');
-
-    if (searchInput) {
-        searchInput.addEventListener('input', (e) => {
-            ihqCleanState.searchQuery = (e.target.value || '').trim();
-            if (clearBtn) {
-                clearBtn.style.display = ihqCleanState.searchQuery.length > 0 ? 'block' : 'none';
-            }
-            renderIhqCleanItems();
-        });
-    }
-
-    // Render inicial
-    renderIhqCleanItems();
-    updateIhqSelectionUI();
-}
-
-window.switchIhqCleanTab = function(tabName) {
-    ihqCleanState.activeTab = tabName;
-    ihqCleanState.searchQuery = '';
-
-    const tabDiag = document.getElementById('ihqTabDiagnostics');
-    const tabAb = document.getElementById('ihqTabAntibodies');
-    const searchInput = document.getElementById('ihqCleanSearchInput');
-    const clearBtn = document.getElementById('btnIhqCleanClear');
-
-    if (searchInput) {
-        searchInput.value = '';
-        searchInput.placeholder = tabName === 'diagnostics' ? 'Buscar diagnósticos...' : 'Buscar anticuerpos...';
-    }
-    if (clearBtn) clearBtn.style.display = 'none';
-
-    if (tabName === 'diagnostics') {
-        if (tabDiag) {
-            tabDiag.classList.add('active');
-            tabDiag.setAttribute('aria-selected', 'true');
-        }
-        if (tabAb) {
-            tabAb.classList.remove('active');
-            tabAb.setAttribute('aria-selected', 'false');
-        }
-    } else {
-        if (tabAb) {
-            tabAb.classList.add('active');
-            tabAb.setAttribute('aria-selected', 'true');
-        }
-        if (tabDiag) {
-            tabDiag.classList.remove('active');
-            tabDiag.setAttribute('aria-selected', 'false');
-        }
-    }
-
-    renderIhqCleanItems();
-};
-
-window.clearIhqCleanSearch = function() {
-    ihqCleanState.searchQuery = '';
-    const searchInput = document.getElementById('ihqCleanSearchInput');
-    const clearBtn = document.getElementById('btnIhqCleanClear');
-    if (searchInput) {
-        searchInput.value = '';
-        searchInput.focus();
-    }
-    if (clearBtn) clearBtn.style.display = 'none';
-    renderIhqCleanItems();
-};
-
-function renderIhqCleanItems() {
-    const listContainer = document.getElementById('ihqCleanItemsList');
-    const labelElem = document.getElementById('ihqSectionListLabel');
-    const countElem = document.getElementById('ihqSectionListCount');
-    if (!listContainer) return;
-
-    listContainer.innerHTML = '';
-    const q = ihqCleanState.searchQuery.toLowerCase();
-
-    if (ihqCleanState.activeTab === 'diagnostics') {
-        // Renderizar diagnósticos
-        if (labelElem) labelElem.textContent = q ? 'Resultados de Diagnósticos' : 'Recientes';
-
-        let items = IHQ_DIAGNOSTICS_DB;
-        if (q) {
-            items = items.filter(d => 
-                d.name.toLowerCase().includes(q) || 
-                d.category.toLowerCase().includes(q) || 
-                d.meta.toLowerCase().includes(q)
-            );
-        }
-
-        if (countElem) countElem.textContent = `${items.length} ${items.length === 1 ? 'diagnóstico' : 'diagnósticos'}`;
-
-        if (items.length === 0) {
-            listContainer.innerHTML = `
-                <div style="padding: 24px 14px; text-align: center; color: #64748b; font-size: 13px;">
-                    No se encontraron diagnósticos que coincidan con "<strong>${ihqCleanState.searchQuery}</strong>".
-                </div>
-            `;
-            return;
-        }
-
-        items.forEach(diag => {
-            const isSelected = ihqCleanState.selectedItems.some(item => item.id === diag.id);
-            const card = document.createElement('div');
-            card.className = `ihq-clean-item-card ${isSelected ? 'is-selected' : ''}`;
-            card.onclick = () => toggleIhqSelection(diag.id, diag.name, 'Diagnóstico', diag.meta);
-
-            card.innerHTML = `
-                <div class="ihq-clean-item-info">
-                    <div class="ihq-clean-item-name">
-                        <i class="fa-solid fa-notes-medical" style="color: #38bdf8; font-size: 13px;"></i>
-                        <span>${diag.name}</span>
-                    </div>
-                    <div class="ihq-clean-item-meta">${diag.category} &bull; <span style="color:#cbd5e1;">${diag.meta}</span></div>
-                </div>
-                <button type="button" class="ihq-clean-item-action" title="${isSelected ? 'Remover' : 'Añadir al panel'}">
-                    <i class="fa-solid ${isSelected ? 'fa-check' : 'fa-plus'}"></i>
-                </button>
-            `;
-            listContainer.appendChild(card);
-        });
-
-    } else {
-        // Renderizar anticuerpos
-        if (labelElem) labelElem.textContent = q ? 'Resultados de Anticuerpos' : 'Recientes';
-
-        const db = window.ANTIBODIES_STOCK_DB || [];
-        let items = db;
-
-        if (q) {
-            items = items.filter(ab => 
-                ab.name.toLowerCase().includes(q) || 
-                ab.category.toLowerCase().includes(q) || 
-                ab.description.toLowerCase().includes(q)
-            );
-        } else {
-            // Mostrar los primeros 18 más representativos en "Recientes"
-            items = db.slice(0, 18);
-        }
-
-        if (countElem) countElem.textContent = `${items.length} disponibles`;
-
-        if (items.length === 0) {
-            listContainer.innerHTML = `
-                <div style="padding: 24px 14px; text-align: center; color: #64748b; font-size: 13px;">
-                    No se encontraron anticuerpos que coincidan con "<strong>${ihqCleanState.searchQuery}</strong>".
-                </div>
-            `;
-            return;
-        }
-
-        items.forEach(ab => {
-            const abId = 'ab_' + ab.name.toLowerCase().replace(/[^a-z0-9]/g, '_');
-            const isSelected = ihqCleanState.selectedItems.some(item => item.id === abId);
-            const card = document.createElement('div');
-            card.className = `ihq-clean-item-card ${isSelected ? 'is-selected' : ''}`;
-            card.onclick = () => toggleIhqSelection(abId, ab.name, 'Anticuerpo', ab.category + ' • ' + ab.localization);
-
-            card.innerHTML = `
-                <div class="ihq-clean-item-info">
-                    <div class="ihq-clean-item-name">
-                        <i class="fa-solid fa-flask-vial" style="color: #34d399; font-size: 13px;"></i>
-                        <span>${ab.name}</span>
-                    </div>
-                    <div class="ihq-clean-item-meta">${ab.category} &bull; <span style="color:#cbd5e1;">${ab.localization}</span></div>
-                </div>
-                <button type="button" class="ihq-clean-item-action" title="${isSelected ? 'Remover' : 'Añadir al panel'}">
-                    <i class="fa-solid ${isSelected ? 'fa-check' : 'fa-plus'}"></i>
-                </button>
-            `;
-            listContainer.appendChild(card);
-        });
-    }
-}
-
-function toggleIhqSelection(id, name, type, meta) {
-    const existingIdx = ihqCleanState.selectedItems.findIndex(item => item.id === id);
-
-    if (existingIdx >= 0) {
-        // Remover
-        ihqCleanState.selectedItems.splice(existingIdx, 1);
-    } else {
-        // Añadir si no supera el límite de 5
-        if (ihqCleanState.selectedItems.length >= 5) {
-            alert('Límite alcanzado: Puede seleccionar un máximo de 5 elementos (diagnósticos o anticuerpos) para optimizar el panel consensuado.');
-            return;
-        }
-        ihqCleanState.selectedItems.push({ id, name, type, meta });
-    }
-
-    renderIhqCleanItems();
-    updateIhqSelectionUI();
-}
-
-window.removeIhqSelection = function(id) {
-    ihqCleanState.selectedItems = ihqCleanState.selectedItems.filter(item => item.id !== id);
-    renderIhqCleanItems();
-    updateIhqSelectionUI();
-};
-
-function updateIhqSelectionUI() {
-    const counterBadge = document.getElementById('ihqSelectedCounterBadge');
-    const emptyState = document.getElementById('ihqSelectionEmptyState');
-    const chipsList = document.getElementById('ihqSelectedChipsList');
-    const actionsBar = document.getElementById('ihqPanelActionsBar');
-    const waShareBtn = document.getElementById('ihqCleanWaShareBtn');
-
-    const total = ihqCleanState.selectedItems.length;
-
-    if (counterBadge) {
-        counterBadge.textContent = `${total} / 5`;
-        if (total >= 5) {
-            counterBadge.classList.add('full');
-        } else {
-            counterBadge.classList.remove('full');
-        }
-    }
-
-    if (total === 0) {
-        if (emptyState) emptyState.style.display = 'flex';
-        if (chipsList) chipsList.style.display = 'none';
-        if (actionsBar) actionsBar.style.display = 'none';
-    } else {
-        if (emptyState) emptyState.style.display = 'none';
-        if (chipsList) {
-            chipsList.style.display = 'flex';
-            chipsList.innerHTML = '';
-
-            ihqCleanState.selectedItems.forEach(item => {
-                const chip = document.createElement('div');
-                chip.className = 'ihq-selected-chip';
-                chip.innerHTML = `
-                    <div class="ihq-selected-chip-info">
-                        <span class="ihq-selected-chip-title">${item.name}</span>
-                        <span class="ihq-selected-chip-type">${item.type} &bull; ${item.meta}</span>
-                    </div>
-                    <button type="button" class="ihq-selected-remove-btn" onclick="removeIhqSelection('${item.id}')" title="Remover de la selección">&times;</button>
-                `;
-                chipsList.appendChild(chip);
-            });
-        }
-        if (actionsBar) actionsBar.style.display = 'flex';
-
-        // Actualizar enlace de WhatsApp con los elementos seleccionados
-        if (waShareBtn) {
-            const names = ihqCleanState.selectedItems.map(i => i.name).join(', ');
-            const msg = `Hola Dr. Joseph Castillo, le consulto desde el Creador de Paneles IHQ para solicitar asesoría técnica del siguiente panel: ${names}.`;
-            waShareBtn.href = `https://wa.me/51986396733?text=${encodeURIComponent(msg)}`;
-        }
-    }
-}
-
-window.executeIhqPanelAction = function(action) {
-    if (action === 'clear') {
-        ihqCleanState.selectedItems = [];
-        renderIhqCleanItems();
-        updateIhqSelectionUI();
-    } else if (action === 'generate') {
-        if (ihqCleanState.selectedItems.length === 0) return;
-        const names = ihqCleanState.selectedItems.map(i => i.name).join(' | ');
-        alert(`Panel Calculado con Éxito:\n\nElementos: ${names}\n\nOptimizador de Shannon: Máxima ganancia de información algorítmica garantizada para esta combinación.`);
-    }
-};
-
-window.handleIhqSavedCases = function() {
-    alert('Casos Guardados:\n\n1. 26Q-0182: Adenocarcinoma Gástrico (HER2, Claudina 18.2, MMR)\n2. 26Q-0194: Adenocarcinoma Prostático (AMACR, p63, CK-HMW)\n3. 26Q-0284: Melanoma Acral Lentiginoso (SOX-10, Melan-A, HMB-45)\n\nPuede abrir o continuar cualquiera de estos casos en el Portal Quirúrgico.');
-};
 
 
 /* ==========================================================================
@@ -2534,168 +2146,409 @@ const PINS_SPECIMEN_DATA = {
     }
 };
 
-let current360Frame = 0;
-const TOTAL_360_FRAMES = 36;
-let isSpinning360 = true;
-let spin360Interval = null;
+/* ==========================================================================
+   6. SISTEMA EXPLICATIVO INTERACTIVO CON AVATAR, FLECHAS Y CUADROS (DRA. VICTORIA)
+   ========================================================================== */
+const EXPLAINER_STEPS = [
+    {
+        index: 0,
+        badgeTag: 'PUNTO 01 • DESPACHO INMEDIATO',
+        title: 'Notificación Push en Quirófano',
+        speech: 'Punto uno: Notificación y despacho en quirófano verificado. En cuanto el patólogo emite el veredicto, el cirujano recibe una alerta push prioritaria en el dynamic notch de su teléfono móvil y en el banner superior, garantizando tiempos de respuesta menores a catorce segundos.',
+        teleprompter: 'PUNTO 1/5: Notificación push instantánea en quirófano. El informe patológico se despacha al móvil del cirujano en < 14s a través del Dynamic Notch y canal prioritario verificado.',
+        targetSelector: '.phone-trace-banner',
+        notchAlert: true
+    },
+    {
+        index: 1,
+        badgeTag: 'PUNTO 02 • ALTA RESOLUCIÓN ÓPTICA',
+        title: 'Microfotografía 40x Calibrada',
+        speech: 'Punto dos: Microfotografía calibrada a cuarenta aumentos en tiempo real. Cada informe incorpora capturas histopatológicas de ultra-resolución óptica a nivel celular, con calibración estricta a cuatro micrómetros para verificar atipias y morfología en sala de operaciones.',
+        teleprompter: 'PUNTO 2/5: Microfotografía 40x de alta fidelidad. Captura microscópica a nivel celular con corte calibrado a 4µm para verificación morfológica inmediata del cirujano.',
+        targetSelector: '.phone-report-micro-card',
+        notchAlert: false
+    },
+    {
+        index: 2,
+        badgeTag: 'PUNTO 03 • PRECISIÓN ONCOLÓGICA',
+        title: 'Diagnóstico Definitivo & Margen R0',
+        speech: 'Punto tres: Diagnóstico histopatológico definitivo y estado de márgenes. Detalla la tipificación tumoral según estándares del Colegio Americano de Patólogos 2026, graduación histológica Gleason o FNCLCC, y la certificación milimétrica del estado de márgenes libres R0.',
+        teleprompter: 'PUNTO 3/5: Diagnóstico histopatológico definitivo, graduación tumoral y confirmación expresa de margen libre R0 según protocolos CAP y OMS 2026.',
+        targetSelector: '.diagnosis-box',
+        notchAlert: false
+    },
+    {
+        index: 3,
+        badgeTag: 'PUNTO 04 • SEGURIDAD CRIPTOGRÁFICA',
+        title: 'Firma Digital & QR 26Q',
+        speech: 'Punto cuatro: Firma digital criptográfica y código QR con trazabilidad 26Q. Todo documento cuenta con sello criptográfico inmutable SHA-256 y custodia digital pericial, respaldado por la firma médica oficial del Doctor Joseph Castillo, con CMP 56435 y plena validez médico-legal.',
+        teleprompter: 'PUNTO 4/5: Autenticación criptográfica SHA-256 y código QR de custodia 26Q respaldado por la firma médica oficial del Dr. Joseph Castillo (CMP 56435).',
+        targetSelector: '.p-rep-legal-footer',
+        notchAlert: false
+    },
+    {
+        index: 4,
+        badgeTag: 'PUNTO 05 • DESPACHO MULTICANAL',
+        title: 'Descarga PDF & WhatsApp Directo',
+        speech: 'Punto cinco: Descarga del informe en PDF vectorial de ultra-definición y despacho directo por WhatsApp. Con un solo toque, el cirujano obtiene el informe pericial completo o lo transfiere de forma cifrada a WhatsApp para el equipo quirúrgico y la historia clínica.',
+        teleprompter: 'PUNTO 5/5: Botón de descarga de informe PDF vectorial en ultra-resolución y botón de despacho instantáneo cifrado a WhatsApp para el equipo de guardia.',
+        targetSelector: '.p-rep-action-toolbar',
+        notchAlert: false
+    }
+];
 
-function initSpecimen360Viewer() {
-    const frameImg = document.getElementById('specimen360Img');
-    const viewport = document.getElementById('specimen360Viewport');
-    const spinBtn = document.getElementById('btnToggle360Spin');
-    if (!frameImg || !viewport) return;
+let currentExplainerStep = 0;
+let isAvatarTourRunning = true;
+let avatarTourTimer = null;
+let isAvatarAudioEnabled = true;
+let isAvatarSpeaking = false;
+let avatarSpeechTimeout = null;
 
-    // Precarga de los 36 fotogramas
-    for (let i = 0; i < TOTAL_360_FRAMES; i++) {
-        const pad = String(i).padStart(2, '0');
-        const img = new Image();
-        img.src = `macro360_clean/frame_${pad}.webp`;
+function initAvatarExplainerSystem() {
+    const video = document.getElementById('avatarVictoriaVideo');
+    const audioBtn = document.getElementById('btnAvatarAudioToggle');
+    const playPauseBtn = document.getElementById('btnAvatarPlayPause');
+    const restartBtn = document.getElementById('btnAvatarRestart');
+    const prevBtn = document.getElementById('btnTourPrev');
+    const nextBtn = document.getElementById('btnTourNext');
+    const autoBtn = document.getElementById('btnTourAutoToggle');
+
+    if (!video) return;
+
+    // Asegurar que el video empiece correctamente silenciado para reproducir sin bloqueo de navegador
+    video.muted = true;
+    try {
+        video.play().catch(() => {});
+    } catch(e) {}
+
+    // Event listeners de controles de la estación
+    if (audioBtn) {
+        audioBtn.addEventListener('click', toggleAvatarAudio);
+    }
+    if (playPauseBtn) {
+        playPauseBtn.addEventListener('click', toggleAvatarPlayPause);
+    }
+    if (restartBtn) {
+        restartBtn.addEventListener('click', restartAvatarTour);
+    }
+    if (prevBtn) {
+        prevBtn.addEventListener('click', prevExplainerStep);
+    }
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => nextExplainerStep(true));
+    }
+    if (autoBtn) {
+        autoBtn.addEventListener('click', () => toggleAvatarAutoTour());
     }
 
-    // Giro automático continuo
-    const startAutoSpin = () => {
-        if (spin360Interval) clearInterval(spin360Interval);
-        spin360Interval = setInterval(() => {
-            current360Frame = (current360Frame + 1) % TOTAL_360_FRAMES;
-            update360FrameImage();
-        }, 90);
-    };
-
-    const stopAutoSpin = () => {
-        if (spin360Interval) clearInterval(spin360Interval);
-        spin360Interval = null;
-    };
-
-    if (isSpinning360) startAutoSpin();
-
-    if (spinBtn) {
-        spinBtn.addEventListener('click', () => {
-            isSpinning360 = !isSpinning360;
-            if (isSpinning360) {
-                startAutoSpin();
-                spinBtn.innerHTML = '<i class="fa-solid fa-pause"></i> Pausar Giro';
-                spinBtn.classList.add('active');
-            } else {
-                stopAutoSpin();
-                spinBtn.innerHTML = '<i class="fa-solid fa-play"></i> Reanudar Giro';
-                spinBtn.classList.remove('active');
-            }
-        });
-    }
-
-    // Arrastre Manual 360° (Mouse & Touch)
-    let isDragging360 = false;
-    let dragStartX = 0;
-
-    viewport.addEventListener('mousedown', (e) => {
-        isDragging360 = true;
-        dragStartX = e.clientX;
-        stopAutoSpin();
-    });
-
-    window.addEventListener('mousemove', (e) => {
-        if (!isDragging360) return;
-        const deltaX = e.clientX - dragStartX;
-        if (Math.abs(deltaX) > 8) {
-            const step = deltaX > 0 ? -1 : 1;
-            current360Frame = (current360Frame + step + TOTAL_360_FRAMES) % TOTAL_360_FRAMES;
-            update360FrameImage();
-            dragStartX = e.clientX;
-        }
-    });
-
-    window.addEventListener('mouseup', () => {
-        if (isDragging360) {
-            isDragging360 = false;
-            if (isSpinning360) startAutoSpin();
-        }
-    });
-
-    // Touch móvil
-    viewport.addEventListener('touchstart', (e) => {
-        if (!e.touches[0]) return;
-        isDragging360 = true;
-        dragStartX = e.touches[0].clientX;
-        stopAutoSpin();
-    }, { passive: true });
-
-    viewport.addEventListener('touchmove', (e) => {
-        if (!isDragging360 || !e.touches[0]) return;
-        const deltaX = e.touches[0].clientX - dragStartX;
-        if (Math.abs(deltaX) > 10) {
-            const step = deltaX > 0 ? -1 : 1;
-            current360Frame = (current360Frame + step + TOTAL_360_FRAMES) % TOTAL_360_FRAMES;
-            update360FrameImage();
-            dragStartX = e.touches[0].clientX;
-        }
-    }, { passive: true });
-
-    viewport.addEventListener('touchend', () => {
-        if (isDragging360) {
-            isDragging360 = false;
-            if (isSpinning360) startAutoSpin();
-        }
-    });
-
-    // Clic en Pines Histológicos
-    const pins = document.querySelectorAll('.pin-marker');
-    pins.forEach(pin => {
-        pin.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const pinId = pin.getAttribute('data-pin-id');
-            openPinModal(pinId);
+    // Dots de pasos
+    const dots = document.querySelectorAll('.tour-step-dot');
+    dots.forEach(dot => {
+        dot.addEventListener('click', (e) => {
+            const step = parseInt(dot.getAttribute('data-step') || '0', 10);
+            selectExplainerStep(step, true);
         });
     });
 
-    // Clic en Tarjetas descriptivas de pines
-    const pinCards = document.querySelectorAll('.pin-desc-card');
-    pinCards.forEach(card => {
+    // Tarjetas explicativas de la matriz derecha
+    const cards = document.querySelectorAll('.tech-callout-card');
+    cards.forEach(card => {
         card.addEventListener('click', () => {
-            const pinId = card.getAttribute('data-pin-id');
-            openPinModal(pinId);
+            const step = parseInt(card.getAttribute('data-step') || '0', 10);
+            selectExplainerStep(step, true);
         });
+    });
+
+    // Iniciar con el primer paso tras reflow del DOM
+    setTimeout(() => {
+        selectExplainerStep(0, false);
+    }, 800);
+
+    // Escuchar cuando el usuario cambia a pantalla-appmovil
+    window.addEventListener('appmovil-activated', () => {
+        ensurePhoneReportVisible();
     });
 }
 
-function update360FrameImage() {
-    const frameImg = document.getElementById('specimen360Img');
-    const angleText = document.getElementById('specimen360Angle');
-    if (!frameImg) return;
+function setAvatarVideoState(state) {
+    const video = document.getElementById('avatarVictoriaVideo');
+    const wave = document.getElementById('avatarWaveIndicator');
+    if (!video) return;
 
-    const pad = String(current360Frame).padStart(2, '0');
-    frameImg.src = `macro360_clean/frame_${pad}.webp`;
+    const targetSrc = state === 'talking' ? 'assets/media/victoriahablando.mp4' : 'assets/media/victoriaidle.mp4';
+    if (!video.src.includes(targetSrc)) {
+        video.src = targetSrc;
+        video.currentTime = 0;
+    }
+    video.muted = true;
+    video.play().catch(() => {});
 
-    if (angleText) {
-        const degrees = Math.round((current360Frame / TOTAL_360_FRAMES) * 360);
-        angleText.textContent = `${degrees}°`;
+    if (wave) {
+        if (state === 'talking') {
+            wave.classList.add('talking');
+        } else {
+            wave.classList.remove('talking');
+        }
     }
 }
 
-window.openPinModal = function(pinId) {
-    const data = PINS_SPECIMEN_DATA[pinId];
-    if (!data) return;
+function speakExplanation(text, onComplete) {
+    if (avatarSpeechTimeout) clearTimeout(avatarSpeechTimeout);
 
-    const modal = document.getElementById('pinMicroModal');
-    const title = document.getElementById('pinModalTitle');
-    const verdict = document.getElementById('pinModalVerdict');
-    const details = document.getElementById('pinModalDetails');
-    const casete = document.getElementById('pinModalCasete');
-    const img = document.getElementById('pinModalMicroImg');
+    // Si Web Speech API no está soportada o el audio está silenciado
+    if (!('speechSynthesis' in window) || !isAvatarAudioEnabled) {
+        setAvatarVideoState('talking');
+        isAvatarSpeaking = true;
+        const duration = Math.min(8500, Math.max(4500, text.length * 48));
+        avatarSpeechTimeout = setTimeout(() => {
+            setAvatarVideoState('idle');
+            isAvatarSpeaking = false;
+            if (typeof onComplete === 'function') onComplete();
+        }, duration);
+        return;
+    }
 
-    if (!modal) return;
+    try {
+        window.speechSynthesis.cancel();
+    } catch(e) {}
 
-    if (title) title.textContent = data.title;
-    if (verdict) verdict.textContent = data.verdict;
-    if (details) details.textContent = data.details;
-    if (casete) casete.textContent = data.casete;
-    if (img) img.src = data.microImg;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'es-ES';
+    utterance.rate = 1.04;
+    utterance.pitch = 1.05;
 
-    modal.classList.add('active');
+    // Buscar voz en español
+    const voices = window.speechSynthesis.getVoices();
+    const esVoice = voices.find(v => (v.lang.startsWith('es') || v.lang.includes('Spanish')) && (v.name.includes('Female') || v.name.includes('Monica') || v.name.includes('Paulina') || v.name.includes('Helena') || v.name.includes('Sabina') || v.name.includes('Laura') || v.name.includes('Google')));
+    if (esVoice) utterance.voice = esVoice;
+
+    utterance.onstart = () => {
+        isAvatarSpeaking = true;
+        setAvatarVideoState('talking');
+    };
+
+    utterance.onend = () => {
+        isAvatarSpeaking = false;
+        setAvatarVideoState('idle');
+        if (typeof onComplete === 'function') onComplete();
+    };
+
+    utterance.onerror = () => {
+        isAvatarSpeaking = false;
+        setAvatarVideoState('idle');
+        if (typeof onComplete === 'function') onComplete();
+    };
+
+    try {
+        window.speechSynthesis.speak(utterance);
+    } catch (e) {
+        setAvatarVideoState('talking');
+        isAvatarSpeaking = true;
+        avatarSpeechTimeout = setTimeout(() => {
+            setAvatarVideoState('idle');
+            isAvatarSpeaking = false;
+            if (typeof onComplete === 'function') onComplete();
+        }, 5500);
+    }
+}
+
+function ensurePhoneReportVisible() {
+    const modal = document.getElementById('phoneReportModal');
+    if (!modal || !modal.classList.contains('active')) {
+        if (typeof window.openPhoneReport === 'function') {
+            window.openPhoneReport('26Q-0182');
+        }
+    }
+}
+
+window.selectExplainerStep = function(stepIndex, isUserInteraction = false) {
+    if (stepIndex < 0 || stepIndex >= EXPLAINER_STEPS.length) return;
+    currentExplainerStep = stepIndex;
+    const step = EXPLAINER_STEPS[stepIndex];
+
+    if (isUserInteraction) {
+        if (avatarTourTimer) clearTimeout(avatarTourTimer);
+    }
+
+    // 1. Actualizar Tarjetas de la Matriz Derecha
+    const cards = document.querySelectorAll('.tech-callout-card');
+    cards.forEach((card, idx) => {
+        if (idx === stepIndex) {
+            card.classList.add('active');
+        } else {
+            card.classList.remove('active');
+        }
+    });
+
+    // 2. Actualizar Dots del Tour
+    const dots = document.querySelectorAll('.tour-step-dot');
+    dots.forEach((dot, idx) => {
+        if (idx === stepIndex) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
+        }
+    });
+
+    // 3. Actualizar Teleprompter y Badges
+    const badgeEl = document.getElementById('speechStepBadge');
+    if (badgeEl) {
+        badgeEl.textContent = `TOUR QUIRÚRGICO • PASO ${stepIndex + 1}/5`;
+    }
+    const speechTextEl = document.getElementById('avatarSpeechText');
+    if (speechTextEl) {
+        speechTextEl.textContent = `"${step.teleprompter}"`;
+    }
+
+    // 4. Sincronizar en el Smartphone
+    ensurePhoneReportVisible();
+
+    // Retirar halos previos
+    document.querySelectorAll('.spotlight-active').forEach(el => el.classList.remove('spotlight-active'));
+
+    // Dynamic Notch alert si es paso 0
+    const notch = document.getElementById('phoneDynamicNotch');
+    if (notch) {
+        if (step.notchAlert) {
+            notch.classList.add('pulse-alert', 'expanded');
+        } else {
+            notch.classList.remove('pulse-alert', 'expanded');
+        }
+    }
+
+    // Iluminar elemento con precisión quirúrgica
+    setTimeout(() => {
+        if (step.targetSelector) {
+            const targetEl = document.querySelector(step.targetSelector);
+            if (targetEl) {
+                targetEl.classList.add('spotlight-active');
+
+                // Scroll suave dentro del reporte telefónico
+                const reportContent = document.getElementById('phoneReportContent');
+                if (reportContent) {
+                    const topOffset = targetEl.offsetTop - 50;
+                    reportContent.scrollTo({
+                        top: Math.max(0, topOffset),
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        }
+    }, 150);
+
+    // 5. Reproducir Locución y programar siguiente paso si está en auto tour
+    speakExplanation(step.speech, () => {
+        if (isAvatarTourRunning) {
+            if (avatarTourTimer) clearTimeout(avatarTourTimer);
+            avatarTourTimer = setTimeout(() => {
+                nextExplainerStep(false);
+            }, 1800);
+        }
+    });
 };
 
-window.closePinModal = function() {
-    const modal = document.getElementById('pinMicroModal');
-    if (modal) modal.classList.remove('active');
+window.nextExplainerStep = function(isUserInteraction = true) {
+    const next = (currentExplainerStep + 1) % EXPLAINER_STEPS.length;
+    selectExplainerStep(next, isUserInteraction);
+};
+
+window.prevExplainerStep = function() {
+    const prev = (currentExplainerStep - 1 + EXPLAINER_STEPS.length) % EXPLAINER_STEPS.length;
+    selectExplainerStep(prev, true);
+};
+
+window.toggleAvatarAutoTour = function(forceState) {
+    if (typeof forceState === 'boolean') {
+        isAvatarTourRunning = forceState;
+    } else {
+        isAvatarTourRunning = !isAvatarTourRunning;
+    }
+
+    const autoBtn = document.getElementById('btnTourAutoToggle');
+    const startDemoBtn = document.getElementById('btnPhoneStartDemo');
+    const freeModeBtn = document.getElementById('btnPhoneFreeMode');
+    const floatBtn = document.getElementById('btnFloatDemoToggle');
+
+    if (isAvatarTourRunning) {
+        if (autoBtn) {
+            autoBtn.classList.add('active');
+            autoBtn.innerHTML = '<i class="fa-solid fa-play"></i> Auto';
+        }
+        if (startDemoBtn) startDemoBtn.classList.add('active');
+        if (freeModeBtn) freeModeBtn.classList.remove('active');
+        if (floatBtn) {
+            const lbl = document.getElementById('lblFloatDemoText');
+            if (lbl) lbl.textContent = 'Tour Guiado Activo';
+        }
+        selectExplainerStep(currentExplainerStep, false);
+    } else {
+        if (autoBtn) {
+            autoBtn.classList.remove('active');
+            autoBtn.innerHTML = '<i class="fa-solid fa-pause"></i> Pausado';
+        }
+        if (startDemoBtn) startDemoBtn.classList.remove('active');
+        if (freeModeBtn) freeModeBtn.classList.add('active');
+        if (floatBtn) {
+            const lbl = document.getElementById('lblFloatDemoText');
+            if (lbl) lbl.textContent = 'Reanudar Tour Quirófano';
+        }
+        if (avatarTourTimer) clearTimeout(avatarTourTimer);
+        if ('speechSynthesis' in window) {
+            try { window.speechSynthesis.cancel(); } catch(e) {}
+        }
+        setAvatarVideoState('idle');
+    }
+};
+
+window.toggleAvatarAudio = function() {
+    isAvatarAudioEnabled = !isAvatarAudioEnabled;
+    const btn = document.getElementById('btnAvatarAudioToggle');
+    const lbl = document.getElementById('lblAvatarAudio');
+    const icon = document.getElementById('iconAvatarAudio');
+
+    if (isAvatarAudioEnabled) {
+        if (btn) btn.classList.remove('muted');
+        if (lbl) lbl.textContent = 'Audio ON';
+        if (icon) icon.className = 'fa-solid fa-volume-high';
+        const step = EXPLAINER_STEPS[currentExplainerStep];
+        if (step) {
+            speakExplanation(step.speech);
+        }
+    } else {
+        if (btn) btn.classList.add('muted');
+        if (lbl) lbl.textContent = 'Silenciado';
+        if (icon) icon.className = 'fa-solid fa-volume-xmark';
+        if ('speechSynthesis' in window) {
+            try { window.speechSynthesis.cancel(); } catch(e) {}
+        }
+    }
+};
+
+window.toggleAvatarPlayPause = function() {
+    const video = document.getElementById('avatarVictoriaVideo');
+    const icon = document.getElementById('iconPlayPause');
+    if (!video) return;
+
+    if (video.paused) {
+        video.play().catch(() => {});
+        if (icon) icon.className = 'fa-solid fa-pause';
+        if (isAvatarSpeaking && !video.src.includes('hablando')) {
+            setAvatarVideoState('talking');
+        }
+    } else {
+        video.pause();
+        if (icon) icon.className = 'fa-solid fa-play';
+        if ('speechSynthesis' in window) {
+            try { window.speechSynthesis.cancel(); } catch(e) {}
+        }
+    }
+};
+
+window.restartAvatarTour = function() {
+    selectExplainerStep(0, true);
+    if (!isAvatarTourRunning) {
+        toggleAvatarAutoTour(true);
+    }
 };
 
 /* ==========================================================================
@@ -2754,14 +2607,4 @@ function initPricingCalculator() {
     volumeSlider.addEventListener('input', recalculate);
     checkboxes.forEach(cb => cb.addEventListener('change', recalculate));
     recalculate();
-}
-
-/* ==========================================================================
-   CREADOR DE PANELES IHQ — INICIALIZACIÓN DE PESTAÑA ACTIVA
-   ========================================================================== */
-function initIhqCleanPanel() {
-    // Inicializar la pestaña activa por defecto
-    if (typeof switchIhqCleanTab === 'function') {
-        switchIhqCleanTab('antibodies');
-    }
 }

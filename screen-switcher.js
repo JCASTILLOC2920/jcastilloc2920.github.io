@@ -15,10 +15,9 @@
 (function(window, document) {
     "use strict";
 
-    // Orden canónico de las 5 pantallas autocontenidas a 100vh
+    // Orden canónico de las 4 pantallas autocontenidas a 100vh
     var SCREENS_ORDER = [
         "pantalla-wsi",
-        "pantalla-mapeo3d",
         "pantalla-appmovil",
         "pantalla-ihq",
         "pantalla-tarifario"
@@ -35,11 +34,11 @@
         "morfometria-ia": "pantalla-wsi",
         "copiloto-gemini": "pantalla-wsi",
 
-        "mapeo-3d": "pantalla-mapeo3d",
-        "pantalla-mapeo3d": "pantalla-mapeo3d",
-        "3d": "pantalla-mapeo3d",
-        "macro360": "pantalla-mapeo3d",
-        "pieza-3d": "pantalla-mapeo3d",
+        "mapeo-3d": "pantalla-appmovil",
+        "pantalla-mapeo3d": "pantalla-appmovil",
+        "3d": "pantalla-appmovil",
+        "macro360": "pantalla-appmovil",
+        "pieza-3d": "pantalla-appmovil",
 
         "app-movil": "pantalla-appmovil",
         "pantalla-appmovil": "pantalla-appmovil",
@@ -109,27 +108,6 @@
                     slideImg.style.maxWidth = "none";
                 }
                 window.dispatchEvent(new CustomEvent("wsi-scanner-resize", { detail: { screenId: targetId } }));
-            }
-
-            if (targetId === "pantalla-mapeo3d") {
-                if (typeof window.update360FrameImage === "function") {
-                    window.update360FrameImage();
-                }
-                if (window.surgicalViewer && typeof window.surgicalViewer.resize === "function") {
-                    window.surgicalViewer.resize();
-                }
-                if (window.macroViewer && typeof window.macroViewer.resize === "function") {
-                    window.macroViewer.resize();
-                }
-                var specimenViewport = document.getElementById("specimen360Viewport");
-                if (specimenViewport) {
-                    var frameImg = document.getElementById("specimen360Img");
-                    if (frameImg) {
-                        frameImg.style.maxWidth = "100%";
-                        frameImg.style.maxHeight = "100%";
-                    }
-                }
-                window.dispatchEvent(new CustomEvent("specimen-3d-resize", { detail: { screenId: targetId } }));
             }
 
             if (targetId === "pantalla-appmovil") {
