@@ -266,22 +266,9 @@
             background: #02060d;
         }
 
-        /* HUD Flotante Inferior de Alta Conversión */
-        .screen-floating-bottom-bar {
-            position: absolute;
-            bottom: 14px;
-            left: clamp(14px, 1.8vw, 32px);
-            right: clamp(14px, 1.8vw, 32px);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            pointer-events: none;
-            z-index: 30;
-        }
-
-        .screen-floating-bottom-bar > * {
-            pointer-events: auto;
-        }
+        /* HUD Flotante Inferior eliminado — espacio cedido al smartphone */
+        .screen-floating-bottom-bar { display: none !important; }
+        .screen-floating-bottom-bar > * { display: none !important; }
 
         .pills-cluster {
             display: flex;
@@ -2416,13 +2403,13 @@
             background: radial-gradient(circle at center, #091a33 0%, #030814 85%);
         }
 
-        /* Maqueta Real de Smartphone Quirúrgico (Escala Máxima Viewport) */
+        /* Maqueta Real de Smartphone Quirúrgico (Escala MÁXIMA Viewport — Groq LPU Calibrated) */
         .phone-mockup-fit {
-            width: clamp(355px, 26vw, 415px);
+            width: clamp(355px, 27vw, 425px);
             max-width: calc(100vw - 20px);
-            height: clamp(570px, 90vh, 830px);
-            max-height: calc(100vh - 56px);
-            min-height: 520px;
+            height: clamp(600px, 93vh, 860px);
+            max-height: calc(100vh - 40px);
+            min-height: 560px;
             background: #020617;
             border-radius: 44px;
             border: 6px solid #1e293b;
@@ -2841,13 +2828,15 @@
         .tech-callout-card {
             display: none !important;
             opacity: 0;
-            background: linear-gradient(145deg, rgba(12, 25, 50, 0.96) 0%, rgba(5, 13, 28, 0.98) 100%);
-            backdrop-filter: blur(20px);
-            border: 1.5px solid rgba(56, 189, 248, 0.3);
-            border-radius: 18px;
-            padding: 16px 18px;
+            background: rgba(12, 30, 58, 0.94);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1.5px solid rgba(56, 189, 248, 0.42);
+            border-radius: 14px;
+            padding: 12px 14px;
             position: relative;
             box-sizing: border-box;
+            box-shadow: 0 4px 24px rgba(56, 189, 248, 0.14), inset 0 1px 0 rgba(56, 189, 248, 0.08);
             transition: opacity 0.22s ease-out, transform 0.22s ease-out, border-color 0.22s ease-out;
             cursor: pointer;
         }
@@ -3375,29 +3364,29 @@
         .callout-tech-specs {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 8px;
+            gap: 5px;
             margin-top: 2px;
         }
 
         .tech-spec-item {
-            background: rgba(15, 23, 42, 0.7);
-            border: 1px solid rgba(56, 189, 248, 0.18);
-            border-radius: 8px;
-            padding: 6px 8px;
+            background: rgba(8, 20, 44, 0.72);
+            border: 1px solid rgba(56, 189, 248, 0.14);
+            border-radius: 7px;
+            padding: 5px 7px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .tech-spec-item i {
-            font-size: 13px;
+            font-size: 11px;
             flex-shrink: 0;
         }
 
         .tech-spec-item .spec-label {
             display: block;
-            font-size: 7.5px;
-            color: #64748b;
+            font-size: 6.5px;
+            color: #94a3b8;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.4px;
@@ -3405,8 +3394,8 @@
 
         .tech-spec-item .spec-val {
             display: block;
-            font-size: 9px;
-            color: #f1f5f9;
+            font-size: 8px;
+            color: #e0f2fe;
             font-weight: 800;
             white-space: nowrap;
             overflow: hidden;
