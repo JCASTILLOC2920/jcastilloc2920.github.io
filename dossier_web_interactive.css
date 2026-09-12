@@ -2256,3 +2256,254 @@ body {
     display: flex !important;
 }
 
+
+
+/* ==========================================================================
+   HERO CINEMATOGRÁFICO WSI & ESCÁNER GIGAPÍXEL INTERACTIVO (DISEÑO 2026)
+   ========================================================================== */
+.hero-wsi-fullscreen-section {
+    position: relative;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.wsi-cinematic-stage {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #030712;
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    box-shadow: 0 20px 50px rgba(5, 11, 20, 0.85);
+}
+
+.scanner-viewport-frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.scanner-interactive-slide {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(110%) brightness(95%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: grab;
+}
+
+.scanner-interactive-slide:active {
+    cursor: grabbing;
+}
+
+/* Barrido Láser Bioluminiscente en Vivo */
+.scanner-laser-sweep {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.95) 50%, transparent);
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.85), 0 0 32px rgba(2, 132, 199, 0.5);
+    z-index: 10;
+    pointer-events: none;
+    animation: laserScanCycle 4.5s ease-in-out infinite;
+}
+
+@keyframes laserScanCycle {
+    0% { top: 0%; opacity: 0; }
+    15% { opacity: 1; }
+    85% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+
+/* HUD Superior del Escáner */
+.scanner-hud-top {
+    position: absolute;
+    top: 18px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 15;
+    pointer-events: none;
+}
+
+.scanner-brand-tag {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(5, 11, 20, 0.85);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    padding: 8px 16px;
+    border-radius: 999px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+.live-recording-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ef4444;
+    box-shadow: 0 0 8px #ef4444;
+    animation: pulseDot 1.5s infinite;
+}
+
+@keyframes pulseDot {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.3); opacity: 0.5; }
+}
+
+.scanner-metrics-pills {
+    display: flex;
+    gap: 10px;
+}
+
+.hud-pill {
+    background: rgba(15, 29, 51, 0.85);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(56, 189, 248, 0.18);
+    padding: 6px 14px;
+    border-radius: 999px;
+    color: #bae6fd;
+    font-size: 11.5px;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.hud-pill.highlight {
+    border-color: rgba(16, 185, 129, 0.45);
+    color: #34d399;
+}
+
+/* Divisor Split-Screen */
+.split-screen-controller {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    right: 20px;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 12;
+    pointer-events: none;
+}
+
+.split-badge {
+    background: rgba(5, 11, 20, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 14px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #e2edfa;
+}
+
+.split-drag-line {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(2, 132, 199, 0.9);
+    border: 2px solid #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 13px;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+}
+
+/* HUD Inferior de Alta Conversión */
+.scanner-hud-bottom {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: rgba(5, 11, 20, 0.88);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    border-radius: 18px;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 15;
+}
+
+.scanner-quick-caption h4 {
+    font-size: 16px;
+    font-weight: 900;
+    color: #f0f7ff;
+    margin-bottom: 4px;
+}
+
+.scanner-quick-caption p {
+    font-size: 13px;
+    color: #93c5fd;
+}
+
+.scanner-cta-group {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-scanner-action-wa {
+    background: #059669;
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 13px;
+    padding: 10px 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+}
+
+.btn-scanner-action-wa:hover {
+    background: #10b981;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(16, 185, 129, 0.6);
+}
+
+.btn-scanner-action-portal {
+    background: rgba(15, 29, 51, 0.9);
+    color: #e2edfa;
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    font-weight: 800;
+    font-size: 13px;
+    padding: 10px 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.25s ease;
+}
+
+.btn-scanner-action-portal:hover {
+    background: #0284c7;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+    .wsi-cinematic-stage { height: 420px; }
+    .scanner-hud-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    .scanner-metrics-pills { display: none; }
+    .scanner-cta-group { width: 100%; flex-direction: column; }
+    .btn-scanner-action-wa, .btn-scanner-action-portal { justify-content: center; width: 100%; }
+}
