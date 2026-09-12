@@ -3,6 +3,8 @@
 
 .agents/
 .gemini/
+.env
+llaves*.json
 *.log
 *.tmp
 *.bak
