@@ -19,8 +19,9 @@
     var SCREENS_ORDER = [
         "pantalla-wsi",
         "pantalla-appmovil",
+        "pantalla-reportes",
         "pantalla-ihq",
-        "pantalla-tarifario"
+        "pantalla-copiloto"
     ];
 
     // Mapeo exhaustivo de alias y hashes históricos para compatibilidad total
@@ -45,6 +46,14 @@
         "movil": "pantalla-appmovil",
         "smartphone": "pantalla-appmovil",
 
+        "reportes": "pantalla-reportes",
+        "pantalla-reportes": "pantalla-reportes",
+        "copiloto": "pantalla-copiloto",
+        "pantalla-copiloto": "pantalla-copiloto",
+        "reportes": "pantalla-reportes",
+        "pantalla-reportes": "pantalla-reportes",
+        "copiloto": "pantalla-copiloto",
+        "pantalla-copiloto": "pantalla-copiloto",
         "asistente-ihq": "pantalla-ihq",
         "pantalla-ihq": "pantalla-ihq",
         "ihq": "pantalla-ihq",
