@@ -1,31 +1,49 @@
 /* ==========================================================================
-   JC PATH LAB • ESTILOS DE LA PLATAFORMA WEB INTERACTIVA MULTIESPECIALIDAD
+   NEUROESTHETIC SYSTEM: SURGICAL SAPPHIRE & ARGON SLATE (485-492nm)
+   Armonía tonal monocromática en diferentes grados: serenidad visual,
+   reducción de fatiga foveal y cumplimiento riguroso WCAG AAA.
    ========================================================================== */
 
 :root {
-    --primary-navy: #071527;
-    --deep-blue: #0a192f;
-    --surface-dark: #0f172a;
-    --surface-card: rgba(15, 23, 42, 0.85);
-    --accent-cyan: #0284c7;
-    --accent-sky: #38bdf8;
-    --accent-teal: #0d9488;
+    /* --- Escala Tonal Monocromática Maestra (Munsell 6.8B) --- */
+    --sapphire-950: #060b13; /* Fondo Abisal Base: absorción de deslumbramiento */
+    --sapphire-900: #0a1220; /* Canvas General / Fondo de Sección */
+    --sapphire-850: #0f1a2e; /* Card Surface: vidrio fluorado y páneles */
+    --sapphire-800: #16253f; /* Elevación / Modales y flotantes */
+    --sapphire-750: #1e3152; /* Superficies interactivas y cajas secundarias */
+    --sapphire-700: #263f68; /* Bordes estructurales sutiles */
+    --sapphire-600: #34558b; /* Bordes activos y umbral de proximidad */
+    --sapphire-500: #0284c7; /* Acento Quirúrgico Primario (Argon Blue) */
+    --sapphire-400: #38bdf8; /* Luminiscencia Activa / Telemetría y Badges */
+    --sapphire-300: #7dd3fc; /* Acento Hover / Resalte háptico de baja latencia */
+    --sapphire-200: #93c5fd; /* Texto Secundario / Metadatos sin fatiga */
+    --sapphire-100: #e2edfa; /* Texto Primario Polar (7500K Zero-Dispersión) */
+    --sapphire-50:  #f0f7ff; /* Resplandor especular para títulos destacados */
+
+    /* --- Tokens Semánticos Compatibles con la Plataforma --- */
+    --primary-navy: var(--sapphire-950);
+    --deep-blue: var(--sapphire-900);
+    --surface-dark: var(--sapphire-900);
+    --surface-card: rgba(15, 26, 46, 0.88);
+    --accent-cyan: var(--sapphire-500);
+    --accent-sky: var(--sapphire-400);
+    --accent-teal: #0284c7;
     --accent-emerald: #10b981;
-    --accent-purple: #6366f1;
-    --accent-amber: #f59e0b;
-    --accent-rose: #ef4444;
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
-    --border-glass: rgba(56, 189, 248, 0.18);
-    --border-light: rgba(255, 255, 255, 0.1);
-    --glow-cyan: rgba(56, 189, 248, 0.35);
-    --glow-emerald: rgba(16, 185, 129, 0.3);
+    --accent-purple: var(--sapphire-600);
+    --accent-amber: #38bdf8;
+    --accent-rose: #f43f5e;
+    --text-primary: var(--sapphire-100);
+    --text-secondary: var(--sapphire-200);
+    --text-muted: #627d98;
+    --border-glass: rgba(56, 189, 248, 0.16);
+    --border-light: rgba(56, 189, 248, 0.1);
+    --glow-cyan: rgba(56, 189, 248, 0.28);
+    --glow-emerald: rgba(16, 185, 129, 0.25);
     --radius-sm: 8px;
     --radius-md: 14px;
     --radius-lg: 22px;
     --radius-xl: 32px;
-    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * {
@@ -67,17 +85,17 @@ body {
 .glow-top-left {
     top: -200px;
     left: -200px;
-    background: radial-gradient(circle, #0284c7, transparent 70%);
+    background: radial-gradient(circle, var(--sapphire-500), transparent 70%);
 }
 .glow-mid-right {
     top: 40%;
     right: -250px;
-    background: radial-gradient(circle, #6366f1, transparent 70%);
+    background: radial-gradient(circle, var(--sapphire-700), transparent 70%);
 }
 .glow-bottom-left {
     bottom: -150px;
     left: 10%;
-    background: radial-gradient(circle, #10b981, transparent 70%);
+    background: radial-gradient(circle, var(--sapphire-600), transparent 70%);
 }
 
 /* Glassmorphism Reutilizable */
@@ -440,10 +458,10 @@ body {
     box-shadow: 0 8px 24px rgba(2, 132, 199, 0.25);
 }
 
-.pillar-card.emerald { border-left-color: var(--accent-emerald); }
-.pillar-card.emerald:hover { border-color: #34d399; box-shadow: 0 8px 24px var(--glow-emerald); }
-.pillar-card.purple { border-left-color: var(--accent-purple); }
-.pillar-card.purple:hover { border-color: #818cf8; box-shadow: 0 8px 24px rgba(99, 102, 241, 0.25); }
+.pillar-card.emerald { border-left-color: var(--sapphire-400); }
+.pillar-card.emerald:hover { border-color: var(--sapphire-300); box-shadow: 0 8px 24px var(--glow-cyan); }
+.pillar-card.purple { border-left-color: var(--sapphire-600); }
+.pillar-card.purple:hover { border-color: var(--sapphire-500); box-shadow: 0 8px 24px rgba(2, 132, 199, 0.25); }
 
 .pillar-card h4 {
     font-size: 14px;
@@ -1432,12 +1450,12 @@ body {
     z-index: 25;
 }
 
-.pin-green { background: #10b981; color: #10b981; }
-.pin-red { background: #ef4444; color: #ef4444; }
-.pin-blue { background: #0284c7; color: #0284c7; }
-.pin-purple { background: #a855f7; color: #a855f7; }
+.pin-green { background: #0284c7; color: #38bdf8; }
+.pin-red { background: #0369a1; color: #7dd3fc; }
+.pin-blue { background: #075985; color: #93c5fd; }
+.pin-purple { background: #0c4a6e; color: #bae6fd; }
 
-.pin-marker span { color: #ffffff; z-index: 2; }
+.pin-marker span { color: #ffffff; z-index: 2; font-weight: 900; }
 
 @keyframes pulsePin {
     0% { transform: scale(0.9); opacity: 1; }

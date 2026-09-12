@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini-Brochure Vertical WhatsApp (1080x1920) | JC PATH LAB</title>
+    <!-- Tipografías de Alto Impacto Editorial y Legibilidad Clínica -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome 6 Pro / Free -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==========================================================================
+           VARIABLES DE DISEÑO: CIRUGÍA & ZAFIRO QUIRÚRGICO (ALTO CONTRASTE MÉDICO)
+           ========================================================================== */
+        :root {
+            /* Paleta Monocromática Zafiro y Nieve */
+            --sapphire-900: #06182c; /* Azul Zafiro Profundo / Negro Médico */
+            --sapphire-800: #0a2540; /* Zafiro Quirúrgico Principal */
+            --sapphire-700: #034b87; /* Zafiro Royal de Élite */
+            --sapphire-600: #0284c7; /* Azul Quirúrgico Radiante */
+            --sapphire-500: #0ea5e9; /* Cian Diagnóstico */
+            --sapphire-100: #e0f2fe; /* Celeste Hielo Suave */
+            --sapphire-50:  #f0f7ff; /* Fondo Nieve Zafiro */
+
+            /* Blanco Clínico Puro y Tarjetas de Contraste */
+            --pure-white:    #ffffff;
+            --snow-card:     #ffffff;
+            --snow-subtle:   #f8fafc;
+            --border-soft:   rgba(2, 132, 199, 0.16);
+            --border-crisp:  #cbd5e1;
+
+            /* Colores de Acento Funcional */
+            --accent-green:  #059669; /* Verde Quirúrgico / Aprobado / WhatsApp */
+            --accent-wa:     #25d366; /* Verde Oficial WhatsApp */
+            --accent-amber:  #d97706; /* Alerta / Calibración */
+            --accent-red:    #dc2626; /* Margen Comprometido */
+
+            /* Tipografía y Escalas */
+            --font-display: 'Outfit', -apple-system, sans-serif;
+            --font-heading: 'Montserrat', -apple-system, sans-serif;
+            --font-body:    'Inter', -apple-system, sans-serif;
+            --font-mono:    'JetBrains Mono', monospace;
+
+            /* Sombras Arquitectónicas de Tarjetas */
+            --shadow-subtle: 0 4px 20px rgba(10, 37, 64, 0.05);
+            --shadow-card:   0 14px 34px -8px rgba(10, 37, 64, 0.08), 0 4px 12px rgba(0, 0, 0, 0.03);
+            --shadow-float:  0 20px 48px -12px rgba(3, 75, 135, 0.16);
+            --shadow-vitrina:0 18px 40px -10px rgba(6, 24, 44, 0.18);
+        }
+
+        /* RESET GENERAL */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background-color: #0f172a;
+            font-family: var(--font-body);
+            color: var(--sapphire-900);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 0 60px 0;
+        }
+
+        /* ==========================================================================
+           BARRA DE CONTROL SUPERIOR (HERRAMIENTAS DE PREVISUALIZACIÓN Y EXPORTACIÓN)
+           ========================================================================== */
+        .preview-toolbar {
+            position: fixed;
+            top: 15px;
+            z-index: 99999;
+            background: rgba(15, 23, 42, 0.92);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 40px;
+            padding: 10px 22px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            color: #fff;
+        }
+
+        .preview-toolbar .logo-tag {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 14px;
+            letter-spacing: 1px;
+            color: #38bdf8;
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            padding-right: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toolbar-btn {
+            background: #1e293b;
+            color: #e2e8f0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+
+        .toolbar-btn:hover {
+            background: var(--sapphire-600);
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        .toolbar-btn.active {
+            background: var(--sapphire-600);
+            color: #ffffff;
+            border-color: #38bdf8;
+        }
+
+        .toolbar-btn.btn-print {
+            background: var(--accent-wa);
+            color: #062817;
+            font-weight: 700;
+            border: none;
+        }
+
+        .toolbar-btn.btn-print:hover {
+            background: #1ebe5d;
+            color: #000;
+        }
+
+        /* ==========================================================================
+           CONTENEDOR DE PÁGINAS DEL MINI-BROCHURE (VERTICAL 9:16 - 1080x1920)
+           ========================================================================== */
+        .brochure-container {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            margin-top: 60px;
+            align-items: center;
+            transition: transform 0.3s ease;
+            transform-origin: top center;
+        }
+
+        /* MODO ESCALADO PARA PANTALLAS DE COMPUTADORA */
+        body.mode-scaled .brochure-container {
+            transform: scale(0.48);
+            margin-bottom: -1900px; /* Compensa el espacio inferior por el zoom */
+        }
+
+        body.mode-scaled-mobile .brochure-container {
+            transform: scale(0.35);
+            margin-bottom: -2400px;
+        }
+
+        /* ==========================================================================
+           PÁGINA BROCHURE: DIMENSIÓN EXACTA DE PRODUCCIÓN 1080px x 1920px (9:16)
+           ========================================================================== */
+        .brochure-page {
+            width: 1080px;
+            height: 1920px;
+            min-width: 1080px;
+            min-height: 1920px;
+            max-width: 1080px;
+            max-height: 1920px;
+            background: linear-gradient(180deg, #ffffff 0%, #f0f7ff 35%, #f8fafc 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 44px 50px 48px 50px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+            border-radius: 4px;
+        }
+
+        /* Capa Sutil de Trama Médica (Micro-Grid Anti-Vacío) */
+        .brochure-page::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 480px;
+            background-image: 
+                radial-gradient(circle at 100% 0%, rgba(2, 132, 199, 0.08) 0%, transparent 60%),
+                radial-gradient(circle at 0% 20%, rgba(3, 75, 135, 0.05) 0%, transparent 50%),
+                linear-gradient(rgba(2, 132, 199, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(2, 132, 199, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 30px 30px, 30px 30px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .page-content-wrapper {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: space-between;
+        }
+
+        /* ==========================================================================
+           1. CABECERA CORPORATIVA DE ALTO NIVEL (HEADER EJECUTIVO)
+           ========================================================================== */
+        .executive-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 24px;
+            border-bottom: 2px solid rgba(10, 37, 64, 0.08);
+        }
+
+        .header-brand-group {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .brand-logo-box {
+            background: #ffffff;
+            padding: 10px 16px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-subtle);
+            border: 1px solid var(--border-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .brand-logo-img {
+            height: 62px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .brand-text-block {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-family: var(--font-display);
+            font-size: 26px;
+            font-weight: 900;
+            color: var(--sapphire-800);
+            letter-spacing: 0.5px;
+            line-height: 1.1;
+        }
+
+        .brand-subtext {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--sapphire-600);
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            margin-top: 3px;
+        }
+
+        .header-meta-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .slide-indicator-pill {
+            background: var(--sapphire-800);
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            box-shadow: 0 4px 12px rgba(10, 37, 64, 0.2);
+        }
+
+        .slide-indicator-pill .bullet-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #38bdf8;
+            box-shadow: 0 0 8px #38bdf8;
+        }
+
+        .accreditation-badge {
+            background: #ffffff;
+            border: 1px solid var(--border-soft);
+            padding: 8px 14px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent-green);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ==========================================================================
+           2. HERO TITULAR & SUBTÍTULO DE ALTO IMPACTO CLÍNICO
+           ========================================================================== */
+        .hero-title-section {
+            margin-top: 24px;
+            margin-bottom: 20px;
+        }
+
+        .category-capsule {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--sapphire-100);
+            color: var(--sapphire-700);
+            padding: 7px 18px;
+            border-radius: 20px;
+            font-size: 13.5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(2, 132, 199, 0.25);
+        }
+
+        .hero-main-title {
+            font-family: var(--font-display);
+            font-size: 46px;
+            font-weight: 900;
+            color: var(--sapphire-900);
+            line-height: 1.15;
+            letter-spacing: -0.5px;
+            margin-bottom: 10px;
+        }
+
+        .hero-main-title .highlight-sapphire {
+            color: var(--sapphire-600);
+            display: inline-block;
+        }
+
+        .hero-lead-paragraph {
+            font-size: 21px;
+            line-height: 1.45;
+            color: #334155;
+            font-weight: 500;
+            max-width: 950px;
+        }
+
+        /* ==========================================================================
+           3. VITRINA CENTRAL PULCRA (SHOWCASE MÉDICO ENMARCADO SIN FONDOS OSCUROS)
+           ========================================================================== */
+        .medical-showcase-vitrina {
+            background: #ffffff;
+            border-radius: 26px;
+            border: 2px solid rgba(2, 132, 199, 0.2);
+            box-shadow: var(--shadow-vitrina);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        /* Marco Interior de la Imagen */
+        .vitrina-media-viewport {
+            position: relative;
+            width: 100%;
+            height: 610px;
+            background-color: #f1f5f9;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .vitrina-media-viewport img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        /* Insignias Superpuestas Flotantes en la Vitrina */
+        .overlay-badge-top-left {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(2, 132, 199, 0.25);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--sapphire-800);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .overlay-badge-top-right {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(6, 24, 44, 0.88);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-family: var(--font-heading);
+            font-size: 12.5px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+        }
+
+        .overlay-badge-top-right .live-pulse {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 10px #22c55e;
+            animation: pulse-ring 2s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+
+        /* Cinta Explicativa de la Vitrina (Texto Didáctico Inmediato) */
+        .vitrina-caption-bar {
+            background: linear-gradient(90deg, #ffffff 0%, #f8fafc 100%);
+            border-top: 1.5px solid rgba(2, 132, 199, 0.15);
+            padding: 18px 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .caption-col {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .caption-col-title {
+            font-size: 13.5px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .col-visual .caption-col-title {
+            color: var(--sapphire-700);
+        }
+
+        .col-clinical .caption-col-title {
+            color: var(--accent-green);
+        }
+
+        .caption-col-desc {
+            font-size: 15px;
+            line-height: 1.35;
+            color: #334155;
+            font-weight: 600;
+        }
+
+        /* ==========================================================================
+           4. PANEL EXPLICATIVO INFERIOR (TARJETA BLANCA / CRISTAL DE MÁXIMO CONTRASTE)
+           ========================================================================== */
+        .medical-feature-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 28px 32px;
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-card);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .feature-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1.5px solid #f1f5f9;
+            padding-bottom: 14px;
+        }
+
+        .feature-card-title {
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--sapphire-900);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .feature-card-title i {
+            color: var(--sapphire-600);
+            font-size: 22px;
+        }
+
+        .security-badge {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--sapphire-700);
+            background: var(--sapphire-50);
+            border: 1px solid rgba(2, 132, 199, 0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+
+        /* Lista de Píldoras / Beneficios Clínicos */
+        .benefit-bullets-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+        }
+
+        .benefit-bullet-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid var(--sapphire-600);
+            border-radius: 14px;
+            padding: 14px 18px;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .bullet-icon-box {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: #ffffff;
+            border: 1px solid var(--border-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--sapphire-700);
+            flex-shrink: 0;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+        }
+
+        .bullet-text-block {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .bullet-text-title {
+            font-family: var(--font-heading);
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--sapphire-900);
+            line-height: 1.2;
+        }
+
+        .bullet-text-desc {
+            font-size: 15px;
+            color: #475569;
+            line-height: 1.35;
+            font-weight: 500;
+        }
+
+        /* Barra de Métricas / KPIs Clínicos de Confianza */
+        .metrics-kpi-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 4px;
+        }
+
+        .kpi-block {
+            background: linear-gradient(180deg, #f0f7ff 0%, #e0f2fe 100%);
+            border: 1px solid rgba(2, 132, 199, 0.22);
+            border-radius: 14px;
+            padding: 14px 10px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .kpi-number {
+            font-family: var(--font-display);
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--sapphire-800);
+            line-height: 1.1;
+        }
+
+        .kpi-label {
+            font-size: 11.5px;
+            font-weight: 800;
+            color: var(--sapphire-600);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        /* ==========================================================================
+           5. PIE DE PÁGINA CORPORATIVO CON LLAMADO A LA ACCIÓN (FOOTER CTA)
+           ========================================================================== */
+        .executive-footer-cta {
+            background: linear-gradient(135deg, var(--sapphire-900) 0%, var(--sapphire-800) 100%);
+            border-radius: 24px;
+            padding: 22px 28px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 14px 32px rgba(6, 24, 44, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .footer-cta-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .footer-cta-headline {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 800;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-cta-headline .pulse-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--accent-wa);
+            box-shadow: 0 0 10px var(--accent-wa);
+        }
+
+        .footer-cta-sub {
+            font-size: 14px;
+            color: #cbd5e1;
+            font-weight: 500;
+        }
+
+        .footer-action-buttons {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .btn-cta-whatsapp {
+            background: linear-gradient(180deg, #25d366 0%, #16a34a 100%);
+            color: #ffffff;
+            font-family: var(--font-heading);
+            font-size: 17px;
+            font-weight: 800;
+            padding: 14px 24px;
+            border-radius: 16px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            white-space: nowrap;
+        }
+
+        .btn-cta-portal {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 14px 18px;
+            border-radius: 16px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            white-space: nowrap;
+        }
+
+        /* ==========================================================================
+           MODO IMPRESIÓN Y EXPORTACIÓN A IMÁGENES EXACTAS 1080x1920
+           ========================================================================== */
+        @media print {
+            body {
+                background: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .preview-toolbar {
+                display: none !important;
+            }
+
+            .brochure-container {
+                gap: 0 !important;
+                margin: 0 !important;
+                transform: none !important;
+            }
+
+            .brochure-page {
+                box-shadow: none !important;
+                border-radius: 0 !important;
+                page-break-after: always !important;
+                page-break-inside: avoid !important;
+                margin: 0 !important;
+            }
+        }
+    </style>
+</head>
+<body class="mode-scaled">
+
+    <!-- TOOLBAR FLOTANTE DE CONTROL Y NAVEGACIÓN -->
+    <div class="preview-toolbar">
+        <div class="logo-tag">
+            <i class="fa-solid fa-microscope"></i> JC PATH LAB
+        </div>
+        <span style="font-size: 12px; color: #94a3b8; font-weight: 600;">9:16 VERTICAL (1080×1920 px)</span>
+        
+        <button class="toolbar-btn" onclick="setScaleMode('full')" id="btn-scale-full">
+            <i class="fa-solid fa-expand"></i> 100% Real (1080p)
+        </button>
+        <button class="toolbar-btn active" onclick="setScaleMode('desktop')" id="btn-scale-desktop">
+            <i class="fa-solid fa-desktop"></i> Vista Escritorio
+        </button>
+        <button class="toolbar-btn" onclick="setScaleMode('mobile')" id="btn-scale-mobile">
+            <i class="fa-solid fa-mobile-screen"></i> Celular
+        </button>
+
+        <a href="#slide-1" class="toolbar-btn"><i class="fa-solid fa-1"></i> Macro 360°</a>
+        <a href="#slide-2" class="toolbar-btn"><i class="fa-solid fa-2"></i> Biopsia WSI</a>
+        <a href="#slide-3" class="toolbar-btn"><i class="fa-solid fa-3"></i> IA Oncología</a>
+        <a href="#slide-4" class="toolbar-btn"><i class="fa-solid fa-4"></i> Logística CAP</a>
+
+        <button class="toolbar-btn btn-print" onclick="window.print()">
+            <i class="fa-solid fa-download"></i> Exportar / Imprimir
+        </button>
+    </div>
+
+    <!-- CONTENEDOR PRINCIPAL DE PÁGINAS DEL MINI-BROCHURE -->
+    <div class="brochure-container" id="brochureContainer">
+
+        <!-- ====================================================================
+             PÁGINA 1: MACROSCOPÍA QUIRÚRGICA 360° & MAPEO DE MÁRGENES ONCOLÓGICOS
+             ==================================================================== -->
+        <div class="brochure-page" id="slide-1">
+            <div class="page-content-wrapper">
+                
+                <!-- 1. Cabecera Ejecutiva -->
+                <header class="executive-header">
+                    <div class="header-brand-group">
+                        <div class="brand-logo-box">
+                            <img src="logo-jcpathlab.png" alt="JC PATH LAB" class="brand-logo-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'40\'><rect fill=\'%230a2540\' width=\'120\' height=\'40\' rx=\'6\'/><text fill=\'%23fff\' x=\'50%25\' y=\'60%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'sans-serif\' font-weight=\'bold\' font-size=\'14\'>JC PATH LAB</text></svg>'">
+                        </div>
+                        <div class="brand-text-block">
+                            <span class="brand-name">JC PATH LAB</span>
+                            <span class="brand-subtext">Patología Quirúrgica Especializada</span>
+                        </div>
+                    </div>
+                    <div class="header-meta-group">
+                        <div class="accreditation-badge">
+                            <i class="fa-solid fa-shield-halved"></i> Calidad Quirúrgica
+                        </div>
+                        <div class="slide-indicator-pill">
+                            <span class="bullet-dot"></span> SLIDE 01 / 04
+                        </div>
+                    </div>
+                </header>
+
+                <!-- 2. Hero Titular de Alto Impacto -->
+                <section class="hero-title-section">
+                    <div class="category-capsule">
+                        <i class="fa-solid fa-cube"></i> Fotomacrografía Quirúrgica en Alta Resolución
+                    </div>
+                    <h1 class="hero-main-title">
+                        Mapeo Tridimensional <br>
+                        <span class="highlight-sapphire">de Márgenes Oncológicos</span>
+                    </h1>
+                    <p class="hero-lead-paragraph">
+                        Garantizamos una orientación anatómica milimétrica con codificación multipigmentaria. Cero dudas en el estado del lecho quirúrgico.
+                    </p>
+                </section>
+
+                <!-- 3. Vitrina Central Pulcra (Showcase) -->
+                <section class="medical-showcase-vitrina">
+                    <div class="vitrina-media-viewport">
+                        <img src="dossier_showcase_3d_perfect.jpg" alt="Mapeo 3D de Pieza Quirúrgica" onerror="this.src='box_mit.jpg'">
+                        
+                        <!-- Badges Superpuestos -->
+                        <div class="overlay-badge-top-left">
+                            <i class="fa-solid fa-vector-square" style="color: var(--sapphire-600);"></i> ROTACIÓN 360° EVIDENCIADA
+                        </div>
+                        <div class="overlay-badge-top-right">
+                            <span class="live-pulse"></span> PROTOCOLO ESTANDARIZADO
+                        </div>
+                    </div>
+
+                    <!-- Cinta Didáctica Inmediata -->
+                    <div class="vitrina-caption-bar">
+                        <div class="caption-col col-visual">
+                            <span class="caption-col-title">
+                                <i class="fa-solid fa-eye"></i> Lo que usted ve aquí:
+                            </span>
+                            <span class="caption-col-desc">
+                                Segmentación y entintado quirúrgico tricolor de bordes profundo, lateral y cutáneo sin distorsión.
+                            </span>
+                        </div>
+                        <div class="caption-col col-clinical">
+                            <span class="caption-col-title">
+                                <i class="fa-solid fa-clipboard-check"></i> Beneficio Clínico:
+                            </span>
+                            <span class="caption-col-desc">
+                                Certeza microscópica de margen libre (R0) respaldada fotográficamente para el cirujano y paciente.
+                            </span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. Panel Explicativo Inferior (Tarjeta Blanca de Contraste Médico) -->
+                <section class="medical-feature-card">
+                    <div class="feature-card-header">
+                        <h2 class="feature-card-title">
+                            <i class="fa-solid fa-microscope-circle-check"></i>
+                            Ventajas de Nuestro Mapeo Macroscópico
+                        </h2>
+                        <span class="security-badge">
+                            <i class="fa-solid fa-lock"></i> Cadena de Custodia
+                        </span>
+                    </div>
+
+                    <div class="benefit-bullets-grid">
+                        <div class="benefit-bullet-item">
+                            <div class="bullet-icon-box">
+                                <i class="fa-solid fa-palette"></i>
+                            </div>
+                            <div class="bullet-text-block">
+                                <span class="bullet-text-title">Pigmentos Quirúrgicos Indelebles</span>
+                                <span class="bullet-text-desc">Identificación inequívoca de márgenes anterior, posterior y lecho profundo bajo norma CAP.</span>
+                            </div>
+                        </div>
+
+                        <div class="benefit-bullet-item">
+                            <div class="bullet-icon-box">
+                                <i class="fa-solid fa-camera-retro"></i>
+                            </div>
+                            <div class="bullet-text-block">
+                                <span class="bullet-text-title">Registro Fotográfico Ultra HD Integrado</span>
+                                <span class="bullet-text-desc">Cada informe histopatológico incluye macrofotografía anotada accesible vía QR digital.</span>
+                            </div>
+                        </div>
+
+                        <div class="benefit-bullet-item">
+                            <div class="bullet-icon-box">
+                                <i class="fa-solid fa-user-doctor"></i>
+                            </div>
+                            <div class="bullet-text-block">
+                                <span class="bullet-text-title">Discusión Quirúrgica Inmediata</span>
+                                <span class="bullet-text-desc">Línea directa con el patólogo para reintervenciones o ampliación urgente de márgenes.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Métricas de Confianza -->
+                    <div class="metrics-kpi-strip">
+                        <div class="kpi-block">
+                            <span class="kpi-number">100%</span>
+                            <span class="kpi-label">Márgenes Mapeados</span>
+                        </div>
+                        <div class="kpi-block">
+                            <span class="kpi-number">&lt; 0.1 mm</span>
+                            <span class="kpi-label">Precisión de Medición</span>
+                        </div>
+                        <div class="kpi-block">
+                            <span class="kpi-number">CAP</span>
+                            <span class="kpi-label">Protocolo Internacional</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. Footer Ejecutivo con CTA WhatsApp -->
+                <footer class="executive-footer-cta">
+                    <div class="footer-cta-info">
+                        <span class="footer-cta-headline">
+                            <span class="pulse-dot"></span> ¿Tiene una muestra quirúrgica compleja?
+                        </span>
+                        <span class="footer-cta-sub">
+                            Recepción directa 24/7 y coordinación de recojo seguro en su clínica.
+                        </span>
+                    </div>
+                    <div class="footer-action-buttons">
+                        <a href="https://wa.me/51999999999?text=Hola%20JC%20PATH%20LAB,%20deseo%20coordinar%20el%20envío%20de%20una%20biopsia" target="_blank" class="btn-cta-whatsapp">
+                            <i class="fa-brands fa-whatsapp" style="font-size: 22px;"></i> WhatsApp Médico
+                        </a>
+                        <a href="#" class="btn-cta-portal">
+                            <i class="fa-solid fa-globe"></i> Portal Web
+                        </a>
+                    </div>
+                </footer>
+
+            </div>
+        </div>
+
+
+        <!-- ====================================================================
+             PÁGINA 2: BIOPSIA DIGITAL WSI & SEGUNDA OPINIÓN TELEPATOLÓGICA
+             ==================================================================== -->
+        <div class="brochure-page" id="slide-2">
+            <div class="page-content-wrapper">
+                
+                <!-- 1. Cabecera Ejecutiva -->
+                <header class="executive-header">
+                    <div class="header-brand-group">
+                        <div class="brand-logo-box">
+                            <img src="logo-jcpathlab.png" alt="JC PATH LAB" class="brand-logo-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'40\'><rect fill=\'%230a2540\' width=\'120\' height=\'40\' rx=\'6\'/><text fill=\'%23fff\' x=\'50%25\' y=\'60%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'sans-serif\' font-weight=\'bold\' font-size=\'14\'>JC PATH LAB</text></svg>'">
+                        </div>
+                        <div class="brand-text-block">
+                            <span class="brand-name">JC PATH LAB</span>
+                            <span class="brand-subtext">Patología Quirúrgica Especializada</span>
+                        </div>
+                    </div>
+                    <div class="header-meta-group">
+                        <div class="accreditation-badge">
+                            <i class="fa-solid fa-network-wired"></i> Digital Pathology
+                        </div>
+                        <div class="slide-indicator-pill">
+                            <span class="bullet-dot"></span> SLIDE 02 / 04
+                        </div>
+                    </div>
+                </header>
+
+                <!-- 2. Hero Titular -->
+                <section class="hero-title-section">
+                    <div class="category-capsule">
+                        <i class="fa-solid fa-server"></i> Whole Slide Imaging (WSI) 40x
+                    </div>
+                    <h1 class="hero-main-title">
+                        Biopsia Digital WSI <br>
+                        <span class="highlight-sapphire">&amp; Telepatología al Instante</span>
+                    </h1>
+                    <p class="hero-lead-paragraph">
+                        Digitalización completa de la lámina histológica a resolución gigapíxel. Su biopsia accesible desde cualquier smartphone o laptop con un simple clic.
+                    </p>
+                </section>
+
+                <!-- 3. Vitrina Central Pulcra -->
+                <section class="medical-showcase-vitrina">
+                    <div class="vitrina-media-viewport">
+                        <img src="morfologia_he_original.jpg" alt="Histopatología WSI de Alta Resolución" onerror="this.src='box_ki.jpg'">
+                        
+                        <!-- Badges Superpuestos -->
+                        <div class="overlay-badge-top-left">
+                            <i class="fa-solid fa-magnifying-glass-plus" style="color: var(--sapphire-600);"></i> SCAN 400X ULTRA-NITIDEZ
+                        </div>
+                        <div class="overlay-badge-top-right">
+                            <span class="live-pulse"></span> ACCESO EN LA NUBE 24/7
+                        </div>
+                    </div>
+
+                    <!-- Cinta Didáctica Inmediata -->
+                    <div class="vitrina-caption-bar">
+                        <div class="caption-col col-visual">
+                            <span class="caption-col-title">
+                                <i class="fa-solid fa-eye"></i> Lo que usted ve aquí:
+                            </span>
+                            <span class="caption-col-desc">
+                                Arquitectura celular y nuclear con tinción H&amp;E calibrada, libre de aberración cromática.
+                            </span>
+                        </div>
+                        <div class="caption-col col-clinical">
+                            <span class="caption-col-title">
+                                <i class="fa-solid fa-clipboard-check"></i> Beneficio Clínico:
+                            </span>
+                            <span class="caption-col-desc">
+                                Interconsulta instantánea nacional e internacional sin arriesgar la integridad física del taco o lámina.
+                            </span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. Panel Explicativo Inferior -->
+                <section class="medical-feature-card">
+                    <div class="feature-card-header">
+                        <h2 class="feature-card-title">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            El Poder de la Patología 100% Digital
+                        </h2>
+                        <span class="security-badge">
+                            <i class="fa-solid fa-qrcode"></i> Enlace QR Permanente
+                        </span>
+                    </div>
+
+                    <div class="benefit-bullets-grid">
+                        <div class="benefit-bullet-item">
+                            <div class="bullet-icon-box">
+                                <i class="fa-solid fa-laptop-medical"></i>
+                            </div>
+                            <div class="bullet-text-block">
+                                <span class="bullet-text-title">Visor Médico Web sin Descarga de Apps</span>
+                                <span class="bullet-text-desc">Navegue por toda la muestra, aplique zoom de hasta 80x y realice mediciones en micras.</span>
+                            </div>
+                        </div>
+
+                        <div class="benefit-bullet-item">
+                            <div class="bullet-icon-box">
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                            </div>
+                            <div class="bullet-text-block">
+                                <span class="bullet-text-title">Tiempos de Respuesta Reducidos a la Mitad</span>
+                                <span class="bullet-text-desc">Emisión y visualización inmediata del informe final antes del retiro de puntos quirúrgicos.</span>
+                            </div>
+                        </div>
+
+                        <div class="benefit-bullet-item">
+                            <div class="bullet-icon-box">
+                                <i class="fa-solid fa-shield-virus"></i>
+                            </div>
+                            <div class="bullet-text-block">
+                                <span class="bullet-text-title">Archivo Histórico Digital Perpetuo</span>
+                                <span class="bullet-text-desc">Muestras digitalizadas conservadas en almacenamiento cloud hospitalario de máxima seguridad.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Métricas de Confianza -->
+                    <div class="metrics-kpi-strip">
+                        <div class="kpi-block">
+                            <span class="kpi-number">0.25 µm</span>
+                            <span class="kpi-label">Resolución por Píxel</span>
+                        </div>
+                        <div class="kpi-block">
+                            <span class="kpi-number">&lt; 24h</span>
+                            <span class="kpi-label">Biopsias Prioritarias</span>
+                        </div>
+                        <div class="kpi-block">
+                            <span class="kpi-number">100%</span>
+                            <span class="kpi-label">Trazabilidad Web</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. Footer Ejecutivo con CTA WhatsApp -->
+                <footer class="executive-footer-cta">
+                    <div class="footer-cta-info">
+                        <span class="footer-cta-headline">
+                            <span class="pulse-dot"></span> Solicite su demo de lámina digital WSI
+                        </span>
+                        <span class="footer-cta-sub">
+                            Envíenos un mensaje y reciba un caso digital interactivo en su teléfono.
+                        </span>
+                    </div>
+                    <div class="footer-action-buttons">
+                        <a href="https://wa.me/51999999999?text=Hola%20JC%20PATH%20LAB,%20deseo%20ver%20un%20caso%20demo%20de%20biopsia%20digital" target="_blank" class="btn-cta-whatsapp">
+                            <i class="fa-brands fa-whatsapp" style="font-size: 22px;"></i> Solicitar Demo
+                        </a>
+                        <a href="#" class="btn-cta-portal">
+                            <i class="fa-solid fa-eye"></i> Probar Visor
+                        </a>
+                    </div>
+                </footer>
+
+            </div>
+        </div>
+
+
+        <!-- ====================================================================
+             PÁGINA 3: INTELIGENCIA ARTIFICIAL ASISTENCIAL & MORFOMETRÍA ONCOLÓGICA
+             ==================================================================== -->
+        <div class="brochure-page" id="slide-3">
+            <div class="page-content-wrapper">
+                
+                <!-- 1. Cabecera Ejecutiva -->
+                <header class="executive-header">
+                    <div class="header-brand-group">
+                        <div class="brand-logo-box">
+                            <img src="logo-jcpathlab.png" alt="JC PATH LAB" class="brand-logo-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'40\'><rect fill=\'%230a2540\' width=\'120\' height=\'40\' rx=\'6\'/><text fill=\'%23fff\' x=\'50%25\' y=\'60%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'sans-serif\' font-weight=\'bold\' font-size=\'14\'>JC PATH LAB</text></svg>'">
+                        </div>
+                        <div class="brand-text-block">
+                            <span class="brand-name">JC PATH LAB</span>
+                            <span class="brand-subtext">Patología Quirúrgica Especializada</span>
+                        </div>
+                    </div>
+                    <div class="header-meta-group">
+                        <div class="accreditation-badge">
+                            <i class="fa-solid fa-brain"></i> Algoritmos Asistidos
+                        </div>
+                        <div class="slide-indicator-pill">
+                            <span class="bullet-dot"></span> SLIDE 03 / 04
+                        </div>
+                    </div>
+                </header>
+
+                <!-- 2. Hero Titular -->
+                <section class="hero-title-section">
+                    <div class="category-capsule">
+                        <i class="fa-solid fa-dna"></i> Cuantificación Oncológica Automatizada
+                    </div>
+                    <h1 class="hero-main-title">
+                        Inteligencia Artificial <br>
+                        <span class="highlight-sapphire">&amp; Morfometría Nuclear</span>
+                    </h1>
+                    <p class="hero-lead-paragraph">
+                        Potenciamos el ojo experto del patólogo con modelos de visión computacional para conteo celular objetivo, mitosis e índice proliferativo Ki-67.
+                    </p>
+                </section>
+
+                <!-- 3. Vitrina Central Pulcra -->
+                <section class="medical-showcase-vitrina">
+                    <div class="vitrina-media-viewport">
+                        <img src="morfologia_ia_pleomorfismo.jpg" alt="Análisis de IA en Histopatología" onerror="this.src='morfologia_antes_despues.jpg'">
+                        
+                        <!-- Badges Superpuestos -->
+                        <div class="overlay-badge-top-left">
+                            <i class="fa-solid fa-bullseye" style="color: var(--sapphire-600);"></i> MAPEO DE DENSIDAD NUCLEAR
+                        </div>
+                        <div class="overlay-badge-top-right">
+                            <span class="live-pulse"></span> VALIDACIÓN MÉDICA 100%
+                        </div>
+                    </div>
+
+                    <!-- Cinta Didáctica Inmediata -->
+                    <div class="vitrina-caption-bar">
+                        <div class="caption-col col-visual">
+                            <span class="caption-col-title">
+                                <i class="fa-solid fa-eye"></i> Lo que usted ve aquí:
+                            </span>
+                            <span class="caption-col-desc">
+                                Segmentación algorítmica de atipia nuclear y discriminación entre estroma reactivo y nidos tumorales.
+                            </span>
+                        </div>
+                        <div class="caption-col col-clinical">
+                            <span class="caption-col-title">
+                                <i class="fa-solid fa-clipboard-check"></i> Beneficio Clínico:
+                            </span>
+                            <span class="caption-col-desc">
+                                Supresión de variabilidad interobservador y determinación exacta de grados histológicos tumorales.
+                            </span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. Panel Explicativo Inferior -->
+                <section class="medical-feature-card">
+                    <div class="feature-card-header">
+                        <h2 class="feature-card-title">
+                            <i class="fa-solid fa-chart-pie"></i>
+                            Precisión Cuantitativa en Cada Muestra
+                        </h2>
+                        <span class="security-badge">
+                            <i class="fa-solid fa-check-double"></i> Doble Control Clínico
+                        </span>
+                    </div>
+
+                    <div class="benefit-bullets-grid">
+                        <div class="benefit-bullet-item">
+                            <div class="bullet-icon-box">
+                                <i class="fa-solid fa-crosshairs"></i>
+                            </div>
+                            <div class="bullet-text-block">
+                                <span class="bullet-text-title">Conteo Automatizado de Ki-67 y Mitosis</span>
+                                <span class="bullet-text-desc">Evaluación precisa en más de 2,000 células tumorales, evitando estimaciones oculares subjetivas.</span>
+                            </div>
+                        </div>
+
+                        <div class="benefit-bullet-item">
+                            <div class="bullet-icon-box">
+                                <i class="fa-solid fa-vial-circle-check"></i>
+                            </div>
+                            <div class="bullet-text-block">
+                                <span class="bullet-text-title">Validación por Patólogo Oncólogo Titulado</span>
+                                <span class="bullet-text-desc">La IA actúa como copiloto de precisión; el diagnóstico definitivo lo firma siempre el patólogo especialista.</span>
+                            </div>
+                        </div>
+
+                        <div class="benefit-bullet-item">
+                            <div class="bullet-icon-box">
+                                <i class="fa-solid fa-file-medical"></i>
+                            </div>
+                            <div class="bullet-text-block">
+                                <span class="bullet-text-title">Reportes con Histograma y Mapas de Calor</span>
+                                <span class="bullet-text-desc">Gráficos de dispersión incluidos en el informe para comités oncológicos multidisciplinarios.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Métricas de Confianza -->
+                    <div class="metrics-kpi-strip">
+                        <div class="kpi-block">
+                            <span class="kpi-number">&gt; 99.4%</span>
+                            <span class="kpi-label">Concordancia Diagnóstica</span>
+                        </div>
+                        <div class="kpi-block">
+                            <span class="kpi-number">&gt; 2,000</span>
+                            <span class="kpi-label">Células por Campo IA</span>
+                        </div>
+                        <div class="kpi-block">
+                            <span class="kpi-number">0%</span>
+                            <span class="kpi-label">Subjetividad Visual</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. Footer Ejecutivo con CTA WhatsApp -->
+                <footer class="executive-footer-cta">
+                    <div class="footer-cta-info">
+                        <span class="footer-cta-headline">
+                            <span class="pulse-dot"></span> Incorpore IA Morfométrica a su práctica
+                        </span>
+                        <span class="footer-cta-sub">
+                            Coordinación directa con nuestro staff médico especializado.
+                        </span>
+                    </div>
+                    <div class="footer-action-buttons">
+                        <a href="https://wa.me/51999999999?text=Hola%20JC%20PATH%20LAB,%20deseo%20conocer%20los%20reportes%20morfométricos%20con%20IA" target="_blank" class="btn-cta-whatsapp">
+                            <i class="fa-brands fa-whatsapp" style="font-size: 22px;"></i> Contactar Staff
+                        </a>
+                        <a href="#" class="btn-cta-portal">
+                            <i class="fa-solid fa-file-invoice"></i> Ver Reporte
+                        </a>
+                    </div>
+                </footer>
+
+            </div>
+        </div>
+
+
+        <!-- ====================================================================
+             PÁGINA 4: LOGÍSTICA HOSPITALARIA, TRANSPORTE BIOLÓGICO Y PROTOCOLO CAP
+             ==================================================================== -->
+        <div class="brochure-page" id="slide-4">
+            <div class="page-content-wrapper">
+                
+                <!-- 1. Cabecera Ejecutiva -->
+                <header class="executive-header">
+                    <div class="header-brand-group">
+                        <div class="brand-logo-box">
+                            <img src="logo-jcpathlab.png" alt="JC PATH LAB" class="brand-logo-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'40\'><rect fill=\'%230a2540\' width=\'120\' height=\'40\' rx=\'6\'/><text fill=\'%23fff\' x=\'50%25\' y=\'60%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'sans-serif\' font-weight=\'bold\' font-size=\'14\'>JC PATH LAB</text></svg>'">
+                        </div>
+                        <div class="brand-text-block">
+                            <span class="brand-name">JC PATH LAB</span>
+                            <span class="brand-subtext">Patología Quirúrgica Especializada</span>
+                        </div>
+                    </div>
+                    <div class="header-meta-group">
+                        <div class="accreditation-badge">
+                            <i class="fa-solid fa-truck-medical"></i> Logística Biológica
+                        </div>
+                        <div class="slide-indicator-pill">
+                            <span class="bullet-dot"></span> SLIDE 04 / 04
+                        </div>
+                    </div>
+                </header>
+
+                <!-- 2. Hero Titular -->
+                <section class="hero-title-section">
+                    <div class="category-capsule">
+                        <i class="fa-solid fa-boxes-stacked"></i> Flujo Seguro de Muestra a Diagnóstico
+                    </div>
+                    <h1 class="hero-main-title">
+                        Cadena de Custodia <br>
+                        <span class="highlight-sapphire">&amp; Transporte Seguro</span>
+                    </h1>
+                    <p class="hero-lead-paragraph">
+                        Proveemos insumos estandarizados de fijación en formol neutro tamponado al 10%, frasquería hermética y recojo en sala de operaciones.
+                    </p>
+                </section>
+
+                <!-- 3. Vitrina Central Pulcra -->
+                <section class="medical-showcase-vitrina">
+                    <div class="vitrina-media-viewport">
+                        <img src="gemini_microscope_assistant_mockup.jpg" alt="Equipamiento y Cadena de Custodia" onerror="this.src='header_reporte.png'">
+                        
+                        <!-- Badges Superpuestos -->
+                        <div class="overlay-badge-top-left">
+                            <i class="fa-solid fa-box-tissue" style="color: var(--sapphire-600);"></i> KIT HOSPITALARIO INCLUIDO
+                        </div>
+                        <div class="overlay-badge-top-right">
+                            <span class="live-pulse"></span> MONITOREO GPS ACTIVO
+                        </div>
+                    </div>
+
+                    <!-- Cinta Didáctica Inmediata -->
+                    <div class="vitrina-caption-bar">
+                        <div class="caption-col col-visual">
+                            <span class="caption-col-title">
+                                <i class="fa-solid fa-eye"></i> Lo que usted ve aquí:
+                            </span>
+                            <span class="caption-col-desc">
+                                Embalaje triple capa con código QR unívoco y registro fotográfico en el punto de recepción.
+                            </span>
+                        </div>
+                        <div class="caption-col col-clinical">
+                            <span class="caption-col-title">
+                                <i class="fa-solid fa-clipboard-check"></i> Beneficio Clínico:
+                            </span>
+                            <span class="caption-col-desc">
+                                Cero riesgo de extravío, desecación o degradación tisular previa al procesamiento técnico.
+                            </span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. Panel Explicativo Inferior -->
+                <section class="medical-feature-card">
+                    <div class="feature-card-header">
+                        <h2 class="feature-card-title">
+                            <i class="fa-solid fa-hospital-user"></i>
+                            Servicios Integrales para Cirujanos y Clínicas
+                        </h2>
+                        <span class="security-badge">
+                            <i class="fa-solid fa-award"></i> Protocolo CAP Vigente
+                        </span>
+                    </div>
+
+                    <div class="benefit-bullets-grid">
+                        <div class="benefit-bullet-item">
+                            <div class="bullet-icon-box">
+                                <i class="fa-solid fa-motorcycle"></i>
+                            </div>
+                            <div class="bullet-text-block">
+                                <span class="bullet-text-title">Servicio de Recojo Motorizado Programado o Urgente</span>
+                                <span class="bullet-text-desc">Retiro de muestras en sala de operaciones o consultorio con constancia digital inmediata.</span>
+                            </div>
+                        </div>
+
+                        <div class="benefit-bullet-item">
+                            <div class="bullet-icon-box">
+                                <i class="fa-solid fa-file-contract"></i>
+                            </div>
+                            <div class="bullet-text-block">
+                                <span class="bullet-text-title">Reportes Sinópticos según Colegio Americano de Patólogos (CAP)</span>
+                                <span class="bullet-text-desc">Estructuración clara por tablas diagnósticas: subtipo, invasión linfovascular y márgenes en mm.</span>
+                            </div>
+                        </div>
+
+                        <div class="benefit-bullet-item">
+                            <div class="bullet-icon-box">
+                                <i class="fa-solid fa-shield-check"></i>
+                            </div>
+                            <div class="bullet-text-block">
+                                <span class="bullet-text-title">Firma Digital con Validez Jurídica Reniec/Colegio Médico</span>
+                                <span class="bullet-text-desc">Documento PDF seguro con sello criptográfico y verificación en línea instantánea.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Métricas de Confianza -->
+                    <div class="metrics-kpi-strip">
+                        <div class="kpi-block">
+                            <span class="kpi-number">24/7</span>
+                            <span class="kpi-label">Guardia Quirúrgica</span>
+                        </div>
+                        <div class="kpi-block">
+                            <span class="kpi-number">0</span>
+                            <span class="kpi-label">Incidentes de Cadena</span>
+                        </div>
+                        <div class="kpi-block">
+                            <span class="kpi-number">100%</span>
+                            <span class="kpi-label">Insumos Certificados</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. Footer Ejecutivo con CTA WhatsApp -->
+                <footer class="executive-footer-cta">
+                    <div class="footer-cta-info">
+                        <span class="footer-cta-headline">
+                            <span class="pulse-dot"></span> Inicie su convenio médico hoy mismo
+                        </span>
+                        <span class="footer-cta-sub">
+                            Kits de toma de biopsia gratuitos y tarifas corporativas preferenciales.
+                        </span>
+                    </div>
+                    <div class="footer-action-buttons">
+                        <a href="https://wa.me/51999999999?text=Hola%20JC%20PATH%20LAB,%20deseo%20solicitar%20un%20kit%20de%20biopsias%20y%20tarifario" target="_blank" class="btn-cta-whatsapp">
+                            <i class="fa-brands fa-whatsapp" style="font-size: 22px;"></i> Solicitar Kits
+                        </a>
+                        <a href="#" class="btn-cta-portal">
+                            <i class="fa-solid fa-phone"></i> Central Telefónica
+                        </a>
+                    </div>
+                </footer>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SCRIPT DE CONTROL DE VISTA Y EXPERIENCIA INTERACTIVA -->
+    <script>
+        function setScaleMode(mode) {
+            const body = document.body;
+            const btnFull = document.getElementById('btn-scale-full');
+            const btnDesktop = document.getElementById('btn-scale-desktop');
+            const btnMobile = document.getElementById('btn-scale-mobile');
+
+            // Quitar clases previas
+            body.classList.remove('mode-scaled', 'mode-scaled-mobile');
+            btnFull.classList.remove('active');
+            btnDesktop.classList.remove('active');
+            btnMobile.classList.remove('active');
+
+            if (mode === 'desktop') {
+                body.classList.add('mode-scaled');
+                btnDesktop.classList.add('active');
+            } else if (mode === 'mobile') {
+                body.classList.add('mode-scaled-mobile');
+                btnMobile.classList.add('active');
+            } else {
+                btnFull.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

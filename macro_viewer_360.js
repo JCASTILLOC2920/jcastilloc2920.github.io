@@ -80,9 +80,7 @@ function ensureMacro360Styles() {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(15, 23, 42, 0.82);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
+            background: #0f172a;
             border: 1px solid rgba(56, 189, 248, 0.4);
             border-radius: 9999px;
             padding: 6px 18px;
@@ -127,9 +125,7 @@ function ensureMacro360Styles() {
             font-size: 0.68rem;
             font-weight: 600;
             letter-spacing: 0.5px;
-            background: rgba(15, 23, 42, 0.65);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            background: #1e293b;
             padding: 2px 10px;
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -145,9 +141,7 @@ function ensureMacro360Styles() {
             display: flex;
             align-items: center;
             gap: 10px;
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: #0f172a;
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 40px;
             padding: 6px 14px;
@@ -245,9 +239,7 @@ function ensureMacro360Styles() {
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(11, 19, 41, 0.94);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: #0b1329;
             border-top: 1px solid rgba(56, 189, 248, 0.3);
             border-radius: 18px 18px 0 0;
             box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.65);
@@ -1147,7 +1139,7 @@ export class Macro360Viewer {
                 const tab360 = document.getElementById('tab_macro360');
                 const isTabActive = !tab360 || tab360.classList.contains('active') || tab360.style.display !== 'none';
                 if (!isTabActive) return;
-                if (['input', 'textarea', 'select'].includes(document.activeElement?.tagName?.toLowerCase())) return;
+                if (['input', 'textarea', 'select'].includes(document.activeElement?.tagName?.toLowerCase()) || document.activeElement?.isContentEditable) return;
 
                 const degStep = 360 / (this.options.frameCount || 24);
                 if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {

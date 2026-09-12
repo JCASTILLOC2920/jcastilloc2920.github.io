@@ -1,0 +1,357 @@
+/* ==========================================================================
+   GROQ AI PATHOLOGY COPILOT (ESTILOS UI)
+   Motor de Inteligencia Artificial Ultrarrápido para Informes Patológicos
+   ========================================================================== */
+
+/* 1. BOTÓN FLOTANTE Y TRIGGER DEL COPILOTO */
+.groq-ai-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(139, 92, 246, 0.35);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+.groq-ai-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.55);
+    filter: brightness(1.08);
+}
+
+.groq-ai-btn:active {
+    transform: translateY(0);
+}
+
+.groq-ai-btn i {
+    font-size: 0.95rem;
+    color: #fef08a;
+    animation: aiSparkle 2s infinite ease-in-out;
+}
+
+@keyframes aiSparkle {
+    0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.9; }
+    50% { transform: scale(1.2) rotate(15deg); opacity: 1; filter: drop-shadow(0 0 6px #fde047); }
+}
+
+/* Botón mini para pulir campos individuales */
+.groq-mini-polish-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 8px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    border-radius: 4px;
+    background: rgba(139, 92, 246, 0.18);
+    border: 1px solid rgba(139, 92, 246, 0.35);
+    color: #c4b5fd;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.groq-mini-polish-btn:hover {
+    background: rgba(139, 92, 246, 0.35);
+    color: #ffffff;
+}
+
+/* 2. MODAL DEL COPILOTO IA */
+.groq-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100100;
+    background: rgba(10, 15, 30, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.groq-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.groq-modal-container {
+    width: 100%;
+    max-width: 780px;
+    max-height: 92vh;
+    background: #0f172a;
+    border: 1px solid rgba(139, 92, 246, 0.4);
+    border-radius: 16px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(139, 92, 246, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: scale(0.95) translateY(10px);
+    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.groq-modal-overlay.active .groq-modal-container {
+    transform: scale(1) translateY(0);
+}
+
+/* Cabecera */
+.groq-modal-header {
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+    border-bottom: 1px solid rgba(139, 92, 246, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.groq-header-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.groq-header-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 12px rgba(168, 85, 247, 0.4);
+}
+
+.groq-title {
+    margin: 0;
+    font-size: 1.12rem;
+    font-weight: 700;
+    color: #f8fafc;
+}
+
+.groq-subtitle {
+    margin: 2px 0 0 0;
+    font-size: 0.78rem;
+    color: #cbd5e1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.groq-speed-badge {
+    background: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    padding: 1px 6px;
+    border-radius: 9999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+}
+
+.groq-close-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #cbd5e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.05rem;
+    transition: all 0.15s ease;
+}
+
+.groq-close-btn:hover {
+    background: rgba(239, 68, 68, 0.25);
+    color: #fca5a5;
+    border-color: rgba(239, 68, 68, 0.4);
+}
+
+/* Cuerpo del Modal */
+.groq-modal-body {
+    padding: 18px 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.groq-prompt-box {
+    background: #162036;
+    border: 1px solid #28354f;
+    border-radius: 10px;
+    padding: 14px;
+}
+
+.groq-prompt-label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #94a3b8;
+    margin-bottom: 6px;
+}
+
+.groq-prompt-textarea {
+    width: 100%;
+    min-height: 70px;
+    padding: 10px 12px;
+    background: #0b1120;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    color: #f8fafc;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    resize: vertical;
+    outline: none;
+    box-sizing: border-box;
+    font-family: inherit;
+    transition: border-color 0.18s ease;
+}
+
+.groq-prompt-textarea:focus {
+    border-color: #a855f7;
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.2);
+}
+
+.groq-quick-chips {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+.groq-chip {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #cbd5e1;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 0.74rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.groq-chip:hover {
+    background: rgba(168, 85, 247, 0.25);
+    border-color: #a855f7;
+    color: #f3e8ff;
+}
+
+.groq-generate-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.18s ease;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+}
+
+.groq-generate-btn:hover {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    box-shadow: 0 6px 18px rgba(16, 185, 129, 0.45);
+    transform: translateY(-1px);
+}
+
+.groq-generate-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Área de Resultados */
+.groq-results-wrapper {
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    animation: groqFadeIn 0.22s ease;
+}
+
+@keyframes groqFadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.groq-result-card {
+    background: #162036;
+    border: 1px solid #28354f;
+    border-radius: 10px;
+    padding: 12px 14px;
+}
+
+.groq-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #38bdf8;
+}
+
+.groq-result-text {
+    font-size: 0.86rem;
+    line-height: 1.6;
+    color: #f1f5f9;
+    white-space: pre-line;
+    max-height: 140px;
+    overflow-y: auto;
+    padding: 4px 0;
+}
+
+/* Footer de Acciones del Modal */
+.groq-modal-footer {
+    padding: 14px 20px;
+    background: #0b1120;
+    border-top: 1px solid #1e293b;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.groq-btn-insert {
+    padding: 10px 18px;
+    font-size: 0.86rem;
+    font-weight: 700;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.18s ease;
+}
+
+.groq-btn-insert:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+    transform: translateY(-1px);
+}

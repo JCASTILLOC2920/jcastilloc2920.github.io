@@ -1,0 +1,15 @@
+# REGLAS MILITARES DE AISLAMIENTO: jcastilloc2920.github.io (WEB PUBLICA)
+# Prohibido subir archivos de agentes, configuraciones y datos medicos privados
+
+.agents/
+.gemini/
+*.log
+*.tmp
+*.bak
+subagents_pool_config.json
+real_supabase_backup.js
+reportes.html
+reportes.css
+ui_tables.js
+mobile_report_reader.js
+mobile_report_reader.css
