@@ -2409,24 +2409,24 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: clamp(14px, 1.8vw, 32px);
-            padding: 4px clamp(12px, 1.6vw, 30px) 44px clamp(12px, 1.6vw, 30px);
+            gap: clamp(14px, 2vw, 36px);
+            padding: clamp(6px, 1vh, 12px) clamp(10px, 1.6vw, 26px);
             box-sizing: border-box;
             overflow: hidden;
             background: radial-gradient(circle at center, #091a33 0%, #030814 85%);
         }
 
-        /* Maqueta Real de Smartphone Quirúrgico */
+        /* Maqueta Real de Smartphone Quirúrgico (Escala Máxima Viewport) */
         .phone-mockup-fit {
-            width: clamp(340px, 24vw, 395px);
+            width: clamp(355px, 26vw, 415px);
             max-width: calc(100vw - 20px);
-            height: calc(100vh - 128px);
-            max-height: 750px;
-            min-height: 500px;
+            height: clamp(570px, 90vh, 830px);
+            max-height: calc(100vh - 56px);
+            min-height: 520px;
             background: #020617;
-            border-radius: 42px;
-            border: 7px solid #1e293b;
-            box-shadow: 0 25px 65px -12px rgba(2, 6, 23, 0.95), 0 0 45px rgba(56, 189, 248, 0.28);
+            border-radius: 44px;
+            border: 6px solid #1e293b;
+            box-shadow: 0 28px 75px -12px rgba(2, 6, 23, 0.98), 0 0 50px rgba(56, 189, 248, 0.35);
             position: relative;
             overflow: hidden;
             display: flex;
@@ -2438,8 +2438,8 @@
 
         /* --- PANEL IZQUIERDO: ESTACIÓN DEL AVATAR VIRTUAL (DRA. VICTORIA) --- */
         .app-avatar-station {
-            width: clamp(280px, 22vw, 345px);
-            max-height: calc(100vh - 128px);
+            width: clamp(270px, 20vw, 335px);
+            max-height: clamp(570px, 90vh, 830px);
             background: rgba(10, 20, 38, 0.88);
             backdrop-filter: blur(18px);
             border: 1px solid rgba(56, 189, 248, 0.25);
@@ -2519,7 +2519,7 @@
         .avatar-video-box,
         .avatar-video-wrapper {
             position: relative;
-            width: clamp(170px, 22vh, 230px);
+            width: clamp(190px, 26vh, 260px);
             max-width: 100%;
             aspect-ratio: 1 / 1;
             height: auto;
@@ -2623,46 +2623,18 @@
             50% { height: 14px; background: #34d399; }
         }
 
-        /* Cuadro de Locución / Teleprompter */
-        .avatar-speech-box {
-            background: rgba(5, 12, 24, 0.85);
-            border: 1px solid rgba(56, 189, 248, 0.22);
-            border-radius: 12px;
-            padding: 10px 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            flex: 1;
-            min-height: 0;
-            overflow-y: auto;
-        }
-
-        .speech-header {
-            font-size: 9px;
-            font-weight: 800;
-            color: #38bdf8;
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .speech-paragraph {
-            font-size: 11px;
-            line-height: 1.45;
-            color: #e2edfa;
-            margin: 0;
-            font-weight: 500;
-        }
-
-        /* Controles de Tour */
+        /* Controles de Tour Compactos e Integrados Inmediatamente Debajo del Video */
         .avatar-tour-controls {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 6px;
-            padding-top: 4px;
+            gap: 8px;
+            padding: 8px 10px;
+            background: rgba(5, 12, 24, 0.75);
+            border: 1px solid rgba(56, 189, 248, 0.22);
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+            margin-top: 2px;
         }
 
         .btn-tour-step {
@@ -2732,12 +2704,12 @@
         /* --- PANEL DERECHO: ESCAPARATE DINÁMICO DE HITO ÚNICO CON FLECHA LÁSER AL CELULAR --- */
         .app-callouts-matrix,
         .spotlight-showcase-container {
-            width: clamp(310px, 24vw, 380px);
-            max-height: calc(100vh - 128px);
+            width: clamp(315px, 24vw, 395px);
+            max-height: clamp(570px, 90vh, 830px);
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             flex-shrink: 1;
             z-index: 15;
             position: relative;
@@ -2869,11 +2841,11 @@
         .tech-callout-card {
             display: none !important;
             opacity: 0;
-            background: linear-gradient(145deg, rgba(14, 28, 54, 0.95) 0%, rgba(7, 15, 30, 0.98) 100%);
-            backdrop-filter: blur(18px);
-            border: 1px solid rgba(56, 189, 248, 0.28);
-            border-radius: 16px;
-            padding: 14px 16px;
+            background: linear-gradient(145deg, rgba(12, 25, 50, 0.96) 0%, rgba(5, 13, 28, 0.98) 100%);
+            backdrop-filter: blur(20px);
+            border: 1.5px solid rgba(56, 189, 248, 0.3);
+            border-radius: 18px;
+            padding: 16px 18px;
             position: relative;
             box-sizing: border-box;
             transition: opacity 0.22s ease-out, transform 0.22s ease-out, border-color 0.22s ease-out;
@@ -2889,25 +2861,27 @@
             pointer-events: none;
         }
 
-        /* Tarjeta Activa Única con Resplandor Esmeralda y Zafiro */
+        /* Tarjeta Activa Única con Resplandor Zafiro Profundo y Bordes de Luz Neón */
         .tech-callout-card.active {
             display: flex !important;
             flex-direction: column;
-            gap: 9px;
+            gap: 11px;
             opacity: 1;
-            border-color: rgba(56, 189, 248, 0.65);
-            box-shadow: 0 0 28px rgba(56, 189, 248, 0.28), 0 0 45px rgba(16, 185, 129, 0.14), 0 18px 42px rgba(0, 0, 0, 0.65);
+            border-color: rgba(56, 189, 248, 0.75);
+            background: linear-gradient(145deg, rgba(14, 30, 60, 0.97) 0%, rgba(6, 16, 36, 0.99) 100%);
+            box-shadow: 0 0 35px rgba(56, 189, 248, 0.32), 0 0 55px rgba(14, 165, 233, 0.16), 0 20px 48px rgba(2, 6, 23, 0.85);
             animation: calloutShowcaseEnter 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             cursor: pointer;
         }
 
         .tech-callout-card.active:hover {
-            border-color: rgba(56, 189, 248, 0.95);
+            border-color: rgba(56, 189, 248, 1);
+            box-shadow: 0 0 42px rgba(56, 189, 248, 0.42), 0 22px 52px rgba(2, 6, 23, 0.9);
         }
 
         .tech-callout-card.card-reading-paused {
-            border-color: rgba(245, 158, 11, 0.85) !important;
-            box-shadow: 0 0 32px rgba(245, 158, 11, 0.35), 0 18px 42px rgba(0, 0, 0, 0.75) !important;
+            border-color: rgba(245, 158, 11, 0.9) !important;
+            box-shadow: 0 0 36px rgba(245, 158, 11, 0.4), 0 20px 48px rgba(0, 0, 0, 0.85) !important;
         }
 
         /* Barra de Progreso de Lectura Interna del Cuadro (Calibración Humana 18-22s) */
@@ -3117,7 +3091,7 @@
         /* FLECHA LÁSER CONECTORA PROMINENTE DESDE EL CUADRO DERECHO AL SMARTPHONE */
         .laser-exterior-pointer {
             position: absolute;
-            left: -40px;
+            left: -26px;
             top: var(--laser-pointer-y, 28px);
             transform: translateY(-50%);
             display: none;
@@ -3135,10 +3109,10 @@
         .laser-arrow-head-big {
             width: 0;
             height: 0;
-            border-top: 14px solid transparent;
-            border-bottom: 14px solid transparent;
-            border-right: 20px solid #38bdf8;
-            filter: drop-shadow(-4px 0 10px rgba(56, 189, 248, 0.95)) drop-shadow(-8px 0 18px rgba(52, 211, 153, 0.8));
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 14px solid #38bdf8;
+            filter: drop-shadow(-3px 0 8px rgba(56, 189, 248, 0.95)) drop-shadow(-6px 0 14px rgba(52, 211, 153, 0.7));
             animation: laserArrowNudgeBig 0.9s infinite cubic-bezier(0.4, 0, 0.2, 1);
             transform-origin: right center;
             flex-shrink: 0;
@@ -3148,20 +3122,20 @@
             0%, 100% {
                 transform: translateX(0) scale(1);
                 border-right-color: #38bdf8;
-                filter: drop-shadow(-4px 0 10px rgba(56, 189, 248, 0.95));
+                filter: drop-shadow(-3px 0 8px rgba(56, 189, 248, 0.95));
             }
             50% {
-                transform: translateX(-10px) scale(1.22);
+                transform: translateX(-6px) scale(1.18);
                 border-right-color: #34d399;
-                filter: drop-shadow(-8px 0 18px rgba(52, 211, 153, 1)) drop-shadow(0 0 25px #10b981);
+                filter: drop-shadow(-6px 0 14px rgba(52, 211, 153, 1)) drop-shadow(0 0 18px #10b981);
             }
         }
 
         .laser-beam-connector-line {
-            width: 22px;
-            height: 5px;
+            width: 14px;
+            height: 4px;
             background: linear-gradient(90deg, #38bdf8 0%, #34d399 100%);
-            box-shadow: 0 0 14px #38bdf8, 0 0 22px #34d399;
+            box-shadow: 0 0 10px #38bdf8, 0 0 16px #34d399;
             border-radius: 2px;
             position: relative;
             flex-shrink: 0;
@@ -3348,7 +3322,7 @@
         }
 
         .tech-callout-card h6 {
-            font-size: 13px;
+            font-size: 13.5px;
             font-weight: 900;
             color: #ffffff;
             margin: 0;
@@ -3359,13 +3333,45 @@
         }
 
         .tech-callout-card p {
-            font-size: 10.5px;
+            font-size: 11px;
             color: #cbd5e1;
             line-height: 1.45;
             margin: 0;
         }
 
-        /* Cluster de Especificaciones Técnicas */
+        .callout-punchline {
+            font-size: 11.5px !important;
+            color: #f1f5f9 !important;
+            line-height: 1.5 !important;
+            font-weight: 500 !important;
+            margin: 0 !important;
+            letter-spacing: 0.15px;
+        }
+
+        .callout-highlight-metric {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 7px 12px;
+            border-radius: 9px;
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(56, 189, 248, 0.28);
+            font-size: 9.5px;
+            color: #cbd5e1;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .callout-highlight-metric i {
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .callout-highlight-metric strong {
+            color: #ffffff;
+            font-weight: 800;
+        }
+
+        /* Cluster de Especificaciones Técnicas (Mantenido por retrocompatibilidad) */
         .callout-tech-specs {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -4369,16 +4375,6 @@
                             </div>
                         </div>
 
-                        <!-- Teleprompter / Explicación Clínica Dinámica -->
-                        <div class="avatar-speech-box">
-                            <div class="speech-header">
-                                <i class="fa-solid fa-brain-circuit" style="color: #38bdf8;"></i>
-                                <span id="speechStepBadge">TOUR QUIRÚRGICO &bull; PASO 1/5</span>
-                            </div>
-                            <p class="speech-paragraph" id="avatarSpeechText">
-                                ¡Bienvenido al Quirófano Inteligente! HITO 1/5: Notificación push prioritaria en dynamic notch en &lt; 14s. Máxima inmediatez para decisiones quirúrgicas críticas.
-                            </p>
-                        </div>
 
                         <!-- Controles del Tour Interactivo Guiado -->
                         <div class="avatar-tour-controls">
@@ -4927,21 +4923,6 @@
                     </div>
                 </div>
 
-                <!-- HUD Flotante Inferior -->
-                <div class="screen-floating-bottom-bar">
-                    <div class="pills-cluster">
-                        <span class="floating-pill highlight"><i class="fa-solid fa-truck-fast"></i> Despacho en &lt; 24h</span>
-                        <span class="floating-pill"><i class="fa-solid fa-id-badge"></i> Dr. Joseph Castillo &bull; CMP 56435</span>
-                    </div>
-                    <div class="actions-cluster">
-                        <button type="button" class="btn-screen-cta" id="btnFloatDemoToggle" onclick="toggleAvatarAutoTour()" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: #ffffff; border: 1px solid rgba(56,189,248,0.5); cursor:pointer;">
-                            <i class="fa-solid fa-play"></i> <span id="lblFloatDemoText">Iniciar Tour Explicativo con Avatar</span>
-                        </button>
-                        <a href="login.html" class="btn-screen-cta btn-screen-portal">
-                            <i class="fa-solid fa-arrow-right-to-bracket"></i> Probar en Portal Web
-                        </a>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -4953,33 +4934,34 @@
             <div class="iq-root-layout">
                 <!-- 1. Cabecera Institucional ImmunoQuery (Figura 2) con Conmutador [ES | EN] -->
                 <header class="iq-top-header">
-                    <a href="javascript:void(0)" class="iq-brand-wrap" title="ImmunoQuery">
+                    <a href="javascript:void(0)" class="iq-brand-wrap" title="ImmunoQuery • Paneles IHQ">
                         <span class="iq-brand-logo">ImmunoQuery</span>
+                        <span class="iq-brand-badge" style="font-size: 11px; font-weight: 700; color: #0284c7; background: rgba(2, 132, 199, 0.08); padding: 2px 8px; border-radius: 9999px; border: 1px solid rgba(2, 132, 199, 0.22); letter-spacing: 0.02em;">Paneles IHQ</span>
                     </a>
                     <ul class="iq-nav-links-wrap">
                         <li class="iq-nav-link-item">
-                            <button type="button" class="iq-nav-action-link active" id="iqNavBuildPanel" title="Build Panel">Build Panel</button>
+                            <button type="button" class="iq-nav-action-link active" id="iqNavBuildPanel" title="Crear Panel">Crear Panel</button>
                         </li>
                         <li class="iq-nav-link-item">
-                            <a href="javascript:void(0)" class="iq-nav-action-link" id="iqNavLearn" title="Learn">Learn</a>
+                            <a href="javascript:void(0)" class="iq-nav-action-link" id="iqNavLearn" title="Guía Clínica">Guía Clínica</a>
                         </li>
                         <li class="iq-nav-link-item">
                             <a href="javascript:void(0)" class="iq-nav-action-link" id="iqNavExpertPath" title="ExpertPath">ExpertPath</a>
                         </li>
                         <li class="iq-nav-link-item">
-                            <a href="javascript:void(0)" class="iq-nav-action-link" id="iqNavCme" title="CME">CME</a>
+                            <a href="javascript:void(0)" class="iq-nav-action-link" id="iqNavCme" title="Educación Médica">Educación Médica</a>
                         </li>
                         <li class="iq-nav-link-item">
-                            <a href="javascript:void(0)" class="iq-nav-action-link" id="iqNavHelp" title="Help / Support">
-                                <span class="iq-help-circle">?</span> <span id="iqNavHelpText">Help / Support</span>
+                            <a href="javascript:void(0)" class="iq-nav-action-link" id="iqNavHelp" title="Ayuda / Soporte">
+                                <span class="iq-help-circle">?</span> <span id="iqNavHelpText">Ayuda / Soporte</span>
                             </a>
                         </li>
                         <!-- Conmutador Discreto y Elegante [ES | EN] -->
                         <li class="iq-nav-link-item">
                             <div class="iq-lang-toggle" role="group" aria-label="Selector de Idioma / Language Selector" title="Conmutador de Idioma / Language Switcher [ES | EN]">
-                                <button type="button" class="iq-lang-btn" id="iqLangEs" onclick="iqSetLanguage('es')" title="Cambiar a Español">ES</button>
+                                <button type="button" class="iq-lang-btn active" id="iqLangEs" onclick="iqSetLanguage('es')" title="Español (Activo)">ES</button>
                                 <span class="iq-lang-separator">|</span>
-                                <button type="button" class="iq-lang-btn active" id="iqLangEn" onclick="iqSetLanguage('en')" title="Switch to English">EN</button>
+                                <button type="button" class="iq-lang-btn" id="iqLangEn" onclick="iqSetLanguage('en')" title="Switch to English">EN</button>
                             </div>
                         </li>
                         <li class="iq-nav-link-item">
@@ -4990,22 +4972,22 @@
                     </ul>
                 </header>
 
-                <!-- 2. Subcabecera: Título 'Build Panel' + Botón 'Saved Cases >' -->
+                <!-- 2. Subcabecera: Título 'Crear Panel de Inmunohistoquímica' + Botón 'Casos Guardados >' -->
                 <div class="iq-subbar">
-                    <h2 class="iq-subbar-title" id="iqSubbarTitle">Build Panel</h2>
-                    <button type="button" class="iq-btn-saved-cases" id="iqBtnSavedCases" onclick="iqShowSavedCases()" title="Ver Casos Guardados / View Saved Cases">
-                        <span id="iqBtnSavedCasesText">Saved Cases &gt;</span>
+                    <h2 class="iq-subbar-title" id="iqSubbarTitle">Crear Panel de Inmunohistoquímica</h2>
+                    <button type="button" class="iq-btn-saved-cases" id="iqBtnSavedCases" onclick="iqShowSavedCases()" title="Ver Casos Guardados">
+                        <span id="iqBtnSavedCasesText">Casos Guardados &gt;</span>
                     </button>
                 </div>
 
-                <!-- 3. Pestañas de Búsqueda: Diagnoses | Antibodies con subrayado naranja -->
+                <!-- 3. Pestañas de Búsqueda: Diagnósticos | Anticuerpos con subrayado naranja -->
                 <div class="iq-search-tabs-bar">
                     <div class="iq-tabs-flex" role="tablist">
                         <button type="button" class="iq-tab-btn active" id="iqTabDiagnoses" role="tab" aria-selected="true" onclick="iqSwitchTab('diagnoses')">
-                            Diagnoses
+                            Diagnósticos
                         </button>
                         <button type="button" class="iq-tab-btn" id="iqTabAntibodies" role="tab" aria-selected="false" onclick="iqSwitchTab('antibodies')">
-                            Antibodies
+                            Anticuerpos
                         </button>
                     </div>
                 </div>
@@ -5015,35 +4997,35 @@
                     <!-- Columna Izquierda: Buscador con Lupa Azul y Recientes -->
                     <div class="iq-left-column">
                         <div class="iq-search-container">
-                            <input type="text" class="iq-search-input-field" id="iqSearchInput" placeholder="Search for diagnoses" autocomplete="off" spellcheck="false" oninput="iqFilterItems(this.value)">
+                            <input type="text" class="iq-search-input-field" id="iqSearchInput" placeholder="Buscar diagnósticos (ej. Adenocarcinoma de pulmón, Melanoma...)" autocomplete="off" spellcheck="false" oninput="iqFilterItems(this.value)">
                             <button type="button" class="iq-search-lens-btn" id="iqSearchBtn" title="Buscar en ImmunoQuery" aria-label="Buscar" onclick="iqExecuteSearch()">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
                         </div>
 
                         <div class="iq-recent-title-wrap">
-                            <h4 class="iq-recent-label" id="iqRecentLabel">Recent</h4>
+                            <h4 class="iq-recent-label" id="iqRecentLabel">Diagnósticos Disponibles (52)</h4>
                         </div>
 
                         <div class="iq-items-scroll-list" id="iqRecentList">
-                            <!-- Inyectado dinámicamente según pestaña Diagnoses / Antibodies -->
+                            <!-- Inyectado dinámicamente según pestaña Diagnósticos / Anticuerpos -->
                         </div>
                     </div>
 
-                    <!-- Columna Derecha: Contenedor 'Selected (0/5)' -->
+                    <!-- Columna Derecha: Contenedor 'Seleccionados (0/5)' -->
                     <div class="iq-right-column">
                         <div class="iq-selected-box">
                             <div class="iq-selected-header-row">
                                 <h3 class="iq-selected-title-text" id="iqSelectedTitleText">
-                                    <span id="iqSelectedLabel">Selected</span> <span id="iqSelectedCounterText">(0/5)</span>
+                                    <span id="iqSelectedLabel">Seleccionados</span> <span id="iqSelectedCounterText">(0/5)</span>
                                 </h3>
                                 <button type="button" class="iq-btn-clear-selection" id="iqBtnClearAll" onclick="window.iqClearSelection()">
-                                    Clear
+                                    Limpiar todo
                                 </button>
                             </div>
 
                             <p class="iq-selected-explanation-text" id="iqEmptyNotice">
-                                Search for diagnoses or antibodies in the search box on the left. Click on search results to select items for your panel.
+                                Busque diagnósticos o anticuerpos en la casilla de la izquierda. Haga clic en los resultados para agregarlos a su panel.
                             </p>
 
                             <div class="iq-selected-chips-container" id="iqSelectedChips">
@@ -5052,10 +5034,10 @@
 
                             <div class="iq-actions-container" style="margin-top: auto; display: flex; flex-direction: column; gap: 8px;">
                                 <button type="button" class="iq-build-panel-action-btn" id="iqBtnBuildPanel" onclick="window.iqGenerateMatrixPanel()">
-                                    <i class="fa-solid fa-wand-magic-sparkles"></i> <span id="iqBtnBuildText">Build Panel &gt;</span>
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i> <span id="iqBtnBuildText">Generar Matriz de Inmunohistoquímica &gt;</span>
                                 </button>
                                 <button type="button" class="iq-build-panel-action-btn iq-btn-wa" id="iqBtnWaOrder" onclick="window.iqOrderPanelWhatsApp()" style="background: linear-gradient(135deg, #059669, #047857); box-shadow: 0 2px 8px rgba(5, 150, 105, 0.28);">
-                                    <i class="fa-brands fa-whatsapp"></i> <span id="iqBtnWaText">Order Panel via WhatsApp &gt;</span>
+                                    <i class="fa-brands fa-whatsapp"></i> <span id="iqBtnWaText">Solicitar Panel por WhatsApp &gt;</span>
                                 </button>
                             </div>
                         </div>

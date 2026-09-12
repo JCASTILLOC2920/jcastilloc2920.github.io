@@ -2192,8 +2192,8 @@ const EXPLAINER_STEPS = [
         index: 0,
         badgeTag: 'PUNTO 01 • DESPACHO INMEDIATO',
         title: 'Notificación Push en Quirófano',
-        speech: '¡Hola! Qué gusto saludarlos. Les doy la más cordial bienvenida a JC Path Lab, les habla la doctora Victoria... En nuestro primer hito, observen qué importante: el cirujano recibe una alerta push prioritaria en la barra superior de su teléfono, en menos de catorce segundos... De esta manera, el equipo quirúrgico cuenta con información crítica de inmediato, para tomar decisiones con total seguridad y tranquilidad.',
-        teleprompter: '¡Bienvenido al Quirófano Inteligente! HITO 1/5: Notificación push prioritaria en dynamic notch en < 14s. Máxima inmediatez para decisiones quirúrgicas críticas.',
+        speech: 'Bienvenidos... Es un verdadero gusto acompañarlos en este recorrido. Les habla la doctora Victoria... Observen con detenimiento la barra superior en la pantalla... El cirujano recibe la alerta diagnóstica prioritaria en tiempo récord, en menos de catorce segundos... De esta manera, el equipo quirúrgico cuenta con información crítica e inmediata... para tomar decisiones con absoluta seguridad y serenidad.',
+        teleprompter: 'HITO 1/5: Notificación push prioritaria en dynamic notch en < 14s. Máxima inmediatez para decisiones quirúrgicas críticas.',
         targetSelector: '.phone-trace-banner',
         notchAlert: true
     },
@@ -2201,7 +2201,7 @@ const EXPLAINER_STEPS = [
         index: 1,
         badgeTag: 'PUNTO 02 • ALTA RESOLUCIÓN ÓPTICA',
         title: 'Microfotografía 40x Calibrada',
-        speech: 'En nuestro segundo hito, quiero mostrarles la microfotografía celular, calibrada con máxima precisión a cuarenta aumentos... Noten la gran nitidez de la imagen. Son cortes tisulares a cuatro micrómetros, que permiten examinar la morfología celular y descartar atipias en tiempo real... Es la más alta fidelidad visual, directamente en sus manos dentro de la sala de operaciones.',
+        speech: 'En nuestro segundo hito, quiero presentarles nuestra tecnología óptica de alta resolución a cuarenta aumentos... Noten la extraordinaria nitidez celular en cada corte tisular, calibrado con exactitud a cuatro micrómetros... Esta precisión milimétrica permite examinar la morfología celular y descartar atipias en tiempo real... Brindando la más alta fidelidad visual directamente en el quirófano.',
         teleprompter: 'HITO 2/5: Microfotografía óptica 40x calibrada a 4µm. Resolución celular ultra-nítida para verificación morfológica inmediata del cirujano.',
         targetSelector: '.phone-report-micro-card',
         notchAlert: false
@@ -2210,7 +2210,7 @@ const EXPLAINER_STEPS = [
         index: 2,
         badgeTag: 'PUNTO 03 • PRECISIÓN ONCOLÓGICA',
         title: 'Diagnóstico Definitivo & Margen R0',
-        speech: 'Llegamos al tercer paso, el corazón de nuestra labor médica: el diagnóstico histopatológico certero... Aquí certificamos, con exactitud milimétrica, que los márgenes quirúrgicos están libres de neoplasia, garantizando un reporte erre cero... Todo bajo los exigentes estándares del Colegio Americano de Patólogos. Esto brinda absoluta certeza al cirujano, y la mejor protección para la vida del paciente.',
+        speech: 'Llegamos al tercer paso, el núcleo de nuestra labor médica: el diagnóstico histopatológico definitivo... Aquí certificamos, con total certeza científica, que los márgenes quirúrgicos se encuentran libres de neoplasia, garantizando un margen R cero... Todo bajo los rigurosos estándares internacionales del Colegio Americano de Patólogos... Seguridad oncológica concluyente para la vida del paciente.',
         teleprompter: 'HITO 3/5: Diagnóstico patológico definitivo y certificación de márgenes libres R0 según protocolos CAP y OMS 2026. Confianza oncológica total.',
         targetSelector: '.diagnosis-box',
         notchAlert: false
@@ -2219,7 +2219,7 @@ const EXPLAINER_STEPS = [
         index: 3,
         badgeTag: 'PUNTO 04 • SEGURIDAD CRIPTOGRÁFICA',
         title: 'Firma Digital & QR 26Q',
-        speech: 'En el cuarto hito, aseguramos el más estricto respaldo legal y pericial... Cada informe emitido incorpora custodia digital inmutable, código QR veintiséis cu, y firma médica electrónica, debidamente validada por el doctor Joseph Castillo... Un documento con autenticidad jurídica absoluta, listo para su archivo o auditoría clínica en cualquier institución.',
+        speech: 'En el cuarto hito, aseguramos el más estricto respaldo pericial y legal... Cada informe emitido incorpora custodia criptográfica inmutable, código QR veintiséis cu, y firma médica electrónica validada por el doctor Joseph Castillo... Un documento con autenticidad jurídica absoluta, listo para cualquier auditoría clínica.',
         teleprompter: 'HITO 4/5: Custodia criptográfica SHA-256 inmutable, QR 26Q y firma médica pericial del Dr. Joseph Castillo (CMP 56435) con respaldo legal pleno.',
         targetSelector: '.p-rep-legal-footer',
         notchAlert: false
@@ -2228,7 +2228,7 @@ const EXPLAINER_STEPS = [
         index: 4,
         badgeTag: 'PUNTO 05 • DESPACHO MULTICANAL',
         title: 'Descarga PDF & WhatsApp Directo',
-        speech: 'Y en nuestro quinto hito, les ofrecemos una entrega inmediata y multicanal... Con un simple toque en pantalla, pueden descargar el informe completo en PDF vectorial de alta resolución, o enviarlo de manera cifrada por WhatsApp a todo el equipo quirúrgico de guardia... Eficiencia, elegancia y rapidez insuperable, siempre a su alcance.',
+        speech: 'Y en nuestro quinto hito... les ofrecemos una experiencia de entrega moderna, ágil y multicanal... Con un simple toque en pantalla, pueden descargar el informe completo en PDF vectorial de alta resolución, o compartirlo de inmediato vía WhatsApp con todo el equipo médico... Eficiencia diagnóstica de excelencia, siempre a su alcance.',
         teleprompter: 'HITO 5/5: Descarga instantánea de informe PDF vectorial de alta resolución y despacho cifrado directo a WhatsApp para el equipo quirúrgico.',
         targetSelector: '.p-rep-action-toolbar',
         notchAlert: false
@@ -2467,7 +2467,8 @@ function setAvatarVideoState(state) {
 }
 
 /**
- * Locución humana natural calibrada a ritmo pausado (rate 0.82) y tono cálido (pitch 1.0).
+ * Locución humana hiper-pausada y natural calibrada a ritmo pausado y empático (rate 0.76) y tono cálido (pitch 1.05).
+ * Optimizado según directrices neuroestéticas y auditoría de Web Speech Synthesis.
  */
 function speakExplanation(text, onComplete) {
     if (avatarSpeechTimeout) {
@@ -2483,8 +2484,8 @@ function speakExplanation(text, onComplete) {
     if (!('speechSynthesis' in window) || !isAvatarAudioEnabled) {
         setAvatarVideoState('talking');
         isAvatarSpeaking = true;
-        // Fallback de temporizador calibrado con la velocidad humana pausada de 0.82x
-        const duration = Math.min(28000, Math.max(9000, Math.round(text.length * 90)));
+        // Fallback de temporizador calibrado con la velocidad humana pausada de 0.76x
+        const duration = Math.min(36000, Math.max(12000, Math.round(text.length * 115)));
         avatarSpeechTimeout = setTimeout(() => {
             setAvatarVideoState('idle');
             isAvatarSpeaking = false;
@@ -2500,9 +2501,9 @@ function speakExplanation(text, onComplete) {
     const utterance = new SpeechSynthesisUtterance(text);
     currentSpeechUtterance = utterance; // Prevenir recolección de basura prematura en Chromium
 
-    // Calibración exacta de habla humana natural y profesional
-    utterance.rate = 0.82;
-    utterance.pitch = 1.0;
+    // Calibración exacta de habla pausada, cadencia humana, empática y profesional de impulsadora médica
+    utterance.rate = 0.76;
+    utterance.pitch = 1.05;
 
     // Asignar voz española de máxima naturalidad
     if (!humanSpeechVoice) {
@@ -2557,8 +2558,8 @@ function speakExplanation(text, onComplete) {
         }
     }, 12000);
 
-    // Safety fallback calibrado a velocidad 0.82x
-    const safetyFallbackTime = Math.min(32000, Math.max(14000, Math.round(text.length * 115)));
+    // Safety fallback calibrado a velocidad pausada 0.76x
+    const safetyFallbackTime = Math.min(42000, Math.max(16000, Math.round(text.length * 145)));
     avatarSpeechTimeout = setTimeout(() => {
         finalizeSpeech();
     }, safetyFallbackTime);
@@ -7856,13 +7857,13 @@ function initPricingCalculator() {
             savedCasesBtn: 'Saved Cases &gt;',
             tabDiagnoses: 'Diagnoses',
             tabAntibodies: 'Antibodies',
-            searchPlaceholderDiag: 'Search for diagnoses (e.g. Lung Adenocarcinoma, Melanoma, ccRCC...)',
-            searchPlaceholderAnti: 'Search for antibodies (e.g. CK7, TTF-1, p40, GATA3, S100...)',
-            recentLabel: 'Available Items',
+            searchPlaceholderDiag: 'Search for diagnoses (e.g. Lung Adenocarcinoma, Melanoma...)',
+            searchPlaceholderAnti: 'Search for antibodies (e.g. CK7, TTF-1, p40...)',
+            recentLabel: 'Available Diagnoses',
             selectedLabel: 'Selected',
             clearAll: 'Clear',
             emptyNotice: 'Search for diagnoses or antibodies in the search box on the left. Click on search results to select items for your panel.',
-            buildMatrixBtn: '<i class="fa-solid fa-table-cells"></i> Build Panel &gt;',
+            buildMatrixBtn: '<i class="fa-solid fa-wand-magic-sparkles"></i> Build Panel &gt;',
             waOrderBtn: '<i class="fa-brands fa-whatsapp"></i> Order Panel via WhatsApp &gt;',
             badgeDiag: 'Diagnosis',
             badgeAnti: 'Antibody',
@@ -7879,21 +7880,21 @@ function initPricingCalculator() {
         },
         es: {
             navBuildPanel: 'Crear Panel',
-            navLearn: 'Aprender',
+            navLearn: 'Guía Clínica',
             navExpertPath: 'ExpertPath',
-            navCme: 'CME (Educación)',
+            navCme: 'Educación Médica',
             navHelp: 'Ayuda / Soporte',
-            subbarTitle: 'Crear Panel',
+            subbarTitle: 'Crear Panel de Inmunohistoquímica',
             savedCasesBtn: 'Casos Guardados &gt;',
             tabDiagnoses: 'Diagnósticos',
             tabAntibodies: 'Anticuerpos',
-            searchPlaceholderDiag: 'Buscar diagnósticos (ej. Adenocarcinoma Pulmonar, Melanoma, Renal...)',
-            searchPlaceholderAnti: 'Buscar anticuerpos (ej. CK7, TTF-1, p40, GATA3, S100, Claudin-4...)',
-            recentLabel: 'Elementos Disponibles',
+            searchPlaceholderDiag: 'Buscar diagnósticos (ej. Adenocarcinoma de pulmón, Melanoma...)',
+            searchPlaceholderAnti: 'Buscar anticuerpos (ej. CK7, TTF-1, p40...)',
+            recentLabel: 'Diagnósticos Disponibles (52)',
             selectedLabel: 'Seleccionados',
-            clearAll: 'Clear',
-            emptyNotice: 'Search for diagnoses or antibodies in the search box on the left. Click on search results to select items for your panel.',
-            buildMatrixBtn: '<i class="fa-solid fa-table-cells"></i> Build Panel &gt;',
+            clearAll: 'Limpiar todo',
+            emptyNotice: 'Busque diagnósticos o anticuerpos en la casilla de la izquierda. Haga clic en los resultados para agregarlos a su panel.',
+            buildMatrixBtn: '<i class="fa-solid fa-wand-magic-sparkles"></i> Generar Matriz de Inmunohistoquímica &gt;',
             waOrderBtn: '<i class="fa-brands fa-whatsapp"></i> Solicitar Panel por WhatsApp &gt;',
             badgeDiag: 'Diagnóstico',
             badgeAnti: 'Anticuerpo',
@@ -7901,17 +7902,17 @@ function initPricingCalculator() {
             maxItemsAlert: 'Puede seleccionar un máximo de 5 elementos para el panel de inmunohistoquímica.',
             savedCasesAlert: 'Casos Guardados: Aún no hay paneles almacenados en esta sesión. Seleccione hasta 5 diagnósticos o anticuerpos.',
             matrixTitle: 'Matriz Diagnóstica ImmunoQuery • Panel Comparativo IHQ',
-            matrixSubtitle: 'Panel discriminador optimizado algorítmicamente según guías internacionales y OMS 5ta Edición.',
+            matrixSubtitle: 'Panel discriminador optimizado algorítmicamente según guías clínicas y OMS 5ta Edición.',
             thAntibody: 'Biomarcador (IHQ)',
             thTarget: 'Localización',
             thCategory: 'Grupo / Linaje',
             thStock: 'Stock JC PATH LAB',
-            recSummaryText: 'Recomendación Clínica: Emplee un panel balanceado con marcadores positivos y de exclusión.'
+            recSummaryText: 'Recomendación Clínica ImmunoQuery: Evalúe al menos 2 marcadores positivos y 2 negativos para una distinción diagnóstica certera.'
         }
     };
 
-    // 3. ESTADO GLOBAL DE LA APLICACIÓN
-    var currentLang = 'en';
+    // 3. ESTADO GLOBAL DE LA APLICACIÓN (ESPAÑOL POR DEFECTO)
+    var currentLang = 'es';
     var currentTab = 'diagnoses';
     var selectedItems = []; // Array de { id, type, code, name }
 
@@ -7972,13 +7973,21 @@ function initPricingCalculator() {
             return false;
         });
 
-        // Actualizar etiqueta con recuento
+        // Actualizar etiqueta con recuento institucional
         var recentLbl = document.getElementById('iqRecentLabel');
         if (recentLbl) {
             if (q) {
-                recentLbl.textContent = (currentTab === 'diagnoses' ? 'Diagnoses' : 'Antibodies') + ' (' + filtered.length + ' matches)';
+                if (currentLang === 'es') {
+                    recentLbl.textContent = (currentTab === 'diagnoses' ? 'Diagnósticos' : 'Anticuerpos') + ' (' + filtered.length + ' encontrados)';
+                } else {
+                    recentLbl.textContent = (currentTab === 'diagnoses' ? 'Diagnoses' : 'Antibodies') + ' (' + filtered.length + ' matches)';
+                }
             } else {
-                recentLbl.textContent = (currentTab === 'diagnoses' ? 'Available Diagnoses' : 'Available Antibodies') + ' (' + items.length + ')';
+                if (currentLang === 'es') {
+                    recentLbl.textContent = currentTab === 'diagnoses' ? 'Diagnósticos Disponibles (52)' : 'Anticuerpos Disponibles (150+)';
+                } else {
+                    recentLbl.textContent = currentTab === 'diagnoses' ? ('Available Diagnoses (' + items.length + ')') : 'Available Antibodies (150+)';
+                }
             }
         }
 
@@ -7999,7 +8008,7 @@ function initPricingCalculator() {
             html += '    <div class="iq-entity-name">' + displayName + '</div>';
             html += '    <div class="iq-entity-meta">' + displayMeta + '</div>';
             html += '  </div>';
-            html += '  <div class="iq-entity-action-icon" title="' + (isSel ? 'Remove from panel' : 'Add to panel') + '">';
+            html += '  <div class="iq-entity-action-icon" title="' + (isSel ? (currentLang === 'es' ? 'Quitar del panel' : 'Remove from panel') : (currentLang === 'es' ? 'Agregar al panel' : 'Add to panel')) + '">';
             html += '    <i class="fa-solid ' + (isSel ? 'fa-check' : 'fa-plus') + '"></i>';
             html += '  </div>';
             html += '</div>';
@@ -8029,11 +8038,11 @@ function initPricingCalculator() {
             }
         }
 
-        // Si no hay seleccionados (0/5): Texto guía original de ImmunoQuery
+        // Si no hay seleccionados (0/5): Texto guía en idioma activo
         if (count === 0) {
             if (emptyNotice) {
                 emptyNotice.style.display = 'block';
-                emptyNotice.textContent = 'Search for diagnoses or antibodies in the search box on the left. Click on search results to select items for your panel.';
+                emptyNotice.textContent = t.emptyNotice;
             }
             if (chipsContainer) chipsContainer.innerHTML = '';
             if (clearBtn) clearBtn.style.display = 'none';
@@ -8042,18 +8051,21 @@ function initPricingCalculator() {
             return;
         }
 
-        // Cuando hay al menos 1 seleccionado: Ocultar texto guía y mostrar botón azul Build Panel y botón Clear
+        // Cuando hay al menos 1 seleccionado: Ocultar texto guía y mostrar botones
         if (emptyNotice) emptyNotice.style.display = 'none';
         if (clearBtn) {
             clearBtn.style.display = 'inline-block';
-            clearBtn.textContent = 'Clear';
+            clearBtn.textContent = t.clearAll;
         }
         if (buildBtn) {
             buildBtn.style.display = 'inline-flex';
             buildBtn.style.background = '#0284c7';
-            buildBtn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> Build Panel &gt;';
+            buildBtn.innerHTML = t.buildMatrixBtn;
         }
-        if (waBtn) waBtn.style.display = 'inline-flex';
+        if (waBtn) {
+            waBtn.style.display = 'inline-flex';
+            waBtn.innerHTML = t.waOrderBtn;
+        }
 
         if (chipsContainer) {
             var html = '';
@@ -8067,7 +8079,7 @@ function initPricingCalculator() {
                 html += '    <span>' + displayName + '</span>';
                 html += '    <span class="iq-chip-badge" style="' + (sel.type === 'diagnoses' ? 'background: rgba(2,132,199,0.12); color:#0284c7;' : 'background: rgba(16,185,129,0.12); color:#059669;') + '">' + typeLabel + '</span>';
                 html += '  </div>';
-                html += '  <button type="button" class="iq-chip-remove-btn" title="Remove ' + displayName + '" onclick="window.iqRemoveItem(\'' + sel.id + '\', event)">';
+                html += '  <button type="button" class="iq-chip-remove-btn" title="' + (currentLang === 'es' ? 'Quitar ' : 'Remove ') + displayName + '" onclick="window.iqRemoveItem(\'' + sel.id + '\', event)">';
                 html += '    &times;';
                 html += '  </button>';
                 html += '</div>';
@@ -8342,6 +8354,8 @@ function initPricingCalculator() {
         if (navBuild) navBuild.textContent = t.navBuildPanel;
         var navLearn = document.getElementById('iqNavLearn');
         if (navLearn) navLearn.textContent = t.navLearn;
+        var navExpert = document.getElementById('iqNavExpertPath');
+        if (navExpert) navExpert.textContent = t.navExpertPath;
         var navCme = document.getElementById('iqNavCme');
         if (navCme) navCme.textContent = t.navCme;
         var navHelp = document.getElementById('iqNavHelpText');
@@ -8371,10 +8385,10 @@ function initPricingCalculator() {
         if (clearBtn) clearBtn.textContent = t.clearAll;
         var emptyNotice = document.getElementById('iqEmptyNotice');
         if (emptyNotice) emptyNotice.textContent = t.emptyNotice;
-        var buildText = document.getElementById('iqBtnBuildText');
-        if (buildText) buildText.innerHTML = t.buildMatrixBtn;
-        var waText = document.getElementById('iqBtnWaText');
-        if (waText) waText.innerHTML = t.waOrderBtn;
+        var buildBtn = document.getElementById('iqBtnBuildPanel');
+        if (buildBtn) buildBtn.innerHTML = t.buildMatrixBtn;
+        var waBtn = document.getElementById('iqBtnWaOrder');
+        if (waBtn) waBtn.innerHTML = t.waOrderBtn;
 
         renderItemsList(input ? input.value : '');
         renderSelectedPanel();
@@ -8382,7 +8396,7 @@ function initPricingCalculator() {
 
     // 11. INICIALIZADOR MAESTRO
     window.initImmunoQueryClone = function() {
-        var savedLang = 'en';
+        var savedLang = 'es';
         try {
             var stored = localStorage.getItem('iq_user_lang');
             if (stored === 'es' || stored === 'en') savedLang = stored;

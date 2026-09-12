@@ -4082,7 +4082,7 @@ body {
 .avatar-video-box,
 .avatar-video-wrapper {
     position: relative;
-    width: clamp(170px, 22vh, 230px);
+    width: clamp(190px, 26vh, 260px);
     max-width: 100%;
     aspect-ratio: 1 / 1;
     height: auto;
@@ -4185,44 +4185,18 @@ body {
     50% { height: 14px; background: #34d399; }
 }
 
-.avatar-speech-box {
-    background: rgba(5, 12, 24, 0.85);
-    border: 1px solid rgba(56, 189, 248, 0.22);
-    border-radius: 12px;
-    padding: 10px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    flex: 1;
-    min-height: 0;
-    overflow-y: auto;
-}
-
-.speech-header {
-    font-size: 9px;
-    font-weight: 800;
-    color: #38bdf8;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.speech-paragraph {
-    font-size: 11px;
-    line-height: 1.45;
-    color: #e2edfa;
-    margin: 0;
-    font-weight: 500;
-}
-
+/* Controles de Tour Compactos e Integrados Inmediatamente Debajo del Video */
 .avatar-tour-controls {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 6px;
-    padding-top: 4px;
+    gap: 8px;
+    padding: 8px 10px;
+    background: rgba(5, 12, 24, 0.75);
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    margin-top: 2px;
 }
 
 .btn-tour-step {
@@ -4292,12 +4266,12 @@ body {
 /* --- PANEL DERECHO: ESCAPARATE DINÁMICO DE HITO ÚNICO CON FLECHA LÁSER AL CELULAR --- */
 .app-callouts-matrix,
 .spotlight-showcase-container {
-    width: clamp(310px, 24vw, 380px);
-    max-height: calc(100vh - 128px);
+    width: clamp(315px, 24vw, 395px);
+    max-height: clamp(570px, 90vh, 830px);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 10px;
+    gap: 12px;
     flex-shrink: 1;
     z-index: 15;
     position: relative;
@@ -4370,15 +4344,15 @@ body {
 .tech-callout-card {
     display: none !important;
     opacity: 0;
-    background: linear-gradient(145deg, rgba(14, 28, 54, 0.95) 0%, rgba(7, 15, 30, 0.98) 100%);
-    backdrop-filter: blur(18px);
-    border: 1px solid rgba(56, 189, 248, 0.28);
-    border-radius: 16px;
-    padding: 14px 16px;
+    background: linear-gradient(145deg, rgba(12, 25, 50, 0.96) 0%, rgba(5, 13, 28, 0.98) 100%);
+    backdrop-filter: blur(20px);
+    border: 1.5px solid rgba(56, 189, 248, 0.3);
+    border-radius: 18px;
+    padding: 16px 18px;
     position: relative;
     box-sizing: border-box;
-    transition: opacity 0.22s ease-out, transform 0.22s ease-out;
-    cursor: default;
+    transition: opacity 0.22s ease-out, transform 0.22s ease-out, border-color 0.22s ease-out;
+    cursor: pointer;
 }
 
 /* Desvanecimiento suave al salir del hito */
@@ -4390,15 +4364,27 @@ body {
     pointer-events: none;
 }
 
-/* Tarjeta Activa Única con Resplandor Esmeralda y Zafiro */
+/* Tarjeta Activa Única con Resplandor Zafiro Profundo y Bordes de Luz Neón */
 .tech-callout-card.active {
     display: flex !important;
     flex-direction: column;
-    gap: 9px;
+    gap: 11px;
     opacity: 1;
-    border-color: rgba(56, 189, 248, 0.65);
-    box-shadow: 0 0 28px rgba(56, 189, 248, 0.28), 0 0 45px rgba(16, 185, 129, 0.14), 0 18px 42px rgba(0, 0, 0, 0.65);
+    border-color: rgba(56, 189, 248, 0.75);
+    background: linear-gradient(145deg, rgba(14, 30, 60, 0.97) 0%, rgba(6, 16, 36, 0.99) 100%);
+    box-shadow: 0 0 35px rgba(56, 189, 248, 0.32), 0 0 55px rgba(14, 165, 233, 0.16), 0 20px 48px rgba(2, 6, 23, 0.85);
     animation: calloutShowcaseEnter 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    cursor: pointer;
+}
+
+.tech-callout-card.active:hover {
+    border-color: rgba(56, 189, 248, 1);
+    box-shadow: 0 0 42px rgba(56, 189, 248, 0.42), 0 22px 52px rgba(2, 6, 23, 0.9);
+}
+
+.tech-callout-card.card-reading-paused {
+    border-color: rgba(245, 158, 11, 0.9) !important;
+    box-shadow: 0 0 36px rgba(245, 158, 11, 0.4), 0 20px 48px rgba(0, 0, 0, 0.85) !important;
 }
 
 /* Flecha exterior indicadora apuntando físicamente al smartphone a la izquierda */
@@ -4535,7 +4521,7 @@ body {
 /* FLECHA LÁSER CONECTORA PROMINENTE DESDE EL CUADRO DERECHO AL SMARTPHONE */
 .laser-exterior-pointer {
     position: absolute;
-    left: -40px;
+    left: -26px;
     top: var(--laser-pointer-y, 28px);
     transform: translateY(-50%);
     display: none;
@@ -4553,10 +4539,10 @@ body {
 .laser-arrow-head-big {
     width: 0;
     height: 0;
-    border-top: 14px solid transparent;
-    border-bottom: 14px solid transparent;
-    border-right: 20px solid #38bdf8;
-    filter: drop-shadow(-4px 0 10px rgba(56, 189, 248, 0.95)) drop-shadow(-8px 0 18px rgba(52, 211, 153, 0.8));
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 14px solid #38bdf8;
+    filter: drop-shadow(-3px 0 8px rgba(56, 189, 248, 0.95)) drop-shadow(-6px 0 14px rgba(52, 211, 153, 0.7));
     animation: laserArrowNudgeBig 0.9s infinite cubic-bezier(0.4, 0, 0.2, 1);
     transform-origin: right center;
     flex-shrink: 0;
@@ -4566,20 +4552,20 @@ body {
     0%, 100% {
         transform: translateX(0) scale(1);
         border-right-color: #38bdf8;
-        filter: drop-shadow(-4px 0 10px rgba(56, 189, 248, 0.95));
+        filter: drop-shadow(-3px 0 8px rgba(56, 189, 248, 0.95));
     }
     50% {
-        transform: translateX(-10px) scale(1.22);
+        transform: translateX(-6px) scale(1.18);
         border-right-color: #34d399;
-        filter: drop-shadow(-8px 0 18px rgba(52, 211, 153, 1)) drop-shadow(0 0 25px #10b981);
+        filter: drop-shadow(-6px 0 14px rgba(52, 211, 153, 1)) drop-shadow(0 0 18px #10b981);
     }
 }
 
 .laser-beam-connector-line {
-    width: 22px;
-    height: 5px;
+    width: 14px;
+    height: 4px;
     background: linear-gradient(90deg, #38bdf8 0%, #34d399 100%);
-    box-shadow: 0 0 14px #38bdf8, 0 0 22px #34d399;
+    box-shadow: 0 0 10px #38bdf8, 0 0 16px #34d399;
     border-radius: 2px;
     position: relative;
     flex-shrink: 0;
@@ -4766,7 +4752,7 @@ body {
 }
 
 .tech-callout-card h6 {
-    font-size: 13px;
+    font-size: 13.5px;
     font-weight: 900;
     color: #ffffff;
     margin: 0;
@@ -4777,13 +4763,45 @@ body {
 }
 
 .tech-callout-card p {
-    font-size: 10.5px;
+    font-size: 11px;
     color: #cbd5e1;
     line-height: 1.45;
     margin: 0;
 }
 
-/* Cluster de Especificaciones Técnicas */
+.callout-punchline {
+    font-size: 11.5px !important;
+    color: #f1f5f9 !important;
+    line-height: 1.5 !important;
+    font-weight: 500 !important;
+    margin: 0 !important;
+    letter-spacing: 0.15px;
+}
+
+.callout-highlight-metric {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 7px 12px;
+    border-radius: 9px;
+    background: rgba(15, 23, 42, 0.75);
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    font-size: 9.5px;
+    color: #cbd5e1;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.callout-highlight-metric i {
+    font-size: 12px;
+    flex-shrink: 0;
+}
+
+.callout-highlight-metric strong {
+    color: #ffffff;
+    font-weight: 800;
+}
+
+/* Cluster de Especificaciones Técnicas (Mantenido por retrocompatibilidad) */
 .callout-tech-specs {
     display: grid;
     grid-template-columns: 1fr 1fr;
