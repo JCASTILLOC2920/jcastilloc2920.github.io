@@ -348,6 +348,49 @@
             font-family: 'JetBrains Mono', monospace;
         }
 
+        /* Botones Laterales Flotantes de Pantalla (Lateral Arrows) */
+        .screen-nav-lateral {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 42px;
+            height: 64px;
+            background: rgba(10, 19, 34, 0.78);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(56, 189, 248, 0.22);
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 90;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            outline: none;
+        }
+        .screen-nav-lateral:hover {
+            color: #ffffff;
+            background: rgba(2, 132, 199, 0.45);
+            border-color: #38bdf8;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.45);
+        }
+        .screen-nav-lateral.lateral-prev {
+            left: 8px;
+            border-radius: 0 16px 16px 0;
+            border-left: none;
+        }
+        .screen-nav-lateral.lateral-next {
+            right: 8px;
+            border-radius: 16px 0 0 16px;
+            border-right: none;
+        }
+        @media (max-width: 768px) {
+            .screen-nav-lateral {
+                width: 32px;
+                height: 48px;
+                font-size: 11px;
+            }
+        }
+
         /* --- PANTALLA 1: WSI ESCÁNER 40X ESPECÍFICO --- */
         .wsi-full-viewport {
             position: absolute;
@@ -1271,205 +1314,22 @@
         </button>
     </div>
 
+    <!-- Botones Laterales Flotantes de Navegación por Pantallas (Lateral Navigation) -->
+    <button type="button" class="screen-nav-lateral lateral-prev" id="lateralPrevBtn" title="Pantalla Anterior (←)" aria-label="Pantalla anterior">
+        <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <button type="button" class="screen-nav-lateral lateral-next" id="lateralNextBtn" title="Siguiente Pantalla (→)" aria-label="Siguiente pantalla">
+        <i class="fa-solid fa-chevron-right"></i>
+    </button>
+
     <!-- Base de Datos Oficial de los 150 Anticuerpos Reales de JC PATH LAB -->
     <script src="antibodies_data.js"></script>
     <!-- Controlador Lógico de Toda la Interactividad -->
     <script src="dossier_web_interactive.js"></script>
     <!-- Motor de Animaciones Biofílicas y Aceleración por GPU (Fase 3A) -->
     <script type="module" src="biophilic-engine.js"></script>
-
-    <!-- ======================================================================
-       CONTROLADOR REACTIVO DE PANTALLA ÚNICA 100vh (SINGLE-SCREEN MANAGER)
-       ====================================================================== -->
-    <script>
-        const SCREENS_ORDER = [
-            'pantalla-wsi',
-            'pantalla-mapeo3d',
-            'pantalla-appmovil',
-            'pantalla-ihq',
-            'pantalla-tarifario'
-        ];
-
-        let currentScreenIndex = 0;
-
-        function switchScreen(screenIdentifier) {
-            const aliasMap = {
-                'carta': 'pantalla-wsi',
-                'command-center': 'pantalla-wsi',
-                'servidor-wsi': 'pantalla-wsi',
-                'wsi-escaner': 'pantalla-wsi',
-                'pantalla-wsi': 'pantalla-wsi',
-                'morfometria-ia': 'pantalla-wsi',
-                'copiloto-gemini': 'pantalla-wsi',
-                'mapeo-3d': 'pantalla-mapeo3d',
-                'pantalla-mapeo3d': 'pantalla-mapeo3d',
-                'app-movil': 'pantalla-appmovil',
-                'pantalla-appmovil': 'pantalla-appmovil',
-                'asistente-ihq': 'pantalla-ihq',
-                'pantalla-ihq': 'pantalla-ihq',
-                'ihq': 'pantalla-ihq',
-                'tarifario': 'pantalla-tarifario',
-                'pantalla-tarifario': 'pantalla-tarifario',
-                'contacto': 'pantalla-tarifario'
-            };
-
-            const targetId = aliasMap[screenIdentifier] || screenIdentifier;
-            const targetSlide = document.getElementById(targetId);
-            if (!targetSlide) return;
-
-            // Desactivar diapositivas previas
-            document.querySelectorAll('.screen-slide').forEach(slide => {
-                slide.classList.remove('active');
-            });
-            targetSlide.classList.add('active');
-
-            // Actualizar índice actual
-            const idx = SCREENS_ORDER.indexOf(targetId);
-            if (idx !== -1) currentScreenIndex = idx;
-
-            // Actualizar botones del Navbar
-            document.querySelectorAll('.nav-screen-btn').forEach(btn => {
-                const btnTarget = btn.getAttribute('data-screen');
-                if (btnTarget === targetId || aliasMap[btnTarget] === targetId) {
-                    btn.classList.add('active');
-                    btn.setAttribute('aria-selected', 'true');
-                } else {
-                    btn.classList.remove('active');
-                    btn.setAttribute('aria-selected', 'false');
-                }
-            });
-
-            // Actualizar Dots del Navegador Inferior
-            document.querySelectorAll('.slide-dot-btn').forEach(dot => {
-                const dotTarget = dot.getAttribute('data-target-screen');
-                if (dotTarget === targetId) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
-            });
-
-            // Actualizar Contador (ej. 1 / 5)
-            const counterText = document.getElementById('slideCounterText');
-            if (counterText) {
-                counterText.textContent = `${currentScreenIndex + 1} / ${SCREENS_ORDER.length}`;
-            }
-
-            // Sincronizaciones específicas al entrar a pantalla
-            if (targetId === 'pantalla-mapeo3d') {
-                if (typeof update360FrameImage === 'function') update360FrameImage();
-            }
-            if (targetId === 'pantalla-wsi') {
-                if (typeof updateWSITransform === 'function') updateWSITransform();
-            }
-
-            // Actualizar Hash en la URL sin salto ni recarga
-            if (history.replaceState) {
-                history.replaceState(null, null, `#${targetId}`);
-            }
-        }
-
-        // Navegación Siguiente / Anterior
-        function nextSlide() {
-            const nextIdx = (currentScreenIndex + 1) % SCREENS_ORDER.length;
-            switchScreen(SCREENS_ORDER[nextIdx]);
-        }
-
-        function prevSlide() {
-            const prevIdx = (currentScreenIndex - 1 + SCREENS_ORDER.length) % SCREENS_ORDER.length;
-            switchScreen(SCREENS_ORDER[prevIdx]);
-        }
-
-        // Alternar entre Visor Panorámico WSI y Comparador Split Slider Macro/Micro
-        window.toggleWsiMode = function() {
-            const wsiView = document.getElementById('wsiViewport');
-            const splitView = document.getElementById('morphSplitContainer');
-            const btn = document.getElementById('btnToggleWsiMode');
-            if (!wsiView || !splitView) return;
-
-            if (splitView.style.display === 'none' || !splitView.style.display) {
-                splitView.style.display = 'block';
-                wsiView.style.display = 'none';
-                if (btn) {
-                    btn.innerHTML = '<i class="fa-solid fa-microscope"></i> Ver WSI 40x';
-                    btn.classList.add('active');
-                }
-            } else {
-                splitView.style.display = 'none';
-                wsiView.style.display = 'flex';
-                if (btn) {
-                    btn.innerHTML = '<i class="fa-solid fa-arrows-left-right"></i> Split Macro/Micro';
-                    btn.classList.remove('active');
-                }
-            }
-        };
-
-        // Inicializar listeners del conmutador al cargar el DOM
-        document.addEventListener('DOMContentLoaded', () => {
-            // Clic en botones del Navbar
-            document.querySelectorAll('.nav-screen-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const screenId = btn.getAttribute('data-screen');
-                    switchScreen(screenId);
-                });
-            });
-
-            // Interceptar cualquier enlace con ancla (#) para conmutar pantalla limpiamente sin scroll
-            document.querySelectorAll('a[href*="#"]').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    const href = link.getAttribute('href');
-                    if (href && href.startsWith('#')) {
-                        const hash = href.replace('#', '');
-                        e.preventDefault();
-                        switchScreen(hash);
-                    }
-                });
-            });
-
-            // Clic en Dots inferiores
-            document.querySelectorAll('.slide-dot-btn').forEach(dot => {
-                dot.addEventListener('click', () => {
-                    const screenId = dot.getAttribute('data-target-screen');
-                    switchScreen(screenId);
-                });
-            });
-
-            // Flechas de navegación
-            const btnPrev = document.getElementById('btnPrevSlide');
-            const btnNext = document.getElementById('btnNextSlide');
-            if (btnPrev) btnPrev.addEventListener('click', prevSlide);
-            if (btnNext) btnNext.addEventListener('click', nextSlide);
-
-            // Teclado: Flechas Izq/Der y Teclas 1 a 5
-            window.addEventListener('keydown', (e) => {
-                // Evitar atrapar teclas si el usuario está escribiendo en un input
-                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-
-                if (e.key === 'ArrowRight' || e.key === 'PageDown') {
-                    e.preventDefault();
-                    nextSlide();
-                } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-                    e.preventDefault();
-                    prevSlide();
-                } else if (['1', '2', '3', '4', '5'].includes(e.key)) {
-                    const idx = parseInt(e.key) - 1;
-                    if (SCREENS_ORDER[idx]) {
-                        e.preventDefault();
-                        switchScreen(SCREENS_ORDER[idx]);
-                    }
-                }
-            });
-
-            // Reconocer Hash de URL inicial si existe
-            if (window.location.hash) {
-                const hash = window.location.hash.replace('#', '');
-                switchScreen(hash);
-            } else {
-                switchScreen('pantalla-wsi');
-            }
-        });
-    </script>
+    <!-- Controlador Maestro de Navegación Single-Screen 100vh & Recálculo de Visores -->
+    <script src="screen-switcher.js"></script>
 
     <!-- ======================================================================
        REGISTRO NO BLOQUEANTE DE SERVICE WORKER (MODO QUIRÓFANO OFFLINE)
