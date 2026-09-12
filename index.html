@@ -3874,8 +3874,8 @@
                     </button>
                 </li>
                 <li>
-                    <button type="button" class="nav-screen-btn" data-screen="pantalla-ihq" role="tab" aria-selected="false" title="4. ImmunoQuery Paneles IHQ">
-                        <i class="fa-solid fa-vial-virus"></i> <span>ImmunoQuery IHQ</span>
+                    <button type="button" class="nav-screen-btn" data-screen="pantalla-ihq" role="tab" aria-selected="false" title="4. Demostración Quirúrgica HD">
+                        <i class="fa-solid fa-circle-play"></i> <span>Demostración HD</span>
                     </button>
                 </li>
                 <li>
@@ -3885,17 +3885,8 @@
                 </li>
             </ul>
 
-            <!-- Acciones Rápidas (Creador IHQ AI y WhatsApp Oficial) -->
+            <!-- Acciones Rápidas (WhatsApp Oficial Directo) -->
             <div class="header-actions">
-                <button type="button" class="btn-header btn-header-ihq-builder" id="btnHeaderIhqBuilder" onclick="switchScreen('pantalla-ihq')" title="Abrir Suite Creador de Paneles de Inmunohistoquímica (ImmunoMaster AI Universal)">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i>
-                    <span class="ihq-btn-text-full">Creador de Paneles IHQ</span>
-                    <span class="ihq-btn-text-short">Paneles IHQ</span>
-                    <span class="btn-badge-ai">AI</span>
-                </button>
-                <a href="creador-paneles-ihq.html" target="_blank" rel="noopener noreferrer" class="btn-header-ihq-popout" title="Abrir Creador de Paneles IHQ en Pestaña Independiente / Pantalla Completa">
-                    <i class="fa-solid fa-up-right-from-square"></i>
-                </a>
                 <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20le%20escribo%20desde%20la%20plataforma%20web%20para%20coordinar%20estudio%20de%20biopsias" target="_blank" class="btn-header btn-header-wa" title="WhatsApp Oficial +51 986 396 733">
                     <i class="fa-brands fa-whatsapp"></i> WhatsApp Directo
                 </a>
@@ -4045,7 +4036,9 @@
                     <!-- VIEWPORT INTERACTIVO GIGAPÍXEL -->
                     <div class="wsi-full-viewport" id="wsiViewport" title="Arrastra para moverte (Pan). Usa la rueda o botones para Zoom (2x-40x).">
                         <div class="wsi-stage-transform" id="wsiTransformStage">
-                            <img src="wsi_slides/muestra_1_carcinoma_prostata_real.webp" id="wsiSlideImg" class="wsi-slide-image" alt="Carcinoma de Próstata Real - Biopsia Gleason WSI" draggable="false">
+                            <video id="wsiSlideImg" class="wsi-slide-image wsi-slide-video" src="videos/primerapagina.webm" autoplay loop muted playsinline controls aria-label="Video de Carcinoma de Próstata Real - Biopsia Gleason WSI" draggable="false" style="width:100%; height:100%; object-fit:contain; border-radius:10px;">
+                                Tu navegador no soporta el formato WebM.
+                            </video>
                             
                             <!-- CAPA DE MORFOMETRÍA IA (OVERLAY DINÁMICO) -->
                             <div class="wsi-ai-overlay" id="wsiAiOverlay">
@@ -4704,23 +4697,7 @@
                         </div>
 
                         <!-- HITO 3: DIAGNÓSTICO DEFINITIVO & MARGEN R0 -->
-                        <div class="tech-callout-card" data-step="2" id="showcaseCard2" title="Haz clic en este cuadro para pausar o reanudar la lectura detenida">
-                            <!-- Flecha Láser Conectora Exterior Directa al Smartphone -->
-                            <div class="laser-exterior-pointer">
-                                <div class="laser-arrow-head-big"></div>
-                                <div class="laser-beam-connector-line"></div>
-                            </div>
-                            <div class="callout-arrow-to-phone laser-pointer-arrow">
-                                <div class="laser-beam-pulse">
-                                    <span class="laser-dot-radar"></span>
-                                    <i class="fa-solid fa-arrow-left-long laser-arrow-icon"></i>
-                                </div>
-                                <div class="laser-guide-cluster">
-                                    <span class="laser-guide-tag">SEÑALIZACIÓN QUIRÚRGICA EN VIVO</span>
-                                    <span class="laser-guide-target">« APUNTANDO A: DIAGNÓSTICO DEFINITIVO</span>
-                                </div>
-                            </div>
-
+                        <div class="tech-callout-card" data-step="2" id="showcaseCard2" title="Haz clic en este cuadro para pausar o reanudar">
                             <div class="callout-card-tag">
                                 <span class="badge-index">HITO 03</span>
                                 <span class="badge-title">PRECISIÓN ONCOLÓGICA</span>
@@ -4728,14 +4705,14 @@
                             </div>
 
                             <h6><i class="fa-solid fa-dna" style="color: #a855f7;"></i> Diagnóstico Definitivo &amp; Margen R0</h6>
-                            <p>Graduación histológica (Gleason/FNCLCC), reporte preliminar y estado milimétrico de márgenes según protocolos CAP 2026.</p>
+                            <p>Graduación histológica (Gleason / FNCLCC) y verificación estricta de márgenes quirúrgicos libres R0.</p>
 
                             <div class="callout-tech-specs">
                                 <div class="tech-spec-item">
                                     <i class="fa-solid fa-certificate" style="color: #a855f7;"></i>
                                     <div>
-                                        <span class="spec-label">Estándares Internacionales</span>
-                                        <strong class="spec-val">Protocolos CAP &amp; OMS 2026</strong>
+                                        <span class="spec-label">Estándar</span>
+                                        <strong class="spec-val">Protocolos CAP 2026</strong>
                                     </div>
                                 </div>
                                 <div class="tech-spec-item">
@@ -4747,23 +4724,8 @@
                                 </div>
                             </div>
 
-                            <!-- Barra de Progreso de Lectura Médica (18-22s) -->
-                            <div class="card-reading-progress-wrap" title="Tiempo de permanencia para lectura médica (18-22s). Clic para pausar.">
-                                <div class="card-reading-meta">
-                                    <span class="card-reading-label">
-                                        <i class="fa-solid fa-hourglass-half reading-hourglass"></i>
-                                        <span class="card-reading-state-lbl">Tiempo para leer con calma</span>
-                                    </span>
-                                    <span class="card-reading-time-val"><span class="reading-sec-counter">20</span>s restantes</span>
-                                </div>
-                                <div class="card-reading-track">
-                                    <div class="card-reading-fill-bar"></div>
-                                </div>
-                            </div>
-
                             <div class="callout-card-footer">
                                 <span class="callout-verif-badge"><i class="fa-solid fa-circle-check"></i> Veredicto Inmutable</span>
-                                <span class="callout-focus-hint" title="Haz clic en este cuadro para pausar o continuar la lectura"><i class="fa-solid fa-circle-pause"></i> Clic para pausar</span>
                             </div>
                         </div>
 
@@ -5003,119 +4965,37 @@
             </div>
         </section>
 
-        <section id="pantalla-ihq" class="screen-slide" role="tabpanel" aria-label="ImmunoQuery - Creador de Paneles IHQ">
-            <div class="iq-root-layout">
-                <!-- 1. Cabecera Institucional ImmunoQuery (Figura 2) con Conmutador [ES | EN] -->
-                <header class="iq-top-header">
-                    <a href="javascript:void(0)" class="iq-brand-wrap" title="ImmunoQuery • Paneles IHQ">
-                        <span class="iq-brand-logo">ImmunoQuery</span>
-                        <span class="iq-brand-badge" style="font-size: 11px; font-weight: 700; color: #0284c7; background: rgba(2, 132, 199, 0.08); padding: 2px 8px; border-radius: 9999px; border: 1px solid rgba(2, 132, 199, 0.22); letter-spacing: 0.02em;">Paneles IHQ</span>
-                    </a>
-                    <ul class="iq-nav-links-wrap">
-                        <li class="iq-nav-link-item">
-                            <button type="button" class="iq-nav-action-link active" id="iqNavBuildPanel" title="Crear Panel">Crear Panel</button>
-                        </li>
-                        <li class="iq-nav-link-item">
-                            <a href="javascript:void(0)" class="iq-nav-action-link" id="iqNavLearn" title="Guía Clínica">Guía Clínica</a>
-                        </li>
-                        <li class="iq-nav-link-item">
-                            <a href="javascript:void(0)" class="iq-nav-action-link" id="iqNavExpertPath" title="ExpertPath">ExpertPath</a>
-                        </li>
-                        <li class="iq-nav-link-item">
-                            <a href="javascript:void(0)" class="iq-nav-action-link" id="iqNavCme" title="Educación Médica">Educación Médica</a>
-                        </li>
-                        <li class="iq-nav-link-item">
-                            <a href="javascript:void(0)" class="iq-nav-action-link" id="iqNavHelp" title="Ayuda / Soporte">
-                                <span class="iq-help-circle">?</span> <span id="iqNavHelpText">Ayuda / Soporte</span>
-                            </a>
-                        </li>
-                        <!-- Conmutador Discreto y Elegante [ES | EN] -->
-                        <li class="iq-nav-link-item">
-                            <div class="iq-lang-toggle" role="group" aria-label="Selector de Idioma / Language Selector" title="Conmutador de Idioma / Language Switcher [ES | EN]">
-                                <button type="button" class="iq-lang-btn active" id="iqLangEs" onclick="iqSetLanguage('es')" title="Español (Activo)">ES</button>
-                                <span class="iq-lang-separator">|</span>
-                                <button type="button" class="iq-lang-btn" id="iqLangEn" onclick="iqSetLanguage('en')" title="Switch to English">EN</button>
-                            </div>
-                        </li>
-                        <li class="iq-nav-link-item">
-                            <button type="button" class="iq-menu-hamburger-btn" aria-label="Menú" title="Menú de Navegación">
-                                ☰
-                            </button>
-                        </li>
-                    </ul>
-                </header>
-
-                <!-- 2. Subcabecera: Título 'Crear Panel de Inmunohistoquímica' + Botón 'Casos Guardados >' -->
-                <div class="iq-subbar">
-                    <h2 class="iq-subbar-title" id="iqSubbarTitle">Crear Panel de Inmunohistoquímica</h2>
-                    <button type="button" class="iq-btn-saved-cases" id="iqBtnSavedCases" onclick="iqShowSavedCases()" title="Ver Casos Guardados">
-                        <span id="iqBtnSavedCasesText">Casos Guardados &gt;</span>
-                    </button>
-                </div>
-
-                <!-- 3. Pestañas de Búsqueda: Diagnósticos | Anticuerpos con subrayado naranja -->
-                <div class="iq-search-tabs-bar">
-                    <div class="iq-tabs-flex" role="tablist">
-                        <button type="button" class="iq-tab-btn active" id="iqTabDiagnoses" role="tab" aria-selected="true" onclick="iqSwitchTab('diagnoses')">
-                            Diagnósticos
-                        </button>
-                        <button type="button" class="iq-tab-btn" id="iqTabAntibodies" role="tab" aria-selected="false" onclick="iqSwitchTab('antibodies')">
-                            Anticuerpos
-                        </button>
+        <!-- ======================================================================
+           PANTALLA 4: 'Demostración Quirúrgica HD & Video Panorámico'
+           ====================================================================== -->
+        <section id="pantalla-ihq" class="screen-slide" role="tabpanel" aria-label="Demostración Quirúrgica HD - Video Panorámico">
+            <div class="screen-hud-header">
+                <div class="screen-hud-left">
+                    <div class="screen-hud-title">
+                        <i class="fa-solid fa-circle-play" style="color: #00f0ff;"></i>
+                        <span>DEMOSTRACIÓN QUIRÚRGICA HD &bull; EXPLORACIÓN PANORÁMICA GIGAPÍXEL</span>
                     </div>
                 </div>
+                <div class="screen-hud-right">
+                    <span class="floating-pill highlight"><i class="fa-solid fa-video"></i> Video HD 60 FPS Activo</span>
+                </div>
+            </div>
 
-                <!-- 4. Cuerpo Principal a Dos Columnas -->
-                <main class="iq-workspace-grid">
-                    <!-- Columna Izquierda: Buscador con Lupa Azul y Recientes -->
-                    <div class="iq-left-column">
-                        <div class="iq-search-container">
-                            <input type="text" class="iq-search-input-field" id="iqSearchInput" placeholder="Buscar diagnósticos (ej. Adenocarcinoma de pulmón, Melanoma...)" autocomplete="off" spellcheck="false" oninput="iqFilterItems(this.value)">
-                            <button type="button" class="iq-search-lens-btn" id="iqSearchBtn" title="Buscar en ImmunoQuery" aria-label="Buscar" onclick="iqExecuteSearch()">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </button>
-                        </div>
+            <div class="video-panorama-stage" style="flex: 1; display: flex; justify-content: center; align-items: center; padding: 24px; overflow: hidden; background: radial-gradient(circle at center, rgba(14, 30, 60, 0.45) 0%, rgba(3, 7, 18, 0.95) 100%);">
+                <div class="glass-panel video-panorama-card" style="position: relative; width: 100%; max-width: 1280px; max-height: calc(100vh - 170px); aspect-ratio: 16/9; border-radius: 18px; overflow: hidden; display: flex; justify-content: center; align-items: center; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 35px rgba(0, 240, 255, 0.25); border: 1.5px solid rgba(0, 240, 255, 0.35); background: rgba(10, 16, 28, 0.7); backdrop-filter: blur(18px) saturate(180%); -webkit-backdrop-filter: blur(18px) saturate(180%);">
+                    <video id="videoPanorama4" class="video-panorama-player" src="videos/pagina4.webm" autoplay loop muted playsinline controls preload="auto" aria-label="Demostración Quirúrgica HD" style="width: 100%; height: 100%; object-fit: contain; display: block; border-radius: 14px;">
+                        Tu navegador no soporta la reproducción de video WebM.
+                    </video>
 
-                        <div class="iq-recent-title-wrap">
-                            <h4 class="iq-recent-label" id="iqRecentLabel">Diagnósticos Disponibles (52)</h4>
-                        </div>
-
-                        <div class="iq-items-scroll-list" id="iqRecentList">
-                            <!-- Inyectado dinámicamente según pestaña Diagnósticos / Anticuerpos -->
-                        </div>
+                    <!-- HUD Flotante sobre el video -->
+                    <div style="position: absolute; bottom: 14px; left: 16px; background: rgba(5, 11, 20, 0.78); backdrop-filter: blur(12px); border: 1px solid rgba(56, 189, 248, 0.35); padding: 6px 14px; border-radius: 8px; pointer-events: none; display: flex; align-items: center; gap: 8px;">
+                        <span style="width: 8px; height: 8px; border-radius: 50%; background: #00f0ff; box-shadow: 0 0 10px #00f0ff;"></span>
+                        <span style="font-size: 11px; font-weight: 700; color: #f8fafc; letter-spacing: 0.5px;">Flujo Clínico Panorámico &bull; Alta Resolución 4K</span>
                     </div>
+                </div>
+            </div>
+        </section>
 
-                    <!-- Columna Derecha: Contenedor 'Seleccionados (0/5)' -->
-                    <div class="iq-right-column">
-                        <div class="iq-selected-box">
-                            <div class="iq-selected-header-row">
-                                <h3 class="iq-selected-title-text" id="iqSelectedTitleText">
-                                    <span id="iqSelectedLabel">Seleccionados</span> <span id="iqSelectedCounterText">(0/5)</span>
-                                </h3>
-                                <button type="button" class="iq-btn-clear-selection" id="iqBtnClearAll" onclick="window.iqClearSelection()">
-                                    Limpiar todo
-                                </button>
-                            </div>
-
-                            <p class="iq-selected-explanation-text" id="iqEmptyNotice">
-                                Busque diagnósticos o anticuerpos en la casilla de la izquierda. Haga clic en los resultados para agregarlos a su panel.
-                            </p>
-
-                            <div class="iq-selected-chips-container" id="iqSelectedChips">
-                                <!-- Chips seleccionados dinámicos -->
-                            </div>
-
-                            <div class="iq-actions-container" style="margin-top: auto; display: flex; flex-direction: column; gap: 8px;">
-                                <button type="button" class="iq-build-panel-action-btn" id="iqBtnBuildPanel" onclick="window.iqGenerateMatrixPanel()">
-                                    <i class="fa-solid fa-wand-magic-sparkles"></i> <span id="iqBtnBuildText">Generar Matriz de Inmunohistoquímica &gt;</span>
-                                </button>
-                                <button type="button" class="iq-build-panel-action-btn iq-btn-wa" id="iqBtnWaOrder" onclick="window.iqOrderPanelWhatsApp()" style="background: linear-gradient(135deg, #059669, #047857); box-shadow: 0 2px 8px rgba(5, 150, 105, 0.28);">
-                                    <i class="fa-brands fa-whatsapp"></i> <span id="iqBtnWaText">Solicitar Panel por WhatsApp &gt;</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                
         <!-- ======================================================================
            PANTALLA 5: 'Copiloto IA en Microscopio & Comparador de Libros'
            ====================================================================== -->
@@ -5470,7 +5350,7 @@
         <button type="button" class="slide-dot-btn active" data-target-screen="pantalla-wsi" title="1. WSI Escáner 40x"></button>
         <button type="button" class="slide-dot-btn" data-target-screen="pantalla-appmovil" title="2. App Móvil & Despacho"></button>
         <button type="button" class="slide-dot-btn" data-target-screen="pantalla-reportes" title="3. Plataforma de Reportes"></button>
-        <button type="button" class="slide-dot-btn" data-target-screen="pantalla-ihq" title="4. ImmunoQuery IHQ"></button>
+        <button type="button" class="slide-dot-btn" data-target-screen="pantalla-ihq" title="4. Demostración Quirúrgica HD"></button>
         <button type="button" class="slide-dot-btn" data-target-screen="pantalla-copiloto" title="5. Copiloto IA Microscopio"></button>
         <span class="slide-counter-badge" id="slideCounterText">1 / 5</span>
         <button type="button" class="slide-nav-arrow" id="btnNextSlide" title="Siguiente Pantalla (Flecha Derecha)">

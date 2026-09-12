@@ -125,6 +125,10 @@
 
             if (targetId === "pantalla-ihq") {
                 window.dispatchEvent(new CustomEvent("ihq-table-resize", { detail: { screenId: targetId } }));
+                var vid4 = document.getElementById("videoPanorama4");
+                if (vid4 && vid4.play) {
+                    vid4.play().catch(function() {});
+                }
             }
 
             if (targetId === "pantalla-tarifario") {
