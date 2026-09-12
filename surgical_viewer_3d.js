@@ -83,6 +83,12 @@ export class SurgicalViewer3D {
         this._cachedHeight = 520;
 
         this._setupDOM();
+        if (typeof window !== 'undefined') {
+            window.surgicalViewer = this;
+            if (window.SurgicalViewer3D) {
+                window.SurgicalViewer3D.currentInstance = this;
+            }
+        }
         this._loadDependencies().then(() => {
             this._initThree();
             this._buildSpecimenMesh();
@@ -647,6 +653,13 @@ export class SurgicalViewer3D {
         this.camera.updateProjectionMatrix();
         this.renderer.setSize(w, h);
         this.requestRender();
+    }
+
+    /**
+     * Recalcula el tamaño del visor y ajusta la resolución al 100% de nitidez
+     */
+    resize() {
+        this._onResize();
     }
 
     async _setup360Fallback() {

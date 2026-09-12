@@ -1029,10 +1029,21 @@ export class Macro360Viewer {
         this._cachedHeight = h;
         this.canvas.width = Math.round(w * dpr);
         this.canvas.height = Math.round(h * dpr);
-        this.ctx.resetTransform?.();
+        if (this.ctx && typeof this.ctx.resetTransform === 'function') {
+            this.ctx.resetTransform();
+        }
         this.ctx.scale(dpr, dpr);
         this._bgGrad = null; // invalidar gradiente previo al redimensionar
         this.isDirty = true;
+    }
+
+    /**
+     * Recalcula el tamaño del canvas y redibuja la imagen a resolución completa (100% nitidez)
+     */
+    resize() {
+        this._resizeCanvas();
+        this.isDirty = true;
+        this._requestRender();
     }
 
     /**
@@ -1379,8 +1390,9 @@ export class Macro360Viewer {
             keydown: (e) => {
                 const tab360 = document.getElementById('tab_macro360');
                 const isTabActive = !tab360 || tab360.classList.contains('active') || tab360.style.display !== 'none';
-                if (!isTabActive) return;
-                if (['input', 'textarea', 'select'].includes(document.activeElement?.tagName?.toLowerCase()) || document.activeElement?.isContentEditable) return;
+                const activeEl = document.activeElement;
+                const activeTag = activeEl && activeEl.tagName ? activeEl.tagName.toLowerCase() : '';
+                if (['input', 'textarea', 'select'].includes(activeTag) || (activeEl && activeEl.isContentEditable)) return;
 
                 const degStep = 360 / (this.options.frameCount || 24);
                 if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {

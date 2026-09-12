@@ -173,11 +173,11 @@ class BiophilicCellController {
     constructor(element, options = {}) {
         this.el = element;
         this.options = {
-            maxTilt: options.maxTilt ?? 7.5,        // Inclinación máxima 3D en grados
-            maxTranslate: options.maxTranslate ?? 5.0, // Desplazamiento reactivo en px
-            hoverScale: options.hoverScale ?? 1.026,   // Dilatación citoplasmática en hover
-            pressScale: options.pressScale ?? 0.962,   // Compresión viscoelástica al pulsar
-            hasSheen: options.hasSheen ?? true,        // Sheen especular reflectivo
+            maxTilt: options.maxTilt !== undefined ? options.maxTilt : 7.5,        // Inclinación máxima 3D en grados
+            maxTranslate: options.maxTranslate !== undefined ? options.maxTranslate : 5.0, // Desplazamiento reactivo en px
+            hoverScale: options.hoverScale !== undefined ? options.hoverScale : 1.026,   // Dilatación citoplasmática en hover
+            pressScale: options.pressScale !== undefined ? options.pressScale : 0.962,   // Compresión viscoelástica al pulsar
+            hasSheen: options.hasSheen !== undefined ? options.hasSheen : true,        // Sheen especular reflectivo
             ...options
         };
 
@@ -358,7 +358,8 @@ let lastActivePhoneCard = null;
 function transitionOpenPhoneModal(patientId, executeNativeOpen) {
     const modal = document.getElementById('phoneReportModal');
     // Encuentra la tarjeta del paciente en el listado
-    const card = document.querySelector(`.phone-patient-card button[onclick*="${patientId}"]`)?.closest('.phone-patient-card')
+    const targetBtn = document.querySelector(`.phone-patient-card button[onclick*="${patientId}"]`);
+    const card = (targetBtn && targetBtn.closest ? targetBtn.closest('.phone-patient-card') : null)
               || document.querySelector(`.phone-patient-card`);
 
     lastActivePhoneCard = card;

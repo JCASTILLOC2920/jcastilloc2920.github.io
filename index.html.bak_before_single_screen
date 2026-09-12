@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>JC PATH LAB • Plataforma Digital & Dossier Interactivo 2026</title>
+    <meta name="description" content="Centro de Referencia Nacional en Anatomía Patológica, Uropatología, Dermatopatología, Neuropatología, Sarcomas y Hematopatología. Servidor WSI propio, IA Morfométrica y Copiloto Diagnóstico.">
+    
+    <!-- Favicon & PWA -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0284c7">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="JC PATH LAB">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Hojas de Estilos de la Plataforma Web Interactiva -->
+    <link rel="stylesheet" href="dossier_web_interactive.css">
+</head>
+<body>
+
+    <!-- Fondos de Iluminación Ambiental -->
+    <div class="ambient-glow glow-top-left"></div>
+    <div class="ambient-glow glow-mid-right"></div>
+    <div class="ambient-glow glow-bottom-left"></div>
+
+    <!-- ==========================================================================
+       CABECERA SUPERIOR INSTITUCIONAL (NAVBAR)
+       ========================================================================== -->
+    <header class="top-navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand-wrapper">
+                <div class="brand-logo-glow">
+                    <i class="fa-solid fa-microscope"></i>
+                </div>
+                <div class="brand-title-group">
+                    <h1>JC PATH LAB</h1>
+                    <span>Centro de Referencia &bull; WSI Digital &bull; CMP 56435</span>
+                </div>
+            </a>
+
+            <!-- Enlaces del Dossier con Navegación Suave -->
+            <ul class="nav-links-menu">
+                <li><a href="#carta" class="nav-link-btn active"><i class="fa-solid fa-gauge-high"></i> Command Center</a></li>
+                <li><a href="#app-movil" class="nav-link-btn"><i class="fa-solid fa-mobile-screen-button"></i> App Móvil</a></li>
+                <li><a href="#servidor-wsi" class="nav-link-btn"><i class="fa-solid fa-server"></i> Servidor WSI</a></li>
+                <li><a href="#morfometria-ia" class="nav-link-btn"><i class="fa-solid fa-chart-pie"></i> Morfometría IA</a></li>
+                <li><a href="#copiloto-gemini" class="nav-link-btn"><i class="fa-solid fa-brain"></i> Copiloto Gémini</a></li>
+                <li><a href="#asistente-ihq" class="nav-link-btn"><i class="fa-solid fa-dna"></i> Asistente IHQ</a></li>
+                <li><a href="#mapeo-3d" class="nav-link-btn"><i class="fa-solid fa-cube"></i> Mapeo 3D</a></li>
+                <li><a href="#tarifario" class="nav-link-btn"><i class="fa-solid fa-tag"></i> Tarifario 2026</a></li>
+            </ul>
+
+            <!-- Acciones de Acceso y WhatsApp -->
+            <div class="header-actions">
+                <a href="login.html" class="btn-header btn-header-portal" title="Acceso al Portal de Médicos y Clínicas">
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i> Entrar al Portal
+                </a>
+                <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20le%20escribo%20desde%20la%20plataforma%20web%20para%20coordinar%20estudio%20de%20biopsias" target="_blank" class="btn-header btn-header-wa" title="WhatsApp Oficial +51 986 396 733">
+                    <i class="fa-brands fa-whatsapp"></i> WhatsApp Directo
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sub-barra de Navegación por las 5 Especialidades Médicas -->
+    <nav class="specialties-subnav" aria-label="Especialidades Patológicas">
+        <span style="font-size: 11px; font-weight: 800; color: #64748b; text-transform: uppercase; margin-right: 6px;">
+            <i class="fa-solid fa-layer-group"></i> Especialidades:
+        </span>
+        <button type="button" class="specialty-tab active" data-specialty="uro">
+            <i class="fa-solid fa-vial"></i> Uropatología
+        </button>
+        <button type="button" class="specialty-tab" data-specialty="derma">
+            <i class="fa-solid fa-hand-dots"></i> Dermatopatología
+        </button>
+        <button type="button" class="specialty-tab" data-specialty="neuro">
+            <i class="fa-solid fa-brain"></i> Neuropatología
+        </button>
+        <button type="button" class="specialty-tab" data-specialty="sarcoma">
+            <i class="fa-solid fa-bone"></i> Partes Blandas & Sarcomas
+        </button>
+        <button type="button" class="specialty-tab" data-specialty="hemato">
+            <i class="fa-solid fa-droplet"></i> Hematopatología
+        </button>
+    </nav>
+
+    <!-- ==========================================================================
+       CONTENIDO PRINCIPAL
+       ========================================================================== -->
+        <main class="main-wrapper">
+
+        <!-- ================= HERO CINEMATOGRÁFICO WSI & ESCÁNER GIGAPÍXEL INTERACTIVO ================= -->
+        <section id="hero-wsi-cinematic" class="hero-wsi-fullscreen-section">
+            <div class="wsi-cinematic-stage">
+                <!-- Marco del Escáner Gigapíxel -->
+                <div class="scanner-viewport-frame">
+                    <div class="scanner-laser-sweep"></div>
+                    <img src="morfologia_he_original.jpg" id="heroWsiScannerImg" class="scanner-interactive-slide" alt="Escáner Gigapíxel WSI en Vivo">
+                    
+                    <!-- HUD Superior del Escáner (Estilo Leica / Zeiss) -->
+                    <div class="scanner-hud-top">
+                        <div class="scanner-brand-tag">
+                            <span class="live-recording-dot"></span>
+                            <i class="fa-solid fa-microscope"></i> ESCÁNER WSI IN-HOUSE &bull; SENSOR ÓPTICO 40x
+                        </div>
+                        <div class="scanner-metrics-pills">
+                            <span class="hud-pill"><i class="fa-solid fa-crosshairs"></i> 0.25 µm/px</span>
+                            <span class="hud-pill"><i class="fa-solid fa-server"></i> SERVIDOR FÍSICO PROPIO</span>
+                            <span class="hud-pill highlight"><i class="fa-solid fa-bolt"></i> LATENCIA ZERO</span>
+                        </div>
+                    </div>
+
+                    <!-- Divisor Interactivo Macro/Micro (Cortina Split-Screen) -->
+                    <div class="split-screen-controller">
+                        <span class="split-badge left"><i class="fa-solid fa-eye"></i> Macroscopía Pieza 3D</span>
+                        <div class="split-drag-line"><i class="fa-solid fa-arrows-left-right"></i></div>
+                        <span class="split-badge right"><i class="fa-solid fa-magnifying-glass"></i> Escáner 40x WSI</span>
+                    </div>
+
+                    <!-- HUD Inferior Flotante de Alta Conversión -->
+                    <div class="scanner-hud-bottom">
+                        <div class="scanner-quick-caption">
+                            <h4>Certeza Histopatológica de Alta Resolución</h4>
+                            <p>Biopsia digitalizada y disponible antes de que el paciente salga de recuperación.</p>
+                        </div>
+                        <div class="scanner-cta-group">
+                            <a href="https://wa.me/51986396733?text=Estimado%20Dr.%20Joseph%20Castillo,%20le%20escribo%20para%20coordinar%20el%20env%C3%ADo%20de%20biopsias%20quir%C3%Bargicas%20urgentes%20a%20JC%20PATH%20LAB" target="_blank" class="btn-scanner-action-wa">
+                                <i class="fa-brands fa-whatsapp"></i> Interconsulta Quirúrgica Directa
+                            </a>
+                            <a href="login.html" class="btn-scanner-action-portal">
+                                <i class="fa-solid fa-arrow-right-to-bracket"></i> Acceso a Médicos
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PÁGINA 1: HERO COMMAND CENTER & MANIFIESTO INSTITUCIONAL ================= -->
+        <section id="carta" class="section-block hero-command-block">
+            <!-- Cabecera de la Sección con Badge de Alta Visibilidad -->
+            <div class="section-badge-header">
+                <span class="section-badge"><i class="fa-solid fa-bolt-lightning"></i> Hero Command Center &bull; Criterio Clínico Inmediato (Kahneman Sistema 1)</span>
+                <span class="section-live-pill"><span class="pulse-dot"></span> Red WSI Físico Operativa</span>
+            </div>
+            
+            <h2 class="section-title">Patología Digital de Alta Complejidad & Diagnóstico Quirúrgico Inmediato</h2>
+            <p class="section-subtitle">
+                Arquitectura de certeza histopatológica submilimétrica, digitalización WSI local in-house y soberanía de datos oncológicos diseñada para cirujanos y comités de tumores de alta exigencia.
+            </p>
+
+            <!-- Barra de Telemetría Rápida (Kahneman Sistema 1) -->
+            <div class="command-telemetry-ribbon">
+                <div class="telemetry-chip">
+                    <i class="fa-solid fa-shield-virus" style="color: var(--accent-sky);"></i>
+                    <span><strong>Servidor WSI:</strong> 100% Físico Propio (0% Nubes Terceros)</span>
+                </div>
+                <div class="telemetry-chip">
+                    <i class="fa-solid fa-truck-fast" style="color: #34d399;"></i>
+                    <span><strong>Despacho Smartphone:</strong> En Segundos (< 24h Definitivo)</span>
+                </div>
+                <div class="telemetry-chip">
+                    <i class="fa-solid fa-flask-vial" style="color: #fbbf24;"></i>
+                    <span><strong>IHQ Especializada:</strong> 150 Anticuerpos (Entrega en 4 Días)</span>
+                </div>
+                <div class="telemetry-chip">
+                    <i class="fa-solid fa-user-doctor" style="color: #a5b4fc;"></i>
+                    <span><strong>Dirección Médica:</strong> Dr. Joseph Castillo (CMP 56435)</span>
+                </div>
+            </div>
+
+            <!-- HERO COMMAND CENTER: 4 TARJETAS DE IMPACTO CLÍNICO EN 3 SEGUNDOS -->
+            <div class="command-impact-grid">
+                <!-- CARD 1: Despacho Inmediato al Smartphone -->
+                <div class="glass-panel command-card card-smartphone" onclick="document.getElementById('app-movil').scrollIntoView({behavior: 'smooth'})" title="Click para ver Simulador de Smartphone Quirúrgico">
+                    <div class="card-top-row">
+                        <span class="card-badge-pill"><i class="fa-solid fa-bell"></i> PUSH NOTIFICATION</span>
+                        <div class="card-icon-avatar">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                        </div>
+                    </div>
+                    <h3 class="card-title">Despacho Inmediato al Smartphone</h3>
+                    <div class="card-subtitle">Biopsia con firma digital verificable</div>
+                    <p class="card-body-text">
+                        Entrega autónoma directa al teléfono del cirujano con reporte oficial en PDF de alta resolución, microfotografías calibradas a 40x y visor macroscópico interactivo. Cero intermediarios burocráticos y latencia zero.
+                    </p>
+                    <div class="card-kpi-footer font-mono">
+                        <i class="fa-solid fa-circle-check"></i> TIEMPO: INSTANTÁNEO &bull; FIRMA DIGITAL VALIDADA
+                    </div>
+                    <div class="card-action-btn">
+                        <span>Probar Simulador Móvil</span> <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <!-- CARD 2: Servidor Gigapíxel Propio -->
+                <div class="glass-panel command-card card-server" onclick="document.getElementById('servidor-wsi').scrollIntoView({behavior: 'smooth'})" title="Click para abrir Visor Gigapíxel WSI">
+                    <div class="card-top-row">
+                        <span class="card-badge-pill"><i class="fa-solid fa-shield-halved"></i> SOBERANÍA TISULAR</span>
+                        <div class="card-icon-avatar">
+                            <i class="fa-solid fa-server"></i>
+                        </div>
+                    </div>
+                    <h3 class="card-title">Servidor Gigapíxel Propio</h3>
+                    <div class="card-subtitle">Soberanía de datos oncológicos sin nubes lentas</div>
+                    <p class="card-body-text">
+                        Único centro en el Perú con infraestructura física local propia para Whole Slide Imaging (WSI). Privacidad absoluta de muestras oncológicas sensibles, navegación gigapíxel instantánea a 40x y telepatología para comités de tumores.
+                    </p>
+                    <div class="card-kpi-footer font-mono">
+                        <i class="fa-solid fa-hard-drive"></i> HARDWARE DEDICADO &bull; 0% ALQUILER DE NUBES
+                    </div>
+                    <div class="card-action-btn">
+                        <span>Abrir Visor Gigapíxel</span> <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <!-- CARD 3: Mapeo Quirúrgico 3D -->
+                <div class="glass-panel command-card card-3d" onclick="document.getElementById('mapeo-3d').scrollIntoView({behavior: 'smooth'})" title="Click para abrir Mapeo Quirúrgico 3D">
+                    <div class="card-top-row">
+                        <span class="card-badge-pill"><i class="fa-solid fa-compass"></i> ORIENTACIÓN R0</span>
+                        <div class="card-icon-avatar">
+                            <i class="fa-solid fa-cube"></i>
+                        </div>
+                    </div>
+                    <h3 class="card-title">Mapeo Quirúrgico 3D</h3>
+                    <div class="card-subtitle">Margen R0 garantizado y orientación tridimensional de pieza</div>
+                    <p class="card-body-text">
+                        Protocolo estandarizado de tintado multicolor indeleble y correlación anatómica tridimensional. Determinación microscópica submilimétrica que asegura la radicalidad oncológica y la orientación exacta de la pieza de escisión.
+                    </p>
+                    <div class="card-kpi-footer font-mono">
+                        <i class="fa-solid fa-ruler-combined"></i> CERTEZA R0 &bull; TINTA CHINA MULTICANAL
+                    </div>
+                    <div class="card-action-btn">
+                        <span>Ver Mapeo Quirúrgico 3D</span> <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <!-- CARD 4: Inmunohistoquímica Especializada -->
+                <div class="glass-panel command-card card-ihq" onclick="document.getElementById('asistente-ihq').scrollIntoView({behavior: 'smooth'})" title="Click para consultar el Asistente IHQ">
+                    <div class="card-top-row">
+                        <span class="card-badge-pill"><i class="fa-solid fa-dna"></i> BIOMARCADORES DE STOCK</span>
+                        <div class="card-icon-avatar">
+                            <i class="fa-solid fa-vial-circle-check"></i>
+                        </div>
+                    </div>
+                    <h3 class="card-title">Inmunohistoquímica Especializada</h3>
+                    <div class="card-subtitle">150 anticuerpos en stock, entrega en 4 días útiles</div>
+                    <p class="card-body-text">
+                        Batería completa y permanente de anticuerpos diagnósticos, predictivos y diana (ER/PR, HER2, Ki-67, PD-L1, cóctel PIN-4, sarcomas). Informes moleculares concluyentes para el inicio precoz del tratamiento oncológico.
+                    </p>
+                    <div class="card-kpi-footer font-mono">
+                        <i class="fa-solid fa-stopwatch"></i> 150 MARCADORES &bull; RESPUESTA EN 4 DÍAS ÚTILES
+                    </div>
+                    <div class="card-action-btn">
+                        <span>Consultar Asistente IHQ</span> <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= MANIFIESTO INSTITUCIONAL DE AUTORIDAD CIENTÍFICA ================= -->
+            <div class="glass-panel official-manifesto-card">
+                <!-- Banner de Encabezado Oficial -->
+                <div class="manifesto-recipient-banner">
+                    <div class="manifesto-badge-row">
+                        <span class="manifesto-subtag"><i class="fa-solid fa-certificate"></i> COMUNICACIÓN CIENTÍFICA INSTITUCIONAL &bull; REFERENCIA NACIONAL</span>
+                        <span class="manifesto-cmp-tag"><i class="fa-solid fa-id-card-clip"></i> C.M.P. 56435 &bull; REGISTRO OFICIAL DE ESPECIALISTA</span>
+                    </div>
+                    <h3 class="manifesto-header-title">A la Comunidad Médica, Cirujanos y Directores de Salud</h3>
+                    <div class="manifesto-recipient-desc">Cirugía Oncológica, Especialidades Quirúrgicas, Comités de Tumores, Clínicas y Pacientes</div>
+                </div>
+
+                <!-- Cuerpo Modular del Manifiesto -->
+                <div class="manifesto-body-wrapper">
+                    <div class="manifesto-lead-quote">
+                        <i class="fa-solid fa-quote-left quote-icon"></i>
+                        <p>
+                            En el ejercicio de la medicina de alta complejidad, el acto quirúrgico más depurado alcanza su consagración terapéutica cuando se sustenta en una <strong>certeza histopatológica absoluta</strong>. Cada resección oncológica, biopsia por punción, enucleación o pieza de escisión representa una vida humana a la espera de un veredicto microscópico que definirá el pronóstico, la amplitud de márgenes y la indicación de terapias adyuvantes.
+                        </p>
+                    </div>
+
+                    <!-- 3 Módulos de Garantía Clínica Institucional -->
+                    <div class="manifesto-modules-grid">
+                        <div class="manifesto-mod-item">
+                            <div class="mod-item-header">
+                                <div class="mod-item-icon"><i class="fa-solid fa-brain"></i></div>
+                                <h4>Mitigación de Sobrecarga Alostática</h4>
+                            </div>
+                            <p>
+                                La ambigüedad diagnóstica somete al cirujano y al paciente a una sobrecarga crítica por incertidumbre biológica. Transformamos la anatomía patológica desde un informe estático hacia una experiencia interactiva de verdad tisular irrefutable y verificable.
+                            </p>
+                        </div>
+
+                        <div class="manifesto-mod-item">
+                            <div class="mod-item-header">
+                                <div class="mod-item-icon"><i class="fa-solid fa-temperature-arrow-down"></i></div>
+                                <h4>Cadena de Custodia & Control Térmico</h4>
+                            </div>
+                            <p>
+                                Canal biológico protocolizado con estricta cadena de custodia y control térmico desde cualquier centro quirúrgico del país, asegurando la preservación celular y la estabilidad antigénica para estudios de IHQ y WSI.
+                            </p>
+                        </div>
+
+                        <div class="manifesto-mod-item">
+                            <div class="mod-item-header">
+                                <div class="mod-item-icon"><i class="fa-solid fa-file-shield"></i></div>
+                                <h4>Gobernanza Digital & Respaldo Pericial</h4>
+                            </div>
+                            <p>
+                                Reportes estructurados bajo estándares internacionales del Colegio Americano de Patólogos (CAP) y la OMS, respaldados con firma digital verificable y archivo microscópico gigapíxel auditable para juntas médicas y auditorías legales.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="manifesto-conclusion-text">
+                        <p>
+                            A través de esta plataforma de vanguardia, garantizamos un estándar de clase mundial diseñado para otorgar <strong>claridad mental al cirujano, certidumbre científica al oncólogo y esperanza fundamentada al paciente</strong>.
+                        </p>
+                    </div>
+
+                    <!-- Bloque de Firma Médica y CTAs Oficiales -->
+                    <div class="manifesto-footer-block">
+                        <div class="seal-signature-box">
+                            <img src="firma_sello.png" alt="Firma Médica Dr. Joseph Castillo" class="signature-png">
+                            <div class="doctor-cred">
+                                <h4>Dr. Joseph C. Castillo Cuenca</h4>
+                                <span>Médico Especialista en Anatomía Patológica &bull; C.M.P. 56435</span>
+                                <span>Director Médico y Científico &bull; JC PATH LAB</span>
+                            </div>
+                        </div>
+
+                        <!-- Botones de Llamado a la Acción Sin Fricción -->
+                        <div class="manifesto-cta-group">
+                            <a href="https://wa.me/51986396733?text=Estimado%20Dr.%20Joseph%20Castillo,%20le%20escribo%20para%20coordinar%20interconsultas%20y%20env%C3%ADo%20de%20biopsias%20a%20JC%20PATH%20LAB" target="_blank" class="btn-cta btn-cta-wa" title="Escribir por WhatsApp al Director Médico (+51 986 396 733)">
+                                <i class="fa-brands fa-whatsapp"></i> Iniciar Interconsulta Directa (+51 986 396 733)
+                            </a>
+                            <a href="login.html" class="btn-cta btn-cta-portal" title="Acceso al Portal de Médicos y Clínicas">
+                                <i class="fa-solid fa-arrow-right-to-bracket"></i> Entrar al Portal Clínico
+                            </a>
+                            <a href="tel:+51986396733" class="btn-cta btn-cta-phone" title="Llamada de Coordinación Quirúrgica Inmediata">
+                                <i class="fa-solid fa-phone"></i> Llamada Quirúrgica
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= PÁGINA 2: EJE 01 • APLICATIVO MÓVIL QUIRÚRGICO INTERACTIVO ================= -->
+        <section id="app-movil" class="section-block">
+            <div class="section-badge-header">
+                <span class="section-badge"><i class="fa-solid fa-satellite-dish"></i> Eje Tecnológico 01 &bull; Automatización de Despacho Clínico</span>
+            </div>
+            <h2 class="section-title">Aplicativo Móvil Quirúrgico: Entrega Directa sin Fricción</h2>
+            <p class="section-subtitle">
+                Interactúa con el smartphone real: cambia de paciente, revisa los estados de biopsia y pulsa <strong>[Ver Informe]</strong> o <strong>[Visor 360°]</strong>.
+            </p>
+
+            <div class="app-showcase-layout">
+                <!-- Simulador Real de Smartphone -->
+                <div class="phone-mockup-container">
+                    <div class="phone-screen">
+                        <div class="phone-dynamic-notch">
+                            <div class="phone-camera-dot"></div>
+                        </div>
+
+                        <!-- Barra de Estado del Teléfono -->
+                        <div class="phone-status-bar">
+                            <span>11:28</span>
+                            <div>
+                                <i class="fa-solid fa-signal" style="font-size: 9px;"></i>
+                                <i class="fa-solid fa-wifi" style="font-size: 9px; margin: 0 4px;"></i>
+                                <i class="fa-solid fa-battery-full" style="font-size: 10px;"></i>
+                            </div>
+                        </div>
+
+                        <!-- Cabecera de la App -->
+                        <div class="phone-app-header">
+                            <div class="phone-app-brand">
+                                <i class="fa-solid fa-circle-nodes" style="color: var(--accent-sky);"></i>
+                                <span>JC PATH <strong>SURGICAL</strong></span>
+                            </div>
+                            <i class="fa-solid fa-bell" style="color: #94a3b8; font-size: 12px;"></i>
+                        </div>
+
+                        <!-- Buscador Interno del Teléfono -->
+                        <div class="phone-search-box">
+                            <input type="text" id="phoneSearchInput" class="phone-search-input" placeholder="Buscar paciente o código 26Q-..." autocomplete="off">
+                        </div>
+
+                        <!-- Lista Interactiva de Pacientes -->
+                        <div class="phone-patients-list" id="phonePatientsList">
+                            <!-- Inyectado dinámicamente por dossier_web_interactive.js -->
+                        </div>
+
+                        <!-- Modal de Previsualización de Informe PDF dentro del Teléfono -->
+                        <div class="phone-report-preview-modal" id="phoneReportModal">
+                            <div style="display: flex; justify-content: flex-end; margin-bottom: 6px;">
+                                <button type="button" onclick="closePhoneModal()" style="background: #334155; border: none; color: #fff; width: 24px; height: 24px; border-radius: 50%; cursor: pointer; font-weight: 800;">&times;</button>
+                            </div>
+                            <div id="phoneReportContent" style="flex: 1; overflow: hidden;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bloques Explicativos del Funcionamiento -->
+                <div class="app-features-col">
+                    <div class="glass-panel app-feature-box featured">
+                        <h4><i class="fa-solid fa-paper-plane" style="color: #10b981;"></i> Envío Automatizado a Cada Especialista</h4>
+                        <p>
+                            Apenas el patólogo valida y firma digitalmente un reporte en Lima, nuestro sistema lo despacha de forma <strong>completamente automática a la sesión personal de cada médico en su aplicativo móvil</strong>. Se erradica por completo la necesidad de que las secretarias o cirujanos estén solicitando estados de biopsias por teléfono o buscando archivos dispersos en correos electrónicos o cadenas de WhatsApp.
+                        </p>
+                    </div>
+
+                    <div class="glass-panel app-feature-box">
+                        <h4><i class="fa-solid fa-bell" style="color: #0284c7;"></i> Notificación de Estado en Tiempo Real</h4>
+                        <p>
+                            El especialista visualiza en su interfaz de bolsillo el flujo exacto de su paciente: <em>"En Proceso"</em>, <em>"Listo para Imprimir"</em> o <em>"Completado"</em>, con acceso inmediato al documento oficial en PDF con 1 solo toque sobre <strong>[Ver Informe]</strong>.
+                        </p>
+                    </div>
+
+                    <div class="glass-panel app-feature-box">
+                        <h4><i class="fa-solid fa-arrows-spin" style="color: #a855f7;"></i> Módulo Fotográfico Macroscópico 360°</h4>
+                        <p>
+                            Acceso directo al botón <strong>[Visor 360°]</strong> para revisar fotografías de alta resolución del espécimen quirúrgico tallado (márgenes con tinta china, peso en gramos y lesiones sospechosas) antes de la consulta o intervención ambulatoria.
+                        </p>
+                    </div>
+
+                    <div class="glass-panel app-feature-box">
+                        <h4><i class="fa-solid fa-shield-virus" style="color: #f59e0b;"></i> Trazabilidad Estricta con Código de Atención</h4>
+                        <p>
+                            Cada registro cuenta con un identificador único (Ej. <code>26Q-281</code>) y código de barras bidimensional, impidiendo cualquier confusión de muestras o pérdida documental en la historia clínica.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= PÁGINA 3: EJE 02 • SERVIDOR WSI PROPIO ================= -->
+        <section id="servidor-wsi" class="section-block">
+            <div class="section-badge-header">
+                <span class="section-badge"><i class="fa-solid fa-server"></i> Eje Tecnológico 02 &bull; Soberanía de Datos y Digitalización WSI</span>
+            </div>
+            <h2 class="section-title">Única Institución en el Perú con Servidor Propio para Láminas Digitales</h2>
+            <p class="section-subtitle">
+                Exploración piramidal de gigapíxeles en tiempo real: arrastra el tejido con el ratón, alterna aumentos de 2x a 40x y activa filtros espectrales digitales.
+            </p>
+
+            <div class="wsi-viewer-wrapper">
+                <!-- Toolbar del Visor WSI -->
+                <div class="wsi-toolbar">
+                    <div class="wsi-controls-group">
+                        <span style="font-size: 11px; font-weight: 800; color: #38bdf8;">
+                            <i class="fa-solid fa-microscope"></i> CASO CLÍNICO:
+                        </span>
+                        <!-- Tabs de Casos Multiespecialidad -->
+                        <button type="button" class="wsi-btn-tool wsi-case-tab active" data-specialty="uro" data-img="morfologia_he_original.jpg" data-label="Adenocarcinoma Acinar de Próstata Gleason 4+4=8">
+                            Próstata
+                        </button>
+                        <button type="button" class="wsi-btn-tool wsi-case-tab" data-specialty="derma" data-img="morfologia_ia_pleomorfismo.jpg" data-label="Melanoma Maligno Invasor (Breslow 1.2 mm)">
+                            Piel / Melanoma
+                        </button>
+                        <button type="button" class="wsi-btn-tool wsi-case-tab" data-specialty="neuro" data-img="morfologia_he_original.jpg" data-label="Glioblastoma Multiforme IDH-wildtype">
+                            Cerebro
+                        </button>
+                        <button type="button" class="wsi-btn-tool wsi-case-tab" data-specialty="sarcoma" data-img="morfologia_ia_pleomorfismo.jpg" data-label="Dermatofibrosarcoma Protuberans (DFSP)">
+                            Sarcoma
+                        </button>
+                    </div>
+
+                    <div class="wsi-controls-group">
+                        <!-- Botones de Aumento Óptico -->
+                        <div class="wsi-zoom-pill">
+                            <span style="font-size: 10px; font-weight: 800; color: #94a3b8; padding: 0 4px;">ZOOM:</span>
+                            <button type="button" class="wsi-zoom-btn active" data-zoom="1.0">2x</button>
+                            <button type="button" class="wsi-zoom-btn" data-zoom="1.5">4x</button>
+                            <button type="button" class="wsi-zoom-btn" data-zoom="2.2">10x</button>
+                            <button type="button" class="wsi-zoom-btn" data-zoom="3.2">20x</button>
+                            <button type="button" class="wsi-zoom-btn" data-zoom="4.5">40x</button>
+                        </div>
+
+                        <!-- Filtros Espectrales -->
+                        <div class="wsi-controls-group" style="margin-left: 8px;">
+                            <button type="button" class="wsi-btn-tool wsi-filter-btn active" data-filter="normal" title="Hematoxilina & Eosina Estándar">
+                                Normal H&E
+                            </button>
+                            <button type="button" class="wsi-btn-tool wsi-filter-btn" data-filter="contrast" title="Aumenta contraste de cromatina nuclear">
+                                <i class="fa-solid fa-circle-half-stroke"></i> Contraste
+                            </button>
+                            <button type="button" class="wsi-btn-tool wsi-filter-btn" data-filter="dic" title="Relieve Nomarski DIC para mitosis">
+                                <i class="fa-solid fa-mountain"></i> Relieve DIC
+                            </button>
+                            <button type="button" class="wsi-btn-tool wsi-filter-btn" data-filter="polarized" title="Luz Polarizada para colágeno capsular">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> Polarizado
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lienzo Interactivo con Arrastre y Zoom -->
+                <div class="wsi-viewport" id="wsiViewport" title="Haz clic y arrastra para moverte por el corte histológico">
+                    <img src="morfologia_he_original.jpg" id="wsiSlideImg" class="wsi-slide-image" alt="Corte Histológico Digital WSI">
+                    
+                    <!-- HUD Superpuesto de Telemetría -->
+                    <div class="wsi-hud-overlay">
+                        <div><i class="fa-solid fa-magnifying-glass"></i> <span id="wsiMagHUD">2x (Panorámica)</span></div>
+                        <div><span class="wsi-scale-bar-line"></span> <span id="wsiScaleText" class="font-mono">50 µm</span></div>
+                        <div id="wsiCoordsHUD" class="font-mono">X: 520 µm | Y: 310 µm</div>
+                        <div style="color: #38bdf8; font-weight: 800;" id="wsiCaseLabel">Adenocarcinoma Acinar de Próstata Gleason 4+4=8</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= PÁGINA 4: EJE 03 • MORFOMETRÍA COMPUTACIONAL IA ================= -->
+        <section id="morfometria-ia" class="section-block">
+            <div class="section-badge-header">
+                <span class="section-badge"><i class="fa-solid fa-dna"></i> Eje Tecnológico 03 &bull; Morfometría Computacional & Filtrado Óptico</span>
+            </div>
+            <h2 class="section-title">Morfometría IA: Del Campo Óptico 40x a la Cuantificación Celular Objetiva</h2>
+            <p class="section-subtitle">
+                Desliza la barra divisoria central para comparar el <strong>Campo Óptico Convencional</strong> frente al <strong>Filtro Algorítmico Activo</strong> con segmentación celular automatizada.
+            </p>
+
+            <!-- Comparador Split-Screen Interactivo -->
+            <div class="morph-split-container" id="morphSplitContainer">
+                <!-- Capa Inferior: Campo Óptico 40x Sin Filtro -->
+                <div class="morph-layer morph-layer-raw">
+                    <img src="morfologia_he_original.jpg" class="morph-img-full" alt="Campo Óptico Directo 40x H&E">
+                    <div class="morph-badge-corner badge-right-raw">
+                        <i class="fa-solid fa-microscope"></i> Campo Óptico Directo (40x H&E) &bull; Sin Filtro
+                    </div>
+                </div>
+
+                <!-- Capa Superior: Análisis Morfométrico IA (Controlada por Slider) -->
+                <div class="morph-layer morph-layer-ai" id="morphAiLayer">
+                    <img src="page4_ai_img_perfect.jpeg" class="morph-img-full" alt="Segmentación Morfométrica IA 40x">
+                    <div class="morph-badge-corner badge-left-ai">
+                        <i class="fa-solid fa-robot"></i> Análisis Morfométrico IA &bull; Segmentación Activa
+                    </div>
+                </div>
+
+                <!-- Manija Divisoria Deslizante -->
+                <div class="morph-split-handle" id="morphSplitHandle" title="Arrastra hacia los lados para comparar">
+                    <div class="handle-circle">
+                        <i class="fa-solid fa-arrows-left-right"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Métricas Morfométricas Validadas -->
+            <div class="morph-metrics-grid">
+                <div class="glass-panel metric-card">
+                    <div class="metric-value font-mono" id="counterCells">519</div>
+                    <div class="metric-label">Células Cuantificadas</div>
+                    <div class="metric-desc">Segmentación nuclear individualizada discriminando atipias vs estroma conectivo.</div>
+                </div>
+
+                <div class="glass-panel metric-card">
+                    <div class="metric-value font-mono">39.0%</div>
+                    <div class="metric-label">Relación Núcleo/Citoplasma</div>
+                    <div class="metric-desc">Cociente N/C volumétrico objetivo evaluando apiñamiento y fusión de acinos glandulares.</div>
+                </div>
+
+                <div class="glass-panel metric-card">
+                    <div class="metric-value font-mono">0 - 1 / 10 HPF</div>
+                    <div class="metric-label">Conteo Mitótico OMS/CAP</div>
+                    <div class="metric-desc">Actividad proliferativa estandarizada en 2 mm², eliminando la variabilidad inter-observador.</div>
+                </div>
+
+                <div class="glass-panel metric-card">
+                    <div class="metric-value font-mono" style="color: #10b981;">Grado 1 (97.3%)</div>
+                    <div class="metric-label">Pleomorfismo Nuclear CAP</div>
+                    <div class="metric-desc">Detección algorítmica de macronucléolos prominentes con 97.3% de certeza estadística.</div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= PÁGINA 5: EJE 04 • COPILOTO GÉMINI WSI ================= -->
+        <section id="copiloto-gemini" class="section-block">
+            <div class="section-badge-header">
+                <span class="section-badge"><i class="fa-solid fa-brain"></i> Eje Tecnológico 04 &bull; Inteligencia Artificial Diagnóstica Multi-Modal</span>
+            </div>
+            <h2 class="section-title">Copiloto Diagnóstico Gémini WSI: Integración Nativa en Microscopio</h2>
+            <p class="section-subtitle">
+                Haz clic sobre cualquiera de los 4 diagnósticos diferenciales para reubicar la región de interés (ROI) y desplegar el protocolo inmunohistoquímico exacto.
+            </p>
+
+            <div class="gemini-copilot-grid">
+                <!-- Visor con Bounding Box de ROI Dinámico -->
+                <div class="gemini-roi-viewer">
+                    <img src="gemini_microscope_assistant_mockup.jpg" class="gemini-roi-img" alt="Microscopio con Copiloto Gémini">
+                    
+                    <div class="roi-bounding-box" id="geminiRoiBox">
+                        <span class="roi-tag" id="geminiRoiLabel">ROI • Gleason 4 (89.4%)</span>
+                        <div style="font-size: 8px; color: #fff; font-weight: 700; text-shadow: 0 1px 3px #000;">
+                            Células Basales: Negativas (-)<br>AMACR / P504S: (+++)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panel de Triaje Diagnóstico Diferencial -->
+                <div class="differentials-panel">
+                    <div class="glass-panel diff-card-interactive active" data-diff-id="1">
+                        <div class="diff-header-row">
+                            <span class="diff-title">1. Adenocarcinoma Acinar de Próstata (Gleason 4)</span>
+                            <span class="diff-prob-tag prob-high font-mono">89.4% Prob.</span>
+                        </div>
+                        <div class="prob-progress-bar"><div class="prob-fill" style="width: 89.4%;"></div></div>
+                        <p style="font-size: 12px; color: #94a3b8; margin-bottom: 6px;">
+                            Glándulas infiltrantes con fusión acinar / patrón cribiforme sin estroma interpuesto. Macronucléolos patognomónicos.
+                        </p>
+                        <div class="diff-ihq-formula">
+                            <strong>Discernimiento IHQ:</strong> Ausencia de células basales: <code>p63 (-)</code> y <code>CK-HMW (-)</code>. Sobreexpresión citoplasmática de <code>AMACR / P504S (+++)</code>.
+                        </div>
+                    </div>
+
+                    <div class="glass-panel diff-card-interactive" data-diff-id="2">
+                        <div class="diff-header-row">
+                            <span class="diff-title">2. Adenosis Prostática / Hiperplasia Adenomatosa (AAH)</span>
+                            <span class="diff-prob-tag prob-mid font-mono">6.2% Prob.</span>
+                        </div>
+                        <div class="prob-progress-bar"><div class="prob-fill" style="width: 6.2%; background: #f59e0b;"></div></div>
+                        <p style="font-size: 12px; color: #94a3b8; margin-bottom: 6px;">
+                            Proliferación lobular apretada de acinos pequeños en zona de transición que simula adenocarcinoma Gleason 1-2.
+                        </p>
+                        <div class="diff-ihq-formula">
+                            <strong>Discernimiento IHQ:</strong> Preservación de capa basal continua o fragmentada: <code>p63 (+)</code> y <code>CK-HMW (+)</code>. Negatividad estricta de <code>AMACR (-)</code>.
+                        </div>
+                    </div>
+
+                    <div class="glass-panel diff-card-interactive" data-diff-id="3">
+                        <div class="diff-header-row">
+                            <span class="diff-title">3. Neoplasia Intraepitelial Prostática de Alto Grado (HGPIN)</span>
+                            <span class="diff-prob-tag prob-low font-mono">3.1% Prob.</span>
+                        </div>
+                        <div class="prob-progress-bar"><div class="prob-fill" style="width: 3.1%; background: #10b981;"></div></div>
+                        <p style="font-size: 12px; color: #94a3b8; margin-bottom: 6px;">
+                            Células acinares con macronucléolos prominentes que replican adenocarcinoma, pero estrictamente confinadas al ducto.
+                        </p>
+                        <div class="diff-ihq-formula">
+                            <strong>Discernimiento IHQ:</strong> Capa basal presente fenestrada: <code>p63 (+)</code> y <code>CK-HMW (+)</code>. Células luminales <code>AMACR (+)</code> sin escape estromal.
+                        </div>
+                    </div>
+
+                    <div class="glass-panel diff-card-interactive" data-diff-id="4">
+                        <div class="diff-header-row">
+                            <span class="diff-title">4. Atrofia Parcial / Atrofia Pos-Esclerótica</span>
+                            <span class="diff-prob-tag prob-low font-mono">1.3% Prob.</span>
+                        </div>
+                        <div class="prob-progress-bar"><div class="prob-fill" style="width: 1.3%; background: #64748b;"></div></div>
+                        <p style="font-size: 12px; color: #94a3b8; margin-bottom: 6px;">
+                            Glándulas encogidas festoneadas con retracción estromal pseudoinfiltrativa y citoplasma anfófilo escaso.
+                        </p>
+                        <div class="diff-ihq-formula">
+                            <strong>Discernimiento IHQ:</strong> Capa basal continua: <code>p63 (+++)</code> y <code>CK-HMW (+++)</code>. Negatividad rotunda de <code>AMACR (-)</code>.
+                        </div>
+                    </div>
+
+                    <!-- Consola Interactiva de Diálogo Clínico con Gémini -->
+                    <div class="gemini-chat-console">
+                        <div style="font-size: 11.5px; font-weight: 800; color: #a5b4fc; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-robot"></i> Consultar Caso a Gémini IA:
+                        </div>
+                        <div class="chat-input-row">
+                            <input type="text" id="geminiQuestionInput" class="chat-input-field" placeholder="Ej: ¿Por qué se descarta adenosis en este foco?" value="¿Qué panel IHQ confirma Gleason 4 vs adenosis?">
+                            <button type="button" class="btn-ask-gemini" id="btnAskGemini">
+                                <i class="fa-solid fa-microchip"></i> Consultar
+                            </button>
+                        </div>
+                        <div id="geminiAnswerBox" style="margin-top: 10px; font-size: 12px; line-height: 1.4; color: #e2e8f0; display: none;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= PÁGINA 6: ASISTENTE VIRTUAL DE INMUNOHISTOQUÍMICA (150 MARCADORES) ================= -->
+        <section id="asistente-ihq" class="section-block">
+            <div class="section-badge-header">
+                <span class="section-badge"><i class="fa-solid fa-dna"></i> Inmunohistoquímica de Precisión &bull; Vademécum Oficial en Stock</span>
+            </div>
+            <h2 class="section-title">Asistente Virtual de Biomarcadores & Anexo de Inmunohistoquímica</h2>
+            <p class="section-subtitle">
+                Consulta en tiempo real la disponibilidad de los <strong>145 biomarcadores oficiales</strong> que integran el catálogo en stock de JC PATH LAB, con su utilidad clínica y tiempo de respuesta.
+            </p>
+
+            <div class="ihq-assistant-container">
+                <!-- Buscador Asistente Virtual -->
+                <div class="glass-panel ihq-search-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3 style="font-size: 17px; font-weight: 900; color: #ffffff;">
+                            <i class="fa-solid fa-flask-vial" style="color: var(--accent-sky); margin-right: 8px;"></i>
+                            Verificador de Disponibilidad de Anticuerpos en Tiempo Real
+                        </h3>
+                        <span class="glass-pill font-mono" id="ihqTotalCountBadge" style="padding: 4px 12px; font-size: 11px; color: #34d399; font-weight: 800;">
+                            150 Biomarcadores en Stock
+                        </span>
+                    </div>
+                    <p style="font-size: 13px; color: #94a3b8; margin-top: 4px;">
+                        Escribe el nombre de cualquier anticuerpo (Ej. <code>SOX-10</code>, <code>CD30</code>, <code>AMACR</code>, <code>HER2</code>, <code>IDH-1</code>, <code>STAT 6</code>, <code>KI67</code>, <code>DOG-1</code>, <code>p16</code>, etc.):
+                    </p>
+
+                    <div class="ihq-search-bar-wrapper">
+                        <div class="ihq-input-group">
+                            <i class="fa-solid fa-magnifying-glass ihq-input-icon"></i>
+                            <input type="text" id="ihqSearchInput" class="ihq-search-input" placeholder="Buscar por nombre de anticuerpo (Ej: CD30, SOX-10, HER2, STAT 6, ALK...)" autocomplete="off">
+                        </div>
+                        <button type="button" class="btn-ihq-search" id="btnIhqSearch">
+                            <i class="fa-solid fa-bolt"></i> Consultar Stock
+                        </button>
+                    </div>
+
+                    <!-- Resultado de Disponibilidad Dinámico -->
+                    <div class="ihq-result-card" id="ihqResultCard">
+                        <!-- Inyectado por dossier_web_interactive.js -->
+                    </div>
+                </div>
+
+                <!-- Tabla Maestra Filtrable de 150 Anticuerpos -->
+                <div class="glass-panel" style="padding: 20px;">
+                    <div class="ihq-table-controls">
+                        <div class="ihq-category-pills">
+                            <button type="button" class="pill-filter active" data-category="all">Todos (150)</button>
+                            <button type="button" class="pill-filter" data-category="Linfoides & Hematopatología">Linfoides & Hemato</button>
+                            <button type="button" class="pill-filter" data-category="Epiteliales & Carcinomas">Epiteliales & Carcinomas</button>
+                            <button type="button" class="pill-filter" data-category="Partes Blandas & Sarcomas">Partes Blandas & Sarcomas</button>
+                            <button type="button" class="pill-filter" data-category="Melanocíticos & Dermatopatología">Melanocíticos / Piel</button>
+                            <button type="button" class="pill-filter" data-category="Neuropatología & Neuroendocrino">Neuropatología</button>
+                            <button type="button" class="pill-filter" data-category="Urológicos & Germinales">Urológicos</button>
+                            <button type="button" class="pill-filter" data-category="Pronóstico & Terapia Dirigida">Pronóstico / Terapia</button>
+                        </div>
+                        <div style="min-width: 220px;">
+                            <input type="text" id="ihqTableLiveSearch" class="phone-search-input" placeholder="Filtrar tabla en vivo..." style="padding: 7px 12px;">
+                        </div>
+                    </div>
+
+                    <div class="ihq-table-box">
+                        <table class="ihq-master-table">
+                            <thead>
+                                <tr>
+                                    <th>Anticuerpo / Biomarcador</th>
+                                    <th>Especialidad / Linaje</th>
+                                    <th>Localización</th>
+                                    <th>Utilidad Diagnóstica Oficial (Word JC PATH LAB)</th>
+                                    <th>Tiempo Entrega</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ihqMasterTableBody">
+                                <!-- Inyectado dinámicamente por dossier_web_interactive.js -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= PÁGINA 7: MAPEO 3D DE LA PIEZA QUIRÚRGICA ================= -->
+        <section id="mapeo-3d" class="section-block">
+            <div class="section-badge-header">
+                <span class="section-badge"><i class="fa-solid fa-cube"></i> Innovación Quirúrgica Digital &bull; Exclusivo JC PATH LAB</span>
+            </div>
+            <h2 class="section-title">Mapeo de la Pieza Quirúrgica en 3D: Correlación Macroscópica-Microscópica</h2>
+            <p class="section-subtitle">
+                Rotación de 360° en pantalla: arrastra la pieza con el ratón o dedo para examinarla desde cualquier ángulo, y pulsa los pines de colores para abrir su corte microscópico a 40x.
+            </p>
+
+            <div class="specimen-3d-wrapper">
+                <!-- Toolbar del Visor 3D -->
+                <div class="specimen-3d-toolbar">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span style="font-size: 12px; font-weight: 800; color: #38bdf8;">
+                            <i class="fa-solid fa-cube"></i> PIEZA QUIRÚRGICA 360° (PROSTATECTOMÍA RADICAL)
+                        </span>
+                        <span class="glass-pill font-mono" id="specimen360Angle" style="padding: 2px 8px; font-size: 11px; color: #34d399;">0°</span>
+                    </div>
+
+                    <div style="display: flex; gap: 8px;">
+                        <button type="button" class="wsi-btn-tool active" id="btnToggle360Spin">
+                            <i class="fa-solid fa-pause"></i> Pausar Giro
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Viewport con los 36 Frames y Pines Superpuestos -->
+                <div class="specimen-360-viewport" id="specimen360Viewport" title="Arrastra hacia los lados para rotar la pieza 360°">
+                    <img src="macro360_clean/frame_00.webp" id="specimen360Img" class="specimen-frame-img" alt="Pieza Quirúrgica 3D 360°">
+                    
+                    <!-- 4 Pines Histopatológicos Interactivos -->
+                    <div class="pin-marker pin-green" data-pin-id="1" style="top: 40%; left: 35%;" title="Pin 1: Ápex Prostático (Margen R0)">
+                        <span>1</span>
+                    </div>
+                    <div class="pin-marker pin-red" data-pin-id="2" style="top: 48%; left: 45%;" title="Pin 2: Nódulo Dominante (Gleason 4+4)">
+                        <span>2</span>
+                    </div>
+                    <div class="pin-marker pin-blue" data-pin-id="3" style="top: 38%; left: 62%;" title="Pin 3: Cuello Vesical (Margen R0)">
+                        <span>3</span>
+                    </div>
+                    <div class="pin-marker pin-purple" data-pin-id="4" style="top: 55%; left: 52%;" title="Pin 4: Fascículo Neurovascular (PNI Negativo)">
+                        <span>4</span>
+                    </div>
+                </div>
+
+                <!-- Cuadrícula Descriptiva de Pines Clínicos -->
+                <div class="pins-cards-grid">
+                    <div class="pin-desc-card" data-pin-id="1">
+                        <h5><span style="color: var(--sapphire-400); font-weight: 900;">PIN 1 &bull;</span> Ápex Prostático</h5>
+                        <p><strong>Veredicto: Margen R0 Libre (&gt; 3.2 mm)</strong></p>
+                        <p>Tinta china negra indemne en cápsula. Casete B-02.</p>
+                        <span style="font-size: 10px; color: var(--sapphire-400); font-weight: 800; margin-top: 4px; display: block;">Ver Corte H&E &rarr;</span>
+                    </div>
+
+                    <div class="pin-desc-card" data-pin-id="2">
+                        <h5><span style="color: var(--sapphire-300); font-weight: 900;">PIN 2 &bull;</span> Nódulo Dominante</h5>
+                        <p><strong>Adenocarcinoma Gleason 4+4=8 (ISUP 4)</strong></p>
+                        <p>Zona periférica derecha (1.8 x 1.4 cm). Casete A-04.</p>
+                        <span style="font-size: 10px; color: var(--sapphire-300); font-weight: 800; margin-top: 4px; display: block;">Ver Corte H&E &rarr;</span>
+                    </div>
+
+                    <div class="pin-desc-card" data-pin-id="3">
+                        <h5><span style="color: var(--sapphire-400); font-weight: 900;">PIN 3 &bull;</span> Cuello Vesical</h5>
+                        <p><strong>Margen Basal: R0 Libre (4.8 mm)</strong></p>
+                        <p>Urotelio maduro sobre músculo detrusor. Casete C-01.</p>
+                        <span style="font-size: 10px; color: var(--sapphire-400); font-weight: 800; margin-top: 4px; display: block;">Ver Corte H&E &rarr;</span>
+                    </div>
+
+                    <div class="pin-desc-card" data-pin-id="4">
+                        <h5><span style="color: var(--sapphire-200); font-weight: 900;">PIN 4 &bull;</span> Fascículo Neurovascular</h5>
+                        <p><strong>Invasión Perineural (PNI) Negativa</strong></p>
+                        <p>Cápsula íntegra, nervios mielinizados. Casete D-03.</p>
+                        <span style="font-size: 10px; color: var(--sapphire-200); font-weight: 800; margin-top: 4px; display: block;">Ver Corte H&E &rarr;</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal de Correlación Microscópica al pulsar Pin -->
+            <div class="pin-micro-modal" id="pinMicroModal">
+                <div class="micro-modal-content">
+                    <div style="background: #071527; padding: 12px 18px; border-bottom: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h4 id="pinModalTitle" style="font-size: 14px; font-weight: 900; color: #ffffff;">PIN HISTOLÓGICO</h4>
+                            <span id="pinModalCasete" style="font-size: 11px; color: var(--accent-sky); font-weight: 700;">Casete B-02</span>
+                        </div>
+                        <button type="button" onclick="closePinModal()" style="background: #1e293b; border: none; color: #fff; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-weight: 800;">&times;</button>
+                    </div>
+                    <div style="height: 380px; overflow: hidden; background: #000; position: relative;">
+                        <img src="morfologia_he_original.jpg" id="pinModalMicroImg" style="width: 100%; height: 100%; object-fit: cover;" alt="Corte Microscópico">
+                    </div>
+                    <div style="padding: 16px; background: #0f172a;">
+                        <h5 id="pinModalVerdict" style="font-size: 13px; font-weight: 800; color: #38bdf8; margin-bottom: 4px;">Veredicto Oncológico</h5>
+                        <p id="pinModalDetails" style="font-size: 12px; color: #cbd5e1; line-height: 1.45;">Detalles patológicos del margen con tinta china.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= PÁGINA 8: EJE 07 • TARIFARIO CORPORATIVO PREFERENCIAL 2026 ================= -->
+        <section id="tarifario" class="section-block">
+            <div class="section-badge-header">
+                <span class="section-badge"><i class="fa-solid fa-file-invoice-dollar"></i> Propuesta Económica &bull; Alianza Estratégica 2026</span>
+            </div>
+            <h2 class="section-title">Tarifario Corporativo Preferencial — Validez 2026</h2>
+            <p class="section-subtitle">
+                Tarifas preferenciales para instituciones de salud y clínicas quirúrgicas aliadas, con digitalización WSI, entrega móvil automatizada y cadena de custodia incluidas al 100%.
+            </p>
+
+            <div class="pricing-calculator-grid">
+                <!-- Tabla Oficial de Precios -->
+                <div class="glass-panel pricing-table-wrap" style="padding: 16px;">
+                    <table class="p-table-corporate">
+                        <thead>
+                            <tr>
+                                <th>Procedimiento Quirúrgico</th>
+                                <th>Alcance Histopatológico & Diagnóstico</th>
+                                <th style="text-align: center;">Tiempo Respuesta</th>
+                                <th style="text-align: right;">Tarifa Preferencial</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong>Morcelados Prostáticos / RTU</strong><br>
+                                    <span style="font-size: 11px; color: #94a3b8;">HoLEP, ThuLEP, Bipolar</span>
+                                </td>
+                                <td>Muestreo cuantitativo por peso. Descarte de adenocarcinoma incidental, prostatitis y atipias.</td>
+                                <td style="text-align: center;"><span class="time-pill-tag">48 - 72 hrs</span></td>
+                                <td style="text-align: right;"><span class="price-pill-tag">S/ 70.00</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Prostatectomía Radical Oncológica</strong><br>
+                                    <span style="font-size: 11px; color: #94a3b8;">Abierta, Laparoscópica, Robótica</span>
+                                </td>
+                                <td>Muestreo multizonas con tinta china: márgenes de resección, ápex, base, invasión extracapsular y ganglios.</td>
+                                <td style="text-align: center;"><span class="time-pill-tag">4 - 5 días</span></td>
+                                <td style="text-align: right;"><span class="price-pill-tag">S/ 140.00</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Piezas Quirúrgicas Menores</strong><br>
+                                    <span style="font-size: 11px; color: #94a3b8;">Fimosis, Hidrocele, Quiste Cordón, Piel</span>
+                                </td>
+                                <td>Circuncisión, varicocele, hidrocele, vasectomías de control, lesiones condilomatosas y nevos.</td>
+                                <td style="text-align: center;"><span class="time-pill-tag">48 hrs</span></td>
+                                <td style="text-align: right;"><span class="price-pill-tag">S/ 60.00</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Biopsias Endoscópicas</strong><br>
+                                    <span style="font-size: 11px; color: #94a3b8;">Vejiga, Uréter, Uretra, Gástrica</span>
+                                </td>
+                                <td>Evaluación de capa muscular propia (infiltración muscular detrusor) y gradación de carcinoma urotelial.</td>
+                                <td style="text-align: center;"><span class="time-pill-tag">48 hrs</span></td>
+                                <td style="text-align: right;"><span class="price-pill-tag">S/ 60.00</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Biopsia de Próstata por Punción</strong><br>
+                                    <span style="font-size: 11px; color: #94a3b8;">Tru-Cut sistemática o por fusión</span>
+                                </td>
+                                <td>Evaluación individualizada por cilindro (hasta 12 frascos), porcentaje tumoral, Score Gleason/ISUP y longitud milimétrica.</td>
+                                <td style="text-align: center;"><span class="time-pill-tag">72 hrs</span></td>
+                                <td style="text-align: right;"><span class="price-pill-tag">S/ 120.00</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Calculadora Interactiva de Presupuestos & Convenio -->
+                <div class="glass-panel calculator-card">
+                    <div>
+                        <h4 style="font-size: 16px; font-weight: 900; color: #ffffff; margin-bottom: 6px;">
+                            <i class="fa-solid fa-calculator" style="color: var(--accent-sky); margin-right: 8px;"></i>
+                            Simulador de Convenio Institucional
+                        </h4>
+                        <p style="font-size: 12px; color: #94a3b8; margin-bottom: 16px;">
+                            Calcula el presupuesto mensual estimado según el volumen quirúrgico de tu clínica:
+                        </p>
+
+                        <!-- Control de Volumen Mensual -->
+                        <div class="calc-control-group">
+                            <div class="calc-label">
+                                <span>Volumen Quirúrgico Estimado:</span>
+                                <span id="calcVolumeText" class="font-mono" style="color: #38bdf8; font-weight: 800;">30 casos/mes</span>
+                            </div>
+                            <input type="range" id="calcVolumeSlider" class="calc-range-slider" min="5" max="150" step="5" value="30">
+                        </div>
+
+                        <!-- Selección de Procedimientos Frecuentes -->
+                        <div style="margin-bottom: 14px;">
+                            <span style="font-size: 11.5px; font-weight: 700; color: #cbd5e1; display: block; margin-bottom: 6px;">Procedimientos a Derivar:</span>
+                            <div style="display: flex; flex-direction: column; gap: 6px; font-size: 12px;">
+                                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                                    <input type="checkbox" class="calc-proc-check" value="rtu" checked> Morcelados HoLEP / RTU (S/ 70)
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                                    <input type="checkbox" class="calc-proc-check" value="prostatectomia" checked> Prostatectomías Radicales (S/ 140)
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                                    <input type="checkbox" class="calc-proc-check" value="trucut" checked> Biopsias Tru-Cut por Punción (S/ 120)
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+                                    <input type="checkbox" class="calc-proc-check" value="endoscopicas"> Biopsias Endoscópicas (S/ 60)
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Caja de Resumen de Cálculo -->
+                        <div class="calc-summary-box">
+                            <div class="calc-sum-row">
+                                <span>Tiempo de Respuesta Promedio:</span>
+                                <strong id="calcAvgTime" style="color: #34d399;">48 - 72 hrs</strong>
+                            </div>
+                            <div class="calc-sum-row">
+                                <span>Plataforma WSI & App Móvil:</span>
+                                <strong style="color: #38bdf8;">100% Bonificado</strong>
+                            </div>
+                            <div class="calc-sum-row" style="font-size: 16px; margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.1);">
+                                <span>Inversión Mensual Aprox:</span>
+                                <strong id="calcTotalEstimate" class="font-mono" style="color: #38bdf8;">S/ 3,300.00</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botón de Inicio de Convenio -->
+                    <a href="https://wa.me/51986396733" target="_blank" class="btn-header btn-header-wa" id="btnCalcWhatsApp" style="justify-content: center; padding: 12px; font-size: 13px;">
+                        <i class="fa-brands fa-whatsapp"></i> Iniciar Convenio con este Presupuesto
+                    </a>
+                </div>
+            </div>
+
+            <!-- 4 Compromisos Operativos -->
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 24px;">
+                <div class="glass-panel" style="padding: 16px; border-top: 3px solid #0284c7;">
+                    <h5 style="font-size: 13px; font-weight: 800; color: #fff; margin-bottom: 4px;"><i class="fa-solid fa-truck-fast" style="color: #0284c7;"></i> Cadena Olva 72h</h5>
+                    <p style="font-size: 11.5px; color: #94a3b8;">Envío seguro Arequipa &rarr; Lima. La ventana de 48-72h garantiza fijación tisular completa para tallado CAP inmediato.</p>
+                </div>
+                <div class="glass-panel" style="padding: 16px; border-top: 3px solid #10b981;">
+                    <h5 style="font-size: 13px; font-weight: 800; color: #fff; margin-bottom: 4px;"><i class="fa-solid fa-file-invoice-dollar" style="color: #10b981;"></i> Facturación Sunat</h5>
+                    <p style="font-size: 11.5px; color: #94a3b8;">Liquidación mensual contra estado de cuenta de pacientes reportados y verificables en el sistema.</p>
+                </div>
+                <div class="glass-panel" style="padding: 16px; border-top: 3px solid #6366f1;">
+                    <h5 style="font-size: 13px; font-weight: 800; color: #fff; margin-bottom: 4px;"><i class="fa-solid fa-headset" style="color: #6366f1;"></i> Interconsulta Directa</h5>
+                    <p style="font-size: 11.5px; color: #94a3b8;">Comunicación telefónica y WhatsApp directa con el Dr. Joseph Castillo para discusión de casos y márgenes.</p>
+                </div>
+                <div class="glass-panel" style="padding: 16px; border-top: 3px solid #f59e0b;">
+                    <h5 style="font-size: 13px; font-weight: 800; color: #fff; margin-bottom: 4px;"><i class="fa-solid fa-server" style="color: #f59e0b;"></i> WSI 100% Incluido</h5>
+                    <p style="font-size: 11.5px; color: #94a3b8;">El uso del visor WSI propio, aplicativo para cirujanos y códigos QR son totalmente gratuitos para clínicas aliadas.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==========================================================================
+       PIE DE PÁGINA INSTITUCIONAL (FOOTER)
+       ========================================================================== -->
+    <footer class="footer-corporate">
+        <div class="footer-container">
+            <div class="footer-col">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                    <span style="font-size: 20px; color: #38bdf8;"><i class="fa-solid fa-microscope"></i></span>
+                    <strong style="font-size: 16px; color: #ffffff;">JC PATH LAB &bull; Anatomía Patológica</strong>
+                </div>
+                <p style="line-height: 1.5; margin-bottom: 10px;">
+                    Centro de Referencia Nacional en Uropatología, Dermatopatología, Neuropatología, Sarcomas y Hematopatología. Diagnóstico de ultra-precisión con servidor propio WSI y asistencia IA.
+                </p>
+                <p><i class="fa-solid fa-location-dot" style="color: #38bdf8;"></i> Jardines de Chillón Mz. M2 Lote 13, Puente Piedra &bull; Lima, Perú</p>
+                <p><i class="fa-solid fa-phone" style="color: #10b981;"></i> Central Telefónica / WhatsApp: +51 986 396 733</p>
+            </div>
+
+            <div class="footer-col">
+                <h5>Especialidades</h5>
+                <ul>
+                    <li><a href="#servidor-wsi">Uropatología & Gleason</a></li>
+                    <li><a href="#servidor-wsi">Dermatopatología & Mohs</a></li>
+                    <li><a href="#servidor-wsi">Neuropatología & Gliomas</a></li>
+                    <li><a href="#servidor-wsi">Sarcomas & Partes Blandas</a></li>
+                    <li><a href="#asistente-ihq">Hematopatología & Linfomas</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h5>Plataforma & Accesos</h5>
+                <ul>
+                    <li><a href="login.html">Acceso a Portal de Médicos</a></li>
+                    <li><a href="solicitud.html">Registro & Solicitud de Pacientes</a></li>
+                    <li><a href="practicas-microscopia/index.html" target="_blank">Prácticas de Microscopía UNMSM</a></li>
+                    <li><a href="dossier_institucional_2026.html" target="_blank">Dossier Científico Institucional (PDF Imprimible)</a></li>
+                    <li><a href="#asistente-ihq">Vademécum de 145 Anticuerpos</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h5>Dirección Médica</h5>
+                <p><strong>Dr. Joseph C. Castillo Cuenca</strong></p>
+                <p>Médico Especialista en Anatomía Patológica</p>
+                <p>C.M.P. 56435</p>
+                <div style="margin-top: 14px;">
+                    <a href="https://wa.me/51986396733" target="_blank" class="btn-header btn-header-wa" style="padding: 6px 14px; font-size: 11px;">
+                        <i class="fa-brands fa-whatsapp"></i> Contactar Director Médico
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div style="max-width: 1400px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <span>&copy; 2026 JC PATH LAB. Todos los derechos reservados. Confidencialidad y Secreto Profesional Médico garantizados.</span>
+            <span class="font-mono" style="color: #38bdf8;">jcastilloc2920.github.io/ARCHIVO-DE-REPORTES</span>
+        </div>
+    </footer>
+
+    <!-- Base de Datos Oficial de los 150 Anticuerpos Reales de JC PATH LAB -->
+    <script src="antibodies_data.js"></script>
+    <!-- Controlador Lógico de Toda la Interactividad -->
+    <script src="dossier_web_interactive.js"></script>
+    <!-- Motor de Animaciones Biofílicas y Aceleración por GPU (Fase 3A) -->
+    <script type="module" src="biophilic-engine.js"></script>
+
+    <!-- ======================================================================
+       REGISTRO NO BLOQUEANTE DE SERVICE WORKER (MODO QUIRÓFANO OFFLINE - FASE 3C)
+       ====================================================================== -->
+    <script>
+        (function() {
+            if (!('serviceWorker' in navigator)) return;
+
+            // Esperar a que la ventana termine de cargar por completo para no competir con el FCP/LCP
+            window.addEventListener('load', function() {
+                var registerQuirofanoSW = function() {
+                    navigator.serviceWorker.register('./sw.js', { scope: './' })
+                        .then(function(reg) {
+                            // Telemetría médica en consola sin bloquear la UI
+                            if (reg.installing) {
+                                console.log('[PWA Quirófano] Instalando Service Worker estéril en segundo plano...');
+                            } else if (reg.active) {
+                                console.log('[PWA Quirófano] Modo Quirófano Resiliente activo. Ámbito:', reg.scope);
+                            }
+
+                            // Detección silenciosa de actualizaciones
+                            reg.addEventListener('updatefound', function() {
+                                var newWorker = reg.installing;
+                                if (newWorker) {
+                                    newWorker.addEventListener('statechange', function() {
+                                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                            console.log('[PWA Quirófano] Nueva versión médica sincronizada en caché.');
+                                        }
+                                    });
+                                }
+                            });
+                        })
+                        .catch(function(err) {
+                            console.warn('[PWA Quirófano] Registro asistido omitido o diferido:', err.message);
+                        });
+                };
+
+                // Delegar al tiempo de inactividad de la CPU (requestIdleCallback) para 0ms de bloqueo
+                if ('requestIdleCallback' in window) {
+                    requestIdleCallback(registerQuirofanoSW, { timeout: 3500 });
+                } else {
+                    setTimeout(registerQuirofanoSW, 1200);
+                }
+            });
+
+            // Canal reactivo: Notificación de sincronización en segundo plano completada (Background Sync)
+            navigator.serviceWorker.addEventListener('message', function(event) {
+                if (event.data && (event.data.type === 'BG_SYNC_COMPLETED' || event.data.type === 'BG_SYNC_SUCCESS')) {
+                    console.log('[PWA Quirófano] Pedido de biopsia/formulario sincronizado con éxito:', event.data);
+                    if (typeof window.dispatchEvent === 'function') {
+                        window.dispatchEvent(new CustomEvent('biopsy-sync-completed', { detail: event.data }));
+                    }
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
