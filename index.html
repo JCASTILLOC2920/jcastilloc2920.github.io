@@ -2542,7 +2542,12 @@
             object-fit: cover;
             object-position: center 25%;
             display: block;
-            background: #000000;
+            background: transparent;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+            will-change: transform;
         }
 
         .avatar-scan-overlay {
@@ -2801,6 +2806,65 @@
             text-transform: uppercase;
         }
 
+        /* Botón Destacado de Pausa para Lectura Tranquila en Escaparate */
+        .showcase-pause-ctrl-wrap {
+            margin-top: 8px;
+            width: 100%;
+        }
+
+        .btn-showcase-pause-action {
+            width: 100%;
+            height: 33px;
+            border-radius: 9px;
+            background: linear-gradient(135deg, rgba(2, 132, 199, 0.28) 0%, rgba(15, 23, 42, 0.95) 100%);
+            border: 1px solid rgba(56, 189, 248, 0.45);
+            color: #e0f2fe;
+            font-size: 10.5px;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            cursor: pointer;
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.25);
+            text-transform: uppercase;
+            font-family: inherit;
+        }
+
+        .btn-showcase-pause-action:hover {
+            background: linear-gradient(135deg, rgba(2, 132, 199, 0.5) 0%, rgba(15, 23, 42, 1) 100%);
+            border-color: #38bdf8;
+            color: #ffffff;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.55);
+            transform: translateY(-1px);
+        }
+
+        .btn-showcase-pause-action.is-paused {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.35) 0%, rgba(180, 83, 9, 0.5) 100%);
+            border-color: #f59e0b;
+            color: #fef08a;
+            box-shadow: 0 0 22px rgba(245, 158, 11, 0.55);
+            animation: pauseActionPulse 1.8s infinite alternate;
+        }
+
+        @keyframes pauseActionPulse {
+            0% { box-shadow: 0 0 10px rgba(245, 158, 11, 0.3); border-color: rgba(245, 158, 11, 0.6); }
+            100% { box-shadow: 0 0 24px rgba(245, 158, 11, 0.75); border-color: #fbbf24; }
+        }
+
+        .badge-pause-status {
+            font-size: 8px;
+            font-weight: 900;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid currentColor;
+            font-family: 'JetBrains Mono', monospace;
+            color: #38bdf8;
+        }
+
         /* CUADROS EXPLICATIVOS: SOLO 1 VISIBLE A LA VEZ (LOS OTROS 4 PERMANECEN OCULTOS) */
         .tech-callout-card {
             display: none !important;
@@ -2812,8 +2876,8 @@
             padding: 14px 16px;
             position: relative;
             box-sizing: border-box;
-            transition: opacity 0.22s ease-out, transform 0.22s ease-out;
-            cursor: default;
+            transition: opacity 0.22s ease-out, transform 0.22s ease-out, border-color 0.22s ease-out;
+            cursor: pointer;
         }
 
         /* Desvanecimiento suave al salir del hito */
@@ -2834,6 +2898,89 @@
             border-color: rgba(56, 189, 248, 0.65);
             box-shadow: 0 0 28px rgba(56, 189, 248, 0.28), 0 0 45px rgba(16, 185, 129, 0.14), 0 18px 42px rgba(0, 0, 0, 0.65);
             animation: calloutShowcaseEnter 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            cursor: pointer;
+        }
+
+        .tech-callout-card.active:hover {
+            border-color: rgba(56, 189, 248, 0.95);
+        }
+
+        .tech-callout-card.card-reading-paused {
+            border-color: rgba(245, 158, 11, 0.85) !important;
+            box-shadow: 0 0 32px rgba(245, 158, 11, 0.35), 0 18px 42px rgba(0, 0, 0, 0.75) !important;
+        }
+
+        /* Barra de Progreso de Lectura Interna del Cuadro (Calibración Humana 18-22s) */
+        .card-reading-progress-wrap {
+            background: rgba(10, 20, 38, 0.75);
+            border: 1px solid rgba(56, 189, 248, 0.22);
+            border-radius: 8px;
+            padding: 6px 9px;
+            margin-top: 2px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            transition: all 0.25s ease;
+        }
+
+        .card-reading-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 7.5px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        .card-reading-label {
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            text-transform: uppercase;
+        }
+
+        .card-reading-label i {
+            color: #38bdf8;
+            font-size: 8.5px;
+        }
+
+        .card-reading-time-val {
+            color: #38bdf8;
+            font-weight: 900;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8.5px;
+        }
+
+        .card-reading-track {
+            width: 100%;
+            height: 5px;
+            background: rgba(30, 41, 59, 0.9);
+            border-radius: 999px;
+            overflow: hidden;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .card-reading-fill-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #38bdf8 0%, #34d399 100%);
+            border-radius: 999px;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.8);
+            transition: width 0.1s linear;
+        }
+
+        .tech-callout-card.card-reading-paused .card-reading-fill-bar {
+            background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%);
+            box-shadow: 0 0 12px rgba(245, 158, 11, 0.9);
+        }
+
+        .tech-callout-card.card-reading-paused .card-reading-time-val {
+            color: #fbbf24;
+        }
+
+        .tech-callout-card.card-reading-paused .card-reading-label i {
+            color: #fbbf24;
         }
 
         /* Flecha exterior indicadora apuntando físicamente al smartphone a la izquierda */
@@ -2871,14 +3018,14 @@
         .callout-arrow-to-phone {
             display: flex;
             align-items: center;
-            gap: 10px;
-            background: linear-gradient(90deg, rgba(56, 189, 248, 0.22) 0%, rgba(16, 185, 129, 0.16) 100%);
-            border: 1px solid rgba(56, 189, 248, 0.45);
+            gap: 12px;
+            background: linear-gradient(90deg, rgba(2, 132, 199, 0.35) 0%, rgba(16, 185, 129, 0.25) 100%);
+            border: 1.5px solid rgba(56, 189, 248, 0.65);
             border-radius: 10px;
-            padding: 7px 11px;
+            padding: 8px 12px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 0 14px rgba(56, 189, 248, 0.2), inset 0 0 10px rgba(56, 189, 248, 0.08);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.35), inset 0 0 14px rgba(56, 189, 248, 0.15);
         }
 
         .callout-arrow-to-phone::before {
@@ -2888,8 +3035,8 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.35), transparent);
-            animation: laserSweep 2.2s infinite;
+            background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.45), transparent);
+            animation: laserSweep 1.8s infinite;
         }
 
         @keyframes laserSweep {
@@ -2900,70 +3047,263 @@
         .laser-beam-pulse {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             flex-shrink: 0;
         }
 
         .laser-dot-radar {
-            width: 7px;
-            height: 7px;
+            width: 9px;
+            height: 9px;
             border-radius: 50%;
             background: #34d399;
-            box-shadow: 0 0 8px #34d399, 0 0 16px #10b981;
-            animation: laserDotBlink 1s infinite alternate;
+            box-shadow: 0 0 10px #34d399, 0 0 20px #10b981;
+            animation: laserDotBlink 0.9s infinite alternate;
         }
 
         @keyframes laserDotBlink {
             0% { opacity: 0.3; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1.3); }
+            100% { opacity: 1; transform: scale(1.4); }
         }
 
         .laser-arrow-icon {
-            font-size: 16px;
+            font-size: 20px;
             color: #38bdf8;
-            filter: drop-shadow(0 0 6px #38bdf8);
-            animation: laserArrowNudge 1.1s infinite cubic-bezier(0.4, 0, 0.2, 1);
+            filter: drop-shadow(0 0 8px #38bdf8) drop-shadow(0 0 16px #34d399);
+            animation: laserArrowNudge 0.9s infinite cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         @keyframes laserArrowNudge {
             0%, 100% {
                 transform: translateX(0);
                 color: #38bdf8;
-                filter: drop-shadow(0 0 6px #38bdf8);
+                filter: drop-shadow(0 0 8px #38bdf8);
             }
             50% {
-                transform: translateX(-6px);
+                transform: translateX(-8px);
                 color: #34d399;
-                filter: drop-shadow(0 0 14px #34d399);
+                filter: drop-shadow(0 0 16px #34d399);
             }
         }
 
         .laser-guide-cluster {
             display: flex;
             flex-direction: column;
-            gap: 1px;
+            gap: 2px;
             min-width: 0;
         }
 
         .laser-guide-tag {
-            font-size: 7.5px;
-            font-weight: 800;
-            letter-spacing: 0.8px;
-            color: #94a3b8;
+            font-size: 8px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: #34d399;
             text-transform: uppercase;
             font-family: 'JetBrains Mono', monospace;
             white-space: nowrap;
         }
 
         .laser-guide-target {
-            font-size: 10px;
-            font-weight: 900;
+            font-size: 11px;
+            font-weight: 800;
             color: #ffffff;
             letter-spacing: 0.3px;
-            text-shadow: 0 0 10px rgba(56, 189, 248, 0.7);
+            font-family: 'Montserrat', sans-serif;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.85);
+        }
+
+        /* FLECHA LÁSER CONECTORA PROMINENTE DESDE EL CUADRO DERECHO AL SMARTPHONE */
+        .laser-exterior-pointer {
+            position: absolute;
+            left: -40px;
+            top: var(--laser-pointer-y, 28px);
+            transform: translateY(-50%);
+            display: none;
+            align-items: center;
+            gap: 0px;
+            z-index: 60;
+            pointer-events: none;
+            transition: top 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .tech-callout-card.active .laser-exterior-pointer {
+            display: flex !important;
+        }
+
+        .laser-arrow-head-big {
+            width: 0;
+            height: 0;
+            border-top: 14px solid transparent;
+            border-bottom: 14px solid transparent;
+            border-right: 20px solid #38bdf8;
+            filter: drop-shadow(-4px 0 10px rgba(56, 189, 248, 0.95)) drop-shadow(-8px 0 18px rgba(52, 211, 153, 0.8));
+            animation: laserArrowNudgeBig 0.9s infinite cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: right center;
+            flex-shrink: 0;
+        }
+
+        @keyframes laserArrowNudgeBig {
+            0%, 100% {
+                transform: translateX(0) scale(1);
+                border-right-color: #38bdf8;
+                filter: drop-shadow(-4px 0 10px rgba(56, 189, 248, 0.95));
+            }
+            50% {
+                transform: translateX(-10px) scale(1.22);
+                border-right-color: #34d399;
+                filter: drop-shadow(-8px 0 18px rgba(52, 211, 153, 1)) drop-shadow(0 0 25px #10b981);
+            }
+        }
+
+        .laser-beam-connector-line {
+            width: 22px;
+            height: 5px;
+            background: linear-gradient(90deg, #38bdf8 0%, #34d399 100%);
+            box-shadow: 0 0 14px #38bdf8, 0 0 22px #34d399;
+            border-radius: 2px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .laser-beam-connector-line::after {
+            content: '';
+            position: absolute;
+            left: -2px;
+            top: -2px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #ffffff;
+            box-shadow: 0 0 10px #34d399, 0 0 22px #10b981;
+            animation: laserDotRadarPulse 0.9s infinite alternate;
+        }
+
+        @keyframes laserDotRadarPulse {
+            0% { transform: scale(0.8); opacity: 0.6; }
+            100% { transform: scale(1.4); opacity: 1; }
+        }
+
+        /* PINES Y BALIZAS QUIRÚRGICAS FLOTANTES (DIRECCIONALES) */
+        .surgical-target-pin {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 40%, #047857 100%);
+            color: #ffffff;
+            font-family: 'JetBrains Mono', 'Montserrat', monospace;
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: 0.6px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1.5px solid #38bdf8;
+            box-shadow: 0 0 18px rgba(56, 189, 248, 0.9), 0 0 30px rgba(16, 185, 129, 0.5);
+            text-transform: uppercase;
+            animation: surgicalPinPulse 1.2s infinite alternate ease-in-out;
+            z-index: 60;
+            pointer-events: none;
+            box-sizing: border-box;
+        }
+
+        .surgical-target-pin.active {
+            display: inline-flex !important;
+        }
+
+        @keyframes surgicalPinPulse {
+            0% {
+                transform: scale(0.97) translateX(0);
+                box-shadow: 0 0 10px rgba(56, 189, 248, 0.6), 0 0 16px rgba(52, 211, 153, 0.35);
+                border-color: #38bdf8;
+            }
+            100% {
+                transform: scale(1.05) translateX(-3px);
+                box-shadow: 0 0 24px rgba(56, 189, 248, 1), 0 0 38px rgba(52, 211, 153, 0.7);
+                border-color: #34d399;
+            }
+        }
+
+        .surgical-target-pin.notch-pin {
+            position: absolute;
+            top: 62px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 350;
+            white-space: nowrap;
+            background: linear-gradient(135deg, #b91c1c 0%, #dc2626 50%, #0284c7 100%);
+            border-color: #ef4444;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.9), 0 0 35px rgba(56, 189, 248, 0.7);
+            animation: surgicalNotchPinPulse 1.1s infinite alternate ease-in-out;
+        }
+
+        @keyframes surgicalNotchPinPulse {
+            0% {
+                transform: translateX(-50%) scale(0.96);
+                box-shadow: 0 0 12px rgba(239, 68, 68, 0.7);
+            }
+            100% {
+                transform: translateX(-50%) scale(1.06);
+                box-shadow: 0 0 28px rgba(239, 68, 68, 1), 0 0 45px rgba(56, 189, 248, 0.8);
+            }
+        }
+
+        /* MARCOS NEÓN QUIRÚRGICOS PULSANTES */
+        .surgical-target-highlight-emerald {
+            outline: 2.5px solid #10b981 !important;
+            border-color: #10b981 !important;
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.9), inset 0 0 18px rgba(16, 185, 129, 0.35) !important;
+            animation: emeraldSurgicalPulse 1.3s infinite alternate ease-in-out !important;
+            border-radius: 10px;
+            position: relative;
+            z-index: 25;
+        }
+
+        @keyframes emeraldSurgicalPulse {
+            0% {
+                box-shadow: 0 0 12px rgba(16, 185, 129, 0.5), inset 0 0 8px rgba(16, 185, 129, 0.2);
+            }
+            100% {
+                box-shadow: 0 0 32px rgba(16, 185, 129, 1), inset 0 0 22px rgba(16, 185, 129, 0.5);
+            }
+        }
+
+        .surgical-target-highlight-cyan {
+            outline: 2.5px solid #38bdf8 !important;
+            border-color: #38bdf8 !important;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.95), inset 0 0 18px rgba(56, 189, 248, 0.35) !important;
+            animation: cyanSurgicalPulse 1.3s infinite alternate ease-in-out !important;
+            border-radius: 10px;
+            position: relative;
+            z-index: 25;
+        }
+
+        @keyframes cyanSurgicalPulse {
+            0% {
+                box-shadow: 0 0 12px rgba(56, 189, 248, 0.5), inset 0 0 8px rgba(56, 189, 248, 0.2);
+            }
+            100% {
+                box-shadow: 0 0 32px rgba(56, 189, 248, 1), inset 0 0 22px rgba(56, 189, 248, 0.5);
+            }
+        }
+
+        .surgical-target-highlight-amber {
+            outline: 2.5px solid #f59e0b !important;
+            border-color: #f59e0b !important;
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.9), inset 0 0 18px rgba(245, 158, 11, 0.3) !important;
+            animation: amberSurgicalPulse 1.3s infinite alternate ease-in-out !important;
+            border-radius: 10px;
+            position: relative;
+            z-index: 25;
+        }
+
+        @keyframes amberSurgicalPulse {
+            0% {
+                box-shadow: 0 0 12px rgba(245, 158, 11, 0.5), inset 0 0 8px rgba(245, 158, 11, 0.2);
+            }
+            100% {
+                box-shadow: 0 0 32px rgba(245, 158, 11, 1), inset 0 0 22px rgba(245, 158, 11, 0.45);
+            }
         }
 
         /* Elementos Internos de la Tarjeta */
@@ -4014,7 +4354,7 @@
 
                         <!-- Marco de Video del Avatar (Encuadre Completo 1:1) -->
                         <div class="avatar-video-frame avatar-video-box avatar-video-wrapper">
-                            <video id="avatarVictoriaVideo" class="avatar-station-video" playsinline loop muted src="assets/media/victoriahablando.mp4"></video>
+                            <video id="avatarVictoriaVideo" class="avatar-station-video" playsinline loop muted autoplay preload="auto" src="assets/media/victoriahablando.mp4"></video>
                             <div class="avatar-scan-overlay"></div>
                             <div class="avatar-wave-indicator talking" id="avatarWaveIndicator">
                                 <span></span><span></span><span></span><span></span><span></span>
@@ -4075,6 +4415,9 @@
                                 <span class="phone-notch-action-hint"><i class="fa-solid fa-arrow-down"></i> Toca para abrir</span>
                             </div>
                         </div>
+
+                        <!-- Pin Quirúrgico Flotante del Notch (Hito 1) -->
+                        <span class="surgical-target-pin notch-pin" id="phoneNotchPin" style="display: none;">◄ AQUÍ: ALERTA EN VIVO EN NOTCH</span>
 
                         <!-- Barra de Estado del Teléfono (Reloj en vivo, 5G, Batería 100%) -->
                         <div class="phone-status-bar">
@@ -4180,7 +4523,7 @@
                                 <span class="phone-report-case-id" id="phoneReportHeaderId">26Q-0182</span>
                                 <button type="button" class="phone-close-btn" onclick="closePhoneModal()" title="Cerrar">&times;</button>
                             </div>
-                            <div id="phoneReportContent" class="phone-report-scroll-wrapper"></div>
+                            <div id="phoneReportContent" class="phone-report-scroll-wrapper phone-report-content"></div>
                         </div>
 
                         <!-- Toast Flotante dentro del Smartphone -->
@@ -4226,10 +4569,23 @@
                                 <span class="showcase-live-pill"><i class="fa-solid fa-circle"></i> Sincronizado IA</span>
                             </div>
                             <span class="showcase-subtitle">Hito Tecnológico Activo &bull; Señalización en Tiempo Real</span>
+                            <!-- Control de Pausa para Lectura Detenida (Calibración Humana 18-22s) -->
+                            <div class="showcase-pause-ctrl-wrap">
+                                <button type="button" class="btn-showcase-pause-action" id="btnShowcasePauseTour" onclick="toggleTourReadingPause()" title="Pausar el temporizador para leer detenidamente este cuadro">
+                                    <i class="fa-solid fa-pause" id="iconShowcasePause"></i>
+                                    <span id="lblShowcasePause">Pausar para leer con calma</span>
+                                    <span class="badge-pause-status" id="badgePauseStatus">20s</span>
+                                </button>
+                            </div>
                         </div>
 
                         <!-- HITO 1: NOTIFICACIÓN Y DESPACHO EN QUIRÓFANO -->
-                        <div class="tech-callout-card active" data-step="0" id="showcaseCard0">
+                        <div class="tech-callout-card active" data-step="0" id="showcaseCard0" title="Haz clic en este cuadro para pausar o reanudar la lectura detenida">
+                            <!-- Flecha Láser Conectora Exterior Directa al Smartphone -->
+                            <div class="laser-exterior-pointer active">
+                                <div class="laser-arrow-head-big"></div>
+                                <div class="laser-beam-connector-line"></div>
+                            </div>
                             <!-- Flecha Láser / Neón dinámica apuntando al celular -->
                             <div class="callout-arrow-to-phone laser-pointer-arrow">
                                 <div class="laser-beam-pulse">
@@ -4268,14 +4624,33 @@
                                 </div>
                             </div>
 
+                            <!-- Barra de Progreso de Lectura Médica (18-22s) -->
+                            <div class="card-reading-progress-wrap" title="Tiempo de permanencia para lectura médica (18-22s). Clic para pausar.">
+                                <div class="card-reading-meta">
+                                    <span class="card-reading-label">
+                                        <i class="fa-solid fa-hourglass-half reading-hourglass"></i>
+                                        <span class="card-reading-state-lbl">Tiempo para leer con calma</span>
+                                    </span>
+                                    <span class="card-reading-time-val"><span class="reading-sec-counter">20</span>s restantes</span>
+                                </div>
+                                <div class="card-reading-track">
+                                    <div class="card-reading-fill-bar"></div>
+                                </div>
+                            </div>
+
                             <div class="callout-card-footer">
                                 <span class="callout-verif-badge"><i class="fa-solid fa-circle-check"></i> Quirófano Verificado</span>
-                                <span class="callout-focus-hint"><i class="fa-solid fa-crosshairs"></i> Elemento Enfocado en Celular</span>
+                                <span class="callout-focus-hint" title="Haz clic en este cuadro para pausar o continuar la lectura"><i class="fa-solid fa-circle-pause"></i> Clic para pausar</span>
                             </div>
                         </div>
 
                         <!-- HITO 2: MICROFOTOGRAFÍA 40X CALIBRADA -->
-                        <div class="tech-callout-card" data-step="1" id="showcaseCard1">
+                        <div class="tech-callout-card" data-step="1" id="showcaseCard1" title="Haz clic en este cuadro para pausar o reanudar la lectura detenida">
+                            <!-- Flecha Láser Conectora Exterior Directa al Smartphone -->
+                            <div class="laser-exterior-pointer">
+                                <div class="laser-arrow-head-big"></div>
+                                <div class="laser-beam-connector-line"></div>
+                            </div>
                             <div class="callout-arrow-to-phone laser-pointer-arrow">
                                 <div class="laser-beam-pulse">
                                     <span class="laser-dot-radar"></span>
@@ -4313,14 +4688,33 @@
                                 </div>
                             </div>
 
+                            <!-- Barra de Progreso de Lectura Médica (18-22s) -->
+                            <div class="card-reading-progress-wrap" title="Tiempo de permanencia para lectura médica (18-22s). Clic para pausar.">
+                                <div class="card-reading-meta">
+                                    <span class="card-reading-label">
+                                        <i class="fa-solid fa-hourglass-half reading-hourglass"></i>
+                                        <span class="card-reading-state-lbl">Tiempo para leer con calma</span>
+                                    </span>
+                                    <span class="card-reading-time-val"><span class="reading-sec-counter">20</span>s restantes</span>
+                                </div>
+                                <div class="card-reading-track">
+                                    <div class="card-reading-fill-bar"></div>
+                                </div>
+                            </div>
+
                             <div class="callout-card-footer">
                                 <span class="callout-verif-badge"><i class="fa-solid fa-circle-check"></i> Resolución Gigapíxel</span>
-                                <span class="callout-focus-hint"><i class="fa-solid fa-crosshairs"></i> Elemento Enfocado en Celular</span>
+                                <span class="callout-focus-hint" title="Haz clic en este cuadro para pausar o continuar la lectura"><i class="fa-solid fa-circle-pause"></i> Clic para pausar</span>
                             </div>
                         </div>
 
                         <!-- HITO 3: DIAGNÓSTICO DEFINITIVO & MARGEN R0 -->
-                        <div class="tech-callout-card" data-step="2" id="showcaseCard2">
+                        <div class="tech-callout-card" data-step="2" id="showcaseCard2" title="Haz clic en este cuadro para pausar o reanudar la lectura detenida">
+                            <!-- Flecha Láser Conectora Exterior Directa al Smartphone -->
+                            <div class="laser-exterior-pointer">
+                                <div class="laser-arrow-head-big"></div>
+                                <div class="laser-beam-connector-line"></div>
+                            </div>
                             <div class="callout-arrow-to-phone laser-pointer-arrow">
                                 <div class="laser-beam-pulse">
                                     <span class="laser-dot-radar"></span>
@@ -4358,14 +4752,33 @@
                                 </div>
                             </div>
 
+                            <!-- Barra de Progreso de Lectura Médica (18-22s) -->
+                            <div class="card-reading-progress-wrap" title="Tiempo de permanencia para lectura médica (18-22s). Clic para pausar.">
+                                <div class="card-reading-meta">
+                                    <span class="card-reading-label">
+                                        <i class="fa-solid fa-hourglass-half reading-hourglass"></i>
+                                        <span class="card-reading-state-lbl">Tiempo para leer con calma</span>
+                                    </span>
+                                    <span class="card-reading-time-val"><span class="reading-sec-counter">20</span>s restantes</span>
+                                </div>
+                                <div class="card-reading-track">
+                                    <div class="card-reading-fill-bar"></div>
+                                </div>
+                            </div>
+
                             <div class="callout-card-footer">
                                 <span class="callout-verif-badge"><i class="fa-solid fa-circle-check"></i> Veredicto Inmutable</span>
-                                <span class="callout-focus-hint"><i class="fa-solid fa-crosshairs"></i> Elemento Enfocado en Celular</span>
+                                <span class="callout-focus-hint" title="Haz clic en este cuadro para pausar o continuar la lectura"><i class="fa-solid fa-circle-pause"></i> Clic para pausar</span>
                             </div>
                         </div>
 
                         <!-- HITO 4: FIRMA DIGITAL & QR 26Q -->
-                        <div class="tech-callout-card" data-step="3" id="showcaseCard3">
+                        <div class="tech-callout-card" data-step="3" id="showcaseCard3" title="Haz clic en este cuadro para pausar o reanudar la lectura detenida">
+                            <!-- Flecha Láser Conectora Exterior Directa al Smartphone -->
+                            <div class="laser-exterior-pointer">
+                                <div class="laser-arrow-head-big"></div>
+                                <div class="laser-beam-connector-line"></div>
+                            </div>
                             <div class="callout-arrow-to-phone laser-pointer-arrow">
                                 <div class="laser-beam-pulse">
                                     <span class="laser-dot-radar"></span>
@@ -4403,14 +4816,33 @@
                                 </div>
                             </div>
 
+                            <!-- Barra de Progreso de Lectura Médica (18-22s) -->
+                            <div class="card-reading-progress-wrap" title="Tiempo de permanencia para lectura médica (18-22s). Clic para pausar.">
+                                <div class="card-reading-meta">
+                                    <span class="card-reading-label">
+                                        <i class="fa-solid fa-hourglass-half reading-hourglass"></i>
+                                        <span class="card-reading-state-lbl">Tiempo para leer con calma</span>
+                                    </span>
+                                    <span class="card-reading-time-val"><span class="reading-sec-counter">20</span>s restantes</span>
+                                </div>
+                                <div class="card-reading-track">
+                                    <div class="card-reading-fill-bar"></div>
+                                </div>
+                            </div>
+
                             <div class="callout-card-footer">
                                 <span class="callout-verif-badge"><i class="fa-solid fa-circle-check"></i> Validez Médico-Legal</span>
-                                <span class="callout-focus-hint"><i class="fa-solid fa-crosshairs"></i> Elemento Enfocado en Celular</span>
+                                <span class="callout-focus-hint" title="Haz clic en este cuadro para pausar o continuar la lectura"><i class="fa-solid fa-circle-pause"></i> Clic para pausar</span>
                             </div>
                         </div>
 
                         <!-- HITO 5: DESCARGA PDF & WHATSAPP DIRECTO -->
-                        <div class="tech-callout-card" data-step="4" id="showcaseCard4">
+                        <div class="tech-callout-card" data-step="4" id="showcaseCard4" title="Haz clic en este cuadro para pausar o reanudar la lectura detenida">
+                            <!-- Flecha Láser Conectora Exterior Directa al Smartphone -->
+                            <div class="laser-exterior-pointer">
+                                <div class="laser-arrow-head-big"></div>
+                                <div class="laser-beam-connector-line"></div>
+                            </div>
                             <div class="callout-arrow-to-phone laser-pointer-arrow">
                                 <div class="laser-beam-pulse">
                                     <span class="laser-dot-radar"></span>
@@ -4448,9 +4880,23 @@
                                 </div>
                             </div>
 
+                            <!-- Barra de Progreso de Lectura Médica (18-22s) -->
+                            <div class="card-reading-progress-wrap" title="Tiempo de permanencia para lectura médica (18-22s). Clic para pausar.">
+                                <div class="card-reading-meta">
+                                    <span class="card-reading-label">
+                                        <i class="fa-solid fa-hourglass-half reading-hourglass"></i>
+                                        <span class="card-reading-state-lbl">Tiempo para leer con calma</span>
+                                    </span>
+                                    <span class="card-reading-time-val"><span class="reading-sec-counter">20</span>s restantes</span>
+                                </div>
+                                <div class="card-reading-track">
+                                    <div class="card-reading-fill-bar"></div>
+                                </div>
+                            </div>
+
                             <div class="callout-card-footer">
                                 <span class="callout-verif-badge"><i class="fa-solid fa-circle-check"></i> Multidispositivo</span>
-                                <span class="callout-focus-hint"><i class="fa-solid fa-crosshairs"></i> Elemento Enfocado en Celular</span>
+                                <span class="callout-focus-hint" title="Haz clic en este cuadro para pausar o continuar la lectura"><i class="fa-solid fa-circle-pause"></i> Clic para pausar</span>
                             </div>
                         </div>
 
@@ -4503,8 +4949,122 @@
         <!-- ======================================================================
            PANTALLA 4: 'Inmunohistoquímica Especializada' (ImmunoMaster AI Universal)
            ====================================================================== -->
-        <section id="pantalla-ihq" class="screen-slide" role="tabpanel" aria-label="Creador de Paneles de Inmunohistoquímica">
-            <iframe src="creador-paneles-ihq.html" id="ihqFullAppFrame" style="width: 100%; height: 100%; border: none; display: block; background: #020617;" title="Creador de Paneles IHQ - ImmunoMaster AI Universal"></iframe>
+        <section id="pantalla-ihq" class="screen-slide" role="tabpanel" aria-label="ImmunoQuery - Creador de Paneles IHQ">
+            <div class="iq-root-layout">
+                <!-- 1. Cabecera Institucional ImmunoQuery (Figura 2) con Conmutador [ES | EN] -->
+                <header class="iq-top-header">
+                    <a href="javascript:void(0)" class="iq-brand-wrap" title="ImmunoQuery">
+                        <span class="iq-brand-logo">ImmunoQuery</span>
+                    </a>
+                    <ul class="iq-nav-links-wrap">
+                        <li class="iq-nav-link-item">
+                            <button type="button" class="iq-nav-action-link active" id="iqNavBuildPanel" title="Build Panel">Build Panel</button>
+                        </li>
+                        <li class="iq-nav-link-item">
+                            <a href="javascript:void(0)" class="iq-nav-action-link" id="iqNavLearn" title="Learn">Learn</a>
+                        </li>
+                        <li class="iq-nav-link-item">
+                            <a href="javascript:void(0)" class="iq-nav-action-link" id="iqNavExpertPath" title="ExpertPath">ExpertPath</a>
+                        </li>
+                        <li class="iq-nav-link-item">
+                            <a href="javascript:void(0)" class="iq-nav-action-link" id="iqNavCme" title="CME">CME</a>
+                        </li>
+                        <li class="iq-nav-link-item">
+                            <a href="javascript:void(0)" class="iq-nav-action-link" id="iqNavHelp" title="Help / Support">
+                                <span class="iq-help-circle">?</span> <span id="iqNavHelpText">Help / Support</span>
+                            </a>
+                        </li>
+                        <!-- Conmutador Discreto y Elegante [ES | EN] -->
+                        <li class="iq-nav-link-item">
+                            <div class="iq-lang-toggle" role="group" aria-label="Selector de Idioma / Language Selector" title="Conmutador de Idioma / Language Switcher [ES | EN]">
+                                <button type="button" class="iq-lang-btn" id="iqLangEs" onclick="iqSetLanguage('es')" title="Cambiar a Español">ES</button>
+                                <span class="iq-lang-separator">|</span>
+                                <button type="button" class="iq-lang-btn active" id="iqLangEn" onclick="iqSetLanguage('en')" title="Switch to English">EN</button>
+                            </div>
+                        </li>
+                        <li class="iq-nav-link-item">
+                            <button type="button" class="iq-menu-hamburger-btn" aria-label="Menú" title="Menú de Navegación">
+                                ☰
+                            </button>
+                        </li>
+                    </ul>
+                </header>
+
+                <!-- 2. Subcabecera: Título 'Build Panel' + Botón 'Saved Cases >' -->
+                <div class="iq-subbar">
+                    <h2 class="iq-subbar-title" id="iqSubbarTitle">Build Panel</h2>
+                    <button type="button" class="iq-btn-saved-cases" id="iqBtnSavedCases" onclick="iqShowSavedCases()" title="Ver Casos Guardados / View Saved Cases">
+                        <span id="iqBtnSavedCasesText">Saved Cases &gt;</span>
+                    </button>
+                </div>
+
+                <!-- 3. Pestañas de Búsqueda: Diagnoses | Antibodies con subrayado naranja -->
+                <div class="iq-search-tabs-bar">
+                    <div class="iq-tabs-flex" role="tablist">
+                        <button type="button" class="iq-tab-btn active" id="iqTabDiagnoses" role="tab" aria-selected="true" onclick="iqSwitchTab('diagnoses')">
+                            Diagnoses
+                        </button>
+                        <button type="button" class="iq-tab-btn" id="iqTabAntibodies" role="tab" aria-selected="false" onclick="iqSwitchTab('antibodies')">
+                            Antibodies
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 4. Cuerpo Principal a Dos Columnas -->
+                <main class="iq-workspace-grid">
+                    <!-- Columna Izquierda: Buscador con Lupa Azul y Recientes -->
+                    <div class="iq-left-column">
+                        <div class="iq-search-container">
+                            <input type="text" class="iq-search-input-field" id="iqSearchInput" placeholder="Search for diagnoses" autocomplete="off" spellcheck="false" oninput="iqFilterItems(this.value)">
+                            <button type="button" class="iq-search-lens-btn" id="iqSearchBtn" title="Buscar en ImmunoQuery" aria-label="Buscar" onclick="iqExecuteSearch()">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </div>
+
+                        <div class="iq-recent-title-wrap">
+                            <h4 class="iq-recent-label" id="iqRecentLabel">Recent</h4>
+                        </div>
+
+                        <div class="iq-items-scroll-list" id="iqRecentList">
+                            <!-- Inyectado dinámicamente según pestaña Diagnoses / Antibodies -->
+                        </div>
+                    </div>
+
+                    <!-- Columna Derecha: Contenedor 'Selected (0/5)' -->
+                    <div class="iq-right-column">
+                        <div class="iq-selected-box">
+                            <div class="iq-selected-header-row">
+                                <h3 class="iq-selected-title-text" id="iqSelectedTitleText">
+                                    <span id="iqSelectedLabel">Selected</span> <span id="iqSelectedCounterText">(0/5)</span>
+                                </h3>
+                                <button type="button" class="iq-btn-clear-selection" id="iqBtnClearAll" onclick="window.iqClearSelection()">
+                                    Clear
+                                </button>
+                            </div>
+
+                            <p class="iq-selected-explanation-text" id="iqEmptyNotice">
+                                Search for diagnoses or antibodies in the search box on the left. Click on search results to select items for your panel.
+                            </p>
+
+                            <div class="iq-selected-chips-container" id="iqSelectedChips">
+                                <!-- Chips seleccionados dinámicos -->
+                            </div>
+
+                            <div class="iq-actions-container" style="margin-top: auto; display: flex; flex-direction: column; gap: 8px;">
+                                <button type="button" class="iq-build-panel-action-btn" id="iqBtnBuildPanel" onclick="window.iqGenerateMatrixPanel()">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i> <span id="iqBtnBuildText">Build Panel &gt;</span>
+                                </button>
+                                <button type="button" class="iq-build-panel-action-btn iq-btn-wa" id="iqBtnWaOrder" onclick="window.iqOrderPanelWhatsApp()" style="background: linear-gradient(135deg, #059669, #047857); box-shadow: 0 2px 8px rgba(5, 150, 105, 0.28);">
+                                    <i class="fa-brands fa-whatsapp"></i> <span id="iqBtnWaText">Order Panel via WhatsApp &gt;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+            <!-- Modal de Matriz Comparativa ImmunoQuery (Build Panel) -->
+            <div class="iq-matrix-modal-overlay" id="iqMatrixModal" style="display: none;"></div>
         </section>
 
 
