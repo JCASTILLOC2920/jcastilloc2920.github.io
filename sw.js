@@ -68,7 +68,13 @@ const PRECACHE_MANIFEST = [
     './morfologia_he_original.jpg',
     './morfologia_ia_pleomorfismo.jpg',
     './carcinoma_acinar_he.webp',
-    './BIOPSIAGASTRICA.webp'
+    './BIOPSIAGASTRICA.webp',
+    './wsi_slides/muestra_1_piel_dermatopatologia.webp',
+    './wsi_slides/muestra_1_piel_thumb.webp',
+    './wsi_slides/muestra_2_biopsia_gastrica.webp',
+    './wsi_slides/muestra_2_biopsia_gastrica_thumb.webp',
+    './wsi_slides/muestra_3_carcinoma_acinar.webp',
+    './wsi_slides/muestra_3_carcinoma_acinar_thumb.webp'
 ];
 
 // Plantilla HTML de Respaldo Estéril de Emergencia en Quirófano

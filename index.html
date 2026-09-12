@@ -25,9 +25,10 @@
     <!-- Hojas de Estilos de la Plataforma Web Interactiva -->
     <link rel="stylesheet" href="dossier_web_interactive.css">
 
-    <!-- Precarga Ultra-Rápida de Muestras WSI Gigapíxel -->
-    <link rel="preload" as="image" href="wsi_slides/biopsia_prostatica_gleason.webp">
-    <link rel="preload" as="image" href="wsi_slides/corte_quirurgico_renal.webp">
+    <!-- Precarga Ultra-Rápida de las 3 Muestras WSI Gigapíxel (100% Offline 24/7) -->
+    <link rel="preload" as="image" href="wsi_slides/muestra_1_piel_dermatopatologia.webp">
+    <link rel="preload" as="image" href="wsi_slides/muestra_2_biopsia_gastrica.webp">
+    <link rel="preload" as="image" href="wsi_slides/muestra_3_carcinoma_acinar.webp">
 
     <!-- ESTILOS DE PANTALLA ÚNICA 100vh (ZERO-SCROLL VIEWPORT ARCHITECTURE) -->
     <style id="zero-scroll-viewport-styles">
@@ -511,7 +512,7 @@
             white-space: nowrap;
         }
 
-        /* Selector de las 2 Muestras Histológicas */
+        /* Selector de las 3 Muestras Histológicas Locales */
         .wsi-samples-toggle {
             display: flex;
             align-items: center;
@@ -526,7 +527,7 @@
             background: transparent;
             border: 1px solid transparent;
             color: #94a3b8;
-            padding: 5px 11px;
+            padding: 5px 10px;
             border-radius: 6px;
             font-family: 'Montserrat', sans-serif;
             font-size: 11px;
@@ -552,8 +553,55 @@
         }
 
         .wsi-sample-btn i {
-            color: #38bdf8;
             font-size: 12px;
+        }
+
+        /* Badge Elegante: Láminas Locales en Caché 24/7 sin Servidor */
+        .wsi-cache-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 11px;
+            background: rgba(14, 165, 233, 0.12);
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            border-radius: 20px;
+            color: #bae6fd;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10.5px;
+            font-weight: 700;
+            white-space: nowrap;
+            cursor: default;
+            transition: all 0.22s ease;
+        }
+
+        .wsi-cache-badge:hover {
+            background: rgba(14, 165, 233, 0.2);
+            border-color: #38bdf8;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+        }
+
+        .wsi-cache-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 8px #10b981;
+            animation: pulseGlow 2s infinite ease-in-out;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 1380px) {
+            .wsi-cache-badge .wsi-cache-text-full {
+                display: none;
+            }
+            .wsi-cache-badge .wsi-cache-text-short {
+                display: inline;
+            }
+        }
+        @media (min-width: 1381px) {
+            .wsi-cache-badge .wsi-cache-text-short {
+                display: none;
+            }
         }
 
         /* Barra Derecha / Central de Controles */
@@ -884,6 +932,30 @@
             height: 75px;
         }
 
+        .wsi-ai-tag.tag-histio .ai-box {
+            border-color: #38bdf8;
+            background: rgba(56, 189, 248, 0.18);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+            width: 80px;
+            height: 80px;
+        }
+
+        .wsi-ai-tag.tag-epidermis .ai-box {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.18);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+            width: 95px;
+            height: 70px;
+        }
+
+        .wsi-ai-tag.tag-follicle .ai-box {
+            border-color: #f59e0b;
+            background: rgba(245, 158, 11, 0.18);
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
+            width: 80px;
+            height: 80px;
+        }
+
         .wsi-ai-tag .ai-txt {
             font-family: 'JetBrains Mono', monospace;
             font-size: 9.5px;
@@ -929,6 +1001,7 @@
         .leg-red { background: #f43f5e; }
         .leg-sky { background: #38bdf8; }
         .leg-green { background: #10b981; }
+        .leg-amber { background: #f59e0b; }
 
         /* Lupa de Aumento Flotante 80x */
         .wsi-magnifier-lens {
@@ -1625,15 +1698,19 @@
                         </div>
                     </div>
 
-                    <!-- SELECTOR DE LAS 2 MUESTRAS HISTOLÓGICAS REALES -->
-                    <div class="wsi-samples-toggle" role="group" aria-label="Selección de muestra WSI">
-                        <button type="button" class="wsi-sample-btn active" id="btnSampleProstate" data-sample="prostate" title="Muestra 1: Biopsia Prostática Core (Adenocarcinoma Gleason 4+4=8)">
-                            <i class="fa-solid fa-microscope"></i>
-                            <span>Biopsia Prostática (Gleason 4+4)</span>
+                    <!-- SELECTOR DE LAS 3 MUESTRAS HISTOLÓGICAS LOCALES -->
+                    <div class="wsi-samples-toggle" role="group" aria-label="Selección de 3 muestras WSI locales">
+                        <button type="button" class="wsi-sample-btn active" id="btnSampleSkin" data-sample="skin" title="Muestra 1: Piel: Dermatopatología (H&E)">
+                            <i class="fa-solid fa-layer-group" style="color: #f472b6;"></i>
+                            <span>Piel: Dermatopatología (H&E)</span>
                         </button>
-                        <button type="button" class="wsi-sample-btn" id="btnSampleRenal" data-sample="renal" title="Muestra 2: Corte Quirúrgico Renal (Oncocitoma / Ca. Células Renales 40x)">
-                            <i class="fa-solid fa-circle-dot" style="color: #34d399;"></i>
-                            <span>Corte Renal (Oncocitoma 40x)</span>
+                        <button type="button" class="wsi-sample-btn" id="btnSampleGastric" data-sample="gastric" title="Muestra 2: Biopsia Gástrica (H&E 40x)">
+                            <i class="fa-solid fa-circle-dot" style="color: #38bdf8;"></i>
+                            <span>Biopsia Gástrica (H&E 40x)</span>
+                        </button>
+                        <button type="button" class="wsi-sample-btn" id="btnSampleAcinar" data-sample="acinar" title="Muestra 3: Carcinoma Acinar (H&E)">
+                            <i class="fa-solid fa-microscope" style="color: #34d399;"></i>
+                            <span>Carcinoma Acinar (H&E)</span>
                         </button>
                     </div>
                 </div>
@@ -1696,6 +1773,14 @@
                         </button>
                     </div>
 
+                    <!-- BADGE ELEGANTE: LÁMINAS LOCALES EN CACHÉ 24/7 SIN SERVIDOR -->
+                    <div class="wsi-cache-badge" id="wsiCacheBadge" title="3 Láminas Histológicas precargadas en memoria y caché local de alta resolución. 100% disponibles 24/7 aunque el servidor nocturno esté en reposo.">
+                        <span class="wsi-cache-dot"></span>
+                        <i class="fa-solid fa-cloud-arrow-down" style="color: #38bdf8;"></i>
+                        <span class="wsi-cache-text wsi-cache-text-full">Láminas Locales en Caché (Disponibles 24/7 sin Servidor)</span>
+                        <span class="wsi-cache-text wsi-cache-text-short">Caché 24/7 sin Servidor</span>
+                    </div>
+
                     <!-- BADGE VERDE SERVIDOR 3.5 TB -->
                     <div class="wsi-storage-badge" title="Almacenamiento Local WSI en Servidor Físico In-House">
                         <span class="wsi-status-dot-green"></span>
@@ -1718,8 +1803,8 @@
                 <!-- BANNER DE AVISO DE ESTADO DEL TÚNEL CLOUDFLARE -->
                 <div class="wsi-tunnel-notice-banner" id="wsiTunnelNoticeBanner" style="display: none;">
                     <div class="wsi-notice-inner">
-                        <i class="fa-solid fa-triangle-exclamation" style="color: #f59e0b; font-size: 13px;"></i>
-                        <span><strong>Aviso de Servidor WSI:</strong> El túnel físico Cloudflare (F:\LAMINARIO DE PATOLOGIA) está en reposo temporal. Las 2 muestras de alta resolución integradas operan al 100% en el visor web.</span>
+                        <i class="fa-solid fa-shield-halved" style="color: #38bdf8; font-size: 13px;"></i>
+                        <span><strong>Resiliencia Nocturna 24/7 Activa:</strong> El túnel físico Cloudflare está en reposo nocturno. Las 3 muestras locales de alta resolución (Piel, Biopsia Gástrica y Carcinoma Acinar) operan al 100% en el visor web con zoom 2x-40x y rotación de 0° a 360°.</span>
                         <button type="button" class="wsi-notice-close" onclick="document.getElementById('wsiTunnelNoticeBanner').style.display='none'">&times;</button>
                     </div>
                 </div>
@@ -1727,26 +1812,26 @@
                 <!-- VIEWPORT INTERACTIVO GIGAPÍXEL -->
                 <div class="wsi-full-viewport" id="wsiViewport" title="Arrastra para moverte (Pan). Usa la rueda o botones para Zoom (2x-40x).">
                     <div class="wsi-stage-transform" id="wsiTransformStage">
-                        <img src="wsi_slides/biopsia_prostatica_gleason.webp" id="wsiSlideImg" class="wsi-slide-image" alt="Corte Histológico Gigapíxel WSI" draggable="false">
+                        <img src="wsi_slides/muestra_1_piel_dermatopatologia.webp" id="wsiSlideImg" class="wsi-slide-image" alt="Corte Histológico Gigapíxel WSI" draggable="false">
                         
                         <!-- CAPA DE MORFOMETRÍA IA (OVERLAY DINÁMICO) -->
                         <div class="wsi-ai-overlay" id="wsiAiOverlay">
-                            <div class="wsi-ai-tag tag-mitosis" style="top: 38%; left: 42%;">
+                            <div class="wsi-ai-tag tag-histio" style="top: 42%; left: 48%;">
                                 <span class="ai-box"></span>
-                                <span class="ai-txt">Mitosis Atípica 98%</span>
+                                <span class="ai-txt">Infiltrado Histiocitario (CD68+)</span>
                             </div>
-                            <div class="wsi-ai-tag tag-pleomorphism" style="top: 52%; left: 58%;">
+                            <div class="wsi-ai-tag tag-epidermis" style="top: 20%; left: 32%;">
                                 <span class="ai-box"></span>
-                                <span class="ai-txt">Pleomorfismo Nuclear (Gleason 4)</span>
+                                <span class="ai-txt">Epidermis e Interfase Conservada</span>
                             </div>
-                            <div class="wsi-ai-tag tag-stroma" style="top: 61%; left: 33%;">
+                            <div class="wsi-ai-tag tag-follicle" style="top: 66%; left: 58%;">
                                 <span class="ai-box"></span>
-                                <span class="ai-txt">Desmoplasia Estromal</span>
+                                <span class="ai-txt">Anejo Folicular Respetado</span>
                             </div>
                             <div class="wsi-ai-legend">
-                                <div class="ai-leg-item"><span class="leg-color leg-red"></span> Mitosis Atípicas</div>
-                                <div class="ai-leg-item"><span class="leg-color leg-sky"></span> Células Neoplásicas</div>
-                                <div class="ai-leg-item"><span class="leg-color leg-green"></span> Estroma Reactivo</div>
+                                <div class="ai-leg-item"><span class="leg-color leg-sky"></span> Infiltrado Histiocitario Dérmico</div>
+                                <div class="ai-leg-item"><span class="leg-color leg-green"></span> Epidermis Conservada</div>
+                                <div class="ai-leg-item"><span class="leg-color leg-amber"></span> Anejos Cutáneos</div>
                             </div>
                         </div>
                     </div>
@@ -1788,11 +1873,15 @@
                 <div class="wsi-scale-cluster">
                     <div class="wsi-sample-meta-card">
                         <div class="wsi-meta-row">
-                            <span class="wsi-meta-badge"><i class="fa-solid fa-dna"></i> H&amp;E 40x</span>
+                            <span class="wsi-meta-badge" id="wsiMetaStainBadge"><i class="fa-solid fa-dna"></i> <span id="wsiMetaStain">H&amp;E 40x</span></span>
                             <span class="wsi-meta-badge live"><i class="fa-solid fa-signal"></i> 0.25 µm/px</span>
+                            <span class="wsi-meta-badge" id="wsiMetaOrganBadge" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.3); color: #38bdf8;"><i class="fa-solid fa-microscope"></i> <span id="wsiMetaOrgan">Piel / Dermatopatología</span></span>
                         </div>
                         <div class="wsi-meta-title" id="wsiSampleTitle">
-                            Biopsia Prostática Core &bull; Adenocarcinoma Gleason 4+4=8 (ISUP 4)
+                            Piel: Dermatopatología (Biopsia Cutánea / Infiltrado Dérmico H&amp;E 40x)
+                        </div>
+                        <div class="wsi-meta-note" id="wsiSampleNote" style="font-size: 10px; color: #94a3b8; margin-top: 4px; line-height: 1.35;">
+                            Biopsia cutánea con arquitectura dermoepidérmica conservada, anejos foliculares íntegros y denso infiltrado dérmico linfohistiocitario sin signos de malignidad.
                         </div>
                     </div>
 
@@ -1832,7 +1921,7 @@
                             <span class="wsi-minimap-mag" id="minimapMagBadge">2x</span>
                         </div>
                         <div class="wsi-minimap-box" id="wsiMinimapBox">
-                            <img src="wsi_slides/biopsia_prostatica_thumb.webp" id="wsiMinimapThumb" class="wsi-minimap-thumb" alt="Minimapa Lámina Completa">
+                            <img src="wsi_slides/muestra_1_piel_thumb.webp" id="wsiMinimapThumb" class="wsi-minimap-thumb" alt="Minimapa Lámina Completa">
                             <div class="wsi-minimap-rect" id="wsiMinimapRect"></div>
                         </div>
                     </div>

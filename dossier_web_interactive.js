@@ -39,12 +39,15 @@ function handleSpecialtyChange(spec) {
     const wsiBtn = document.querySelector(`.wsi-case-tab[data-specialty="${spec}"]`);
     if (wsiBtn) {
         wsiBtn.click();
-    } else if (spec === 'uro') {
-        const btnProstate = document.getElementById('btnSampleProstate');
-        if (btnProstate) btnProstate.click();
-    } else if (spec === 'derma' || spec === 'neuro' || spec === 'sarcoma') {
-        const btnRenal = document.getElementById('btnSampleRenal');
-        if (btnRenal) btnRenal.click();
+    } else if (spec === 'derma') {
+        const btnSkin = document.getElementById('btnSampleSkin') || document.getElementById('btnSampleProstate');
+        if (btnSkin) btnSkin.click();
+    } else if (spec === 'gastro') {
+        const btnGastric = document.getElementById('btnSampleGastric');
+        if (btnGastric) btnGastric.click();
+    } else if (spec === 'uro' || spec === 'neuro' || spec === 'sarcoma') {
+        const btnAcinar = document.getElementById('btnSampleAcinar') || document.getElementById('btnSampleRenal');
+        if (btnAcinar) btnAcinar.click();
     }
 
     // Filtrar tabla de IHQ según especialidad
@@ -855,27 +858,87 @@ window.toggleSwitch = function(el) {
    2. VISOR WSI GIGAPÍXEL INTERACTIVO PROFESIONAL (PANTALLA 1)
    ========================================================================== */
 const WSI_DATA = {
-    prostate: {
-        id: 'prostate',
-        title: 'Biopsia Prostática Core • Adenocarcinoma Gleason 4+4=8 (ISUP 4)',
-        image: 'wsi_slides/biopsia_prostatica_gleason.webp',
-        thumb: 'wsi_slides/biopsia_prostatica_thumb.webp',
-        organ: 'Próstata',
-        stain: 'H&E 40x',
-        note: 'Arquitectura cribiforme y nidos confluentes. Desmoplasia estromal activa.'
+    skin: {
+        id: 'skin',
+        name: 'Piel: Dermatopatología (H&E)',
+        title: 'Piel: Dermatopatología (Biopsia Cutánea / Infiltrado Dérmico H&E 40x)',
+        image: 'wsi_slides/muestra_1_piel_dermatopatologia.webp',
+        thumb: 'wsi_slides/muestra_1_piel_dermatopatologia_thumb.webp',
+        organ: 'Piel / Dermatopatología',
+        organShort: 'Piel',
+        stain: 'H&E 40x (0.25 µm/px)',
+        stainShort: 'H&E 40x',
+        diagnosis: 'Dermatopatología: Biopsia Cutánea • Histiocitosis / Infiltrado Dérmico Linfohistiocitario',
+        findings: 'Epidermis conservada con estrato córneo en cesta de mimbre y unión dermoepidérmica intacta. Dermis papilar y reticular ocupadas por proliferación densa monomórfica en sábana de histiocitos no-Langerhans de núcleos reniformes vesiculosos y amplio citoplasma eosinófilo. Folículos pilosos, infundíbulos y anejos cutáneos respetados sin atipia citológica ni invasión destructiva.',
+        note: 'Biopsia cutánea con arquitectura dermoepidérmica conservada, anejos foliculares íntegros y denso infiltrado dérmico linfohistiocitario sin signos de malignidad.',
+        aiTags: [
+            { text: 'Infiltrado Histiocitario Dérmico (CD68+)', class: 'tag-histio', top: '42%', left: '48%' },
+            { text: 'Epidermis e Interfase Conservada', class: 'tag-epidermis', top: '20%', left: '32%' },
+            { text: 'Anejo Folicular Respetado', class: 'tag-follicle', top: '66%', left: '58%' }
+        ],
+        aiLegend: [
+            { color: 'leg-sky', text: 'Infiltrado Histiocitario Dérmico' },
+            { color: 'leg-green', text: 'Epidermis Conservada' },
+            { color: 'leg-amber', text: 'Anejos Cutáneos' }
+        ]
     },
-    renal: {
-        id: 'renal',
-        title: 'Corte Quirúrgico Renal • Oncocitoma / Neoplasia Renal 40x',
-        image: 'wsi_slides/corte_quirurgico_renal.webp',
-        thumb: 'wsi_slides/corte_quirurgico_renal_thumb.webp',
-        organ: 'Riñón',
-        stain: 'H&E 40x',
-        note: 'Células oncocíticas poligonales con abundante citoplasma eosinófilo granular.'
+    gastric: {
+        id: 'gastric',
+        name: 'Biopsia Gástrica (H&E 40x)',
+        title: 'Biopsia Gástrica (Adenocarcinoma / Mucosa Digestiva H&E 40x)',
+        image: 'wsi_slides/muestra_2_biopsia_gastrica.webp',
+        thumb: 'wsi_slides/muestra_2_biopsia_gastrica_thumb.webp',
+        organ: 'Estómago / Gastroenteropatología',
+        organShort: 'Estómago',
+        stain: 'H&E 40x (0.25 µm/px)',
+        stainShort: 'H&E 40x',
+        diagnosis: 'Biopsia Gástrica: Adenocarcinoma Infiltrante / Neoplasia Digestiva Maligna',
+        findings: 'Fragmentos de mucosa gástrica con arquitectura glandular foveolar desestructurada por neoplasia maligna epitelial infiltrante en lámina propia. Formación de túbulos atípicos irregulares de contorno cribiforme, marcada pérdida de polaridad, hipercromatismo nuclear, figuras mitóticas atípicas y respuesta desmoplásica estromal activa.',
+        note: 'Distorsión glandular profunda con luces confluentes, pleomorfismo severo, mitosis atípicas y desmoplasia estromal peritumoral.',
+        aiTags: [
+            { text: 'Mitosis Atípica 98%', class: 'tag-mitosis', top: '38%', left: '42%' },
+            { text: 'Pleomorfismo Nuclear Severo', class: 'tag-pleomorphism', top: '52%', left: '58%' },
+            { text: 'Desmoplasia Estromal Activa', class: 'tag-stroma', top: '65%', left: '33%' }
+        ],
+        aiLegend: [
+            { color: 'leg-red', text: 'Mitosis Atípicas' },
+            { color: 'leg-sky', text: 'Glándulas Neoplásicas Infiltrantes' },
+            { color: 'leg-green', text: 'Desmoplasia Estromal' }
+        ]
+    },
+    acinar: {
+        id: 'acinar',
+        name: 'Carcinoma Acinar (H&E)',
+        title: 'Patología Quirúrgica: Carcinoma Acinar / Neoplasia Infiltrante (H&E 40x)',
+        image: 'wsi_slides/muestra_3_carcinoma_acinar.webp',
+        thumb: 'wsi_slides/muestra_3_carcinoma_acinar_thumb.webp',
+        organ: 'Patología Quirúrgica / Epitelial',
+        organShort: 'Glándula Acinar',
+        stain: 'H&E 40x (0.25 µm/px)',
+        stainShort: 'H&E 40x',
+        diagnosis: 'Patología Quirúrgica: Carcinoma Acinar Infiltrante (Neoplasia Maligna Epitelial)',
+        findings: 'Proliferación epitelial neoplásica con patrón de crecimiento acinar y microacinar confluente infiltrante. Células neoplásicas con diferenciación acinar y gránulos citoplasmáticos apicales PAS-positivos, relación núcleo/citoplasma elevada, marcado pleomorfismo nuclear, macronucléolos prominentes y ausencia completa de capa mioepitelial basal en estroma fibrovascular reactivo.',
+        note: 'Proliferación epitelial maligna en acinos confluentes, pleomorfismo nuclear severo, nucléolos prominentes y desmoplasia estromal reactiva.',
+        aiTags: [
+            { text: 'Nidos Acinares Infiltrantes', class: 'tag-pleomorphism', top: '40%', left: '45%' },
+            { text: 'Mitosis Atípica 98%', class: 'tag-mitosis', top: '55%', left: '62%' },
+            { text: 'Estroma Fibrovascular Reactivo', class: 'tag-stroma', top: '70%', left: '28%' }
+        ],
+        aiLegend: [
+            { color: 'leg-red', text: 'Mitosis Atípicas' },
+            { color: 'leg-sky', text: 'Células Acinares Malignas' },
+            { color: 'leg-green', text: 'Estroma Fibrovascular' }
+        ]
     }
 };
 
-let currentSampleKey = 'prostate';
+// Retrocompatibilidad con nombres y claves anteriores
+WSI_DATA.piel = WSI_DATA.skin;
+WSI_DATA.gastrica = WSI_DATA.gastric;
+WSI_DATA.prostate = WSI_DATA.skin;
+WSI_DATA.renal = WSI_DATA.gastric;
+
+let currentSampleKey = 'skin';
 let currentZoomLevel = 1.0; // 1.0 = 2x, 1.6 = 4x, 2.5 = 10x, 3.6 = 20x, 5.0 = 40x
 let currentRotation = 0; // 0° - 360°
 let isPanning = false;
@@ -885,17 +948,17 @@ let isAiActive = false;
 let isLensActive = false;
 let isDialDragging = false;
 
-// Precarga inmediata de las 2 muestras histológicas en memoria RAM para 0ms lag
+// Precarga inmediata de las 3 muestras histológicas en memoria RAM para 0ms lag
 (function preloadWSISamples() {
     try {
-        const p1 = new Image();
-        p1.src = WSI_DATA.prostate.image;
-        const p1t = new Image();
-        p1t.src = WSI_DATA.prostate.thumb;
-        const p2 = new Image();
-        p2.src = WSI_DATA.renal.image;
-        const p2t = new Image();
-        p2t.src = WSI_DATA.renal.thumb;
+        ['skin', 'gastric', 'acinar'].forEach(key => {
+            if (WSI_DATA[key]) {
+                const img = new Image();
+                img.src = WSI_DATA[key].image;
+                const thumb = new Image();
+                thumb.src = WSI_DATA[key].thumb;
+            }
+        });
     } catch (e) {}
 })();
 
@@ -1039,6 +1102,31 @@ function updateMinimapRect() {
     rect.style.top = `${ry}px`;
 }
 
+function updateAiOverlayForSample(data) {
+    const aiOverlay = document.getElementById('wsiAiOverlay');
+    if (!aiOverlay || !data || !data.aiTags) return;
+
+    let tagsHtml = '';
+    data.aiTags.forEach(tag => {
+        tagsHtml += `
+            <div class="wsi-ai-tag ${tag.class}" style="top: ${tag.top}; left: ${tag.left};">
+                <span class="ai-box"></span>
+                <span class="ai-txt">${tag.text}</span>
+            </div>
+        `;
+    });
+
+    let legendHtml = '<div class="wsi-ai-legend">';
+    if (data.aiLegend) {
+        data.aiLegend.forEach(item => {
+            legendHtml += `<div class="ai-leg-item"><span class="leg-color ${item.color}"></span> ${item.text}</div>`;
+        });
+    }
+    legendHtml += '</div>';
+
+    aiOverlay.innerHTML = tagsHtml + legendHtml;
+}
+
 function switchWSISample(sampleKey) {
     if (!WSI_DATA[sampleKey]) return;
     currentSampleKey = sampleKey;
@@ -1048,30 +1136,54 @@ function switchWSISample(sampleKey) {
     const slideImg = document.getElementById('wsiSlideImg');
     const minimapThumb = document.getElementById('wsiMinimapThumb');
     const sampleTitle = document.getElementById('wsiSampleTitle');
+    const organBadge = document.getElementById('wsiOrganBadge');
+    const sampleSub = document.getElementById('wsiSampleSub');
+    const metaOrgan = document.getElementById('wsiMetaOrgan');
+    const metaStain = document.getElementById('wsiMetaStain');
+    const sampleNote = document.getElementById('wsiSampleNote');
+    const lens = document.getElementById('wsiMagnifierLens');
 
     if (slideImg) slideImg.src = data.image;
     if (minimapThumb) minimapThumb.src = data.thumb;
     if (sampleTitle) sampleTitle.textContent = data.title;
+    if (organBadge) organBadge.innerHTML = `<i class="fa-solid fa-microscope"></i> ${data.organ}`;
+    if (metaOrgan) metaOrgan.textContent = data.organShort || data.organ;
+    if (metaStain) metaStain.textContent = data.stainShort || data.stain || 'H&E 40x';
+    if (sampleSub) sampleSub.textContent = data.findings || data.note;
+    if (sampleNote) sampleNote.textContent = data.note || data.findings || data.diagnosis;
 
-    // Actualizar botones de muestra
-    const btnProstate = document.getElementById('btnSampleProstate');
-    const btnRenal = document.getElementById('btnSampleRenal');
-    if (btnProstate && btnRenal) {
-        if (sampleKey === 'prostate') {
-            btnProstate.classList.add('active');
-            btnRenal.classList.remove('active');
-        } else {
-            btnProstate.classList.remove('active');
-            btnRenal.classList.add('active');
-        }
+    // Actualizar lupa si estuviese abierta
+    if (lens && isLensActive) {
+        lens.style.backgroundImage = `url('${data.image}')`;
     }
 
-    // Resetear posición suavemente
+    // Actualizar botones de muestra activos
+    const sampleBtns = document.querySelectorAll('.wsi-sample-btn');
+    sampleBtns.forEach(btn => {
+        const btnSample = btn.getAttribute('data-sample');
+        if (btnSample === sampleKey ||
+            (sampleKey === 'skin' && (btnSample === 'prostate' || btnSample === 'skin')) ||
+            (sampleKey === 'gastric' && (btnSample === 'renal' || btnSample === 'gastric')) ||
+            (sampleKey === 'acinar' && btnSample === 'acinar')) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+
+    // Actualizar overlay de IA para la muestra actual
+    updateAiOverlayForSample(data);
+
+    // Resetear posición suavemente: centrar Pan (0,0) y Zoom a 1.0 (2x), preservando la rotación activa (0°-360°)
     currentX = 0;
     currentY = 0;
     currentZoomLevel = 1.0;
-    currentRotation = 0;
+    // currentRotation se mantiene intacta según especificación clínica
     applyWSITransform();
+
+    if (typeof showWSIToast === 'function') {
+        showWSIToast(`Muestra activa: ${data.name || data.title}`);
+    }
 }
 
 function initWSIViewer() {
@@ -1079,15 +1191,22 @@ function initWSIViewer() {
     const slideImg = document.getElementById('wsiSlideImg');
     if (!viewport || !slideImg) return;
 
-    // 1. Selector de las 2 Muestras
-    const btnProstate = document.getElementById('btnSampleProstate');
-    const btnRenal = document.getElementById('btnSampleRenal');
-    if (btnProstate) {
-        btnProstate.addEventListener('click', () => switchWSISample('prostate'));
-    }
-    if (btnRenal) {
-        btnRenal.addEventListener('click', () => switchWSISample('renal'));
-    }
+    // 1. Selector Dinámico de las 3 Muestras Histológicas Reales
+    const sampleBtns = document.querySelectorAll('.wsi-sample-btn');
+    sampleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const key = btn.getAttribute('data-sample');
+            if (key) switchWSISample(key);
+        });
+    });
+
+    const btnSkin = document.getElementById('btnSampleSkin') || document.getElementById('btnSampleProstate');
+    const btnGastric = document.getElementById('btnSampleGastric') || document.getElementById('btnSampleRenal');
+    const btnAcinar = document.getElementById('btnSampleAcinar');
+
+    if (btnSkin) btnSkin.addEventListener('click', () => switchWSISample('skin'));
+    if (btnGastric) btnGastric.addEventListener('click', () => switchWSISample('gastric'));
+    if (btnAcinar) btnAcinar.addEventListener('click', () => switchWSISample('acinar'));
 
     // 2. Pan / Arrastre sobre el viewport
     viewport.addEventListener('mousedown', (e) => {
@@ -1472,7 +1591,7 @@ async function checkCloudflareTunnel() {
         // Servidor Cloudflare en reposo o inactivo
         if (beacon) beacon.className = 'wsi-live-beacon offline';
         if (btnText) btnText.textContent = 'Servidor WSI (En Reposo)';
-        if (directBtn) directBtn.title = 'Advertencia de Túnel: El servidor local de patología está en reposo temporal. Las 2 muestras de alta resolución integradas operan al 100% de rendimiento.';
+        if (directBtn) directBtn.title = 'Aviso de Túnel: Servidor WSI en reposo nocturno. Las 3 muestras locales de alta resolución están disponibles 24/7 en el navegador.';
         if (noticeBanner) noticeBanner.style.display = 'block';
     }
 }
