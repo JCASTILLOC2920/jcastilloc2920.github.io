@@ -329,6 +329,10 @@
                     target.closest(".specimen-360-viewport") ||
                     target.closest("canvas") ||
                     target.closest(".wsi-full-viewport") ||
+                    target.closest(".wsi-viewport-col") ||
+                    target.closest(".wsi-split-container") ||
+                    target.closest(".wsi-intro-sidebar") ||
+                    target.closest("#wsiIntroSidebar") ||
                     target.closest(".wsi-slide-image") ||
                     target.closest("#wsiRotationWidget") ||
                     target.closest(".rot-dial-wrap") ||

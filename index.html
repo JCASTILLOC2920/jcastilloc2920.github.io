@@ -26,7 +26,8 @@
     <link rel="stylesheet" href="dossier_web_interactive.css">
 
     <!-- Precarga Ultra-Rápida de las 3 Muestras WSI Gigapíxel (100% Offline 24/7) -->
-    <link rel="preload" as="image" href="wsi_slides/muestra_1_piel_dermatopatologia.webp">
+    <link rel="preload" as="image" href="wsi_slides/muestra_1_carcinoma_prostata_real.webp">
+    <link rel="preload" as="image" href="wsi_slides/muestra_1_carcinoma_prostata_real_thumb.webp">
     <link rel="preload" as="image" href="wsi_slides/muestra_2_biopsia_gastrica.webp">
     <link rel="preload" as="image" href="wsi_slides/muestra_3_carcinoma_acinar.webp">
 
@@ -844,6 +845,387 @@
         }
         .wsi-notice-close:hover { color: #ffffff; }
 
+        /* ==========================================================================
+           ARQUITECTURA DE PANTALLA DIVIDIDA: VISOR WSI 80% & PANEL CLÍNICO 20%
+           Neuroestética Quirúrgica Zafiro/Argón, Tipografía Montserrat & Inter
+           Cero Scrollbars (100vh Locked) & Adaptabilidad Responsiva < 1024px
+           ========================================================================== */
+        .wsi-split-container {
+            display: flex;
+            width: 100%;
+            height: calc(100% - 52px);
+            overflow: hidden !important;
+            position: relative;
+            background: var(--sapphire-950, #050b14);
+        }
+
+        /* Columna del Visor WSI al 78% - 80% */
+        .wsi-viewport-col {
+            width: 80%;
+            flex: 0 0 80%;
+            max-width: 80%;
+            height: 100%;
+            position: relative;
+            overflow: hidden !important;
+            background: #02060d;
+            display: flex;
+            flex-direction: column;
+            transition: width 0.32s cubic-bezier(0.16, 1, 0.3, 1), 
+                        flex 0.32s cubic-bezier(0.16, 1, 0.3, 1), 
+                        max-width 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .wsi-viewport-col .stage-viewer-container {
+            width: 100%;
+            height: 100%;
+            flex: 1;
+            min-height: 0;
+            position: relative;
+            overflow: hidden !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #02060d;
+        }
+
+        /* Botón Flotante para Colapsar / Expandir Sidebar (Surgical Toggle) */
+        .wsi-sidebar-toggle-btn {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: rgba(15, 29, 51, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(56, 189, 248, 0.32);
+            color: #38bdf8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            cursor: pointer;
+            z-index: 35;
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+            outline: none;
+        }
+
+        .wsi-sidebar-toggle-btn:hover {
+            background: rgba(2, 132, 199, 0.35);
+            border-color: #38bdf8;
+            color: #ffffff;
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.4);
+            transform: scale(1.05);
+        }
+
+        /* Estado Colapsado: Visor WSI al 100% Pantalla Completa */
+        .wsi-split-container.sidebar-collapsed .wsi-viewport-col {
+            width: 100% !important;
+            max-width: 100% !important;
+            flex: 0 0 100% !important;
+        }
+
+        .wsi-split-container.sidebar-collapsed .wsi-intro-sidebar {
+            transform: translateX(100%);
+            width: 0 !important;
+            max-width: 0 !important;
+            flex: 0 0 0% !important;
+            padding: 0 !important;
+            border-left: none !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+
+        /* Columna Derecha: Panel de Introducción al 20% - 22% */
+        .wsi-intro-sidebar {
+            width: 20%;
+            flex: 0 0 20%;
+            max-width: 20%;
+            height: 100%;
+            background: rgba(10, 19, 34, 0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-left: 1px solid rgba(56, 189, 248, 0.22);
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+            transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), 
+                        width 0.32s cubic-bezier(0.16, 1, 0.3, 1), 
+                        opacity 0.25s ease,
+                        padding 0.32s ease;
+            z-index: 30;
+            box-shadow: -6px 0 28px rgba(0, 0, 0, 0.55);
+        }
+
+        .wsi-intro-sidebar::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+        }
+
+        /* Manija Táctil Superior (Mobile Drawer Handle) */
+        .wsi-sidebar-mobile-handle {
+            display: none;
+        }
+
+        /* Encabezado del Panel de Introducción */
+        .wsi-intro-header {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.16);
+        }
+
+        .wsi-intro-header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .wsi-intro-kicker {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9px;
+            font-weight: 800;
+            color: var(--accent-sky, #38bdf8);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .wsi-status-badge-live {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 2px 8px;
+            border-radius: 12px;
+            background: rgba(16, 185, 129, 0.14);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            color: #34d399;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .wsi-intro-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 900;
+            line-height: 1.25;
+            color: #ffffff;
+            margin: 0;
+            letter-spacing: 0.3px;
+        }
+
+        .wsi-intro-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            color: var(--sapphire-200, #bae6fd);
+            line-height: 1.4;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        /* Tarjetas Neuroestéticas del Panel */
+        .wsi-intro-card {
+            background: rgba(15, 29, 51, 0.72);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(56, 189, 248, 0.18);
+            border-radius: 10px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 4px 16px rgba(5, 11, 20, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .wsi-intro-card:hover {
+            border-color: rgba(56, 189, 248, 0.35);
+            box-shadow: 0 6px 20px rgba(5, 11, 20, 0.5), 0 0 14px rgba(56, 189, 248, 0.12);
+            transform: translateY(-1px);
+        }
+
+        .wsi-intro-card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10.5px;
+            font-weight: 800;
+            color: var(--accent-sky, #38bdf8);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .wsi-intro-card-title i {
+            font-size: 11px;
+        }
+
+        /* Grilla de Especificaciones Ópticas */
+        .wsi-metric-specs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
+        }
+
+        .wsi-metric-spec-item {
+            background: rgba(5, 11, 20, 0.65);
+            border: 1px solid rgba(56, 189, 248, 0.12);
+            border-radius: 6px;
+            padding: 6px 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .wsi-metric-spec-item .spec-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 9px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .wsi-metric-spec-item .spec-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 800;
+            color: #f8fafc;
+        }
+
+        /* Badges de Resiliencia Quirúrgica */
+        .wsi-resilience-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .wsi-resilience-pill {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 6px 9px;
+            background: rgba(5, 11, 20, 0.6);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 10.5px;
+            font-weight: 600;
+            color: var(--text-primary, #e2edfa);
+            transition: all 0.18s ease;
+        }
+
+        .wsi-resilience-pill:hover {
+            border-color: rgba(56, 189, 248, 0.35);
+            background: rgba(2, 132, 199, 0.15);
+            color: #ffffff;
+        }
+
+        .wsi-resilience-pill i {
+            color: var(--accent-sky, #38bdf8);
+            font-size: 11px;
+            width: 14px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        /* Guía Rápida de Comandos Quirúrgicos */
+        .wsi-controls-guide-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .wsi-controls-guide-list li {
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            color: #cbd5e1;
+            line-height: 1.35;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+        }
+
+        .wsi-controls-guide-list li i {
+            color: var(--accent-sky, #38bdf8);
+            font-size: 10px;
+            margin-top: 2px;
+            width: 12px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .wsi-controls-guide-list li strong {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        /* Acciones Clínicas en el Sidebar */
+        .wsi-intro-sidebar-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: auto;
+            padding-top: 8px;
+        }
+
+        .btn-sidebar-cta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 9px 12px;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 800;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+            white-space: nowrap;
+        }
+
+        .btn-sidebar-wa {
+            background: linear-gradient(135deg, #0d9488, #0f766e);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: #ffffff;
+        }
+
+        .btn-sidebar-wa:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(13, 148, 136, 0.5);
+            background: linear-gradient(135deg, #14b8a6, #0d9488);
+        }
+
+        .btn-sidebar-portal {
+            background: linear-gradient(135deg, rgba(2, 132, 199, 0.75), rgba(3, 105, 161, 0.85));
+            border: 1px solid #38bdf8;
+            color: #ffffff;
+        }
+
+        .btn-sidebar-portal:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.45);
+            background: linear-gradient(135deg, #0284c7, #0369a1);
+        }
+
         /* Escenario Viewport Principal */
         .wsi-full-viewport {
             position: absolute;
@@ -1391,6 +1773,609 @@
             transition: all 0.05s ease-out;
         }
 
+        /* --- LAYOUT HORIZONTAL DOS COLUMNAS PANTALLA 1 (80% WSI / 20% INTRODUCCIÓN) --- */
+        .wsi-split-container,
+        .wsi-main-layout {
+            flex: 1;
+            min-height: 0;
+            width: 100%;
+            height: calc(100% - 52px);
+            max-height: calc(100% - 52px);
+            display: flex;
+            flex-direction: row;
+            overflow: hidden !important;
+            background: #02060d;
+            position: relative;
+        }
+
+        .wsi-viewport-col,
+        .wsi-viewer-col {
+            flex: 0 0 79%;
+            width: 79%;
+            min-width: 0;
+            max-width: 80%;
+            height: 100%;
+            max-height: 100%;
+            position: relative;
+            overflow: hidden !important;
+            background: #02060d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: width 0.32s cubic-bezier(0.16, 1, 0.3, 1), 
+                        flex 0.32s cubic-bezier(0.16, 1, 0.3, 1), 
+                        max-width 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Botón Flotante para Colapsar / Expandir Sidebar (Surgical Toggle) */
+        .wsi-sidebar-toggle-btn {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: rgba(15, 29, 51, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(56, 189, 248, 0.32);
+            color: #38bdf8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            cursor: pointer;
+            z-index: 35;
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+            outline: none;
+        }
+
+        .wsi-sidebar-toggle-btn:hover {
+            background: rgba(2, 132, 199, 0.35);
+            border-color: #38bdf8;
+            color: #ffffff;
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.4);
+            transform: scale(1.05);
+        }
+
+        /* Estado Colapsado: Visor WSI al 100% Pantalla Completa */
+        .wsi-split-container.sidebar-collapsed .wsi-viewport-col,
+        .wsi-main-layout.sidebar-collapsed .wsi-viewer-col {
+            width: 100% !important;
+            max-width: 100% !important;
+            flex: 0 0 100% !important;
+        }
+
+        .wsi-split-container.sidebar-collapsed .wsi-intro-sidebar,
+        .wsi-main-layout.sidebar-collapsed .wsi-intro-sidebar {
+            transform: translateX(100%);
+            width: 0 !important;
+            max-width: 0 !important;
+            flex: 0 0 0% !important;
+            padding: 0 !important;
+            border-left: none !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+
+        .wsi-intro-sidebar {
+            flex: 0 0 21%;
+            width: 21%;
+            min-width: 280px;
+            max-width: 22%;
+            height: 100%;
+            max-height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background: rgba(10, 19, 34, 0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-left: 1px solid rgba(56, 189, 248, 0.22);
+            box-shadow: -10px 0 35px rgba(0, 0, 0, 0.65);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            padding: 18px;
+            z-index: 35;
+            box-sizing: border-box;
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+            transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), 
+                        width 0.32s cubic-bezier(0.16, 1, 0.3, 1), 
+                        opacity 0.25s ease;
+        }
+
+        .wsi-intro-sidebar::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+        }
+
+        /* Cabecera del Panel Lateral */
+        .wsi-sidebar-header {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding-bottom: 9px;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.18);
+        }
+
+        .wsi-sidebar-badge-strip {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+        }
+
+        .wsi-brand-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 10px;
+            font-weight: 800;
+            color: #38bdf8;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .wsi-status-live-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 2px 8px;
+            border-radius: 12px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            color: #34d399;
+            font-size: 9px;
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.5px;
+        }
+
+        .wsi-sidebar-title {
+            font-size: 14px;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1.25;
+            letter-spacing: 0.4px;
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .wsi-sidebar-subtitle {
+            font-size: 10px;
+            color: #94a3b8;
+            line-height: 1.35;
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Tarjeta Quirúrgica de Introducción (Surgical-Glass) */
+        .wsi-sidebar-card {
+            background: rgba(15, 29, 51, 0.75);
+            border: 1px solid rgba(56, 189, 248, 0.18);
+            border-radius: 10px;
+            padding: 10px 12px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(12px);
+            transition: border-color 0.2s;
+        }
+
+        .wsi-sidebar-card:hover {
+            border-color: rgba(56, 189, 248, 0.32);
+        }
+
+        .wsi-intro-desc {
+            font-size: 10.5px;
+            color: #cbd5e1;
+            line-height: 1.45;
+            margin: 0;
+        }
+
+        .wsi-intro-desc strong {
+            color: #ffffff;
+        }
+
+        .wsi-intro-highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .wsi-intro-highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 9.5px;
+            color: #94a3b8;
+        }
+
+        .wsi-intro-highlight-item i {
+            color: #38bdf8;
+            font-size: 10px;
+        }
+
+        /* Ficha Diagnóstica del Corte Activo */
+        .wsi-clinical-card {
+            background: linear-gradient(135deg, rgba(15, 29, 51, 0.85) 0%, rgba(10, 20, 38, 0.92) 100%);
+            border: 1px solid rgba(56, 189, 248, 0.28);
+            border-radius: 11px;
+            padding: 12px 13px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .wsi-clinical-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .wsi-clinical-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 9px;
+            font-weight: 800;
+            color: #38bdf8;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .wsi-diagnosis-name {
+            font-size: 12.5px;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1.3;
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Score de Gleason & ISUP Badge Group */
+        .wsi-score-cluster {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            padding: 8px 9px;
+            background: rgba(5, 11, 20, 0.75);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 7px;
+        }
+
+        .wsi-score-badge {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .wsi-score-label {
+            font-size: 8.5px;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .wsi-score-val {
+            font-size: 13px;
+            font-weight: 900;
+            color: #f43f5e;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.3px;
+        }
+
+        .wsi-score-val.isup {
+            color: #38bdf8;
+        }
+
+        /* Hallazgos Histopatológicos Clave */
+        .wsi-findings-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .wsi-findings-title {
+            font-size: 9px;
+            font-weight: 800;
+            color: #cbd5e1;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .wsi-finding-node {
+            display: flex;
+            gap: 7px;
+            align-items: flex-start;
+            padding: 6px 8px;
+            border-radius: 6px;
+            background: rgba(5, 11, 20, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.15s;
+        }
+
+        .wsi-finding-node:hover {
+            background: rgba(5, 11, 20, 0.75);
+            border-color: rgba(56, 189, 248, 0.25);
+        }
+
+        .wsi-finding-bullet {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            margin-top: 4px;
+            flex-shrink: 0;
+        }
+        .wsi-finding-bullet.red { background: #f43f5e; box-shadow: 0 0 6px rgba(244, 63, 94, 0.6); }
+        .wsi-finding-bullet.amber { background: #f59e0b; box-shadow: 0 0 6px rgba(245, 158, 11, 0.6); }
+        .wsi-finding-bullet.sky { background: #38bdf8; box-shadow: 0 0 6px rgba(56, 189, 248, 0.6); }
+
+        .wsi-finding-text {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .wsi-finding-head {
+            font-size: 10.5px;
+            font-weight: 800;
+            color: #f1f5f9;
+            line-height: 1.25;
+        }
+
+        .wsi-finding-desc {
+            font-size: 9.5px;
+            color: #94a3b8;
+            line-height: 1.35;
+            margin: 0;
+        }
+
+        /* Selector Rápido de Muestras */
+        .wsi-quick-samples-box {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .wsi-quick-samples-label {
+            font-size: 9px;
+            font-weight: 800;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .wsi-quick-samples-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+        }
+
+        .wsi-quick-sample-btn {
+            background: rgba(10, 19, 34, 0.85);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 6px;
+            padding: 6px 3px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            cursor: pointer;
+            transition: all 0.18s;
+            text-align: center;
+        }
+
+        .wsi-quick-sample-btn:hover {
+            border-color: #38bdf8;
+            background: rgba(2, 132, 199, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .wsi-quick-sample-btn.active {
+            border-color: #38bdf8;
+            background: rgba(2, 132, 199, 0.35);
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+        }
+
+        .wsi-quick-sample-btn i {
+            font-size: 10px;
+        }
+
+        .wsi-quick-sample-btn span {
+            font-size: 8.5px;
+            font-weight: 800;
+            color: #e2edfa;
+            line-height: 1.1;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Botón de Conexión Cloudflare In-House */
+        .wsi-cloudflare-card {
+            background: linear-gradient(135deg, rgba(2, 132, 199, 0.16) 0%, rgba(13, 148, 136, 0.16) 100%);
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            border-radius: 9px;
+            padding: 9px 11px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .wsi-cloudflare-card:hover {
+            border-color: #38bdf8;
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
+        }
+
+        .wsi-cloudflare-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .wsi-cloudflare-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 9px;
+            font-weight: 800;
+            color: #34d399;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .wsi-cloudflare-link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 7px 10px;
+            background: linear-gradient(135deg, #0284c7 0%, #0d9488 100%);
+            border: 1px solid #38bdf8;
+            border-radius: 6px;
+            color: #ffffff;
+            font-size: 10.5px;
+            font-weight: 800;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(2, 132, 199, 0.4);
+            transition: all 0.2s;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .wsi-cloudflare-link-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 16px rgba(56, 189, 248, 0.5);
+            filter: brightness(1.08);
+        }
+
+        /* Botonera de Contacto e Interconsulta */
+        .wsi-sidebar-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-top: auto;
+            padding-top: 6px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .wsi-sidebar-wa-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 7px 10px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 800;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .wsi-sidebar-wa-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.4);
+        }
+
+        @media (max-width: 1024px) {
+            .wsi-split-container,
+            .wsi-main-layout {
+                flex-direction: column;
+                height: calc(100% - 52px);
+            }
+            .wsi-viewport-col,
+            .wsi-viewer-col {
+                flex: 1 1 68%;
+                width: 100%;
+                max-width: 100%;
+                height: 68%;
+            }
+            .wsi-intro-sidebar {
+                flex: 0 0 32%;
+                width: 100%;
+                max-width: 100%;
+                height: 32%;
+                border-left: none;
+                border-top: 1px solid rgba(56, 189, 248, 0.22);
+                padding: 12px 16px;
+                gap: 10px;
+                box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+            }
+            .wsi-sidebar-toggle-btn {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .wsi-split-container,
+            .wsi-main-layout {
+                flex-direction: column;
+                height: calc(100% - 52px);
+            }
+            .wsi-viewport-col,
+            .wsi-viewer-col {
+                width: 100%;
+                max-width: 100%;
+                flex: 0 0 100%;
+                height: 100%;
+            }
+            .wsi-intro-sidebar {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                max-height: 50vh;
+                flex: none;
+                border-left: none;
+                border-top: 1.5px solid rgba(56, 189, 248, 0.4);
+                border-radius: 16px 16px 0 0;
+                padding: 10px 14px 22px 14px;
+                transform: translateY(calc(100% - 38px));
+                transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+                z-index: 60;
+                background: rgba(10, 19, 34, 0.98);
+                box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.75);
+            }
+            .wsi-intro-sidebar.mobile-expanded {
+                transform: translateY(0);
+            }
+            .wsi-sidebar-mobile-handle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                padding: 4px 0 6px 0;
+                cursor: pointer;
+            }
+            .wsi-sidebar-mobile-pill {
+                width: 48px;
+                height: 4px;
+                border-radius: 2px;
+                background: rgba(56, 189, 248, 0.5);
+            }
+        }
+
         /* --- PANTALLA 2: MAPEO 3D ESPECÍFICO --- */
         .specimen-3d-stage {
             position: absolute;
@@ -1494,6 +2479,7 @@
         }
         .phone-mockup-fit {
             width: 420px;
+            max-width: calc(100vw - 20px);
             height: 88vh;
             max-height: 780px;
             min-height: 520px;
@@ -1700,17 +2686,17 @@
 
                     <!-- SELECTOR DE LAS 3 MUESTRAS HISTOLÓGICAS LOCALES -->
                     <div class="wsi-samples-toggle" role="group" aria-label="Selección de 3 muestras WSI locales">
-                        <button type="button" class="wsi-sample-btn active" id="btnSampleSkin" data-sample="skin" title="Muestra 1: Piel: Dermatopatología (H&E)">
-                            <i class="fa-solid fa-layer-group" style="color: #f472b6;"></i>
-                            <span>Piel: Dermatopatología (H&E)</span>
+                        <button type="button" class="wsi-sample-btn active" id="btnSampleProstate" data-sample="prostate" title="Muestra 1: Carcinoma de Próstata (Gleason 4+3 = 7, ISUP 3)">
+                            <i class="fa-solid fa-microscope" style="color: #f43f5e;"></i>
+                            <span>Carcinoma de Próstata (H&E)</span>
                         </button>
                         <button type="button" class="wsi-sample-btn" id="btnSampleGastric" data-sample="gastric" title="Muestra 2: Biopsia Gástrica (H&E 40x)">
                             <i class="fa-solid fa-circle-dot" style="color: #38bdf8;"></i>
                             <span>Biopsia Gástrica (H&E 40x)</span>
                         </button>
-                        <button type="button" class="wsi-sample-btn" id="btnSampleAcinar" data-sample="acinar" title="Muestra 3: Carcinoma Acinar (H&E)">
-                            <i class="fa-solid fa-microscope" style="color: #34d399;"></i>
-                            <span>Carcinoma Acinar (H&E)</span>
+                        <button type="button" class="wsi-sample-btn" id="btnSampleRenal" data-sample="renal" title="Muestra 3: Corte Quirúrgico Renal / Oncocitoma (H&E)">
+                            <i class="fa-solid fa-dna" style="color: #34d399;"></i>
+                            <span>Corte Quirúrgico Renal (H&E)</span>
                         </button>
                     </div>
                 </div>
@@ -1798,154 +2784,294 @@
                 </div>
             </div>
 
-            <!-- ESCENARIO PRINCIPAL (VIEWPORT 100% DISPONIBLE DE PANTALLA) -->
-            <div class="stage-viewer-container" id="wsiStageContainer">
-                <!-- BANNER DE AVISO DE ESTADO DEL TÚNEL CLOUDFLARE -->
-                <div class="wsi-tunnel-notice-banner" id="wsiTunnelNoticeBanner" style="display: none;">
-                    <div class="wsi-notice-inner">
-                        <i class="fa-solid fa-shield-halved" style="color: #38bdf8; font-size: 13px;"></i>
-                        <span><strong>Resiliencia Nocturna 24/7 Activa:</strong> El túnel físico Cloudflare está en reposo nocturno. Las 3 muestras locales de alta resolución (Piel, Biopsia Gástrica y Carcinoma Acinar) operan al 100% en el visor web con zoom 2x-40x y rotación de 0° a 360°.</span>
-                        <button type="button" class="wsi-notice-close" onclick="document.getElementById('wsiTunnelNoticeBanner').style.display='none'">&times;</button>
+            <!-- ==================================================================
+               WORKSPACE HORIZONTAL DIVIDIDO EN 2 COLUMNAS (80% WSI / 20% INTRO)
+               ================================================================== -->
+            <div class="wsi-split-container wsi-main-layout" id="wsiSplitContainer">
+                <!-- COLUMNA IZQUIERDA (~78% - 80%): VISOR WSI INTERACTIVO GIGAPÍXEL -->
+                <div class="wsi-viewport-col wsi-viewer-col" id="wsiStageContainer">
+                    <button type="button" class="wsi-sidebar-toggle-btn" id="wsiSidebarToggleBtn" title="Colapsar / Expandir Panel Lateral (100% Pantalla Completa)" aria-label="Alternar Panel Lateral">
+                        <i class="fa-solid fa-angles-right" id="wsiToggleIcon"></i>
+                    </button>
+                    <!-- BANNER DE AVISO DE ESTADO DEL TÚNEL CLOUDFLARE -->
+                    <div class="wsi-tunnel-notice-banner" id="wsiTunnelNoticeBanner" style="display: none;">
+                        <div class="wsi-notice-inner">
+                            <i class="fa-solid fa-shield-halved" style="color: #38bdf8; font-size: 13px;"></i>
+                            <span><strong>Resiliencia Nocturna 24/7 Activa:</strong> El túnel físico Cloudflare está en reposo nocturno. Las 3 muestras locales de alta resolución operan al 100% en el visor web con zoom 2x-40x y rotación de 0° a 360°.</span>
+                            <button type="button" class="wsi-notice-close" onclick="document.getElementById('wsiTunnelNoticeBanner').style.display='none'">&times;</button>
+                        </div>
+                    </div>
+
+                    <!-- VIEWPORT INTERACTIVO GIGAPÍXEL -->
+                    <div class="wsi-full-viewport" id="wsiViewport" title="Arrastra para moverte (Pan). Usa la rueda o botones para Zoom (2x-40x).">
+                        <div class="wsi-stage-transform" id="wsiTransformStage">
+                            <img src="wsi_slides/muestra_1_carcinoma_prostata_real.webp" id="wsiSlideImg" class="wsi-slide-image" alt="Carcinoma de Próstata Real - Biopsia Gleason WSI" draggable="false">
+                            
+                            <!-- CAPA DE MORFOMETRÍA IA (OVERLAY DINÁMICO) -->
+                            <div class="wsi-ai-overlay" id="wsiAiOverlay">
+                                <div class="wsi-ai-tag tag-pleomorphism" style="top: 40%; left: 45%;">
+                                    <span class="ai-box"></span>
+                                    <span class="ai-txt">Luces Cribiformes (Patrón 4)</span>
+                                </div>
+                                <div class="wsi-ai-tag tag-mitosis" style="top: 55%; left: 62%;">
+                                    <span class="ai-box"></span>
+                                    <span class="ai-txt">Atipia Nuclear &amp; Pleomorfismo</span>
+                                </div>
+                                <div class="wsi-ai-tag tag-stroma" style="top: 70%; left: 28%;">
+                                    <span class="ai-box"></span>
+                                    <span class="ai-txt">Ausencia Células Basales (p63 -)</span>
+                                </div>
+                                <div class="wsi-ai-legend">
+                                    <div class="ai-leg-item"><span class="leg-color leg-red"></span> Atipia Nuclear Marcada</div>
+                                    <div class="ai-leg-item"><span class="leg-color leg-sky"></span> Luces Cribiformes Neoplásicas</div>
+                                    <div class="ai-leg-item"><span class="leg-color leg-green"></span> Ausencia Capa Basal Mioepitelial</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- LENTE / LUPA FLOTANTE (80x) -->
+                        <div class="wsi-magnifier-lens" id="wsiMagnifierLens"></div>
+                    </div>
+
+                    <!-- WIDGET FLOTANTE SUPERIOR DERECHO DEL VISOR: DIAL CIRCULAR DE ROTACIÓN (0° a 360°) -->
+                    <div class="wsi-rotation-widget" id="wsiRotationWidget">
+                        <div class="rot-widget-header">
+                            <i class="fa-solid fa-compass"></i>
+                            <span>Control de Rotación</span>
+                        </div>
+                        <div class="rot-dial-wrap" id="rotDialWrap" title="Arrastra circularmente para rotar el corte histológico de 0° a 360°">
+                            <div class="rot-dial-circle" id="rotDialCircle">
+                                <div class="rot-dial-needle" id="rotDialNeedle"></div>
+                                <div class="rot-dial-center">
+                                    <span class="rot-dial-degrees" id="dialDegreesText">0°</span>
+                                </div>
+                                <span class="rot-dial-tick tick-0">0°</span>
+                                <span class="rot-dial-tick tick-90">90°</span>
+                                <span class="rot-dial-tick tick-180">180°</span>
+                                <span class="rot-dial-tick tick-270">270°</span>
+                            </div>
+                        </div>
+                        <div class="rot-quick-grid">
+                            <button type="button" class="rot-quick-btn active" data-angle="0">0°</button>
+                            <button type="button" class="rot-quick-btn" data-angle="90">90°</button>
+                            <button type="button" class="rot-quick-btn" data-angle="180">180°</button>
+                            <button type="button" class="rot-quick-btn" data-angle="270">270°</button>
+                        </div>
+                    </div>
+
+                    <!-- ESQUINA INFERIOR IZQUIERDA: BARRA DE ESCALA MICROMÉTRICA & TELEMETRÍA -->
+                    <div class="wsi-scale-cluster">
+                        <div class="wsi-sample-meta-card">
+                            <div class="wsi-meta-row">
+                                <span class="wsi-meta-badge" id="wsiMetaStainBadge"><i class="fa-solid fa-dna"></i> <span id="wsiMetaStain">H&amp;E 40x</span></span>
+                                <span class="wsi-meta-badge live"><i class="fa-solid fa-signal"></i> 0.25 µm/px</span>
+                                <span class="wsi-meta-badge" id="wsiMetaOrganBadge" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.3); color: #38bdf8;"><i class="fa-solid fa-microscope"></i> <span id="wsiMetaOrgan">Próstata</span></span>
+                            </div>
+                            <div class="wsi-meta-title" id="wsiSampleTitle">
+                                Adenocarcinoma Acinar de Próstata (Score de Gleason 4+3 = 7, ISUP 3)
+                            </div>
+                            <div class="wsi-meta-note" id="wsiSampleNote" style="font-size: 10px; color: #94a3b8; margin-top: 4px; line-height: 1.35;">
+                                Proliferación acinar maligna con atipia nuclear marcada, luces cribiformes confluentes y ausencia de células basales.
+                            </div>
+                        </div>
+
+                        <div class="wsi-scale-bar-card">
+                            <div class="wsi-scale-line-container">
+                                <div class="wsi-scale-line" id="wsiScaleLine"></div>
+                            </div>
+                            <div class="wsi-scale-label">
+                                <span class="wsi-scale-val" id="wsiScaleValue">250 µm</span>
+                                <span class="wsi-scale-note">Calibración Óptica Plan-Apo</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ESQUINA INFERIOR DERECHA DEL VISOR: MINIMAPA DE NAVEGACIÓN Y BARRA TÁCTIL -->
+                    <div class="wsi-minimap-cluster">
+                        <div class="wsi-touch-toolbar">
+                            <button type="button" class="wsi-touch-btn" id="btnTouchCenter" title="Centrar Vista">
+                                <i class="fa-solid fa-crosshairs"></i>
+                            </button>
+                            <button type="button" class="wsi-touch-btn" id="btnTouchZoomIn" title="Aumentar Zoom">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                            <button type="button" class="wsi-touch-btn" id="btnTouchZoomOut" title="Reducir Zoom">
+                                <i class="fa-solid fa-minus"></i>
+                            </button>
+                            <button type="button" class="wsi-touch-btn" id="btnTouchReset" title="Reset Pan, Zoom y Rotación">
+                                <i class="fa-solid fa-rotate-left"></i>
+                            </button>
+                        </div>
+
+                        <div class="wsi-minimap-card" id="wsiMinimapCard" title="Haz clic o arrastra sobre el minimapa para navegar a cualquier zona del corte">
+                            <div class="wsi-minimap-header">
+                                <span class="wsi-minimap-label"><i class="fa-solid fa-map"></i> Vista Global WSI</span>
+                                <span class="wsi-minimap-mag" id="minimapMagBadge">2x</span>
+                            </div>
+                            <div class="wsi-minimap-box" id="wsiMinimapBox">
+                                <img src="wsi_slides/muestra_1_carcinoma_prostata_real_thumb.webp" id="wsiMinimapThumb" class="wsi-minimap-thumb" alt="Minimapa Carcinoma de Próstata">
+                                <div class="wsi-minimap-rect" id="wsiMinimapRect"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- VIEWPORT INTERACTIVO GIGAPÍXEL -->
-                <div class="wsi-full-viewport" id="wsiViewport" title="Arrastra para moverte (Pan). Usa la rueda o botones para Zoom (2x-40x).">
-                    <div class="wsi-stage-transform" id="wsiTransformStage">
-                        <img src="wsi_slides/muestra_1_piel_dermatopatologia.webp" id="wsiSlideImg" class="wsi-slide-image" alt="Corte Histológico Gigapíxel WSI" draggable="false">
-                        
-                        <!-- CAPA DE MORFOMETRÍA IA (OVERLAY DINÁMICO) -->
-                        <div class="wsi-ai-overlay" id="wsiAiOverlay">
-                            <div class="wsi-ai-tag tag-histio" style="top: 42%; left: 48%;">
-                                <span class="ai-box"></span>
-                                <span class="ai-txt">Infiltrado Histiocitario (CD68+)</span>
+                <!-- COLUMNA DERECHA (~22%): PANEL DE INTRODUCCIÓN & FICHA CLÍNICA (SURGICAL-GLASS & DISEÑO ABISAL) -->
+                <aside class="wsi-intro-sidebar" id="wsiIntroSidebar" aria-label="Introducción al Laboratorio y Ficha Diagnóstica">
+                    <!-- MANIJA TÁCTIL MÓVIL (DRAWER HANDLE) -->
+                    <div class="wsi-sidebar-mobile-handle" id="wsiMobileDrawerHandle" title="Deslizar para ver u ocultar detalles del caso clínico">
+                        <div class="wsi-sidebar-mobile-pill"></div>
+                    </div>
+
+                    <!-- CABECERA INSTITUCIONAL -->
+                    <div class="wsi-sidebar-header">
+                        <div class="wsi-sidebar-badge-strip">
+                            <div class="wsi-brand-pill">
+                                <i class="fa-solid fa-microscope"></i> JC PATH LAB
                             </div>
-                            <div class="wsi-ai-tag tag-epidermis" style="top: 20%; left: 32%;">
-                                <span class="ai-box"></span>
-                                <span class="ai-txt">Epidermis e Interfase Conservada</span>
+                            <span class="wsi-status-live-chip">
+                                <span class="wsi-pulse-dot" style="width: 6px; height: 6px;"></span> WSI 40X LIVE
+                            </span>
+                        </div>
+                        <h2 class="wsi-sidebar-title">CENTRO DE PATOLOGÍA DIGITAL WSI 40X</h2>
+                        <p class="wsi-sidebar-subtitle">Laboratorio de Referencia Nacional &bull; Dr. Joseph C. Castillo (C.M.P. 56435)</p>
+                    </div>
+
+                    <!-- INTRODUCCIÓN CONCISA Y ELEGANTE -->
+                    <div class="wsi-sidebar-card">
+                        <p class="wsi-intro-desc">
+                            Infraestructura diagnóstica histopatológica equipada con escaneo gigapíxel a <strong>0.25 µm/píxel</strong>, servidor físico in-house de <strong>3.5 TB</strong> y transmisión remota segura 24/7. Certidumbre diagnóstica en tiempo real con soporte de morfometría IA.
+                        </p>
+                        <div class="wsi-intro-highlights">
+                            <div class="wsi-intro-highlight-item">
+                                <i class="fa-solid fa-circle-check"></i>
+                                <span>Resolución 0.25 µm/px</span>
                             </div>
-                            <div class="wsi-ai-tag tag-follicle" style="top: 66%; left: 58%;">
-                                <span class="ai-box"></span>
-                                <span class="ai-txt">Anejo Folicular Respetado</span>
+                            <div class="wsi-intro-highlight-item">
+                                <i class="fa-solid fa-server"></i>
+                                <span>Servidor Físico 3.5 TB</span>
                             </div>
-                            <div class="wsi-ai-legend">
-                                <div class="ai-leg-item"><span class="leg-color leg-sky"></span> Infiltrado Histiocitario Dérmico</div>
-                                <div class="ai-leg-item"><span class="leg-color leg-green"></span> Epidermis Conservada</div>
-                                <div class="ai-leg-item"><span class="leg-color leg-amber"></span> Anejos Cutáneos</div>
+                            <div class="wsi-intro-highlight-item">
+                                <i class="fa-solid fa-shield-halved"></i>
+                                <span>Túnel Cloudflare</span>
+                            </div>
+                            <div class="wsi-intro-highlight-item">
+                                <i class="fa-solid fa-brain"></i>
+                                <span>Morfometría IA</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- LENTE / LUPA FLOTANTE (80x) -->
-                    <div class="wsi-magnifier-lens" id="wsiMagnifierLens"></div>
-                </div>
+                    <!-- FICHA DIAGNÓSTICA DEL CORTE ACTIVO (ADENOCARCINOMA ACINAR DE PRÓSTATA) -->
+                    <div class="wsi-clinical-card" id="wsiClinicalCard">
+                        <div class="wsi-clinical-head">
+                            <span class="wsi-clinical-tag">
+                                <i class="fa-solid fa-dna"></i> FICHA HISTOPATOLÓGICA ACTIVA
+                            </span>
+                            <span class="floating-pill highlight" style="font-size: 9px; padding: 2px 7px;">Caso 26Q-0194</span>
+                        </div>
 
-                <!-- WIDGET FLOTANTE LATERAL DERECHO: DIAL CIRCULAR DE ROTACIÓN (0° a 360°) -->
-                <div class="wsi-rotation-widget" id="wsiRotationWidget">
-                    <div class="rot-widget-header">
-                        <i class="fa-solid fa-compass"></i>
-                        <span>Control de Rotación</span>
-                    </div>
-                    <!-- DIAL ANALÓGICO / DIGITAL CIRCULAR -->
-                    <div class="rot-dial-wrap" id="rotDialWrap" title="Arrastra circularmente para rotar el corte histológico de 0° a 360°">
-                        <div class="rot-dial-circle" id="rotDialCircle">
-                            <div class="rot-dial-needle" id="rotDialNeedle"></div>
-                            <div class="rot-dial-center">
-                                <span class="rot-dial-degrees" id="dialDegreesText">0°</span>
+                        <h3 class="wsi-diagnosis-name" id="wsiDiagnosisHeading">
+                            Adenocarcinoma Acinar de Próstata
+                        </h3>
+
+                        <!-- SCORE DE GLEASON & ISUP -->
+                        <div class="wsi-score-cluster">
+                            <div class="wsi-score-badge">
+                                <span class="wsi-score-label">Score de Gleason</span>
+                                <span class="wsi-score-val" id="wsiGleasonVal">4 + 3 = 7</span>
                             </div>
-                            <!-- Marcas de cuadrantes -->
-                            <span class="rot-dial-tick tick-0">0°</span>
-                            <span class="rot-dial-tick tick-90">90°</span>
-                            <span class="rot-dial-tick tick-180">180°</span>
-                            <span class="rot-dial-tick tick-270">270°</span>
+                            <div class="wsi-score-badge">
+                                <span class="wsi-score-label">Grupo Grado OMS</span>
+                                <span class="wsi-score-val isup" id="wsiIsupVal">ISUP 3</span>
+                            </div>
                         </div>
-                    </div>
-                    <!-- ACCESOS RÁPIDOS 0°, 90°, 180°, 270° -->
-                    <div class="rot-quick-grid">
-                        <button type="button" class="rot-quick-btn active" data-angle="0">0°</button>
-                        <button type="button" class="rot-quick-btn" data-angle="90">90°</button>
-                        <button type="button" class="rot-quick-btn" data-angle="180">180°</button>
-                        <button type="button" class="rot-quick-btn" data-angle="270">270°</button>
-                    </div>
-                </div>
 
-                <!-- ESQUINA INFERIOR IZQUIERDA: BARRA DE ESCALA MICROMÉTRICA & TELEMETRÍA -->
-                <div class="wsi-scale-cluster">
-                    <div class="wsi-sample-meta-card">
-                        <div class="wsi-meta-row">
-                            <span class="wsi-meta-badge" id="wsiMetaStainBadge"><i class="fa-solid fa-dna"></i> <span id="wsiMetaStain">H&amp;E 40x</span></span>
-                            <span class="wsi-meta-badge live"><i class="fa-solid fa-signal"></i> 0.25 µm/px</span>
-                            <span class="wsi-meta-badge" id="wsiMetaOrganBadge" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.3); color: #38bdf8;"><i class="fa-solid fa-microscope"></i> <span id="wsiMetaOrgan">Piel / Dermatopatología</span></span>
-                        </div>
-                        <div class="wsi-meta-title" id="wsiSampleTitle">
-                            Piel: Dermatopatología (Biopsia Cutánea / Infiltrado Dérmico H&amp;E 40x)
-                        </div>
-                        <div class="wsi-meta-note" id="wsiSampleNote" style="font-size: 10px; color: #94a3b8; margin-top: 4px; line-height: 1.35;">
-                            Biopsia cutánea con arquitectura dermoepidérmica conservada, anejos foliculares íntegros y denso infiltrado dérmico linfohistiocitario sin signos de malignidad.
-                        </div>
-                    </div>
+                        <!-- HALLAZGOS CLAVE EXIGIDOS POR EL PATÓLOGO -->
+                        <div class="wsi-findings-list">
+                            <div class="wsi-findings-title">
+                                <i class="fa-solid fa-list-check" style="color: #38bdf8;"></i> Hallazgos Histopatológicos Clave:
+                            </div>
 
-                    <div class="wsi-scale-bar-card">
-                        <div class="wsi-scale-line-container">
-                            <div class="wsi-scale-line" id="wsiScaleLine"></div>
-                        </div>
-                        <div class="wsi-scale-label">
-                            <span class="wsi-scale-val" id="wsiScaleValue">250 µm</span>
-                            <span class="wsi-scale-note">Calibración Óptica Plan-Apo</span>
-                        </div>
-                    </div>
-                </div>
+                            <div class="wsi-finding-node">
+                                <span class="wsi-finding-bullet red"></span>
+                                <div class="wsi-finding-text">
+                                    <span class="wsi-finding-head">Atipia Nuclear Marcada &amp; Pleomorfismo</span>
+                                    <p class="wsi-finding-desc">Pérdida de polaridad glandular, hipercromatismo severo y macronucléolos eosinófilos conspicuos visibles a 40x.</p>
+                                </div>
+                            </div>
 
-                <!-- ESQUINA INFERIOR DERECHA: MINIMAPA DE NAVEGACIÓN Y BARRA TÁCTIL -->
-                <div class="wsi-minimap-cluster">
-                    <!-- BARRA DE HERRAMIENTAS TÁCTILES FLOTANTES -->
-                    <div class="wsi-touch-toolbar">
-                        <button type="button" class="wsi-touch-btn" id="btnTouchCenter" title="Centrar Vista">
-                            <i class="fa-solid fa-crosshairs"></i>
-                        </button>
-                        <button type="button" class="wsi-touch-btn" id="btnTouchZoomIn" title="Aumentar Zoom">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                        <button type="button" class="wsi-touch-btn" id="btnTouchZoomOut" title="Reducir Zoom">
-                            <i class="fa-solid fa-minus"></i>
-                        </button>
-                        <button type="button" class="wsi-touch-btn" id="btnTouchReset" title="Reset Pan, Zoom y Rotación">
-                            <i class="fa-solid fa-rotate-left"></i>
-                        </button>
+                            <div class="wsi-finding-node">
+                                <span class="wsi-finding-bullet amber"></span>
+                                <div class="wsi-finding-text">
+                                    <span class="wsi-finding-head">Ausencia Total de Células Basales</span>
+                                    <p class="wsi-finding-desc">Pérdida integral de la capa mioepitelial basal (p63 - / CK34βE12 -), confirmando invasión neoplásica en estroma.</p>
+                                </div>
+                            </div>
+
+                            <div class="wsi-finding-node">
+                                <span class="wsi-finding-bullet sky"></span>
+                                <div class="wsi-finding-text">
+                                    <span class="wsi-finding-head">Luces Cribiformes &amp; Fusión Acinar</span>
+                                    <p class="wsi-finding-desc">Patrón 4 cribiforme dominante (65% del tumor) con glándulas confluentes y perforaciones luminales redondeadas.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CORRELACIÓN IHQ RÁPIDA -->
+                        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                            <span class="floating-pill success" style="font-size: 9px; padding: 2px 7px;">
+                                <i class="fa-solid fa-check"></i> AMACR (P504S): (+) Intenso
+                            </span>
+                            <span class="floating-pill" style="font-size: 9px; padding: 2px 7px; border-color: rgba(244, 63, 94, 0.4); color: #f43f5e;">
+                                <i class="fa-solid fa-xmark"></i> p63 / Basales: (-) Negativo
+                            </span>
+                        </div>
                     </div>
 
-                    <!-- MINIMAPA DE NAVEGACIÓN RADAR -->
-                    <div class="wsi-minimap-card" id="wsiMinimapCard" title="Haz clic o arrastra sobre el minimapa para navegar a cualquier zona del corte">
-                        <div class="wsi-minimap-header">
-                            <span class="wsi-minimap-label"><i class="fa-solid fa-map"></i> Vista Global WSI</span>
-                            <span class="wsi-minimap-mag" id="minimapMagBadge">2x</span>
-                        </div>
-                        <div class="wsi-minimap-box" id="wsiMinimapBox">
-                            <img src="wsi_slides/muestra_1_piel_thumb.webp" id="wsiMinimapThumb" class="wsi-minimap-thumb" alt="Minimapa Lámina Completa">
-                            <div class="wsi-minimap-rect" id="wsiMinimapRect"></div>
+                    <!-- ACCESO RÁPIDO A LAS MUESTRAS -->
+                    <div class="wsi-quick-samples-box">
+                        <span class="wsi-quick-samples-label">
+                            <i class="fa-solid fa-microscope" style="color: #38bdf8;"></i> Acceso Rápido a Muestras WSI:
+                        </span>
+                        <div class="wsi-quick-samples-grid" role="group" aria-label="Acceso Rápido a Muestras WSI">
+                            <button type="button" class="wsi-quick-sample-btn active" id="sideBtnSampleProstate" onclick="switchWSISample('prostate')" title="Muestra 1: Carcinoma de Próstata Real (Gleason 4+3)">
+                                <i class="fa-solid fa-microscope" style="color: #f43f5e;"></i>
+                                <span>Próstata (Gleason 4+3)</span>
+                            </button>
+                            <button type="button" class="wsi-quick-sample-btn" id="sideBtnSampleGastric" onclick="switchWSISample('gastric')" title="Muestra 2: Biopsia Gástrica">
+                                <i class="fa-solid fa-circle-dot" style="color: #38bdf8;"></i>
+                                <span>Gástrica 40x</span>
+                            </button>
+                            <button type="button" class="wsi-quick-sample-btn" id="sideBtnSampleRenal" onclick="switchWSISample('renal')" title="Muestra 3: Corte Quirúrgico Renal">
+                                <i class="fa-solid fa-dna" style="color: #34d399;"></i>
+                                <span>Renal / Oncocitoma</span>
+                            </button>
                         </div>
                     </div>
-                </div>
 
-                <!-- HUD FLOTANTE INFERIOR: ENLACE AL SERVIDOR WSI Y CONVERSIÓN RÁPIDA -->
-                <div class="screen-floating-bottom-bar" style="bottom: 12px; pointer-events: none;">
-                    <div class="pills-cluster" style="pointer-events: auto;">
-                        <a href="https://icon-kidney-collins-rebecca.trycloudflare.com/" target="_blank" rel="noopener noreferrer" class="floating-pill highlight" title="Abrir Servidor WSI In-House Completo en Vivo" style="text-decoration: none; display: inline-flex; align-items: center; gap: 7px; background: rgba(2, 132, 199, 0.45); border-color: #38bdf8;">
-                            <span class="wsi-live-beacon" style="width: 8px; height: 8px;"></span>
-                            <strong>Conectar al Servidor WSI In-House en Vivo</strong>
-                            <span style="opacity: 0.85; font-size: 10px; font-family: monospace;">(https://icon-kidney-collins-rebecca.trycloudflare.com/)</span>
-                            <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 11px;"></i>
+                    <!-- BOTÓN DESTACADO: CONECTAR AL SERVIDOR CLOUDFLARE IN-HOUSE -->
+                    <div class="wsi-cloudflare-card">
+                        <div class="wsi-cloudflare-meta">
+                            <span class="wsi-cloudflare-badge">
+                                <span class="wsi-pulse-dot" style="width: 6px; height: 6px;"></span> 3.5 TB LOCAL ACTIVO
+                            </span>
+                            <span style="font-size: 8.5px; color: #94a3b8; font-family: monospace;">Túnel Seguro 24/7</span>
+                        </div>
+                        <a href="https://icon-kidney-collins-rebecca.trycloudflare.com/" target="_blank" rel="noopener noreferrer" class="wsi-cloudflare-link-btn" title="Conectar al Servidor WSI In-House en Vivo (Icon Kidney Collins)">
+                            <i class="fa-solid fa-server"></i>
+                            <span>Conectar al Servidor Cloudflare</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px;"></i>
                         </a>
                     </div>
-                    <div class="actions-cluster" style="pointer-events: auto;">
-                        <a href="https://wa.me/51986396733?text=Estimado%20Dr.%20Joseph%20Castillo,%20le%20escribo%20desde%20el%20Visor%20WSI%20para%20coordinar%20estudio%20de%20biopsias" target="_blank" class="btn-screen-cta btn-screen-wa">
+
+                    <!-- ACCIONES DE INTERCONSULTA QUIRÚRGICA DIRECTA -->
+                    <div class="wsi-sidebar-actions">
+                        <a href="https://wa.me/51986396733?text=Estimado%20Dr.%20Joseph%20Castillo,%20le%20escribo%20desde%20el%20Visor%20WSI%20para%20coordinar%20interconsulta%20patol%C3%B3gica" target="_blank" class="wsi-sidebar-wa-btn" title="Interconsulta Quirúrgica WhatsApp">
                             <i class="fa-brands fa-whatsapp"></i> Interconsulta Quirúrgica Directa
                         </a>
-                        <a href="login.html" class="btn-screen-cta btn-screen-portal">
-                            <i class="fa-solid fa-arrow-right-to-bracket"></i> Acceso Médicos
-                        </a>
                     </div>
-                </div>
+                </aside>
             </div>
         </section>
 
@@ -2167,6 +3293,17 @@
                                     <!-- Inyectado por dossier_web_interactive.js -->
                                 </div>
                             </div>
+
+                            <!-- VISTA 4: IMMUNOMASTER AI DIRECTO EN EL SMARTPHONE -->
+                            <div class="phone-view" id="phoneImmunoView" style="display:none; height:100%; flex-direction:column; overflow:hidden;">
+                                <div style="padding: 6px 12px; background: #070e1c; border-bottom: 1px solid rgba(56,189,248,0.2); display:flex; justify-content:space-between; align-items:center; flex-shrink:0;">
+                                    <span style="font-size: 11px; font-weight:800; color:#38bdf8;"><i class="fa-solid fa-dna"></i> ImmunoMaster AI Mobile</span>
+                                    <a href="immunomaster_app.html" target="_blank" style="color:#94a3b8; font-size: 10px; text-decoration:none;" title="Abrir en ventana completa">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Fullscreen
+                                    </a>
+                                </div>
+                                <iframe id="phoneImmunoIframe" src="immunomaster_app.html" style="width:100%; flex:1; border:none; background:#020617;" title="ImmunoMaster AI Mobile"></iframe>
+                            </div>
                         </div>
 
                         <!-- Modal / Vista de Informe Patológico Completo dentro del Teléfono -->
@@ -2196,6 +3333,10 @@
                             <button type="button" class="phone-nav-item" data-tab="search" onclick="focusPhoneSearch()">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                                 <span>Buscar</span>
+                            </button>
+                            <button type="button" class="phone-nav-item" data-tab="immunomaster" onclick="switchPhoneTab('immunomaster')" title="ImmunoMaster IHC AI">
+                                <i class="fa-solid fa-dna" style="color:#38bdf8;"></i>
+                                <span>ImmunoMaster</span>
                             </button>
                             <button type="button" class="phone-nav-item" data-tab="notifications" onclick="switchPhoneTab('notifications')">
                                 <div class="phone-nav-badge-wrapper">
@@ -2255,6 +3396,9 @@
                 </div>
                 <div class="screen-hud-right">
                     <span class="floating-pill success"><i class="fa-solid fa-stopwatch"></i> Entrega en 4 Días Útiles</span>
+                    <a href="immunomaster_app.html" target="_blank" class="btn-screen-cta btn-screen-portal" style="padding: 5px 12px; font-size: 11px;">
+                        <i class="fa-solid fa-dna"></i> ImmunoMaster AI
+                    </a>
                     <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20consultar%20disponibilidad%20de%20anticuerpo%20IHQ" target="_blank" class="btn-screen-cta btn-screen-wa" style="padding: 5px 12px; font-size: 11px;">
                         <i class="fa-brands fa-whatsapp"></i> Pedir Marcador
                     </a>
@@ -2284,6 +3428,12 @@
                             <!-- Resultado Dinámico del Verificador -->
                             <div class="ihq-result-card" id="ihqResultCard" style="margin-top: 12px; padding: 10px; font-size: 11px;">
                                 <!-- Inyectado por dossier_web_interactive.js -->
+                            </div>
+
+                            <!-- Acceso Directo a ImmunoMaster AI -->
+                            <div style="margin-top: 10px; padding: 8px 10px; background: rgba(56,189,248,0.06); border: 1px dashed rgba(56,189,248,0.3); border-radius: 8px; font-size: 10.5px; display: flex; justify-content: space-between; align-items: center;">
+                                <span style="color: #94a3b8;"><i class="fa-solid fa-brain" style="color:#38bdf8;"></i> ¿Dilema de linaje?</span>
+                                <a href="immunomaster_app.html" target="_blank" style="color:#38bdf8; font-weight:800; text-decoration:none;">Lanzar Solver &rarr;</a>
                             </div>
                         </div>
 
