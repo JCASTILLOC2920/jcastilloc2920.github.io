@@ -37,7 +37,15 @@ function handleSpecialtyChange(spec) {
 
     // Sincronizar en el Visor WSI si existe caso
     const wsiBtn = document.querySelector(`.wsi-case-tab[data-specialty="${spec}"]`);
-    if (wsiBtn) wsiBtn.click();
+    if (wsiBtn) {
+        wsiBtn.click();
+    } else if (spec === 'uro') {
+        const btnProstate = document.getElementById('btnSampleProstate');
+        if (btnProstate) btnProstate.click();
+    } else if (spec === 'derma' || spec === 'neuro' || spec === 'sarcoma') {
+        const btnRenal = document.getElementById('btnSampleRenal');
+        if (btnRenal) btnRenal.click();
+    }
 
     // Filtrar tabla de IHQ según especialidad
     const catMap = {
@@ -54,89 +62,240 @@ function handleSpecialtyChange(spec) {
 }
 
 /* ==========================================================================
-   1. SIMULADOR DE SMARTPHONE QUIRÚRGICO (EJE 01)
+   1. SIMULADOR DE SMARTPHONE QUIRÚRGICO (EJE 01 • 100% INTERACTIVO)
    ========================================================================== */
 const PATIENTS_DATA = [
     {
-        id: '26Q-281',
+        id: '26Q-0182',
+        name: 'García Morales, Juan',
+        age: '62 años',
+        gender: 'Masculino',
+        specialty: 'gastro',
+        procedure: 'Gastrectomía Subtotal + Linfadenectomía D2',
+        organ: 'Estómago (Antro y Cuerpo)',
+        status: 'status-completed',
+        statusText: 'Completado',
+        date: '11/09/2026',
+        dr: 'Dr. Bryan Flores Sierra',
+        hospital: 'Servicio de Cirugía Oncológica',
+        macroscopy: 'Pieza de gastrectomía subtotal de 14.5 x 8.2 x 3.5 cm. A la apertura por curvatura mayor se identifica neoplasia ulcerada de 3.2 x 2.8 cm en antro gástrico, a 4.5 cm del margen proximal y a 3.8 cm del margen distal. Se aíslan 16 ganglios perigástricos.',
+        diagnosis: 'ADENOCARCINOMA GÁSTRICO DE TIPO INTESTINAL (CLASIFICACIÓN DE LAURÉN), MODERADAMENTE DIFERENCIADO (G2), INFILTRANTE HASTA LA CAPA SUBEROSAL (pT3). MÁRGENES QUIRÚRGICOS PROXIMAL, DISTAL Y RADIAL LIBRES DE NEOPLASIA (R0). DIECISÉIS GANGLIOS LINFÁTICOS REGIONALES AISLADOS SIN METÁSTASIS (0/16, pN0). ESTADÍO PATOLÓGICO: pT3 pN0 cM0 (Estadío IIA).',
+        margins: 'Márgenes Quirúrgicos R0: Proximal libre a 45 mm, Distal libre a 38 mm',
+        ihqSummary: 'HER2: Negativo (Score 0) • Claudina 18.2: (+) Positivo intenso en 80% • MMR: MLH1+, MSH2+, MSH6+, PMS2+ (MSS)',
+        macroImg: 'morfologia_he_original.jpg'
+    },
+    {
+        id: '26Q-0194',
+        name: 'Mendoza Ríos, Carlos',
+        age: '67 años',
+        gender: 'Masculino',
+        specialty: 'uro',
+        procedure: 'Prostatectomía Radical Laparoscópica',
+        organ: 'Próstata y Vesículas Seminales',
+        status: 'status-completed',
+        statusText: 'Completado',
+        date: '11/09/2026',
+        dr: 'Dr. Víctor Castañeda',
+        hospital: 'Departamento de Urología Oncológica',
+        macroscopy: 'Pieza quirúrgica completa que pesa 48.5 gramos y mide 5.2 x 4.8 x 4.0 cm con ambas vesículas seminales. Cápsula lisa con tinta china negra en hemi-glándula derecha y verde en izquierda.',
+        diagnosis: 'ADENOCARCINOMA PROSTÁTICO ACINAR HABITUAL. SCORE DE GLEASON: 4 + 3 = 7 (GRUPO GRADO 3 DE LA ISUP / OMS 2026). PATRÓN 4 CRIBIFORME: 65%. NEOPLASIA CONFINADA AL ÓRGANO (pT2). MÁRGENES QUIRÚRGICOS APICAL, BASAL Y PERIFÉRICOS LIBRES DE NEOPLASIA (R0). VESÍCULAS SEMINALES Y CUELLO VESICAL LIBRES.',
+        margins: 'Márgenes Quirúrgicos R0: Margen apical libre a 4.2 mm, margen radial libre a 3.8 mm',
+        ihqSummary: 'AMACR (P504S): (+) Positividad luminal intensa • p63: (-) Negativo ausente en células basales',
+        macroImg: 'morfologia_ia_pleomorfismo.jpg'
+    },
+    {
+        id: '26Q-0281',
         name: 'Avalos Valenzuela, Carlos A.',
+        age: '59 años',
+        gender: 'Masculino',
         specialty: 'uro',
         procedure: 'Enucleación Prostática HoLEP',
+        organ: 'Tejido Prostático Morcelado',
         status: 'status-ready',
         statusText: 'Listo para Imprimir',
         date: '10/09/2026',
-        diagnosis: 'Hiperplasia prostática nodular con prostatitis crónica activa. Descarte de adenocarcinoma incidental negativo. Márgenes de resección libres.',
         dr: 'Dr. Bryan Flores Sierra',
+        hospital: 'Unidad de Cirugía Endourológica Láser',
+        macroscopy: 'Múltiples fragmentos tisulares morcelados blanquecino-amarillentos, elásticos, que pesan en conjunto 42.5 gramos.',
+        diagnosis: 'HIPERPLASIA PROSTÁTICA NODULAR BENIGNA (ADENOMIOMATOSA) ASOCIADA A PROSTATITIS CRÓNICA ACTIVA MODERADA Y CAMBIOS INFLAMATORIOS REACTIVOS. NEGATIVO PARA NEOPLASIA MALIGNA O ATIPIA GLANDULAR EN LOS 42.5 GRAMOS EXAMINADOS.',
+        margins: 'Material de enucleación endoscópica sin evidencia de malignidad (R0)',
+        ihqSummary: 'No requerido por ausencia de sospecha histológica',
         macroImg: 'morfologia_he_original.jpg'
     },
     {
-        id: '26Q-285',
+        id: '26Q-0285',
         name: 'Mendoza Quispe, Valeria',
+        age: '42 años',
+        gender: 'Femenino',
         specialty: 'derma',
         procedure: 'Biopsia Escisional de Piel (Espalda)',
+        organ: 'Piel Escapular y Tejido Celular Subcutáneo',
         status: 'status-completed',
         statusText: 'Completado',
         date: '09/09/2026',
-        diagnosis: 'Melanoma de extensión superficial invasor. Índice de Breslow: 1.20 mm. Nivel IV de Clark. Márgenes quirúrgicos laterales y profundo libres (> 5 mm).',
         dr: 'Dr. Víctor Castañeda',
+        hospital: 'Dermatología Quirúrgica',
+        macroscopy: 'Losange de piel de 3.8 x 2.2 cm con profundidad de 1.4 cm. Se observa lesión pigmentada asimétrica de 1.1 x 0.9 cm, pardo-oscura.',
+        diagnosis: 'MELANOMA MALIGNO DE EXTENSIÓN SUPERFICIAL INVASOR. ESPESOR TUMORAL DE BRESLOW: 1.15 MM. NIVEL IV DE CLARK. FASE DE CRECIMIENTO VERTICAL. AUSENCIA DE ULCERACIÓN MICROSCÓPICA (pT2a). MÁRGENES QUIRÚRGICOS LATERALES Y PROFUNDO LIBRES DE NEOPLASIA (> 5 MM, R0).',
+        margins: 'Margen profundo libre a 6.5 mm • Margen lateral más cercano a 7.2 mm (R0)',
+        ihqSummary: 'Melan-A (+), HMB-45 (+ zonal), SOX10 (+ difuso nuclear), Ki-67: 18%',
         macroImg: 'morfologia_ia_pleomorfismo.jpg'
     },
     {
-        id: '26Q-289',
+        id: '26Q-0289',
         name: 'Huamán Cárdenas, Jorge',
+        age: '54 años',
+        gender: 'Masculino',
         specialty: 'neuro',
         procedure: 'Resección Tumoral Parietal Izquierda',
+        organ: 'Tejido Encefálico Parieto-Occipital',
         status: 'status-process',
         statusText: 'En Proceso',
         date: '11/09/2026',
-        diagnosis: 'Neoplasia glial infiltrante de alto grado sugerente de Astrocitoma Grado 4 / Glioblastoma. En estudio con panel molecular IDH1, ATRX y p53.',
         dr: 'Dr. Alejandro Escalante',
+        hospital: 'Servicio de Neurocirugía de Alta Complejidad',
+        macroscopy: 'Múltiples fragmentos irregulares pardos-rojizos friables de consistencia blanda que miden en conjunto 3.6 x 2.4 x 1.8 cm.',
+        diagnosis: 'REPORTE PRELIMINAR DE BIOPSIA POR CONGELACIÓN / DEFINITIVA: NEOPLASIA GLIAL INFILTRANTE DE ALTO GRADO SUGESTIVA DE GLIOBLASTOMA (GRADO 4 OMS). PANEL DE BIOMARCADORES MOLECULARES EN PROCESAMIENTO URGENTE (IDH1 R132H, ATRX, p53, Ki-67). INFORME FINAL EN 12 HORAS.',
+        margins: 'Resección citorreductora guiada por fluorescencia intraoperatoria',
+        ihqSummary: 'Panel molecular en curso (IDH1, p53, ATRX, Ki-67)',
         macroImg: 'morfologia_he_original.jpg'
     },
     {
-        id: '26Q-293',
+        id: '26Q-0293',
         name: 'Salazar Benítez, Roberto',
+        age: '49 años',
+        gender: 'Masculino',
         specialty: 'sarcoma',
-        procedure: 'Tumor de Muslo (Biopsia Incisional)',
-        status: 'status-ready',
-        statusText: 'Listo para Imprimir',
+        procedure: 'Tumor de Muslo (Biopsia Incisional & Resección)',
+        organ: 'Tejidos Blandos del Muslo Derecho',
+        status: 'status-completed',
+        statusText: 'Completado',
         date: '08/09/2026',
-        diagnosis: 'Tumor de la estirpe mesenquimal fusocelular compatible con Dermatofibrosarcoma Protuberans (DFSP). Positividad intensa para CD34.',
         dr: 'Dr. Diego Chungui',
+        hospital: 'Unidad de Cirugía de Sarcomas & Partes Blandas',
+        macroscopy: 'Pieza quirúrgica elipsoide de 8.5 x 5.8 x 4.2 cm con masa tumoral blanquecina de consistencia firme-elástica que mide 4.6 cm.',
+        diagnosis: 'DERMATOFIBROSARCOMA PROTUBERANS (DFSP) CLÁSICO. PROLIFERACIÓN DE CÉLULAS FUSIFORMES CON PATRÓN ESTORIFORME TÍPICO EN RUEDA DE CARRETA E INFILTRACIÓN EN PANAL DE ABEJA EN TEJIDO ADIPOSO. MÁRGENES QUIRÚRGICOS LIBRES DE LESIÓN (R0).',
+        margins: 'Margen profundo sobre fascia muscular libre a 4.5 mm (R0)',
+        ihqSummary: 'CD34: (+) Intenso y difuso en 100% • S100: (-) Negativo • Desmina: (-) Negativo',
         macroImg: 'morfologia_ia_pleomorfismo.jpg'
     },
     {
-        id: '26Q-298',
+        id: '26Q-0298',
         name: 'Cabrera Ramos, Elena',
+        age: '58 años',
+        gender: 'Femenino',
         specialty: 'hemato',
         procedure: 'Biopsia de Adenopatía Cervical',
+        organ: 'Ganglio Linfático Cervical Nivel II',
         status: 'status-completed',
         statusText: 'Completado',
         date: '07/09/2026',
-        diagnosis: 'Linfoma no Hodgkin difuso de células grandes B (DLBCL). Subtipo centro germinal. Inmunofenotipo: CD20 (+), BCL-6 (+), CD10 (+), Ki-67: 85%.',
         dr: 'Dr. Manuel Sánchez',
+        hospital: 'Hematología & Oncología Médica',
+        macroscopy: 'Pieza nodular encapsulada de 3.2 x 2.4 x 1.6 cm con superficie de corte blanquecina homogénea carnosa tipo carne de pescado.',
+        diagnosis: 'LINFOMA NO HODGKIN DIFUSO DE CÉLULAS GRANDES B (DLBCL). SUBTIPO DE CENTRO GERMINAL (ALGORITMO DE HANS). ÍNDICE DE PROLIFERACIÓN CELULAR KI-67: 85%. NEGATIVO PARA DOBLE HIT (MYC / BCL2 NEGATIVO).',
+        margins: 'Cápsula ganglionar respetada en los bordes resecados (R0)',
+        ihqSummary: 'CD20: (+) Difuso membranoso • CD10: (+) • BCL-6: (+) • MUM1: (-) • Ki-67: 85%',
         macroImg: 'morfologia_he_original.jpg'
     }
 ];
+
+// Estado interactivo del simulador
+let currentPhoneFilter = 'all';
+let currentPhoneQuery = '';
+let currentPhoneTab = 'reports';
 
 function initSmartphoneSimulator() {
     const listContainer = document.getElementById('phonePatientsList');
     if (!listContainer) return;
 
-    renderPhonePatients(PATIENTS_DATA);
+    // Inicializar reloj del smartphone en vivo
+    updatePhoneClock();
+    setInterval(updatePhoneClock, 1000);
 
-    // Búsqueda en smartphone
+    // Renderizar pacientes iniciales
+    applyPhoneFilters();
+
+    // Renderizar sub-vistas del teléfono
+    renderPhoneNotifications();
+    renderPhoneSettings();
+
+    // Búsqueda en tiempo real
     const searchInput = document.getElementById('phoneSearchInput');
+    const clearBtn = document.getElementById('phoneSearchClear');
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase();
-            const filtered = PATIENTS_DATA.filter(p => 
-                p.name.toLowerCase().includes(query) || 
-                p.procedure.toLowerCase().includes(query) || 
-                p.id.toLowerCase().includes(query)
-            );
-            renderPhonePatients(filtered);
+            currentPhoneQuery = (e.target.value || '').trim().toLowerCase();
+            if (clearBtn) {
+                clearBtn.style.display = currentPhoneQuery.length > 0 ? 'block' : 'none';
+            }
+            applyPhoneFilters();
         });
+    }
+
+    window.addEventListener('appmovil-activated', () => {
+        updatePhoneClock();
+        applyPhoneFilters();
+    });
+}
+
+function updatePhoneClock() {
+    const clockEl = document.getElementById('phoneLiveClock');
+    if (!clockEl) return;
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    clockEl.textContent = `${hours}:${minutes}`;
+}
+
+function applyPhoneFilters() {
+    let filtered = PATIENTS_DATA;
+
+    // Filtro por Estado
+    if (currentPhoneFilter === 'process') {
+        filtered = filtered.filter(p => p.status === 'status-process');
+    } else if (currentPhoneFilter === 'completed') {
+        filtered = filtered.filter(p => p.status === 'status-completed' || p.status === 'status-ready');
+    }
+
+    // Filtro por Búsqueda de Texto
+    if (currentPhoneQuery) {
+        filtered = filtered.filter(p =>
+            p.name.toLowerCase().includes(currentPhoneQuery) ||
+            p.id.toLowerCase().includes(currentPhoneQuery) ||
+            p.procedure.toLowerCase().includes(currentPhoneQuery) ||
+            p.diagnosis.toLowerCase().includes(currentPhoneQuery) ||
+            p.dr.toLowerCase().includes(currentPhoneQuery) ||
+            p.organ.toLowerCase().includes(currentPhoneQuery)
+        );
+    }
+
+    // Actualizar contadores en tabs
+    updatePhoneCounters();
+
+    // Renderizar en lista
+    renderPhonePatients(filtered);
+
+    // Actualizar texto resumen
+    const summaryText = document.getElementById('phonePatientsCountText');
+    if (summaryText) {
+        summaryText.innerHTML = `<i class="fa-solid fa-list-check" style="color: #38bdf8;"></i> Mostrando ${filtered.length} de ${PATIENTS_DATA.length} biopsias`;
+    }
+}
+
+function updatePhoneCounters() {
+    const countAll = document.getElementById('countAll');
+    const countProcess = document.getElementById('countProcess');
+    const countCompleted = document.getElementById('countCompleted');
+
+    if (countAll) countAll.textContent = PATIENTS_DATA.length;
+    if (countProcess) {
+        const inProcess = PATIENTS_DATA.filter(p => p.status === 'status-process').length;
+        countProcess.textContent = inProcess;
+    }
+    if (countCompleted) {
+        const completed = PATIENTS_DATA.filter(p => p.status === 'status-completed' || p.status === 'status-ready').length;
+        countCompleted.textContent = completed;
     }
 }
 
@@ -145,24 +304,53 @@ function renderPhonePatients(patients) {
     if (!listContainer) return;
 
     listContainer.innerHTML = '';
+
+    if (patients.length === 0) {
+        listContainer.innerHTML = `
+            <div style="text-align: center; padding: 35px 15px; color: #64748b;">
+                <i class="fa-solid fa-magnifying-glass" style="font-size: 26px; margin-bottom: 8px; color: #334155;"></i>
+                <div style="font-size: 11px; font-weight: 700; color: #cbd5e1;">Sin resultados para la búsqueda</div>
+                <div style="font-size: 9.5px; margin-top: 4px;">Intenta con otro paciente o código 26Q-...</div>
+                <button type="button" class="btn-phone-action btn-phone-pdf" style="margin: 12px auto 0 auto; max-width: 130px;" onclick="clearPhoneSearch()">
+                    Ver todas las biopsias
+                </button>
+            </div>
+        `;
+        return;
+    }
+
     patients.forEach((p, idx) => {
         const card = document.createElement('div');
         card.className = `phone-patient-card ${idx === 0 ? 'active' : ''}`;
         card.setAttribute('data-specialty', p.specialty);
+        card.setAttribute('data-id', p.id);
+        // Permitir click en toda la tarjeta para abrir el informe
+        card.onclick = (e) => {
+            if (e.target.closest('button')) return;
+            openPhoneReport(p.id);
+        };
+
         card.innerHTML = `
             <div class="p-card-top">
                 <span class="p-card-name">${p.name}</span>
                 <span class="p-card-status ${p.status}">${p.statusText}</span>
             </div>
-            <div class="p-card-meta">
+            <div class="p-card-proc">
+                <i class="fa-solid fa-microscope" style="color: #38bdf8; font-size: 9px;"></i>
                 <span>${p.procedure}</span>
-                <span class="font-mono">#${p.id}</span>
+            </div>
+            <div class="p-card-diag-preview">
+                <strong>Diagnóstico:</strong> ${p.diagnosis.slice(0, 110)}...
+            </div>
+            <div class="p-card-meta">
+                <span class="p-dr"><i class="fa-solid fa-user-doctor"></i> ${p.dr}</span>
+                <span class="p-id">#${p.id}</span>
             </div>
             <div class="p-card-actions">
-                <button type="button" class="btn-phone-action btn-phone-pdf" onclick="openPhoneReport('${p.id}')">
-                    <i class="fa-solid fa-file-pdf"></i> Ver Informe
+                <button type="button" class="btn-phone-action btn-phone-pdf" onclick="openPhoneReport('${p.id}')" title="Ver Informe Quirúrgico Oficial">
+                    <i class="fa-solid fa-file-waveform"></i> Ver Informe
                 </button>
-                <button type="button" class="btn-phone-action btn-phone-360" onclick="openPhoneMacro('${p.id}')">
+                <button type="button" class="btn-phone-action btn-phone-360" onclick="openPhoneMacro('${p.id}')" title="Visor de Fotografía Macroscópica">
                     <i class="fa-solid fa-arrows-spin"></i> Visor 360°
                 </button>
             </div>
@@ -171,62 +359,261 @@ function renderPhonePatients(patients) {
     });
 }
 
+window.setPhoneFilter = function(filter) {
+    currentPhoneFilter = filter;
+    const buttons = document.querySelectorAll('.phone-subtab-btn');
+    buttons.forEach(btn => {
+        if (btn.getAttribute('data-filter') === filter) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+    // Si no estamos en la vista de lista, volver a ella
+    switchPhoneTab('reports');
+    applyPhoneFilters();
+};
+
+window.switchPhoneTab = function(tabName) {
+    currentPhoneTab = tabName;
+
+    // Actualizar botones de la barra inferior
+    const navItems = document.querySelectorAll('.phone-nav-item');
+    navItems.forEach(item => {
+        if (item.getAttribute('data-tab') === tabName) {
+            item.classList.add('active');
+        } else {
+            item.classList.remove('active');
+        }
+    });
+
+    // Cerrar modal si estuviese abierto
+    closePhoneModal();
+
+    // Conmutar pantallas internas del móvil
+    const viewList = document.getElementById('phoneListView');
+    const viewNotif = document.getElementById('phoneNotificationsView');
+    const viewSet = document.getElementById('phoneSettingsView');
+
+    if (viewList) viewList.style.display = tabName === 'reports' ? 'flex' : 'none';
+    if (viewNotif) viewNotif.style.display = tabName === 'notifications' ? 'flex' : 'none';
+    if (viewSet) viewSet.style.display = tabName === 'settings' ? 'flex' : 'none';
+};
+
+window.focusPhoneSearch = function() {
+    switchPhoneTab('reports');
+    const searchInput = document.getElementById('phoneSearchInput');
+    if (searchInput) {
+        searchInput.focus();
+        showPhoneToast('Ingresa nombre o código de biopsia 26Q-...', 'fa-magnifying-glass');
+    }
+};
+
+window.clearPhoneSearch = function() {
+    const searchInput = document.getElementById('phoneSearchInput');
+    const clearBtn = document.getElementById('phoneSearchClear');
+    if (searchInput) searchInput.value = '';
+    if (clearBtn) clearBtn.style.display = 'none';
+    currentPhoneQuery = '';
+    applyPhoneFilters();
+    showPhoneToast('Lista de biopsias restablecida', 'fa-arrows-rotate');
+};
+
+window.refreshPhoneData = function() {
+    const syncBtn = document.querySelector('.btn-phone-sync');
+    if (syncBtn) {
+        syncBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sincronizando...';
+        setTimeout(() => {
+            syncBtn.innerHTML = '<i class="fa-solid fa-arrows-rotate"></i> En vivo';
+            showPhoneToast('Sincronizado con LIS Hospitalario & Servidor WSI', 'fa-circle-check');
+        }, 500);
+    }
+};
+
+window.showPhoneToast = function(msg, icon = 'fa-circle-check') {
+    const toast = document.getElementById('phoneToast');
+    const toastMsg = document.getElementById('phoneToastMsg');
+    if (!toast || !toastMsg) return;
+
+    toast.querySelector('i').className = `fa-solid ${icon}`;
+    toastMsg.textContent = msg;
+    toast.classList.add('show');
+
+    if (window._phoneToastTimeout) clearTimeout(window._phoneToastTimeout);
+    window._phoneToastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+    }, 2800);
+};
+
+/* ==========================================================================
+   REPORTE PATOLÓGICO QUIRÚRGICO DENTRO DEL SMARTPHONE
+   ========================================================================== */
 window.openPhoneReport = function(id) {
     const p = PATIENTS_DATA.find(item => item.id === id);
     if (!p) return;
 
     const modal = document.getElementById('phoneReportModal');
     const content = document.getElementById('phoneReportContent');
+    const headerId = document.getElementById('phoneReportHeaderId');
     if (!modal || !content) return;
 
+    if (headerId) headerId.textContent = p.id;
+
+    // SVG QR oficial con diseño nítido
+    const qrSvg = `
+        <svg viewBox="0 0 100 100" width="100%" height="100%">
+            <rect width="100" height="100" fill="#ffffff" />
+            <!-- Esquina superior izquierda -->
+            <rect x="6" y="6" width="26" height="26" fill="#0f172a" rx="3" />
+            <rect x="11" y="11" width="16" height="16" fill="#ffffff" rx="1" />
+            <rect x="15" y="15" width="8" height="8" fill="#0284c7" />
+            <!-- Esquina superior derecha -->
+            <rect x="68" y="6" width="26" height="26" fill="#0f172a" rx="3" />
+            <rect x="73" y="11" width="16" height="16" fill="#ffffff" rx="1" />
+            <rect x="77" y="15" width="8" height="8" fill="#0284c7" />
+            <!-- Esquina inferior izquierda -->
+            <rect x="6" y="68" width="26" height="26" fill="#0f172a" rx="3" />
+            <rect x="11" y="73" width="16" height="16" fill="#ffffff" rx="1" />
+            <rect x="15" y="77" width="8" height="8" fill="#0284c7" />
+            <!-- Módulos de datos simulados -->
+            <rect x="38" y="8" width="8" height="6" fill="#0f172a" />
+            <rect x="52" y="8" width="10" height="6" fill="#0f172a" />
+            <rect x="38" y="20" width="6" height="10" fill="#0f172a" />
+            <rect x="50" y="20" width="12" height="6" fill="#0284c7" />
+            <rect x="8" y="38" width="6" height="12" fill="#0f172a" />
+            <rect x="20" y="38" width="8" height="8" fill="#0f172a" />
+            <rect x="34" y="36" width="12" height="12" fill="#0284c7" rx="2" />
+            <rect x="52" y="34" width="14" height="6" fill="#0f172a" />
+            <rect x="72" y="38" width="10" height="6" fill="#0f172a" />
+            <rect x="86" y="38" width="8" height="12" fill="#0f172a" />
+            <rect x="38" y="54" width="8" height="10" fill="#0f172a" />
+            <rect x="52" y="52" width="12" height="12" fill="#0284c7" />
+            <rect x="70" y="52" width="8" height="8" fill="#0f172a" />
+            <rect x="84" y="56" width="10" height="8" fill="#0f172a" />
+            <rect x="38" y="70" width="12" height="8" fill="#0f172a" />
+            <rect x="56" y="70" width="8" height="12" fill="#0f172a" />
+            <rect x="70" y="74" width="14" height="8" fill="#0f172a" />
+            <rect x="42" y="86" width="16" height="8" fill="#0284c7" />
+            <rect x="64" y="86" width="10" height="8" fill="#0f172a" />
+            <rect x="80" y="86" width="14" height="8" fill="#0f172a" />
+        </svg>
+    `;
+
     content.innerHTML = `
-        <div style="background: #0f172a; border-radius: 12px; padding: 14px; border: 1px solid #38bdf8; font-size: 10px; color: #f8fafc; height: 100%; overflow-y: auto;">
-            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #334155; padding-bottom: 6px; margin-bottom: 8px;">
-                <strong>JC PATH LAB • INFORME OFICIAL</strong>
-                <span style="color: #38bdf8; font-weight: 800;">ID: ${p.id}</span>
-            </div>
-            <p><strong>PACIENTE:</strong> ${p.name.toUpperCase()}</p>
-            <p><strong>ESTUDIO:</strong> ${p.procedure}</p>
-            <p><strong>MÉDICO SOLICITANTE:</strong> ${p.dr}</p>
-            <p><strong>FECHA EMISIÓN:</strong> ${p.date}</p>
-            <div style="margin: 10px 0; padding: 8px; background: rgba(2, 132, 199, 0.15); border-left: 3px solid #0284c7; border-radius: 4px;">
-                <strong style="color: #38bdf8; display: block; margin-bottom: 2px;">DIAGNÓSTICO HISTOPATOLÓGICO:</strong>
-                <span style="font-size: 9.5px; line-height: 1.35; display: block;">${p.diagnosis}</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 14px; border-top: 1px solid #334155; padding-top: 8px;">
+        <div class="phone-report-doc">
+            <!-- Membrete Oficial -->
+            <div class="p-rep-letterhead">
                 <div>
-                    <span style="font-size: 8px; color: #94a3b8; display: block;">Validez Legal & QR Sunat</span>
-                    <span style="color: #10b981; font-weight: 800;"><i class="fa-solid fa-shield-check"></i> Firma Digital Vigente</span>
+                    <div class="p-rep-brand-title">
+                        <i class="fa-solid fa-circle-nodes" style="color: #38bdf8;"></i>
+                        JC PATH LAB <strong>ONCOLOGÍA</strong>
+                    </div>
+                    <div class="p-rep-doc-auth">
+                        Dr. Joseph Castillo &bull; Patólogo Clínico CMP 56435 - RNE 32890<br>
+                        RUC 20601234567 &bull; Certificación Digital ISO 15189
+                    </div>
                 </div>
-                <img src="firma_sello.png" style="height: 38px; object-fit: contain;">
+                <div>
+                    <span class="p-rep-badge-val"><i class="fa-solid fa-shield-check"></i> Oficial Valedero</span>
+                </div>
+            </div>
+
+            <!-- Ficha Clínica del Paciente -->
+            <div class="p-rep-grid">
+                <div class="p-rep-field">
+                    <span class="p-rep-label">Paciente</span>
+                    <span class="p-rep-value">${p.name.toUpperCase()}</span>
+                </div>
+                <div class="p-rep-field">
+                    <span class="p-rep-label">Código de Biopsia</span>
+                    <span class="p-rep-value font-mono" style="color: #38bdf8;">#${p.id}</span>
+                </div>
+                <div class="p-rep-field">
+                    <span class="p-rep-label">Edad / Sexo</span>
+                    <span class="p-rep-value">${p.age} &bull; ${p.gender}</span>
+                </div>
+                <div class="p-rep-field">
+                    <span class="p-rep-label">Fecha Emisión</span>
+                    <span class="p-rep-value">${p.date}</span>
+                </div>
+                <div class="p-rep-field" style="grid-column: span 2;">
+                    <span class="p-rep-label">Médico Tratante &bull; Servicio</span>
+                    <span class="p-rep-value">${p.dr} &bull; ${p.hospital}</span>
+                </div>
+                <div class="p-rep-field" style="grid-column: span 2;">
+                    <span class="p-rep-label">Procedimiento Quirúrgico</span>
+                    <span class="p-rep-value" style="color: #93c5fd;">${p.procedure}</span>
+                </div>
+            </div>
+
+            <!-- Descripción Macroscópica -->
+            <div class="p-rep-section">
+                <div class="p-rep-sec-title">
+                    <i class="fa-solid fa-magnifying-glass"></i> I. DESCRIPCIÓN MACROSCÓPICA (CAP 2026)
+                </div>
+                <div class="p-rep-sec-content">
+                    ${p.macroscopy}
+                </div>
+            </div>
+
+            <!-- Diagnóstico Histopatológico con Márgenes R0 -->
+            <div class="p-rep-section">
+                <div class="p-rep-sec-title" style="color: #38bdf8;">
+                    <i class="fa-solid fa-microscope"></i> II. DIAGNÓSTICO HISTOPATOLÓGICO DEFINITIVO
+                </div>
+                <div class="p-rep-sec-content diagnosis-box">
+                    <strong>${p.diagnosis}</strong>
+                    <div style="margin-top: 6px;">
+                        <span class="p-rep-margins-tag">
+                            <i class="fa-solid fa-check-double"></i> ${p.margins}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Biomarcadores e Inmunohistoquímica si aplica -->
+            <div class="p-rep-section">
+                <div class="p-rep-sec-title">
+                    <i class="fa-solid fa-dna"></i> III. BIOMARCADORES & INMUNOHISTOQUÍMICA
+                </div>
+                <div class="p-rep-sec-content" style="font-size: 8.5px;">
+                    ${p.ihqSummary}
+                </div>
+            </div>
+
+            <!-- Certificación Médico-Legal, Firma Digital y QR -->
+            <div class="p-rep-legal-footer">
+                <div class="p-rep-qr-wrap">
+                    <div class="p-rep-qr-code" title="QR de Verificación Sunat & LIS">${qrSvg}</div>
+                    <div class="p-rep-legal-meta">
+                        <span style="font-size: 8px; color: #10b981; font-weight: 800;">
+                            <i class="fa-solid fa-fingerprint"></i> Firma Digital Criptográfica
+                        </span>
+                        <span style="font-size: 7px; color: #64748b; font-family: 'JetBrains Mono', monospace;">
+                            SHA-256: 9e3b...${p.id.replace('-', '')}fd1a
+                        </span>
+                        <span style="font-size: 7.5px; color: #94a3b8;">
+                            Despacho Digital Instantáneo &bull; Validez Pericial
+                        </span>
+                    </div>
+                </div>
+                <div style="text-align: right;">
+                    <img src="firma_sello.png" class="p-rep-seal-img" alt="Firma Dr. Joseph Castillo">
+                </div>
+            </div>
+
+            <!-- Botonera de Acciones Inmediatas -->
+            <div class="p-rep-action-toolbar">
+                <button type="button" class="btn-rep-action pdf" onclick="downloadPhonePDF('${p.id}')">
+                    <i class="fa-solid fa-file-pdf"></i> Descargar PDF
+                </button>
+                <button type="button" class="btn-rep-action wsp" onclick="sharePhoneWhatsApp('${p.id}')">
+                    <i class="fa-brands fa-whatsapp"></i> Enviar por WhatsApp
+                </button>
             </div>
         </div>
     `;
-    modal.classList.add('active');
-};
 
-window.openPhoneMacro = function(id) {
-    const p = PATIENTS_DATA.find(item => item.id === id);
-    if (!p) return;
-
-    const modal = document.getElementById('phoneReportModal');
-    const content = document.getElementById('phoneReportContent');
-    if (!modal || !content) return;
-
-    content.innerHTML = `
-        <div style="background: #0f172a; border-radius: 12px; padding: 14px; border: 1px solid #7c3aed; font-size: 10px; color: #f8fafc; height: 100%; display: flex; flex-direction: column;">
-            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #334155; padding-bottom: 6px; margin-bottom: 8px;">
-                <strong>REGISTRO MACROSCÓPICO 360°</strong>
-                <span style="color: #a855f7; font-weight: 800;">ID: ${p.id}</span>
-            </div>
-            <div style="flex: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 8px; background: #000;">
-                <img src="${p.macroImg}" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-            <div style="margin-top: 8px; font-size: 9px; color: #cbd5e1;">
-                <span>Espécimen quirúrgico tallado según protocolo CAP. Márgenes entintados y peso documentado.</span>
-            </div>
-        </div>
-    `;
     modal.classList.add('active');
 };
 
@@ -235,20 +622,476 @@ window.closePhoneModal = function() {
     if (modal) modal.classList.remove('active');
 };
 
+window.openPhoneMacro = function(id) {
+    const p = PATIENTS_DATA.find(item => item.id === id);
+    if (!p) return;
+
+    const modal = document.getElementById('phoneReportModal');
+    const content = document.getElementById('phoneReportContent');
+    const headerId = document.getElementById('phoneReportHeaderId');
+    if (!modal || !content) return;
+
+    if (headerId) headerId.textContent = `${p.id} • MACRO 360°`;
+
+    content.innerHTML = `
+        <div class="phone-report-doc" style="height: 100%; display: flex; flex-direction: column;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 6px; margin-bottom: 8px;">
+                <span style="font-weight: 800; color: #38bdf8; font-size: 10px;">
+                    <i class="fa-solid fa-arrows-spin"></i> REGISTRO FOTOGRÁFICO DE TALLADO
+                </span>
+                <span class="font-mono" style="color: #a855f7; font-weight: 800; font-size: 9px;">#${p.id}</span>
+            </div>
+            <div style="flex: 1; min-height: 220px; overflow: hidden; border-radius: 8px; background: #000000; display: flex; align-items: center; justify-content: center; position: relative;">
+                <img src="${p.macroImg}" style="width: 100%; height: 100%; object-fit: cover;" alt="Tallado Quirúrgico">
+                <div style="position: absolute; bottom: 8px; left: 8px; background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(56, 189, 248, 0.3); padding: 3px 8px; border-radius: 4px; font-size: 8px; color: #38bdf8; font-weight: 700;">
+                    <i class="fa-solid fa-check"></i> Márgenes entintados protocolo CAP
+                </div>
+            </div>
+            <div style="margin-top: 8px; font-size: 8.5px; color: #cbd5e1; line-height: 1.35;">
+                <p><strong>Espécimen:</strong> ${p.organ}</p>
+                <p style="color: #94a3b8;">${p.macroscopy}</p>
+            </div>
+            <div class="p-rep-action-toolbar" style="margin-top: 10px;">
+                <button type="button" class="btn-rep-action pdf" onclick="openPhoneReport('${p.id}')">
+                    <i class="fa-solid fa-file-lines"></i> Ver Informe Escrito
+                </button>
+                <button type="button" class="btn-rep-action wsp" onclick="sharePhoneWhatsApp('${p.id}')">
+                    <i class="fa-brands fa-whatsapp"></i> Compartir Foto
+                </button>
+            </div>
+        </div>
+    `;
+
+    modal.classList.add('active');
+};
+
 /* ==========================================================================
-   2. VISOR WSI GIGAPÍXEL VIRTUAL (EJE 02)
+   DESCARGA DE PDF & ENVÍO POR WHATSAPP
    ========================================================================== */
-let currentZoomLevel = 1.0;
+window.downloadPhonePDF = function(id) {
+    const p = PATIENTS_DATA.find(item => item.id === id);
+    if (!p) return;
+
+    showPhoneToast(`Generando PDF Oficial ${p.id}...`, 'fa-spinner fa-spin');
+
+    // Generar archivo descargable con contenido clínico
+    setTimeout(() => {
+        const reportText = `===============================================================
+JC PATH LAB • CENTRO ESPECIALIZADO DE ANATOMÍA PATOLÓGICA
+DR. JOSEPH CASTILLO • CMP 56435 • RNE 32890
+===============================================================
+INFORME HISTOPATOLÓGICO QUIRÚRGICO OFICIAL
+CÓDIGO DE BIOPSIA: ${p.id}
+FECHA DE EMISIÓN: ${p.date}
+PACIENTE: ${p.name.toUpperCase()} (${p.age}, ${p.gender})
+MÉDICO SOLICITANTE: ${p.dr}
+SERVICIO: ${p.hospital}
+ESTUDIO: ${p.procedure}
+ÓRGANO: ${p.organ}
+
+I. DESCRIPCIÓN MACROSCÓPICA:
+${p.macroscopy}
+
+II. DIAGNÓSTICO HISTOPATOLÓGICO DEFINITIVO:
+${p.diagnosis}
+
+MÁRGENES QUIRÚRGICOS:
+${p.margins}
+
+III. INMUNOHISTOQUÍMICA & BIOMARCADORES:
+${p.ihqSummary}
+
+ESTADO DE FIRMA: CERTIFICADO Y FIRMADO DIGITALMENTE (SUNAT / LIS)
+HASH DE INTEGRIDAD: SHA-256-JC-${p.id.replace('-', '')}-VALID
+===============================================================`;
+
+        const blob = new Blob([reportText], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `INFORME_${p.id}_${p.name.replace(/[^a-zA-Z0-9]/g, '_')}.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        showPhoneToast(`¡Informe ${p.id} descargado con éxito!`, 'fa-file-circle-check');
+    }, 600);
+};
+
+window.sharePhoneWhatsApp = function(id) {
+    const p = PATIENTS_DATA.find(item => item.id === id);
+    if (!p) return;
+
+    const msg = encodeURIComponent(
+        `*JC PATH LAB • Reporte Quirúrgico Oficial*\n` +
+        `*ID Biopsia:* ${p.id}\n` +
+        `*Paciente:* ${p.name}\n` +
+        `*Estudio:* ${p.procedure}\n` +
+        `*Diagnóstico:* ${p.diagnosis.slice(0, 140)}...\n` +
+        `*Márgenes:* ${p.margins}\n` +
+        `*Médico:* ${p.dr}\n` +
+        `*Ver Informe Digital Seguro:* https://jcpathlab.pe/informe/${p.id}`
+    );
+
+    const whatsappUrl = `https://api.whatsapp.com/send?text=${msg}`;
+    window.open(whatsappUrl, '_blank');
+    showPhoneToast(`Enlace seguro de ${p.id} preparado para WhatsApp`, 'fa-brands fa-whatsapp');
+};
+
+/* ==========================================================================
+   SUB-VISTAS DEL SMARTPHONE: NOTIFICACIONES & AJUSTES
+   ========================================================================== */
+function renderPhoneNotifications() {
+    const container = document.getElementById('phoneNotificationsList');
+    if (!container) return;
+
+    const notifs = [
+        {
+            icon: 'fa-file-circle-check',
+            type: 'green',
+            title: 'Biopsia 26Q-0182 Firmada',
+            desc: 'García Morales, Juan: Gastrectomía D2 validada con márgenes R0 libres.',
+            time: 'Hace 4 minutos',
+            id: '26Q-0182',
+            unread: true
+        },
+        {
+            icon: 'fa-shield-halved',
+            type: 'blue',
+            title: 'Despacho Digital 26Q-0194',
+            desc: 'Mendoza Ríos, Carlos: Prostatectomía radical Gleason 4+3 despachada.',
+            time: 'Hace 22 minutos',
+            id: '26Q-0194',
+            unread: true
+        },
+        {
+            icon: 'fa-clock-rotate-left',
+            type: 'amber',
+            title: 'Muestra 26Q-0289 en Proceso',
+            desc: 'Huamán Cárdenas, Jorge: Inclusión histológica urgente iniciada.',
+            time: 'Hace 1 hora',
+            id: '26Q-0289',
+            unread: false
+        }
+    ];
+
+    container.innerHTML = notifs.map(n => `
+        <div class="phone-notification-card ${n.unread ? 'unread' : ''}" onclick="openPhoneReport('${n.id}')">
+            <div class="p-notif-icon ${n.type}">
+                <i class="fa-solid ${n.icon}"></i>
+            </div>
+            <div class="p-notif-body">
+                <span class="p-notif-title">${n.title}</span>
+                <span class="p-notif-desc">${n.desc}</span>
+                <span class="p-notif-time"><i class="fa-regular fa-clock"></i> ${n.time}</span>
+            </div>
+        </div>
+    `).join('');
+}
+
+function renderPhoneSettings() {
+    const container = document.getElementById('phoneSettingsScroll');
+    if (!container) return;
+
+    container.innerHTML = `
+        <div class="phone-setting-card">
+            <div style="font-size: 10.5px; font-weight: 800; color: #38bdf8; margin-bottom: 8px;">
+                <i class="fa-solid fa-bell"></i> Canales de Despacho Inmediato
+            </div>
+            <div class="phone-setting-row">
+                <div>
+                    <div class="p-set-label">Alertas Push vía WhatsApp</div>
+                    <div class="p-set-desc">Recibir aviso apenas se emita el informe</div>
+                </div>
+                <div class="phone-toggle-switch" onclick="toggleSwitch(this)"><div class="phone-toggle-knob"></div></div>
+            </div>
+            <div class="phone-setting-row">
+                <div>
+                    <div class="p-set-label">Descarga de Microfotografías 40x</div>
+                    <div class="p-set-desc">Adjuntar láminas digitales en alta resolución</div>
+                </div>
+                <div class="phone-toggle-switch" onclick="toggleSwitch(this)"><div class="phone-toggle-knob"></div></div>
+            </div>
+            <div class="phone-setting-row">
+                <div>
+                    <div class="p-set-label">Avisos de Biopsia por Congelación</div>
+                    <div class="p-set-desc">Prioridad crítica intraoperatoria</div>
+                </div>
+                <div class="phone-toggle-switch" onclick="toggleSwitch(this)"><div class="phone-toggle-knob"></div></div>
+            </div>
+        </div>
+
+        <div class="phone-setting-card">
+            <div style="font-size: 10.5px; font-weight: 800; color: #10b981; margin-bottom: 8px;">
+                <i class="fa-solid fa-user-shield"></i> Credenciales de Especialista
+            </div>
+            <div style="font-size: 9px; color: #cbd5e1; line-height: 1.4;">
+                <p><strong>Patólogo Responsable:</strong> Dr. Joseph Castillo</p>
+                <p><strong>Colegiatura:</strong> CMP 56435 &bull; RNE 32890</p>
+                <p><strong>Soporte Directo:</strong> +51 987 654 321</p>
+            </div>
+            <button type="button" class="btn-phone-action btn-phone-pdf" style="margin-top: 10px; width: 100%;" onclick="showPhoneToast('Línea médica directa conectada', 'fa-phone')">
+                <i class="fa-solid fa-headset"></i> Contactar al Dr. Castillo
+            </button>
+        </div>
+    `;
+}
+
+window.toggleSwitch = function(el) {
+    const knob = el.querySelector('.phone-toggle-knob');
+    if (el.style.background === 'rgb(51, 65, 85)' || el.style.background === '#334155') {
+        el.style.background = '#0284c7';
+        knob.style.transform = 'translateX(0)';
+        showPhoneToast('Preferencia activada', 'fa-check');
+    } else {
+        el.style.background = '#334155';
+        knob.style.transform = 'translateX(-17px)';
+        showPhoneToast('Preferencia pausada', 'fa-pause');
+    }
+};
+
+/* ==========================================================================
+   2. VISOR WSI GIGAPÍXEL INTERACTIVO PROFESIONAL (PANTALLA 1)
+   ========================================================================== */
+const WSI_DATA = {
+    prostate: {
+        id: 'prostate',
+        title: 'Biopsia Prostática Core • Adenocarcinoma Gleason 4+4=8 (ISUP 4)',
+        image: 'wsi_slides/biopsia_prostatica_gleason.webp',
+        thumb: 'wsi_slides/biopsia_prostatica_thumb.webp',
+        organ: 'Próstata',
+        stain: 'H&E 40x',
+        note: 'Arquitectura cribiforme y nidos confluentes. Desmoplasia estromal activa.'
+    },
+    renal: {
+        id: 'renal',
+        title: 'Corte Quirúrgico Renal • Oncocitoma / Neoplasia Renal 40x',
+        image: 'wsi_slides/corte_quirurgico_renal.webp',
+        thumb: 'wsi_slides/corte_quirurgico_renal_thumb.webp',
+        organ: 'Riñón',
+        stain: 'H&E 40x',
+        note: 'Células oncocíticas poligonales con abundante citoplasma eosinófilo granular.'
+    }
+};
+
+let currentSampleKey = 'prostate';
+let currentZoomLevel = 1.0; // 1.0 = 2x, 1.6 = 4x, 2.5 = 10x, 3.6 = 20x, 5.0 = 40x
+let currentRotation = 0; // 0° - 360°
 let isPanning = false;
-let startX, startY, currentX = 0, currentY = 0;
+let startX = 0, startY = 0;
+let currentX = 0, currentY = 0;
+let isAiActive = false;
+let isLensActive = false;
+let isDialDragging = false;
+
+// Precarga inmediata de las 2 muestras histológicas en memoria RAM para 0ms lag
+(function preloadWSISamples() {
+    try {
+        const p1 = new Image();
+        p1.src = WSI_DATA.prostate.image;
+        const p1t = new Image();
+        p1t.src = WSI_DATA.prostate.thumb;
+        const p2 = new Image();
+        p2.src = WSI_DATA.renal.image;
+        const p2t = new Image();
+        p2t.src = WSI_DATA.renal.thumb;
+    } catch (e) {}
+})();
+
+// Control estricto de límites de Pan para que el tejido nunca desborde ni se pierda
+function clampPanCoords(x, y) {
+    const viewport = document.getElementById('wsiViewport');
+    const vpW = viewport ? (viewport.clientWidth || window.innerWidth) : window.innerWidth;
+    const vpH = viewport ? (viewport.clientHeight || (window.innerHeight - 52)) : (window.innerHeight - 52);
+
+    const maxBoundX = Math.max(vpW * 0.45, (vpW * 0.52 * currentZoomLevel));
+    const maxBoundY = Math.max(vpH * 0.45, (vpH * 0.52 * currentZoomLevel));
+
+    return {
+        x: Math.max(-maxBoundX, Math.min(maxBoundX, x)),
+        y: Math.max(-maxBoundY, Math.min(maxBoundY, y))
+    };
+}
+
+// Exponer funciones globales requeridas por screen-switcher.js
+window.updateWSITransform = function() {
+    applyWSITransform();
+};
+
+window.updateWSIZoomHUD = function() {
+    updateScaleAndHUD();
+};
+
+function applyWSITransform() {
+    const stage = document.getElementById('wsiTransformStage');
+    if (!stage) return;
+    const clamped = clampPanCoords(currentX, currentY);
+    currentX = clamped.x;
+    currentY = clamped.y;
+    stage.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentZoomLevel}) rotate(${currentRotation}deg)`;
+    updateRotationHUD();
+    updateScaleAndHUD();
+    updateMinimapRect();
+}
+
+function updateRotationHUD() {
+    const angleElem = document.getElementById('wsiAngleDisplay');
+    if (angleElem) angleElem.textContent = `${Math.round(currentRotation)}°`;
+
+    const dialText = document.getElementById('dialDegreesText');
+    if (dialText) dialText.textContent = `${Math.round(currentRotation)}°`;
+
+    const needle = document.getElementById('rotDialNeedle');
+    if (needle) {
+        needle.style.transform = `rotate(${currentRotation}deg)`;
+    }
+
+    // Actualizar botones de acceso rápido de rotación
+    const quickBtns = document.querySelectorAll('.rot-quick-btn');
+    quickBtns.forEach(btn => {
+        const angle = parseInt(btn.getAttribute('data-angle'), 10);
+        if (Math.abs(angle - currentRotation) < 3) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+}
+
+function updateScaleAndHUD() {
+    const scaleVal = document.getElementById('wsiScaleValue');
+    const scaleLine = document.getElementById('wsiScaleLine');
+    const minimapMag = document.getElementById('minimapMagBadge');
+    if (!scaleVal) return;
+
+    let text = '250 µm';
+    let lineWidth = '100px';
+    let magLabel = '2x';
+
+    if (currentZoomLevel >= 4.2) {
+        text = '10 µm';
+        lineWidth = '100px';
+        magLabel = '40x';
+    } else if (currentZoomLevel >= 3.0) {
+        text = '25 µm';
+        lineWidth = '90px';
+        magLabel = '20x';
+    } else if (currentZoomLevel >= 2.0) {
+        text = '50 µm';
+        lineWidth = '85px';
+        magLabel = '10x';
+    } else if (currentZoomLevel >= 1.3) {
+        text = '100 µm';
+        lineWidth = '95px';
+        magLabel = '4x';
+    } else {
+        text = '250 µm';
+        lineWidth = '100px';
+        magLabel = '2x';
+    }
+
+    scaleVal.textContent = text;
+    if (scaleLine) scaleLine.style.width = lineWidth;
+    if (minimapMag) minimapMag.textContent = magLabel;
+
+    // Actualizar píldoras de aumento
+    const pills = document.querySelectorAll('.wsi-mag-pill');
+    pills.forEach(p => {
+        const pz = parseFloat(p.getAttribute('data-zoom'));
+        if (Math.abs(pz - currentZoomLevel) < 0.25) {
+            p.classList.add('active');
+        } else {
+            p.classList.remove('active');
+        }
+    });
+}
+
+function updateMinimapRect() {
+    const rect = document.getElementById('wsiMinimapRect');
+    const box = document.getElementById('wsiMinimapBox');
+    const viewport = document.getElementById('wsiViewport');
+    if (!rect || !box || !viewport) return;
+
+    const vpW = viewport.clientWidth || 1000;
+    const vpH = viewport.clientHeight || 700;
+
+    const zoom = Math.max(1, currentZoomLevel);
+    const boxW = box.clientWidth || 144;
+    const boxH = box.clientHeight || 96;
+
+    // Tamaño proporcional del rectángulo visible
+    const rw = Math.max(18, Math.min(boxW, boxW / zoom));
+    const rh = Math.max(18, Math.min(boxH, boxH / zoom));
+
+    // Desplazamiento relativo
+    const maxPanX = vpW * 0.7;
+    const maxPanY = vpH * 0.7;
+    const normX = Math.max(-1, Math.min(1, currentX / (maxPanX * zoom)));
+    const normY = Math.max(-1, Math.min(1, currentY / (maxPanY * zoom)));
+
+    const rx = Math.max(0, Math.min(boxW - rw, (boxW - rw) / 2 - (normX * (boxW - rw) / 2)));
+    const ry = Math.max(0, Math.min(boxH - rh, (boxH - rh) / 2 - (normY * (boxH - rh) / 2)));
+
+    rect.style.width = `${rw}px`;
+    rect.style.height = `${rh}px`;
+    rect.style.left = `${rx}px`;
+    rect.style.top = `${ry}px`;
+}
+
+function switchWSISample(sampleKey) {
+    if (!WSI_DATA[sampleKey]) return;
+    currentSampleKey = sampleKey;
+    const data = WSI_DATA[sampleKey];
+
+    // Actualizar imagen principal y miniatura
+    const slideImg = document.getElementById('wsiSlideImg');
+    const minimapThumb = document.getElementById('wsiMinimapThumb');
+    const sampleTitle = document.getElementById('wsiSampleTitle');
+
+    if (slideImg) slideImg.src = data.image;
+    if (minimapThumb) minimapThumb.src = data.thumb;
+    if (sampleTitle) sampleTitle.textContent = data.title;
+
+    // Actualizar botones de muestra
+    const btnProstate = document.getElementById('btnSampleProstate');
+    const btnRenal = document.getElementById('btnSampleRenal');
+    if (btnProstate && btnRenal) {
+        if (sampleKey === 'prostate') {
+            btnProstate.classList.add('active');
+            btnRenal.classList.remove('active');
+        } else {
+            btnProstate.classList.remove('active');
+            btnRenal.classList.add('active');
+        }
+    }
+
+    // Resetear posición suavemente
+    currentX = 0;
+    currentY = 0;
+    currentZoomLevel = 1.0;
+    currentRotation = 0;
+    applyWSITransform();
+}
 
 function initWSIViewer() {
     const viewport = document.getElementById('wsiViewport');
     const slideImg = document.getElementById('wsiSlideImg');
     if (!viewport || !slideImg) return;
 
-    // Control de Arrastre (Pan)
+    // 1. Selector de las 2 Muestras
+    const btnProstate = document.getElementById('btnSampleProstate');
+    const btnRenal = document.getElementById('btnSampleRenal');
+    if (btnProstate) {
+        btnProstate.addEventListener('click', () => switchWSISample('prostate'));
+    }
+    if (btnRenal) {
+        btnRenal.addEventListener('click', () => switchWSISample('renal'));
+    }
+
+    // 2. Pan / Arrastre sobre el viewport
     viewport.addEventListener('mousedown', (e) => {
+        if (e.target.closest('#wsiRotationWidget') || e.target.closest('.wsi-minimap-cluster') || e.target.closest('.wsi-scale-cluster')) return;
         isPanning = true;
         startX = e.clientX - currentX;
         startY = e.clientY - currentY;
@@ -257,10 +1100,12 @@ function initWSIViewer() {
 
     window.addEventListener('mousemove', (e) => {
         if (!isPanning) return;
-        currentX = e.clientX - startX;
-        currentY = e.clientY - startY;
-        updateWSITransform();
-        updateWSICoordinates(currentX, currentY);
+        const rawX = e.clientX - startX;
+        const rawY = e.clientY - startY;
+        const clamped = clampPanCoords(rawX, rawY);
+        currentX = clamped.x;
+        currentY = clamped.y;
+        applyWSITransform();
     });
 
     window.addEventListener('mouseup', () => {
@@ -268,92 +1113,412 @@ function initWSIViewer() {
         if (viewport) viewport.style.cursor = 'grab';
     });
 
-    // Control de Rueda de Ratón (Zoom)
-    viewport.addEventListener('wheel', (e) => {
-        e.preventDefault();
-        if (e.deltaY < 0) {
-            currentZoomLevel = Math.min(currentZoomLevel + 0.3, 5.0);
-        } else {
-            currentZoomLevel = Math.max(currentZoomLevel - 0.3, 1.0);
+    // Soporte táctil móvil fluido (Pan y Pinch-to-zoom)
+    let touchStartDist = 0;
+    let initialZoom = 1.0;
+    viewport.addEventListener('touchstart', (e) => {
+        if (e.target.closest('#wsiRotationWidget') || e.target.closest('.wsi-minimap-cluster') || e.target.closest('.wsi-scale-cluster')) return;
+
+        if (e.touches.length === 1) {
+            isPanning = true;
+            startX = e.touches[0].clientX - currentX;
+            startY = e.touches[0].clientY - currentY;
+        } else if (e.touches.length === 2) {
+            isPanning = false;
+            touchStartDist = Math.hypot(
+                e.touches[0].clientX - e.touches[1].clientX,
+                e.touches[0].clientY - e.touches[1].clientY
+            );
+            initialZoom = currentZoomLevel;
         }
-        updateWSITransform();
-        updateWSIZoomHUD();
+    }, { passive: true });
+
+    viewport.addEventListener('touchmove', (e) => {
+        if (isPanning && e.touches.length === 1) {
+            e.preventDefault();
+            const rawX = e.touches[0].clientX - startX;
+            const rawY = e.touches[0].clientY - startY;
+            const clamped = clampPanCoords(rawX, rawY);
+            currentX = clamped.x;
+            currentY = clamped.y;
+            applyWSITransform();
+        } else if (e.touches.length === 2 && touchStartDist > 0) {
+            e.preventDefault();
+            const currentDist = Math.hypot(
+                e.touches[0].clientX - e.touches[1].clientX,
+                e.touches[0].clientY - e.touches[1].clientY
+            );
+            const factor = currentDist / touchStartDist;
+            currentZoomLevel = Math.max(1.0, Math.min(5.5, initialZoom * factor));
+            applyWSITransform();
+        }
     }, { passive: false });
 
-    // Botones de Zoom
-    const zoomBtns = document.querySelectorAll('.wsi-zoom-btn');
-    zoomBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            zoomBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const mag = parseFloat(btn.getAttribute('data-zoom'));
-            currentZoomLevel = mag;
-            updateWSITransform();
-            updateWSIZoomHUD();
-        });
+    viewport.addEventListener('touchend', () => {
+        isPanning = false;
+        touchStartDist = 0;
     });
 
-    // Filtros Espectrales Digitales
-    const filterBtns = document.querySelectorAll('.wsi-filter-btn');
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const filter = btn.getAttribute('data-filter');
-            slideImg.className = 'wsi-slide-image';
-            if (filter !== 'normal') {
-                slideImg.classList.add(`filter-${filter}`);
+    // 3. Zoom con Rueda del Ratón
+    viewport.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const delta = e.deltaY < 0 ? 0.25 : -0.25;
+        currentZoomLevel = Math.max(1.0, Math.min(5.5, currentZoomLevel + delta));
+        applyWSITransform();
+    }, { passive: false });
+
+    // 4. Botones de Zoom (+ y -)
+    const btnZoomIn = document.getElementById('btnWsiZoomIn');
+    const btnZoomOut = document.getElementById('btnWsiZoomOut');
+    if (btnZoomIn) {
+        btnZoomIn.addEventListener('click', () => {
+            currentZoomLevel = Math.min(5.5, currentZoomLevel + 0.35);
+            applyWSITransform();
+        });
+    }
+    if (btnZoomOut) {
+        btnZoomOut.addEventListener('click', () => {
+            currentZoomLevel = Math.max(1.0, currentZoomLevel - 0.35);
+            applyWSITransform();
+        });
+    }
+
+    // 5. Botones de Píldoras de Aumento (2x, 4x, 10x, 20x, 40x)
+    const magPills = document.querySelectorAll('.wsi-mag-pill');
+    magPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+            const targetZoom = parseFloat(pill.getAttribute('data-zoom'));
+            if (!isNaN(targetZoom)) {
+                currentZoomLevel = targetZoom;
+                applyWSITransform();
             }
         });
     });
 
-    // Pestañas de Casos de Especialidad en WSI
-    const caseTabs = document.querySelectorAll('.wsi-case-tab');
-    caseTabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            caseTabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            const imgPath = tab.getAttribute('data-img');
-            const label = tab.getAttribute('data-label');
-            slideImg.src = imgPath;
+    // 6. Controles de Rotación en Barra Superior
+    const btnRotateCW = document.getElementById('btnWsiRotateCW');
+    const btnRotateCCW = document.getElementById('btnWsiRotateCCW');
+    const btnResetRot = document.getElementById('btnWsiResetRot');
+
+    if (btnRotateCW) {
+        btnRotateCW.addEventListener('click', () => {
+            currentRotation = (currentRotation + 15) % 360;
+            applyWSITransform();
+        });
+    }
+    if (btnRotateCCW) {
+        btnRotateCCW.addEventListener('click', () => {
+            currentRotation = (currentRotation - 15 + 360) % 360;
+            applyWSITransform();
+        });
+    }
+    if (btnResetRot) {
+        btnResetRot.addEventListener('click', () => {
+            currentRotation = 0;
+            applyWSITransform();
+        });
+    }
+
+    // 7. Widget de Rotación: Dial Circular (0° a 360°)
+    const dialWrap = document.getElementById('rotDialWrap');
+    const dialCircle = document.getElementById('rotDialCircle');
+
+    function handleDialRotate(clientX, clientY) {
+        if (!dialCircle) return;
+        const rect = dialCircle.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = clientX - cx;
+        const dy = clientY - cy;
+        let deg = Math.round(Math.atan2(dy, dx) * 180 / Math.PI) + 90;
+        if (deg < 0) deg += 360;
+        if (deg >= 360) deg -= 360;
+        currentRotation = deg;
+        applyWSITransform();
+    }
+
+    if (dialWrap) {
+        dialWrap.addEventListener('mousedown', (e) => {
+            isDialDragging = true;
+            handleDialRotate(e.clientX, e.clientY);
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDialDragging) return;
+            handleDialRotate(e.clientX, e.clientY);
+        });
+
+        window.addEventListener('mouseup', () => {
+            isDialDragging = false;
+        });
+
+        dialWrap.addEventListener('touchstart', (e) => {
+            if (e.touches.length > 0) {
+                isDialDragging = true;
+                handleDialRotate(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        }, { passive: true });
+
+        window.addEventListener('touchmove', (e) => {
+            if (!isDialDragging || e.touches.length === 0) return;
+            handleDialRotate(e.touches[0].clientX, e.touches[0].clientY);
+        }, { passive: true });
+
+        window.addEventListener('touchend', () => {
+            isDialDragging = false;
+        });
+    }
+
+    // Accesos Rápidos de Rotación (0°, 90°, 180°, 270°)
+    const rotQuickBtns = document.querySelectorAll('.rot-quick-btn');
+    rotQuickBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const angle = parseInt(btn.getAttribute('data-angle'), 10);
+            currentRotation = angle;
+            applyWSITransform();
+        });
+    });
+
+    // 8. Barra Táctil Flotante
+    const btnTouchCenter = document.getElementById('btnTouchCenter');
+    const btnTouchZoomIn = document.getElementById('btnTouchZoomIn');
+    const btnTouchZoomOut = document.getElementById('btnTouchZoomOut');
+    const btnTouchReset = document.getElementById('btnTouchReset');
+
+    if (btnTouchCenter) {
+        btnTouchCenter.addEventListener('click', () => {
+            currentX = 0;
+            currentY = 0;
+            applyWSITransform();
+        });
+    }
+    if (btnTouchZoomIn) {
+        btnTouchZoomIn.addEventListener('click', () => {
+            currentZoomLevel = Math.min(5.5, currentZoomLevel + 0.35);
+            applyWSITransform();
+        });
+    }
+    if (btnTouchZoomOut) {
+        btnTouchZoomOut.addEventListener('click', () => {
+            currentZoomLevel = Math.max(1.0, currentZoomLevel - 0.35);
+            applyWSITransform();
+        });
+    }
+    if (btnTouchReset) {
+        btnTouchReset.addEventListener('click', () => {
             currentX = 0;
             currentY = 0;
             currentZoomLevel = 1.0;
-            updateWSITransform();
-            const labelElem = document.getElementById('wsiCaseLabel');
-            if (labelElem) labelElem.textContent = label;
+            currentRotation = 0;
+            applyWSITransform();
         });
-    });
+    }
+
+    // 9. Minimapa Radar: Click / Drag para centrar región
+    const minimapBox = document.getElementById('wsiMinimapBox');
+    if (minimapBox) {
+        const navigateToMinimap = (clientX, clientY) => {
+            const rect = minimapBox.getBoundingClientRect();
+            const px = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+            const py = Math.max(0, Math.min(1, (clientY - rect.top) / rect.height));
+
+            const vpW = viewport.clientWidth || 1000;
+            const vpH = viewport.clientHeight || 700;
+            const maxPanX = vpW * 0.7;
+            const maxPanY = vpH * 0.7;
+
+            currentX = -((px - 0.5) * 2) * maxPanX * currentZoomLevel;
+            currentY = -((py - 0.5) * 2) * maxPanY * currentZoomLevel;
+            applyWSITransform();
+        };
+
+        let isMinimapDown = false;
+        minimapBox.addEventListener('mousedown', (e) => {
+            isMinimapDown = true;
+            navigateToMinimap(e.clientX, e.clientY);
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (isMinimapDown) {
+                navigateToMinimap(e.clientX, e.clientY);
+            }
+        });
+
+        window.addEventListener('mouseup', () => {
+            isMinimapDown = false;
+        });
+    }
+
+    // 10. Morfometría IA
+    const btnAi = document.getElementById('btnWsiAi');
+    const aiOverlay = document.getElementById('wsiAiOverlay');
+    if (btnAi && aiOverlay) {
+        btnAi.addEventListener('click', () => {
+            isAiActive = !isAiActive;
+            btnAi.classList.toggle('active', isAiActive);
+            aiOverlay.classList.toggle('active', isAiActive);
+            showWSIToast(isAiActive ? 'Morfometría IA: Detección y Conteo Mitótico Activados' : 'Morfometría IA: Vista H&E Pura');
+        });
+    }
+
+    // 11. Lupa de Inmersión 80x
+    const btnLens = document.getElementById('btnWsiLens');
+    const lens = document.getElementById('wsiMagnifierLens');
+    if (btnLens && lens) {
+        btnLens.addEventListener('click', () => {
+            isLensActive = !isLensActive;
+            btnLens.classList.toggle('active', isLensActive);
+            lens.style.display = isLensActive ? 'block' : 'none';
+            if (isLensActive) {
+                lens.style.backgroundImage = `url('${slideImg.src}')`;
+                lens.style.backgroundSize = `${slideImg.naturalWidth ? slideImg.naturalWidth * 2.5 : 3000}px auto`;
+                showWSIToast('Lupa 80x: Pasa el cursor sobre el tejido');
+            }
+        });
+
+        viewport.addEventListener('mousemove', (e) => {
+            if (!isLensActive) return;
+            const rect = viewport.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+
+            lens.style.left = `${mouseX}px`;
+            lens.style.top = `${mouseY}px`;
+
+            const bgX = -((mouseX / rect.width) * 100 * 2.5) + 50;
+            const bgY = -((mouseY / rect.height) * 100 * 2.5) + 50;
+            lens.style.backgroundPosition = `${bgX}% ${bgY}%`;
+        });
+    }
+
+    // 12. Captura de Fotograma Histopatológico
+    const btnCapture = document.getElementById('btnWsiCapture');
+    if (btnCapture) {
+        btnCapture.addEventListener('click', () => {
+            const origFilter = viewport.style.filter;
+            viewport.style.filter = 'brightness(2.2)';
+            setTimeout(() => { viewport.style.filter = origFilter; }, 120);
+            showWSIToast('Fotograma histológico 40x capturado con calibración 0.25 µm/px');
+        });
+    }
+
+    // 13. Exportar / Descargar WSI
+    const btnExport = document.getElementById('btnWsiExport');
+    if (btnExport) {
+        btnExport.addEventListener('click', () => {
+            const curData = WSI_DATA[currentSampleKey];
+            const a = document.createElement('a');
+            a.href = curData.image;
+            a.download = `${currentSampleKey}_wsi_40x.webp`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            showWSIToast(`Descargando ROI de ${curData.title}`);
+        });
+    }
+
+    // 14. Pantalla Completa (Fullscreen)
+    const btnFullscreen = document.getElementById('btnWsiFullscreen');
+    if (btnFullscreen) {
+        btnFullscreen.addEventListener('click', () => {
+            const screenWSI = document.getElementById('pantalla-wsi');
+            if (!document.fullscreenElement) {
+                if (screenWSI.requestFullscreen) screenWSI.requestFullscreen();
+                else if (screenWSI.webkitRequestFullscreen) screenWSI.webkitRequestFullscreen();
+                btnFullscreen.innerHTML = '<i class="fa-solid fa-compress"></i>';
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+                btnFullscreen.innerHTML = '<i class="fa-solid fa-expand"></i>';
+            }
+        });
+    }
+
+    // 15. Verificación de enlace con Servidor Cloudflare WSI Propio
+    checkCloudflareTunnel();
+    setInterval(checkCloudflareTunnel, 60000);
+
+    // Inicialización del visor con la muestra 1
+    applyWSITransform();
 }
 
-function updateWSITransform() {
-    const slideImg = document.getElementById('wsiSlideImg');
-    if (slideImg) {
-        slideImg.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentZoomLevel})`;
+/**
+ * Verifica el estado del túnel Cloudflare hacia el Servidor WSI físico local
+ */
+async function checkCloudflareTunnel() {
+    const beacon = document.getElementById('wsiServerBeacon');
+    const btnText = document.getElementById('wsiServerBtnText');
+    const directBtn = document.getElementById('wsiServerDirectBtn');
+    const noticeBanner = document.getElementById('wsiTunnelNoticeBanner');
+
+    const TUNNEL_URL = 'https://icon-kidney-collins-rebecca.trycloudflare.com/';
+
+    try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 3500);
+        await fetch(TUNNEL_URL, {
+            method: 'GET',
+            mode: 'no-cors',
+            signal: controller.signal,
+            cache: 'no-cache'
+        });
+        clearTimeout(timeoutId);
+
+        // Servidor Cloudflare en línea
+        if (beacon) beacon.className = 'wsi-live-beacon online';
+        if (btnText) btnText.textContent = 'Servidor WSI En Vivo (3.5 TB)';
+        if (directBtn) directBtn.title = 'Túnel Cloudflare Activo: Conectado a Servidor WSI In-House (3.5 TB en F:\\LAMINARIO DE PATOLOGIA)';
+        if (noticeBanner) noticeBanner.style.display = 'none';
+    } catch (err) {
+        // Servidor Cloudflare en reposo o inactivo
+        if (beacon) beacon.className = 'wsi-live-beacon offline';
+        if (btnText) btnText.textContent = 'Servidor WSI (En Reposo)';
+        if (directBtn) directBtn.title = 'Advertencia de Túnel: El servidor local de patología está en reposo temporal. Las 2 muestras de alta resolución integradas operan al 100% de rendimiento.';
+        if (noticeBanner) noticeBanner.style.display = 'block';
     }
 }
 
-function updateWSIZoomHUD() {
-    const magText = document.getElementById('wsiMagHUD');
-    const scaleLine = document.getElementById('wsiScaleText');
-    if (!magText) return;
+window.checkCloudflareTunnel = checkCloudflareTunnel;
+window.switchWSISample = switchWSISample;
+window.setWSIRotation = function(deg) {
+    currentRotation = Math.round(deg) % 360;
+    if (currentRotation < 0) currentRotation += 360;
+    applyWSITransform();
+};
 
-    let text = '2x (Panorámica)';
-    let scale = '50 µm';
-    if (currentZoomLevel > 3.5) { text = '40x (Inmersión/Nuclear)'; scale = '10 µm'; }
-    else if (currentZoomLevel > 2.5) { text = '20x (Celular)'; scale = '20 µm'; }
-    else if (currentZoomLevel > 1.8) { text = '10x (Glandular)'; scale = '30 µm'; }
-    else if (currentZoomLevel > 1.2) { text = '4x (Arquitectura)'; scale = '40 µm'; }
-
-    magText.textContent = text;
-    if (scaleLine) scaleLine.textContent = scale;
-}
-
-function updateWSICoordinates(x, y) {
-    const coordText = document.getElementById('wsiCoordsHUD');
-    if (coordText) {
-        coordText.textContent = `X: ${Math.round(x * -1 + 500)} µm | Y: ${Math.round(y * -1 + 300)} µm`;
+function showWSIToast(msg) {
+    let toast = document.getElementById('wsiToastMessage');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'wsiToastMessage';
+        toast.style.cssText = `
+            position: fixed;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(10, 19, 34, 0.95);
+            backdrop-filter: blur(14px);
+            border: 1px solid #38bdf8;
+            color: #ffffff;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            z-index: 9999;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+            transition: opacity 0.3s, transform 0.3s;
+            pointer-events: none;
+        `;
+        document.body.appendChild(toast);
     }
+    toast.textContent = msg;
+    toast.style.opacity = '1';
+    toast.style.transform = 'translateX(-50%) translateY(0)';
+    clearTimeout(toast._timeout);
+    toast._timeout = setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(-50%) translateY(10px)';
+    }, 2800);
 }
 
 /* ==========================================================================

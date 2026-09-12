@@ -330,12 +330,18 @@
                     target.closest("canvas") ||
                     target.closest(".wsi-full-viewport") ||
                     target.closest(".wsi-slide-image") ||
+                    target.closest("#wsiRotationWidget") ||
+                    target.closest(".rot-dial-wrap") ||
+                    target.closest(".wsi-top-bar") ||
+                    target.closest(".wsi-minimap-cluster") ||
+                    target.closest(".wsi-scale-cluster") ||
                     target.closest(".scanner-viewport-frame") ||
                     target.closest(".scanner-interactive-slide") ||
                     target.closest(".split-screen-controller") ||
                     target.closest(".ihq-table-viewport") ||
                     target.closest("input") ||
-                    target.closest("button")
+                    target.closest("button") ||
+                    target.closest("a")
                 );
             } else {
                 isInteractiveTouch = false;

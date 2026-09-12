@@ -169,16 +169,18 @@ body {
     background: rgba(5, 11, 20, 0.92);
     backdrop-filter: blur(18px);
     border-bottom: 1px solid rgba(56, 189, 248, 0.2);
-    padding: 10px 24px;
+    padding: 8px clamp(14px, 1.8vw, 32px);
 }
 
 .nav-container {
-    max-width: 1400px;
+    width: 100%;
+    max-width: min(1920px, 97vw);
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
+    gap: clamp(14px, 1.6vw, 28px);
+    padding: 0 4px;
 }
 
 .brand-wrapper {
@@ -186,6 +188,7 @@ body {
     align-items: center;
     gap: 12px;
     text-decoration: none;
+    flex-shrink: 0;
 }
 
 .brand-logo-glow {
@@ -199,22 +202,29 @@ body {
     color: #ffffff;
     font-size: 20px;
     box-shadow: 0 0 18px var(--glow-cyan);
+    flex-shrink: 0;
 }
 
 .brand-title-group h1 {
-    font-size: 16px;
+    font-size: 16.5px;
     font-weight: 900;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.6px;
     color: #ffffff;
     line-height: 1.1;
+    font-family: 'Montserrat', 'Inter', sans-serif;
+    margin: 0;
 }
 
 .brand-title-group span {
     font-size: 9.5px;
     font-weight: 700;
     color: var(--accent-sky);
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
+    font-family: 'Montserrat', 'Inter', sans-serif;
+    white-space: nowrap;
+    display: block;
+    margin-top: 1px;
 }
 
 /* Menú Central con Enlaces del Dossier */
@@ -509,10 +519,10 @@ body {
 .screen-slide .slide-floating-overlay-top {
     position: absolute;
     top: 16px;
-    left: 20px;
-    right: 20px;
+    left: clamp(14px, 1.8vw, 32px);
+    right: clamp(14px, 1.8vw, 32px);
     margin: 0 auto;
-    max-width: 1380px;
+    max-width: min(1880px, 96vw);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -526,10 +536,10 @@ body {
 .screen-slide .slide-floating-overlay-bottom {
     position: absolute;
     bottom: 20px;
-    left: 20px;
-    right: 20px;
+    left: clamp(14px, 1.8vw, 32px);
+    right: clamp(14px, 1.8vw, 32px);
     margin: 0 auto;
-    max-width: 1380px;
+    max-width: min(1880px, 96vw);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1308,121 +1318,420 @@ body {
     align-items: center;
 }
 
-/* Marco Físico del Teléfono */
+/* Marco Físico del Teléfono (Agrandado en un 20% para máximo impacto visual clínico) */
 .phone-mockup-container {
-    width: 340px;
-    height: 680px;
+    width: 420px;
+    height: 88vh;
+    max-height: 780px;
+    min-height: 520px;
     background: var(--sapphire-950);
-    border: 4px solid var(--sapphire-700);
+    border: 5px solid #1e293b;
     border-radius: 46px;
-    padding: 12px;
-    box-shadow: 0 25px 60px -15px rgba(5, 11, 20, 0.8), 0 0 30px rgba(56, 189, 248, 0.2);
+    padding: 10px;
+    box-shadow: 0 25px 65px -15px rgba(2, 6, 23, 0.95), 0 0 45px rgba(56, 189, 248, 0.28);
     position: relative;
     margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .phone-screen {
     width: 100%;
     height: 100%;
-    background: var(--sapphire-950);
-    border-radius: 36px;
+    background: #020617;
+    border-radius: 38px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     position: relative;
+    user-select: none;
 }
 
 .phone-dynamic-notch {
     position: absolute;
-    top: 8px;
+    top: 6px;
     left: 50%;
     transform: translateX(-50%);
-    width: 90px;
-    height: 22px;
+    width: 110px;
+    height: 20px;
     background: #000000;
     border-radius: 20px;
-    z-index: 100;
+    z-index: 120;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.6);
 }
 
 .phone-camera-dot {
-    width: 8px;
-    height: 8px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
-    background: #1e293b;
+    background: #0f172a;
+    border: 1.5px solid #1e293b;
+    position: relative;
+}
+.phone-camera-dot::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #0284c7;
+    top: 1.5px;
+    left: 1.5px;
 }
 
-/* Contenido Interno de la App del Urólogo/Cirujano */
+.phone-sensor-pill {
+    width: 38px;
+    height: 4px;
+    background: #1e293b;
+    border-radius: 4px;
+}
+
+/* Barra de Estado del Smartphone (En vivo: Hora, 5G, Wi-Fi, Batería 100%) */
 .phone-status-bar {
     display: flex;
     justify-content: space-between;
-    padding: 8px 18px 4px 18px;
-    font-size: 10px;
-    color: #94a3b8;
+    align-items: center;
+    padding: 7px 18px 3px 18px;
+    font-size: 11px;
+    color: #cbd5e1;
     font-weight: 700;
+    background: #020617;
+    z-index: 90;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
+.phone-live-clock {
+    font-size: 11.5px;
+    font-weight: 800;
+    color: #f8fafc;
+    letter-spacing: 0.2px;
+}
+
+.phone-status-icons {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.phone-net-badge {
+    font-size: 8px;
+    font-weight: 900;
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.15);
+    padding: 1px 3px;
+    border-radius: 3px;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    margin-right: 2px;
+}
+
+.phone-bat-val {
+    font-size: 9px;
+    color: #10b981;
+    font-weight: 800;
+    margin-left: 2px;
+}
+
+/* Cabecera de la App Móvil JC PATH SURGICAL */
 .phone-app-header {
-    background: var(--sapphire-900);
-    padding: 10px 14px;
-    border-bottom: 1px solid var(--border-glass);
+    background: linear-gradient(180deg, #091528 0%, #060e1c 100%);
+    padding: 8px 14px;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.2);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-shrink: 0;
+    z-index: 80;
 }
 
 .phone-app-brand {
-    font-size: 11px;
+    font-size: 11.5px;
     font-weight: 900;
     color: #ffffff;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 7px;
+    letter-spacing: 0.3px;
 }
 
-.phone-app-brand span { color: var(--accent-sky); }
+.phone-app-brand strong {
+    color: #38bdf8;
+}
 
+.phone-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.phone-header-btn {
+    background: rgba(30, 41, 59, 0.7);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    color: #e2e8f0;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    font-size: 11px;
+    transition: all 0.2s ease;
+}
+
+.phone-header-btn:hover {
+    background: rgba(2, 132, 199, 0.3);
+    border-color: #38bdf8;
+    color: #fff;
+}
+
+.phone-header-badge {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    background: #ef4444;
+    color: #fff;
+    font-size: 8px;
+    font-weight: 900;
+    min-width: 13px;
+    height: 13px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2px;
+    box-shadow: 0 0 6px rgba(239, 68, 68, 0.8);
+    animation: pulseBadge 2.2s infinite ease-in-out;
+}
+
+@keyframes pulseBadge {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.18); }
+}
+
+/* Selector / Tabs de la App Móvil (Biopsias, En Proceso, Completados) */
+.phone-subtabs-bar {
+    display: flex;
+    padding: 6px 10px 4px 10px;
+    gap: 6px;
+    background: #081122;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.12);
+    flex-shrink: 0;
+}
+
+.phone-subtab-btn {
+    flex: 1;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    color: #94a3b8;
+    border-radius: 8px;
+    padding: 6px 4px;
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.phone-subtab-btn:hover {
+    color: #f1f5f9;
+    border-color: rgba(56, 189, 248, 0.35);
+}
+
+.phone-subtab-btn.active {
+    background: linear-gradient(135deg, rgba(2, 132, 199, 0.35) 0%, rgba(14, 165, 233, 0.15) 100%);
+    border-color: #38bdf8;
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3);
+}
+
+.phone-subtab-count {
+    background: #1e293b;
+    color: #cbd5e1;
+    font-size: 8px;
+    font-weight: 800;
+    padding: 1px 5px;
+    border-radius: 10px;
+}
+
+.phone-subtab-btn.active .phone-subtab-count {
+    background: #0284c7;
+    color: #ffffff;
+}
+
+.phone-subtab-count.warn {
+    background: rgba(245, 158, 11, 0.2);
+    color: #fbbf24;
+}
+
+.phone-subtab-count.success {
+    background: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+}
+
+/* Buscador Interno del Smartphone */
 .phone-search-box {
-    padding: 8px 12px;
-    background: #0b1320;
+    padding: 6px 12px;
+    background: #081122;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.phone-search-icon {
+    color: #64748b;
+    font-size: 11px;
+    position: absolute;
+    left: 22px;
+    pointer-events: none;
 }
 
 .phone-search-input {
     width: 100%;
-    background: #1e293b;
-    border: 1px solid #334155;
-    border-radius: 8px;
-    padding: 5px 10px;
+    background: #0f1c33;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 9px;
+    padding: 6px 28px 6px 30px;
     font-size: 11px;
     color: #ffffff;
     outline: none;
+    transition: all 0.2s ease;
+    font-family: inherit;
 }
 
-/* Lista de Pacientes en el Teléfono */
+.phone-search-input:focus {
+    border-color: #38bdf8;
+    background: #132442;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
+}
+
+.phone-search-clear {
+    position: absolute;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 800;
+    line-height: 1;
+    padding: 2px 4px;
+}
+.phone-search-clear:hover { color: #f8fafc; }
+
+/* Contenedor Principal de Vistas del Smartphone */
+.phone-body-viewport {
+    flex: 1;
+    min-height: 0;
+    position: relative;
+    overflow: hidden;
+    background: #020617;
+}
+
+.phone-view {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #020617;
+}
+
+.phone-patients-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 12px 4px 12px;
+    font-size: 9.5px;
+    color: #94a3b8;
+    background: rgba(11, 22, 42, 0.6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    flex-shrink: 0;
+}
+
+.btn-phone-sync {
+    background: transparent;
+    border: none;
+    color: #38bdf8;
+    font-size: 9px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 4px;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+.btn-phone-sync:hover {
+    color: #ffffff;
+    background: rgba(56, 189, 248, 0.15);
+}
+
+/* Lista Interactiva de Pacientes en el Móvil */
 .phone-patients-list {
     flex: 1;
+    min-height: 0;
     overflow-y: auto;
+    overflow-x: hidden;
     padding: 8px 10px;
     display: flex;
     flex-direction: column;
     gap: 8px;
+    scrollbar-width: thin;
+    scrollbar-color: #0284c7 rgba(15, 23, 42, 0.6);
 }
 
+.phone-patients-list::-webkit-scrollbar {
+    width: 4px;
+}
+.phone-patients-list::-webkit-scrollbar-thumb {
+    background: #0284c7;
+    border-radius: 3px;
+}
+
+/* Tarjeta de Paciente Quirúrgico Real */
 .phone-patient-card {
-    background: #111d33;
+    background: linear-gradient(180deg, #0d192f 0%, #091223 100%);
     border: 1px solid rgba(56, 189, 248, 0.2);
-    border-radius: 10px;
-    padding: 9px 10px;
+    border-radius: 12px;
+    padding: 10px 11px;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.phone-patient-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: #38bdf8;
+    opacity: 0;
+    transition: opacity 0.2s;
 }
 
 .phone-patient-card.active, .phone-patient-card:hover {
-    border-color: var(--accent-sky);
-    background: #162542;
-    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+    border-color: #38bdf8;
+    background: linear-gradient(180deg, #122442 0%, #0d1a33 100%);
+    box-shadow: 0 6px 18px rgba(2, 132, 199, 0.32);
+    transform: translateY(-1px);
+}
+
+.phone-patient-card.active::before, .phone-patient-card:hover::before {
+    opacity: 1;
 }
 
 .p-card-top {
@@ -1430,86 +1739,709 @@ body {
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 4px;
+    gap: 6px;
 }
 
 .p-card-name {
-    font-size: 11px;
+    font-size: 11.5px;
     font-weight: 800;
-    color: #ffffff;
+    color: #f8fafc;
+    letter-spacing: 0.2px;
+    line-height: 1.25;
 }
 
 .p-card-status {
     font-size: 8px;
     font-weight: 800;
-    padding: 2px 6px;
+    padding: 2.5px 7px;
     border-radius: 10px;
     text-transform: uppercase;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
-.status-ready { background: #064e3b; color: #34d399; border: 1px solid #059669; }
-.status-process { background: #78350f; color: #fbbf24; border: 1px solid #d97706; }
-.status-completed { background: #1e1b4b; color: #a5b4fc; border: 1px solid #6366f1; }
+.status-ready {
+    background: rgba(5, 150, 105, 0.22);
+    color: #34d399;
+    border: 1px solid rgba(52, 211, 153, 0.4);
+}
+
+.status-process {
+    background: rgba(217, 119, 6, 0.22);
+    color: #fbbf24;
+    border: 1px solid rgba(251, 191, 36, 0.4);
+}
+
+.status-completed {
+    background: rgba(30, 58, 138, 0.35);
+    color: #60a5fa;
+    border: 1px solid rgba(96, 165, 250, 0.4);
+}
+
+.p-card-proc {
+    font-size: 10px;
+    color: #93c5fd;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.p-card-diag-preview {
+    font-size: 9px;
+    color: #cbd5e1;
+    line-height: 1.35;
+    margin-bottom: 6px;
+    background: rgba(2, 6, 23, 0.55);
+    padding: 4px 7px;
+    border-radius: 6px;
+    border-left: 2px solid #0284c7;
+}
+
+.p-card-diag-preview strong {
+    color: #38bdf8;
+    font-weight: 700;
+}
 
 .p-card-meta {
-    font-size: 9px;
-    color: #94a3b8;
-    margin-bottom: 6px;
+    font-size: 8.5px;
+    color: #64748b;
+    margin-bottom: 7px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 4px;
+}
+
+.p-card-meta .p-dr {
+    color: #94a3b8;
+    font-weight: 600;
+}
+
+.p-card-meta .p-id {
+    font-family: 'JetBrains Mono', monospace;
+    color: #38bdf8;
+    font-weight: 700;
+    background: rgba(56, 189, 248, 0.1);
+    padding: 1px 4px;
+    border-radius: 4px;
 }
 
 .p-card-actions {
     display: flex;
-    gap: 5px;
+    gap: 6px;
 }
 
 .btn-phone-action {
     flex: 1;
-    padding: 4px 6px;
-    border-radius: 5px;
-    font-size: 9px;
+    padding: 5px 8px;
+    border-radius: 6px;
+    font-size: 9.5px;
     font-weight: 800;
     border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 4px;
-    transition: var(--transition);
+    gap: 5px;
+    transition: all 0.2s ease;
+    text-decoration: none;
 }
 
 .btn-phone-pdf {
-    background: var(--accent-cyan);
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
     color: #ffffff;
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.35);
 }
-.btn-phone-pdf:hover { background: #0284c7; }
+.btn-phone-pdf:hover {
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+    box-shadow: 0 3px 12px rgba(14, 165, 233, 0.5);
+    transform: translateY(-1px);
+}
 
 .btn-phone-360 {
-    background: #334155;
+    background: rgba(30, 41, 59, 0.85);
     color: #cbd5e1;
+    border: 1px solid rgba(148, 163, 184, 0.25);
 }
-.btn-phone-360:hover { background: #475569; color: #ffffff; }
+.btn-phone-360:hover {
+    background: rgba(51, 65, 85, 0.95);
+    color: #ffffff;
+    border-color: #a855f7;
+}
 
-/* Modal Flotante de Informe en Teléfono */
+/* Modal / Vista de Informe Patológico Completo dentro del Smartphone */
 .phone-report-preview-modal {
     position: absolute;
     inset: 0;
-    background: rgba(3, 7, 18, 0.96);
-    backdrop-filter: blur(10px);
+    background: #020617;
     z-index: 200;
-    padding: 16px 12px;
     display: flex;
     flex-direction: column;
-    border-radius: 36px;
+    border-radius: 0;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.25s ease;
+    transform: translateY(18px);
+    transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
 }
 
 .phone-report-preview-modal.active {
     opacity: 1;
     pointer-events: auto;
+    transform: translateY(0);
 }
+
+.phone-report-header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: #081122;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.25);
+    flex-shrink: 0;
+}
+
+.phone-back-btn {
+    background: rgba(2, 132, 199, 0.18);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    color: #38bdf8;
+    border-radius: 6px;
+    padding: 4px 9px;
+    font-size: 10px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.2s ease;
+}
+.phone-back-btn:hover {
+    background: #0284c7;
+    color: #ffffff;
+}
+
+.phone-report-case-id {
+    font-size: 11px;
+    font-weight: 800;
+    color: #f8fafc;
+    font-family: 'JetBrains Mono', monospace;
+    background: rgba(56, 189, 248, 0.12);
+    padding: 2px 7px;
+    border-radius: 5px;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+}
+
+.phone-close-btn {
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #cbd5e1;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    transition: all 0.2s;
+}
+.phone-close-btn:hover {
+    background: #ef4444;
+    border-color: #ef4444;
+    color: #fff;
+}
+
+.phone-report-scroll-wrapper {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 10px 10px 14px 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #0284c7 rgba(15, 23, 42, 0.8);
+}
+.phone-report-scroll-wrapper::-webkit-scrollbar {
+    width: 4px;
+}
+.phone-report-scroll-wrapper::-webkit-scrollbar-thumb {
+    background: #0284c7;
+    border-radius: 3px;
+}
+
+/* Hoja Clínica del Informe Oficial */
+.phone-report-doc {
+    background: #091322;
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 9.5px;
+    color: #e2e8f0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.p-rep-letterhead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #0284c7;
+    padding-bottom: 8px;
+    margin-bottom: 9px;
+}
+
+.p-rep-brand-title {
+    font-size: 11px;
+    font-weight: 900;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.p-rep-brand-title strong { color: #38bdf8; }
+
+.p-rep-doc-auth {
+    font-size: 8px;
+    color: #94a3b8;
+    line-height: 1.25;
+}
+
+.p-rep-badge-val {
+    font-size: 7.5px;
+    font-weight: 800;
+    background: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+    border: 1px solid #059669;
+    padding: 2px 5px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+}
+
+/* Grilla de Datos del Paciente */
+.p-rep-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px 10px;
+    background: rgba(15, 29, 51, 0.6);
+    border: 1px solid rgba(56, 189, 248, 0.12);
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 9px;
+}
+
+.p-rep-field {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.p-rep-label {
+    font-size: 7.5px;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.p-rep-value {
+    font-size: 9.5px;
+    font-weight: 700;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Secciones Médicas */
+.p-rep-section {
+    margin-bottom: 9px;
+}
+
+.p-rep-sec-title {
+    font-size: 9px;
+    font-weight: 800;
+    color: #38bdf8;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.p-rep-sec-content {
+    font-size: 9px;
+    color: #cbd5e1;
+    line-height: 1.4;
+    background: rgba(15, 23, 42, 0.45);
+    padding: 6px 8px;
+    border-radius: 6px;
+    border-left: 3px solid #334155;
+}
+
+.p-rep-sec-content.diagnosis-box {
+    border-left-color: #0284c7;
+    background: rgba(2, 132, 199, 0.12);
+    color: #f1f5f9;
+}
+
+.p-rep-sec-content.diagnosis-box strong {
+    color: #ffffff;
+    font-weight: 800;
+}
+
+.p-rep-margins-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 6px;
+    padding: 3px 7px;
+    background: rgba(16, 185, 129, 0.2);
+    border: 1px solid #10b981;
+    border-radius: 4px;
+    color: #34d399;
+    font-weight: 800;
+    font-size: 8.5px;
+}
+
+/* Certificación y Firma Digital */
+.p-rep-legal-footer {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    align-items: center;
+    border-top: 1px solid rgba(56, 189, 248, 0.2);
+    padding-top: 8px;
+    margin-top: 8px;
+}
+
+.p-rep-legal-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.p-rep-qr-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.p-rep-qr-code {
+    width: 44px;
+    height: 44px;
+    background: #ffffff;
+    padding: 2px;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+.p-rep-seal-img {
+    height: 38px;
+    object-fit: contain;
+}
+
+/* Botonera de Acciones Médicas del Informe */
+.p-rep-action-toolbar {
+    display: flex;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+.btn-rep-action {
+    flex: 1;
+    padding: 7px 8px;
+    border-radius: 8px;
+    font-size: 9.5px;
+    font-weight: 800;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: all 0.2s ease;
+}
+
+.btn-rep-action.pdf {
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);
+}
+.btn-rep-action.pdf:hover {
+    background: #0ea5e9;
+    transform: translateY(-1px);
+}
+
+.btn-rep-action.wsp {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(5, 150, 105, 0.4);
+}
+.btn-rep-action.wsp:hover {
+    background: #10b981;
+    transform: translateY(-1px);
+}
+
+/* Vista de Notificaciones Push dentro del Móvil */
+.phone-subview-header {
+    padding: 8px 12px;
+    background: #081122;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.phone-subview-header h6 {
+    font-size: 11px;
+    font-weight: 800;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.phone-badge-mini {
+    font-size: 8px;
+    font-weight: 800;
+    background: #ef4444;
+    color: #ffffff;
+    padding: 2px 6px;
+    border-radius: 10px;
+}
+
+.phone-notifications-list {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.phone-notification-card {
+    background: #0d192e;
+    border: 1px solid rgba(56, 189, 248, 0.18);
+    border-radius: 10px;
+    padding: 9px 10px;
+    display: flex;
+    gap: 9px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.phone-notification-card:hover {
+    background: #132442;
+    border-color: #38bdf8;
+    transform: translateY(-1px);
+}
+
+.phone-notification-card.unread {
+    border-left: 3px solid #38bdf8;
+}
+
+.p-notif-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    flex-shrink: 0;
+}
+.p-notif-icon.blue { background: rgba(2, 132, 199, 0.2); color: #38bdf8; }
+.p-notif-icon.green { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+.p-notif-icon.amber { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+
+.p-notif-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.p-notif-title {
+    font-size: 10px;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.p-notif-desc {
+    font-size: 8.5px;
+    color: #94a3b8;
+    line-height: 1.3;
+}
+
+.p-notif-time {
+    font-size: 7.5px;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+/* Vista de Ajustes del Smartphone */
+.phone-settings-scroll {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.phone-setting-card {
+    background: #0d192e;
+    border: 1px solid rgba(56, 189, 248, 0.18);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.phone-setting-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.phone-setting-row:last-child { border-bottom: none; }
+
+.p-set-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #e2e8f0;
+}
+.p-set-desc {
+    font-size: 8px;
+    color: #64748b;
+}
+
+.phone-toggle-switch {
+    width: 36px;
+    height: 19px;
+    background: #0284c7;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.phone-toggle-knob {
+    width: 15px;
+    height: 15px;
+    background: #ffffff;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    transition: transform 0.2s;
+}
+
+/* Barra de Navegación Inferior del Smartphone (Bottom Tab Bar) */
+.phone-bottom-nav {
+    height: 48px;
+    background: #060e1c;
+    border-top: 1px solid rgba(56, 189, 248, 0.2);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 4px;
+    flex-shrink: 0;
+    z-index: 90;
+}
+
+.phone-nav-item {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #64748b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    cursor: pointer;
+    font-size: 8.5px;
+    font-weight: 700;
+    padding: 4px 0;
+    transition: all 0.2s ease;
+    border-radius: 6px;
+}
+
+.phone-nav-item i {
+    font-size: 13px;
+    transition: transform 0.2s;
+}
+
+.phone-nav-item.active {
+    color: #38bdf8;
+}
+
+.phone-nav-item.active i {
+    transform: scale(1.15);
+}
+
+.phone-nav-item:hover {
+    color: #e2e8f0;
+}
+
+.phone-nav-badge-wrapper {
+    position: relative;
+    display: inline-flex;
+}
+
+.phone-nav-badge {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    background: #ef4444;
+    color: #ffffff;
+    font-size: 7.5px;
+    font-weight: 900;
+    min-width: 12px;
+    height: 12px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2px;
+}
+
+/* Toast Flotante dentro del Celular */
+.phone-toast {
+    position: absolute;
+    bottom: 56px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(15, 29, 51, 0.95);
+    border: 1px solid #38bdf8;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px);
+    color: #ffffff;
+    font-size: 9.5px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 250;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+}
+
+.phone-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
 
 /* Columna de Características del App */
 .app-features-col {
@@ -2470,7 +3402,7 @@ body {
 }
 
 .footer-container {
-    max-width: 1400px;
+    max-width: min(1920px, 96vw);
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1.5fr repeat(3, 1fr);
