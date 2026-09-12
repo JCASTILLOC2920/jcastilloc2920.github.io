@@ -1269,6 +1269,7 @@
             transform-origin: center center;
             will-change: transform;
             transition: transform 0.05s ease-out;
+            image-rendering: high-quality;
         }
 
         .wsi-slide-image {
@@ -1278,6 +1279,10 @@
             user-select: none;
             -webkit-user-drag: none;
             filter: drop-shadow(0 15px 35px rgba(0,0,0,0.8));
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            image-rendering: high-quality;
+            -ms-interpolation-mode: bicubic;
         }
 
         /* Overlay de Morfometría IA */
@@ -2842,7 +2847,7 @@
                 </div>
             </a>
 
-            <!-- Botones del Navbar Superior: Conmutador Instantáneo entre las 5 Pantallas -->
+            <!-- Botones del Navbar Superior: Conmutador Instantáneo entre Pantallas -->
             <ul class="nav-screen-tabs" id="navScreenTabs" role="tablist">
                 <li>
                     <button type="button" class="nav-screen-btn active" data-screen="pantalla-wsi" role="tab" aria-selected="true">
@@ -2860,18 +2865,13 @@
                     </button>
                 </li>
                 <li>
-                    <button type="button" class="nav-screen-btn" data-screen="pantalla-ihq" role="tab" aria-selected="false">
-                        <i class="fa-solid fa-dna"></i> Inmunohistoquímica
-                    </button>
-                </li>
-                <li>
                     <button type="button" class="nav-screen-btn" data-screen="pantalla-tarifario" role="tab" aria-selected="false">
                         <i class="fa-solid fa-file-invoice-dollar"></i> Tarifario & Contacto
                     </button>
                 </li>
             </ul>
 
-            <!-- Acciones Rápidas (Creador IHQ AI, Portal y WhatsApp Oficial) -->
+            <!-- Acciones Rápidas (Creador IHQ AI y WhatsApp Oficial) -->
             <div class="header-actions">
                 <button type="button" class="btn-header btn-header-ihq-builder" id="btnHeaderIhqBuilder" onclick="switchScreen('pantalla-ihq')" title="Abrir Suite Creador de Paneles de Inmunohistoquímica (ImmunoMaster AI Universal)">
                     <i class="fa-solid fa-wand-magic-sparkles"></i>
@@ -2881,9 +2881,6 @@
                 </button>
                 <a href="creador-paneles-ihq.html" target="_blank" rel="noopener noreferrer" class="btn-header-ihq-popout" title="Abrir Creador de Paneles IHQ en Pestaña Independiente / Pantalla Completa">
                     <i class="fa-solid fa-up-right-from-square"></i>
-                </a>
-                <a href="login.html" class="btn-header btn-header-portal" title="Acceso al Portal de Médicos y Clínicas">
-                    <i class="fa-solid fa-arrow-right-to-bracket"></i> Portal Clínico
                 </a>
                 <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20le%20escribo%20desde%20la%20plataforma%20web%20para%20coordinar%20estudio%20de%20biopsias" target="_blank" class="btn-header btn-header-wa" title="WhatsApp Oficial +51 986 396 733">
                     <i class="fa-brands fa-whatsapp"></i> WhatsApp Directo
@@ -3630,133 +3627,96 @@
         <!-- ======================================================================
            PANTALLA 4: 'Inmunohistoquímica Especializada' (ImmunoMaster AI Suite)
            ====================================================================== -->
-        <section id="pantalla-ihq" class="screen-slide" role="tabpanel" aria-label="Inmunohistoquímica Especializada">
-            <!-- HUD Superior de IHQ con Conmutador de Vistas Internas -->
-            <div class="screen-hud-header">
-                <div class="screen-hud-left">
-                    <div class="screen-hud-title">
-                        <i class="fa-solid fa-wand-magic-sparkles" style="color: #38bdf8;"></i>
-                        Creador de Paneles IHQ &bull; ImmunoMaster AI Universal
-                    </div>
-                    <!-- Selector de Subvista: Creador Interactivo AI vs. Catálogo de Stock 150 -->
-                    <div class="ihq-view-switcher-pill" role="tablist" aria-label="Modo de Visualización IHQ">
-                        <button type="button" class="ihq-subview-btn active" id="btnIhqSubViewApp" onclick="switchIhqSubView('app')" role="tab" aria-selected="true" title="Creador Inteligente de Paneles IHQ, Dilemas Diagnósticos y Shannon Information Gain">
-                            <i class="fa-solid fa-brain" style="color: #38bdf8;"></i>
-                            <span>Creador de Paneles AI</span>
-                        </button>
-                        <button type="button" class="ihq-subview-btn" id="btnIhqSubViewCatalog" onclick="switchIhqSubView('catalog')" role="tab" aria-selected="false" title="Vademécum Oficial de 150 Anticuerpos en Stock In-House">
-                            <i class="fa-solid fa-flask-vial" style="color: #10b981;"></i>
-                            <span>Catálogo 150 en Stock</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="screen-hud-right">
-                    <span class="floating-pill highlight font-mono" id="ihqTotalCountBadge">150 Biomarcadores</span>
-                    <span class="floating-pill success"><i class="fa-solid fa-stopwatch"></i> Entrega en 4 Días Útiles</span>
-                    <a href="creador-paneles-ihq.html" target="_blank" rel="noopener noreferrer" class="btn-screen-cta btn-screen-portal" style="padding: 5px 12px; font-size: 11px;" title="Abrir en Pestaña Independiente / Pantalla Completa">
-                        <i class="fa-solid fa-up-right-from-square"></i> Pantalla Completa
-                    </a>
-                    <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20consultar%20disponibilidad%20de%20anticuerpo%20IHQ" target="_blank" class="btn-screen-cta btn-screen-wa" style="padding: 5px 12px; font-size: 11px;">
-                        <i class="fa-brands fa-whatsapp"></i> Pedir Marcador
-                    </a>
-                </div>
-            </div>
-
-            <!-- Escenario Principal de Pantalla 4: Contenedor Dual Creador AI vs Catálogo Stock -->
-            <div class="stage-viewer-container" style="padding: 0; background: #020617;">
-                <!-- VISTA 1: SUITE NATIVA DEL CREADOR DE PANELES IHQ (IMMUNOMASTER AI) -->
-                <div class="ihq-app-iframe-container" id="ihqAppNativeView" style="display: flex;">
-                    <iframe 
-                        id="iframeIhqBuilder" 
-                        src="creador-paneles-ihq.html" 
-                        class="ihq-app-iframe" 
-                        title="Creador de Paneles de Inmunohistoquímica ImmunoMaster AI Universal"
-                        loading="eager">
-                    </iframe>
+        <!-- ======================================================================
+           PANTALLA 4: 'Creador de Paneles IHQ' (Build Panel • Interfaz Limpia)
+           ====================================================================== -->
+        <section id="pantalla-ihq" class="screen-slide" role="tabpanel" aria-label="Creador de Paneles IHQ">
+            <div class="ihq-clean-app-container">
+                <!-- Barra Superior: Crear Panel + Casos Guardados -->
+                <div class="ihq-clean-topbar">
+                    <h1 class="ihq-clean-title">Crear Panel</h1>
+                    <button type="button" class="ihq-clean-btn-saved" id="btnIhqSavedCases" onclick="handleIhqSavedCases()">
+                        <span>Casos Guardados</span>
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
                 </div>
 
-                <!-- VISTA 2: CATÁLOGO CLÍNICO DE 150 ANTICUERPOS & VERIFICADOR INMEDIATO -->
-                <div class="ihq-stage-grid" id="ihqCatalogNativeView" style="display: none; width: 100%; height: 100%; padding: 14px 24px; box-sizing: border-box;">
-                    <!-- Columna Izquierda: Verificador Instantáneo -->
-                    <div class="ihq-control-panel">
-                        <div class="glass-panel" style="padding: 16px; border: 1px solid rgba(56, 189, 248, 0.22);">
-                            <h4 style="font-size: 13.5px; font-weight: 900; color: #fff; margin-bottom: 8px;">
-                                <i class="fa-solid fa-flask-vial" style="color: #38bdf8; margin-right: 6px;"></i>
-                                Verificador Instantáneo de Stock
-                            </h4>
-                            <p style="font-size: 11px; color: #94a3b8; margin-bottom: 10px;">
-                                Escribe el anticuerpo (Ej: <code>HER2</code>, <code>SOX-10</code>, <code>Ki-67</code>, <code>AMACR</code>, <code>p63</code>):
-                            </p>
-                            <div style="display: flex; gap: 8px;">
-                                <input type="text" id="ihqSearchInput" class="phone-search-input" placeholder="Nombre de marcador..." style="padding: 8px 12px; font-size: 12px;" autocomplete="off">
-                                <button type="button" class="btn-screen-cta btn-screen-portal" id="btnIhqSearch" style="padding: 8px 12px; border-radius: 8px; font-size: 11px;">
-                                    <i class="fa-solid fa-bolt"></i>
+                <!-- Pestañas Principales de Navegación: Diagnósticos | Anticuerpos -->
+                <div class="ihq-clean-nav-tabs" role="tablist">
+                    <button type="button" class="ihq-clean-tab" id="ihqTabDiagnostics" role="tab" aria-selected="false" onclick="switchIhqCleanTab('diagnostics')">
+                        Diagnósticos
+                    </button>
+                    <button type="button" class="ihq-clean-tab active" id="ihqTabAntibodies" role="tab" aria-selected="true" onclick="switchIhqCleanTab('antibodies')">
+                        Anticuerpos
+                    </button>
+                </div>
+
+                <!-- Cuerpo Principal Dividido: Columna Izquierda de Búsqueda y Columna Derecha de Selección (0/5) -->
+                <div class="ihq-clean-body-grid">
+                    <!-- Columna Izquierda: Buscador + Recientes / Lista de Elementos -->
+                    <div class="ihq-clean-search-col">
+                        <div class="ihq-clean-search-box">
+                            <i class="fa-solid fa-magnifying-glass ihq-clean-search-icon"></i>
+                            <input 
+                                type="text" 
+                                id="ihqCleanSearchInput" 
+                                class="ihq-clean-input" 
+                                placeholder="Buscar anticuerpos..." 
+                                autocomplete="off"
+                                spellcheck="false">
+                            <button type="button" class="ihq-clean-clear-btn" id="btnIhqCleanClear" onclick="clearIhqCleanSearch()" style="display: none;">
+                                &times;
+                            </button>
+                        </div>
+
+                        <!-- Sección de Lista / Recientes -->
+                        <div class="ihq-clean-items-section">
+                            <div class="ihq-clean-section-header">
+                                <span class="ihq-clean-section-label" id="ihqSectionListLabel">Recientes</span>
+                                <span class="ihq-clean-section-count" id="ihqSectionListCount">12 disponibles</span>
+                            </div>
+                            <div class="ihq-clean-items-list" id="ihqCleanItemsList">
+                                <!-- Poblado dinámicamente por dossier_web_interactive.js -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Columna Derecha: Panel de Seleccionados (0/5) -->
+                    <div class="ihq-clean-selection-col">
+                        <div class="ihq-clean-selection-card">
+                            <div class="ihq-clean-selection-header">
+                                <span class="ihq-clean-selection-title">Seleccionados</span>
+                                <span class="ihq-clean-counter-pill" id="ihqSelectedCounterBadge">0 / 5</span>
+                            </div>
+
+                            <!-- Estado Vacío (Empty State) -->
+                            <div class="ihq-clean-empty-state" id="ihqSelectionEmptyState">
+                                <p class="ihq-clean-empty-text">
+                                    Busque diagnósticos o anticuerpos en el cuadro de búsqueda de la izquierda. Haga clic en los resultados para seleccionar elementos para su panel.
+                                </p>
+                            </div>
+
+                            <!-- Lista de Chips / Tarjetas de Elementos Seleccionados -->
+                            <div class="ihq-clean-selected-list" id="ihqSelectedChipsList" style="display: none;">
+                                <!-- Chips insertados dinámicamente -->
+                            </div>
+
+                            <!-- Barra de Acciones del Panel Creado (Aparece al seleccionar) -->
+                            <div class="ihq-clean-panel-actions" id="ihqPanelActionsBar" style="display: none;">
+                                <button type="button" class="ihq-clean-action-btn primary" onclick="executeIhqPanelAction('generate')">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                    <span>Calcular Panel Resolutivo</span>
                                 </button>
-                            </div>
-
-                            <!-- Resultado Dinámico del Verificador -->
-                            <div class="ihq-result-card" id="ihqResultCard" style="margin-top: 12px; padding: 10px; font-size: 11px;">
-                                <!-- Inyectado por dossier_web_interactive.js -->
-                            </div>
-
-                            <!-- Acceso Directo al Creador de Paneles AI -->
-                            <div style="margin-top: 10px; padding: 8px 10px; background: rgba(56,189,248,0.06); border: 1px dashed rgba(56,189,248,0.3); border-radius: 8px; font-size: 10.5px; display: flex; justify-content: space-between; align-items: center;">
-                                <span style="color: #94a3b8;"><i class="fa-solid fa-brain" style="color:#38bdf8;"></i> ¿Dilema de linaje?</span>
-                                <button type="button" onclick="switchIhqSubView('app')" style="background:none; border:none; color:#38bdf8; font-weight:800; cursor:pointer; font-size:11px;">Lanzar Creador AI &rarr;</button>
+                                <button type="button" class="ihq-clean-action-btn secondary" onclick="executeIhqPanelAction('clear')">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                    <span>Limpiar Selección</span>
+                                </button>
+                                <a id="ihqCleanWaShareBtn" href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20cotizar%20este%20panel%20IHQ" target="_blank" class="ihq-clean-action-btn whatsapp">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                    <span>Consultar con Patólogo</span>
+                                </a>
                             </div>
                         </div>
-
-                        <!-- Filtros por Especialidad -->
-                        <div class="glass-panel" style="padding: 14px; flex: 1; overflow: hidden; display: flex; flex-direction: column;">
-                            <span style="font-size: 11px; font-weight: 800; color: #cbd5e1; margin-bottom: 8px; display: block;">
-                                <i class="fa-solid fa-filter"></i> Filtrar por Familia Tisular:
-                            </span>
-                            <div class="ihq-category-pills" style="display: flex; flex-direction: column; gap: 4px; overflow-y: auto;">
-                                <button type="button" class="pill-filter active" data-category="all" style="text-align: left; font-size: 10.5px; padding: 5px 10px;">Todos los 150 Marcadores</button>
-                                <button type="button" class="pill-filter" data-category="Linfoides & Hematopatología" style="text-align: left; font-size: 10.5px; padding: 5px 10px;">Linfoides & Hemato</button>
-                                <button type="button" class="pill-filter" data-category="Epiteliales & Carcinomas" style="text-align: left; font-size: 10.5px; padding: 5px 10px;">Epiteliales & Carcinomas</button>
-                                <button type="button" class="pill-filter" data-category="Partes Blandas & Sarcomas" style="text-align: left; font-size: 10.5px; padding: 5px 10px;">Sarcomas & Partes Blandas</button>
-                                <button type="button" class="pill-filter" data-category="Melanocíticos & Dermatopatología" style="text-align: left; font-size: 10.5px; padding: 5px 10px;">Melanocíticos / Piel</button>
-                                <button type="button" class="pill-filter" data-category="Neuropatología & Neuroendocrino" style="text-align: left; font-size: 10.5px; padding: 5px 10px;">Neuropatología</button>
-                                <button type="button" class="pill-filter" data-category="Urológicos & Germinales" style="text-align: left; font-size: 10.5px; padding: 5px 10px;">Urológicos & Próstata</button>
-                                <button type="button" class="pill-filter" data-category="Pronóstico & Terapia Dirigida" style="text-align: left; font-size: 10.5px; padding: 5px 10px;">Pronóstico & Terapia</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Columna Derecha: Tabla Maestra de 150 Anticuerpos con Scroll Interno Controlado -->
-                    <div class="ihq-table-viewport">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                            <span style="font-size: 11.5px; font-weight: 800; color: #fff;">Vademécum Oficial en Stock Activo:</span>
-                            <input type="text" id="ihqTableLiveSearch" class="phone-search-input" placeholder="Filtrar tabla..." style="width: 180px; padding: 5px 10px; font-size: 11px;">
-                        </div>
-                        <table class="ihq-master-table" style="font-size: 11px; width: 100%;">
-                            <thead>
-                                <tr>
-                                    <th>Anticuerpo</th>
-                                    <th>Linaje</th>
-                                    <th>Localización</th>
-                                    <th>Utilidad Diagnóstica Oficial</th>
-                                    <th>Tiempo</th>
-                                </tr>
-                            </thead>
-                            <tbody id="ihqMasterTableBody">
-                                <!-- Inyectado dinámicamente por dossier_web_interactive.js -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- HUD Flotante Inferior -->
-                <div class="screen-floating-bottom-bar">
-                    <div class="pills-cluster">
-                        <span class="floating-pill highlight"><i class="fa-solid fa-award"></i> Algoritmo Shannon ILP + Teorema de Bayes Multiclase</span>
-                        <span class="floating-pill"><i class="fa-solid fa-dna"></i> Baterías Predictivas y Terapéuticas en Stock</span>
-                    </div>
-                    <div class="actions-cluster">
-                        <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20coordinar%20estudios%20de%20inmunohistoquimica" target="_blank" class="btn-screen-cta btn-screen-wa">
-                            <i class="fa-brands fa-whatsapp"></i> WhatsApp Director Médico (+51 986 396 733)
-                        </a>
                     </div>
                 </div>
             </div>

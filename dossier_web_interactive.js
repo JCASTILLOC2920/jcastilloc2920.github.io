@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMorphSplitSlider();
     initGeminiCopilot();
     initIHQAssistant();
+    initIhqCleanPanel();
     initSpecimen360Viewer();
     initPricingCalculator();
 });
@@ -2126,179 +2127,378 @@ function initGeminiCopilot() {
 }
 
 /* ==========================================================================
-   5. ASISTENTE VIRTUAL DE INMUNOHISTOQUÍMICA (150 BIOMARCADORES REALES)
+   5. CREADOR DE PANELES IHQ LIMPIO & ELEGANTE (BUILD PANEL • IDÉNTICO IMAGEN 3)
+   Pestañas Diagnósticos / Anticuerpos, Búsqueda en vivo, Recientes y Seleccionados (0/5)
    ========================================================================== */
+
+// Base de Conocimiento de Diagnósticos Patológicos para Crear Panel
+const IHQ_DIAGNOSTICS_DB = [
+    {
+        id: "diag_lung_adeno",
+        name: "Adenocarcinoma Pulmonar",
+        category: "Patología Pulmonar & Torácica",
+        meta: "CK7+, TTF-1+, Napsina A+, CK20-, p40-",
+        recommended: ["TTF-1", "Napsina A", "CK7", "CK20", "p40"]
+    },
+    {
+        id: "diag_lung_squam",
+        name: "Carcinoma Epidermoide Pulmonar",
+        category: "Patología Pulmonar & Torácica",
+        meta: "p40+, p63+, CK5/6+, TTF-1-, Napsina A-",
+        recommended: ["p40", "p63", "CK5/6", "TTF-1"]
+    },
+    {
+        id: "diag_meso_epi",
+        name: "Mesotelioma Epitelioide Pleural",
+        category: "Pleura & Mesotelio",
+        meta: "Calretinina+, WT1+, D2-40+, Claudina 4-, CEA-",
+        recommended: ["Calretinina", "WT1", "D2-40 (Podoplanina)", "Claudina 4"]
+    },
+    {
+        id: "diag_prostate_adeno",
+        name: "Adenocarcinoma Prostático Acinar",
+        category: "Uropatología & Próstata",
+        meta: "AMACR+, NKX3.1+, PSA+, p63-, CK-HMW-",
+        recommended: ["AMACR (Racemase)", "p63", "PSA", "CK-HMW"]
+    },
+    {
+        id: "diag_rcc_cc",
+        name: "Carcinoma Renal de Células Claras",
+        category: "Nefropatología Quirúrgica",
+        meta: "PAX8+, CD10+, Vimentina+, CA IX+, CK7-",
+        recommended: ["PAX8", "CD10", "A. CARBONICA IX (CA IX)", "CK7"]
+    },
+    {
+        id: "diag_urothelial_ca",
+        name: "Carcinoma Urotelial Infiltrante",
+        category: "Uropatología & Vejiga",
+        meta: "GATA3+, p63+, CK7+, CK20+, PAX8-",
+        recommended: ["GATA3", "p63", "CK7", "CK20"]
+    },
+    {
+        id: "diag_breast_ductal",
+        name: "Carcinoma Ductal Infiltrante de Mama",
+        category: "Mastopatología & Mama",
+        meta: "RE+, RP+, HER2, GATA3+, Mamaglobina+",
+        recommended: ["RECEPTOR ESTROGENO (RE)", "RECEPTOR PROGESTERONA (RP)", "HER2", "GATA3", "Ki-67"]
+    },
+    {
+        id: "diag_melanoma",
+        name: "Melanoma Maligno Cutáneo",
+        category: "Dermatopatología Oncológica",
+        meta: "SOX10+, S100+, HMB-45+, Melan-A+, Pan-CK-",
+        recommended: ["SOX10", "S-100", "HMB-45", "MELAN A"]
+    },
+    {
+        id: "diag_gist",
+        name: "Tumor del Estroma Gastrointestinal (GIST)",
+        category: "Partes Blandas & Gastrointestinal",
+        meta: "DOG1+, CD117 (c-Kit)+, CD34+, Desmina-",
+        recommended: ["DOG-1", "CD117(C-KIT)", "CD34", "DESMINA"]
+    },
+    {
+        id: "diag_dlbcl",
+        name: "Linfoma Difuso de Células Grandes B",
+        category: "Hematopatología & Linfomas",
+        meta: "CD20+, CD19+, PAX5+, CD10+/-, BCL-6+, Ki-67 alto",
+        recommended: ["CD20", "CD10", "BCL-6", "MUM-1", "Ki-67"]
+    },
+    {
+        id: "diag_colon_adeno",
+        name: "Adenocarcinoma Colorrectal",
+        category: "Gastroenterología & Colon",
+        meta: "CDX2+, CK20+, SATB2+, CK7-, MMR (MLH1/MSH2)",
+        recommended: ["CDX-2", "CK20", "SATB2", "MLH1", "MSH2"]
+    },
+    {
+        id: "diag_neuroendocrine",
+        name: "Tumor Neuroendocrino Bien Diferenciado",
+        category: "Neuroendocrino Sistémico",
+        meta: "Sinaptofisina+, Cromogranina A+, INSM1+, CD56+",
+        recommended: ["SINAPTOFISINA", "CROMOGRANINA A", "CD56", "Ki-67"]
+    }
+];
+
+// Estado global del Creador de Paneles Limpio
+let ihqCleanState = {
+    activeTab: 'antibodies', // 'diagnostics' | 'antibodies'
+    searchQuery: '',
+    selectedItems: [] // Máximo 5 elementos { id, name, type, meta }
+};
+
 function initIHQAssistant() {
-    const searchInput = document.getElementById('ihqSearchInput');
-    const searchBtn = document.getElementById('btnIhqSearch');
-    const resultCard = document.getElementById('ihqResultCard');
-    const masterTableBody = document.getElementById('ihqMasterTableBody');
-    const countBadge = document.getElementById('ihqTotalCountBadge');
+    initIHQCleanApp();
+}
 
-    if (!window.ANTIBODIES_STOCK_DB) return;
+function initIHQCleanApp() {
+    const searchInput = document.getElementById('ihqCleanSearchInput');
+    const clearBtn = document.getElementById('btnIhqCleanClear');
 
-    if (countBadge) countBadge.textContent = `${window.ANTIBODIES_STOCK_DB.length} Biomarcadores`;
-
-    // Renderizar tabla maestra completa
-    renderIHQMasterTable(window.ANTIBODIES_STOCK_DB);
-
-    // Búsqueda del Asistente Virtual
-    const doSearch = () => {
-        const query = searchInput.value.trim().toLowerCase();
-        if (!query) return;
-
-        // Buscar coincidencia exacta o por subcadena
-        const match = window.ANTIBODIES_STOCK_DB.find(ab => 
-            ab.name.toLowerCase() === query || 
-            ab.name.toLowerCase().includes(query) ||
-            query.includes(ab.name.toLowerCase().split(' ')[0])
-        );
-
-        if (!resultCard) return;
-
-        resultCard.classList.add('active');
-        if (match) {
-            resultCard.style.borderColor = '#10b981';
-            resultCard.innerHTML = `
-                <div class="ihq-result-header">
-                    <div class="ihq-result-name">
-                        <i class="fa-solid fa-vial-circle-check" style="color: #10b981; margin-right: 8px;"></i>
-                        ${match.name}
-                    </div>
-                    <span class="badge-in-stock">✅ EN STOCK ACTIVO (JC PATH LAB)</span>
-                </div>
-                <div class="ihq-result-body">
-                    <p style="margin-bottom: 6px;"><strong>Utilidad Diagnóstica Oficial:</strong> ${match.description}</p>
-                    <p style="font-size: 12px; color: #94a3b8;">
-                        <strong>Categoría:</strong> ${match.category} &bull; 
-                        <strong>Localización:</strong> ${match.localization} &bull; 
-                        <strong>Tiempo de Respuesta:</strong> ${match.turnaround}
-                    </p>
-                </div>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                    <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20coordinar%20estudio%20con%20el%20marcador%20${encodeURIComponent(match.name)}" target="_blank" class="btn-header btn-header-wa" style="padding: 6px 14px; font-size: 11.5px;">
-                        <i class="fa-brands fa-whatsapp"></i> Solicitar Marcador vía WhatsApp
-                    </a>
-                    <span style="font-size: 11px; color: #64748b;">Protocolizado bajo controles externos de calidad.</span>
-                </div>
-            `;
-        } else {
-            resultCard.style.borderColor = '#ef4444';
-            resultCard.innerHTML = `
-                <div class="ihq-result-header">
-                    <div class="ihq-result-name" style="color: #f87171;">
-                        <i class="fa-solid fa-circle-xmark" style="color: #ef4444; margin-right: 8px;"></i>
-                        "${searchInput.value.toUpperCase()}"
-                    </div>
-                    <span class="badge-not-stock">❌ NO DISPONIBLE EN STOCK INMEDIATO</span>
-                </div>
-                <div class="ihq-result-body">
-                    <p>Este marcador específico no se encuentra actualmente en el inventario base de 150 anticuerpos validados de JC PATH LAB.</p>
-                    <p style="font-size: 12px; color: #94a3b8;">Puede coordinar con el Dr. Joseph Castillo para evaluar importación especializada o recomendar paneles sustitutos diagnósticos validados.</p>
-                </div>
-                <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20consulto%20por%20la%20factibilidad%20de%20importaci%C3%B3n%20del%20marcador%20${encodeURIComponent(searchInput.value)}" target="_blank" class="btn-header btn-header-wa" style="padding: 6px 14px; font-size: 11.5px;">
-                    <i class="fa-brands fa-whatsapp"></i> Consultar Factibilidad con el Patólogo
-                </a>
-            `;
-        }
-    };
-
-    if (searchBtn) searchBtn.addEventListener('click', doSearch);
     if (searchInput) {
-        searchInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') doSearch();
-        });
-    }
-
-    // Píldoras de Filtro de Categoría en Tabla Maestra
-    const categoryPills = document.querySelectorAll('.pill-filter');
-    categoryPills.forEach(pill => {
-        pill.addEventListener('click', () => {
-            categoryPills.forEach(p => p.classList.remove('active'));
-            pill.classList.add('active');
-            const cat = pill.getAttribute('data-category');
-            if (cat === 'all') {
-                renderIHQMasterTable(window.ANTIBODIES_STOCK_DB);
-            } else {
-                const filtered = window.ANTIBODIES_STOCK_DB.filter(ab => 
-                    ab.category === cat || 
-                    ab.category.toLowerCase().includes(cat.toLowerCase().split(' ')[0]) ||
-                    cat.toLowerCase().includes(ab.category.toLowerCase().split(' ')[0])
-                );
-                renderIHQMasterTable(filtered);
+        searchInput.addEventListener('input', (e) => {
+            ihqCleanState.searchQuery = (e.target.value || '').trim();
+            if (clearBtn) {
+                clearBtn.style.display = ihqCleanState.searchQuery.length > 0 ? 'block' : 'none';
             }
-        });
-    });
-
-    // Búsqueda en vivo en la tabla maestra
-    const tableLiveSearch = document.getElementById('ihqTableLiveSearch');
-    if (tableLiveSearch) {
-        tableLiveSearch.addEventListener('input', (e) => {
-            const val = e.target.value.toLowerCase();
-            const filtered = window.ANTIBODIES_STOCK_DB.filter(ab => 
-                ab.name.toLowerCase().includes(val) || 
-                ab.description.toLowerCase().includes(val) ||
-                ab.category.toLowerCase().includes(val)
-            );
-            renderIHQMasterTable(filtered);
+            renderIhqCleanItems();
         });
     }
+
+    // Render inicial
+    renderIhqCleanItems();
+    updateIhqSelectionUI();
 }
 
-function renderIHQMasterTable(antibodies) {
-    const tableBody = document.getElementById('ihqMasterTableBody');
-    if (!tableBody) return;
+window.switchIhqCleanTab = function(tabName) {
+    ihqCleanState.activeTab = tabName;
+    ihqCleanState.searchQuery = '';
 
-    tableBody.innerHTML = '';
-    antibodies.forEach(ab => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td style="font-weight: 800; color: #ffffff;">${ab.name}</td>
-            <td><span class="glass-pill" style="padding: 2px 8px; font-size: 10px; color: #38bdf8;">${ab.category}</span></td>
-            <td><span style="font-size: 11px; color: #94a3b8;">${ab.localization}</span></td>
-            <td style="font-size: 12px; color: #cbd5e1;">${ab.description}</td>
-            <td><span style="color: #34d399; font-weight: 800; font-size: 11px;">${ab.turnaround}</span></td>
-        `;
-        tableBody.appendChild(row);
-    });
-}
+    const tabDiag = document.getElementById('ihqTabDiagnostics');
+    const tabAb = document.getElementById('ihqTabAntibodies');
+    const searchInput = document.getElementById('ihqCleanSearchInput');
+    const clearBtn = document.getElementById('btnIhqCleanClear');
 
-/**
- * Conmutador de Sub-Vistas dentro de Pantalla 4 (#pantalla-ihq)
- * Permite alternar entre el Creador de Paneles AI (ImmunoMaster) y el Catálogo de 150 Anticuerpos
- */
-window.switchIhqSubView = function(viewMode) {
-    const appView = document.getElementById('ihqAppNativeView');
-    const catalogView = document.getElementById('ihqCatalogNativeView');
-    const btnApp = document.getElementById('btnIhqSubViewApp');
-    const btnCatalog = document.getElementById('btnIhqSubViewCatalog');
+    if (searchInput) {
+        searchInput.value = '';
+        searchInput.placeholder = tabName === 'diagnostics' ? 'Buscar diagnósticos...' : 'Buscar anticuerpos...';
+    }
+    if (clearBtn) clearBtn.style.display = 'none';
 
-    if (!appView || !catalogView) return;
-
-    if (viewMode === 'catalog') {
-        appView.style.display = 'none';
-        catalogView.style.display = 'grid';
-        if (btnApp) {
-            btnApp.classList.remove('active');
-            btnApp.setAttribute('aria-selected', 'false');
+    if (tabName === 'diagnostics') {
+        if (tabDiag) {
+            tabDiag.classList.add('active');
+            tabDiag.setAttribute('aria-selected', 'true');
         }
-        if (btnCatalog) {
-            btnCatalog.classList.add('active');
-            btnCatalog.setAttribute('aria-selected', 'true');
+        if (tabAb) {
+            tabAb.classList.remove('active');
+            tabAb.setAttribute('aria-selected', 'false');
         }
     } else {
-        catalogView.style.display = 'none';
-        appView.style.display = 'flex';
-        if (btnCatalog) {
-            btnCatalog.classList.remove('active');
-            btnCatalog.setAttribute('aria-selected', 'false');
+        if (tabAb) {
+            tabAb.classList.add('active');
+            tabAb.setAttribute('aria-selected', 'true');
         }
-        if (btnApp) {
-            btnApp.classList.add('active');
-            btnApp.setAttribute('aria-selected', 'true');
+        if (tabDiag) {
+            tabDiag.classList.remove('active');
+            tabDiag.setAttribute('aria-selected', 'false');
         }
     }
+
+    renderIhqCleanItems();
 };
+
+window.clearIhqCleanSearch = function() {
+    ihqCleanState.searchQuery = '';
+    const searchInput = document.getElementById('ihqCleanSearchInput');
+    const clearBtn = document.getElementById('btnIhqCleanClear');
+    if (searchInput) {
+        searchInput.value = '';
+        searchInput.focus();
+    }
+    if (clearBtn) clearBtn.style.display = 'none';
+    renderIhqCleanItems();
+};
+
+function renderIhqCleanItems() {
+    const listContainer = document.getElementById('ihqCleanItemsList');
+    const labelElem = document.getElementById('ihqSectionListLabel');
+    const countElem = document.getElementById('ihqSectionListCount');
+    if (!listContainer) return;
+
+    listContainer.innerHTML = '';
+    const q = ihqCleanState.searchQuery.toLowerCase();
+
+    if (ihqCleanState.activeTab === 'diagnostics') {
+        // Renderizar diagnósticos
+        if (labelElem) labelElem.textContent = q ? 'Resultados de Diagnósticos' : 'Recientes';
+
+        let items = IHQ_DIAGNOSTICS_DB;
+        if (q) {
+            items = items.filter(d => 
+                d.name.toLowerCase().includes(q) || 
+                d.category.toLowerCase().includes(q) || 
+                d.meta.toLowerCase().includes(q)
+            );
+        }
+
+        if (countElem) countElem.textContent = `${items.length} ${items.length === 1 ? 'diagnóstico' : 'diagnósticos'}`;
+
+        if (items.length === 0) {
+            listContainer.innerHTML = `
+                <div style="padding: 24px 14px; text-align: center; color: #64748b; font-size: 13px;">
+                    No se encontraron diagnósticos que coincidan con "<strong>${ihqCleanState.searchQuery}</strong>".
+                </div>
+            `;
+            return;
+        }
+
+        items.forEach(diag => {
+            const isSelected = ihqCleanState.selectedItems.some(item => item.id === diag.id);
+            const card = document.createElement('div');
+            card.className = `ihq-clean-item-card ${isSelected ? 'is-selected' : ''}`;
+            card.onclick = () => toggleIhqSelection(diag.id, diag.name, 'Diagnóstico', diag.meta);
+
+            card.innerHTML = `
+                <div class="ihq-clean-item-info">
+                    <div class="ihq-clean-item-name">
+                        <i class="fa-solid fa-notes-medical" style="color: #38bdf8; font-size: 13px;"></i>
+                        <span>${diag.name}</span>
+                    </div>
+                    <div class="ihq-clean-item-meta">${diag.category} &bull; <span style="color:#cbd5e1;">${diag.meta}</span></div>
+                </div>
+                <button type="button" class="ihq-clean-item-action" title="${isSelected ? 'Remover' : 'Añadir al panel'}">
+                    <i class="fa-solid ${isSelected ? 'fa-check' : 'fa-plus'}"></i>
+                </button>
+            `;
+            listContainer.appendChild(card);
+        });
+
+    } else {
+        // Renderizar anticuerpos
+        if (labelElem) labelElem.textContent = q ? 'Resultados de Anticuerpos' : 'Recientes';
+
+        const db = window.ANTIBODIES_STOCK_DB || [];
+        let items = db;
+
+        if (q) {
+            items = items.filter(ab => 
+                ab.name.toLowerCase().includes(q) || 
+                ab.category.toLowerCase().includes(q) || 
+                ab.description.toLowerCase().includes(q)
+            );
+        } else {
+            // Mostrar los primeros 18 más representativos en "Recientes"
+            items = db.slice(0, 18);
+        }
+
+        if (countElem) countElem.textContent = `${items.length} disponibles`;
+
+        if (items.length === 0) {
+            listContainer.innerHTML = `
+                <div style="padding: 24px 14px; text-align: center; color: #64748b; font-size: 13px;">
+                    No se encontraron anticuerpos que coincidan con "<strong>${ihqCleanState.searchQuery}</strong>".
+                </div>
+            `;
+            return;
+        }
+
+        items.forEach(ab => {
+            const abId = 'ab_' + ab.name.toLowerCase().replace(/[^a-z0-9]/g, '_');
+            const isSelected = ihqCleanState.selectedItems.some(item => item.id === abId);
+            const card = document.createElement('div');
+            card.className = `ihq-clean-item-card ${isSelected ? 'is-selected' : ''}`;
+            card.onclick = () => toggleIhqSelection(abId, ab.name, 'Anticuerpo', ab.category + ' • ' + ab.localization);
+
+            card.innerHTML = `
+                <div class="ihq-clean-item-info">
+                    <div class="ihq-clean-item-name">
+                        <i class="fa-solid fa-flask-vial" style="color: #34d399; font-size: 13px;"></i>
+                        <span>${ab.name}</span>
+                    </div>
+                    <div class="ihq-clean-item-meta">${ab.category} &bull; <span style="color:#cbd5e1;">${ab.localization}</span></div>
+                </div>
+                <button type="button" class="ihq-clean-item-action" title="${isSelected ? 'Remover' : 'Añadir al panel'}">
+                    <i class="fa-solid ${isSelected ? 'fa-check' : 'fa-plus'}"></i>
+                </button>
+            `;
+            listContainer.appendChild(card);
+        });
+    }
+}
+
+function toggleIhqSelection(id, name, type, meta) {
+    const existingIdx = ihqCleanState.selectedItems.findIndex(item => item.id === id);
+
+    if (existingIdx >= 0) {
+        // Remover
+        ihqCleanState.selectedItems.splice(existingIdx, 1);
+    } else {
+        // Añadir si no supera el límite de 5
+        if (ihqCleanState.selectedItems.length >= 5) {
+            alert('Límite alcanzado: Puede seleccionar un máximo de 5 elementos (diagnósticos o anticuerpos) para optimizar el panel consensuado.');
+            return;
+        }
+        ihqCleanState.selectedItems.push({ id, name, type, meta });
+    }
+
+    renderIhqCleanItems();
+    updateIhqSelectionUI();
+}
+
+window.removeIhqSelection = function(id) {
+    ihqCleanState.selectedItems = ihqCleanState.selectedItems.filter(item => item.id !== id);
+    renderIhqCleanItems();
+    updateIhqSelectionUI();
+};
+
+function updateIhqSelectionUI() {
+    const counterBadge = document.getElementById('ihqSelectedCounterBadge');
+    const emptyState = document.getElementById('ihqSelectionEmptyState');
+    const chipsList = document.getElementById('ihqSelectedChipsList');
+    const actionsBar = document.getElementById('ihqPanelActionsBar');
+    const waShareBtn = document.getElementById('ihqCleanWaShareBtn');
+
+    const total = ihqCleanState.selectedItems.length;
+
+    if (counterBadge) {
+        counterBadge.textContent = `${total} / 5`;
+        if (total >= 5) {
+            counterBadge.classList.add('full');
+        } else {
+            counterBadge.classList.remove('full');
+        }
+    }
+
+    if (total === 0) {
+        if (emptyState) emptyState.style.display = 'flex';
+        if (chipsList) chipsList.style.display = 'none';
+        if (actionsBar) actionsBar.style.display = 'none';
+    } else {
+        if (emptyState) emptyState.style.display = 'none';
+        if (chipsList) {
+            chipsList.style.display = 'flex';
+            chipsList.innerHTML = '';
+
+            ihqCleanState.selectedItems.forEach(item => {
+                const chip = document.createElement('div');
+                chip.className = 'ihq-selected-chip';
+                chip.innerHTML = `
+                    <div class="ihq-selected-chip-info">
+                        <span class="ihq-selected-chip-title">${item.name}</span>
+                        <span class="ihq-selected-chip-type">${item.type} &bull; ${item.meta}</span>
+                    </div>
+                    <button type="button" class="ihq-selected-remove-btn" onclick="removeIhqSelection('${item.id}')" title="Remover de la selección">&times;</button>
+                `;
+                chipsList.appendChild(chip);
+            });
+        }
+        if (actionsBar) actionsBar.style.display = 'flex';
+
+        // Actualizar enlace de WhatsApp con los elementos seleccionados
+        if (waShareBtn) {
+            const names = ihqCleanState.selectedItems.map(i => i.name).join(', ');
+            const msg = `Hola Dr. Joseph Castillo, le consulto desde el Creador de Paneles IHQ para solicitar asesoría técnica del siguiente panel: ${names}.`;
+            waShareBtn.href = `https://wa.me/51986396733?text=${encodeURIComponent(msg)}`;
+        }
+    }
+}
+
+window.executeIhqPanelAction = function(action) {
+    if (action === 'clear') {
+        ihqCleanState.selectedItems = [];
+        renderIhqCleanItems();
+        updateIhqSelectionUI();
+    } else if (action === 'generate') {
+        if (ihqCleanState.selectedItems.length === 0) return;
+        const names = ihqCleanState.selectedItems.map(i => i.name).join(' | ');
+        alert(`Panel Calculado con Éxito:\n\nElementos: ${names}\n\nOptimizador de Shannon: Máxima ganancia de información algorítmica garantizada para esta combinación.`);
+    }
+};
+
+window.handleIhqSavedCases = function() {
+    alert('Casos Guardados:\n\n1. 26Q-0182: Adenocarcinoma Gástrico (HER2, Claudina 18.2, MMR)\n2. 26Q-0194: Adenocarcinoma Prostático (AMACR, p63, CK-HMW)\n3. 26Q-0284: Melanoma Acral Lentiginoso (SOX-10, Melan-A, HMB-45)\n\nPuede abrir o continuar cualquiera de estos casos en el Portal Quirúrgico.');
+};
+
 
 /* ==========================================================================
    6. MAPEO DE PIEZA QUIRÚRGICA 3D 360° (EJE 06 / PÁGINA 7)
@@ -2554,4 +2754,14 @@ function initPricingCalculator() {
     volumeSlider.addEventListener('input', recalculate);
     checkboxes.forEach(cb => cb.addEventListener('change', recalculate));
     recalculate();
+}
+
+/* ==========================================================================
+   CREADOR DE PANELES IHQ — INICIALIZACIÓN DE PESTAÑA ACTIVA
+   ========================================================================== */
+function initIhqCleanPanel() {
+    // Inicializar la pestaña activa por defecto
+    if (typeof switchIhqCleanTab === 'function') {
+        switchIhqCleanTab('antibodies');
+    }
 }

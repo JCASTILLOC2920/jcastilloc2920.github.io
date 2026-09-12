@@ -4727,3 +4727,532 @@ body {
     .scanner-cta-group { width: 100%; flex-direction: column; }
     .btn-scanner-action-wa, .btn-scanner-action-portal { justify-content: center; width: 100%; }
 }
+
+/* ==========================================================================
+   CREADOR DE PANELES IHQ (BUILD PANEL • INTERFAZ LIMPIA & ELEGANTE)
+   Basado fielmente en la Referencia de Usuario (Diagnósticos | Anticuerpos)
+   Estética Quirúrgica Zafiro/Argón, Tipografías Médicas Inter & Montserrat
+   ========================================================================== */
+
+#pantalla-ihq {
+    width: 100%;
+    height: calc(100vh - 67px);
+    background: #020617;
+    overflow: hidden !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.ihq-clean-app-container {
+    width: 100%;
+    max-width: min(1480px, 94vw);
+    height: 100%;
+    margin: 0 auto;
+    padding: clamp(16px, 2.2vh, 26px) 24px clamp(20px, 2.5vh, 32px);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* 1. Barra Superior: Crear Panel + Casos Guardados > */
+.ihq-clean-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: clamp(12px, 1.8vh, 20px);
+    flex-shrink: 0;
+}
+
+.ihq-clean-title {
+    font-size: clamp(24px, 2.4vw, 32px);
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    margin: 0;
+    font-family: 'Montserrat', 'Inter', sans-serif;
+}
+
+.ihq-clean-btn-saved {
+    background: transparent;
+    border: none;
+    color: #38bdf8;
+    font-size: clamp(13px, 1vw, 15px);
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    outline: none;
+}
+
+.ihq-clean-btn-saved:hover {
+    color: #7dd3fc;
+    background: rgba(56, 189, 248, 0.08);
+    transform: translateX(2px);
+}
+
+/* 2. Pestañas de Navegación: Diagnósticos | Anticuerpos con subrayado elegante */
+.ihq-clean-nav-tabs {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.12);
+    margin-bottom: clamp(16px, 2.2vh, 24px);
+    flex-shrink: 0;
+}
+
+.ihq-clean-tab {
+    background: transparent;
+    border: none;
+    padding: 10px 0 14px 0;
+    font-size: clamp(15px, 1.1vw, 17px);
+    font-weight: 700;
+    color: #94a3b8;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s ease;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+}
+
+.ihq-clean-tab:hover {
+    color: #cbd5e1;
+}
+
+.ihq-clean-tab.active {
+    color: #ffffff;
+    font-weight: 800;
+}
+
+.ihq-clean-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1.5px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #0284c7;
+    box-shadow: 0 0 12px #38bdf8;
+    border-radius: 3px 3px 0 0;
+}
+
+/* 3. Grid Principal: Columna Izquierda (Buscador & Recientes) + Columna Derecha (Seleccionados) */
+.ihq-clean-body-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(24px, 2.8vw, 44px);
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+@media (max-width: 960px) {
+    .ihq-clean-body-grid {
+        grid-template-columns: 1fr;
+        overflow-y: auto;
+    }
+}
+
+/* 4. Columna Izquierda */
+.ihq-clean-search-col {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* Caja de Búsqueda con Lupa y fondo oscuro sutil */
+.ihq-clean-search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #091222;
+    border: 1.5px solid rgba(56, 189, 248, 0.22);
+    border-radius: 12px;
+    padding: 0 16px;
+    margin-bottom: clamp(16px, 2vh, 22px);
+    flex-shrink: 0;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ihq-clean-search-box:focus-within {
+    border-color: #38bdf8;
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
+}
+
+.ihq-clean-search-icon {
+    font-size: 16px;
+    color: #64748b;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.ihq-clean-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 14px 0;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+}
+
+.ihq-clean-input::placeholder {
+    color: #64748b;
+    font-weight: 400;
+}
+
+.ihq-clean-clear-btn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 20px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px;
+    transition: color 0.15s ease;
+}
+
+.ihq-clean-clear-btn:hover {
+    color: #ffffff;
+}
+
+/* Sección de Lista / Recientes */
+.ihq-clean-items-section {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.ihq-clean-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    flex-shrink: 0;
+}
+
+.ihq-clean-section-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.ihq-clean-section-count {
+    font-size: 12px;
+    font-weight: 600;
+    color: #64748b;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.ihq-clean-items-list {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-right: 6px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(56, 189, 248, 0.3) transparent;
+}
+
+.ihq-clean-items-list::-webkit-scrollbar {
+    width: 5px;
+}
+.ihq-clean-items-list::-webkit-scrollbar-thumb {
+    background: rgba(56, 189, 248, 0.25);
+    border-radius: 3px;
+}
+
+/* Tarjeta individual de elemento (Anticuerpo o Diagnóstico) */
+.ihq-clean-item-card {
+    background: rgba(15, 29, 51, 0.65);
+    border: 1px solid rgba(56, 189, 248, 0.14);
+    border-radius: 10px;
+    padding: 12px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ihq-clean-item-card:hover {
+    background: rgba(21, 41, 70, 0.85);
+    border-color: rgba(56, 189, 248, 0.4);
+    transform: translateX(3px);
+}
+
+.ihq-clean-item-card.is-selected {
+    background: rgba(2, 132, 199, 0.18);
+    border-color: #38bdf8;
+}
+
+.ihq-clean-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+}
+
+.ihq-clean-item-name {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ihq-clean-item-meta {
+    font-size: 11.5px;
+    color: #94a3b8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ihq-clean-item-action {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    color: #38bdf8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.ihq-clean-item-card:hover .ihq-clean-item-action {
+    background: #0284c7;
+    color: #ffffff;
+    border-color: #38bdf8;
+    transform: scale(1.08);
+}
+
+.ihq-clean-item-card.is-selected .ihq-clean-item-action {
+    background: #10b981;
+    color: #ffffff;
+    border-color: #34d399;
+}
+
+/* 5. Columna Derecha: Panel de Seleccionados (0/5) */
+.ihq-clean-selection-col {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.ihq-clean-selection-card {
+    background: #070e1c;
+    border: 1.5px solid rgba(56, 189, 248, 0.2);
+    border-radius: 14px;
+    padding: clamp(18px, 2.4vh, 24px);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+}
+
+.ihq-clean-selection-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
+}
+
+.ihq-clean-selection-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: -0.01em;
+}
+
+.ihq-clean-counter-pill {
+    font-size: 12.5px;
+    font-weight: 800;
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.ihq-clean-counter-pill.full {
+    background: rgba(245, 158, 11, 0.18);
+    color: #fbbf24;
+    border-color: rgba(245, 158, 11, 0.45);
+}
+
+/* Estado Vacío Fiel a la Imagen 3 */
+.ihq-clean-empty-state {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px 14px;
+}
+
+.ihq-clean-empty-text {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #64748b;
+    max-width: 380px;
+}
+
+/* Lista de Chips / Tarjetas de Seleccionados */
+.ihq-clean-selected-list {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-right: 4px;
+    scrollbar-width: thin;
+}
+
+.ihq-selected-chip {
+    background: rgba(15, 29, 51, 0.9);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    border-left: 4px solid #0284c7;
+    border-radius: 8px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+    animation: fadeInSlide 0.2s ease-out;
+}
+
+@keyframes fadeInSlide {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.ihq-selected-chip:hover {
+    border-color: #38bdf8;
+    background: rgba(21, 41, 70, 0.95);
+}
+
+.ihq-selected-chip-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.ihq-selected-chip-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.ihq-selected-chip-type {
+    font-size: 10.5px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.ihq-selected-remove-btn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 4px 6px;
+    line-height: 1;
+    border-radius: 4px;
+    transition: all 0.15s ease;
+}
+
+.ihq-selected-remove-btn:hover {
+    color: #f87171;
+    background: rgba(248, 113, 113, 0.12);
+}
+
+/* Barra de Acciones del Panel Creado */
+.ihq-clean-panel-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
+}
+
+.ihq-clean-action-btn {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.ihq-clean-action-btn.primary {
+    background: linear-gradient(135deg, #0284c7, #0369a1);
+    color: #ffffff;
+    border: 1px solid #38bdf8;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+}
+
+.ihq-clean-action-btn.primary:hover {
+    background: linear-gradient(135deg, #0369a1, #0284c7);
+    transform: translateY(-1px);
+}
+
+.ihq-clean-action-btn.secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: #94a3b8;
+}
+
+.ihq-clean-action-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.ihq-clean-action-btn.whatsapp {
+    background: linear-gradient(135deg, #047857, #065f46);
+    color: #ffffff;
+    border: 1px solid #34d399;
+}
+
+.ihq-clean-action-btn.whatsapp:hover {
+    background: linear-gradient(135deg, #059669, #047857);
+}
+
