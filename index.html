@@ -53,8 +53,8 @@
         .screens-viewport-container {
             position: relative;
             width: 100vw;
-            height: calc(100vh - 58px);
-            max-height: calc(100vh - 58px);
+            height: calc(100vh - 67px);
+            max-height: calc(100vh - 67px);
             overflow: hidden !important;
             background: #050b14;
         }
@@ -85,9 +85,9 @@
         /* Cabecera Superior Compacta y Elegante */
         .top-navbar {
             position: relative;
-            height: 58px;
-            max-height: 58px;
-            padding: 0 clamp(14px, 1.8vw, 32px);
+            height: 67px;
+            max-height: 67px;
+            padding: 0 clamp(16px, 2vw, 36px);
             display: flex;
             align-items: center;
             background: rgba(5, 11, 20, 0.96);
@@ -2598,6 +2598,124 @@
                 overflow-y: auto;
             }
         }
+
+        /* ==========================================================================
+           BOTÓN QUIRÚRGICO DESTACADO: CREADOR DE PANELES IHQ (AI STUDIO)
+           ========================================================================== */
+        .btn-header-ihq-builder {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.95), rgba(2, 132, 199, 0.95));
+            color: #ffffff !important;
+            border: 1px solid #38bdf8;
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.35);
+            font-family: 'Montserrat', 'Inter', sans-serif;
+            font-weight: 800;
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 24px;
+            font-size: 12.5px;
+            text-decoration: none;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+            flex-shrink: 0;
+            z-index: 1;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-header-ihq-builder::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .btn-header-ihq-builder:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+            box-shadow: 0 0 24px rgba(56, 189, 248, 0.55), 0 0 14px rgba(16, 185, 129, 0.45);
+            border-color: #67e8f9;
+            color: #ffffff !important;
+        }
+
+        .btn-header-ihq-builder:hover::before {
+            opacity: 1;
+        }
+
+        .btn-header-ihq-builder:active {
+            transform: translateY(0);
+        }
+
+        .btn-header-ihq-builder i {
+            color: #a7f3d0;
+            font-size: 13px;
+            filter: drop-shadow(0 0 6px rgba(167, 243, 208, 0.75));
+            animation: ihqSparklePulse 3s infinite ease-in-out;
+            transition: transform 0.25s ease;
+        }
+
+        .btn-header-ihq-builder:hover i {
+            transform: rotate(15deg) scale(1.18);
+        }
+
+        @keyframes ihqSparklePulse {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.95; }
+            50% { transform: scale(1.15) rotate(10deg); opacity: 1; filter: drop-shadow(0 0 10px rgba(103, 232, 249, 0.95)); }
+        }
+
+        .btn-badge-ai {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2px 6px;
+            font-size: 9.5px;
+            font-weight: 900;
+            letter-spacing: 0.6px;
+            background: rgba(6, 182, 212, 0.25);
+            border: 1px solid rgba(103, 232, 249, 0.65);
+            border-radius: 10px;
+            color: #67e8f9;
+            line-height: 1;
+            box-shadow: 0 0 8px rgba(103, 232, 249, 0.3);
+            margin-left: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Comportamiento Responsivo Panorámico y Móvil */
+        .btn-header-ihq-builder .ihq-btn-text-short {
+            display: none;
+        }
+
+        @media (max-width: 1400px) {
+            .btn-header-ihq-builder .ihq-btn-text-full {
+                display: none;
+            }
+            .btn-header-ihq-builder .ihq-btn-text-short {
+                display: inline;
+            }
+        }
+
+        @media (max-width: 1100px) {
+            .header-actions {
+                gap: 6px;
+            }
+            .btn-header-ihq-builder {
+                padding: 6px 11px;
+                font-size: 11.5px;
+            }
+            .btn-header-ihq-builder .ihq-btn-text-short {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -2651,8 +2769,14 @@
                 </li>
             </ul>
 
-            <!-- Acciones Rápidas (Portal y WhatsApp Oficial) -->
+            <!-- Acciones Rápidas (Creador IHQ AI, Portal y WhatsApp Oficial) -->
             <div class="header-actions">
+                <a href="creador-paneles-ihq.html" target="_blank" rel="noopener noreferrer" class="btn-header btn-header-ihq-builder" id="btnHeaderIhqBuilder" title="Abrir Creador de Paneles de Inmunohistoquímica (ImmunoMaster AI Universal)">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span class="ihq-btn-text-full">Creador de Paneles IHQ</span>
+                    <span class="ihq-btn-text-short">Paneles IHQ</span>
+                    <span class="btn-badge-ai">AI</span>
+                </a>
                 <a href="login.html" class="btn-header btn-header-portal" title="Acceso al Portal de Médicos y Clínicas">
                     <i class="fa-solid fa-arrow-right-to-bracket"></i> Portal Clínico
                 </a>
