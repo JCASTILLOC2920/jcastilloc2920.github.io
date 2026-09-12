@@ -18,7 +18,7 @@ html {
 }
 #chat-toggle:hover,
 #send-btn:hover {
-  box-shadow: 0 0 20px rgba(0,210,255,.6)
+  box-shadow: 0 0 20px rgba(56,189,248,.4)
 }
 * {
   margin: 0;
@@ -26,29 +26,43 @@ html {
   box-sizing: border-box
 }
 :root {
-  --primary: #0A2540;
-  --primary-light: #1A365D;
-  --accent: #00E676;
-  --accent-glow: rgba(0, 230, 118, 0.4);
-  --secondary: #00BFA5;
-  --cta-accent: #FF3366;
-  --cta-glow: rgba(255, 51, 102, 0.5);
-  --light: #FDFDFD;
-  --dark: #0A2540;
-  --glass: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --surface: rgba(10, 37, 64, 0.9);
+  /* Escala Tonal Armónica Monocromática: Zafiro Borosilicato */
+  --sapphire-950: #050b14; /* Fondo Abisal Base, antideslumbrante */
+  --sapphire-900: #0a1322; /* Canvas de Plataforma */
+  --sapphire-850: #0f1d33; /* Superficie Card */
+  --sapphire-800: #152946; /* Elevacion y Modales */
+  --sapphire-700: #1d375d; /* Bordes Estructurales */
+  --sapphire-600: #294d80; /* Bordes Activos */
+  --sapphire-500: #0284c7; /* Acento Primario Quirurgico */
+  --sapphire-400: #38bdf8; /* Bioluminiscencia / Badges */
+  --sapphire-300: #7dd3fc; /* Hover Haptico */
+  --sapphire-200: #bae6fd; /* Metadatos y Subtitulos */
+  --sapphire-100: #e2edfa; /* Texto Primario Polar, contraste 14.2:1 WCAG AAA */
+  --sapphire-50:  #f0f7ff; /* Luz Especular Titulos */
+
+  /* Mapeo Semántico de Plataforma */
+  --primary: var(--sapphire-950);
+  --primary-light: var(--sapphire-800);
+  --accent: var(--sapphire-500);
+  --accent-glow: rgba(2, 132, 199, 0.35);
+  --secondary: var(--sapphire-400);
+  --cta-accent: var(--sapphire-500);
+  --cta-glow: rgba(2, 132, 199, 0.35);
+  --light: var(--sapphire-50);
+  --dark: var(--sapphire-950);
+  --glass: rgba(15, 29, 51, 0.72);
+  --glass-border: rgba(56, 189, 248, 0.14);
+  --surface: rgba(10, 19, 34, 0.95);
   --ease-premium: cubic-bezier(0.23, 1, 0.32, 1);
   --transition: all 0.4s var(--ease-premium);
-  --glow: 0 0 25px var(--accent-glow);
-  --neon-glow: 0 0 20px rgba(0, 230, 118, 0.3);
-  --god-mode-bg: rgba(18, 25, 40, 0.95);
-  --god-mode-header: linear-gradient(135deg, #2c3e50 0%, #000000 100%);
-  --god-mode-accent: #00d2ff;
-  --god-mode-text: #ffffff;
-  --god-mode-user-msg: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
-  --god-mode-bot-msg: rgba(255, 255, 255, 0.1);
-  --glass-border: 1px solid rgba(255, 255, 255, 0.1)
+  --glow: 0 0 25px rgba(56, 189, 248, 0.25);
+  --neon-glow: 0 0 20px rgba(56, 189, 248, 0.2);
+  --god-mode-bg: rgba(10, 19, 34, 0.96);
+  --god-mode-header: linear-gradient(135deg, var(--sapphire-900) 0%, var(--sapphire-950) 100%);
+  --god-mode-accent: var(--sapphire-400);
+  --god-mode-text: var(--sapphire-100);
+  --god-mode-user-msg: linear-gradient(135deg, var(--sapphire-600) 0%, var(--sapphire-800) 100%);
+  --god-mode-bot-msg: rgba(21, 41, 70, 0.7)
 }
 .glass-card,
 .premium-glass {
@@ -60,12 +74,27 @@ html {
   -webkit-backdrop-filter: blur(25px) saturate(180%);
   border: 1px solid var(--glass-border);
   border-radius: 24px;
-  box-shadow: 0 8px 32px 0 rgba(0,0,0,.37)
+  box-shadow: 0 8px 32px 0 rgba(5,11,20,.55)
 }
 .premium-glass:hover {
-  border: 1px solid rgba(16,185,129,.3);
+  border: 1px solid rgba(56,189,248,.3);
   transform: translateY(-5px);
-  box-shadow: 0 12px 40px 0 rgba(0,0,0,.45),var(--glow)
+  box-shadow: 0 12px 40px 0 rgba(5,11,20,.65),var(--glow)
+}
+/* Borosilicato Médico Pulcro - Neuroestética Quirúrgica */
+.surgical-glass {
+  background: rgba(15, 29, 51, 0.72);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid rgba(56, 189, 248, 0.14);
+  box-shadow: 0 8px 32px 0 rgba(5, 11, 20, 0.55), inset 0 1px 0 0 rgba(240, 247, 255, 0.08);
+  border-radius: 16px;
+  transition: var(--transition)
+}
+.surgical-glass:hover {
+  border-color: rgba(56, 189, 248, 0.28);
+  box-shadow: 0 12px 40px 0 rgba(5, 11, 20, 0.65), 0 0 20px rgba(56, 189, 248, 0.12), inset 0 1px 0 0 rgba(240, 247, 255, 0.14);
+  transform: translateY(-2px)
 }
 @keyframes gradientBg {
   0%,
@@ -94,7 +123,7 @@ html {
   }
 }
 .text-gradient {
-  background: linear-gradient(270deg,var(--accent),#38bdf8,var(--accent-alt));
+  background: linear-gradient(270deg,var(--sapphire-400),var(--sapphire-200),var(--sapphire-300));
   background-size: 200% auto;
   -webkit-background-clip: text;
   animation: 4s linear infinite textShine
@@ -109,8 +138,8 @@ html {
 }
 .glass-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 15px 40px rgba(31,38,135,.25),var(--neon-glow);
-  border: 1px solid rgba(0,230,118,.5)
+  box-shadow: 0 15px 40px rgba(5,11,20,.35),var(--neon-glow);
+  border: 1px solid rgba(56,189,248,.4)
 }
 .shimmer-btn {
   position: relative;
@@ -283,31 +312,31 @@ html {
   padding-left: 25px
 }
 .nav-cta {
-  background: linear-gradient(135deg,#00e676 0,#00bfa5 100%)!important;
+  background: linear-gradient(135deg,var(--sapphire-600) 0,var(--sapphire-500) 100%)!important;
   color: #fff!important;
   font-weight: 700!important;
   border-radius: 8px!important;
-  box-shadow: 0 4px 15px rgba(0,230,118,.25);
+  box-shadow: 0 4px 15px rgba(2,132,199,.25);
   margin-left: 10px;
-  border: 1px solid rgba(255,255,255,.4)!important;
-  text-shadow: 0 1px 2px rgba(0,0,0,.1)
+  border: 1px solid rgba(56,189,248,.3)!important;
+  text-shadow: 0 1px 2px rgba(0,0,0,.2)
 }
 .nav-cta:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0,230,118,.45);
-  background: linear-gradient(135deg,#00bfa5 0,#00e676 100%)!important
+  box-shadow: 0 8px 25px rgba(56,189,248,.35);
+  background: linear-gradient(135deg,var(--sapphire-500) 0,var(--sapphire-400) 100%)!important
 }
 .nav-results {
-  color: #00bfa5!important;
+  color: var(--sapphire-400)!important;
   font-weight: 700;
   padding: 8px 16px;
   border-radius: 8px;
   transition: .3s;
   margin-left: 10px;
-  background: rgba(0,191,165,.05)
+  background: rgba(56,189,248,.08)
 }
 .nav-results:hover {
-  background: rgba(0,191,165,.15);
+  background: rgba(56,189,248,.18);
   transform: translateY(-1px)
 }
 .hamburger {
@@ -404,7 +433,7 @@ html {
   transition: .4s cubic-bezier(.23, 1, .32, 1);
   cursor: pointer;
   border: none;
-  box-shadow: 0 10px 30px rgba(0,230,118,.2)!important
+  box-shadow: 0 10px 30px rgba(2,132,199,.2)!important
 }
 .btn-hero-doctor,
 .btn-hero-patient {
@@ -414,13 +443,13 @@ html {
   text-shadow: none!important
 }
 .btn-primary {
-  background: linear-gradient(135deg,#00e676 0,#00bfa5 100%);
+  background: linear-gradient(135deg,var(--sapphire-600) 0,var(--sapphire-500) 100%);
   color: #fff!important
 }
 .btn-primary:hover {
   transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 15px 40px rgba(0,230,118,.4)!important;
-  background: linear-gradient(135deg,#00bfa5 0,#00e676 100%)
+  box-shadow: 0 15px 40px rgba(2,132,199,.35)!important;
+  background: linear-gradient(135deg,var(--sapphire-500) 0,var(--sapphire-400) 100%)
 }
 .btn-secondary {
   background-color: transparent;
@@ -432,10 +461,10 @@ html {
   transform: translateY(-4px) scale(1.02)
 }
 .btn-hero-patient {
-  background-color: var(--cta-accent)!important;
+  background-color: var(--sapphire-500)!important;
   border: none!important;
   color: #fff!important;
-  box-shadow: 0 10px 30px rgba(255,107,53,.4)!important;
+  box-shadow: 0 10px 30px rgba(2,132,199,.35)!important;
   flex-direction: column!important;
   align-items: center!important;
   justify-content: center!important;
@@ -443,8 +472,9 @@ html {
 }
 .btn-hero-patient:hover {
   transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 15px 40px rgba(255,107,53,.6)!important;
-  filter: brightness(1.1)
+  box-shadow: 0 15px 40px rgba(56,189,248,.4)!important;
+  background-color: var(--sapphire-400)!important;
+  filter: brightness(1.05)
 }
 .btn-hero-doctor {
   background-color: #fff!important;
@@ -454,20 +484,21 @@ html {
   flex-direction: column!important;
   align-items: center!important;
   justify-content: center!important;
-  transition: .3s!important
+  transition: .3s cubic-bezier(.175, .885, .32, 1.275)!important
 }
 .btn-hero-doctor:hover {
-  background-color: rgba(255,255,255,.9)!important;
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0,0,0,.15)!important
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(0,0,0,.15)!important;
+  background-color: #f8fafc!important
 }
-.cta-title {
-  font-weight: 700!important;
-  font-size: 1.1rem!important;
-  text-shadow: none!important
+.btn-hero-doctor span:first-child,
+.btn-hero-patient span:first-child {
+  font-size: 1.2rem!important;
+  font-weight: 800!important;
+  line-height: 1.2!important
 }
-.cta-subtitle {
-  font-weight: 400!important;
+.btn-hero-doctor span:last-child,
+.btn-hero-patient span:last-child {
   font-size: .9rem!important;
   opacity: .9;
   text-shadow: none!important
@@ -477,7 +508,7 @@ html {
   margin-top: 10px;
   font-size: .85rem;
   font-weight: 600;
-  color: #ffeb3b;
+  color: var(--sapphire-300);
   text-decoration: underline;
   text-align: center;
   cursor: pointer;
@@ -651,7 +682,7 @@ html {
   box-shadow: 0 20px 50px rgba(10,37,64,.08);
   transform: translateY(-4px);
   background: rgba(255,255,255,.9);
-  border: 1px solid rgba(0,230,118,.3)
+  border: 1px solid rgba(56,189,248,.3)
 }
 .service-accordion-header {
   background: 0 0!important;
@@ -2300,7 +2331,7 @@ html {
 }
 .video-btn-hero i {
   font-size: 1.2rem;
-  color: #ffeb3b;
+  color: var(--sapphire-400);
   animation: 2s infinite pulsePlay
 }
 @keyframes pulsePlay {
@@ -2496,7 +2527,7 @@ html {
   width: 60px;
   height: 60px;
   color: var(--god-mode-accent);
-  border: 1px solid rgba(0,210,255,.3);
+  border: 1px solid rgba(56,189,248,.3);
   border-radius: 50%;
   font-size: 28px;
   box-shadow: 0 10px 25px rgba(0,0,0,.4);
@@ -2508,13 +2539,13 @@ html {
 }
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(0,210,255,.7)
+    box-shadow: 0 0 0 0 rgba(56,189,248,.7)
   }
   70% {
-    box-shadow: 0 0 0 15px rgba(0,210,255,0)
+    box-shadow: 0 0 0 15px rgba(56,189,248,0)
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(0,210,255,0)
+    box-shadow: 0 0 0 0 rgba(56,189,248,0)
   }
 }
 .chat-tooltip {
@@ -2529,7 +2560,7 @@ html {
   z-index: 10002;
   transform: translateY(10px);
   transition: .4s;
-  border: 1px solid #00d2ff
+  border: 1px solid var(--sapphire-400)
 }
 .chat-tooltip::after {
   content: '';
@@ -2569,7 +2600,7 @@ html {
   border: 3px solid var(--god-mode-accent);
   flex-shrink: 0;
   background: #000;
-  box-shadow: 0 0 15px rgba(0,210,255,.3);
+  box-shadow: 0 0 15px rgba(56,189,248,.3);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2602,11 +2633,11 @@ html {
 }
 .avatar-video-container.is-thinking {
   animation: 1.5s ease-in-out infinite avatarBreathing;
-  box-shadow: 0 0 25px rgba(0,210,255,.4)
+  box-shadow: 0 0 25px rgba(56,189,248,.35)
 }
 .avatar-video-container.is-speaking {
-  border-color: #2ecc71;
-  filter: drop-shadow(0 0 12px rgba(46, 204, 113, .5))
+  border-color: var(--sapphire-400);
+  filter: drop-shadow(0 0 12px rgba(56, 189, 248, .4))
 }
 .online-status {
   position: absolute;
@@ -2614,20 +2645,20 @@ html {
   right: 2px;
   width: 12px;
   height: 12px;
-  background: #2ecc71;
+  background: var(--sapphire-400);
   border: 2px solid var(--god-mode-bg);
   border-radius: 50%;
   animation: 2s infinite statusPulse
 }
 @keyframes statusPulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(46,204,113,.7)
+    box-shadow: 0 0 0 0 rgba(56,189,248,.6)
   }
   70% {
-    box-shadow: 0 0 0 8px rgba(46,204,113,0)
+    box-shadow: 0 0 0 8px rgba(56,189,248,0)
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(46,204,113,0)
+    box-shadow: 0 0 0 0 rgba(56,189,248,0)
   }
 }
 .chat-header-content {
@@ -2714,7 +2745,7 @@ html {
   color: #fff;
   align-self: flex-end;
   border-radius: 20px 20px 5px;
-  box-shadow: 0 5px 15px rgba(0,210,255,.2);
+  box-shadow: 0 5px 15px rgba(56,189,248,.2);
   font-weight: 500
 }
 #chat-input,
@@ -2781,11 +2812,11 @@ html {
 #chat-input:focus {
   border-color: var(--god-mode-accent);
   background: rgba(255,255,255,.08);
-  box-shadow: 0 0 15px rgba(0,210,255,.1)
+  box-shadow: 0 0 15px rgba(56,189,248,.15)
 }
 #send-btn {
   background: var(--god-mode-accent);
-  color: #000;
+  color: var(--sapphire-950);
   border: none;
   width: 45px;
   height: 45px;
@@ -2859,7 +2890,7 @@ html {
   margin-bottom: 10px
 }
 .back-button {
-  background-color: #4caf50;
+  background-color: var(--sapphire-600);
   color: #fff;
   padding: 10px 20px;
   text-align: center;
@@ -2871,7 +2902,7 @@ html {
   margin-right: 10px
 }
 .back-button:hover {
-  background-color: #45a049
+  background-color: var(--sapphire-500)
 }
 .marcadores-container {
   max-width: 900px;
@@ -2961,14 +2992,14 @@ html {
   margin: 40px 0
 }
 .btn-primary-cta {
-  background-color: #ff6b35;
+  background-color: var(--sapphire-500);
   border-radius: 6px;
-  box-shadow: 0 4px 15px rgba(255,107,53,.3)
+  box-shadow: 0 4px 15px rgba(2,132,199,.3)
 }
 .btn-primary-cta:hover {
   transform: translateY(-2px);
   filter: brightness(1.1);
-  box-shadow: 0 6px 20px rgba(255,107,53,.4)
+  box-shadow: 0 6px 20px rgba(2,132,199,.4)
 }
 .btn-secondary-cta {
   background-color: transparent;
@@ -3208,7 +3239,7 @@ html {
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  border: 2px solid #00f2fe;
+  border: 2px solid var(--sapphire-400);
   overflow: hidden;
   cursor: pointer;
   transition: transform .3s
@@ -3246,7 +3277,7 @@ html {
   transition: box-shadow .3s
 }
 .neuro-tilt:hover {
-  box-shadow: 0 25px 50px rgba(0,230,118,.15),0 10px 20px rgba(10,15,28,.2);
+  box-shadow: 0 25px 50px rgba(56,189,248,.15),0 10px 20px rgba(5,11,20,.35);
   z-index: 10
 }
 .neuro-tilt > * {

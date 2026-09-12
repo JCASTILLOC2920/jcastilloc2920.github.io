@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solicitud de Examen Patológico en Lima | JC PATH LAB</title>
 
-                        <!-- Fonts -->
+    <!-- Favicon & PWA -->
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Fonts -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap">
@@ -14,32 +18,10 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Custom Style -->
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="mobile-app.css">
-    <link rel="stylesheet" href="mobile-app.css">
-    <link rel="stylesheet" href="mobile-app.css">
-    <link rel="stylesheet" href="mobile-app.css">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
-        as="style">
 
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-
-                        <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap">
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Custom Style -->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="mobile-app.css">
-    <link rel="stylesheet" href="mobile-app.css">
-    <link rel="stylesheet" href="mobile-app.css">
-    <link rel="stylesheet" href="mobile-app.css">
 
     <style>
         /* Specific Styles for Form */
@@ -502,9 +484,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>window.tailwind = { config: { corePlugins: { preflight: false } } };</script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind = { corePlugins: { preflight: false } }</script>
 </head>
 
 <body>
@@ -709,17 +690,44 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const fechaInput = document.getElementById('fecha-solicitud');
-            if (fechaInput) {
+            if (fechaInput && !fechaInput.value) {
                 fechaInput.valueAsDate = new Date();
             }
+
+            const chatToggle = document.getElementById('chat-toggle');
+            const chatContainer = document.getElementById('chat-container');
+            if (chatToggle && chatContainer) {
+                chatToggle.addEventListener('click', () => {
+                    const isVisible = chatContainer.style.display === 'block';
+                    chatContainer.style.display = isVisible ? 'none' : 'block';
+                });
+                const closeBtn = chatContainer.querySelector('.close-btn');
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', () => {
+                        chatContainer.style.display = 'none';
+                    });
+                }
+            }
         });
+
+        // Safe switcher for assistant avatar
+        window.switchAvatar = window.switchAvatar || function () {
+            const vic = document.getElementById('avatar-victoria');
+            const ele = document.getElementById('avatar-elena');
+            const name = document.getElementById('bot-name-banner');
+            if (vic && ele) {
+                const isVicActive = vic.style.display !== 'none';
+                vic.style.display = isVicActive ? 'none' : 'block';
+                ele.style.display = isVicActive ? 'block' : 'none';
+                if (name) name.textContent = isVicActive ? 'Elena' : 'Victoria';
+            }
+        };
     </script>
+
 
 
     </form>
     </div>
-
-    <script src="main.js"></script>
 
     <!-- Botones de Contacto Flotantes (SEO & CRO) -->
     <div class="sticky-contact">

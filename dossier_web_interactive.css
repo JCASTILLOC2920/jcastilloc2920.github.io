@@ -5,40 +5,39 @@
    ========================================================================== */
 
 :root {
-    /* --- Escala Tonal Monocromática Maestra (Munsell 6.8B) --- */
-    --sapphire-950: #060b13; /* Fondo Abisal Base: absorción de deslumbramiento */
-    --sapphire-900: #0a1220; /* Canvas General / Fondo de Sección */
-    --sapphire-850: #0f1a2e; /* Card Surface: vidrio fluorado y páneles */
-    --sapphire-800: #16253f; /* Elevación / Modales y flotantes */
-    --sapphire-750: #1e3152; /* Superficies interactivas y cajas secundarias */
-    --sapphire-700: #263f68; /* Bordes estructurales sutiles */
-    --sapphire-600: #34558b; /* Bordes activos y umbral de proximidad */
-    --sapphire-500: #0284c7; /* Acento Quirúrgico Primario (Argon Blue) */
-    --sapphire-400: #38bdf8; /* Luminiscencia Activa / Telemetría y Badges */
-    --sapphire-300: #7dd3fc; /* Acento Hover / Resalte háptico de baja latencia */
-    --sapphire-200: #93c5fd; /* Texto Secundario / Metadatos sin fatiga */
-    --sapphire-100: #e2edfa; /* Texto Primario Polar (7500K Zero-Dispersión) */
-    --sapphire-50:  #f0f7ff; /* Resplandor especular para títulos destacados */
+    /* --- Escala Tonal Armónica Monocromática Zafiro Borosilicato --- */
+    --sapphire-950: #050b14; /* Fondo Abisal Base, antideslumbrante */
+    --sapphire-900: #0a1322; /* Canvas de Plataforma */
+    --sapphire-850: #0f1d33; /* Superficie Card */
+    --sapphire-800: #152946; /* Elevacion y Modales */
+    --sapphire-700: #1d375d; /* Bordes Estructurales */
+    --sapphire-600: #294d80; /* Bordes Activos */
+    --sapphire-500: #0284c7; /* Acento Primario Quirurgico */
+    --sapphire-400: #38bdf8; /* Bioluminiscencia / Badges */
+    --sapphire-300: #7dd3fc; /* Hover Haptico */
+    --sapphire-200: #bae6fd; /* Metadatos y Subtitulos */
+    --sapphire-100: #e2edfa; /* Texto Primario Polar, contraste 14.2:1 WCAG AAA */
+    --sapphire-50:  #f0f7ff; /* Luz Especular Titulos */
 
     /* --- Tokens Semánticos Compatibles con la Plataforma --- */
     --primary-navy: var(--sapphire-950);
     --deep-blue: var(--sapphire-900);
     --surface-dark: var(--sapphire-900);
-    --surface-card: rgba(15, 26, 46, 0.88);
+    --surface-card: rgba(15, 29, 51, 0.88);
     --accent-cyan: var(--sapphire-500);
     --accent-sky: var(--sapphire-400);
-    --accent-teal: #0284c7;
-    --accent-emerald: #10b981;
+    --accent-teal: var(--sapphire-500);
+    --accent-emerald: var(--sapphire-400);
     --accent-purple: var(--sapphire-600);
-    --accent-amber: #38bdf8;
+    --accent-amber: var(--sapphire-300);
     --accent-rose: #f43f5e;
     --text-primary: var(--sapphire-100);
     --text-secondary: var(--sapphire-200);
-    --text-muted: #627d98;
-    --border-glass: rgba(56, 189, 248, 0.16);
-    --border-light: rgba(56, 189, 248, 0.1);
-    --glow-cyan: rgba(56, 189, 248, 0.28);
-    --glow-emerald: rgba(16, 185, 129, 0.25);
+    --text-muted: #829ab1;
+    --border-glass: rgba(56, 189, 248, 0.14);
+    --border-light: rgba(56, 189, 248, 0.10);
+    --glow-cyan: rgba(56, 189, 248, 0.25);
+    --glow-emerald: rgba(56, 189, 248, 0.25);
     --radius-sm: 8px;
     --radius-md: 14px;
     --radius-lg: 22px;
@@ -59,7 +58,7 @@ html {
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #030712;
+    background-color: var(--sapphire-950);
     color: var(--text-primary);
     line-height: 1.5;
     overflow-x: hidden;
@@ -101,18 +100,35 @@ body {
 /* Glassmorphism Reutilizable */
 .glass-panel {
     background: var(--surface-card);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--border-glass);
     border-radius: var(--radius-md);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 10px 30px rgba(5, 11, 20, 0.55);
 }
 
 .glass-pill {
-    background: rgba(15, 23, 42, 0.7);
+    background: rgba(15, 29, 51, 0.72);
     backdrop-filter: blur(10px);
     border: 1px solid var(--border-glass);
     border-radius: 30px;
+}
+
+/* Borosilicato Médico Pulcro - Neuroestética Quirúrgica */
+.surgical-glass {
+    background: rgba(15, 29, 51, 0.72);
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    border: 1px solid rgba(56, 189, 248, 0.14);
+    box-shadow: 0 8px 32px 0 rgba(5, 11, 20, 0.55), inset 0 1px 0 0 rgba(240, 247, 255, 0.08);
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+}
+
+.surgical-glass:hover {
+    border-color: rgba(56, 189, 248, 0.28);
+    box-shadow: 0 12px 40px 0 rgba(5, 11, 20, 0.65), 0 0 20px rgba(56, 189, 248, 0.12), inset 0 1px 0 0 rgba(240, 247, 255, 0.14);
+    transform: translateY(-2px);
 }
 
 /* ==========================================================================
@@ -122,7 +138,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgba(3, 7, 18, 0.88);
+    background: rgba(5, 11, 20, 0.92);
     backdrop-filter: blur(18px);
     border-bottom: 1px solid rgba(56, 189, 248, 0.2);
     padding: 10px 24px;
@@ -148,7 +164,7 @@ body {
     width: 42px;
     height: 42px;
     border-radius: 12px;
-    background: linear-gradient(135deg, #0284c7, #10b981);
+    background: linear-gradient(135deg, var(--sapphire-600), var(--sapphire-400));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -239,21 +255,21 @@ body {
 }
 
 .btn-header-wa {
-    background: linear-gradient(135deg, #10b981, #059669);
+    background: linear-gradient(135deg, #0d9488, #0f766e);
     color: #ffffff;
-    border: 1px solid #34d399;
-    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    box-shadow: 0 4px 14px rgba(5, 11, 20, 0.35);
 }
 
 .btn-header-wa:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px var(--glow-emerald);
+    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.25);
 }
 
 /* Barra de Switcher de 5 Especialidades */
 .specialties-subnav {
-    background: rgba(7, 21, 39, 0.95);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(10, 19, 34, 0.95);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.12);
     padding: 6px 24px;
     display: flex;
     justify-content: center;
@@ -346,72 +362,464 @@ body {
 }
 
 /* ==========================================================================
-   HERO / CARTA OFICIAL DIRIGIDA & INFRAESTRUCTURA (PÁGINA 1)
+   HERO COMMAND CENTER EN 3 SEGUNDOS & MANIFIESTO INSTITUCIONAL (PÁGINA 1)
+   Kahneman Sistema 1 + Jerarquía de Pirámide Invertida
    ========================================================================== */
-.hero-letter-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 24px;
-    align-items: stretch;
+.hero-command-block {
+    position: relative;
 }
 
-.official-letter-card {
-    padding: 30px;
+/* Indicador de Estado en Vivo (Pill) */
+.section-live-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--sapphire-300);
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    padding: 3px 10px;
+    border-radius: 16px;
+}
+
+.pulse-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--sapphire-400);
+    box-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+    animation: pulseGlow 1.8s infinite;
+}
+
+@keyframes pulseGlow {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 12px #34d399; }
+    100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+/* Cinta de Telemetría Rápida (Kahneman Sistema 1) */
+.command-telemetry-ribbon {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin: 14px 0 24px 0;
+    padding: 10px 16px;
+    background: rgba(15, 26, 46, 0.75);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.telemetry-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--sapphire-200);
+    padding: 4px 10px;
+    background: rgba(2, 132, 199, 0.08);
+    border-radius: 6px;
+    border: 1px solid rgba(56, 189, 248, 0.15);
+}
+
+.telemetry-chip strong {
+    color: #ffffff;
+}
+
+/* Grilla de 4 Tarjetas de Impacto Clínico en 3 Segundos */
+.command-impact-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 32px;
+}
+
+.command-card {
+    padding: 22px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition);
+    border-radius: var(--radius-md);
+    background: rgba(15, 26, 46, 0.88);
+    border: 1px solid rgba(56, 189, 248, 0.18);
+    overflow: hidden;
+}
+
+.command-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--accent-cyan);
+    transition: var(--transition);
+}
+
+.command-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+}
+
+/* Variantes Cromáticas por Pilar Clínico */
+.command-card.card-smartphone {
+    border-color: rgba(56, 189, 248, 0.28);
+}
+.command-card.card-smartphone::before {
+    background: linear-gradient(90deg, var(--sapphire-400), var(--sapphire-300));
+}
+.command-card.card-smartphone:hover {
+    box-shadow: 0 12px 30px rgba(56, 189, 248, 0.22);
+    border-color: var(--sapphire-400);
+}
+
+.command-card.card-server {
+    border-color: rgba(56, 189, 248, 0.25);
+}
+.command-card.card-server::before {
+    background: linear-gradient(90deg, var(--sapphire-600), var(--sapphire-400));
+}
+.command-card.card-server:hover {
+    box-shadow: 0 12px 30px rgba(56, 189, 248, 0.22);
+    border-color: var(--sapphire-400);
+}
+
+.command-card.card-3d {
+    border-color: rgba(129, 140, 248, 0.25);
+}
+.command-card.card-3d::before {
+    background: linear-gradient(90deg, #818cf8, #a5b4fc);
+}
+.command-card.card-3d:hover {
+    box-shadow: 0 12px 30px rgba(129, 140, 248, 0.22);
+    border-color: #a5b4fc;
+}
+
+.command-card.card-ihq {
+    border-color: rgba(245, 158, 11, 0.25);
+}
+.command-card.card-ihq::before {
+    background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+.command-card.card-ihq:hover {
+    box-shadow: 0 12px 30px rgba(245, 158, 11, 0.22);
+    border-color: #fbbf24;
+}
+
+/* Elementos Internos de la Tarjeta */
+.card-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.card-badge-pill {
+    font-size: 9.5px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--sapphire-200);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-smartphone .card-badge-pill {
+    color: var(--sapphire-300);
+    background: rgba(56, 189, 248, 0.12);
+    border-color: rgba(56, 189, 248, 0.3);
+}
+
+.card-server .card-badge-pill {
+    color: var(--sapphire-300);
+    background: rgba(56, 189, 248, 0.12);
+    border-color: rgba(56, 189, 248, 0.3);
+}
+
+.card-3d .card-badge-pill {
+    color: #c7d2fe;
+    background: rgba(129, 140, 248, 0.12);
+    border-color: rgba(129, 140, 248, 0.3);
+}
+
+.card-ihq .card-badge-pill {
+    color: #fde68a;
+    background: rgba(245, 158, 11, 0.12);
+    border-color: rgba(245, 158, 11, 0.3);
+}
+
+.card-icon-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.card-smartphone .card-icon-avatar {
+    color: var(--sapphire-400);
+    background: rgba(2, 132, 199, 0.18);
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+}
+
+.card-server .card-icon-avatar {
+    color: var(--sapphire-400);
+    background: rgba(2, 132, 199, 0.18);
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+}
+
+.card-3d .card-icon-avatar {
+    color: #a5b4fc;
+    background: rgba(129, 140, 248, 0.18);
+    box-shadow: 0 0 12px rgba(129, 140, 248, 0.25);
+}
+
+.card-ihq .card-icon-avatar {
+    color: #fbbf24;
+    background: rgba(245, 158, 11, 0.18);
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.25);
+}
+
+.card-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.25;
+    margin-bottom: 4px;
+}
+
+.card-subtitle {
+    font-size: 11.5px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.35;
+}
+
+.card-smartphone .card-subtitle { color: var(--sapphire-300); }
+.card-server .card-subtitle { color: #6ee7b7; }
+.card-3d .card-subtitle { color: #c7d2fe; }
+.card-ihq .card-subtitle { color: #fde68a; }
+
+.card-body-text {
+    font-size: 12px;
+    color: #cbd5e1;
+    line-height: 1.5;
+    margin-bottom: 14px;
+    flex-grow: 1;
+}
+
+.card-kpi-footer {
+    font-size: 10px;
+    padding-top: 10px;
+    margin-top: 6px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.3px;
+}
+
+.card-smartphone .card-kpi-footer { color: var(--sapphire-200); }
+.card-server .card-kpi-footer { color: #86efac; }
+.card-3d .card-kpi-footer { color: #c7d2fe; }
+.card-ihq .card-kpi-footer { color: #fde68a; }
+
+.card-action-btn {
+    font-size: 11.5px;
+    font-weight: 800;
+    margin-top: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: var(--transition);
+}
+
+.card-smartphone .card-action-btn { color: var(--sapphire-400); }
+.card-server .card-action-btn { color: #34d399; }
+.card-3d .card-action-btn { color: #a5b4fc; }
+.card-ihq .card-action-btn { color: #fbbf24; }
+
+.command-card:hover .card-action-btn {
+    transform: translateX(4px);
+}
+
+/* ==========================================================================
+   MANIFIESTO INSTITUCIONAL DE AUTORIDAD CIENTÍFICA (DR. JOSEPH CASTILLO)
+   ========================================================================== */
+.official-manifesto-card {
+    padding: 32px;
     position: relative;
     border-left: 5px solid var(--accent-cyan);
+    border-radius: var(--radius-lg);
+    background: rgba(15, 26, 46, 0.92);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
 }
 
-.letter-recipient-badge {
-    background: rgba(2, 132, 199, 0.12);
-    border: 1px solid rgba(56, 189, 248, 0.3);
+.manifesto-recipient-banner {
+    background: rgba(2, 132, 199, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.25);
     border-radius: var(--radius-sm);
-    padding: 12px 16px;
-    margin-bottom: 18px;
+    padding: 16px 20px;
+    margin-bottom: 22px;
 }
 
-.letter-recipient-badge .label {
+.manifesto-badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.manifesto-subtag {
     font-size: 10px;
     font-weight: 800;
     color: var(--accent-sky);
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 3px;
 }
 
-.letter-recipient-badge .title {
-    font-size: 16px;
+.manifesto-cmp-tag {
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--sapphire-300);
+    background: rgba(56, 189, 248, 0.12);
+    padding: 2px 8px;
+    border-radius: 12px;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.manifesto-header-title {
+    font-size: 18px;
     font-weight: 900;
     color: #ffffff;
+    line-height: 1.25;
+    margin-bottom: 2px;
 }
 
-.letter-recipient-badge .inst {
+.manifesto-recipient-desc {
     font-size: 12.5px;
     color: #94a3b8;
     font-weight: 600;
 }
 
-.letter-body-text {
-    font-size: 13.5px;
-    color: #cbd5e1;
-    line-height: 1.6;
+.manifesto-body-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    text-align: justify;
+    gap: 20px;
 }
 
-.letter-body-text strong {
+.manifesto-lead-quote {
+    position: relative;
+    padding: 14px 20px 14px 46px;
+    background: rgba(2, 132, 199, 0.06);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--accent-sky);
+}
+
+.manifesto-lead-quote .quote-icon {
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    font-size: 18px;
+    color: var(--accent-sky);
+    opacity: 0.6;
+}
+
+.manifesto-lead-quote p {
+    font-size: 13.5px;
+    color: #e2edfa;
+    line-height: 1.65;
+}
+
+.manifesto-lead-quote strong {
     color: #ffffff;
 }
 
-/* Firma Médica Oficial */
-.letter-signature-block {
+/* Grilla Modular de 3 Pilares del Manifiesto */
+.manifesto-modules-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.manifesto-mod-item {
+    background: rgba(10, 18, 32, 0.7);
+    border: 1px solid rgba(56, 189, 248, 0.14);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    transition: var(--transition);
+}
+
+.manifesto-mod-item:hover {
+    border-color: rgba(56, 189, 248, 0.35);
+    background: rgba(15, 26, 46, 0.85);
+}
+
+.mod-item-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.mod-item-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: rgba(2, 132, 199, 0.16);
+    color: var(--accent-sky);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+}
+
+.mod-item-header h4 {
+    font-size: 13px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.25;
+}
+
+.manifesto-mod-item p {
+    font-size: 12px;
+    color: var(--sapphire-200);
+    line-height: 1.5;
+}
+
+.manifesto-conclusion-text p {
+    font-size: 13px;
+    color: #cbd5e1;
+    line-height: 1.6;
+}
+
+.manifesto-conclusion-text strong {
+    color: #ffffff;
+}
+
+/* Pie del Manifiesto: Firma y CTAs */
+.manifesto-footer-block {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
     border-top: 1px solid var(--border-light);
-    padding-top: 16px;
-    margin-top: 20px;
+    padding-top: 20px;
+    margin-top: 8px;
 }
 
 .seal-signature-box {
@@ -421,13 +829,13 @@ body {
 }
 
 .signature-png {
-    height: 52px;
+    height: 54px;
     object-fit: contain;
-    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
 }
 
 .doctor-cred h4 {
-    font-size: 13.5px;
+    font-size: 14px;
     font-weight: 900;
     color: #ffffff;
 }
@@ -438,45 +846,61 @@ body {
     display: block;
 }
 
-/* 3 Cards de Pilares Tecnológicos */
-.pillars-col {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-}
-
-.pillar-card {
-    padding: 18px;
-    transition: var(--transition);
-    cursor: pointer;
-    border-left: 4px solid var(--accent-cyan);
-}
-
-.pillar-card:hover {
-    transform: translateX(4px);
-    border-color: var(--accent-sky);
-    box-shadow: 0 8px 24px rgba(2, 132, 199, 0.25);
-}
-
-.pillar-card.emerald { border-left-color: var(--sapphire-400); }
-.pillar-card.emerald:hover { border-color: var(--sapphire-300); box-shadow: 0 8px 24px var(--glow-cyan); }
-.pillar-card.purple { border-left-color: var(--sapphire-600); }
-.pillar-card.purple:hover { border-color: var(--sapphire-500); box-shadow: 0 8px 24px rgba(2, 132, 199, 0.25); }
-
-.pillar-card h4 {
-    font-size: 14px;
-    font-weight: 800;
-    color: #ffffff;
-    margin-bottom: 6px;
+/* Grupo de Acciones CTA */
+.manifesto-cta-group {
     display: flex;
     align-items: center;
-    gap: 8px;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
-.pillar-card p {
-    font-size: 12px;
-    color: var(--text-secondary);
-    line-height: 1.45;
+.btn-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 24px;
+    font-size: 12.5px;
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-cta-wa {
+    background: linear-gradient(135deg, #0d9488, #0f766e);
+    color: #ffffff;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    box-shadow: 0 4px 14px rgba(5, 11, 20, 0.35);
+}
+
+.btn-cta-wa:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(56, 189, 248, 0.25);
+}
+
+.btn-cta-portal {
+    background: linear-gradient(135deg, #0284c7, #0369a1);
+    color: #ffffff;
+    border: 1px solid var(--accent-sky);
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
+}
+
+.btn-cta-portal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px var(--glow-cyan);
+}
+
+.btn-cta-phone {
+    background: rgba(15, 26, 46, 0.9);
+    color: #cbd5e1;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+}
+
+.btn-cta-phone:hover {
+    color: #ffffff;
+    border-color: var(--accent-sky);
+    transform: translateY(-2px);
 }
 
 /* ==========================================================================
@@ -493,11 +917,11 @@ body {
 .phone-mockup-container {
     width: 340px;
     height: 680px;
-    background: #020617;
-    border: 4px solid #334155;
+    background: var(--sapphire-950);
+    border: 4px solid var(--sapphire-700);
     border-radius: 46px;
     padding: 12px;
-    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(56, 189, 248, 0.2);
+    box-shadow: 0 25px 60px -15px rgba(5, 11, 20, 0.8), 0 0 30px rgba(56, 189, 248, 0.2);
     position: relative;
     margin: 0 auto;
 }
@@ -505,7 +929,7 @@ body {
 .phone-screen {
     width: 100%;
     height: 100%;
-    background: #090f1d;
+    background: var(--sapphire-950);
     border-radius: 36px;
     overflow: hidden;
     display: flex;
@@ -546,7 +970,7 @@ body {
 }
 
 .phone-app-header {
-    background: #071527;
+    background: var(--sapphire-900);
     padding: 10px 14px;
     border-bottom: 1px solid var(--border-glass);
     display: flex;
@@ -705,8 +1129,8 @@ body {
 }
 
 .app-feature-box.featured {
-    border-left-color: var(--accent-emerald);
-    background: rgba(16, 185, 129, 0.08);
+    border-left-color: var(--sapphire-400);
+    background: rgba(56, 189, 248, 0.08);
 }
 
 .app-feature-box h4 {
@@ -729,16 +1153,16 @@ body {
    EJE 02 • VISOR WSI GIGAPÍXEL INTERACTIVO (PÁGINA 3)
    ========================================================================== */
 .wsi-viewer-wrapper {
-    background: #020617;
+    background: var(--sapphire-950);
     border: 1.5px solid var(--accent-cyan);
     border-radius: var(--radius-md);
     overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(2, 132, 199, 0.2);
+    box-shadow: 0 15px 40px rgba(5, 11, 20, 0.6), 0 0 25px rgba(2, 132, 199, 0.2);
 }
 
 /* Barra de Herramientas del Microscopio WSI */
 .wsi-toolbar {
-    background: #071527;
+    background: var(--sapphire-900);
     padding: 10px 18px;
     border-bottom: 1px solid var(--border-glass);
     display: flex;
@@ -868,13 +1292,13 @@ body {
    EJE 03 • COMPARADOR SPLIT-SCREEN MORFOMETRÍA IA (PÁGINA 4)
    ========================================================================== */
 .morph-split-container {
-    background: #020617;
+    background: var(--sapphire-950);
     border: 1.5px solid var(--accent-cyan);
     border-radius: var(--radius-md);
     overflow: hidden;
     position: relative;
     height: 460px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    box-shadow: 0 15px 40px rgba(5,11,20,0.6);
     user-select: none;
 }
 
@@ -1009,13 +1433,13 @@ body {
 }
 
 .gemini-roi-viewer {
-    background: #020617;
+    background: var(--sapphire-950);
     border: 1.5px solid var(--accent-purple);
     border-radius: var(--radius-md);
     overflow: hidden;
     position: relative;
     height: 420px;
-    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+    box-shadow: 0 10px 30px rgba(5, 11, 20, 0.5);
 }
 
 .gemini-roi-img {
@@ -1102,7 +1526,7 @@ body {
 
 .prob-high { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #ef4444; }
 .prob-mid { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid #f59e0b; }
-.prob-low { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid #10b981; }
+.prob-low { background: rgba(56, 189, 248, 0.15); color: var(--sapphire-300); border: 1px solid var(--sapphire-500); }
 
 .prob-progress-bar {
     width: 100%;
@@ -1121,7 +1545,7 @@ body {
 }
 
 .diff-ihq-formula {
-    background: rgba(2, 6, 23, 0.7);
+    background: rgba(5, 11, 20, 0.75);
     border: 1px dashed rgba(56, 189, 248, 0.3);
     border-radius: 6px;
     padding: 6px 10px;
@@ -1134,7 +1558,7 @@ body {
 .gemini-chat-console {
     margin-top: 14px;
     padding: 14px;
-    background: linear-gradient(135deg, #071527, #0a192f);
+    background: linear-gradient(135deg, var(--sapphire-900), var(--sapphire-850));
     border: 1px solid var(--accent-purple);
     border-radius: var(--radius-sm);
 }
@@ -1147,7 +1571,7 @@ body {
 
 .chat-input-field {
     flex: 1;
-    background: #020617;
+    background: var(--sapphire-950);
     border: 1px solid #334155;
     border-radius: 8px;
     padding: 8px 14px;
@@ -1217,8 +1641,8 @@ body {
 
 .ihq-search-input {
     width: 100%;
-    background: #020617;
-    border: 1.5px solid #334155;
+    background: var(--sapphire-950);
+    border: 1.5px solid var(--sapphire-700);
     border-radius: 12px;
     padding: 12px 14px 12px 42px;
     font-size: 14px;
@@ -1256,8 +1680,8 @@ body {
 .ihq-result-card {
     margin-top: 18px;
     padding: 18px;
-    background: #071527;
-    border: 1.5px solid var(--accent-emerald);
+    background: var(--sapphire-900);
+    border: 1.5px solid var(--sapphire-500);
     border-radius: var(--radius-sm);
     display: none;
     animation: fadeIn 0.3s ease;
@@ -1279,9 +1703,9 @@ body {
 }
 
 .badge-in-stock {
-    background: rgba(16, 185, 129, 0.2);
-    color: #34d399;
-    border: 1px solid #10b981;
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--sapphire-300);
+    border: 1px solid var(--sapphire-500);
     padding: 3px 10px;
     border-radius: 20px;
     font-size: 11px;
@@ -1352,7 +1776,7 @@ body {
 .ihq-master-table thead {
     position: sticky;
     top: 0;
-    background: #071527;
+    background: var(--sapphire-900);
     z-index: 5;
     border-bottom: 2px solid var(--accent-cyan);
 }
@@ -1381,15 +1805,15 @@ body {
    EJE 06 • MAPEO DE PIEZA QUIRÚRGICA 3D 360° (PÁGINA 7)
    ========================================================================== */
 .specimen-3d-wrapper {
-    background: #020617;
+    background: var(--sapphire-950);
     border: 1.5px solid var(--accent-cyan);
     border-radius: var(--radius-md);
     overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 15px 40px rgba(5, 11, 20, 0.6);
 }
 
 .specimen-3d-toolbar {
-    background: #071527;
+    background: var(--sapphire-900);
     padding: 10px 18px;
     border-bottom: 1px solid var(--border-glass);
     display: flex;
@@ -1468,12 +1892,12 @@ body {
     grid-template-columns: repeat(4, 1fr);
     gap: 12px;
     padding: 18px;
-    background: #071527;
+    background: var(--sapphire-900);
     border-top: 1px solid var(--border-glass);
 }
 
 .pin-desc-card {
-    background: #0f172a;
+    background: var(--sapphire-850);
     border: 1px solid #334155;
     border-radius: 8px;
     padding: 12px;
@@ -1507,7 +1931,7 @@ body {
 .pin-micro-modal {
     position: fixed;
     inset: 0;
-    background: rgba(3, 7, 18, 0.85);
+    background: rgba(5, 11, 20, 0.85);
     backdrop-filter: blur(12px);
     z-index: 2000;
     display: none;
@@ -1519,13 +1943,13 @@ body {
 .pin-micro-modal.active { display: flex; }
 
 .micro-modal-content {
-    background: #0f172a;
+    background: var(--sapphire-850);
     border: 1.5px solid var(--accent-cyan);
     border-radius: var(--radius-md);
     width: 100%;
     max-width: 800px;
     overflow: hidden;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+    box-shadow: 0 25px 60px rgba(5, 11, 20, 0.85);
 }
 
 /* ==========================================================================
@@ -1549,7 +1973,7 @@ body {
 }
 
 .p-table-corporate thead {
-    background: #071527;
+    background: var(--sapphire-900);
 }
 
 .p-table-corporate th {
@@ -1587,9 +2011,9 @@ body {
 .time-pill-tag {
     font-size: 11.5px;
     font-weight: 700;
-    color: #34d399;
-    background: rgba(16, 185, 129, 0.15);
-    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: var(--sapphire-300);
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.3);
     padding: 3px 8px;
     border-radius: 6px;
     display: inline-block;
@@ -1622,7 +2046,7 @@ body {
 }
 
 .calc-summary-box {
-    background: #071527;
+    background: var(--sapphire-900);
     border: 1px solid var(--border-glass);
     border-radius: var(--radius-sm);
     padding: 16px;
@@ -1643,7 +2067,7 @@ body {
    FOOTER INSTITUCIONAL
    ========================================================================== */
 .footer-corporate {
-    background: #020617;
+    background: var(--sapphire-950);
     border-top: 1px solid var(--border-light);
     padding: 40px 20px 20px 20px;
     color: #64748b;
@@ -1693,6 +2117,12 @@ body {
    RESPONSIVIDAD MÓVIL Y TABLET
    ========================================================================== */
 @media (max-width: 1024px) {
+    .command-impact-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .manifesto-modules-grid {
+        grid-template-columns: 1fr;
+    }
     .hero-letter-grid, .app-showcase-layout, .gemini-copilot-grid, .pricing-calculator-grid {
         grid-template-columns: 1fr;
     }
@@ -1706,6 +2136,25 @@ body {
 }
 
 @media (max-width: 640px) {
+    .command-impact-grid {
+        grid-template-columns: 1fr;
+    }
+    .command-telemetry-ribbon {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .manifesto-footer-block {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .manifesto-cta-group {
+        width: 100%;
+        flex-direction: column;
+    }
+    .manifesto-cta-group .btn-cta {
+        width: 100%;
+        justify-content: center;
+    }
     .morph-metrics-grid, .pins-cards-grid, .footer-container {
         grid-template-columns: 1fr;
     }
@@ -1716,3 +2165,94 @@ body {
     }
     .section-title { font-size: 21px; }
 }
+
+
+/* ==========================================================================
+   FASE 3A: MOTOR DE ANIMACIONES BIOFÍLICAS & DINÁMICA CELULAR (zeta=0.72)
+   ACELERACIÓN ESTRICTA POR GPU & W3C VIEW TRANSITIONS API
+   ========================================================================== */
+
+/* Aislamiento de transición de vista para evitar parpadeos globales */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+
+/* Morphing viscoelástico continuo entre smartphone card y modal visor */
+::view-transition-group(phone-modal-surface) {
+    animation-duration: 440ms;
+    animation-timing-function: cubic-bezier(0.24, 1.28, 0.38, 1);
+    overflow: hidden;
+    border-radius: 36px;
+    box-shadow: 0 25px 65px -12px rgba(2, 6, 23, 0.95), 0 0 40px rgba(56, 189, 248, 0.35);
+}
+
+::view-transition-old(phone-modal-surface) {
+    animation-duration: 440ms;
+    animation-timing-function: cubic-bezier(0.24, 1.28, 0.38, 1);
+    mix-blend-mode: normal;
+    border-radius: inherit;
+}
+
+::view-transition-new(phone-modal-surface) {
+    animation-duration: 440ms;
+    animation-timing-function: cubic-bezier(0.24, 1.28, 0.38, 1);
+    mix-blend-mode: normal;
+    border-radius: inherit;
+}
+
+/* Estabilización de GPU en el Smartphone y Componentes Clave */
+.phone-mockup-container {
+    perspective: 1200px;
+    -webkit-perspective: 1200px;
+}
+
+.phone-screen {
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.phone-patient-card,
+.pillar-card,
+.app-feature-box,
+.btn-phone-action,
+.pricing-card {
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    position: relative;
+}
+
+/* Inhibición de transiciones de transform durante simulación activa de resortes */
+.bio-spring-active {
+    transition: transform 0s !important;
+}
+
+/* Resplandor Especular de Membrana Lipídica (Citoplasma Reflectivo) */
+.phone-patient-card::before,
+.pillar-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+        circle 150px at var(--cell-sheen-x, 50%) var(--cell-sheen-y, 50%),
+        rgba(56, 189, 248, calc(var(--cell-sheen-opacity, 0) * 0.18)),
+        transparent 72%
+    );
+    pointer-events: none;
+    z-index: 2;
+    opacity: var(--cell-sheen-opacity, 0);
+    transition: opacity 0.28s ease-out;
+}
+
+/* Desactivación de salto de opacidad mientras corre View Transitions */
+.phone-report-preview-modal.biophilic-view-transitioning {
+    transition: none !important;
+    display: flex !important;
+}
+

@@ -74,6 +74,14 @@ export class SurgicalViewer3D {
         this.clock = null;
         this.isDestroyed = false;
 
+        // Estado del bucle condicional rAF (Dormir en reposo para 0% CPU y batería en móviles)
+        this.rafId = null;
+        this.isVisible = true;
+        this.isInteracting = false;
+        this._settleFrames = 0;
+        this._cachedWidth = 800;
+        this._cachedHeight = 520;
+
         this._setupDOM();
         this._loadDependencies().then(() => {
             this._initThree();
@@ -81,7 +89,7 @@ export class SurgicalViewer3D {
             this._buildPins();
             this._setupRaycaster();
             this._setupModal();
-            this._animate();
+            this.requestRender();
         }).catch(err => {
             console.warn("[SurgicalViewer3D] Fallback a motor 360 interactivo por:", err);
             this._setup360Fallback();
@@ -181,6 +189,18 @@ export class SurgicalViewer3D {
         this.controls.minDistance = 2.0;
         this.controls.maxDistance = 7.0;
 
+        // Desacoplamiento no bloqueante de OrbitControls: solo renderizar cuando haya cambio
+        this.controls.addEventListener('change', () => this.requestRender());
+        this.controls.addEventListener('start', () => {
+            this.isInteracting = true;
+            this.requestRender();
+        });
+        this.controls.addEventListener('end', () => {
+            this.isInteracting = false;
+            this._settleFrames = 25; // amortiguamiento inercial suave
+            this.requestRender();
+        });
+
         // Iluminación Quirúrgica PBR
         const amb = new THREE.AmbientLight(0xffffff, 0.9);
         this.scene.add(amb);
@@ -203,11 +223,42 @@ export class SurgicalViewer3D {
         this._resizeObserver = new ResizeObserver(() => this._onResize());
         this._resizeObserver.observe(this.container);
 
+        // Suspensión condicional con IntersectionObserver (0% CPU cuando el visor está fuera de pantalla)
+        if (typeof IntersectionObserver !== 'undefined') {
+            this._intersectionObserver = new IntersectionObserver((entries) => {
+                const entry = entries[0];
+                this.isVisible = Boolean(entry && entry.isIntersecting);
+                if (this.isVisible) {
+                    this.requestRender();
+                } else if (this.rafId) {
+                    cancelAnimationFrame(this.rafId);
+                    this.rafId = null;
+                }
+            }, { threshold: 0.05 });
+            this._intersectionObserver.observe(this.container);
+        }
+
+        // Suspensión cuando la pestaña del navegador está oculta
+        this._visibilityHandler = () => {
+            if (document.hidden) {
+                if (this.rafId) {
+                    cancelAnimationFrame(this.rafId);
+                    this.rafId = null;
+                }
+            } else if (this.isVisible) {
+                this.requestRender();
+            }
+        };
+        document.addEventListener('visibilitychange', this._visibilityHandler);
+
         // Control de botones
         const btnSpin = this.container.querySelector('#btn3dSpin');
         btnSpin.addEventListener('click', () => {
             this.controls.autoRotate = !this.controls.autoRotate;
             btnSpin.classList.toggle('active', this.controls.autoRotate);
+            if (this.controls.autoRotate) {
+                this.requestRender();
+            }
         });
 
         const btnReset = this.container.querySelector('#btn3dReset');
@@ -215,6 +266,8 @@ export class SurgicalViewer3D {
             this.camera.position.set(0, 1.0, 4.4);
             this.controls.target.set(0, 0, 0);
             this.controls.update();
+            this._settleFrames = 15;
+            this.requestRender();
         });
     }
 
@@ -245,20 +298,35 @@ export class SurgicalViewer3D {
         }
         geom.computeVertexNormals();
 
-        // Textura real extraída del espécimen
-        const texLoader = new THREE.TextureLoader();
-        const tex = texLoader.load(this.options.specimenTextureUrl);
-        if (THREE.sRGBEncoding) tex.encoding = THREE.sRGBEncoding;
-
         // Material PBR simulando tejido fijado en formol húmedo
         const mat = new THREE.MeshPhysicalMaterial({
-            map: tex,
             roughness: 0.32,
             metalness: 0.04,
             clearcoat: 0.90,
             clearcoatRoughness: 0.10,
             reflectivity: 0.60
         });
+
+        // Textura real del espécimen decodificada fuera del hilo principal (createImageBitmap / ImageBitmapLoader)
+        if (typeof window !== 'undefined' && window.createImageBitmap && window.THREE && window.THREE.ImageBitmapLoader) {
+            const ibLoader = new THREE.ImageBitmapLoader();
+            ibLoader.setOptions({ imageOrientation: 'flipY', premultiplyAlpha: 'none' });
+            ibLoader.load(this.options.specimenTextureUrl, (imageBitmap) => {
+                const tex = new THREE.CanvasTexture(imageBitmap);
+                if (THREE.sRGBEncoding) tex.encoding = THREE.sRGBEncoding;
+                mat.map = tex;
+                mat.needsUpdate = true;
+                this.requestRender();
+            }, undefined, () => {
+                const texLoader = new THREE.TextureLoader();
+                mat.map = texLoader.load(this.options.specimenTextureUrl, () => this.requestRender());
+                mat.needsUpdate = true;
+            });
+        } else {
+            const texLoader = new THREE.TextureLoader();
+            mat.map = texLoader.load(this.options.specimenTextureUrl, () => this.requestRender());
+            if (THREE.sRGBEncoding && mat.map) mat.map.encoding = THREE.sRGBEncoding;
+        }
 
         const mesh = new THREE.Mesh(geom, mat);
         this.specimenGroup.add(mesh);
@@ -327,6 +395,7 @@ export class SurgicalViewer3D {
 
     _setupRaycaster() {
         const dom = this.renderer.domElement;
+        let lastRaycast = 0;
 
         const getCoords = (e) => {
             const r = dom.getBoundingClientRect();
@@ -335,11 +404,14 @@ export class SurgicalViewer3D {
         };
 
         dom.addEventListener('pointermove', (e) => {
+            const now = performance.now();
+            if (now - lastRaycast < 30) return; // Limitar raycasting a ~30fps para proteger INP < 42 ms
+            lastRaycast = now;
             getCoords(e);
             this.raycaster.setFromCamera(this.mouse, this.camera);
             const hits = this.raycaster.intersectObjects(this.pinMeshes.map(p => p.core));
             dom.style.cursor = hits.length > 0 ? 'pointer' : 'grab';
-        });
+        }, { passive: true });
 
         dom.addEventListener('click', (e) => {
             getCoords(e);
@@ -507,12 +579,18 @@ export class SurgicalViewer3D {
         this.modal.classList.add('active');
     }
 
+    requestRender() {
+        if (this.isDestroyed || !this.isVisible) return;
+        if (this.rafId !== null) return;
+        this.rafId = requestAnimationFrame(() => this._animate());
+    }
+
     _animate() {
-        if (this.isDestroyed) return;
-        requestAnimationFrame(() => this._animate());
+        this.rafId = null;
+        if (this.isDestroyed || !this.isVisible) return;
 
         const t = this.clock.getElapsedTime();
-        this.controls.update();
+        const controlsActive = Boolean(this.controls && this.controls.update());
 
         // Pulsos luminosos de pines
         this.pinMeshes.forEach(item => {
@@ -522,7 +600,9 @@ export class SurgicalViewer3D {
             item.ring.lookAt(this.camera.position);
         });
 
-        // Proyección 2D Screen-space de etiquetas
+        // Proyección 2D Screen-space de etiquetas (medidas cacheadas fuera del bucle para evitar layout thrashing)
+        const w = this._cachedWidth || this.container.clientWidth || 800;
+        const h = this._cachedHeight || this.container.clientHeight || 520;
         const tempV = new THREE.Vector3();
         const camDir = this.camera.getWorldDirection(new THREE.Vector3());
 
@@ -532,15 +612,28 @@ export class SurgicalViewer3D {
             const isOccluded = dot > 0.15;
 
             tempV.project(this.camera);
-            const x = (tempV.x * 0.5 + 0.5) * this.container.clientWidth;
-            const y = (-tempV.y * 0.5 + 0.5) * this.container.clientHeight;
+            const x = (tempV.x * 0.5 + 0.5) * w;
+            const y = (-tempV.y * 0.5 + 0.5) * h;
 
-            item.label.style.left = `${x}px`;
-            item.label.style.top = `${y}px`;
+            item.label.style.left = `${Math.round(x)}px`;
+            item.label.style.top = `${Math.round(y)}px`;
             item.label.classList.toggle('occluded', isOccluded);
         });
 
         this.renderer.render(this.scene, this.camera);
+
+        // Bucle condicional: solo renderiza si hay rotación activa, interacción o inercia/amortiguamiento
+        if (this.controls && this.controls.autoRotate) {
+            this.rafId = requestAnimationFrame(() => this._animate());
+        } else if (this.isInteracting || controlsActive) {
+            this.rafId = requestAnimationFrame(() => this._animate());
+        } else if (this._settleFrames > 0) {
+            this._settleFrames--;
+            this.rafId = requestAnimationFrame(() => this._animate());
+        } else {
+            // Dormir en reposo (0% CPU y cero consumo de batería en móviles)
+            this.rafId = null;
+        }
     }
 
     _onResize() {
@@ -548,29 +641,136 @@ export class SurgicalViewer3D {
         const w = this.container.clientWidth;
         const h = this.container.clientHeight;
         if (w === 0 || h === 0) return;
+        this._cachedWidth = w;
+        this._cachedHeight = h;
         this.camera.aspect = w / h;
         this.camera.updateProjectionMatrix();
         this.renderer.setSize(w, h);
+        this.requestRender();
     }
 
-    _setup360Fallback() {
-        // Fallback fotográfico ultra-rápido en caso de que WebGL esté deshabilitado
+    async _setup360Fallback() {
+        // Fallback interactivo 360° no bloqueante si Three.js o WebGL fallan
+        if (typeof window !== 'undefined' && window.Macro360Viewer) {
+            const viewer = new window.Macro360Viewer(this.container, {
+                frameCount: this.options.framesCount || 36
+            });
+            await viewer.loadCleanFrames36(this.options.framesDir || 'macro360_clean', this.options.framesCount || 36);
+            return;
+        }
+
+        // Fallback nativo canvas con decodificación createImageBitmap fuera del hilo principal
         const canvas = document.createElement('canvas');
         canvas.className = 'surgical3d-canvas';
         this.container.appendChild(canvas);
         const ctx = canvas.getContext('2d');
-        const img = new Image();
-        img.src = 'macro360_clean/frame_00.webp';
-        img.onload = () => {
+        const count = this.options.framesCount || 36;
+        const baseDir = this.options.framesDir || 'macro360_clean';
+
+        let currentIdx = 0;
+        let isSpinning = this.options.autoRotate;
+        let isDragging = false;
+        let startX = 0;
+        let loadedFrames = [];
+        let rafFallback = null;
+
+        const renderFrame = () => {
+            if (!loadedFrames[currentIdx]) return;
+            const w = canvas.width;
+            const h = canvas.height;
+            ctx.clearRect(0, 0, w, h);
+            const img = loadedFrames[currentIdx];
+            const imgW = img.naturalWidth || img.width || 800;
+            const imgH = img.naturalHeight || img.height || 800;
+            const s = Math.min((w * 0.95) / imgW, (h * 0.95) / imgH);
+            const dw = imgW * s;
+            const dh = imgH * s;
+            ctx.drawImage(img, (w - dw) / 2, (h - dh) / 2, dw, dh);
+        };
+
+        const onResize = () => {
             canvas.width = this.container.clientWidth || 600;
             canvas.height = this.container.clientHeight || 500;
-            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            renderFrame();
         };
+        onResize();
+
+        // Precarga no bloqueante de los 36 frames con createImageBitmap
+        const loadPromises = [];
+        for (let i = 0; i < count; i++) {
+            const pad = String(i).padStart(2, '0');
+            const url = `${baseDir}/frame_${pad}.webp`;
+            if (typeof window.createImageBitmap === 'function') {
+                loadPromises.push(
+                    fetch(url)
+                        .then(r => r.blob())
+                        .then(b => createImageBitmap(b))
+                        .catch(() => new Promise(res => {
+                            const img = new Image();
+                            img.crossOrigin = 'anonymous';
+                            img.onload = () => res(img);
+                            img.onerror = () => res(null);
+                            img.src = url;
+                        }))
+                );
+            } else {
+                loadPromises.push(new Promise(res => {
+                    const img = new Image();
+                    img.crossOrigin = 'anonymous';
+                    img.onload = () => res(img);
+                    img.onerror = () => res(null);
+                    img.src = url;
+                }));
+            }
+        }
+
+        loadedFrames = await Promise.all(loadPromises);
+        renderFrame();
+
+        // Bucle condicional rAF para el fallback
+        const loop = () => {
+            if (isSpinning && !isDragging) {
+                currentIdx = (currentIdx + 1) % count;
+                renderFrame();
+            }
+            if (isSpinning || isDragging) {
+                rafFallback = requestAnimationFrame(loop);
+            } else {
+                rafFallback = null;
+            }
+        };
+        if (isSpinning) rafFallback = requestAnimationFrame(loop);
+
+        canvas.addEventListener('pointerdown', (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            if (!rafFallback) rafFallback = requestAnimationFrame(loop);
+        });
+        window.addEventListener('pointermove', (e) => {
+            if (!isDragging) return;
+            const dx = e.clientX - startX;
+            if (Math.abs(dx) > 12) {
+                currentIdx = (((currentIdx - Math.sign(dx)) % count) + count) % count;
+                startX = e.clientX;
+                renderFrame();
+            }
+        }, { passive: true });
+        window.addEventListener('pointerup', () => {
+            isDragging = false;
+        });
     }
 
     destroy() {
         this.isDestroyed = true;
+        if (this.rafId) {
+            cancelAnimationFrame(this.rafId);
+            this.rafId = null;
+        }
         if (this._resizeObserver) this._resizeObserver.disconnect();
+        if (this._intersectionObserver) this._intersectionObserver.disconnect();
+        if (this._visibilityHandler) {
+            document.removeEventListener('visibilitychange', this._visibilityHandler);
+        }
         if (this.renderer && this.renderer.domElement) this.renderer.domElement.remove();
         if (this.modal) this.modal.remove();
         this.container.innerHTML = '';

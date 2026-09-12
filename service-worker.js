@@ -1,20 +1,15 @@
-// Purge and unregister all legacy caches
-self.addEventListener('install', event => {
-  self.skipWaiting();
-});
+/**
+ * service-worker.js - Puntero Estandarizado al Service Worker Unificado de Quirófano (sw.js)
+ * JC PATH LAB • Anatomía Patológica & Diagnóstico Oncológico
+ * Fase 3C del Plan de Modernización Web: Modo Quirófano Offline Resiliente
+ * 
+ * Este archivo estandariza y unifica el registro en clientes legacy y páginas de SEO,
+ * delegando la ejecución a 'sw.js' para garantizar estrategias Workbox resilientes,
+ * caché estéril y sincronización en segundo plano sin purgas destructivas.
+ */
 
-self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(keys => {
-      return Promise.all(
-        keys.map(key => caches.delete(key))
-      );
-    }).then(() => self.clients.claim())
-  );
-});
-
-// Network only - bypass cache completely
-self.addEventListener('fetch', event => {
-  event.respondWith(fetch(event.request));
-});
-
+try {
+    importScripts('./sw.js');
+} catch (error) {
+    console.error('[service-worker.js] Fallo al delegar ejecución a sw.js:', error);
+}
