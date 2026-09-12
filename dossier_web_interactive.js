@@ -2154,8 +2154,8 @@ const EXPLAINER_STEPS = [
         index: 0,
         badgeTag: 'PUNTO 01 • DESPACHO INMEDIATO',
         title: 'Notificación Push en Quirófano',
-        speech: 'Punto uno: Notificación y despacho en quirófano verificado. En cuanto el patólogo emite el veredicto, el cirujano recibe una alerta push prioritaria en el dynamic notch de su teléfono móvil y en el banner superior, garantizando tiempos de respuesta menores a catorce segundos.',
-        teleprompter: 'PUNTO 1/5: Notificación push instantánea en quirófano. El informe patológico se despacha al móvil del cirujano en < 14s a través del Dynamic Notch y canal prioritario verificado.',
+        speech: '¡Hola! Les presento el quirófano inteligente de JC PATH LAB. Observen qué maravilla: en nuestro primer hito, el cirujano recibe una alerta push prioritaria en el dynamic notch de su móvil en menos de catorce segundos. Información crítica al instante para tomar decisiones quirúrgicas con total seguridad y rapidez.',
+        teleprompter: '¡Bienvenido al Quirófano Inteligente! HITO 1/5: Notificación push prioritaria en dynamic notch en < 14s. Máxima inmediatez para decisiones quirúrgicas críticas.',
         targetSelector: '.phone-trace-banner',
         notchAlert: true
     },
@@ -2163,8 +2163,8 @@ const EXPLAINER_STEPS = [
         index: 1,
         badgeTag: 'PUNTO 02 • ALTA RESOLUCIÓN ÓPTICA',
         title: 'Microfotografía 40x Calibrada',
-        speech: 'Punto dos: Microfotografía calibrada a cuarenta aumentos en tiempo real. Cada informe incorpora capturas histopatológicas de ultra-resolución óptica a nivel celular, con calibración estricta a cuatro micrómetros para verificar atipias y morfología en sala de operaciones.',
-        teleprompter: 'PUNTO 2/5: Microfotografía 40x de alta fidelidad. Captura microscópica a nivel celular con corte calibrado a 4µm para verificación morfológica inmediata del cirujano.',
+        speech: 'En nuestro segundo hito, descubran la exclusiva microfotografía celular calibrada a cuarenta aumentos. Miren qué nitidez: cortes a cuatro micrómetros que revelan la morfología y atipias en tiempo real. ¡La más alta fidelidad óptica directamente en sus manos dentro de la sala de operaciones!',
+        teleprompter: 'HITO 2/5: Microfotografía óptica 40x calibrada a 4µm. Resolución celular ultra-nítida para verificación morfológica inmediata del cirujano.',
         targetSelector: '.phone-report-micro-card',
         notchAlert: false
     },
@@ -2172,8 +2172,8 @@ const EXPLAINER_STEPS = [
         index: 2,
         badgeTag: 'PUNTO 03 • PRECISIÓN ONCOLÓGICA',
         title: 'Diagnóstico Definitivo & Margen R0',
-        speech: 'Punto tres: Diagnóstico histopatológico definitivo y estado de márgenes. Detalla la tipificación tumoral según estándares del Colegio Americano de Patólogos 2026, graduación histológica Gleason o FNCLCC, y la certificación milimétrica del estado de márgenes libres R0.',
-        teleprompter: 'PUNTO 3/5: Diagnóstico histopatológico definitivo, graduación tumoral y confirmación expresa de margen libre R0 según protocolos CAP y OMS 2026.',
+        speech: 'Paso tres, el corazón de nuestro producto: Diagnóstico histopatológico certero con certificación milimétrica de margen libre erre cero. Diseñado bajo los rigurosos estándares del Colegio Americano de Patólogos dos mil veintiséis. ¡Tranquilidad absoluta para el cirujano y la vida del paciente!',
+        teleprompter: 'HITO 3/5: Diagnóstico patológico definitivo y certificación de márgenes libres R0 según protocolos CAP y OMS 2026. Confianza oncológica total.',
         targetSelector: '.diagnosis-box',
         notchAlert: false
     },
@@ -2181,8 +2181,8 @@ const EXPLAINER_STEPS = [
         index: 3,
         badgeTag: 'PUNTO 04 • SEGURIDAD CRIPTOGRÁFICA',
         title: 'Firma Digital & QR 26Q',
-        speech: 'Punto cuatro: Firma digital criptográfica y código QR con trazabilidad 26Q. Todo documento cuenta con sello criptográfico inmutable SHA-256 y custodia digital pericial, respaldado por la firma médica oficial del Doctor Joseph Castillo, con CMP 56435 y plena validez médico-legal.',
-        teleprompter: 'PUNTO 4/5: Autenticación criptográfica SHA-256 y código QR de custodia 26Q respaldado por la firma médica oficial del Dr. Joseph Castillo (CMP 56435).',
+        speech: 'Paso cuatro, seguridad jurídica insuperable: Cada informe cuenta con custodia digital pericial, código QR veintiséis cu y sello criptográfico inmutable SHA doscientos cincuenta y seis, respaldado por la firma médica oficial del Doctor Joseph Castillo. ¡Validez legal y médica cien por ciento garantizada!',
+        teleprompter: 'HITO 4/5: Custodia criptográfica SHA-256 inmutable, QR 26Q y firma médica pericial del Dr. Joseph Castillo (CMP 56435) con respaldo legal pleno.',
         targetSelector: '.p-rep-legal-footer',
         notchAlert: false
     },
@@ -2190,8 +2190,8 @@ const EXPLAINER_STEPS = [
         index: 4,
         badgeTag: 'PUNTO 05 • DESPACHO MULTICANAL',
         title: 'Descarga PDF & WhatsApp Directo',
-        speech: 'Punto cinco: Descarga del informe en PDF vectorial de ultra-definición y despacho directo por WhatsApp. Con un solo toque, el cirujano obtiene el informe pericial completo o lo transfiere de forma cifrada a WhatsApp para el equipo quirúrgico y la historia clínica.',
-        teleprompter: 'PUNTO 5/5: Botón de descarga de informe PDF vectorial en ultra-resolución y botón de despacho instantáneo cifrado a WhatsApp para el equipo de guardia.',
+        speech: 'Y en el quinto hito, la máxima conveniencia: Con un solo toque, descarguen el informe en PDF vectorial de ultra-definición o compártanlo cifrado al instante por WhatsApp con todo el equipo de guardia. Tecnología, elegancia y rapidez insuperable al alcance de su mano.',
+        teleprompter: 'HITO 5/5: Descarga instantánea de informe PDF vectorial de alta resolución y despacho cifrado directo a WhatsApp para el equipo quirúrgico.',
         targetSelector: '.p-rep-action-toolbar',
         notchAlert: false
     }
@@ -2241,10 +2241,19 @@ function initAvatarExplainerSystem() {
         autoBtn.addEventListener('click', () => toggleAvatarAutoTour());
     }
 
-    // Dots de pasos
+    // Dots de pasos (avatar station)
     const dots = document.querySelectorAll('.tour-step-dot');
     dots.forEach(dot => {
         dot.addEventListener('click', (e) => {
+            const step = parseInt(dot.getAttribute('data-step') || '0', 10);
+            selectExplainerStep(step, true);
+        });
+    });
+
+    // Dots del escaparate dinámico derecho
+    const showcaseDots = document.querySelectorAll('.showcase-dot');
+    showcaseDots.forEach(dot => {
+        dot.addEventListener('click', () => {
             const step = parseInt(dot.getAttribute('data-step') || '0', 10);
             selectExplainerStep(step, true);
         });
@@ -2299,7 +2308,8 @@ function speakExplanation(text, onComplete) {
     if (!('speechSynthesis' in window) || !isAvatarAudioEnabled) {
         setAvatarVideoState('talking');
         isAvatarSpeaking = true;
-        const duration = Math.min(8500, Math.max(4500, text.length * 48));
+        // Fallback de temporizador calibrado con la velocidad pausada 0.86x de impulsadora
+        const duration = Math.min(22000, Math.max(9000, Math.round(text.length * 75)));
         avatarSpeechTimeout = setTimeout(() => {
             setAvatarVideoState('idle');
             isAvatarSpeaking = false;
@@ -2314,30 +2324,44 @@ function speakExplanation(text, onComplete) {
 
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'es-ES';
-    utterance.rate = 1.04;
-    utterance.pitch = 1.05;
+    // Calibración exacta: velocidad pausada 0.86x y pitch 1.08 de impulsadora comercial (tono cálido, claro y persuasivo)
+    utterance.rate = 0.86;
+    utterance.pitch = 1.08;
 
-    // Buscar voz en español
+    // Buscar voz femenina en español natural y profesional
     const voices = window.speechSynthesis.getVoices();
-    const esVoice = voices.find(v => (v.lang.startsWith('es') || v.lang.includes('Spanish')) && (v.name.includes('Female') || v.name.includes('Monica') || v.name.includes('Paulina') || v.name.includes('Helena') || v.name.includes('Sabina') || v.name.includes('Laura') || v.name.includes('Google')));
+    const esVoice = voices.find(v => (v.lang.startsWith('es') || v.lang.includes('Spanish')) && (v.name.includes('Female') || v.name.includes('Monica') || v.name.includes('Paulina') || v.name.includes('Helena') || v.name.includes('Sabina') || v.name.includes('Laura') || v.name.includes('Google') || v.name.includes('Natural') || v.name.includes('Mia') || v.name.includes('Sofia') || v.name.includes('Lucia')));
     if (esVoice) utterance.voice = esVoice;
+
+    let hasEnded = false;
+    const finalizeSpeech = () => {
+        if (hasEnded) return;
+        hasEnded = true;
+        if (avatarSpeechTimeout) clearTimeout(avatarSpeechTimeout);
+        isAvatarSpeaking = false;
+        setAvatarVideoState('idle');
+        if (typeof onComplete === 'function') onComplete();
+    };
 
     utterance.onstart = () => {
         isAvatarSpeaking = true;
         setAvatarVideoState('talking');
     };
 
+    // Sincronización precisa con onend del habla
     utterance.onend = () => {
-        isAvatarSpeaking = false;
-        setAvatarVideoState('idle');
-        if (typeof onComplete === 'function') onComplete();
+        finalizeSpeech();
     };
 
     utterance.onerror = () => {
-        isAvatarSpeaking = false;
-        setAvatarVideoState('idle');
-        if (typeof onComplete === 'function') onComplete();
+        finalizeSpeech();
     };
+
+    // Safety fallback: asegura avance fluido si el navegador corta speech events
+    const safetyFallbackTime = Math.min(25000, Math.max(12000, Math.round(text.length * 85)));
+    avatarSpeechTimeout = setTimeout(() => {
+        finalizeSpeech();
+    }, safetyFallbackTime);
 
     try {
         window.speechSynthesis.speak(utterance);
@@ -2345,10 +2369,8 @@ function speakExplanation(text, onComplete) {
         setAvatarVideoState('talking');
         isAvatarSpeaking = true;
         avatarSpeechTimeout = setTimeout(() => {
-            setAvatarVideoState('idle');
-            isAvatarSpeaking = false;
-            if (typeof onComplete === 'function') onComplete();
-        }, 5500);
+            finalizeSpeech();
+        }, 10000);
     }
 }
 
@@ -2370,9 +2392,10 @@ window.selectExplainerStep = function(stepIndex, isUserInteraction = false) {
         if (avatarTourTimer) clearTimeout(avatarTourTimer);
     }
 
-    // 1. Actualizar Tarjetas de la Matriz Derecha
+    // 1. Actualizar Tarjetas de la Matriz Derecha (Fade-in suave del cuadro activo, ocultar otros para no saturar)
     const cards = document.querySelectorAll('.tech-callout-card');
     cards.forEach((card, idx) => {
+        card.classList.remove('card-fading-out');
         if (idx === stepIndex) {
             card.classList.add('active');
         } else {
@@ -2390,7 +2413,30 @@ window.selectExplainerStep = function(stepIndex, isUserInteraction = false) {
         }
     });
 
-    // 3. Actualizar Teleprompter y Badges
+    // 3. Actualizar Dots y Progreso del Escaparate Dinámico Derecho
+    const showcaseDots = document.querySelectorAll('.showcase-dot');
+    showcaseDots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === stepIndex);
+    });
+    const counterEl = document.getElementById('showcaseStepCounter');
+    if (counterEl) {
+        counterEl.innerHTML = `Hito <strong>${stepIndex + 1}</strong> de ${EXPLAINER_STEPS.length}`;
+    }
+    const fillEl = document.getElementById('showcaseProgressFill');
+    if (fillEl) {
+        fillEl.style.width = `${((stepIndex + 1) / EXPLAINER_STEPS.length) * 100}%`;
+    }
+
+    const pills = document.querySelectorAll('.callout-pill-btn');
+    pills.forEach((pill, idx) => {
+        pill.classList.toggle('active', idx === stepIndex);
+    });
+    const subTitle = document.getElementById('calloutStepSubtitle') || document.getElementById('calloutsMatrixSubtitle');
+    if (subTitle && step) {
+        subTitle.innerHTML = `Hito ${stepIndex + 1} de 5 &bull; <strong style="color: #38bdf8;">${step.title}</strong>`;
+    }
+
+    // 4. Actualizar Teleprompter y Badges
     const badgeEl = document.getElementById('speechStepBadge');
     if (badgeEl) {
         badgeEl.textContent = `TOUR QUIRÚRGICO • PASO ${stepIndex + 1}/5`;
@@ -2400,10 +2446,10 @@ window.selectExplainerStep = function(stepIndex, isUserInteraction = false) {
         speechTextEl.textContent = `"${step.teleprompter}"`;
     }
 
-    // 4. Sincronizar en el Smartphone
+    // 5. Sincronizar en el Smartphone
     ensurePhoneReportVisible();
 
-    // Retirar halos previos
+    // Retirar halos previos de spotlight
     document.querySelectorAll('.spotlight-active').forEach(el => el.classList.remove('spotlight-active'));
 
     // Dynamic Notch alert si es paso 0
@@ -2416,7 +2462,7 @@ window.selectExplainerStep = function(stepIndex, isUserInteraction = false) {
         }
     }
 
-    // Iluminar elemento con precisión quirúrgica
+    // Iluminar elemento con precisión quirúrgica y centrar scroll
     setTimeout(() => {
         if (step.targetSelector) {
             const targetEl = document.querySelector(step.targetSelector);
@@ -2424,7 +2470,7 @@ window.selectExplainerStep = function(stepIndex, isUserInteraction = false) {
                 targetEl.classList.add('spotlight-active');
 
                 // Scroll suave dentro del reporte telefónico
-                const reportContent = document.getElementById('phoneReportContent');
+                const reportContent = document.getElementById('phoneReportContent') || document.querySelector('.phone-report-scroll-wrapper');
                 if (reportContent) {
                     const topOffset = targetEl.offsetTop - 50;
                     reportContent.scrollTo({
@@ -2436,25 +2482,76 @@ window.selectExplainerStep = function(stepIndex, isUserInteraction = false) {
         }
     }, 150);
 
-    // 5. Reproducir Locución y programar siguiente paso si está en auto tour
+    // 6. Reproducir Locución y programar siguiente paso tras el respiro de 1.2s
     speakExplanation(step.speech, () => {
         if (isAvatarTourRunning) {
             if (avatarTourTimer) clearTimeout(avatarTourTimer);
+            // a) Pausa natural de 1.2 segundos (respiro de presentación médica)
             avatarTourTimer = setTimeout(() => {
-                nextExplainerStep(false);
-            }, 1800);
+                // b) Desvanecer el cuadro actual y activar automáticamente el siguiente hito (0 al 4 en bucle)
+                advanceExplainerToNextStep();
+            }, 1200);
         }
     });
 };
 
+/**
+ * Transición suave: desvanece el cuadro actual con fade-out (400ms)
+ * y activa el siguiente hito (bucle ordenado del 0 al 4).
+ */
+function advanceExplainerToNextStep() {
+    if (!isAvatarTourRunning) return;
+    const nextIndex = (currentExplainerStep + 1) % EXPLAINER_STEPS.length;
+    const currentCard = document.querySelector(`.tech-callout-card[data-step="${currentExplainerStep}"]`);
+
+    if (currentCard) {
+        // Desvanecimiento suave del cuadro saliente
+        currentCard.classList.remove('active');
+        currentCard.classList.add('card-fading-out');
+
+        setTimeout(() => {
+            currentCard.classList.remove('card-fading-out');
+            selectExplainerStep(nextIndex, false);
+        }, 400);
+    } else {
+        selectExplainerStep(nextIndex, false);
+    }
+}
+
 window.nextExplainerStep = function(isUserInteraction = true) {
-    const next = (currentExplainerStep + 1) % EXPLAINER_STEPS.length;
-    selectExplainerStep(next, isUserInteraction);
+    const nextIndex = (currentExplainerStep + 1) % EXPLAINER_STEPS.length;
+    if (avatarTourTimer) clearTimeout(avatarTourTimer);
+
+    if (isUserInteraction) {
+        const currentCard = document.querySelector(`.tech-callout-card[data-step="${currentExplainerStep}"]`);
+        if (currentCard) {
+            currentCard.classList.remove('active');
+            currentCard.classList.add('card-fading-out');
+            setTimeout(() => {
+                currentCard.classList.remove('card-fading-out');
+                selectExplainerStep(nextIndex, true);
+            }, 300);
+            return;
+        }
+    }
+    selectExplainerStep(nextIndex, isUserInteraction);
 };
 
 window.prevExplainerStep = function() {
-    const prev = (currentExplainerStep - 1 + EXPLAINER_STEPS.length) % EXPLAINER_STEPS.length;
-    selectExplainerStep(prev, true);
+    const prevIndex = (currentExplainerStep - 1 + EXPLAINER_STEPS.length) % EXPLAINER_STEPS.length;
+    if (avatarTourTimer) clearTimeout(avatarTourTimer);
+
+    const currentCard = document.querySelector(`.tech-callout-card[data-step="${currentExplainerStep}"]`);
+    if (currentCard) {
+        currentCard.classList.remove('active');
+        currentCard.classList.add('card-fading-out');
+        setTimeout(() => {
+            currentCard.classList.remove('card-fading-out');
+            selectExplainerStep(prevIndex, true);
+        }, 300);
+        return;
+    }
+    selectExplainerStep(prevIndex, true);
 };
 
 window.toggleAvatarAutoTour = function(forceState) {
