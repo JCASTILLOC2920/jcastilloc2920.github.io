@@ -1,3 +1,29 @@
+// ============================================================================
+// SOL-09: UTILIDAD DE DEBOUNCE Y MEMOIZACIÓN MEDIANTE WEAKMAP (GRADO CLÍNICO)
+// ============================================================================
+const _patientSortCache = new WeakMap();
+
+export function invalidateSortCache(arr) {
+    if (arr && typeof arr === 'object') {
+        _patientSortCache.delete(arr);
+    }
+}
+
+export function debounce(func, wait = 150) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+
+// ============================================================================
+
 // db_service.js
 // PROTOCOLO ACTOR-CRITICO: Módulo de Base de Datos y Almacenamiento Local
 import { cleanCodeFunc, correctPapanicolaouSpelling, cleanTextContentLocal, formatDoctorName, escapeHtml, sanitizeDateForPg, normalizeSexo } from './utils.js';
@@ -95,14 +121,22 @@ export function attachSortKeys(p, force = false) {
     return p;
 }
 
-export function sortPatientArray(arr) {
+export function sortPatientArray(arr, force = false) {
     if (!Array.isArray(arr) || arr.length === 0) return arr;
+    
+    // MEMOIZACIÓN PURA CON WEAKMAP: Cero mutaciones en el objeto Array (JSON-Safe y GC-Friendly)
+    const cached = _patientSortCache.get(arr);
+    if (!force && cached && cached.length === arr.length) {
+        return arr;
+    }
+    
     for (let i = 0; i < arr.length; i++) {
         if (arr[i]) {
-            attachSortKeys(arr[i]);
+            attachSortKeys(arr[i], force);
         }
     }
-    return arr.sort((a, b) => {
+    
+    arr.sort((a, b) => {
         const yA = (a && a._sortYear !== undefined) ? a._sortYear : -1;
         const yB = (b && b._sortYear !== undefined) ? b._sortYear : -1;
         if (yB !== yA) return yB - yA;
@@ -111,6 +145,9 @@ export function sortPatientArray(arr) {
         const nB = (b && b._sortNum !== undefined) ? b._sortNum : 0;
         return nB - nA;
     });
+    
+    _patientSortCache.set(arr, { length: arr.length, timestamp: Date.now() });
+    return arr;
 }
 
 
@@ -226,6 +263,7 @@ export function upsertAndSortPatient(patient) {
     if (!patient) return null;
     const targetCode = cleanCodeFunc(patient.codAtencion || patient.cod_atencion);
     if (!targetCode) {
+        invalidateSortCache(patientDatabase);
         patientDatabase.unshift(patient);
         sortPatientArray(patientDatabase);
         return patient;

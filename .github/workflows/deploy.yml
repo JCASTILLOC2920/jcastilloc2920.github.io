@@ -1,15 +1,31 @@
 name: Deploy site on push
+
 on:
   push:
-    branches: [ "index.html", master ]
-jobs:
-  build:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
+    branches:
+      - index.html
+      - master
+  workflow_dispatch:
 
-      - name: Deploy to GitHub Pages
+# Permisos explícitos necesarios para que GITHUB_TOKEN pueda escribir en la rama gh-pages
+permissions:
+  contents: write
+
+# Evita que despliegues simultáneos colisionen entre sí
+concurrency:
+  group: "pages-deploy"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repositorio
+        uses: actions/checkout@v4
+
+      - name: Desplegar en GitHub Pages (gh-pages)
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: .
+          force_orphan: false
