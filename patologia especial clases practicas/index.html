@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Cronograma Práctico de Microscopía | Patología Especial UNMSM</title>
+  <meta name="description" content="Cronograma interactivo de clases prácticas de microscopía de Patología Especial 2026-II. Facultad de Medicina San Fernando, Instituto de Patología UNMSM.">
+  <meta name="theme-color" content="#040812">
+
+  <!-- Google Fonts Preconnect & Embed -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Hojas de Estilos Locales (Glassmorphism Clínico) -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="app-body">
+  <!-- Fondo Ambiental con Destellos Dinámicos Glassmorphic -->
+  <div class="ambient-glow glow-cyan"></div>
+  <div class="ambient-glow glow-gold"></div>
+  <div class="ambient-glow glow-indigo"></div>
+
+  <!-- Barra Superior Institucional San Fernando UNMSM -->
+  <header class="top-nav glass-panel">
+    <div class="nav-brand-container">
+      <div class="unmsm-shield-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <div class="nav-title-group">
+        <span class="nav-institution">UNMSM &bull; FACULTAD DE MEDICINA SAN FERNANDO</span>
+        <h1 class="nav-course-name">Patología Especial &bull; Microscopía Práctica</h1>
+      </div>
+    </div>
+
+    <div class="nav-actions-group">
+      <a href="../reportes.html" class="btn btn-sm btn-outline" id="btnBackToPortal" title="Volver al Portal / Reportes" style="text-decoration: none; display: inline-flex; align-items: center; gap: 6px; font-weight: 600;">
+        <span>←</span> <span>Volver</span>
+      </a>
+      <div class="progress-pill-compact">
+        <span class="progress-label">Avance Semestral:</span>
+        <div class="progress-track-mini">
+          <div class="progress-fill-mini" id="semesterProgressBar" style="width: 12.5%"></div>
+        </div>
+        <span class="progress-val-text" id="progressPercentageText">12.5%</span>
+      </div>
+      <button class="btn btn-sm btn-outline" id="btnThemeToggle" title="Cambiar tema">☀️ Modo Claro</button>
+    </div>
+  </header>
+
+  <!-- Contenedor Principal de la Aplicación -->
+  <main class="main-layout-container">
+    
+    <!-- Hero Banner Inteligente (BJ Fogg Behavior Model B=MAP) -->
+    <section class="hero-fogg-card glass-panel" id="heroFoggSection">
+      <div class="hero-left-info" id="heroUpcomingDetails">
+        <!-- Generado dinámicamente por app.js -->
+        <div class="hero-badge">⚡ PRÓXIMO LABORATORIO</div>
+        <h3 class="hero-week-title">Cargando próxima sesión práctica...</h3>
+      </div>
+      <div class="hero-stats-card">
+        <div class="stat-number-box">
+          <span class="stat-number">16</span>
+          <span class="stat-label">Semanas de Práctica</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-number-box">
+          <span class="stat-number">45+</span>
+          <span class="stat-label">Láminas & Patologías</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-number-box">
+          <span class="stat-number">4.0h</span>
+          <span class="stat-label">Horas / Semana</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Barra de Herramientas, Filtros & Búsqueda Neurocognitiva -->
+    <section class="toolbar-section glass-panel">
+      <!-- Fila 1: Pestañas de Unidades Temáticas (Chunking de Sweller) -->
+      <div class="unit-tabs-row" role="tablist">
+        <button class="unit-tab-btn active" data-unit="all" role="tab">🔬 Todas las Unidades</button>
+        <button class="unit-tab-btn" data-unit="1" role="tab">❤️ U-I: Cardiovascular & Respiratorio</button>
+        <button class="unit-tab-btn" data-unit="2" role="tab">🧠 U-II: Neuro, Endocrino & Renal</button>
+        <button class="unit-tab-btn" data-unit="3" role="tab">🧬 U-III: Urogenital, Mama & GI</button>
+        <button class="unit-tab-btn" data-unit="4" role="tab">🔬 U-IV: Hepato, Sangre & Piel</button>
+      </div>
+
+      <!-- Fila 2: Búsqueda, Filtro de Estado & Selector de Vistas -->
+      <div class="toolbar-controls-row">
+        <!-- Búsqueda en Vivo -->
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input 
+            type="text" 
+            id="searchDiagnosisInput" 
+            class="search-input" 
+            placeholder="Buscar por diagnóstico (ej: Infarto, Glomerulonefritis, Helicobacter), órgano o tinción..." 
+            autocomplete="off"
+            spellcheck="false"
+          >
+        </div>
+
+        <!-- Filtro de Estado -->
+        <div class="filter-select-wrapper">
+          <select id="filterStatusSelect" class="filter-select" aria-label="Filtrar por estado">
+            <option value="all">Todos los Estados</option>
+            <option value="pending">Láminas Pendientes</option>
+            <option value="completed">Láminas Dominadas</option>
+            <option value="exam">Semanas de Examen Práctico</option>
+          </select>
+        </div>
+
+        <!-- Selector de Vistas -->
+        <div class="view-switchers-group" role="group" aria-label="Cambiar vista">
+          <button class="view-toggle-btn active" data-view="grid" title="Vista Cuadrícula Bento">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            <span>Tarjetas</span>
+          </button>
+          <button class="view-toggle-btn" data-view="timeline" title="Vista Línea de Tiempo">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="20" x2="12" y2="4"/><circle cx="12" cy="7" r="3"/><circle cx="12" cy="17" r="3"/></svg>
+            <span>Línea de Tiempo</span>
+          </button>
+          <button class="view-toggle-btn" data-view="table" title="Vista Tabla Sinóptica">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            <span>Tabla</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Indicador de Resumen de Progreso -->
+    <div class="progress-indicator-bar">
+      <span id="progressRatioText">3 de 45 láminas dominadas</span>
+      <span class="academic-sem-label">Semestre Académico 2026-II &bull; Instituto de Patología UNMSM</span>
+    </div>
+
+    <!-- Contenedor Dinámico de Vistas (Bento Grid / Timeline / Tabla) -->
+    <section class="views-master-container" id="viewsContainer" aria-live="polite">
+      <!-- Renderizado por JavaScript app.js -->
+    </section>
+
+  </main>
+
+  <!-- Modal Interactivo de Estudio de Lámina & Criterios Robbins 11.ª Ed. -->
+  <div class="modal-study-backdrop" id="slideStudyModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-study-dialog glass-panel" id="slideModalBody">
+      <!-- El contenido detallado se inyecta dinámicamente por app.js -->
+    </div>
+  </div>
+
+  <!-- Pie de Página Institucional -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-col-main">
+        <p><strong>Universidad Nacional Mayor de San Marcos</strong></p>
+        <p>Universidad del Perú, Decana de América &bull; Facultad de Medicina San Fernando</p>
+        <p class="footer-sub">Instituto de Patología &bull; Departamento Académico de Patología y Anatomía Patológica</p>
+      </div>
+      <div class="footer-col-meta">
+        <p>🔬 Laboratorio de Microscopía &bull; 2.0 h / sesión práctica</p>
+        <p>Martes 17:00–19:00 h | Jueves 15:00–19:00 h</p>
+        <p><small>Basado en el Sílabo Oficial 2026-II y Robbins Patología 11.ª Edición</small></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts de Datos y Lógica de la Aplicación -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

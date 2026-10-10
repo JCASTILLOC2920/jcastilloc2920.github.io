@@ -1,0 +1,22 @@
+{
+  "name": "JC PATH LAB - Anatomía Patológica",
+  "short_name": "JC PATH LAB",
+  "description": "Laboratorio de Anatomía Patológica y Diagnóstico Oncológico en Lima.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0056b3",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "logo-jcpathlab.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "logo-jcpathlab.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

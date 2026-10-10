@@ -1,0 +1,11 @@
+=== GITHUB KNOWLEDGE SECTION ===
+
+**Repositorio:** https://github.com/JCASTILLOC2920/jcastilloc2920.github.io
+
+- **Rama de publicación:** `master` (GitHub Pages está configurado para publicar desde esta rama).
+- **Archivo .nojekyll:** Necesario para que GitHub Pages sirva todos los archivos estáticos sin pasar por Jekyll.
+- **GitHub Actions:** El flujo `deploy.yml` se ejecuta automáticamente al hacer `git push` a `master`. Genera la base de conocimiento (`site_knowledge.js`) y publica los cambios.
+- **Actualización de CDN:** Después de que el workflow finalice, la CDN puede tardar unos minutos en reflejar los cambios. Si necesitas forzar la recarga, agrega un parámetro `?v=timestamp` a la URL.
+- **Depuración:** Revisa la pestaña *Actions* del repositorio para ver el registro del despliegue. En caso de errores, verifica los logs y los secretos de GitHub.
+
+Esta información está incluida en el RAG para que los agentes Titan y Prime la consulten cuando sea necesario.

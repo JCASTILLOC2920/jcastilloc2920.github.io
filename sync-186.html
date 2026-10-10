@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexo de Sincronía Visual | JC PATH LAB</title>
+    <link rel="stylesheet" href="modern-premium.css">
+    <style>
+        .sync-box {
+            max-width: 600px;
+            margin: 5rem auto;
+            text-align: center;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        #upload-status {
+            margin-top: 2rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body style="background: #0f172a; color: white;">
+    <div class="sync-box">
+        <h1 class="text-gradient">Sincronía de Imágenes del Nodo 186</h1>
+        <p style="margin-bottom: 2rem; opacity: 0.8;">Cargue la carpeta de imágenes del Atlas para que Elena empiece a redactar los casos.</p>
+        
+        <input type="file" id="folder-input" webkitdirectory directory multiple style="display: none;">
+        <button class="btn-premium" onclick="document.getElementById('folder-input').click()">
+            <i class="fas fa-folder-open"></i> Seleccionar Carpeta 'IMAGE'
+        </button>
+
+        <div id="upload-status">Esperando selección...</div>
+        <div id="progress-bar" style="width: 0%; height: 5px; background: var(--primary); margin-top: 1rem; transition: width 0.3s;"></div>
+    </div>
+
+    <script>
+        document.getElementById('folder-input').addEventListener('change', async (e) => {
+            const files = e.target.files;
+            const status = document.getElementById('upload-status');
+            const progress = document.getElementById('progress-bar');
+            
+            if (files.length === 0) return;
+
+            status.innerText = `Sincronizando ${files.length} imágenes...`;
+            
+            let uploaded = 0;
+            for (const file of files) {
+                if (file.type.startsWith('image/')) {
+                    const formData = new FormData();
+                    formData.append('image', file);
+                    formData.append('filename', file.name);
+
+                    try {
+                        const response = await fetch('http://192.168.18.8:5000/upload_atlas', {
+                            method: 'POST',
+                            body: formData
+                        });
+                        
+                        if (response.ok) {
+                            uploaded++;
+                            const percent = (uploaded / files.length) * 100;
+                            progress.style.width = percent + '%';
+                            status.innerText = `Sincronizando: ${uploaded} de ${files.length}`;
+                        }
+                    } catch (err) {
+                        console.error('Error subiendo:', file.name);
+                    }
+                }
+            }
+            
+            status.innerHTML = `<span style="color: #4ade80;">✓ Sincronía Exitosa. ${uploaded} imágenes detectadas por la Colmena.</span>`;
+        });
+    </script>
+</body>
+</html>

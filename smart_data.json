@@ -1,0 +1,556 @@
+{
+  "antibodies": {
+    "alphabetical": [
+      "ACTINA MUSCULO LISO",
+      "ACTINA (HIF35)",
+      "ADIPOFILINA",
+      "AFP (Alfa FetoProteina)",
+      "ALK(CD246)",
+      "AMACR (Racemase)",
+      "AMILOIDE A",
+      "ANDROGENO",
+      "A. CARBONICA IX (CA IX)",
+      "ARGINASE 1",
+      "ATRX",
+      "BCL-2",
+      "BCL-6",
+      "BER-EP4",
+      "BETACATENIN",
+      "C-MYC",
+      "CALCITONINA",
+      "CALDESMON",
+      "CALPONINA",
+      "CALRETININA",
+      "CD1a",
+      "CD3",
+      "CD4",
+      "CD5",
+      "CD7",
+      "CD8",
+      "CD10",
+      "CD15",
+      "CD19",
+      "CD20",
+      "CD21",
+      "CD23",
+      "CD30",
+      "CD31",
+      "CD34",
+      "CD43",
+      "CD45",
+      "CD56",
+      "CD61",
+      "CD68",
+      "CD79a",
+      "CD99",
+      "CD117",
+      "CD138",
+      "CDK4",
+      "CDX2",
+      "CA-125",
+      "CA 19.9",
+      "CEA",
+      "CYCLIN D1",
+      "CITOKERATIN CAMS 2",
+      "CITOKERATIN OSCAR",
+      "CITOKERATIN 5/6",
+      "CITOKERATIN 7",
+      "CITOKERATIN 8",
+      "CITOKERATIN 14",
+      "CITOKERATIN 17",
+      "CITOKERATIN 18",
+      "CITOKERATIN 19",
+      "CITOKERATIN 20",
+      "CITOMEGALOVIRUS",
+      "COLAGENO IV",
+      "CK HWM (34BE12)",
+      "CROMOGRANINA A",
+      "DESMINA",
+      "DOG-1",
+      "EBV/LMP-1",
+      "E-CADHERINA",
+      "EMA",
+      "ERG",
+      "ESTROGENO",
+      "FACTOR VIII",
+      "FACTOR XIIIa",
+      "FASCIN A",
+      "FOXP3",
+      "FLY-1",
+      "GCDFP-15",
+      "GATA 3",
+      "GFAP",
+      "GLUT-1",
+      "GLIPICAN 3",
+      "GLYCOFORINA",
+      "GRANZYME B",
+      "HCG (Beta)",
+      "HER2 (C-ERBB2/CB11)",
+      "HEP-PAR1",
+      "HHV-8",
+      "HMB45",
+      "IDH-1",
+      "IgG",
+      "IgG-4",
+      "Ig M",
+      "INI-1",
+      "IMP-3",
+      "INHIBINA",
+      "KAPPA",
+      "KI67",
+      "LAMBDA",
+      "LEF-1",
+      "LISOZIMA",
+      "MAMAGLOBINA",
+      "MELAN A/MART-1",
+      "MIELOPEROXIDASA (MPO)",
+      "MIOGEINA",
+      "MITF",
+      "MLH1",
+      "MSH2",
+      "MSH6",
+      "MUC 2",
+      "MUC 5AC",
+      "MUC 6",
+      "MUM-1",
+      "MYO D1",
+      "MMP9",
+      "NAPSIN A",
+      "NEUROFILAMENTO",
+      "NGFR",
+      "OLIG 2",
+      "P16",
+      "P40",
+      "P53",
+      "P57",
+      "PANQUERATINA",
+      "PAX-5",
+      "PAX-8",
+      "PODOPLANINA / D2-40",
+      "PD-1/CD279",
+      "PD-L1 (22c3)",
+      "PLAP",
+      "PMS2",
+      "PSA",
+      "P-TEN",
+      "PROGESTERONA",
+      "VPH",
+      "S-100",
+      "SATB-2",
+      "SALL 4",
+      "SINAPTOFISINA",
+      "SOX-10",
+      "SMAD4/DPC4",
+      "STAT 6",
+      "T. PALLIDUM",
+      "TDT",
+      "TLE-1",
+      "TIA-1",
+      "TIROGLOBULINA",
+      "TIROSINASA",
+      "TTF-1",
+      "VIMENTINA",
+      "WT-1"
+    ],
+    "details": {
+      "ACTINA MUSCULO LISO": "Detecta tumores derivados del músculo liso, como miomas uterinos y ciertos sarcomas.",
+      "ACTINA (HIF35)": "Marcador general de células musculares; ayuda a identificar tumores del tejido blando.",
+      "ADIPOFILINA": "Identifica la presencia de lípidos; útil en tumores sebáceos y de glándulas sudoríparas.",
+      "AFP (Alfa FetoProteina)": "Marcador clave en tumores de hígado y tumores de células germinales del testículo u ovario.",
+      "ALK(CD246)": "Identifica cambios genéticos en ciertos tipos de cáncer de pulmón, linfomas y tumores infantiles.",
+      "AMACR (Racemase)": "Altamente sensible para diagnosticar cáncer de próstata y ciertos tipos de cáncer de riñón.",
+      "AMILOIDE A": "Detecta depósitos de proteína amiloide en tejidos, asociados a enfermedades inflamatorias crónicas.",
+      "ANDROGENO": "Evalúa la respuesta a hormonas masculinas en tumores de próstata y ciertos tumores de mama.",
+      "A. CARBONICA IX (CA IX)": "Marcador específico para el cáncer de riñón (carcinoma de células claras).",
+      "ARGINASE 1": "El marcador más específico para confirmar que un tumor se originó directamente en el hígado.",
+      "ATRX": "Utilizado para clasificar tumores cerebrales (gliomas) y predecir su comportamiento clínico.",
+      "BCL-2": "Proteína que impide la muerte celular; su exceso ayuda a diagnosticar diversos tipos de linfomas.",
+      "BCL-6": "Identifica linfocitos de los centros germinales; esencial para clasificar linfomas agresivos.",
+      "BER-EP4": "Ayuda a distinguir el carcinoma basocelular de la piel de otros tumores similares.",
+      "BETACATENIN": "Marcador de señalización celular útil en tumores de colon, de mama y tumores 'desmoides'.",
+      "C-MYC": "Gen que regula el crecimiento celular; su presencia indica alta agresividad en linfomas.",
+      "CALCITONINA": "Marcador hormonal fundamental para el diagnóstico del cáncer medular de tiroides.",
+      "CALDESMON": "Marcador muy específico para identificar células de músculo liso en tumores del útero y tejidos blandos.",
+      "CALPONINA": "Identifica células de soporte en las glándulas; vital para diferenciar lesiones benignas de malignas en mama.",
+      "CALRETININA": "Principal marcador para diagnosticar mesotelioma y ciertos tumores de los ovarios.",
+      "CD1a": "Identifica células de Langerhans; crucial para diagnosticar la histiocitosis X.",
+      "CD3": "El marcador universal para identificar Linfocitos T (células clave del sistema de defensa).",
+      "CD4": "Subtipo de linfocitos T; importante en la evaluación de enfermedades inmunes y linfomas.",
+      "CD5": "Ayuda a clasificar leucemias crónicas y linfomas de células pequeñas.",
+      "CD7": "Uno de los marcadores más tempranos de células de defensa T; útil en leucemias agudas.",
+      "CD8": "Identifica linfocitos T 'asesinos'; mide la fuerza del sistema inmune contra el cáncer.",
+      "CD10": "Marcador de células germinales de los ganglios; útil en el estudio de linfomas y cáncer de riñón.",
+      "CD15": "Característico de las células de Reed-Sternberg en el Linfoma de Hodgkin clásico.",
+      "CD19": "Marcador fundamental para identificar todas las etapas de desarrollo de los Linfocitos B.",
+      "CD20": "El marcador más importante para el diagnóstico y guía de tratamiento de Linfomas de células B.",
+      "CD21": "Identifica las redes que sostienen a los linfocitos en los ganglios; útil en linfomas foliculares.",
+      "CD23": "Ayuda a diferenciar la leucemia linfática crónica de otros tipos de linfomas.",
+      "CD30": "Clave para el diagnóstico del Linfoma de Hodgkin y linfomas anaplásicos de células grandes.",
+      "CD31": "Marcador de células endoteliales (vasos sanguíneos); identifica tumores vasculares como angiosarcomas.",
+      "CD34": "Identifica vasos sanguíneos y células madre; esencial en la clasificación de leucemias y sarcomas.",
+      "CD43": "Ayuda a detectar anormalidades en linfocitos B y T; útil en la clasificación de linfomas.",
+      "CD45": "Antígeno Común Leucocitario; confirma que el tumor se origina en el sistema de la sangre.",
+      "CD56": "Marcador para células de defensa NK y tumores neuroendocrinos (como el cáncer microcítico de pulmón).",
+      "CD61": "Identifica células precursoras de las plaquetas; útil en el diagnóstico de leucemias específicas.",
+      "CD68": "Marca macrófagos (células de limpieza); ayuda a identificar inflamación y ciertos tumores.",
+      "CD79a": "Marcador muy específico y temprano para Linfocitos B; complementa al CD20.",
+      "CD99": "Marcador distintivo del Sarcoma de Ewing y tumores neuroectodérmicos infantiles.",
+      "CD117": "Esencial para diagnosticar tumores GIST del sistema digestivo y ciertos tipos de leucemia.",
+      "CD138": "Principal marcador de células plasmáticas; fundamental para diagnosticar el Mieloma Múltiple.",
+      "CDK4": "Evalúa anormalidades genéticas en tumores de grasa para distinguir lipomas de liposarcomas.",
+      "CDX2": "Indica con alta precisión que un tumor proviene del tracto digestivo, especialmente del colon.",
+      "CA-125": "Utilizado para monitorear y diagnosticar tumores de ovario y de la cavidad abdominal.",
+      "CA 19.9": "Marcador de apoyo para el diagnóstico de cáncer de páncreas y vías biliares.",
+      "CEA": "Antígeno Carcinoembrionario; marcador general para cáncer de colon, páncreas y otros.",
+      "CYCLIN D1": "Proteína reguladora; su detección es clave para diagnosticar el Linfoma de Células del Manto.",
+      "CITOKERATIN CAMS 2": "Cóctel de queratinas que confirma el origen epitelial (carcinoma) de un tumor.",
+      "CITOKERATIN OSCAR": "Queratina de amplio espectro utilizada para detectar células cancerosas muy poco diferenciadas.",
+      "CITOKERATIN 5/6": "Ayuda a identificar carcinomas escamosos y a distinguir mesoteliomas de otros tipos de cáncer de pulmón.",
+      "CITOKERATIN 7": "Marcador de origen glandular; se encuentra comúnmente en tumores de mama, pulmón y ovario.",
+      "CITOKERATIN 8": "Queratina presente en la mayoría de los carcinomas glandulares (adenocarcinomas).",
+      "CITOKERATIN 14": "Marcador de células basales y escamosas; útil en el estudio de cáncer de mama y piel.",
+      "CITOKERATIN 17": "Expresada en carcinomas de cuello uterino y páncreas; ayuda a definir subtipos tumorales.",
+      "CITOKERATIN 18": "Marcador de células epiteliales simples; común en adenocarcinomas corporales.",
+      "CITOKERATIN 19": "Marcador de células de conductos; muy útil en el diagnóstico de cáncer papilar de tiroides.",
+      "CITOKERATIN 20": "Marcador de origen muy específico para el tracto digestivo (colon) y células de Merkel en la piel.",
+      "CITOMEGALOVIRUS": "Detecta la presencia del virus CMV en tejidos de pacientes con defensas bajas.",
+      "COLAGENO IV": "Marca la membrana que sostiene las células; evalúa si un tumor ha comenzado a invadir.",
+      "CK HWM (34BE12)": "Queratina de alto peso molecular; ayuda a identificar glándulas prostáticas normales vs cancerosas.",
+      "CROMOGRANINA A": "El marcador más común para detectar tumores neuroendocrinos en cualquier parte del cuerpo.",
+      "DESMINA": "Detecta células musculares; esencial para diagnosticar tumores del músculo esquelético y liso.",
+      "DOG-1": "Marcador altamente específico para tumores GIST; muy útil cuando el CD117 es negativo.",
+      "EBV/LMP-1": "Detecta el Virus de Epstein-Barr en linfomas y otros carcinomas asociados al virus.",
+      "E-CADHERINA": "Proteína de unión celular; clave para distinguir cáncer de mama ductal de lobulillar.",
+      "EMA": "Antígeno de Membrana Epitelial; marca una amplia variedad de tumores de glándulas y meninges.",
+      "ERG": "Marcador moderno para diagnosticar cáncer de próstata y tumores de vasos sanguíneos.",
+      "ESTROGENO": "Evalúa receptores de estrógeno en cáncer de mama; determina la necesidad de terapia hormonal.",
+      "FACTOR VIII": "Marcador de coagulación que ayuda a identificar el origen vascular de un tumor.",
+      "FACTOR XIIIa": "Identifica células del tejido conectivo; útil en el diagnóstico de dermatofibromas en la piel.",
+      "FASCIN A": "Marcador que indica movilidad celular; asociado a mayor agresividad en ciertos tumores.",
+      "FOXP3": "Identifica células T reguladoras; evalúa cómo el tumor suprime el sistema inmune.",
+      "FLY-1": "Marcador genético fundamental para confirmar el Sarcoma de Ewing.",
+      "GCDFP-15": "Muy específico para confirmar que un tumor proviene de las glándulas mamarias.",
+      "GATA 3": "Marcador excelente para identificar el origen mamario o del tracto urinario (vejiga).",
+      "GFAP": "Identifica células gliales del cerebro; esencial para diagnosticar astrocitomas y otros gliomas.",
+      "GLUT-1": "Marcador de transporte de azúcar; ayuda a identificar hemangiomas y áreas sin oxígeno en el tumor.",
+      "GLIPICAN 3": "Marcador específico del carcinoma hepatocelular (cáncer primario de hígado).",
+      "GLYCOFORINA": "Marca glóbulos rojos; esencial en el diagnóstico de leucemias que afectan la serie roja.",
+      "GRANZYME B": "Identifica células de defensa activas; útil en la clasificación de linfomas agresivos.",
+      "HCG (Beta)": "Detecta la hormona del embarazo en tumores de células germinales o de la placenta.",
+      "HER2 (C-ERBB2/CB11)": "Evalúa la agresividad celular; crucial para guiar tratamientos biológicos en cáncer de mama y estómago.",
+      "HEP-PAR1": "Marcador que confirma el origen de las células en el tejido del hígado.",
+      "HHV-8": "Indica infección por el Herpesvirus 8, causante del Sarcoma de Kaposi.",
+      "HMB45": "Altamente específico para el diagnóstico de Melanoma (cáncer agresivo de piel).",
+      "IDH-1": "Mutación genética clave para pronosticador y clasificar tumores cerebrales (gliomas).",
+      "IgG": "Inmunoglobulina G; ayuda a clasificar desórdenes de las células plasmáticas.",
+      "IgG-4": "Asociado a enfermedades autoinmunes específicas que afectan múltiples órganos.",
+      "Ig M": "Identifica estadios tempranos de respuesta inmune en enfermedades de la sangre.",
+      "INI-1": "Su pérdida es característica de tumores infantiles muy agresivos (tumores rabdoides).",
+      "IMP-3": "Marcador de mal pronóstico que ayuda a detectar cáncer de páncreas y pulmón.",
+      "INHIBINA": "Fundamental para diagnosticar tumores de los cordones sexuales en ovario y testículo.",
+      "KAPPA": "Cadena ligera de anticuerpos; se usa con LAMBDA para detectar cáncer de células plasmáticas.",
+      "KI67": "El marcador de proliferación más usado; indica qué porcentaje de células se están dividiendo.",
+      "LAMBDA": "Cadena ligera de anticuerpos; se usa con KAPPA para identificar clones malignos en la sangre.",
+      "LEF-1": "Excelente marcador para diagnosticar la leucemia linfática crónica.",
+      "LISOZIMA": "Identifica células de linaje mieloide en leucemias y ciertos procesos inflamatorios.",
+      "MAMAGLOBINA": "Marcador muy sensible para detectar células originadas en la mama.",
+      "MELAN A/MART-1": "Indispensable para el diagnóstico de melanoma y otros tumores de piel pigmentados.",
+      "MIELOPEROXIDASA (MPO)": "Marcador clásico para identificar leucemias mieloides agudas.",
+      "MIOGEINA": "Confirma el origen muscular esquelético en tumores infantiles (rabdomiosarcomas).",
+      "MITF": "Proteína clave para el desarrollo de pigmento; útil en el estudio del melanoma.",
+      "MLH1": "Proteína de reparación del ADN; su ausencia indica inestabilidad genética en cáncer de colon.",
+      "MSH2": "Junto con MLH1, ayuda a detectar el Síndrome de Lynch (cáncer de colon hereditario).",
+      "MSH6": "Proteína de reparación del sistema MMR; esencial en oncología genómica.",
+      "MUC 2": "Proteína de moco que ayuda a clasificar tumores del intestino y páncreas.",
+      "MUC 5AC": "Identifica moco de tipo gástrico; útil en tumores de estómago y páncreas.",
+      "MUC 6": "Marcador de glándulas profundas del estómago; ayuda a clasificar tumores mucinosos.",
+      "MUM-1": "Identifica estadios finales de maduración linfoide; clave en linfomas de células grandes.",
+      "MYO D1": "Altamente específico para identificar tumores que intentan formar músculo (rabdomiosarcomas).",
+      "MMP9": "Enzima asociada a la invasión y metástasis tumoral.",
+      "NAPSIN A": "El marcador más específico para confirmar el adenocarcinoma de pulmón.",
+      "NEUROFILAMENTO": "Marca extensiones de células nerviosas; diagnóstico de tumores del sistema nervioso.",
+      "NGFR": "Receptor de crecimiento nervioso; ayuda a mapear la invasión en los nervios por el cáncer.",
+      "OLIG 2": "Marcador fundamental para identificar tumores cerebrales de linaje oligodendroglial.",
+      "P16": "Marcador de infección por VPH; esencial en el diagnóstico de cáncer de cuello uterino y garganta.",
+      "P40": "El marcador más fiable para diagnosticar el carcinoma de células escamosas del pulmón.",
+      "P53": "Detecta la mutación más común en el cáncer, indicando agresividad y guiando el tratamiento.",
+      "P57": "Diferencia embarazos molares (mola hidatidiforme) completos de parciales.",
+      "PANQUERATINA": "Proteína general selectiva para detectar cualquier tipo de carcinoma (cáncer epitelial).",
+      "PAX-5": "Marcador principal y muy fiable para identificar el linaje de Linfocitos B.",
+      "PAX-8": "Fundamental para identificar tumores de riñón, tiroides y el tracto genital femenino.",
+      "PODOPLANINA / D2-40": "Identifica vasos linfáticos; crucial para ver si el cáncer se ha diseminado por la linfa.",
+      "PD-1/CD279": "Evalúa el estado del sistema inmune y es guía para terapias de inmunoterapia.",
+      "PD-L1 (22c3)": "Predice si el paciente responderá a tratamientos modernos de inmunoterapia.",
+      "PLAP": "Fosfatasa alcalina placentaria; marcador de tumores de células germinales (seminomas).",
+      "PMS2": "Proteína de reparación del ADN vinculada al Síndrome de Lynch.",
+      "PSA": "Antígeno Prostático Específico; la prueba de referencia para el tejido de la próstata.",
+      "P-TEN": "Gen supresor que cuando se pierde, indica mayor agresividad en el cáncer.",
+      "PROGESTERONA": "Evalúa la sensibilidad hormonal en el cáncer de mama para definir el tratamiento.",
+      "VPH": "Detecta directamente la presencia del Virus del Papiloma Humano en los cortes de tejido.",
+      "S-100": "Marcador versátil usado para detectar melanomas, tumores nerviosos y de glándulas salivares.",
+      "SATB-2": "Marcador muy específico para confirmar el origen colorrectal de un tumor.",
+      "SALL 4": "Identifica células en estado primitivo; clave en tumores de células germinales fetales.",
+      "SINAPTOFISINA": "Identifica vesículas nerviosas; esencial para diagnosticar tumores neuroendocrinos.",
+      "SOX-10": "Marcador moderno y muy sensible para diagnosticar melanomas y tumores de nervios.",
+      "SMAD4/DPC4": "Su pérdida en el tejido es un fuerte indicador de cáncer de páncreas.",
+      "STAT 6": "Marcador diagnóstico definitivo para el Tumor Fibroso Solitario.",
+      "T. PALLIDUM": "Prueba de inmunohistoquímica para detectar la bacteria de la Sífilis en biopsias.",
+      "TDT": "Identifica linfocitos jóvenes; esencial para el diagnóstico de leucemias linfoblásticas.",
+      "TLE-1": "Marcador principal para diagnosticar el Sarcoma Sinovial.",
+      "TIA-1": "Identifica gránulos en células T 'asesinas'; útil en linfomas de células T.",
+      "TIROGLOBULINA": "Confirma con certeza absoluta que un tumor proviene de la glándula tiroides.",
+      "TIROSINASA": "Enzima clave en la producción de pigmento; utilizada para confirmar melanomas.",
+      "TTF-1": "Diferencia con precisión el cáncer originado en el pulmón de metástasis de otros órganos.",
+      "VIMENTINA": "Marcador general de los tejidos conectivos; ayuda a clasificar sarcomas.",
+      "WT-1": "Utilizado en el diagnóstico de tumores abdominales infantiles y tumores de ovario."
+    }
+  },
+  "catalog": {
+    "Marcadores Hematolinfoides (Linfomas y Leucemias)": [
+      {
+        "name": "CD1a",
+        "description": "Identifica células de Langerhans; crucial para\n                                                diagnosticar la histiocitosis X."
+      },
+      {
+        "name": "CD3",
+        "description": "El marcador universal para identificar Linfocitos\n                                                T (células clave del sistema de defensa)."
+      },
+      {
+        "name": "CD4",
+        "description": "Subtipo de linfocitos T; importante en la\n                                                evaluación de enfermedades inmunes y linfomas."
+      },
+      {
+        "name": "CD5",
+        "description": "Ayuda a clasificar leucemias crónicas y linfomas\n                                                de células pequeñas."
+      },
+      {
+        "name": "CD7",
+        "description": "Uno de los marcadores más tempranos de células de\n                                                defensa T; útil en leucemias agudas."
+      },
+      {
+        "name": "CD8",
+        "description": "Identifica linfocitos T 'asesinos'; mide la fuerza\n                                                del sistema inmune contra el cáncer."
+      },
+      {
+        "name": "CD10",
+        "description": "Marcador de células germinales de los ganglios;\n                                                útil en el estudio de linfomas y cáncer de riñón."
+      },
+      {
+        "name": "CD15",
+        "description": "Característico de las células de Reed-Sternberg\n                                                en el Linfoma de Hodgkin clásico."
+      },
+      {
+        "name": "CD19",
+        "description": "Marcador fundamental para identificar todas las\n                                                etapas de desarrollo de los Linfocitos B."
+      },
+      {
+        "name": "CD20",
+        "description": "El marcador más importante para el diagnóstico y\n                                                guía de tratamiento de Linfomas de células B."
+      },
+      {
+        "name": "CD21",
+        "description": "Identifica las redes que sostienen a los\n                                                linfocitos en los ganglios; útil en linfomas foliculares."
+      },
+      {
+        "name": "CD23",
+        "description": "Ayuda a diferenciar la leucemia linfática crónica\n                                                de otros tipos de linfomas."
+      },
+      {
+        "name": "CD30",
+        "description": "Clave para el diagnóstico del Linfoma de Hodgkin\n                                                y linfomas anaplásicos de células grandes."
+      },
+      {
+        "name": "CD43",
+        "description": "Ayuda a detectar anormalidades en linfocitos B y\n                                                T; útil en la clasificación de linfomas."
+      },
+      {
+        "name": "CD45",
+        "description": "Antígeno Común Leucocitario; confirma que el\n                                                tumor se origina en el sistema de la sangre."
+      }
+    ],
+    "Marcadores Epiteliales (Carcinomas)": [
+      {
+        "name": "Panqueratina",
+        "description": "Marcador universal de carcinomas (tumores\n                                                de origen epitelial)."
+      },
+      {
+        "name": "CITOKERATIN 7",
+        "description": "Indica origen glandular (mama, pulmón,\n                                                ovario)."
+      },
+      {
+        "name": "CITOKERATIN 20",
+        "description": "Específico para el tracto digestivo\n                                                (colon) y células de la piel."
+      },
+      {
+        "name": "EMA",
+        "description": "Antígeno de membrana epitelial; útil en diversos\n                                                carcinomas."
+      },
+      {
+        "name": "BER-EP4",
+        "description": "Ayuda a distinguir el carcinoma basocelular de\n                                                otros tumores cutáneos."
+      },
+      {
+        "name": "P40",
+        "description": "El marcador más fiable para el carcinoma de\n                                                células escamosas."
+      },
+      {
+        "name": "TTF-1",
+        "description": "Identifica con precisión tumores originados en\n                                                pulmón o tiroides."
+      },
+      {
+        "name": "PSA",
+        "description": "Antígeno Prostático Específico; clave para el\n                                                tejido de la próstata."
+      },
+      {
+        "name": "GATA 3",
+        "description": "Excelente marcador para tumores de mama y de la\n                                                vejiga (urotelio)."
+      },
+      {
+        "name": "PAX-8",
+        "description": "Fundamental para diagnosticar tumores de riñón,\n                                                tiroides y sistema ginecológico."
+      }
+    ],
+    "Marcadores de Tejidos Blandos (Sarcomas)": [
+      {
+        "name": "VIMENTINA",
+        "description": "Marcador general de tejidos conectivos;\n                                                ayuda a clasificar sarcomas."
+      },
+      {
+        "name": "DESMINA",
+        "description": "Detecta células musculares; esencial para\n                                                tumores de músculo."
+      },
+      {
+        "name": "ACTINA MUSCULO LISO",
+        "description": "Identifica tumores de músculo liso\n                                                (miomas, sarcomas)."
+      },
+      {
+        "name": "S-100",
+        "description": "Marcador versátil para melanomas y tumores\n                                                nerviosos."
+      },
+      {
+        "name": "SOX-10",
+        "description": "Muy sensible para diagnosticar melanomas y\n                                                tumores de nervios."
+      },
+      {
+        "name": "CD31 / CD34",
+        "description": "Marcadores de vasos sanguíneos;\n                                                identifican tumores vasculares."
+      },
+      {
+        "name": "CD117 (c-KIT)",
+        "description": "Esencial para diagnosticar tumores GIST\n                                                del sistema digestivo."
+      },
+      {
+        "name": "DOG-1",
+        "description": "Altamente específico para GIST; complementa al\n                                                CD117."
+      }
+    ],
+    "Otros Marcadores Importantes (Pronóstico y Otros)": [
+      {
+        "name": "KI-67",
+        "description": "Mide qué porcentaje de células se están\n                                                dividiendo (proliferación)."
+      },
+      {
+        "name": "P53",
+        "description": "Detecta mutaciones genéticas comunes; indica\n                                                agresividad en muchos cánceres."
+      },
+      {
+        "name": "HER2",
+        "description": "Evalúa agresividad; crucial para tratamientos en\n                                                cáncer de mama y estómago."
+      },
+      {
+        "name": "P16",
+        "description": "Marcador de infección por VPH; vital en cáncer de\n                                                cuello uterino."
+      },
+      {
+        "name": "CALRETININA",
+        "description": "Principal marcador para diagnosticar\n                                                mesotelioma."
+      },
+      {
+        "name": "SINAPTOFISINA / CROMOGRANINA A",
+        "description": "Identifican tumores\n                                                neuroendocrinos."
+      }
+    ]
+  },
+  "pricing": {
+    "citologia": {
+      "titulo": "Citología y Prevención",
+      "estudios": {
+        "papanicolaou": {
+          "nombre": "Papanicolaou (Cérvico-Vaginal)",
+          "precio": 20.0
+        },
+        "secrecion": {
+          "nombre": "Secreción / Descarga del Pezón",
+          "precio": 40.0
+        },
+        "liquidos": {
+          "nombre": "Citología de Líquidos (Pleural, Ascítico, Orina)",
+          "precio": 70.0
+        },
+        "baaf": {
+          "nombre": "Aspiración con Aguja Fina (BAAF)",
+          "precio": 90.0
+        }
+      }
+    },
+    "biopsias_simples": {
+      "titulo": "Biopsias Simples y Endoscópicas",
+      "estudios": {
+        "gastrica": {
+          "nombre": "Biopsia Gástrica (Endoscópica)",
+          "precio": 50.0
+        },
+        "esofago": {
+          "nombre": "Biopsia de Esófago, Intestino o Colon",
+          "precio": 80.0
+        },
+        "cervix": {
+          "nombre": "Biopsia de Cérvix / Cuello Uterino",
+          "precio": 80.0
+        },
+        "piel": {
+          "nombre": "Biopsia de Piel (Punch)",
+          "precio": 80.0
+        }
+      }
+    },
+    "biopsias_quirurgicas": {
+      "titulo": "Biopsias Quirúrgicas y Oncológicas",
+      "estudios": {
+        "cono": {
+          "nombre": "Cono Cervical (LEEP)",
+          "precio": 120.0
+        },
+        "vesicula_apendice": {
+          "nombre": "Vesícula Biliar o Apéndice",
+          "precio": 110.0
+        },
+        "utero": {
+          "nombre": "Útero (Histerectomía simple)",
+          "precio": 150.0
+        },
+        "prostata": {
+          "nombre": "Próstata (Mapeo por 6 frascos)",
+          "precio": 250.0
+        },
+        "mama_radical": {
+          "nombre": "Mastectomía / Cuadrantectomía",
+          "precio": 350.0
+        }
+      }
+    },
+    "inmunohistoquimica": {
+      "titulo": "Inmunohistoquímica (IHC)",
+      "estudios": {
+        "marcador": {
+          "nombre": "Marcador Individual (Ki67, HER2, CD3, etc.)",
+          "precio": 180.0
+        },
+        "panel_mama": {
+          "nombre": "Panel de Mama Básico (RE, RP, HER2, Ki67)",
+          "precio": 750.0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 en Lima | JC PATH LAB</title>
+    <meta name="description"
+        content="Especialistas en Anatomía Patológica en Lima. Biopsias rápidas y diagnósticos oncológicos de alta precisión.">
+
+    <!-- Use same CSS as index.html -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .error-hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 0 20px;
+        }
+
+        .error-code {
+            font-size: clamp(6rem, 15vw, 12rem);
+            font-weight: 900;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .error-title {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .error-message {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--dark);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+    </style>
+    <meta name="keywords"
+        content="Laboratorio de Patología Lima, Biopsias en Lima, Inmunohistoquímica rápida, Diagnóstico de cáncer, Dr. Josehp Castillo, JC PATH LAB, Segunda opinión médica, procesamiento de biopsias, laboratorio clínico Lima">
+
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Página no encontrada - JC PATH LAB">
+    <meta name="twitter:description" content="Página no encontrada en JC PATH LAB.">
+    <meta name="twitter:image" content="https://jcastilloc2920.github.io/logo-jcpathlab.png">
+
+    <!-- Tailwind CSS (No-conflict mode) & Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind = { corePlugins: { preflight: false } }</script>
+</head>
+
+<body>
+    <!-- Header -->
+        <header class="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-xl border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2.5 text-2xl font-black text-white group">
+                <span class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-600 to-emerald-500 flex items-center justify-center text-white shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+                    <i class="fas fa-microscope text-base"></i>
+                </span>
+                <span class="font-['Outfit'] font-extrabold tracking-tight">JC <span class="text-cyan-400">PATH LAB</span></span>
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-6 text-sm font-medium">
+                <a href="index.html" class="text-slate-300 hover:text-cyan-400 transition">Inicio</a>
+                <a href="inmunohistoquimica.html" class="text-slate-300 hover:text-cyan-400 transition">Inmunohistoquímica</a>
+                <a href="patologia-digital.html" class="text-slate-300 hover:text-cyan-400 transition">Patología Digital</a>
+                <a href="macroscopia-360.html" class="text-slate-300 hover:text-cyan-400 transition">Visor 360°</a>
+                <a href="academica.html" class="text-slate-300 hover:text-cyan-400 transition">Área Académica</a>
+                <a href="contacto.html" class="text-slate-300 hover:text-cyan-400 transition">Sede & Contacto</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20coordinar%20el%20estudio%20de%20una%20biopsia" target="_blank" class="px-4 py-2 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-emerald-600/30 transition transform hover:-translate-y-0.5">
+                    <i class="fab fa-whatsapp text-base"></i>
+                    <span>Contactar al Patólogo</span>
+                </a>
+                <button type="button" class="lg:hidden text-slate-300 hover:text-white p-2" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" aria-label="Abrir Menú">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-nav" class="hidden lg:hidden bg-slate-900 border-b border-slate-800 px-6 py-4 space-y-3 text-sm">
+            <a href="index.html" class="block py-1 hover:text-cyan-400">Inicio</a>
+            <a href="inmunohistoquimica.html" class="block py-1 hover:text-cyan-400">Inmunohistoquímica (Biomarcadores)</a>
+            <a href="patologia-digital.html" class="block py-1 hover:text-cyan-400">Patología Digital (Lámina Interactiva)</a>
+            <a href="macroscopia-360.html" class="block py-1 hover:text-cyan-400">Visor Macroscópico 360°</a>
+            <a href="academica.html" class="block py-1 hover:text-cyan-400">Área Académica para Residentes</a>
+            <a href="contacto.html" class="block py-1 hover:text-cyan-400">Sede Central y Mapa</a>
+        </div>
+    </header>
+
+    <!-- 404 Content -->
+    <main>
+        <section class="error-hero">
+            <div class="error-code">404</div>
+            <h1 class="error-title">¡Ups! Página no encontrada</h1>
+            <p class="error-message">Lo sentimos, la página que estás buscando no existe o ha sido movida. Pero no te
+                preocupes, puedes volver a nuestra página principal.</p>
+            <a href="index.html" class="btn btn-primary">
+                <i class="fas fa-home"></i> Volver al Inicio
+            </a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="contact-section" style="padding-top: 50px; background-color: var(--white);">
+        <div class="container" style="text-align: center;">
+            <p style="color: var(--dark);">&copy; 2024 JC PATH LAB. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+
+    <!-- Botones de Contacto Flotantes (SEO & CRO) -->
+    <div class="sticky-contact">
+        <a href="https://wa.me/51986396733" class="sticky-btn whatsapp" target="_blank" rel="noopener noreferrer"
+            aria-label="Contacto por WhatsApp">
+            <i class="fab fa-whatsapp"></i> <span>WhatsApp</span>
+        </a>
+        <a href="tel:+51986396733" class="sticky-btn phone" aria-label="Llamar ahora"
+            style="background-color: #0056b3;">
+            <i class="fas fa-phone-alt"></i> <span>Llamar</span>
+        </a>
+    </div>
+
+
+    <!-- Chatbot HTML Structure -->
+    <div id="chat-container">
+                <div id="chat-header" class="video-mode">
+            <!-- AVATAR VICTORIA (Día) -->
+            <div id="avatar-victoria" class="avatar-video-container" style="display: none;">
+                <video id="victoria-idle" class="avatar-video active" muted loop playsinline data-src="victoriaidle.mp4"></video>
+                <video id="victoria-hablando" class="avatar-video" muted loop playsinline data-src="victoriahablando.mp4"></video>
+                <video id="victoria-pensando" class="avatar-video" muted loop playsinline data-src="victoriapensando.mp4"></video>
+                <video id="victoria-saludo" class="avatar-video" muted playsinline data-src="victoriasaludo.mp4"></video>
+            </div>
+            <!-- AVATAR ELENA (Noche) -->
+            <div id="avatar-elena" class="avatar-video-container" style="display: none;">
+                <video id="elena-idle" class="avatar-video active" muted loop playsinline data-src="idle.mp4"></video>
+                <video id="elena-hablando" class="avatar-video" muted loop playsinline data-src="hablando.mp4"></video>
+                <video id="elena-pensando" class="avatar-video" muted loop playsinline data-src="pensando.mp4"></video>
+                <video id="elena-saludo" class="avatar-video" muted playsinline data-src="saludo.mp4"></video>
+            </div>
+            
+            <div class="chat-header-content">
+                <div class="chat-title-group">
+                    <div class="chat-name" id="bot-name-banner">Victoria</div>
+                    <span>Especialista JC Path Lab</span>
+                </div>
+                <div class="chat-header-actions">
+                    <button id="switch-avatar-btn" class="header-icon-btn" title="Cambiar Asistente" onclick="switchAvatar()">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <div class="preview-avatar-wrapper">
+                        <video id="avatar-toggle-preview" muted loop autoplay playsinline data-src="idle.mp4"></video>
+                    </div>
+                    <span class="close-btn">&times;</span>
+                </div>
+            </div>
+        </div>
+        <div id="chat-messages"></div>
+        <div id="typing-indicator">
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+            Asistente del Dr. Castillo está escribiendo...
+        </div>
+        <div id="bot-options"></div>
+        <div id="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Escribe tu mensaje aquí...">
+            <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+    <button id="chat-toggle">
+        <i class="fas fa-comments"></i>
+    </button>
+
+
+</body>
+
+</html>

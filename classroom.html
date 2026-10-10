@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classroom - Aula Virtual | JC PATH LAB</title>
+    <meta name="description"
+        content="Aula Virtual de JC PATH LAB. Recursos educativos, atlas de patología y casos clínicos para profesionales de la salud.">
+        <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="old_style.css">
+    <link rel="stylesheet" href="mobile-app.css">
+    <link rel="stylesheet" href="mobile-app.css">
+    <style>
+        .classroom-header {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            padding: 120px 5% 60px;
+            text-align: center;
+        }
+
+        .classroom-header h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 20px;
+        }
+
+        .classroom-header p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+    </style>
+    <!-- Tailwind CSS (No-conflict mode) & Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind = { corePlugins: { preflight: false } }</script>
+</head>
+
+<body>
+        <!-- Header Section -->
+        <header class="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-xl border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2.5 text-2xl font-black text-white group">
+                <span class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-600 to-emerald-500 flex items-center justify-center text-white shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+                    <i class="fas fa-microscope text-base"></i>
+                </span>
+                <span class="font-['Outfit'] font-extrabold tracking-tight">JC <span class="text-cyan-400">PATH LAB</span></span>
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-6 text-sm font-medium">
+                <a href="index.html" class="text-slate-300 hover:text-cyan-400 transition">Inicio</a>
+                <a href="inmunohistoquimica.html" class="text-slate-300 hover:text-cyan-400 transition">Inmunohistoquímica</a>
+                <a href="patologia-digital.html" class="text-slate-300 hover:text-cyan-400 transition">Patología Digital</a>
+                <a href="macroscopia-360.html" class="text-slate-300 hover:text-cyan-400 transition">Visor 360°</a>
+                <a href="academica.html" class="text-cyan-400 font-bold border-b-2 border-cyan-400 pb-1">Área Académica</a>
+                <a href="contacto.html" class="text-slate-300 hover:text-cyan-400 transition">Sede & Contacto</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20coordinar%20el%20estudio%20de%20una%20biopsia" target="_blank" class="px-4 py-2 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-emerald-600/30 transition transform hover:-translate-y-0.5">
+                    <i class="fab fa-whatsapp text-base"></i>
+                    <span>Contactar al Patólogo</span>
+                </a>
+                <button type="button" class="lg:hidden text-slate-300 hover:text-white p-2" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" aria-label="Abrir Menú">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-nav" class="hidden lg:hidden bg-slate-900 border-b border-slate-800 px-6 py-4 space-y-3 text-sm">
+            <a href="index.html" class="block py-1 hover:text-cyan-400">Inicio</a>
+            <a href="inmunohistoquimica.html" class="block py-1 hover:text-cyan-400">Inmunohistoquímica (Biomarcadores)</a>
+            <a href="patologia-digital.html" class="block py-1 hover:text-cyan-400">Patología Digital (Lámina Interactiva)</a>
+            <a href="macroscopia-360.html" class="block py-1 hover:text-cyan-400">Visor Macroscópico 360°</a>
+            <a href="academica.html" class="block py-1 hover:text-cyan-400">Área Académica para Residentes</a>
+            <a href="contacto.html" class="block py-1 hover:text-cyan-400">Sede Central y Mapa</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="classroom-header">
+            <h1>Aula Virtual JC PATH LAB</h1>
+            <p>Plataforma de educación médica continua diseñada para patólogos, residentes, cirujanos y estudiantes de medicina.</p>
+        </div>
+
+        <section class="classroom-section">
+            <div class="container">
+                <div class="classroom-grid">
+                    <!-- Aspectos Patológicos del Cáncer -->
+                    <div class="classroom-card">
+                        <div class="classroom-icon">
+                            <i class="fas fa-dna"></i>
+                        </div>
+                        <div class="classroom-content">
+                            <h2 class="classroom-title">Aspectos Patológicos del Cáncer</h2>
+                            <p>Biblioteca de videos explicativos sobre la fisiopatología, diagnóstico microscópico e inmunohistoquímica de diversos tipos de cáncer.</p>
+                            <a href="canceraspectospatologicosindex.html" class="classroom-btn">Ingresar al Módulo</a>
+                        </div>
+                    </div>
+
+                    <!-- Rotación de Partes Blandas -->
+                    <div class="classroom-card">
+                        <div class="classroom-icon">
+                            <i class="fas fa-bone"></i>
+                        </div>
+                        <div class="classroom-content">
+                            <h2 class="classroom-title">Patología de Partes Blandas</h2>
+                            <p>Recursos académicos dinámicos enfocados en el diagnóstico de sarcomas y tumores mesenquimales complejos.</p>
+                            <a href="tumoresdepartesblandasrotacion.html" class="classroom-btn">Explorar Contenido</a>
+                        </div>
+                    </div>
+
+                    <!-- Atlas de Dermatopatología -->
+                    <div class="classroom-card">
+                        <div class="classroom-icon">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <div class="classroom-content">
+                            <h2 class="classroom-title">Atlas de Dermatopatología</h2>
+                            <p>Guía interactiva basada en patrones diagnósticos para el análisis de biopsias de piel y anexos.</p>
+                            <a href="dermatopatologia.html" class="classroom-btn">Abrir Atlas</a>
+                        </div>
+                    </div>
+
+                    <!-- Blog y Casos Clínicos -->
+                    <div class="classroom-card">
+                        <div class="classroom-icon">
+                            <i class="fas fa-file-medical"></i>
+                        </div>
+                        <div class="classroom-content">
+                            <h2 class="classroom-title">Casos de Interés y Blog</h2>
+                            <p>Artículos técnicos, discusión de casos inusuales y actualizaciones en anatomía patológica desde el laboratorio.</p>
+                            <a href="blogs.html" class="classroom-btn">Leer Blog</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section style="padding: 60px 5%; background: var(--white); text-align: center;">
+            <div class="container">
+                <h2>¿Eres médico derivante?</h2>
+                <p style="margin: 20px 0 30px;">Accede a nuestra Zona Médica para encontrar protocolos de transporte de muestras y guías técnicas.</p>
+                <a href="academica.html" class="btn btn-secondary-cta">Ir a Zona Médica</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="contact-section">
+        <div class="container" style="text-align: center; padding: 40px 0;">
+            <img src="logo-jcpathlab.png" alt="JC PATH LAB Logo" style="max-width: 150px; margin-bottom: 20px;">
+            <p>&copy; 2024 JC PATH LAB - Todos los derechos reservados.</p>
+            <div style="margin-top: 20px;">
+                <a href="https://wa.me/51986396733" style="color: var(--secondary); margin: 0 15px; text-decoration: none;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="tel:+51986396733" style="color: var(--secondary); margin: 0 15px; text-decoration: none;"><i class="fas fa-phone"></i> Llamar</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zona Médica y Educación Continua | JC PATH LAB</title>
+  <meta name="description" content="Portal de educación médica continua, guías quirúrgicas CAP y seminarios histopatológicos del Dr. Josehp Castillo.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Anti-cache & Service Worker auto-purger to prevent loading old versions
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+          for (var reg of registrations) { reg.unregister(); }
+        });
+      }
+      if ('caches' in window) {
+        caches.keys().then(function(names) {
+          for (var name of names) { caches.delete(name); }
+        });
+      }
+    </script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-cyan-500 selection:text-white">
+
+      <header class="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-xl border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2.5 text-2xl font-black text-white group">
+                <span class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-600 to-emerald-500 flex items-center justify-center text-white shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+                    <i class="fas fa-microscope text-base"></i>
+                </span>
+                <span class="font-['Outfit'] font-extrabold tracking-tight">JC <span class="text-cyan-400">PATH LAB</span></span>
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-6 text-sm font-medium">
+                <a href="index.html" class="text-slate-300 hover:text-cyan-400 transition">Inicio</a>
+                <a href="inmunohistoquimica.html" class="text-slate-300 hover:text-cyan-400 transition">Inmunohistoquímica</a>
+                <a href="patologia-digital.html" class="text-slate-300 hover:text-cyan-400 transition">Patología Digital</a>
+                <a href="macroscopia-360.html" class="text-slate-300 hover:text-cyan-400 transition">Visor 360°</a>
+                <a href="academica.html" class="text-cyan-400 font-bold border-b-2 border-cyan-400 pb-1">Área Académica</a>
+                <a href="contacto.html" class="text-slate-300 hover:text-cyan-400 transition">Sede & Contacto</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20coordinar%20el%20estudio%20de%20una%20biopsia" target="_blank" class="px-4 py-2 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-emerald-600/30 transition transform hover:-translate-y-0.5">
+                    <i class="fab fa-whatsapp text-base"></i>
+                    <span>Contactar al Patólogo</span>
+                </a>
+                <button type="button" class="lg:hidden text-slate-300 hover:text-white p-2" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" aria-label="Abrir Menú">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-nav" class="hidden lg:hidden bg-slate-900 border-b border-slate-800 px-6 py-4 space-y-3 text-sm">
+            <a href="index.html" class="block py-1 hover:text-cyan-400">Inicio</a>
+            <a href="inmunohistoquimica.html" class="block py-1 hover:text-cyan-400">Inmunohistoquímica (Biomarcadores)</a>
+            <a href="patologia-digital.html" class="block py-1 hover:text-cyan-400">Patología Digital (Lámina Interactiva)</a>
+            <a href="macroscopia-360.html" class="block py-1 hover:text-cyan-400">Visor Macroscópico 360°</a>
+            <a href="academica.html" class="block py-1 hover:text-cyan-400">Área Académica para Residentes</a>
+            <a href="contacto.html" class="block py-1 hover:text-cyan-400">Sede Central y Mapa</a>
+        </div>
+    </header>
+
+  <section class="max-w-5xl mx-auto px-4 pt-12 pb-8 text-center">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-xs font-semibold uppercase tracking-wider mb-4">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      Recursos Académicos & Protocolos Clínicos
+    </div>
+    <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
+      Zona Médica para <span class="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Cirujanos y Residentes</span>
+    </h1>
+    <p class="text-slate-400 max-w-2xl mx-auto text-base">
+      Herramientas estandarizadas para el manejo perioperatorio de biopsias, solicitud de estudios transoperatorios por congelación y protocolos sinópticos del CAP.
+    </p>
+  </section>
+
+  <main class="max-w-6xl mx-auto px-4 pb-20 space-y-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between shadow-xl hover:border-cyan-500/40 transition">
+        <div>
+          <div class="w-10 h-10 rounded-lg bg-cyan-950 flex items-center justify-center text-cyan-400 text-lg mb-3">
+            <i class="fas fa-snowflake"></i>
+          </div>
+          <h2 class="text-lg font-bold text-white mb-2">Biopsias por Congelación</h2>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Indicaciones precisas para evaluación intraoperatoria: evaluación de márgenes quirúrgicos, sospecha de malignidad inesperada y viabilidad de tejido para estudios moleculares.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-800">
+          <span class="text-[11px] text-cyan-400 font-semibold">Tiempo respuesta: 15-20 min</span>
+        </div>
+      </div>
+
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between shadow-xl hover:border-emerald-500/40 transition">
+        <div>
+          <div class="w-10 h-10 rounded-lg bg-emerald-950 flex items-center justify-center text-emerald-400 text-lg mb-3">
+            <i class="fas fa-clipboard-check"></i>
+          </div>
+          <h2 class="text-lg font-bold text-white mb-2">Fijación Óptima de Muestras</h2>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Relación de fijador Formalina Neutra al 10% tamponeada (1:10 en volumen tejido-fijador). Evita la autolisis y garantiza la conservación de receptores HER2 y Ki-67.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-800">
+          <span class="text-[11px] text-emerald-400 font-semibold">Guía ASCO / CAP</span>
+        </div>
+      </div>
+
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between shadow-xl hover:border-indigo-500/40 transition">
+        <div>
+          <div class="w-10 h-10 rounded-lg bg-indigo-950 flex items-center justify-center text-indigo-400 text-lg mb-3">
+            <i class="fas fa-book-medical"></i>
+          </div>
+          <h2 class="text-lg font-bold text-white mb-2">Patología de Partes Blandas</h2>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Compendio de clasificación histológica según la OMS de tumores adipocíticos, fibroblásticos y vasculares con algoritmos inmunohistoquímicos.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-800">
+          <a href="partes-blandas.html" class="text-xs font-bold text-indigo-400 hover:text-indigo-300">Ver Módulo Completo →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div>
+        <h3 class="text-base font-bold text-white">Coordinación de Interconsultas y Casos en Quirófano</h3>
+        <p class="text-xs text-slate-400 mt-0.5">Línea directa con el Dr. Josehp Castillo para programar congelaciones y entrega de especímenes quirúrgicos.</p>
+      </div>
+      <a href="https://wa.me/51986396733?text=Estimado%20Dr.%20Castillo,%20deseo%20coordinar%20estudio%20quirurgico" target="_blank" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shrink-0 transition flex items-center gap-2">
+        <i class="fab fa-whatsapp"></i> Coordinar por WhatsApp
+      </a>
+    </div>
+  </main>
+
+  <footer class="bg-slate-950 border-t border-slate-900 py-6 text-center text-xs text-slate-500">
+    <p>© 2026 JC PATH LAB — Sede Central: Puente Piedra, Lima - Perú. Dirigido por el Dr. Josehp Castillo (CMP 56435).</p>
+  </footer>
+</body>
+</html>

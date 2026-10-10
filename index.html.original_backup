@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JC PATH LAB - Anatomía Patológica & Biopsias | Dr. Josehp Castillo</title>
+    <meta name="description" content="Laboratorio de Anatomía Patológica en Lima. Diagnóstico de biopsias en 4 días hábiles, inmunohistoquímica y patología digital.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --fluid-h1: clamp(2rem, 1.5rem + 2.5vw, 3.75rem);
+            --fluid-p: clamp(0.9rem, 0.82rem + 0.35vw, 1.125rem);
+            --fluid-pad: clamp(1rem, 0.8rem + 1.2vw, 2rem);
+        }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #030712; 
+            color: #f8fafc;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+        /* ====================================================
+           FIX PANTALLA NEGRA: Loading overlay instantáneo
+           Oculta el FOUC (Flash Of Unstyled Content) mientras
+           Tailwind CDN y Google Fonts cargan
+        ==================================================== */
+        #page-loader {
+            position: fixed;
+            inset: 0;
+            background: #030712;
+            z-index: 999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+        #page-loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        #page-loader .loader-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        #page-loader .loader-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #0891b2, #10b981);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            box-shadow: 0 0 30px rgba(8, 145, 178, 0.4);
+        }
+        #page-loader .loader-text {
+            color: #38bdf8;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+        #page-loader .loader-bar {
+            width: 120px;
+            height: 2px;
+            background: rgba(56, 189, 248, 0.2);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+        #page-loader .loader-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0891b2, #10b981);
+            border-radius: 999px;
+            animation: loadbar 1.2s ease-in-out infinite;
+        }
+        @keyframes loadbar {
+            0%   { width: 0%;   margin-left: 0%; }
+            50%  { width: 60%;  margin-left: 20%; }
+            100% { width: 0%;   margin-left: 100%; }
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.75; }
+        }
+        .neuro-glass { 
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(3, 7, 18, 0.85) 100%); 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(56, 189, 248, 0.22); 
+            box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.7), inset 0 1px 1px rgba(255, 255, 255, 0.12);
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .neuro-glass::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.6), rgba(52, 211, 153, 0.6), transparent);
+            pointer-events: none;
+        }
+        .neuro-glass:hover {
+            border-color: rgba(56, 189, 248, 0.45);
+            box-shadow: 0 20px 45px -8px rgba(0, 0, 0, 0.8), 0 0 25px rgba(56, 189, 248, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        /* Mobile Thumb Zone Nav */
+        .thumb-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: calc(62px + env(safe-area-inset-bottom, 0px));
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+            background: rgba(3, 7, 18, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-top: 1px solid rgba(56, 189, 248, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            z-index: 9999;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.6);
+        }
+        @media (min-width: 1024px) {
+            .thumb-nav { display: none !important; }
+        }
+        @media (max-width: 1023px) {
+            body { padding-bottom: 76px !important; }
+            .desktop-wa-fab { display: none !important; }
+        }
+
+        /* ==========================================================
+           BOTONES PSICO-MECÁNICOS 3D (SE HUNDEN AL PRESIONAR)
+           ========================================================== */
+        .btn-3d-tactile {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 700;
+            color: #ffffff !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            cursor: pointer;
+            user-select: none;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+            will-change: transform, box-shadow;
+            transform: translateY(0);
+            transition: transform 0.12s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        box-shadow 0.12s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        filter 0.2s ease;
+        }
+
+        /* Variante Primaria Cian/Azul Médico */
+        .btn-3d-cyan {
+            background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%) !important;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.45),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+                0 4px 0 #075985,
+                0 8px 18px rgba(3, 105, 161, 0.5) !important;
+        }
+        .btn-3d-cyan:hover {
+            transform: translateY(-1.5px);
+            background: linear-gradient(180deg, #0ea5e9 0%, #0284c7 100%) !important;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                0 5px 0 #075985,
+                0 12px 24px rgba(3, 105, 161, 0.6) !important;
+        }
+        .btn-3d-cyan:active {
+            transform: translateY(4px) !important;
+            box-shadow: 
+                inset 0 2px 5px rgba(0, 0, 0, 0.6),
+                inset 0 0 2px rgba(0, 0, 0, 0.4),
+                0 0 0 transparent,
+                0 1px 2px rgba(0, 0, 0, 0.2) !important;
+            transition: transform 0.04s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.04s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        /* Variante Esmeralda Bio-Luminosa (WhatsApp / Muestra) */
+        .btn-3d-emerald {
+            background: linear-gradient(180deg, #059669 0%, #047857 100%) !important;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.45),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+                0 4px 0 #065f46,
+                0 8px 18px rgba(5, 150, 105, 0.45) !important;
+            overflow: hidden;
+        }
+        .btn-3d-emerald:hover {
+            transform: translateY(-1.5px);
+            background: linear-gradient(180deg, #10b981 0%, #059669 100%) !important;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                0 5px 0 #065f46,
+                0 12px 24px rgba(5, 150, 105, 0.6) !important;
+        }
+        .btn-3d-emerald:active {
+            transform: translateY(4px) !important;
+            box-shadow: 
+                inset 0 2px 5px rgba(0, 0, 0, 0.6),
+                inset 0 0 2px rgba(0, 0, 0, 0.4),
+                0 0 0 transparent,
+                0 1px 2px rgba(0, 0, 0, 0.2) !important;
+            transition: transform 0.04s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.04s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        /* Variante Sede / Neutra Slate 3D */
+        .btn-3d-slate {
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%) !important;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+                0 4px 0 #020617,
+                0 6px 14px rgba(0, 0, 0, 0.5) !important;
+        }
+        .btn-3d-slate:hover {
+            transform: translateY(-1.5px);
+            background: linear-gradient(180deg, #334155 0%, #1e293b 100%) !important;
+            box-shadow: 
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                0 5px 0 #020617,
+                0 10px 20px rgba(0, 0, 0, 0.6) !important;
+        }
+        .btn-3d-slate:active {
+            transform: translateY(4px) !important;
+            box-shadow: 
+                inset 0 2px 5px rgba(0, 0, 0, 0.7),
+                0 0 0 transparent,
+                0 1px 2px rgba(0, 0, 0, 0.3) !important;
+            transition: transform 0.04s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.04s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        /* Efecto Haz de Luz Especular en Botones (Shimmer) */
+        .btn-3d-tactile::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -130%;
+            width: 50%;
+            height: 200%;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.25) 50%, transparent 100%);
+            transform: rotate(25deg);
+            pointer-events: none;
+            transition: left 0.7s ease;
+        }
+        .btn-3d-tactile:hover::after {
+            left: 150%;
+        }
+
+        /* Reflejo Especular Dinámico en Tarjeta Portaobjetos 360 */
+        .specular-slide {
+            position: relative;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            box-shadow: 0 12px 35px -5px rgba(0, 0, 0, 0.7), 0 0 15px rgba(56, 189, 248, 0.15);
+        }
+        .specular-slide::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, transparent 40%, rgba(56, 189, 248, 0.05) 100%);
+            pointer-events: none;
+        }
+
+        /* =====================================================
+           RESPONSIVE UNIVERSAL — index.html
+           xs:<480  sm:480-640  md:640-1024  lg:1024+
+           Compatible con zoom de navegador (clamp usa rem+vw)
+        ===================================================== */
+
+        /* Prevenir scroll horizontal en cualquier pantalla */
+        html { overflow-x: hidden; }
+        *, *::before, *::after { box-sizing: border-box; }
+        img, video, iframe, svg { max-width: 100%; height: auto; }
+
+        /* Viewport con soporte para notch iOS / Android */
+        .thumb-nav {
+            padding-bottom: max(env(safe-area-inset-bottom, 0px), 8px) !important;
+        }
+
+        /* Visor 360: limitar altura en móvil */
+        @media (max-width: 768px) {
+            #microscope360Container { height: min(60vw, 320px) !important; }
+            body { padding-bottom: max(76px, env(safe-area-inset-bottom, 76px)); }
+        }
+
+        /* Hero h1 fluido — respeta zoom del navegador */
+        @media (max-width: 640px) {
+            .font-black { word-break: break-word; }
+            /* Botones: mínimo 44px para touch targets */
+            a[class*="px-"][class*="py-"],
+            button[class*="px-"][class*="py-"] { min-height: 44px; }
+            /* Evitar que inputs provoquen zoom en iOS */
+            input, select, textarea { font-size: 16px !important; }
+            /* Padding de sección reducido en móvil */
+            .py-20 { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+            .py-16 { padding-top: 2rem !important;   padding-bottom: 2rem !important; }
+            .gap-16 { gap: 1.5rem !important; }
+            .gap-12 { gap: 1rem !important; }
+            /* Texto del hero fluido */
+            .text-4xl { font-size: clamp(1.75rem, 7vw, 2.5rem) !important; }
+            .text-5xl { font-size: clamp(2rem, 8vw, 3rem) !important; }
+            .text-3xl { font-size: clamp(1.4rem, 6vw, 2rem) !important; }
+            /* Grids → columna única */
+            [class*="lg:grid-cols-3"]:not(.thumb-nav) { grid-template-columns: 1fr !important; }
+            [class*="lg:grid-cols-2"]:not(.thumb-nav) { grid-template-columns: 1fr !important; }
+            [class*="md:grid-cols-2"]:not(.thumb-nav) { grid-template-columns: 1fr !important; }
+            /* Horizontal scroll en selectores de tarjetas */
+            .grid.grid-cols-4 { grid-template-columns: repeat(2, 1fr) !important; }
+            /* Modal de búsqueda rápida centrado */
+            #quickSearchModal > div { width: 95vw !important; max-width: 100% !important; }
+        }
+
+        /* Tablet (641-1023px): 2 columnas donde había 3-4 */
+        @media (min-width: 641px) and (max-width: 1023px) {
+            [class*="lg:grid-cols-3"] { grid-template-columns: repeat(2, 1fr) !important; }
+            [class*="lg:grid-cols-4"] { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+
+        /* Pantallas XL (>1440px): no estirar contenido sin límite */
+        @media (min-width: 1440px) {
+            .max-w-7xl { max-width: 80rem; }
+        }
+
+        /* ==========================================================
+           PRODUCTO ESTRELLA: COMPARADOR DE CARCINOMA ACINAR PROSTÁTICO
+           (PANTALLA COMPLETA, ZOOM DIGITAL Y PANEO INTERACTIVO)
+           ========================================================== */
+        .star-product-card {
+            position: relative;
+            background: radial-gradient(circle at top, rgba(15, 23, 42, 0.95), rgba(3, 7, 18, 0.98));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            border-radius: 1.25rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.85), 0 0 30px rgba(56, 189, 248, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .star-split-frame {
+            position: relative;
+            width: 100%;
+            height: clamp(340px, 52vh, 620px);
+            border-radius: 0.85rem;
+            overflow: hidden;
+            user-select: none;
+            cursor: ew-resize;
+            background: #020617;
+            touch-action: none; /* Pointer events pan + pinch */
+        }
+
+        .star-split-frame.is-panning {
+            cursor: grab;
+        }
+
+        .star-split-frame.is-dragging-pan {
+            cursor: grabbing !important;
+        }
+
+        .star-layer {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .star-layer img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            display: block;
+            pointer-events: none;
+            transform-origin: center center;
+            will-change: transform;
+            transition: transform 0.08s ease-out;
+        }
+
+        .star-before {
+            z-index: 2;
+            width: 50%;
+            border-right: 2px solid #38bdf8;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.7);
+            background: #000000;
+        }
+
+        .star-after {
+            z-index: 1;
+        }
+
+        .star-divider {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 3px;
+            background: #38bdf8;
+            box-shadow: 0 0 16px #38bdf8;
+            z-index: 10;
+            pointer-events: none;
+            transform: translateX(-50%);
+        }
+
+        .star-handle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #090d16;
+            border: 2px solid #38bdf8;
+            color: #38bdf8;
+            padding: 5px 12px;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            white-space: nowrap;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.8), 0 0 14px rgba(56, 189, 248, 0.6);
+        }
+
+        .star-badge {
+            position: absolute;
+            top: 10px;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.03em;
+            backdrop-filter: blur(10px);
+            z-index: 5;
+            pointer-events: none;
+        }
+        .star-badge-before {
+            left: 10px;
+            background: rgba(15, 23, 42, 0.88);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.45);
+        }
+        .star-badge-after {
+            right: 10px;
+            background: rgba(236, 72, 153, 0.88);
+            color: #fdf2f8;
+            border: 1px solid rgba(244, 114, 182, 0.65);
+        }
+
+        .active-mode {
+            background: #0284c7 !important;
+            color: #ffffff !important;
+        }
+
+        /* Modo Pantalla Completa para el Comparador */
+        .star-product-card:fullscreen {
+            border-radius: 0 !important;
+            padding: 16px !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            max-height: 100vh !important;
+            justify-content: space-between;
+        }
+        .star-product-card:fullscreen .star-split-frame {
+            height: calc(100vh - 120px) !important;
+            max-height: calc(100vh - 120px) !important;
+        }
+    </style>
+    <script>
+      // Anti-cache & Service Worker auto-purger to prevent loading old versions
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+          for (var reg of registrations) { reg.unregister(); }
+        });
+      }
+      if ('caches' in window) {
+        caches.keys().then(function(names) {
+          for (var name of names) { caches.delete(name); }
+        });
+      }
+    </script>
+</head>
+<body class="bg-slate-950 text-slate-100 antialiased selection:bg-cyan-500 selection:text-white">
+
+    <!-- ====================================================
+         LOADER: Se muestra mientras Tailwind CDN carga
+         Elimina la pantalla negra en primera visita
+    ==================================================== -->
+    <div id="page-loader">
+        <div class="loader-logo">
+            <div class="loader-icon">🔬</div>
+            <div class="loader-text">JC Path Lab</div>
+            <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+        </div>
+    </div>
+
+    <header class="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-xl border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2.5 text-xl sm:text-2xl font-black text-white group">
+                <span class="w-8 h-8 rounded-xl bg-gradient-to-tr from-cyan-600 to-emerald-500 flex items-center justify-center text-white shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+                    <i class="fas fa-microscope text-sm"></i>
+                </span>
+                <span class="font-['Outfit'] font-extrabold tracking-tight">JC <span class="text-cyan-400">PATH LAB</span></span>
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-6 text-sm font-medium">
+                <a href="index.html" class="text-cyan-400 font-bold border-b-2 border-cyan-400 pb-1">Inicio</a>
+                <a href="inmunohistoquimica.html" class="text-slate-300 hover:text-cyan-400 transition">Inmunohistoquímica</a>
+                <a href="patologia-digital.html" class="text-slate-300 hover:text-cyan-400 transition">Patología Digital</a>
+                <a href="practicas-microscopia/index.html" class="text-amber-300 hover:text-amber-200 transition flex items-center gap-1.5 font-bold"><i class="fas fa-microscope text-xs"></i> Prácticas UNMSM</a>
+                <a href="#visor-microscopio-360" class="text-slate-300 hover:text-cyan-400 transition">Visor 360°</a>
+                <a href="academica.html" class="text-slate-300 hover:text-cyan-400 transition">Área Académica</a>
+                <a href="contacto.html" class="text-slate-300 hover:text-cyan-400 transition">Sede & Contacto</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20coordinar%20el%20estudio%20de%20una%20biopsia" target="_blank" class="px-3.5 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-emerald-600/30 transition transform hover:-translate-y-0.5">
+                    <i class="fab fa-whatsapp text-sm"></i>
+                    <span>Contactar al Patólogo</span>
+                </a>
+                <button type="button" class="lg:hidden text-slate-300 hover:text-white p-2" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')" aria-label="Abrir Menú">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-nav" class="hidden lg:hidden bg-slate-900 border-b border-slate-800 px-6 py-4 space-y-3 text-sm">
+            <a href="index.html" class="block py-1 hover:text-cyan-400">Inicio</a>
+            <a href="practicas-microscopia/index.html" class="block py-1 text-amber-300 hover:text-amber-200 font-bold"><i class="fas fa-microscope mr-1.5"></i> Prácticas de Microscopía UNMSM</a>
+            <a href="inmunohistoquimica.html" class="block py-1 hover:text-cyan-400">Inmunohistoquímica (Biomarcadores)</a>
+            <a href="patologia-digital.html" class="block py-1 hover:text-cyan-400">Patología Digital (Lámina Interactiva)</a>
+            <a href="#visor-microscopio-360" class="block py-1 hover:text-cyan-400">Visor 360° (Interactivo)</a>
+            <a href="academica.html" class="block py-1 hover:text-cyan-400">Área Académica para Residentes</a>
+            <a href="contacto.html" class="block py-1 hover:text-cyan-400">Sede Central y Mapa</a>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 lg:py-5 space-y-12">
+        
+        <!-- PANTALLA 1: HERO VIEWPORT COMPLETO CON PRODUCTO ESTRELLA PROTAGÓNICO -->
+        <section class="space-y-4">
+            
+            <!-- Barra Superior del Hero: Acreditación y Llamados a la Acción Compactos -->
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-slate-900/60 p-4 sm:p-5 rounded-2xl border border-slate-800 backdrop-blur-xl">
+                <div class="space-y-1.5 max-w-2xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-slate-950 border border-cyan-500/30 text-xs font-semibold text-cyan-300">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        Laboratorio Especializado en Anatomía Patológica &amp; Patología Digital &bull; Dr. Josehp Castillo (CMP 56435)
+                    </div>
+                    <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight font-['Outfit']">
+                        Certeza diagnóstica con <span class="bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent">Morfometría Computacional e IA</span>
+                    </h1>
+                    <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                        Biopsias y piezas quirúrgicas con doble lectura patológica, entrega en <strong>4 días hábiles</strong> y detección de biomarcadores morfológicos de precisión.
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 shrink-0">
+                    <button type="button" onclick="document.getElementById('quickSearchModal').classList.remove('hidden'); document.getElementById('quickSearchModal').classList.add('flex');" class="btn-3d-tactile btn-3d-cyan px-4 py-2.5 text-xs sm:text-sm">
+                        <i class="fas fa-search text-xs"></i>
+                        <span>Consultar Mi Informe</span>
+                    </button>
+                    <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20coordinar%20la%20entrega%20de%20una%20muestra%20biopsia" target="_blank" class="btn-3d-tactile btn-3d-emerald px-4 py-2.5 text-xs sm:text-sm">
+                        <i class="fab fa-whatsapp text-sm"></i>
+                        <span>Coordinar Muestra</span>
+                    </a>
+                    <a href="contacto.html" class="btn-3d-tactile btn-3d-slate px-3.5 py-2.5 text-xs sm:text-sm">
+                        <i class="fas fa-map-marker-alt text-cyan-400"></i>
+                        <span>Sede</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- PRODUCTO ESTRELLA: COMPARADOR A TODO EL ANCHO DE LA PANTALLA CON PANEO Y ZOOM -->
+            <div class="star-product-card p-3 sm:p-4">
+                
+                <!-- Barra de Herramientas y Encabezado del Visor -->
+                <div class="flex flex-wrap items-center justify-between gap-3 mb-2.5 pb-2 border-b border-slate-800/80">
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse shadow-lg shadow-emerald-400/50"></span>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs sm:text-sm font-black tracking-wide uppercase text-white font-mono">PRODUCTO ESTRELLA: CARCINOMA ACINAR PROSTÁTICO</span>
+                                <span class="hidden md:inline px-2 py-0.5 rounded bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 font-mono text-[10px] font-bold">WSI 40X</span>
+                            </div>
+                            <span class="text-[11px] text-slate-400 hidden sm:block">Detección de mitosis celulares &bull; Mapeo espectral de grado de pleomorfismo nuclear</span>
+                        </div>
+                    </div>
+
+                    <!-- Controles Interactivos: Modos, Pan/Split, Zoom y Fullscreen -->
+                    <div class="flex flex-wrap items-center gap-2">
+                        
+                        <!-- Selector de Modo de Interacción (Split vs Mover) -->
+                        <div class="flex items-center bg-slate-900 p-0.5 rounded-lg border border-slate-700 text-[11px]">
+                            <button type="button" id="btnToolSplit" onclick="setToolMode('split')" class="px-2.5 py-1 rounded font-bold transition active-mode" title="Deslizar divisor para contrastar">
+                                <i class="fas fa-arrows-split-up-and-left rotate-90 text-[10px] mr-1"></i> Cortina
+                            </button>
+                            <button type="button" id="btnToolPan" onclick="setToolMode('pan')" class="px-2.5 py-1 rounded font-bold transition text-slate-400 hover:text-white" title="Arrastrar lámina con el ratón o dedo">
+                                <i class="fas fa-hand text-[10px] mr-1"></i> Mover
+                            </button>
+                        </div>
+
+                        <!-- Selector de Capas -->
+                        <div class="flex items-center bg-slate-900 p-0.5 rounded-lg border border-slate-700 text-[11px]">
+                            <button type="button" id="btnModeSplit" onclick="setComparatorMode('split')" class="px-2 py-1 rounded font-bold transition active-mode" title="Comparar ambas capas">
+                                Split
+                            </button>
+                            <button type="button" id="btnModeHE" onclick="setComparatorMode('he')" class="px-2 py-1 rounded font-bold transition text-slate-400 hover:text-white" title="Ver solo H&E">
+                                H&amp;E
+                            </button>
+                            <button type="button" id="btnModeIA" onclick="setComparatorMode('ia')" class="px-2 py-1 rounded font-bold transition text-slate-400 hover:text-white" title="Ver detección IA">
+                                IA Mitosis
+                            </button>
+                        </div>
+
+                        <!-- Botones de Aumento Digital -->
+                        <div class="flex items-center bg-slate-900 p-0.5 rounded-lg border border-slate-700 text-[11px]">
+                            <span class="text-[10px] text-slate-400 px-1.5 font-bold">Zoom:</span>
+                            <button type="button" onclick="setProstateZoom(1, this)" class="prostate-zoom-btn px-2 py-0.5 rounded bg-cyan-500 text-black font-bold font-mono text-[10px]">1x</button>
+                            <button type="button" onclick="setProstateZoom(1.5, this)" class="prostate-zoom-btn px-2 py-0.5 rounded bg-slate-800 text-slate-300 hover:text-white font-mono text-[10px]">2x</button>
+                            <button type="button" onclick="setProstateZoom(2.2, this)" class="prostate-zoom-btn px-2 py-0.5 rounded bg-slate-800 text-slate-300 hover:text-white font-mono text-[10px]">4x</button>
+                            <button type="button" onclick="setProstateZoom(3.2, this)" class="prostate-zoom-btn px-2 py-0.5 rounded bg-slate-800 text-slate-300 hover:text-white font-mono text-[10px]">10x</button>
+                            <button type="button" onclick="setProstateZoom(4.5, this)" class="prostate-zoom-btn px-2 py-0.5 rounded bg-slate-800 text-slate-300 hover:text-white font-mono text-[10px]">40x</button>
+                            <button type="button" onclick="resetPanAndZoom()" class="px-1.5 py-0.5 text-slate-400 hover:text-white ml-0.5" title="Centrar lámina"><i class="fas fa-crosshairs text-[10px]"></i></button>
+                        </div>
+
+                        <!-- Botón Pantalla Completa -->
+                        <button type="button" onclick="toggleFullscreenComparator()" class="p-1.5 px-2 rounded-lg bg-slate-900 border border-slate-700 text-cyan-300 hover:bg-slate-800 text-xs transition" title="Maximizar a Pantalla Completa">
+                            <i class="fas fa-expand text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Marco Interactivo Antes y Después (Con Paneo y Zoom Síncrono) -->
+                <div class="star-split-frame" id="starSplitFrame" title="Arrastra el divisor o activa 'Mover' para desplazarte por la lámina">
+                    
+                    <!-- Capa DESPUÉS (Fondo): Detección IA de Mitosis y Pleomorfismo en Carcinoma Acinar Prostático -->
+                    <div class="star-layer star-after">
+                        <img src="carcinoma_acinar_ia_mitosis_pleomorfismo.webp" alt="Detección IA de Mitosis y Pleomorfismo en Carcinoma Prostático" id="starImgAfter">
+                        <div class="star-badge star-badge-after">
+                            <span>✨ IA: MITOSIS &amp; PLEOMORFISMO (Gleason 4)</span>
+                        </div>
+                    </div>
+
+                    <!-- Capa ANTES (Recorte): Histología Óptica H&E Convencional -->
+                    <div class="star-layer star-before" id="starBeforeLayer">
+                        <img src="carcinoma_acinar_he.webp" alt="Histopatología H&E Óptica Estándar de Próstata" id="starImgBefore">
+                        <div class="star-badge star-badge-before">
+                            <span>🔬 H&amp;E ÓPTICO ESTÁNDAR</span>
+                        </div>
+                    </div>
+
+                    <!-- Divisor Central con Mango Arrastrable -->
+                    <div class="star-divider" id="starDivider">
+                        <div class="star-handle">
+                            <span>◀ H&amp;E</span>
+                            <span>|</span>
+                            <span>IA MITOSIS ▶</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HUD Médico Inferior con Datos Cuantitativos y Guía de Interacción -->
+                <div class="pt-2.5 flex flex-col md:flex-row md:items-center justify-between gap-2.5 text-xs">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="px-2.5 py-1 rounded-md bg-emerald-950/90 border border-emerald-500/40 text-emerald-300 font-bold font-mono text-xs">
+                            <i class="fas fa-microscope text-emerald-400 mr-1"></i> Gleason 4 &bull; Score Atipia: 0.96
+                        </span>
+                        <span class="px-2.5 py-1 rounded-md bg-pink-950/90 border border-pink-500/40 text-pink-300 font-bold font-mono text-xs">
+                            <i class="fas fa-crosshairs text-pink-400 mr-1"></i> 3 Mitosis Atípicas Segmentadas
+                        </span>
+                        <span class="text-slate-400 text-xs hidden lg:inline">
+                            Anisocariosis +184% &bull; Ratio N:C 0.82 &bull; Hotspots 01 y 02 mapeados
+                        </span>
+                    </div>
+
+                    <div class="flex items-center gap-3 text-cyan-300 text-xs font-semibold">
+                        <span class="hidden sm:inline text-slate-400 text-[11px]"><i class="fas fa-mouse mr-1"></i>Usa la rueda del ratón para Zoom</span>
+                        <div class="flex items-center gap-1.5 bg-cyan-950/60 px-2.5 py-1 rounded-lg border border-cyan-500/30">
+                            <i class="fas fa-hand-pointer text-cyan-400 animate-pulse"></i>
+                            <span id="starInteractionHint">Desliza la cortina central para contrastar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE MICROSCOPIO 360° EXPANDIDA (DESPLAZABLE) -->
+        <section class="space-y-6 pt-4" id="visor-microscopio-360">
+            <div id="microscope360Container" class="specular-slide rounded-3xl p-3 shadow-2xl relative overflow-hidden transition-all select-none cursor-grab" style="touch-action: pan-y;">
+                <!-- Imagen 360 interactiva -->
+                <img id="microscope360Img" src="microscopio_360/frame_00.webp" alt="Microscopio Óptico Digital 360°" class="w-full h-80 sm:h-96 object-contain bg-slate-950/80 rounded-2xl pointer-events-none select-none transition-opacity duration-75">
+                
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/25 to-transparent opacity-90 rounded-2xl pointer-events-none"></div>
+                
+                <!-- Píldora interactiva 360 flotante -->
+                <div class="absolute top-6 right-6 flex items-center gap-2 z-10">
+                    <span id="microscope360Angle" class="px-2.5 py-1 rounded-full bg-slate-900/90 border border-slate-700 text-cyan-300 text-xs font-mono font-bold shadow-lg">0°</span>
+                    <button type="button" id="microscope360Pill" class="px-3 py-1.5 rounded-full bg-cyan-950/90 border border-cyan-400 text-cyan-300 text-xs font-bold flex items-center gap-1.5 shadow-lg hover:bg-cyan-900 transition-colors cursor-pointer" title="Pausar / Reanudar Rotación">
+                        <i id="microscope360Icon" class="fas fa-arrows-rotate animate-spin" style="animation-duration: 4s;"></i>
+                        <span id="microscope360PillText">Girar 360°</span>
+                    </button>
+                </div>
+
+                <!-- Datos y llamada a la acción -->
+                <div class="absolute bottom-6 left-6 right-6 pointer-events-none">
+                    <span class="px-2.5 py-1 rounded-md bg-cyan-950/90 border border-cyan-500/50 text-[11px] font-bold text-cyan-300 uppercase tracking-wider">
+                        Oncopatología Quirúrgica &bull; Estación Óptica
+                    </span>
+                    <h2 class="text-lg font-bold text-white mt-1">Dr. Josehp Castillo Cuenca</h2>
+                    <p class="text-xs text-slate-300">Médico Especialista en Anatomía Patológica (CMP 56435)</p>
+                    <div class="mt-2.5 flex items-center gap-2 text-xs font-bold text-cyan-400 bg-slate-950/80 py-1.5 px-3 rounded-lg border border-cyan-500/30 w-fit backdrop-blur-sm">
+                        <i class="fas fa-hand-pointer text-cyan-300 animate-pulse"></i>
+                        <span>Arrastra con el dedo o mouse para girar 360°</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="space-y-6">
+            <div class="text-center max-w-2xl mx-auto">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-['Outfit']">Servicios y Tecnología Especializada</h2>
+                <p class="text-slate-400 text-sm mt-1">Selecciona el área de tu interés para conocer los detalles técnicos completos.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                
+                <a href="inmunohistoquimica.html" class="neuro-glass p-6 rounded-2xl hover:border-cyan-400 transition group block">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-950 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-1.5 group-hover:text-cyan-400 transition">Inmunohistoquímica</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Catálogo de anticuerpos: Ki-67, HER2, CK7/20, PD-L1 y vademécum de +60 marcadores.</p>
+                    <span class="inline-block mt-4 text-xs font-bold text-cyan-400">Ver Biomarcadores →</span>
+                </a>
+
+                <a href="patologia-digital.html" class="neuro-glass p-6 rounded-2xl hover:border-emerald-400 transition group block">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-950 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-1.5 group-hover:text-emerald-400 transition">Patología Digital</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Lámina histológica escaneada interactiva a 40x con paneo, zoom y medición micrométrica.</p>
+                    <span class="inline-block mt-4 text-xs font-bold text-emerald-400">Explorar Lámina WSI →</span>
+                </a>
+
+                <a href="#visor-microscopio-360" class="neuro-glass p-6 rounded-2xl hover:border-cyan-400 transition group block">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-950 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-arrows-rotate"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-1.5 group-hover:text-cyan-400 transition">Visor Microscopio 360°</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Rotación tridimensional interactiva de la estación óptica de patología con el dedo.</p>
+                    <span class="inline-block mt-4 text-xs font-bold text-cyan-400">Ver Aquí en 360° ↑</span>
+                </a>
+
+                <a href="academica.html" class="neuro-glass p-6 rounded-2xl hover:border-indigo-400 transition group block">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-950 border border-indigo-500/30 flex items-center justify-center text-indigo-400 text-xl mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-1.5 group-hover:text-indigo-400 transition">Área Académica</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">Atlas de dermatopatología, protocolos quirúrgicos CAP y seminarios para residentes.</p>
+                    <span class="inline-block mt-4 text-xs font-bold text-indigo-400">Ver Recursos Docentes →</span>
+                </a>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-950 border-t border-slate-800/80 py-8 text-center text-xs text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 space-y-2">
+            <div class="flex items-center justify-center gap-2 text-white font-extrabold text-base">
+                <span class="text-cyan-400">JC</span> PATH LAB
+            </div>
+            <p>Laboratorio Especializado en Anatomía Patológica, Oncopatología y Biopsias.</p>
+            <p>© 2026 JC PATH LAB. Dirigido por el Dr. Josehp Castillo (CMP 56435). Sede Central: Puente Piedra, Lima - Perú.</p>
+            <p class="text-[11px] text-slate-500">Privacidad Médica: La entrega de resultados diagnósticos se realiza exclusivamente de manera confidencial y directa.</p>
+        </div>
+    </footer>
+
+    <!-- Modal Interactivo: Consulta Rápida de Informe -->
+    <div id="quickSearchModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden items-center justify-center p-4">
+        <div class="neuro-glass rounded-2xl max-w-md w-full p-6 space-y-4 border border-cyan-500/40 shadow-2xl relative">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div class="flex items-center gap-2 text-white font-bold text-base font-['Outfit']">
+                    <span class="w-7 h-7 rounded-lg bg-cyan-950 border border-cyan-500/40 flex items-center justify-center text-cyan-400 text-xs">
+                        <i class="fas fa-search"></i>
+                    </span>
+                    <span>Consultar Estado de Muestra</span>
+                </div>
+                <button type="button" onclick="document.getElementById('quickSearchModal').classList.add('hidden'); document.getElementById('quickSearchModal').classList.remove('flex');" class="text-slate-400 hover:text-white p-1 text-lg" aria-label="Cerrar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <p class="text-xs text-slate-300">
+                Ingrese el <strong>Código de Atención</strong> (ej. <code class="text-cyan-300 font-mono">26Q-261</code>) o el <strong>DNI del Paciente</strong> para conocer el estado histopatológico en tiempo real.
+            </p>
+            <div class="space-y-2">
+                <label for="inputQuickSearchCod" class="block text-xs font-semibold text-slate-300">Código o DNI:</label>
+                <input type="text" id="inputQuickSearchCod" placeholder="Ej: 26Q-261 o 70889234" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white font-mono text-sm uppercase focus:outline-none focus:border-cyan-400 transition" autocomplete="off">
+            </div>
+            <div class="flex gap-2 pt-2">
+                <button type="button" onclick="handleQuickSearchRedirect()" class="flex-1 py-2.5 rounded-xl btn-3d-tactile btn-3d-cyan text-xs">
+                    <i class="fas fa-file-medical"></i>
+                    <span>Verificar Estado</span>
+                </button>
+                <button type="button" onclick="document.getElementById('quickSearchModal').classList.add('hidden'); document.getElementById('quickSearchModal').classList.remove('flex');" class="px-4 py-2.5 rounded-xl btn-3d-tactile btn-3d-slate text-xs">
+                    Cancelar
+                </button>
+            </div>
+            <div class="pt-2 border-t border-slate-800/80 text-[11px] text-slate-400 text-center flex items-center justify-center gap-1.5">
+                <i class="fas fa-lock text-emerald-400"></i>
+                <span>Consulta segura bajo estricta confidencialidad médica</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón Flotante Desktop de WhatsApp -->
+    <div class="desktop-wa-fab fixed bottom-6 right-6 z-40">
+        <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20hacer%20una%20consulta%20m%C3%A9dica" target="_blank" class="w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white flex items-center justify-center text-2xl shadow-2xl shadow-emerald-500/50 transition transform hover:scale-110" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Barra de Navegación Ergonómica Móvil 'Thumb Zone' (Boceto 3) -->
+    <nav class="thumb-nav" aria-label="Navegación Móvil Principal">
+        <a href="index.html" class="flex flex-col items-center justify-center flex-1 py-1 text-cyan-400 font-semibold text-[10px]">
+            <i class="fas fa-house text-base mb-0.5"></i>
+            <span>Inicio</span>
+        </a>
+        <a href="patologia-digital.html" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-400 hover:text-cyan-400 transition text-[10px]">
+            <i class="fas fa-desktop text-base mb-0.5"></i>
+            <span>Láminas WSI</span>
+        </a>
+        <button type="button" onclick="document.getElementById('quickSearchModal').classList.remove('hidden'); document.getElementById('quickSearchModal').classList.add('flex');" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-400 hover:text-cyan-400 transition text-[10px]">
+            <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-cyan-600 to-emerald-500 -mt-5 flex items-center justify-center text-white shadow-lg shadow-cyan-500/40 border-2 border-slate-950">
+                <i class="fas fa-search text-sm"></i>
+            </div>
+            <span class="mt-0.5 text-white font-bold">Consultar</span>
+        </button>
+        <a href="#visor-microscopio-360" class="flex flex-col items-center justify-center flex-1 py-1 text-slate-400 hover:text-cyan-400 transition text-[10px]">
+            <i class="fas fa-arrows-rotate text-base mb-0.5"></i>
+            <span>Visor 360°</span>
+        </a>
+        <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20hacer%20una%20consulta%20m%C3%A9dica" target="_blank" class="flex flex-col items-center justify-center flex-1 py-1 text-emerald-400 font-semibold text-[10px]">
+            <i class="fab fa-whatsapp text-base mb-0.5"></i>
+            <span>WhatsApp</span>
+        </a>
+    </nav>
+
+    <!-- Visor 360° Interactivo Integrado en la Misma Página -->
+    <script>
+    (function initInline360Viewer() {
+        const totalFrames = 36;
+        const framePath = (idx) => `microscopio_360/frame_${String(idx).padStart(2, '0')}.webp`;
+        
+        // Precarga de todos los 36 fotogramas en segundo plano
+        const cachedFrames = [];
+        for (let i = 0; i < totalFrames; i++) {
+            const img = new Image();
+            img.src = framePath(i);
+            cachedFrames.push(img);
+        }
+
+        const viewerImg = document.getElementById('microscope360Img');
+        const container = document.getElementById('microscope360Container');
+        const angleBadge = document.getElementById('microscope360Angle');
+        const pillBtn = document.getElementById('microscope360Pill');
+        const pillIcon = document.getElementById('microscope360Icon');
+        const pillText = document.getElementById('microscope360PillText');
+
+        if (!viewerImg || !container) return;
+
+        let currentFrame = 0;
+        let isDragging = false;
+        let startX = 0;
+        let startFrame = 0;
+        let autoRotate = true;
+        let autoRotateInterval = null;
+        let resumeTimer = null;
+
+        function setFrame(idx) {
+            currentFrame = ((idx % totalFrames) + totalFrames) % totalFrames;
+            viewerImg.src = framePath(currentFrame);
+            const deg = Math.round((currentFrame / totalFrames) * 360);
+            if (angleBadge) {
+                angleBadge.textContent = `${deg}°`;
+            }
+        }
+
+        function startAutoRotate() {
+            if (autoRotateInterval) return;
+            autoRotate = true;
+            if (pillIcon) pillIcon.classList.add('animate-spin');
+            if (pillText) pillText.textContent = 'Pausar';
+            autoRotateInterval = setInterval(() => {
+                setFrame(currentFrame + 1);
+            }, 100);
+        }
+
+        function stopAutoRotate() {
+            autoRotate = false;
+            if (autoRotateInterval) {
+                clearInterval(autoRotateInterval);
+                autoRotateInterval = null;
+            }
+            if (pillIcon) pillIcon.classList.remove('animate-spin');
+            if (pillText) pillText.textContent = 'Girar 360°';
+            if (resumeTimer) clearTimeout(resumeTimer);
+        }
+
+        function scheduleAutoResume() {
+            if (resumeTimer) clearTimeout(resumeTimer);
+            resumeTimer = setTimeout(() => {
+                startAutoRotate();
+            }, 3500);
+        }
+
+        // Eventos táctiles y mouse unificados (Pointer Events)
+        container.addEventListener('pointerdown', (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            startFrame = currentFrame;
+            try { container.setPointerCapture(e.pointerId); } catch(err) {}
+            container.classList.remove('cursor-grab');
+            container.classList.add('cursor-grabbing');
+            stopAutoRotate();
+        });
+
+        container.addEventListener('pointermove', (e) => {
+            if (!isDragging) return;
+            const deltaX = e.clientX - startX;
+            // Sensibilidad: cada 9 píxeles de arrastre avanza 1 fotograma
+            const frameOffset = Math.floor(-deltaX / 9);
+            setFrame(startFrame + frameOffset);
+        });
+
+        function endPointerDrag(e) {
+            if (!isDragging) return;
+            isDragging = false;
+            container.classList.remove('cursor-grabbing');
+            container.classList.add('cursor-grab');
+            try { container.releasePointerCapture(e.pointerId); } catch(err) {}
+            scheduleAutoResume();
+        }
+
+        container.addEventListener('pointerup', endPointerDrag);
+        container.addEventListener('pointercancel', endPointerDrag);
+
+        // Control del botón de la píldora
+        if (pillBtn) {
+            pillBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (autoRotate) {
+                    stopAutoRotate();
+                } else {
+                    startAutoRotate();
+                }
+            });
+        }
+
+        // Iniciar auto-rotación suave después de 1 segundo
+        setTimeout(startAutoRotate, 1000);
+    })();
+
+    // Lógica de Redirección Interactiva para Consulta Rápida
+    function handleQuickSearchRedirect() {
+        const input = document.getElementById('inputQuickSearchCod');
+        if (!input) return;
+        const val = input.value.trim();
+        if (!val) {
+            input.focus();
+            input.classList.add('border-red-500');
+            setTimeout(() => input.classList.remove('border-red-500'), 1500);
+            return;
+        }
+        // Redirige al portal de reportes o visor móvil con el parámetro cod
+        const targetUrl = `https://jcastilloc2920.github.io/ARCHIVO-DE-REPORTES/imprimir.html?cod=${encodeURIComponent(val)}`;
+        window.open(targetUrl, '_blank');
+    }
+
+    // Permitir enviar con Enter
+    document.addEventListener('DOMContentLoaded', () => {
+        const inp = document.getElementById('inputQuickSearchCod');
+        if (inp) {
+            inp.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    handleQuickSearchRedirect();
+                }
+            });
+        }
+    });
+    </script>
+
+    <!-- CONTROLADOR INTERACTIVO DEL COMPARADOR DE PRODUCTO ESTRELLA: CARCINOMA ACINAR PROSTÁTICO -->
+    <script>
+    (function() {
+        const card = document.querySelector('.star-product-card');
+        const frame = document.getElementById('starSplitFrame');
+        const beforeLayer = document.getElementById('starBeforeLayer');
+        const divider = document.getElementById('starDivider');
+        const imgBefore = document.getElementById('starImgBefore');
+        const imgAfter = document.getElementById('starImgAfter');
+        const btnSplit = document.getElementById('btnModeSplit');
+        const btnHE = document.getElementById('btnModeHE');
+        const btnIA = document.getElementById('btnModeIA');
+        const btnToolSplit = document.getElementById('btnToolSplit');
+        const btnToolPan = document.getElementById('btnToolPan');
+        const interactionHint = document.getElementById('starInteractionHint');
+
+        if (!frame || !beforeLayer || !divider) return;
+
+        let currentSplitPercent = 50;
+        let isDraggingSplit = false;
+        let isDraggingPan = false;
+        let currentMode = 'split'; // 'split', 'he', 'ia'
+        let currentTool = 'split'; // 'split', 'pan'
+        
+        // Paneo y Zoom síncrono
+        let scale = 1.0;
+        let panX = 0;
+        let panY = 0;
+        let panStartX = 0;
+        let panStartY = 0;
+
+        function applyTransform() {
+            // Limitar el paneo según el zoom para que no se pierda la lámina
+            const maxPan = (scale - 1) * 350;
+            if (scale <= 1) {
+                panX = 0;
+                panY = 0;
+            } else {
+                panX = Math.max(-maxPan, Math.min(maxPan, panX));
+                panY = Math.max(-maxPan, Math.min(maxPan, panY));
+            }
+            const transformVal = `scale(${scale}) translate(${panX / scale}px, ${panY / scale}px)`;
+            if (imgBefore) imgBefore.style.transform = transformVal;
+            if (imgAfter) imgAfter.style.transform = transformVal;
+        }
+
+        function updateSplit(percent) {
+            currentSplitPercent = Math.max(0, Math.min(100, percent));
+            beforeLayer.style.width = currentSplitPercent + '%';
+            divider.style.left = currentSplitPercent + '%';
+        }
+
+        // Inicializar al 50%
+        updateSplit(50);
+
+        // Herramientas: Cortina Split vs Mover Pan
+        window.setToolMode = function(tool) {
+            currentTool = tool;
+            if (btnToolSplit && btnToolPan) {
+                if (tool === 'split') {
+                    btnToolSplit.classList.add('active-mode');
+                    btnToolSplit.classList.remove('text-slate-400');
+                    btnToolPan.classList.remove('active-mode');
+                    btnToolPan.classList.add('text-slate-400');
+                    frame.classList.remove('is-panning');
+                    if (interactionHint) interactionHint.textContent = 'Desliza la cortina central para contrastar';
+                } else {
+                    btnToolPan.classList.add('active-mode');
+                    btnToolPan.classList.remove('text-slate-400');
+                    btnToolSplit.classList.remove('active-mode');
+                    btnToolSplit.classList.add('text-slate-400');
+                    frame.classList.add('is-panning');
+                    if (interactionHint) interactionHint.textContent = 'Arrastra con el ratón o dedo para explorar la lámina';
+                }
+            }
+        };
+
+        // Eventos Unificados Pointer para Split y Paneo
+        frame.addEventListener('pointerdown', (e) => {
+            const rect = frame.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const dividerX = (currentSplitPercent / 100) * rect.width;
+
+            // Si el usuario toca cerca del divisor (±30px) o estamos en modo split forzado
+            if (currentTool === 'split' || Math.abs(clickX - dividerX) <= 30) {
+                if (currentMode !== 'split') {
+                    setComparatorMode('split');
+                }
+                isDraggingSplit = true;
+                isDraggingPan = false;
+                try { frame.setPointerCapture(e.pointerId); } catch(err) {}
+                const pct = (clickX / rect.width) * 100;
+                updateSplit(pct);
+            } else {
+                // Modo Mover / Paneo
+                isDraggingPan = true;
+                isDraggingSplit = false;
+                frame.classList.add('is-dragging-pan');
+                panStartX = e.clientX - panX;
+                panStartY = e.clientY - panY;
+                try { frame.setPointerCapture(e.pointerId); } catch(err) {}
+            }
+        });
+
+        frame.addEventListener('pointermove', (e) => {
+            if (isDraggingSplit) {
+                const rect = frame.getBoundingClientRect();
+                if (rect.width <= 0) return;
+                const x = e.clientX - rect.left;
+                const pct = (x / rect.width) * 100;
+                updateSplit(pct);
+            } else if (isDraggingPan) {
+                panX = e.clientX - panStartX;
+                panY = e.clientY - panStartY;
+                applyTransform();
+            }
+        });
+
+        function endPointerDrag(e) {
+            if (isDraggingSplit) {
+                isDraggingSplit = false;
+                try { frame.releasePointerCapture(e.pointerId); } catch(err) {}
+            }
+            if (isDraggingPan) {
+                isDraggingPan = false;
+                frame.classList.remove('is-dragging-pan');
+                try { frame.releasePointerCapture(e.pointerId); } catch(err) {}
+            }
+        }
+
+        frame.addEventListener('pointerup', endPointerDrag);
+        frame.addEventListener('pointercancel', endPointerDrag);
+
+        // Zoom con Rueda del Ratón
+        frame.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const delta = e.deltaY > 0 ? -0.2 : 0.2;
+            const newScale = Math.max(1.0, Math.min(5.0, scale + delta));
+            if (newScale !== scale) {
+                scale = newScale;
+                applyTransform();
+                // Si hace zoom in automáticamente habilitar herramienta mover si no estaba
+                if (scale > 1.2 && currentTool === 'split') {
+                    // Mantener sugerencia amigable
+                }
+            }
+        }, { passive: false });
+
+        // Modos: Split, Sólo H&E, Sólo IA
+        window.setComparatorMode = function(mode) {
+            currentMode = mode;
+            [btnSplit, btnHE, btnIA].forEach(btn => {
+                if (btn) {
+                    btn.classList.remove('active-mode');
+                    btn.classList.add('text-slate-400');
+                }
+            });
+
+            if (mode === 'split') {
+                if (btnSplit) {
+                    btnSplit.classList.add('active-mode');
+                    btnSplit.classList.remove('text-slate-400');
+                }
+                divider.style.display = 'block';
+                updateSplit(50);
+            } else if (mode === 'he') {
+                if (btnHE) {
+                    btnHE.classList.add('active-mode');
+                    btnHE.classList.remove('text-slate-400');
+                }
+                divider.style.display = 'none';
+                updateSplit(100);
+            } else if (mode === 'ia') {
+                if (btnIA) {
+                    btnIA.classList.add('active-mode');
+                    btnIA.classList.remove('text-slate-400');
+                }
+                divider.style.display = 'none';
+                updateSplit(0);
+            }
+        };
+
+        // Zoom Digital en tiempo real (1x, 2x, 4x, 10x, 40x)
+        window.setProstateZoom = function(newScale, btn) {
+            scale = newScale;
+            if (scale === 1.0) {
+                panX = 0;
+                panY = 0;
+            }
+            applyTransform();
+
+            document.querySelectorAll('.prostate-zoom-btn').forEach(b => {
+                b.classList.remove('bg-cyan-500', 'text-black');
+                b.classList.add('bg-slate-800', 'text-slate-300');
+            });
+            if (btn) {
+                btn.classList.remove('bg-slate-800', 'text-slate-300');
+                btn.classList.add('bg-cyan-500', 'text-black');
+            }
+            if (scale > 1.0 && currentTool === 'split') {
+                // Notificar que se puede mover
+                if (interactionHint) interactionHint.textContent = 'Zoom activo: usa "Mover" o arrastra para explorar';
+            }
+        };
+
+        // Resetear Paneo y Zoom al estado inicial
+        window.resetPanAndZoom = function() {
+            scale = 1.0;
+            panX = 0;
+            panY = 0;
+            applyTransform();
+            const firstZoomBtn = document.querySelector('.prostate-zoom-btn');
+            if (firstZoomBtn) {
+                document.querySelectorAll('.prostate-zoom-btn').forEach(b => {
+                    b.classList.remove('bg-cyan-500', 'text-black');
+                    b.classList.add('bg-slate-800', 'text-slate-300');
+                });
+                firstZoomBtn.classList.add('bg-cyan-500', 'text-black');
+            }
+        };
+
+        // Maximizar a Pantalla Completa
+        window.toggleFullscreenComparator = function() {
+            if (!document.fullscreenElement) {
+                if (card && card.requestFullscreen) {
+                    card.requestFullscreen();
+                } else if (card && card.webkitRequestFullscreen) {
+                    card.webkitRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        };
+    })();
+    </script>
+
+    <!-- FIX: Ocultar loader cuando la pagina este lista -->
+    <script>
+        (function() {
+            function hideLoader() {
+                var loader = document.getElementById('page-loader');
+                if (loader) {
+                    loader.classList.add('hidden');
+                    setTimeout(function() {
+                        if (loader.parentNode) loader.parentNode.removeChild(loader);
+                    }, 600);
+                }
+            }
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', hideLoader);
+            } else {
+                hideLoader();
+            }
+            // Fallback: ocultar a los 4 segundos sin importar que
+            setTimeout(hideLoader, 4000);
+        })();
+    </script>
+</body>
+</html>
