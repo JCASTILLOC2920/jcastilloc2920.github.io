@@ -165,6 +165,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--brsubt);padding:40
   .phone-mockup-frame{max-width:320px;}
 }
 </style>
+  <link rel="stylesheet" href="cortana_chat.css">
 </head>
 <body>
 <canvas id="cv"></canvas>
@@ -264,13 +265,13 @@ footer{position:relative;z-index:1;border-top:1px solid var(--brsubt);padding:40
 
           <div class="pcard-mock">
             <span class="pbadge">Listo para Imprimir</span>
-            <div class="pname">Avalos Valenzuela, Carlos A.</div>
-            <span style="font-size:.68rem;color:#94a3b8">(70 años)</span>
+            <div class="pname">Guevara Yaya, Carmen Rosa</div>
+            <span style="font-size:.68rem;color:#94a3b8">(52 años • F)</span>
             <div>
-              <span class="ppill">Enucleación Prost...</span>
-              <span class="ppill" style="background:#1e293b;color:#cbd5e1">ID: 26Q-281</span>
+              <span class="ppill">Biopsia de Cérvix / Pólipo Endocervical</span>
+              <span class="ppill" style="background:#1e293b;color:#cbd5e1">ID: 26Q-378</span>
             </div>
-            <div style="font-size:.66rem;color:#94a3b8;margin-bottom:6px">Dr. Flores Sierra, Bryan • Clínica Carrión</div>
+            <div style="font-size:.66rem;color:#94a3b8;margin-bottom:6px">Dr. Juan Jesús Marreros Lloclla • Clínica de la Mujer</div>
             <div class="pbtns">
               <a href="app.html" target="_blank" class="pb-ver" style="text-decoration:none"><i class="fa-solid fa-file-pdf"></i> Ver Informe</a>
               <a href="app.html" target="_blank" class="pb-360" style="text-decoration:none"><i class="fa-solid fa-arrows-rotate"></i> 360°</a>
@@ -279,11 +280,11 @@ footer{position:relative;z-index:1;border-top:1px solid var(--brsubt);padding:40
 
           <div class="pcard-mock">
             <span class="pbadge">Listo para Imprimir</span>
-            <div class="pname">Quispe Ticllasuca, Oswaldo</div>
-            <span style="font-size:.68rem;color:#94a3b8">(82 años)</span>
+            <div class="pname">Flores Olazabal, Luis Rey</div>
+            <span style="font-size:.68rem;color:#94a3b8">(63 años • M)</span>
             <div>
-              <span class="ppill">Morcelado de Prós...</span>
-              <span class="ppill" style="background:#1e293b;color:#cbd5e1">ID: 26Q-280</span>
+              <span class="ppill">Próstata (Morcelado Prostático)</span>
+              <span class="ppill" style="background:#1e293b;color:#cbd5e1">ID: 26Q-351</span>
             </div>
             <div style="font-size:.66rem;color:#94a3b8;margin-bottom:6px">Dr. Flores Sierra, Bryan • Clínica Carrión</div>
           </div>
@@ -555,12 +556,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--brsubt);padding:40
   <span style="font-size:.78rem;color:#475569">&copy; 2026 JC PATH LAB. Infraestructura 100% Soberana, Privada y Cero Créditos.</span></p>
 </footer>
 
-<!-- BOTÓN FLOTANTE CORTANA -->
-<div class="fab">
-  <button class="fabb" onclick="window.open('app.html','_blank')" title="Abrir Aplicativo Móvil Quirúrgico">
-    <i class="fa-solid fa-mobile-screen" style="font-size:1.6rem;color:#fff"></i>
-  </button>
-</div>
+<!-- CORTANA ASISTENTE VIRTUAL SOBERANO (ENTIDAD #21) -->
 
 <script>
 (function(){
@@ -577,5 +573,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--brsubt);padding:40
 })();
 window.addEventListener('scroll',function(){document.getElementById('hdr').classList.toggle('on',window.scrollY>50);},{passive:true});
 </script>
+  <!-- Asistente Virtual Cortana JC PATH LAB • n8n & Fallback Soberano -->
+  <script src="cortana_chat.js"></script>
 </body>
 </html>
