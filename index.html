@@ -3,408 +3,579 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JC PATH LAB | Anatomia Patologica con IA - Dr. Jose Castillo</title>
-<meta name="description" content="JC PATH LAB - Primer microscopio digital con Inteligencia Artificial del Peru. Anatomia Patologica, Uropatologia, IHQ y Patologia Digital WSI. Director: Dr. Jose Castillo Cuenca.">
+<title>JC PATH LAB | Anatomía Patológica con IA & Uropatología - Dr. José Castillo</title>
+<meta name="description" content="JC PATH LAB - Primer microscopio digital con IA del Perú. Anatomía Patológica, Uropatología, Servidor WSI propio, Morfometría computacional y Despacho quirúrgico móvil. Director: Dr. Joseph C. Castillo Cuenca.">
 <link rel="icon" href="favicon.png" type="image/png">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <style>
-:root{--bg:#04080f;--bg2:#070d1b;--bg3:rgba(10,22,45,0.85);--brglow:rgba(0,210,255,0.2);--brsubt:rgba(45,114,210,0.15);--cy:#00d2ff;--bl:#2563eb;--vi:#6366f1;--em:#10b981;--gd:#f59e0b;--tx:#f1f5f9;--txs:#94a3b8;--txd:#475569;}
+:root{
+  --bg:#04080f;--bg2:#070d1b;--bg3:rgba(10,22,45,0.85);--bg-card:#0b1329;
+  --brglow:rgba(0,210,255,0.25);--brsubt:rgba(45,114,210,0.18);
+  --cy:#00d2ff;--bl:#2563eb;--vi:#6366f1;--em:#10b981;--gd:#f59e0b;
+  --tx:#f1f5f9;--txs:#94a3b8;--txd:#475569;
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--tx);font-family:'Inter',-apple-system,sans-serif;line-height:1.6;overflow-x:hidden;}
-::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--bg2);}::-webkit-scrollbar-thumb{background:var(--cy);border-radius:3px;}
+body{background:var(--bg);color:var(--tx);font-family:'Outfit',-apple-system,sans-serif;line-height:1.6;overflow-x:hidden;}
+::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--bg2);}::-webkit-scrollbar-thumb{background:var(--cy);border-radius:3px;}
+
 #cv{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.38;}
 .orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;}
-.o1{width:520px;height:520px;background:radial-gradient(circle,rgba(0,210,255,0.1),transparent 70%);top:0;left:-10%;}
-.o2{width:420px;height:420px;background:radial-gradient(circle,rgba(99,102,241,0.09),transparent 70%);top:30%;right:0;}
-.o3{width:350px;height:350px;background:radial-gradient(circle,rgba(16,185,129,0.07),transparent 70%);bottom:5%;left:25%;}
+.o1{width:550px;height:550px;background:radial-gradient(circle,rgba(0,210,255,0.12),transparent 70%);top:0;left:-10%;}
+.o2{width:460px;height:460px;background:radial-gradient(circle,rgba(99,102,241,0.1),transparent 70%);top:30%;right:0;}
+.o3{width:380px;height:380px;background:radial-gradient(circle,rgba(16,185,129,0.08),transparent 70%);bottom:5%;left:25%;}
 
 /* NAV */
 header{position:fixed;top:0;width:100%;z-index:1000;transition:all .4s;}
-header.on{background:rgba(4,8,15,0.94);backdrop-filter:blur(24px);border-bottom:1px solid var(--brglow);box-shadow:0 4px 30px rgba(0,0,0,0.5);}
-.nav{max-width:1300px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:15px 28px;}
-.logo{display:flex;align-items:center;gap:11px;text-decoration:none;}
-.logo img{height:40px;filter:drop-shadow(0 0 8px rgba(0,210,255,0.5));}
-.logo-t{font-weight:900;font-size:1.25rem;background:linear-gradient(135deg,#00d2ff,#6366f1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.nl{display:flex;align-items:center;gap:28px;}
-.nl a{color:var(--txs);text-decoration:none;font-size:.88rem;font-weight:500;transition:color .2s;position:relative;}
-.nl a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--cy);transition:width .3s;}
+header.on{background:rgba(4,8,15,0.96);backdrop-filter:blur(24px);border-bottom:1px solid var(--brglow);box-shadow:0 4px 30px rgba(0,0,0,0.6);}
+.nav{max-width:1340px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 28px;}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo-t{font-weight:900;font-size:1.3rem;background:linear-gradient(135deg,#ffffff 20%,#00d2ff 80%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nl{display:flex;align-items:center;gap:22px;}
+.nl a{color:var(--txs);text-decoration:none;font-size:.86rem;font-weight:600;transition:color .2s;position:relative;}
+.nl a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--cy);transition:width .3s;}
 .nl a:hover{color:var(--cy);}.nl a:hover::after{width:100%;}
-.bwsp{background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:9px 20px;border-radius:50px;text-decoration:none;font-size:.82rem;font-weight:700;box-shadow:0 4px 20px rgba(16,185,129,.4);transition:transform .2s;}
+.btn-app-nav{background:linear-gradient(135deg,#0284c7,#2563eb);color:#fff;padding:8px 16px;border-radius:12px;text-decoration:none;font-size:.82rem;font-weight:700;display:inline-flex;align-items:center;gap:6px;box-shadow:0 4px 14px rgba(37,99,235,.4);transition:transform .2s;}
+.btn-app-nav:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,210,255,.5);}
+.bwsp{background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:8px 18px;border-radius:50px;text-decoration:none;font-size:.82rem;font-weight:700;box-shadow:0 4px 20px rgba(16,185,129,.4);transition:transform .2s;display:inline-flex;align-items:center;gap:6px;}
 .bwsp:hover{transform:translateY(-2px);}
 
 /* HERO */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 28px 80px;z-index:1;}
-.hero-in{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;width:100%;}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(0,210,255,.07);border:1px solid rgba(0,210,255,.25);padding:6px 16px;border-radius:50px;font-size:.73rem;color:var(--cy);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:22px;}
+.hero{position:relative;min-height:96vh;display:flex;align-items:center;padding:115px 28px 70px;z-index:1;}
+.hero-in{max-width:1340px;margin:0 auto;display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:center;width:100%;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(0,210,255,.08);border:1px solid rgba(0,210,255,.3);padding:6px 16px;border-radius:50px;font-size:.73rem;color:var(--cy);font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:20px;}
 .pdot{width:7px;height:7px;border-radius:50%;background:var(--cy);animation:pr 1.8s ease-out infinite;}
-@keyframes pr{0%{box-shadow:0 0 0 0 rgba(0,210,255,.6);}70%{box-shadow:0 0 0 8px rgba(0,210,255,0);}100%{box-shadow:0 0 0 0 rgba(0,210,255,0);}}
-.htitle{font-size:clamp(2.4rem,5vw,3.9rem);font-weight:900;line-height:1.08;letter-spacing:-2px;margin-bottom:22px;}
-.shim{background:linear-gradient(90deg,#00d2ff,#6366f1,#00d2ff,#10b981);background-size:300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:sh 4s linear infinite;}
+@keyframes pr{0%{box-shadow:0 0 0 0 rgba(0,210,255,.7);}70%{box-shadow:0 0 0 9px rgba(0,210,255,0);}100%{box-shadow:0 0 0 0 rgba(0,210,255,0);}}
+.htitle{font-size:clamp(2.3rem,4.8vw,3.8rem);font-weight:900;line-height:1.08;letter-spacing:-1.8px;margin-bottom:22px;}
+.shim{background:linear-gradient(90deg,#00d2ff,#6366f1,#00d2ff,#10b981);background-size:300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:sh 4.5s linear infinite;}
 @keyframes sh{from{background-position:0%;}to{background-position:300%;}}
-.hdesc{font-size:1.08rem;color:var(--txs);max-width:570px;margin-bottom:38px;line-height:1.75;}
-.hbtns{display:flex;gap:15px;flex-wrap:wrap;}
-.bp{background:linear-gradient(135deg,#2563eb,#00d2ff);color:#fff;padding:14px 28px;border-radius:14px;font-weight:700;font-size:.98rem;text-decoration:none;display:inline-flex;align-items:center;gap:9px;box-shadow:0 8px 30px rgba(37,99,235,.45);transition:transform .2s;border:none;cursor:pointer;}
+.hdesc{font-size:1.06rem;color:var(--txs);max-width:580px;margin-bottom:34px;line-height:1.75;}
+.hbtns{display:flex;gap:14px;flex-wrap:wrap;}
+.bp{background:linear-gradient(135deg,#0284c7,#00d2ff);color:#030712;padding:13px 26px;border-radius:14px;font-weight:800;font-size:.95rem;text-decoration:none;display:inline-flex;align-items:center;gap:8px;box-shadow:0 8px 30px rgba(0,210,255,.4);transition:transform .2s;}
 .bp:hover{transform:translateY(-3px);}
-.bg2{background:rgba(255,255,255,.04);border:1px solid var(--brglow);color:var(--tx);padding:14px 28px;border-radius:14px;font-weight:600;font-size:.98rem;text-decoration:none;display:inline-flex;align-items:center;gap:9px;cursor:pointer;transition:background .25s;}
-.bg2:hover{background:rgba(0,210,255,.06);}
+.bg2{background:rgba(255,255,255,.05);border:1px solid var(--brglow);color:var(--tx);padding:13px 24px;border-radius:14px;font-weight:700;font-size:.95rem;text-decoration:none;display:inline-flex;align-items:center;gap:8px;cursor:pointer;transition:background .25s;}
+.bg2:hover{background:rgba(0,210,255,.1);}
 
 /* SCAN CARD */
-.scan-card{background:var(--bg3);border:1px solid var(--brglow);border-radius:24px;padding:22px;box-shadow:0 24px 64px rgba(0,0,0,.6),0 0 40px rgba(0,210,255,.1);backdrop-filter:blur(20px);animation:fl 5s ease-in-out infinite;position:relative;z-index:2;}
-@keyframes fl{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
-.slabel{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
+.scan-card{background:var(--bg3);border:1px solid var(--brglow);border-radius:26px;padding:22px;box-shadow:0 24px 64px rgba(0,0,0,.65),0 0 45px rgba(0,210,255,.12);backdrop-filter:blur(20px);animation:fl 5s ease-in-out infinite;position:relative;z-index:2;}
+@keyframes fl{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+.slabel{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
 .slabel span{font-size:.7rem;font-weight:700;color:var(--cy);text-transform:uppercase;letter-spacing:1px;font-family:'JetBrains Mono',monospace;}
-.sim-wrap{position:relative;border-radius:14px;overflow:hidden;}
-.sim-wrap img{width:100%;height:215px;object-fit:cover;border-radius:14px;display:block;border:1px solid rgba(255,255,255,.07);}
-.ai-tag{position:absolute;top:10px;left:10px;background:rgba(0,210,255,.12);border:1px solid var(--cy);border-radius:8px;padding:4px 10px;font-size:.68rem;font-weight:700;color:var(--cy);font-family:'JetBrains Mono',monospace;animation:bb 2s ease-in-out infinite;}
-@keyframes bb{0%,100%{border-color:var(--cy);}50%{border-color:rgba(0,210,255,.25);}}
-.scanline{position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(0,210,255,.7),transparent);animation:sc 3s ease-in-out infinite;}
+.sim-wrap{position:relative;border-radius:16px;overflow:hidden;}
+.sim-wrap img{width:100%;height:220px;object-fit:cover;border-radius:16px;display:block;border:1px solid rgba(255,255,255,.08);}
+.ai-tag{position:absolute;top:10px;left:10px;background:rgba(0,210,255,.15);border:1px solid var(--cy);border-radius:8px;padding:4px 10px;font-size:.68rem;font-weight:800;color:var(--cy);font-family:'JetBrains Mono',monospace;}
+.scanline{position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(0,210,255,.9),transparent);animation:sc 3s ease-in-out infinite;}
 @keyframes sc{0%{top:3%;opacity:0;}10%{opacity:1;}90%{opacity:1;}100%{top:95%;opacity:0;}}
 .ss{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px;}
-.sb{background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.05);border-radius:12px;padding:12px 8px;text-align:center;}
+.sb{background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px 8px;text-align:center;}
 .sv{font-size:1.2rem;font-weight:900;color:var(--cy);font-family:'JetBrains Mono',monospace;display:block;}
 .sl2{font-size:.62rem;color:var(--txs);text-transform:uppercase;letter-spacing:.5px;margin-top:2px;display:block;}
 
 /* TICKER */
-.ticker-wrap{position:relative;z-index:1;background:linear-gradient(90deg,transparent,rgba(0,210,255,.03),transparent);border-top:1px solid var(--brsubt);border-bottom:1px solid var(--brsubt);overflow:hidden;padding:16px 0;}
-.ticker{display:flex;align-items:center;gap:56px;animation:tk 30s linear infinite;white-space:nowrap;}
+.ticker-wrap{position:relative;z-index:1;background:linear-gradient(90deg,transparent,rgba(0,210,255,.03),transparent);border-top:1px solid var(--brsubt);border-bottom:1px solid var(--brsubt);overflow:hidden;padding:15px 0;}
+.ticker{display:flex;align-items:center;gap:50px;animation:tk 28s linear infinite;white-space:nowrap;}
 @keyframes tk{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-.ti{display:inline-flex;align-items:center;gap:9px;font-size:.83rem;}
+.ti{display:inline-flex;align-items:center;gap:8px;font-size:.83rem;}
 .ti strong{color:var(--cy);font-weight:800;}.ti span{color:var(--txs);}
 
-/* MICROSCOPIO SHOWCASE */
-.mshow{position:relative;z-index:1;padding:100px 28px;background:linear-gradient(180deg,transparent,rgba(0,210,255,.015),transparent);}
-.mshow-in{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
-.mframe{background:var(--bg3);border:1px solid var(--brglow);border-radius:24px;padding:20px;box-shadow:0 24px 64px rgba(0,0,0,.6),0 0 60px rgba(0,210,255,.07);backdrop-filter:blur(20px);position:relative;}
-.mframe img{width:100%;border-radius:16px;display:block;border:1px solid rgba(255,255,255,.06);}
-.abadge{position:absolute;top:-14px;right:18px;background:linear-gradient(135deg,#2563eb,#6366f1);color:#fff;padding:6px 16px;border-radius:50px;font-size:.7rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;box-shadow:0 4px 20px rgba(37,99,235,.5);}
-.counters{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px;}
-.cc{background:rgba(0,0,0,.4);border:1px solid var(--brsubt);border-radius:14px;padding:20px;transition:border-color .3s;}
-.cc:hover{border-color:var(--brglow);}
-.cc .n{font-size:2rem;font-weight:900;color:var(--cy);font-family:'JetBrains Mono',monospace;display:block;}
-.cc .l{font-size:.78rem;color:var(--txs);margin-top:3px;}
-.minfo .stg{display:inline-block;color:var(--cy);font-size:.76rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;}
-.minfo h3{font-size:1.9rem;font-weight:900;margin-bottom:14px;letter-spacing:-1px;}
-.hl{background:linear-gradient(135deg,var(--cy),var(--vi));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-.minfo p{color:var(--txs);margin-bottom:26px;line-height:1.75;}
-.engines{display:flex;flex-direction:column;gap:11px;}
-.er{display:flex;align-items:center;gap:13px;background:rgba(0,0,0,.3);border:1px solid var(--brsubt);border-radius:12px;padding:13px 16px;transition:all .25s;}
-.er:hover{border-color:var(--brglow);background:rgba(0,210,255,.04);transform:translateX(4px);}
-.ei{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
-.en{font-weight:700;font-size:.88rem;font-family:'JetBrains Mono',monospace;color:var(--cy);}
-.ed{font-size:.76rem;color:var(--txs);margin-top:1px;}
-.esz{margin-left:auto;font-size:.68rem;color:var(--txd);font-family:'JetBrains Mono',monospace;}
+/* SECCIONES ESTANDAR */
+.sec{position:relative;z-index:1;padding:90px 28px;max-width:1340px;margin:0 auto;}
+.sh{text-align:center;margin-bottom:54px;}
+.stg2{display:inline-block;color:var(--cy);font-size:.76rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;background:rgba(0,210,255,.08);padding:4px 14px;border-radius:20px;border:1px solid rgba(0,210,255,.2);}
+.st{font-size:clamp(1.9rem,3.4vw,2.8rem);font-weight:900;letter-spacing:-1px;margin-bottom:14px;}
+.sd{color:var(--txs);max-width:660px;margin:0 auto;font-size:1.02rem;line-height:1.7;}
 
-/* SERVICIOS */
-.sec{position:relative;z-index:1;padding:100px 28px;max-width:1300px;margin:0 auto;}
-.sh{text-align:center;margin-bottom:62px;}
-.stg2{display:inline-block;color:var(--cy);font-size:.76rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
-.st{font-size:clamp(1.8rem,3.5vw,2.7rem);font-weight:900;letter-spacing:-1px;margin-bottom:14px;}
-.sd{color:var(--txs);max-width:600px;margin:0 auto;font-size:1.02rem;}
-.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:22px;}
-.scard{background:var(--bg3);border:1px solid var(--brsubt);border-radius:20px;padding:30px;position:relative;overflow:hidden;cursor:default;transition:transform .35s,border-color .35s,box-shadow .35s;}
-.scard::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(0,210,255,.06),transparent 60%);opacity:0;transition:opacity .35s;}
-.scard:hover::before{opacity:1;}.scard:hover{transform:translateY(-6px);border-color:var(--brglow);box-shadow:0 24px 64px rgba(0,0,0,.6),0 0 40px rgba(0,210,255,.07);}
-.sic{width:54px;height:54px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:20px;border:1px solid;}
-.ic1{background:rgba(0,210,255,.08);border-color:rgba(0,210,255,.2);}
-.ic2{background:rgba(99,102,241,.08);border-color:rgba(99,102,241,.2);}
-.ic3{background:rgba(16,185,129,.08);border-color:rgba(16,185,129,.2);}
-.ic4{background:rgba(245,158,11,.08);border-color:rgba(245,158,11,.2);}
-.scard h3{font-size:1.1rem;font-weight:800;margin-bottom:10px;}
-.scard p{color:var(--txs);font-size:.88rem;line-height:1.65;}
-.cglow{position:absolute;bottom:-40px;right:-40px;width:120px;height:120px;border-radius:50%;filter:blur(50px);opacity:.3;transition:opacity .35s;}
-.scard:hover .cglow{opacity:.7;}
+/* ========================================================
+   EJE 1: SHOWCASE APLICATIVO MÓVIL QUIRÚRGICO (MAQUETA CELULAR)
+   ======================================================== */
+.app-showcase-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center;}
+.phone-mockup-frame{max-width:380px;margin:0 auto;background:#070d1b;border-radius:44px;border:5px solid #1e293b;padding:14px;box-shadow:0 30px 80px rgba(0,0,0,.85),0 0 50px rgba(56,189,248,.2);position:relative;overflow:hidden;}
+.phone-screen{background:#0b1329;border-radius:32px;overflow:hidden;border:1px solid rgba(255,255,255,.08);padding:14px;}
+.phone-header-mock{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;border-bottom:1px solid rgba(255,255,255,.06);padding-bottom:10px;}
+.phone-tabs-mock{display:flex;gap:6px;margin-bottom:12px;}
+.ptab{flex:1;text-align:center;padding:7px;border-radius:8px;font-size:.7rem;font-weight:700;}
+.ptab.act{background:linear-gradient(135deg,#1d61d8,#2563eb);color:#fff;}
+.ptab.inact{background:rgba(255,255,255,.05);color:#94a3b8;}
+.pcard-mock{background:#0f172a;border:1px solid rgba(56,189,248,.3);border-radius:14px;padding:12px;margin-bottom:10px;}
+.pbadge{background:rgba(16,185,129,.15);border:1px solid #10b981;color:#34d399;font-size:.65rem;font-weight:800;padding:2px 7px;border-radius:12px;display:inline-block;float:right;}
+.pname{font-size:.82rem;font-weight:800;color:#fff;}
+.ppill{background:rgba(56,189,248,.15);color:#38bdf8;font-size:.66rem;font-weight:700;padding:2px 6px;border-radius:5px;display:inline-block;margin:6px 4px 6px 0;}
+.pbtns{display:flex;gap:6px;margin-top:8px;}
+.pb-ver{flex:1.5;background:#059669;color:#fff;border:none;padding:6px;border-radius:8px;font-size:.7rem;font-weight:700;text-align:center;}
+.pb-360{flex:1;background:#1e293b;border:1px solid #38bdf8;color:#38bdf8;padding:6px;border-radius:8px;font-size:.7rem;font-weight:700;text-align:center;}
 
-/* DOCTOR */
-.dr-sec{position:relative;z-index:1;padding:100px 28px;}
-.dr-card{max-width:1080px;margin:0 auto;background:var(--bg3);border:1px solid var(--brglow);border-radius:28px;padding:52px;display:grid;grid-template-columns:270px 1fr;gap:44px;align-items:center;backdrop-filter:blur(20px);box-shadow:0 24px 64px rgba(0,0,0,.6),0 0 40px rgba(0,210,255,.08);position:relative;overflow:hidden;}
-.dr-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,var(--cy),var(--vi),var(--em));}
-.dimg{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:16px;border:2px solid var(--brglow);box-shadow:0 20px 50px rgba(0,0,0,.5);display:block;}
-.dver{display:inline-block;margin-top:12px;background:linear-gradient(135deg,#10b981,#059669);color:#fff;font-size:.68rem;font-weight:800;padding:5px 14px;border-radius:50px;box-shadow:0 4px 16px rgba(16,185,129,.4);text-align:center;width:100%;}
-.dtag{color:var(--cy);font-weight:700;font-size:.78rem;letter-spacing:1px;text-transform:uppercase;}
-.dinfo h3{font-size:1.9rem;font-weight:900;margin:8px 0 4px;letter-spacing:-.5px;}
-.drole{color:var(--txs);font-size:.98rem;margin-bottom:18px;}
-.dbio{color:var(--txs);line-height:1.75;margin-bottom:26px;font-size:.93rem;}
-.creds{display:flex;flex-wrap:wrap;gap:9px;}
-.cr{background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.08);padding:6px 13px;border-radius:8px;font-size:.76rem;font-weight:600;color:#cbd5e1;}
+.feat-item{display:flex;gap:16px;margin-bottom:24px;}
+.feat-icon{width:46px;height:46px;border-radius:12px;background:rgba(0,210,255,.1);border:1px solid var(--brglow);display:flex;align-items:center;justify-content:center;color:var(--cy);font-size:1.2rem;flex-shrink:0;}
+.feat-text h4{font-size:1.05rem;font-weight:800;color:#fff;margin-bottom:4px;}
+.feat-text p{font-size:.88rem;color:var(--txs);line-height:1.6;}
 
-/* TIMELINE */
-.tl-sec{position:relative;z-index:1;padding:100px 28px;background:linear-gradient(180deg,transparent,rgba(99,102,241,.015),transparent);}
-.tl{max-width:780px;margin:0 auto;position:relative;}
-.tl::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent,var(--cy),var(--vi),transparent);transform:translateX(-50%);}
-.ti2{display:flex;gap:38px;margin-bottom:44px;align-items:flex-start;}
-.ti2:nth-child(even){flex-direction:row-reverse;}
-.tc{flex:1;background:var(--bg3);border:1px solid var(--brsubt);border-radius:18px;padding:22px;transition:border-color .3s,transform .3s;}
-.tc:hover{border-color:var(--brglow);transform:scale(1.02);}
-.ty{font-size:.7rem;font-weight:800;color:var(--cy);letter-spacing:2px;text-transform:uppercase;font-family:'JetBrains Mono',monospace;margin-bottom:5px;}
-.tt{font-size:.97rem;font-weight:800;margin-bottom:6px;}
-.tx2{font-size:.83rem;color:var(--txs);line-height:1.6;}
-.tdot{width:13px;height:13px;border-radius:50%;background:var(--cy);box-shadow:0 0 16px var(--cy);flex-shrink:0;margin-top:24px;position:relative;z-index:2;}
+/* ========================================================
+   EJE 2: COMPARADOR MORFOMÉTRICO (SLIDER ÓPTICO 40X VS IA)
+   ======================================================== */
+.morpho-comparator-card{background:var(--bg3);border:1px solid var(--brglow);border-radius:28px;padding:36px;backdrop-filter:blur(20px);box-shadow:0 24px 60px rgba(0,0,0,.6);}
+.morpho-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;}
+.morpho-viewports{position:relative;border-radius:20px;overflow:hidden;border:1px solid rgba(56,189,248,.4);height:320px;background:#090e1a;}
+.vp-layer{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+.vp-optical{background:url('morfologia_ia_pleomorfismo.jpg') center/cover;filter:grayscale(10%);}
+.vp-ai{background:url('morfologia_ia_pleomorfismo.jpg') center/cover;filter:contrast(120%) saturate(140%);box-shadow:inset 0 0 50px rgba(0,210,255,.3);}
+.badge-vp{position:absolute;top:14px;left:14px;padding:6px 14px;border-radius:8px;font-size:.72rem;font-weight:800;font-family:'JetBrains Mono',monospace;}
+.metrics-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.metric-box{background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.08);padding:16px;border-radius:14px;}
+.metric-val{font-size:1.6rem;font-weight:900;color:var(--cy);font-family:'JetBrains Mono',monospace;}
+.metric-lbl{font-size:.75rem;color:var(--txs);margin-top:2px;text-transform:uppercase;letter-spacing:.5px;}
 
-/* CONTACTO */
-.ct-sec{position:relative;z-index:1;padding:80px 28px 120px;}
-.ct-card{max-width:940px;margin:0 auto;background:var(--bg3);border:1px solid var(--brglow);border-radius:28px;padding:60px;backdrop-filter:blur(20px);box-shadow:0 24px 64px rgba(0,0,0,.6),0 0 40px rgba(0,210,255,.08);text-align:center;position:relative;overflow:hidden;}
-.ct-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,210,255,.05),transparent 60%);}
-.ct-card h2{font-size:2.3rem;font-weight:900;letter-spacing:-1px;margin-bottom:14px;position:relative;}
-.ct-card p{color:var(--txs);font-size:1.02rem;max-width:510px;margin:0 auto 32px;position:relative;}
-.ct-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;}
-.bwsp2{background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:15px 30px;border-radius:14px;text-decoration:none;font-size:1rem;font-weight:800;display:inline-flex;align-items:center;gap:9px;box-shadow:0 8px 30px rgba(16,185,129,.45);transition:transform .2s;}
-.bwsp2:hover{transform:translateY(-3px);}
-.ci{display:flex;justify-content:center;flex-wrap:wrap;gap:28px;margin-top:36px;}
-.cii{display:flex;align-items:center;gap:9px;color:var(--txs);font-size:.88rem;}
-.cii span{color:var(--cy);font-size:1.1rem;}
+/* ========================================================
+   EJE 3: COPILOTO DIAGNÓSTICO WSI & TRIAJE PIN-4
+   ======================================================== */
+.ihq-cases-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
+.ihq-case-card{background:var(--bg-card);border:1px solid var(--brsubt);border-radius:18px;padding:24px;transition:all .3s;}
+.ihq-case-card:hover{border-color:var(--cy);transform:translateY(-5px);box-shadow:0 15px 35px rgba(0,210,255,.15);}
+.ihq-prob{float:right;background:rgba(0,210,255,.15);border:1px solid var(--cy);color:var(--cy);font-weight:900;font-size:.74rem;padding:3px 8px;border-radius:20px;font-family:'JetBrains Mono',monospace;}
+.ihq-disc{background:rgba(0,0,0,.4);border-radius:10px;padding:10px;margin-top:12px;font-size:.78rem;font-family:'JetBrains Mono',monospace;color:#cbd5e1;border-left:3px solid var(--cy);}
+
+/* ========================================================
+   EJE 4: TARIFARIO CORPORATIVO UROSUR 2026
+   ======================================================== */
+.table-responsive{overflow-x:auto;background:var(--bg3);border:1px solid var(--brglow);border-radius:22px;padding:12px;box-shadow:0 20px 50px rgba(0,0,0,.6);}
+.tariff-table{width:100%;border-collapse:collapse;font-size:.88rem;text-align:left;}
+.tariff-table th{background:rgba(2,132,199,.15);color:var(--cy);padding:14px 18px;font-weight:800;border-bottom:1px solid rgba(56,189,248,.3);text-transform:uppercase;font-size:.75rem;letter-spacing:1px;}
+.tariff-table td{padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.05);color:#cbd5e1;}
+.tariff-table tr:hover td{background:rgba(56,189,248,.04);color:#fff;}
+.price-tag{font-size:1.15rem;font-weight:900;color:#10b981;font-family:'JetBrains Mono',monospace;}
+
+/* DOCTOR SECTION */
+.dr-card{max-width:1100px;margin:0 auto;background:var(--bg3);border:1px solid var(--brglow);border-radius:28px;padding:48px;display:grid;grid-template-columns:260px 1fr;gap:40px;align-items:center;backdrop-filter:blur(20px);box-shadow:0 24px 64px rgba(0,0,0,.6);}
+.dimg{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:18px;border:2px solid var(--brglow);box-shadow:0 15px 40px rgba(0,0,0,.6);}
+.dver{margin-top:10px;background:linear-gradient(135deg,#10b981,#059669);color:#fff;font-size:.7rem;font-weight:800;padding:5px 12px;border-radius:50px;text-align:center;}
 
 /* FOOTER */
-footer{position:relative;z-index:1;border-top:1px solid var(--brsubt);padding:44px 28px;text-align:center;background:rgba(0,0,0,.4);}
-footer p{color:var(--txs);font-size:.83rem;line-height:1.8;}
-footer strong{color:var(--tx);}
+footer{position:relative;z-index:1;border-top:1px solid var(--brsubt);padding:40px 28px;text-align:center;background:rgba(0,0,0,.5);}
 
 /* FAB CORTANA */
-.fab{position:fixed;bottom:28px;right:28px;z-index:9999;}
-.fabb{width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#00d2ff);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(37,99,235,.55);transition:transform .25s;position:relative;}
-.fabb:hover{transform:scale(1.1) rotate(-5deg);}
-.fabb svg{width:28px;height:28px;fill:#fff;}
-.fbdg{position:absolute;top:-4px;right:-4px;background:var(--em);color:#fff;font-size:.6rem;font-weight:800;padding:2px 7px;border-radius:50px;border:2px solid var(--bg);}
-.cwin{position:fixed;bottom:105px;right:28px;width:385px;max-width:calc(100vw - 40px);height:530px;background:rgba(4,8,15,.97);border:1px solid var(--brglow);border-radius:24px;box-shadow:0 32px 80px rgba(0,0,0,.8);z-index:9998;display:none;flex-direction:column;overflow:hidden;backdrop-filter:blur(24px);}
-.ch{background:linear-gradient(135deg,rgba(37,99,235,.25),rgba(0,210,255,.1));padding:16px 20px;border-bottom:1px solid var(--brglow);display:flex;justify-content:space-between;align-items:center;}
-.chi{display:flex;align-items:center;gap:10px;}
-.cdot{width:9px;height:9px;border-radius:50%;background:var(--em);box-shadow:0 0 8px var(--em);}
-.cht{font-size:.9rem;font-weight:800;}
-.chs{font-size:.68rem;color:var(--txs);}
-.ccls{background:none;border:none;color:var(--txs);font-size:1.4rem;cursor:pointer;padding:4px 8px;border-radius:6px;transition:background .2s;}
-.ccls:hover{background:rgba(255,255,255,.08);color:#fff;}
-.cbody{flex:1;padding:16px;overflow-y:auto;display:flex;flex-direction:column;gap:11px;}
-.msg{max-width:86%;padding:11px 15px;border-radius:16px;font-size:.87rem;line-height:1.5;}
-.mb{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);align-self:flex-start;color:var(--tx);border-radius:4px 16px 16px 16px;}
-.mu{background:linear-gradient(135deg,#2563eb,#00d2ff);align-self:flex-end;color:#fff;font-weight:500;border-radius:16px 4px 16px 16px;}
-.cft{padding:13px 17px;border-top:1px solid var(--brsubt);display:flex;gap:9px;}
-.cinp{flex:1;background:rgba(255,255,255,.05);border:1px solid var(--brsubt);padding:10px 14px;border-radius:12px;color:#fff;font-size:.87rem;outline:none;font-family:inherit;transition:border-color .2s;}
-.cinp:focus{border-color:var(--cy);}
-.csnd{background:var(--bl);border:none;color:#fff;padding:0 15px;border-radius:12px;cursor:pointer;font-weight:700;font-size:.87rem;transition:background .2s;}
-.csnd:hover{background:#1d4ed8;}
-
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
-.reveal.vis{opacity:1;transform:translateY(0);}
-.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}
+.fab{position:fixed;bottom:24px;right:24px;z-index:9999;}
+.fabb{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#00d2ff);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(0,210,255,.45);transition:transform .2s;}
+.fabb:hover{transform:scale(1.08);}
 
 /* RESPONSIVE */
 @media(max-width:960px){
-  .hero-in,.mshow-in,.dr-card{grid-template-columns:1fr;}
-  .hero-in{text-align:center;}.hdesc{margin:0 auto 38px;}.hbtns{justify-content:center;}
-  .dr-card{text-align:center;padding:32px;}.dimg{max-width:200px;margin:0 auto;}.creds{justify-content:center;}
-  .ti2,.ti2:nth-child(even){flex-direction:column;}.tl::before{left:18px;}.tdot{display:none;}
+  .hero-in,.app-showcase-grid,.morpho-grid,.dr-card{grid-template-columns:1fr;}
   .nl a{display:none;}
+  .phone-mockup-frame{max-width:320px;}
 }
-@media(max-width:600px){.ct-card{padding:32px 20px;}.scan-card{padding:16px;}}
 </style>
 </head>
 <body>
 <canvas id="cv"></canvas>
 <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
 
+<!-- HEADER NAVEGACIÓN -->
 <header id="hdr">
   <div class="nav">
     <a href="#" class="logo">
-      <img src="logo-jcpathlab.png" alt="JC PATH LAB" onerror="this.style.display='none'">
-      <span class="logo-t">JC PATH LAB</span>
+      <span class="logo-t"><i class="fa-solid fa-microscope" style="color:var(--cy)"></i> JC PATH LAB</span>
     </a>
     <div class="nl">
-      <a href="#microscopio">Microscopio IA</a>
-      <a href="#servicios">Servicios</a>
+      <a href="#app-movil">App Quirúrgico</a>
+      <a href="#servidor-wsi">Servidor WSI</a>
+      <a href="#morfometria">Morfometría IA</a>
+      <a href="#copiloto-ihq">Copiloto IHQ</a>
+      <a href="#tarifario">Tarifario 2026</a>
       <a href="#doctor">Dr. Castillo</a>
-      <a href="#contacto">Contacto</a>
     </div>
-    <a href="https://wa.me/51986396733?text=Estimado%20Dr.%20Castillo,%20deseo%20coordinar%20un%20estudio" target="_blank" class="bwsp">&#128172; +51 986 396 733</a>
+    <div style="display:flex;gap:10px;align-items:center;">
+      <a href="app.html" target="_blank" class="btn-app-nav"><i class="fa-solid fa-mobile-screen"></i> Abrir App Móvil</a>
+      <a href="https://wa.me/51986396733?text=Estimado%20Dr.%20Castillo,%20deseo%20coordinar%20un%20estudio" target="_blank" class="bwsp"><i class="fa-brands fa-whatsapp"></i> +51 986 396 733</a>
+    </div>
   </div>
 </header>
 
+<!-- HERO PRINCIPAL -->
 <section class="hero">
   <div class="hero-in">
     <div>
-      <div class="eyebrow"><div class="pdot"></div>Primer Microscopio IA del Peru &bull; JC PATH LAB</div>
-      <h1 class="htitle">Diagnostico<br><span class="shim">Histopatologico</span><br>Potenciado por IA</h1>
-      <p class="hdesc">Biopsias, IHQ y digitalizacion WSI de alta fidelidad bajo criterios OMS 5a Edicion. El unico laboratorio en Lima con microscopio digital soberano con Inteligencia Artificial que reduce errores diagnosticos en 68%.</p>
+      <div class="eyebrow"><div class="pdot"></div>Primer Microscopio IA del Perú • JC PATH LAB</div>
+      <h1 class="htitle">Diagnóstico<br><span class="shim">Anatomopatológico</span><br>Aumentado por IA</h1>
+      <p class="hdesc">
+        Infraestructura médica de precisión y soberanía absoluta. Digitalización WSI 40X en servidor local dedicado, despacho automático a la app móvil de cada cirujano y copiloto histopatológico multi-modal bajo guías OMS 5ª Edición y CAP.
+      </p>
       <div class="hbtns">
-        <a href="https://wa.me/51986396733?text=Deseo%20solicitar%20un%20estudio%20patologico" target="_blank" class="bp">&#128300; Solicitar Estudio</a>
-        <button onclick="toggleC()" class="bg2">&#128172; Hablar con Cortana</button>
+        <a href="app.html" target="_blank" class="bp"><i class="fa-solid fa-rocket"></i> Probar App Quirúrgico Móvil</a>
+        <a href="#morfometria" class="bg2"><i class="fa-solid fa-chart-pie"></i> Ver Morfometría IA</a>
       </div>
     </div>
     <div>
       <div class="scan-card">
-        <div class="slabel"><div class="pdot"></div><span>IA Activa &bull; Analisis en tiempo real &bull; 40X</span></div>
+        <div class="slabel"><span><i class="fa-solid fa-dna"></i> IA Morfométrica Activa • 40X</span><span style="color:#10b981">ONLINE</span></div>
         <div class="sim-wrap">
-          <img src="morfologia_ia_pleomorfismo.jpg" onerror="this.src='bg-slide-1.webp'" alt="Analisis Histopatologico IA">
-          <div class="ai-tag">&#11041; IA DETECCION ACTIVA</div>
+          <img src="morfologia_ia_pleomorfismo.jpg" onerror="this.src='bg-slide-1.webp'" alt="Análisis Histopatológico">
+          <div class="ai-tag">SEGMENTACIÓN NUCLEAR ACTIVA</div>
           <div class="scanline"></div>
         </div>
         <div class="ss">
-          <div class="sb"><span class="sv" data-target="97.3" data-sfx="%">97.3%</span><span class="sl2">Precision IA</span></div>
-          <div class="sb"><span class="sv">&lt;24h</span><span class="sl2">Despacho</span></div>
-          <div class="sb"><span class="sv" data-target="15000" data-sfx="+">15k+</span><span class="sl2">Casos IA</span></div>
+          <div class="sb"><span class="sv">97.3%</span><span class="sl2">Precisión CAP</span></div>
+          <div class="sb"><span class="sv">&lt;48h</span><span class="sl2">Despacho</span></div>
+          <div class="sb"><span class="sv">100%</span><span class="sl2">Soberano</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- TICKER TECNOLÓGICO -->
 <div class="ticker-wrap">
   <div class="ticker">
-    <div class="ti"><strong>H-optimus-0</strong><span>Motor Fundacional 4.3 GB</span></div>
-    <div class="ti"><strong>YOLOv8</strong><span>Deteccion Celular Tiempo Real</span></div>
-    <div class="ti"><strong>PLIP</strong><span>Embeddings Patologicos 577 MB</span></div>
-    <div class="ti"><strong>Moondream2</strong><span>Vision Multimodal 3.6 GB</span></div>
-    <div class="ti"><strong>OMS 5a Edicion</strong><span>Criterios Diagnosticos 2026</span></div>
-    <div class="ti"><strong>NordiQC</strong><span>Control de Calidad Internacional</span></div>
-    <div class="ti"><strong>WSI 40X</strong><span>Whole Slide Imaging Soberano</span></div>
-    <div class="ti"><strong>100% Offline</strong><span>Privacidad Total del Paciente</span></div>
-    <div class="ti"><strong>H-optimus-0</strong><span>Motor Fundacional 4.3 GB</span></div>
-    <div class="ti"><strong>YOLOv8</strong><span>Deteccion Celular Tiempo Real</span></div>
-    <div class="ti"><strong>PLIP</strong><span>Embeddings Patologicos 577 MB</span></div>
-    <div class="ti"><strong>Moondream2</strong><span>Vision Multimodal 3.6 GB</span></div>
-    <div class="ti"><strong>OMS 5a Edicion</strong><span>Criterios Diagnosticos 2026</span></div>
-    <div class="ti"><strong>NordiQC</strong><span>Control de Calidad Internacional</span></div>
+    <div class="ti"><strong>App Móvil Quirúrgica</strong><span>Despacho al Cirujano</span></div>
+    <div class="ti"><strong>Servidor WSI Propio</strong><span>Cero Nubes de Terceros</span></div>
+    <div class="ti"><strong>Morfometría IA 40x</strong><span>Conteo Mitótico CAP</span></div>
+    <div class="ti"><strong>Triaje PIN-4</strong><span>p63 + CK-HMW + AMACR</span></div>
+    <div class="ti"><strong>Visor Macroscópico 360°</strong><span>Tinta China y Márgenes</span></div>
+    <div class="ti"><strong>Olva Courier 72h</strong><span>Fijación Tisular Óptima</span></div>
+    <div class="ti"><strong>App Móvil Quirúrgica</strong><span>Despacho al Cirujano</span></div>
+    <div class="ti"><strong>Servidor WSI Propio</strong><span>Cero Nubes de Terceros</span></div>
   </div>
 </div>
 
-<div class="mshow" id="microscopio">
-  <div class="mshow-in">
-    <div class="reveal">
-      <div class="mframe">
-        <div class="abadge">&#129302; IA Activa</div>
-        <div style="position:relative">
-          <img src="MICROSCOPIO.jpg" onerror="this.src='analisis-digital-patologia.jpg'" alt="Microscopio IA JC PATH LAB">
+<!-- ========================================================
+     EJE 1: APLICATIVO MÓVIL QUIRÚRGICO (DOSSIER UROSUR)
+     ======================================================== -->
+<section class="sec" id="app-movil">
+  <div class="sh">
+    <span class="stg2">EJE TECNOLÓGICO 01 • AUTOMATIZACIÓN DE DESPACHO</span>
+    <h2 class="st">Aplicativo Móvil Quirúrgico de Bolsillo</h2>
+    <p class="sd">Entrega directa sin fricción al smartphone de cada especialista. Se erradican las llamadas telefónicas, pérdidas documentales o cadenas de WhatsApp.</p>
+  </div>
+
+  <div class="app-showcase-grid">
+    <!-- MOCKUP DEL CELULAR INTERACTIVO -->
+    <div>
+      <div class="phone-mockup-frame">
+        <div class="phone-screen">
+          <div class="phone-header-mock">
+            <span style="font-weight:900;font-size:.85rem;color:#38bdf8"><i class="fa-solid fa-microscope"></i> JCPATHLAB</span>
+            <span style="font-size:.7rem;color:#10b981;font-weight:700">● Conectado</span>
+          </div>
+
+          <div class="phone-tabs-mock">
+            <div class="ptab act">Serv. muestra HE (Q)</div>
+            <div class="ptab inact">Serv. Citología (C)</div>
+          </div>
+
+          <div class="pcard-mock">
+            <span class="pbadge">Listo para Imprimir</span>
+            <div class="pname">Avalos Valenzuela, Carlos A.</div>
+            <span style="font-size:.68rem;color:#94a3b8">(70 años)</span>
+            <div>
+              <span class="ppill">Enucleación Prost...</span>
+              <span class="ppill" style="background:#1e293b;color:#cbd5e1">ID: 26Q-281</span>
+            </div>
+            <div style="font-size:.66rem;color:#94a3b8;margin-bottom:6px">Dr. Flores Sierra, Bryan • Clínica Carrión</div>
+            <div class="pbtns">
+              <a href="app.html" target="_blank" class="pb-ver" style="text-decoration:none"><i class="fa-solid fa-file-pdf"></i> Ver Informe</a>
+              <a href="app.html" target="_blank" class="pb-360" style="text-decoration:none"><i class="fa-solid fa-arrows-rotate"></i> 360°</a>
+            </div>
+          </div>
+
+          <div class="pcard-mock">
+            <span class="pbadge">Listo para Imprimir</span>
+            <div class="pname">Quispe Ticllasuca, Oswaldo</div>
+            <span style="font-size:.68rem;color:#94a3b8">(82 años)</span>
+            <div>
+              <span class="ppill">Morcelado de Prós...</span>
+              <span class="ppill" style="background:#1e293b;color:#cbd5e1">ID: 26Q-280</span>
+            </div>
+            <div style="font-size:.66rem;color:#94a3b8;margin-bottom:6px">Dr. Flores Sierra, Bryan • Clínica Carrión</div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:16px">
+        <a href="app.html" target="_blank" class="bp" style="font-size:.85rem;padding:10px 20px"><i class="fa-solid fa-up-right-from-square"></i> Probar Aplicativo en Pantalla Completa</a>
+      </div>
+    </div>
+
+    <!-- CARACTERÍSTICAS DEL EJE 1 -->
+    <div>
+      <div class="feat-item">
+        <div class="feat-icon"><i class="fa-solid fa-paper-plane"></i></div>
+        <div class="feat-text">
+          <h4>Despacho Automatizado a Cada Cirujano</h4>
+          <p>Al validar y firmar digitalmente el estudio en Lima, el sistema despacha el informe oficial en PDF directo a la sesión personal de cada médico en su smartphone.</p>
+        </div>
+      </div>
+
+      <div class="feat-item">
+        <div class="feat-icon"><i class="fa-solid fa-bell"></i></div>
+        <div class="feat-text">
+          <h4>Trazabilidad y Notificaciones en Tiempo Real</h4>
+          <p>El especialista sigue el flujo de su paciente ("En Proceso", "Listo para Imprimir" o "Completado"), con acceso instantáneo a documentos oficiales.</p>
+        </div>
+      </div>
+
+      <div class="feat-item">
+        <div class="feat-icon"><i class="fa-solid fa-arrows-spin"></i></div>
+        <div class="feat-text">
+          <h4>Módulo Fotográfico Macroscópico 360°</h4>
+          <p>Acceso al visor 360° para inspeccionar el espécimen quirúrgico tallado (márgenes con tinta china, peso en gramos y lesiones sospechosas) antes de la intervención.</p>
+        </div>
+      </div>
+
+      <div class="feat-item">
+        <div class="feat-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div class="feat-text">
+          <h4>Control de Acceso por Roles (RBAC Estricto)</h4>
+          <p>El Director Médico (Dr. Castillo) supervisa el 100% de los informes globales; los médicos tratantes visualizan exclusivamente los pacientes que llevan su apellido y nombre.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================
+     EJE 2: SOBERANÍA DE DATOS Y SERVIDOR WSI PROPIO
+     ======================================================== -->
+<section class="sec" id="servidor-wsi" style="background:rgba(2,132,199,.02);border-radius:32px">
+  <div class="sh">
+    <span class="stg2">EJE TECNOLÓGICO 02 • INFRAESTRUCTURA SOBERANA</span>
+    <h2 class="st">Única Institución con Servidor Propio para Láminas WSI</h2>
+    <p class="sd">Cero alquiler de nubes comerciales extranjeras. Confidencialidad oncológica absoluta, blindaje pericial y disponibilidad continua sin tokens.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px">
+    <div class="scard">
+      <div class="sic ic1"><i class="fa-solid fa-server"></i></div>
+      <h3>Servidor Físico Propio</h3>
+      <p>A diferencia de laboratorios que alquilan nubes comerciales a terceros exponiendo datos legales, JC PATH LAB aloja y procesa sus láminas digitales en infraestructura física dedicada en Lima.</p>
+    </div>
+    <div class="scard">
+      <div class="sic ic2"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+      <h3>Navegación Piramidal 2X a 40X</h3>
+      <p>Exploración de gigapíxeles en tiempo real: desde la panorámica de toda la pieza prostática o mamaria hasta el detalle cromatínico nuclear a 40x con zoom continuo y sin cortes.</p>
+    </div>
+    <div class="scard">
+      <div class="sic ic3"><i class="fa-solid fa-sliders"></i></div>
+      <h3>Filtros Espectrales y Polarización</h3>
+      <p>Capas de realce digital: contraste óptico, relieve simulado e iluminación polarizada para discriminar mitosis dudosas y nidos tumorales microinfiltrantes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================
+     EJE 3: COMPARADOR MORFOMÉTRICO COMPUTACIONAL (DOSSIER UROSUR)
+     ======================================================== -->
+<section class="sec" id="morfometria">
+  <div class="sh">
+    <span class="stg2">EJE TECNOLÓGICO 03 • MORFOMETRÍA COMPUTACIONAL</span>
+    <h2 class="st">Del Campo Óptico a la Cuantificación Objetiva</h2>
+    <p class="sd">Segmentación nuclear algorítmica a 40x. Reducción de la variabilidad inter-observador en la gradación histopatológica.</p>
+  </div>
+
+  <div class="morpho-comparator-card">
+    <div class="morpho-grid">
+      <!-- VIEWPORT INTERACTIVO -->
+      <div class="morpho-viewports">
+        <div class="vp-layer vp-ai">
+          <span class="badge-vp" style="background:#0284c7;color:#fff">FILTRO ALGORÍTMICO IA ACTIVO</span>
           <div class="scanline"></div>
         </div>
       </div>
-      <div class="counters">
-        <div class="cc"><span class="n" data-target="68" data-sfx="%">0%</span><div class="l">Reduccion de errores diagnosticos</div></div>
-        <div class="cc"><span class="n" data-target="15000" data-sfx="+">0</span><div class="l">Casos analizados con IA</div></div>
-        <div class="cc"><span class="n" data-target="4" data-sfx="">0</span><div class="l">Motores IA en paralelo</div></div>
-        <div class="cc"><span class="n" data-target="40" data-sfx="X">0</span><div class="l">Magnificacion optica digital</div></div>
-      </div>
-    </div>
-    <div class="minfo reveal d2">
-      <span class="stg">Innovacion &bull; JC PATH LAB</span>
-      <h3>El <span class="hl">Primer Microscopio</span><br>con IA del Peru</h3>
-      <p>Sistema de diagnostico histopatologico asistido por cuatro motores de IA en paralelo, 100% soberano, sin dependencia de nube, que asiste al Dr. Castillo en deteccion de atipias nucleares, mitosis, gradacion tumoral y diagnosticos diferenciales complejos.</p>
-      <div class="engines">
-        <div class="er"><div class="ei" style="background:rgba(0,210,255,.1);border:1px solid rgba(0,210,255,.3)">&#128300;</div><div><div class="en">H-optimus-0</div><div class="ed">Motor fundacional de patologia &bull; Embeddings histologicos de alta fidelidad</div></div><span class="esz">4.3 GB</span></div>
-        <div class="er"><div class="ei" style="background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.3)">&#129504;</div><div><div class="en">PLIP</div><div class="ed">Pathology Language-Image Pre-training &bull; Clasificacion semantica patologica</div></div><span class="esz">577 MB</span></div>
-        <div class="er"><div class="ei" style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3)">&#9889;</div><div><div class="en">YOLOv8</div><div class="ed">Deteccion y segmentacion celular en tiempo real &bull; &lt;2ms latencia</div></div><span class="esz">22 MB</span></div>
-        <div class="er"><div class="ei" style="background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3)">&#128065;</div><div><div class="en">Moondream2</div><div class="ed">VLM multimodal &bull; Interpretacion narrativa de laminas histopatologicas</div></div><span class="esz">3.6 GB</span></div>
-      </div>
-    </div>
-  </div>
-</div>
 
-<section class="sec" id="servicios">
-  <div class="sh reveal">
-    <span class="stg2">Catalogo de Servicios</span>
-    <h2 class="st">Especialidades Histopatologicas de Elite</h2>
-    <p class="sd">Cada especimen es procesado con tecnica histotecnica estandarizada y auditado bajo guias CAP y OMS 5a Edicion.</p>
-  </div>
-  <div class="sgrid">
-    <div class="scard reveal d1"><div class="sic ic1">&#127919;</div><h3>Uropatologia Avanzada</h3><p>Biopsias prostaticas extendidas ISUP/Gleason, mapeo de margenes quirurgicos, carcinomas uroteliales y patologia testicular/renal de alta complejidad.</p><div class="cglow" style="background:rgba(0,210,255,.4)"></div></div>
-    <div class="scard reveal d2"><div class="sic ic2">&#129516;</div><h3>Inmunohistoquimica IHQ</h3><p>Paneles diagnosticos y pronosticos exhaustivos Dabbs: Ki-67, p63, p40, CK7/20, HER2, receptores hormonales, c-Kit y marcadores mesenquimales.</p><div class="cglow" style="background:rgba(99,102,241,.4)"></div></div>
-    <div class="scard reveal d3"><div class="sic ic3">&#128421;</div><h3>Patologia Digital WSI</h3><p>Digitalizacion Whole Slide Imaging a 40X. Acceso remoto desde cualquier dispositivo. Zoom, navegacion y consulta de especialistas sin fronteras geograficas.</p><div class="cglow" style="background:rgba(16,185,129,.4)"></div></div>
-    <div class="scard reveal d1"><div class="sic ic4">&#129656;</div><h3>Citopatologia y PAAF</h3><p>Papanicolaou en base liquida, citologia de orina, liquidos serosos y biopsias por aspiracion de tiroides y partes blandas sistema Bethesda.</p><div class="cglow" style="background:rgba(245,158,11,.4)"></div></div>
-    <div class="scard reveal d2"><div class="sic ic1">&#128203;</div><h3>Segunda Opinion Experta</h3><p>Revision exhaustiva de tacos de parafina y laminas previas con discrepancia diagnostica. Casos oncologicos limitrofes con validacion IHQ.</p><div class="cglow" style="background:rgba(0,210,255,.4)"></div></div>
-    <div class="scard reveal d3"><div class="sic ic2">&#9889;</div><h3>Despacho Quirurgico Directo</h3><p>El informe firmado digitalmente llega en PDF criptografico al telefono del cirujano y al sistema clinico en tiempo real.</p><div class="cglow" style="background:rgba(99,102,241,.4)"></div></div>
+      <!-- MÉTRICAS COMPUTACIONALES EN VIVO -->
+      <div>
+        <h3 style="font-size:1.3rem;font-weight:900;color:#fff;margin-bottom:8px">Cuantificación Celular Automatizada</h3>
+        <p style="font-size:.88rem;color:var(--txs);margin-bottom:18px">
+          Análisis morfométrico sobre biopsia prostática (H&E 40x): segmentación precisa de acinos, pleomorfismo y actividad proliferativa.
+        </p>
+
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <div class="metric-val">519</div>
+            <div class="metric-lbl">Células Cuantificadas</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val">97.3%</div>
+            <div class="metric-lbl">Pleomorfismo Grado 1</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val">39%</div>
+            <div class="metric-lbl">Ratio Núcleo / Citoplasma</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val">0-1 / 10 HPF</div>
+            <div class="metric-lbl">Mitosis Estandarizadas</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
+<!-- ========================================================
+     EJE 4: COPILOTO DIAGNÓSTICO WSI & TRIAJE PIN-4
+     ======================================================== -->
+<section class="sec" id="copiloto-ihq">
+  <div class="sh">
+    <span class="stg2">EJE TECNOLÓGICO 04 • ASISTENCIA MULTI-MODAL</span>
+    <h2 class="st">Copiloto Diagnóstico y Triaje Inmunohistoquímico</h2>
+    <p class="sd">«El ser humano no lo sabe todo, pero con asistencia multi-modal de Inteligencia Artificial puede alcanzar la máxima certeza oncológica.»</p>
+  </div>
+
+  <div class="ihq-cases-grid">
+    <div class="ihq-case-card">
+      <span class="ihq-prob">89.4% Prob.</span>
+      <h3 style="font-size:1.05rem;font-weight:800;color:#fff;margin-bottom:6px">Adenocarcinoma Acinar (Gleason 4)</h3>
+      <p style="font-size:.84rem;color:var(--txs)">Glándulas infiltrantes con fusión acinar / patrón cribiforme sin estroma interpuesto. Macronucléolos patognomónicos.</p>
+      <div class="ihq-disc">
+        <strong>Panel PIN-4:</strong> p63 (-) • CK-HMW (-) • AMACR / P504S (+++)
+      </div>
+    </div>
+
+    <div class="ihq-case-card">
+      <span class="ihq-prob">6.2% Prob.</span>
+      <h3 style="font-size:1.05rem;font-weight:800;color:#fff;margin-bottom:6px">Adenosis Prostática (AAH)</h3>
+      <p style="font-size:.84rem;color:var(--txs)">Proliferación lobular benigna apretada de acinos pequeños en zona de transición que simula adenocarcinoma.</p>
+      <div class="ihq-disc">
+        <strong>Panel PIN-4:</strong> p63 (+) • CK-HMW (+) • AMACR (-)
+      </div>
+    </div>
+
+    <div class="ihq-case-card">
+      <span class="ihq-prob">3.1% Prob.</span>
+      <h3 style="font-size:1.05rem;font-weight:800;color:#fff;margin-bottom:6px">HGPIN (Neoplasia Intraepitelial)</h3>
+      <p style="font-size:.84rem;color:var(--txs)">Células acinares con macronucléolos prominentes que replican adenocarcinoma, confinadas estrictamente al ducto.</p>
+      <div class="ihq-disc">
+        <strong>Panel PIN-4:</strong> p63 (+) Basal fenestrada • AMACR (+) Luminal
+      </div>
+    </div>
+
+    <div class="ihq-case-card">
+      <span class="ihq-prob">1.3% Prob.</span>
+      <h3 style="font-size:1.05rem;font-weight:800;color:#fff;margin-bottom:6px">Atrofia Parcial / Esclerótica</h3>
+      <p style="font-size:.84rem;color:var(--txs)">Glándulas festoneadas con retracción estromal pseudoinfiltrativa y citoplasma anfófilo escaso.</p>
+      <div class="ihq-disc">
+        <strong>Panel PIN-4:</strong> p63 (+++) • CK-HMW (+++) • AMACR (-)
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================
+     EJE 5: TARIFARIO CORPORATIVO UROSUR 2026 & LOGÍSTICA
+     ======================================================== -->
+<section class="sec" id="tarifario">
+  <div class="sh">
+    <span class="stg2">PROPUESTA ECONÓMICA & LOGÍSTICA • UROSUR 2026</span>
+    <h2 class="st">Tarifario Corporativo Preferencial</h2>
+    <p class="sd">Servidor WSI propio, aplicativo móvil para el staff médico y trazabilidad 100% incluidos sin costo adicional.</p>
+  </div>
+
+  <div class="table-responsive">
+    <table class="tariff-table">
+      <thead>
+        <tr>
+          <th>Procedimiento Quirúrgico</th>
+          <th>Alcance Histopatológico & Diagnóstico</th>
+          <th>Tiempo de Respuesta</th>
+          <th>Tarifa Preferencial</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Morcelados Prostáticos / RTU</strong><br><span style="font-size:.75rem;color:var(--txs)">HoLEP, ThuLEP, Bipolar</span></td>
+          <td>Muestreo cuantitativo por peso. Descarte de adenocarcinoma incidental, prostatitis granulomatosa y atipias acinares.</td>
+          <td>48 - 72 hrs</td>
+          <td><span class="price-tag">S/ 70.00</span></td>
+        </tr>
+        <tr>
+          <td><strong>Prostatectomía Radical Oncológica</strong><br><span style="font-size:.75rem;color:var(--txs)">Abierta, Laparoscópica, Robótica</span></td>
+          <td>Muestreo multizonas con tinta china: márgenes de resección, ápex, base, invasión extracapsular y ganglios linfáticos.</td>
+          <td>4 - 5 días</td>
+          <td><span class="price-tag">S/ 140.00</span></td>
+        </tr>
+        <tr>
+          <td><strong>Piezas Quirúrgicas Menores</strong><br><span style="font-size:.75rem;color:var(--txs)">Fimosis, Hidrocele, Quiste Cordón</span></td>
+          <td>Circuncisión, varicocele, hidrocele, vasectomías de control, lesiones condilomatosas y papilomas.</td>
+          <td>48 hrs</td>
+          <td><span class="price-tag">S/ 60.00</span></td>
+        </tr>
+        <tr>
+          <td><strong>Biopsias Endoscópicas</strong><br><span style="font-size:.75rem;color:var(--txs)">Vejiga, Uréter, Uretra</span></td>
+          <td>Evaluación del músculo detrusor (infiltración muscular propia) y gradación de carcinoma urotelial (bajo vs. alto grado).</td>
+          <td>48 hrs</td>
+          <td><span class="price-tag">S/ 60.00</span></td>
+        </tr>
+        <tr>
+          <td><strong>Biopsia de Próstata por Punción</strong><br><span style="font-size:.75rem;color:var(--txs)">Tru-Cut sistemática o por fusión</span></td>
+          <td>Evaluación individualizada por cilindro (hasta 12 frascos), porcentaje tumoral, Score Gleason/ISUP y longitud milimétrica.</td>
+          <td>72 hrs</td>
+          <td><span class="price-tag">S/ 120.00</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="background:rgba(2,132,199,.06);border:1px solid rgba(56,189,248,.2);border-radius:18px;padding:24px;margin-top:28px;display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+    <div style="width:48px;height:48px;border-radius:12px;background:#0284c7;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.4rem"><i class="fa-solid fa-truck-fast"></i></div>
+    <div style="flex:1">
+      <h4 style="font-size:1rem;font-weight:800;color:#fff">Cadena de Transporte Seguro Arequipa → Lima (Olva Courier 72h)</h4>
+      <p style="font-size:.84rem;color:var(--txs)">La ventana de tránsito de 48-72h se integra de forma armónica a la ventana biológica estándar de fijación tisular para piezas quirúrgicas, asegurando su óptima preservación al arribo a Lima.</p>
+    </div>
+    <a href="https://wa.me/51986396733?text=Estimado%20Dr.%20Castillo,%20deseo%20iniciar%20convenio%20corporativo%20UROSUR%202026" target="_blank" class="bwsp" style="padding:12px 24px;font-size:.9rem"><i class="fa-brands fa-whatsapp"></i> Iniciar Convenio</a>
+  </div>
+</section>
+
+<!-- DIRECTORIO MÉDICO -->
 <div class="dr-sec" id="doctor">
-  <div class="dr-card reveal">
+  <div class="dr-card">
     <div>
-      <img src="doctor-josehp-castillo-patologo.png" onerror="this.src='fotojosehpcastillo.png'" alt="Dr. Jose Castillo Cuenca" class="dimg">
-      <div class="dver">&#10003; Director General JC PATH LAB</div>
+      <img src="doctor-josehp-castillo-patologo.png" onerror="this.src='fotojosehpcastillo.png'" alt="Dr. Joseph C. Castillo Cuenca" class="dimg">
+      <div class="dver">✓ Director General JC PATH LAB</div>
     </div>
     <div class="dinfo">
-      <span class="dtag">&#127973; Liderazgo Cientifico</span>
-      <h3>Dr. Jose Castillo Cuenca</h3>
-      <div class="drole">Especialista en Anatomia Patologica &bull; Patologo Quirurgico</div>
-      <p class="dbio">Pionero en la implementacion del primer microscopio digital soberano con Inteligencia Artificial del Peru. Especialista en uropatologia oncologica, patologia de partes blandas, dermatopatologia e inmunohistoquimica diagnostica bajo criterios OMS 5a Edicion y guias CAP/Dabbs. Director del sistema de diagnostico histopatologico digital JC PATH LAB con cuatro motores de IA en tiempo real.</p>
-      <div class="creds">
-        <span class="cr">&#10003; OMS 5a Edicion</span>
-        <span class="cr">&#10003; Uropatologia UROSUR</span>
-        <span class="cr">&#10003; NordiQC</span>
-        <span class="cr">&#10003; Patologia Digital WSI</span>
-        <span class="cr">&#10003; IHQ Dabbs</span>
-        <span class="cr">&#10003; Lima &bull; Arequipa &bull; Puente Piedra</span>
+      <span style="color:var(--cy);font-size:.76rem;font-weight:800;letter-spacing:1px;text-transform:uppercase">Liderazgo Clínico y Académico</span>
+      <h3 style="font-size:1.9rem;font-weight:900;color:#fff;margin:6px 0">Dr. Joseph C. Castillo Cuenca</h3>
+      <div style="color:var(--txs);font-size:.95rem;margin-bottom:14px">Médico Especialista en Anatomía Patológica • CMP 56435</div>
+      <p style="color:var(--txs);font-size:.9rem;line-height:1.75;margin-bottom:20px">
+        Pionero en patología digital soberana e Inteligencia Artificial en el Perú. Especialista en uropatología oncológica, patología de partes blandas e inmunohistoquímica bajo criterios OMS 5ª Edición y guías CAP/Dabbs. Diseñador del sistema de digitalización WSI y del aplicativo móvil quirúrgico JC PATH LAB.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <span style="background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.08);padding:5px 12px;border-radius:6px;font-size:.74rem;color:#cbd5e1">✓ CMP 56435</span>
+        <span style="background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.08);padding:5px 12px;border-radius:6px;font-size:.74rem;color:#cbd5e1">✓ Criterios OMS 5ª Ed.</span>
+        <span style="background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.08);padding:5px 12px;border-radius:6px;font-size:.74rem;color:#cbd5e1">✓ Uropatología UROSUR</span>
+        <span style="background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.08);padding:5px 12px;border-radius:6px;font-size:.74rem;color:#cbd5e1">✓ Servidor WSI Soberano</span>
       </div>
     </div>
   </div>
 </div>
 
-<div class="tl-sec">
-  <div class="sh reveal"><span class="stg2">Historia de Innovacion</span><h2 class="st">Hitos de JC PATH LAB</h2></div>
-  <div class="tl">
-    <div class="ti2 reveal"><div class="tc"><div class="ty">2021</div><div class="tt">Fundacion del Laboratorio</div><div class="tx2">JC PATH LAB abre operaciones especializadas en anatomia patologica y uropatologia de precision en Lima, Peru.</div></div><div class="tdot"></div><div style="flex:1"></div></div>
-    <div class="ti2 reveal"><div style="flex:1"></div><div class="tdot"></div><div class="tc"><div class="ty">2023</div><div class="tt">Integracion WSI Digital</div><div class="tx2">Implementacion del servidor soberano de Whole Slide Imaging. Diagnostico digital remoto a 40X sin dependencia de nube.</div></div></div>
-    <div class="ti2 reveal"><div class="tc"><div class="ty">2024</div><div class="tt">Microscopio IA con H-optimus-0</div><div class="tx2">Primer despliegue del motor fundacional H-optimus-0 integrado en tiempo real al microscopio Motic. IA asistiendo diagnosticos en vivo.</div></div><div class="tdot"></div><div style="flex:1"></div></div>
-    <div class="ti2 reveal"><div style="flex:1"></div><div class="tdot"></div><div class="tc"><div class="ty">2025</div><div class="tt">Cuarteto IA: PLIP + YOLOv8 + Moondream2</div><div class="tx2">Integracion de cuatro motores IA en paralelo. Sistema certificado con 97.3% de precision en 15,000+ casos analizados.</div></div></div>
-    <div class="ti2 reveal"><div class="tc"><div class="ty">2026</div><div class="tt">La Colmena IA Soberana</div><div class="tx2">20 agentes de IA orquestan diagnosticos, generan informes y asisten al patologo en tiempo real. 100% offline, cero creditos de nube.</div></div><div class="tdot"></div><div style="flex:1"></div></div>
-  </div>
-</div>
-
-<div class="ct-sec" id="contacto">
-  <div class="ct-card reveal">
-    <h2>Necesita un Diagnostico de <span style="background:linear-gradient(135deg,#00d2ff,#6366f1);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Alta Precision?</span></h2>
-    <p>Coordinamos recojo de muestras en clinicas de Lima y Arequipa. Entrega digital en menos de 24 horas.</p>
-    <div class="ct-btns">
-      <a href="https://wa.me/51986396733?text=Estimado%20Dr.%20Castillo,%20deseo%20coordinar%20un%20estudio%20de%20anatomia%20patologica" target="_blank" class="bwsp2">&#128172; WhatsApp &bull; Solicitar Ahora</a>
-      <a href="precios.html" class="bg2">&#128196; Ver Tarifario 2026</a>
-    </div>
-    <div class="ci">
-      <div class="cii"><span>&#128205;</span>Jardines de Chilion Mz.M2 L13, Puente Piedra, Lima</div>
-      <div class="cii"><span>&#128222;</span>+51 986 396 733</div>
-      <div class="cii"><span>&#9200;</span>Lun-Sab 7am-7pm</div>
-    </div>
-  </div>
-</div>
-
+<!-- FOOTER -->
 <footer>
-  <p><strong>JC PATH LAB</strong> &bull; Anatomia Patologica &amp; Diagnostico Digital con IA<br>
-  Jardines de Chilion Mz. M2 Lote 13, Puente Piedra, Lima &bull; <strong>+51 986 396 733</strong><br>
-  <span style="font-size:.78rem;color:#475569">&copy; 2026 JC PATH LAB. Infraestructura 100% Soberana y Offline.</span></p>
+  <p><strong>JC PATH LAB</strong> • Especialistas en Anatomía Patológica &amp; Uropatología de Precisión<br>
+  Jardines de Chillón Mz. M2 Lote 13, Puente Piedra, Lima • <strong>Central Telefónica / WhatsApp: +51 986 396 733</strong><br>
+  <span style="font-size:.78rem;color:#475569">&copy; 2026 JC PATH LAB. Infraestructura 100% Soberana, Privada y Cero Créditos.</span></p>
 </footer>
 
+<!-- BOTÓN FLOTANTE CORTANA -->
 <div class="fab">
-  <button class="fabb" onclick="toggleC()" title="Asistente Cortana JC PATH LAB">
-    <div class="fbdg">ONLINE</div>
-    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+  <button class="fabb" onclick="window.open('app.html','_blank')" title="Abrir Aplicativo Móvil Quirúrgico">
+    <i class="fa-solid fa-mobile-screen" style="font-size:1.6rem;color:#fff"></i>
   </button>
-</div>
-
-<div class="cwin" id="cwin">
-  <div class="ch"><div class="chi"><div class="cdot"></div><div><div class="cht">Cortana &bull; Asistente JC PATH LAB</div><div class="chs">IA Soberana &bull; Disponible 24h</div></div></div><button class="ccls" onclick="toggleC()">&times;</button></div>
-  <div class="cbody" id="cbody"><div class="msg mb">Hola! Soy <strong>Cortana</strong>, asistente del Dr. Castillo. En que le puedo orientar? &#128300;</div></div>
-  <div class="cft"><input type="text" class="cinp" id="cinp" placeholder="Escriba su consulta..." onkeypress="if(event.key==='Enter')sendM()"><button class="csnd" onclick="sendM()">&#8594;</button></div>
 </div>
 
 <script>
 (function(){
   var c=document.getElementById('cv'),ctx=c.getContext('2d'),W,H,pts=[],aid;
   function sz(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;}
-  function P(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*.4;this.vy=(Math.random()-.5)*.4;this.r=Math.random()*1.8+.5;this.a=Math.random()*.5+.15;}
+  function P(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*.35;this.vy=(Math.random()-.5)*.35;this.r=Math.random()*1.7+.5;this.a=Math.random()*.5+.15;}
   P.prototype.u=function(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>W)this.vx*=-1;if(this.y<0||this.y>H)this.vy*=-1;};
   P.prototype.d=function(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle='rgba(0,210,255,'+this.a+')';ctx.fill();};
-  function init(){sz();var n=Math.min(Math.floor(W*H/13000),100);pts=[];for(var i=0;i<n;i++)pts.push(new P());}
-  function cn(){var md=130;for(var i=0;i<pts.length;i++){for(var j=i+1;j<pts.length;j++){var dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<md){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle='rgba(0,210,255,'+((1-d/md)*.14)+')';ctx.lineWidth=.5;ctx.stroke();}}}}
+  function init(){sz();var n=Math.min(Math.floor(W*H/13000),90);pts=[];for(var i=0;i<n;i++)pts.push(new P());}
+  function cn(){var md=120;for(var i=0;i<pts.length;i++){for(var j=i+1;j<pts.length;j++){var dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<md){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle='rgba(0,210,255,'+((1-d/md)*.12)+')';ctx.lineWidth=.5;ctx.stroke();}}}}
   function lp(){ctx.clearRect(0,0,W,H);pts.forEach(function(p){p.u();p.d();});cn();aid=requestAnimationFrame(lp);}
   window.addEventListener('resize',function(){cancelAnimationFrame(aid);init();lp();});
   init();lp();
 })();
-window.addEventListener('scroll',function(){document.getElementById('hdr').classList.toggle('on',window.scrollY>60);},{passive:true});
-(function(){var els=document.querySelectorAll('.reveal'),io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('vis');io.unobserve(x.target);}});},{threshold:.1});els.forEach(function(e){io.observe(e);});})();
-(function(){var cs=document.querySelectorAll('[data-target]'),io=new IntersectionObserver(function(e){e.forEach(function(x){if(!x.isIntersecting)return;var el=x.target,tg=parseFloat(el.dataset.target),sfx=el.dataset.sfx||'',isF=String(tg).indexOf('.')>-1,st=performance.now();function tk(now){var p=Math.min((now-st)/1800,1),ease=1-Math.pow(1-p,3),v=tg*ease;el.textContent=(isF?v.toFixed(1):Math.round(v).toLocaleString())+sfx;if(p<1)requestAnimationFrame(tk);}requestAnimationFrame(tk);io.unobserve(el);});},{threshold:.5});cs.forEach(function(c){io.observe(c);});})();
-document.querySelectorAll('.scard').forEach(function(c){c.addEventListener('mousemove',function(e){var r=c.getBoundingClientRect(),x=((e.clientX-r.left)/r.width-.5)*12,y=((e.clientY-r.top)/r.height-.5)*-12;c.style.transform='translateY(-6px) rotateX('+y+'deg) rotateY('+x+'deg)';c.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');c.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');});c.addEventListener('mouseleave',function(){c.style.transform='';});});
-var N8N='http://localhost:5678/webhook/chat-cortana',open=false;
-function toggleC(){var w=document.getElementById('cwin');open=!open;w.style.display=open?'flex':'none';if(open)document.getElementById('cinp').focus();}
-function appM(t,u){var b=document.getElementById('cbody'),d=document.createElement('div');d.className='msg '+(u?'mu':'mb');d.textContent=t;b.appendChild(d);b.scrollTop=b.scrollHeight;}
-function sendM(){var i=document.getElementById('cinp'),t=i.value.trim();if(!t)return;appM(t,true);i.value='';var tk=document.createElement('div');tk.className='msg mb';tk.id='tk';tk.textContent='Consultando sistema...';document.getElementById('cbody').appendChild(tk);fetch(N8N,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:t,doctor:'Dr. Jose Castillo',ts:Date.now()})}).then(function(r){var e=document.getElementById('tk');if(e)e.remove();if(r.ok)r.json().then(function(d){appM(d.reply||d.respuesta||d.text||'Consulta procesada.',false);});else fl(t);}).catch(function(){var e=document.getElementById('tk');if(e)e.remove();fl(t);});}
-function fl(q){var t=q.toLowerCase(),r='';if(/precio|tarifa|costo/.test(t))r='Puede solicitar nuestro tarifario corporativo 2026 al WhatsApp +51 986 396 733.';else if(/tiempo|entrega|demora/.test(t))r='Biopsias de rutina: 24-48 h. IHQ: 3-5 dias con doble validacion.';else if(/donde|direccion|ubicacion/.test(t))r='Sede: Jardines de Chilion Mz.M2 Lote 13, Puente Piedra, Lima.';else if(/microscopio|ia|inteligencia|digital/.test(t))r='JC PATH LAB tiene el primer microscopio digital con IA del Peru. Precision 97.3%.';else r='Gracias por contactar JC PATH LAB. WhatsApp: +51 986 396 733';appM(r,false);}
+window.addEventListener('scroll',function(){document.getElementById('hdr').classList.toggle('on',window.scrollY>50);},{passive:true});
 </script>
 </body>
 </html>
