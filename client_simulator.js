@@ -36,7 +36,7 @@ const CLIENT_METADATA = {
     'drjhonvilca': {
         type: 'doctor',
         specialty: 'Cirugía General',
-        clinic: 'Sede Principal',
+        clinic: 'Clínica La Luz',
         shortTitle: 'Cirujano General'
     },
     'drjorgemunante': {
