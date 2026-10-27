@@ -1285,7 +1285,7 @@
 
           <div class="doctor-sede-row">
             <i class="fa-solid fa-hospital-user"></i>
-            <span><strong>${escapeHtml(p.medico || 'Dr. Médico Tratante')}</strong> • ${escapeHtml(p.sede || 'JC PATH LAB')}</span>
+            <span><strong>${escapeHtml(p.medico || 'Dr. Médico Tratante')}</strong> • ${escapeHtml(((p.medico || '').toUpperCase().includes('VILCA')) ? 'CLÍNICA LA LUZ' : (p.sede || 'JC PATH LAB'))}</span>
           </div>
 
           <div class="card-actions-row">

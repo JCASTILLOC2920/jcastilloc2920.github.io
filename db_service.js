@@ -2678,7 +2678,9 @@ export function mapDbToPatient(dbRecord) {
             res.clinica = 'CLÍNICA SAN CLEMENTE';
         } else if (medNorm.includes('saire') || medNorm.includes('bocangel') || espNorm.includes('alfa') || motNorm.includes('alfa')) {
             res.clinica = 'CLÍNICA ALFA PREVENIR';
-        } else if (medNorm.includes('sanchez') || medNorm.includes('becerra') || medNorm.includes('ulfe') || medNorm.includes('carrion') || medNorm.includes('vilca') || medNorm.includes('munante') || medNorm.includes('arzapalo') || medNorm.includes('flores') || medNorm.includes('sierra')) {
+        } else if (medNorm.includes('vilca') || espNorm.includes('luz') || motNorm.includes('luz')) {
+            res.clinica = 'CLÍNICA LA LUZ';
+        } else if (medNorm.includes('sanchez') || medNorm.includes('becerra') || medNorm.includes('ulfe') || medNorm.includes('carrion') || medNorm.includes('munante') || medNorm.includes('arzapalo') || medNorm.includes('flores') || medNorm.includes('sierra')) {
             res.clinica = 'CLÍNICA CARRIÓN';
         } else {
             res.clinica = (existingClinica && existingClinica.toLowerCase() !== 'sin clinica') ? existingClinica : '';
