@@ -814,6 +814,7 @@ function initScriptApp() {
                         const motVal = (motivoEstudioVal || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
                         if (medVal.includes('marreros') || medVal.includes('lloclla') || espVal.includes('mujer') || motVal.includes('mujer')) return 'CLINICA LA MUJER';
                         if (medVal.includes('escalante') || espVal.includes('clemente') || motVal.includes('clemente')) return 'CLÍNICA SAN CLEMENTE';
+                        if (medVal.includes('vilca') || medVal.includes('jhon') || espVal.includes('luz') || motVal.includes('luz')) return 'CLÍNICA LA LUZ';
                         if (medVal.includes('saire') || medVal.includes('bocangel') || espVal.includes('alfa') || motVal.includes('alfa')) return 'CLÍNICA ALFA PREVENIR';
                         return '';
                     })(),

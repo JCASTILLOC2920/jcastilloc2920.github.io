@@ -1221,7 +1221,7 @@
           const med = (p.medico || '').toLowerCase();
           const proc = (p.procedimiento || '').toLowerCase();
           const diag = (p.diagnostico || '').toLowerCase();
-          const sede = (p.sede || '').toLowerCase();
+          const sede = (((p.medico || '').toUpperCase().includes('VILCA')) ? 'clínica la luz' : (p.sede || '')).toLowerCase();
           return pac.includes(searchQuery) || cod.includes(searchQuery) || 
                  med.includes(searchQuery) || proc.includes(searchQuery) || 
                  diag.includes(searchQuery) || sede.includes(searchQuery);
@@ -1504,7 +1504,7 @@
             <td style="padding: 4px 6px; border: 1px solid #cbd5e1;"><strong>MÉDICO:</strong></td>
             <td style="padding: 4px 6px; border: 1px solid #cbd5e1; font-weight: 600;">${escapeHtml(p.medico || '')}</td>
             <td style="padding: 4px 6px; border: 1px solid #cbd5e1;"><strong>SEDE / CLÍNICA:</strong></td>
-            <td style="padding: 4px 6px; border: 1px solid #cbd5e1;">${escapeHtml(p.sede || '')}</td>
+            <td style="padding: 4px 6px; border: 1px solid #cbd5e1;">${escapeHtml(((p.medico || '').toUpperCase().includes('VILCA')) ? 'CLÍNICA LA LUZ' : (p.sede || ''))}</td>
           </tr>
           <tr style="background: #f1f5f9;">
             <td style="padding: 4px 6px; border: 1px solid #cbd5e1;"><strong>ESPÉCIMEN:</strong></td>
