@@ -510,26 +510,149 @@
   transform: translateY(-1px);
 }
 
-/* RESPONSIVE MÓVIL */
-@media (max-width: 640px) {
-  .cortana-assistant-panel {
-    bottom: 0;
-    right: 0;
-    width: 100vw;
-    max-width: 100vw;
-    height: calc(100vh - 60px);
-    border-radius: 20px 20px 0 0;
-  }
+/* ============================================================================
+   RESPONSIVIDAD UNIVERSAL MULTI-DISPOSITIVO (4K, DESKTOP, LAPTOP, TABLET Y MÓVIL)
+   ============================================================================ */
+
+/* 1. Monitores Ultra-Wide y 4K (>= 2000px) */
+@media (min-width: 2000px) {
   .cortana-floating-badge {
-    bottom: 70px;
-    right: 14px;
-    padding: 5px 12px 5px 6px;
+    bottom: 36px;
+    right: 36px;
+    padding: 8px 20px 8px 10px;
   }
   .cortana-avatar-ring {
-    width: 38px;
-    height: 38px;
+    width: 52px;
+    height: 52px;
+  }
+  .cortana-badge-name {
+    font-size: 1.05rem;
+  }
+  .cortana-assistant-panel {
+    width: 480px;
+    height: 640px;
+    bottom: 104px;
+    right: 36px;
+  }
+}
+
+/* 2. Tablets y Laptops Compactas (641px - 1024px) */
+@media (max-width: 1024px) {
+  .cortana-assistant-panel {
+    width: 390px;
+    max-height: calc(100vh - 100px);
+    bottom: 80px;
+    right: 18px;
+  }
+  .cortana-floating-badge {
+    bottom: 20px;
+    right: 18px;
+  }
+}
+
+/* 3. Teléfonos Móviles (<= 640px) - Diseño Bottom-Sheet Táctil */
+@media (max-width: 640px) {
+  .cortana-floating-badge {
+    bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+    right: 12px;
+    padding: 4px 10px 4px 4px;
+    gap: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 16px rgba(56, 189, 248, 0.35);
+  }
+  .cortana-avatar-ring {
+    width: 36px;
+    height: 36px;
+  }
+  .cortana-badge-name {
+    font-size: 0.82rem;
   }
   .cortana-badge-role {
     display: none;
+  }
+  .cortana-badge-chip {
+    font-size: 0.60rem;
+    padding: 2px 6px;
+  }
+
+  .cortana-assistant-panel {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    max-width: 100vw;
+    height: calc(88vh - env(safe-area-inset-bottom, 0px));
+    max-height: calc(100dvh - 50px);
+    border-radius: 20px 20px 0 0;
+    border-bottom: none;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.85);
+  }
+
+  .cortana-panel-header {
+    padding: 10px 14px;
+  }
+  .cortana-header-name {
+    font-size: 0.88rem;
+  }
+  .cortana-header-sub {
+    font-size: 0.68rem;
+  }
+  .cortana-quick-chips {
+    padding: 6px 10px;
+    gap: 4px;
+  }
+  .cortana-chip {
+    font-size: 0.68rem;
+    padding: 3px 8px;
+  }
+  .cortana-messages-container {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+  .cortana-bubble {
+    font-size: 0.78rem;
+    padding: 8px 12px;
+  }
+  .cortana-patient-card {
+    padding: 8px 10px;
+  }
+  .cortana-act-btn {
+    font-size: 0.70rem;
+    padding: 5px 8px;
+  }
+  .cortana-panel-input-box {
+    padding: 8px 10px calc(8px + env(safe-area-inset-bottom, 0px)) 10px;
+  }
+}
+
+/* 4. Teléfonos Muy Pequeños (<= 380px) */
+@media (max-width: 380px) {
+  .cortana-floating-badge {
+    padding: 3px 8px 3px 3px;
+  }
+  .cortana-badge-name {
+    font-size: 0.75rem;
+  }
+  .cortana-badge-chip {
+    display: none;
+  }
+}
+
+/* 5. Orientación Horizontal / Paisaje en Móviles (max-height <= 520px) */
+@media (max-height: 520px) and (orientation: landscape) {
+  .cortana-assistant-panel {
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+    top: 0;
+    bottom: 0;
+  }
+  .cortana-panel-header {
+    padding: 6px 12px;
+  }
+  .cortana-quick-chips {
+    display: none;
+  }
+  .cortana-messages-container {
+    padding: 8px 12px;
   }
 }
