@@ -1,5 +1,5 @@
-import { usersDatabase, categoriesDatabase, doctorsDatabase, defaultCategories, templatesDatabase, patientDatabase, saveCategoryToSupabase, deleteCategoryFromSupabase, saveTemplateToSupabase, deleteTemplateFromSupabase } from "./db_service.js";
-import { applyFilters } from "./ui_tables.js";
+import { usersDatabase, categoriesDatabase, doctorsDatabase, defaultCategories, templatesDatabase, patientDatabase, saveCategoryToSupabase, deleteCategoryFromSupabase, saveTemplateToSupabase, deleteTemplateFromSupabase } from "./db_service.js?v=20261105_v673";
+import { applyFilters } from "./ui_tables.js?v=20261105_v673";
 const supabase = window.supabase;
 const usingSupabase = !!(supabase && window.SUPABASE_CONFIG);
 
@@ -83,7 +83,18 @@ window.switchSidebarView = function(target, clickedBtn) {
         } else if (typeof window.prepareRegistrationModal === 'function') {
             window.prepareRegistrationModal();
         }
-        if (typeof window.openModal === 'function') window.openModal('registrationModalOverlay');
+        if (typeof window.openModal === 'function') {
+            window.openModal('registrationModalOverlay');
+        } else {
+            const reg = document.getElementById('registrationModalOverlay') || document.getElementById('patientRegistrationModal');
+            if (reg) {
+                reg.style.setProperty('display', 'flex', 'important');
+                reg.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
     }
 };
 
@@ -91,7 +102,6 @@ export function initAdminUI() {
     document.querySelectorAll('.nav-item-btn[data-target]').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
-            e.stopPropagation();
             const actualBtn = e.target.closest('.nav-item-btn[data-target]') || btn;
             const target = actualBtn.getAttribute('data-target');
             if (!target) return;
@@ -859,22 +869,32 @@ export function populateModalDoctorsSelect() {
 
         // Obtener clínicas únicas para autocompletado de Clínica
         const uniqueClinicas = new Set();
+        uniqueClinicas.add("SIN CLINICA DEFINIDA");
         uniqueClinicas.add("CLÍNICA SAN CLEMENTE");
         uniqueClinicas.add("CLÍNICA CARRIÓN");
         uniqueClinicas.add("CLINICA LA MUJER");
         uniqueClinicas.add("CLÍNICA ALFA PREVENIR");
-        uniqueClinicas.add("CLÍNICA NO CONOCIDA");
         doctorsDatabase.forEach(d => {
-            if (d.tipo === 'CLINICA' && d.doctor) uniqueClinicas.add(d.doctor.trim().toUpperCase());
+            if (d.tipo === 'CLINICA' && d.doctor) {
+                const c = d.doctor.trim().toUpperCase();
+                if (c !== 'CLÍNICA NO CONOCIDA' && c !== 'SIN CLINICA') uniqueClinicas.add(c);
+            }
         });
         if (window.patientDatabase) {
             window.patientDatabase.forEach(p => {
-                if (p.clinica && p.clinica.trim() !== '') uniqueClinicas.add(p.clinica.trim().toUpperCase());
+                if (p.clinica && p.clinica.trim() !== '') {
+                    const c = p.clinica.trim().toUpperCase();
+                    if (c !== 'CLÍNICA NO CONOCIDA' && c !== 'SIN CLINICA') uniqueClinicas.add(c);
+                }
             });
         }
 
+        const otherClinicas = Array.from(uniqueClinicas).filter(c => c !== "SIN CLINICA DEFINIDA").sort();
+        const sortedClinicas = ["SIN CLINICA DEFINIDA", ...otherClinicas];
+
         if (datalistClinicas) {
-            uniqueClinicas.forEach(c => {
+            datalistClinicas.innerHTML = '';
+            sortedClinicas.forEach(c => {
                 const opt = document.createElement('option');
                 opt.value = c;
                 datalistClinicas.appendChild(opt);
