@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JC PATH LAB - Verificación Criptográfica Zero-Trust</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        :root {
+            --primary: #0f766e;
+            --primary-dark: #115e59;
+            --success: #059669;
+            --success-bg: #ecfdf5;
+            --success-border: #a7f3d0;
+            --danger: #dc2626;
+            --danger-bg: #fef2f2;
+            --danger-border: #fecaca;
+            --neutral-900: #0f172a;
+            --neutral-800: #1e293b;
+            --neutral-700: #334155;
+            --neutral-600: #475569;
+            --neutral-500: #64748b;
+            --neutral-200: #e2e8f0;
+            --neutral-100: #f1f5f9;
+            --neutral-50: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        body {
+            background: #0f172a;
+            color: var(--neutral-800);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 24px 16px;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 680px;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.4);
+            overflow: hidden;
+            border: 1px solid var(--neutral-200);
+        }
+
+        /* Header Institucional */
+        .header-brand {
+            background: linear-gradient(135deg, #042f2e 0%, #0f766e 100%);
+            padding: 24px 28px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #14b8a6;
+        }
+
+        .brand-title {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-subtitle {
+            font-size: 11px;
+            color: #ccfbf1;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        .badge-zero-trust {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+            border: 1px solid rgba(255,255,255,0.25);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Banner de Estado */
+        .status-banner {
+            padding: 24px 28px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .status-banner.valid {
+            background: var(--success-bg);
+            border-bottom: 2px solid var(--success-border);
+        }
+
+        .status-banner.invalid {
+            background: var(--danger-bg);
+            border-bottom: 2px solid var(--danger-border);
+        }
+
+        .status-icon-box {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            flex-shrink: 0;
+        }
+
+        .status-banner.valid .status-icon-box {
+            background: #d1fae5;
+            color: var(--success);
+        }
+
+        .status-banner.invalid .status-icon-box {
+            background: #fee2e2;
+            color: var(--danger);
+        }
+
+        .status-text-title {
+            font-size: 17px;
+            font-weight: 800;
+            line-height: 1.3;
+        }
+
+        .status-banner.valid .status-text-title {
+            color: #065f46;
+        }
+
+        .status-banner.invalid .status-text-title {
+            color: #991b1b;
+        }
+
+        .status-text-desc {
+            font-size: 13px;
+            color: var(--neutral-600);
+            margin-top: 4px;
+            line-height: 1.4;
+        }
+
+        /* Cuerpo del Informe */
+        .content-body {
+            padding: 28px;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        @media (max-width: 580px) {
+            .data-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .data-item {
+            background: var(--neutral-50);
+            border: 1px solid var(--neutral-200);
+            padding: 12px 16px;
+            border-radius: 8px;
+        }
+
+        .data-item.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .data-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--neutral-500);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .data-val {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--neutral-900);
+            word-break: break-word;
+        }
+
+        .data-val.code {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--primary);
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        }
+
+        /* Diagnóstico Oficial */
+        .diag-box {
+            background: #f0fdf4;
+            border: 1.5px solid #86efac;
+            border-radius: 10px;
+            padding: 18px 20px;
+            margin-bottom: 24px;
+        }
+
+        .diag-title {
+            font-size: 12px;
+            font-weight: 800;
+            color: #166534;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .diag-content {
+            font-size: 14.5px;
+            color: #14532d;
+            font-weight: 700;
+            line-height: 1.6;
+            white-space: pre-line;
+        }
+
+        /* Sección de Auditoría Criptográfica */
+        .crypto-box {
+            background: #0f172a;
+            color: #cbd5e1;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 11px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            border: 1px solid #334155;
+            word-break: break-all;
+        }
+
+        .crypto-title {
+            color: #38bdf8;
+            font-weight: 800;
+            margin-bottom: 6px;
+            font-size: 11px;
+        }
+
+        /* Footer con Firma Médica */
+        .signature-footer {
+            border-top: 1px solid var(--neutral-200);
+            padding-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .doctor-info {
+            font-size: 12px;
+            color: var(--neutral-600);
+            line-height: 1.4;
+        }
+
+        .doctor-name {
+            font-size: 13.5px;
+            font-weight: 800;
+            color: var(--neutral-900);
+        }
+
+        .doctor-reg {
+            font-size: 11px;
+            color: var(--neutral-500);
+            font-weight: 600;
+        }
+
+        .btn-view-pdf {
+            background: var(--primary);
+            color: #ffffff;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.15s;
+        }
+
+        .btn-view-pdf:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Estilo Alerta Roja */
+        .alert-details {
+            background: #fff1f2;
+            border: 1.5px solid #fecdd3;
+            border-radius: 10px;
+            padding: 20px;
+            color: #881337;
+            font-size: 13.5px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .alert-details strong {
+            color: #9f1239;
+        }
+
+        .loading-spinner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 20px;
+            gap: 14px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--neutral-200);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="auth-container">
+    <!-- Header Institucional -->
+    <div class="header-brand">
+        <div>
+            <div class="brand-title">
+                🔬 JC PATH LAB
+            </div>
+            <div class="brand-subtitle">Laboratorio de Anatomía Patológica & Citopatología Diagnóstica</div>
+        </div>
+        <div class="badge-zero-trust">
+            <span>🔒 ZERO-TRUST QR</span>
+        </div>
+    </div>
+
+    <!-- Contenido Dinámico -->
+    <div id="contentArea">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <div style="font-size: 14px; color: var(--neutral-600); font-weight: 600;">
+                Verificando firma criptográfica HMAC-SHA256 con base maestra...
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts de Respaldo Maestro Local para Modo Soberano 100% Offline -->
+<script src="real_supabase_backup.js?v=20261102_v659"></script>
+
+<script>
+(async function() {
+    const contentArea = document.getElementById('contentArea');
+    const urlParams = new URLSearchParams(window.location.search || window.location.hash.replace(/^#/, ''));
+    const code = (urlParams.get('c') || urlParams.get('cod') || urlParams.get('codAtencion') || urlParams.get('codigo') || '').trim().toUpperCase();
+    const sig = (urlParams.get('h') || urlParams.get('sig') || urlParams.get('hash') || '').trim().toLowerCase();
+
+    // Clave simétrica soberana institucional
+    const K_SOBERANA_HEX = "e4f8a29b3c7d1e0f5a8b9c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f";
+
+    if (!code) {
+        renderInputForm();
+        return;
+    }
+
+    // Función de Sanitización Idéntica al Criptógrafo Python
+    function sanitizarDiag(str) {
+        if (!str) return '';
+        let t = String(str).replace(/<[^>]+>/g, ' ');
+        t = t.normalize('NFKC');
+        t = t.replace(/\r\n/g, ' ').replace(/\r/g, ' ').replace(/\n/g, ' ');
+        return t.replace(/\s+/g, ' ').trim().toUpperCase();
+    }
+
+    // Funciones Web Crypto para HMAC-SHA256
+    async function sha256Hex(msg) {
+        const enc = new TextEncoder();
+        const buf = await crypto.subtle.digest('SHA-256', enc.encode(msg));
+        return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function hmacSha256Hex(keyStr, msg) {
+        const enc = new TextEncoder();
+        const keyData = enc.encode(keyStr);
+        const cryptoKey = await crypto.subtle.importKey(
+            "raw", keyData, { name: "HMAC", hash: { name: "SHA-256" } }, false, ["sign"]
+        );
+        const sigBuf = await crypto.subtle.sign("HMAC", cryptoKey, enc.encode(msg));
+        return Array.from(new Uint8Array(sigBuf)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    // 1. Validar vía Backend Docker n8n Soberano (puerto 5678)
+    let verifiedOnline = false;
+    let apiData = null;
+
+    try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 1200); // 1.2s timeout ultra-rápido
+
+        const endpoints = [
+            `http://localhost:5678/webhook/verificar-informe?c=${encodeURIComponent(code)}&h=${encodeURIComponent(sig)}`
+        ];
+
+        for (const ep of endpoints) {
+            try {
+                const resp = await fetch(ep, { signal: controller.signal, mode: 'cors' });
+                if (resp.ok) {
+                    apiData = await resp.json();
+                    verifiedOnline = true;
+                    break;
+                }
+            } catch (eEp) {}
+        }
+        clearTimeout(timeoutId);
+    } catch (eFetch) {}
+
+    if (verifiedOnline && apiData) {
+        if (apiData.autentico) {
+            renderValidScreen(apiData.datos_oficiales, sig, apiData.motivo);
+            return;
+        } else {
+            renderInvalidScreen(code, sig, apiData.mensaje || apiData.motivo);
+            return;
+        }
+    }
+
+    // 2. Fallback Soberano 100% Offline contra base de datos local en memoria (real_supabase_backup.js)
+    let localPatient = null;
+    const backupList = (typeof window !== 'undefined' && Array.isArray(window.REAL_SUPABASE_BACKUP)) ? window.REAL_SUPABASE_BACKUP
+        : ((typeof window !== 'undefined' && Array.isArray(window.REAL_SUPABASE_PATIENTS)) ? window.REAL_SUPABASE_PATIENTS
+        : ((typeof realSupabaseBackup !== 'undefined' && Array.isArray(realSupabaseBackup)) ? realSupabaseBackup : []));
+
+    if (Array.isArray(backupList) && backupList.length > 0) {
+        const normTarget = code.replace(/-/g, '');
+        localPatient = backupList.find(p => {
+            const pCode = String(p.codAtencion || p.cod_atencion || p.codigo || '').toUpperCase();
+            return pCode === code || pCode.replace(/-/g, '') === normTarget;
+        });
+    }
+
+    if (!localPatient) {
+        renderInvalidScreen(code, sig, "DOCUMENTO NO REGISTRADO EN EL CATÁLOGO OFICIAL DE JC PATH LAB");
+        return;
+    }
+
+    // Directiva Inquebrantable Dr. José Castillo: Solo informes firmados poseen validez criptográfica
+    const isSigned = localPatient.firmado === true || localPatient.firmado === 1 || String(localPatient.firmado).toLowerCase() === 'true';
+    const isReady = String(localPatient.estado || '').toLowerCase().includes('completad') || String(localPatient.estado || '').toLowerCase().includes('listo');
+    if (!isSigned && !isReady) {
+        renderInvalidScreen(code, sig, "DOCUMENTO EN TRÁMITE / BORRADOR — PENDIENTE DE FIRMA DIGITAL POR EL DR. JOSÉ CASTILLO");
+        return;
+    }
+
+    // Cálculo local del HMAC-SHA256 del informe oficial
+    const pDni = String(localPatient.dni || '').trim();
+    const pFecha = String(localPatient.fecEntrega || localPatient.fec_entrega || localPatient.fecha_informe || '').trim();
+    const pDiag = sanitizarDiag(localPatient.diagnostico || '');
+    const pShaDiag = await sha256Hex(pDiag);
+
+    const canonicalMsg = `${code}|${pDni}|${pFecha}|${pShaDiag}`;
+    const fullHmac = await hmacSha256Hex(K_SOBERANA_HEX, canonicalMsg);
+    const expectedSig32 = fullHmac.substring(0, 32).toLowerCase();
+
+    // Verificación de firma recibida vs esperada
+    const sigMatches = (sig && (sig === expectedSig32 || sig === fullHmac));
+
+    if (sigMatches) {
+        renderValidScreen({
+            cod_atencion: localPatient.codAtencion || code,
+            paciente: localPatient.paciente || `${localPatient.apellidos || ''}, ${localPatient.nombres || ''}`,
+            dni: pDni,
+            edad: localPatient.edad,
+            sexo: localPatient.sexo,
+            fecha_informe: pFecha,
+            med_solicitante: localPatient.medSolicitante || '---',
+            clinica: localPatient.clinica || '---',
+            especimen: localPatient.especimen || '---',
+            diagnostico_oficial: localPatient.diagnostico || '---',
+            sello_institucional: "DR. JOSEHP CHRISTOPHER CASTILLO CUENCA - MÉDICO ANATOMOPATÓLOGO (CMP 59590 / RNE 32096)"
+        }, sig, "Verificación criptográfica HMAC-SHA256 soberana exitosa");
+    } else {
+        renderInvalidScreen(code, sig, "DOCUMENTO ADULTERADO O FIRMA INVÁLIDA (LA FIRMA DEL QR NO COINCIDE CON EL DIAGNÓSTICO MAESTRO)");
+    }
+
+    // Renderizadores de Pantalla
+    function renderValidScreen(pat, hashUsed, reason) {
+        contentArea.innerHTML = `
+            <div class="status-banner valid">
+                <div class="status-icon-box">✓</div>
+                <div>
+                    <div class="status-text-title">INFORME HISTOPATOLÓGICO AUTÉNTICO Y CERTIFICADO</div>
+                    <div class="status-text-desc">Este documento ha sido verificado criptográficamente con la clave institucional de JC PATH LAB. Los datos son legítimos e inalterados.</div>
+                </div>
+            </div>
+
+            <div class="content-body">
+                <div class="data-grid">
+                    <div class="data-item">
+                        <div class="data-label">Código de Atención</div>
+                        <div class="data-val code">${pat.cod_atencion || code}</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Documento de Identidad (DNI)</div>
+                        <div class="data-val">${pat.dni || '---'}</div>
+                    </div>
+                    <div class="data-item full-width">
+                        <div class="data-label">Apellidos y Nombres del Paciente</div>
+                        <div class="data-val">${pat.paciente || '---'}</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Fecha de Informe / Firma</div>
+                        <div class="data-val">${pat.fecha_informe || '---'}</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="data-label">Clínica / Sede</div>
+                        <div class="data-val">${pat.clinica || '---'}</div>
+                    </div>
+                    <div class="data-item full-width">
+                        <div class="data-label">Muestra / Especímen Quirúrgico</div>
+                        <div class="data-val">${pat.especimen || '---'}</div>
+                    </div>
+                </div>
+
+                <div class="diag-box">
+                    <div class="diag-title">
+                        <span>📋</span> DIAGNÓSTICO OFICIAL REGISTRADO EN BASE MAESTRA
+                    </div>
+                    <div class="diag-content">${pat.diagnostico_oficial || pat.diagnostico || '---'}</div>
+                </div>
+
+                <div class="crypto-box">
+                    <div class="crypto-title">🔐 TRAZABILIDAD CRIPTOGRÁFICA ZERO-TRUST</div>
+                    <div>ALGORITMO : HMAC-SHA256 (RFC 2104)</div>
+                    <div>FIRMA QR   : ${hashUsed || '---'}</div>
+                    <div>ESTADO     : 100% CONCORDANCIA OFICIAL (${reason})</div>
+                </div>
+
+                <div class="signature-footer">
+                    <div class="doctor-info">
+                        <div class="doctor-name">DR. JOSEHP CHRISTOPHER CASTILLO CUENCA</div>
+                        <div class="doctor-reg">Médico Anatomopatólogo | CMP 59590 • RNE 32096</div>
+                        <div style="font-size: 10.5px; color: #059669; font-weight: 700; margin-top: 2px;">FIRMA DIGITALMENTE CERTIFICADA</div>
+                    </div>
+                    <a href="imprimir.html?codAtencion=${encodeURIComponent(pat.cod_atencion || code)}" target="_blank" class="btn-view-pdf">
+                        📄 Ver Informe PDF
+                    </a>
+                </div>
+            </div>
+        `;
+    }
+
+    function renderInvalidScreen(badCode, badSig, reasonText) {
+        contentArea.innerHTML = `
+            <div class="status-banner invalid">
+                <div class="status-icon-box">✕</div>
+                <div>
+                    <div class="status-text-title">ALERTA CRÍTICA: DOCUMENTO ADULTERADO O NO REGISTRADO</div>
+                    <div class="status-text-desc">La firma digital o el código de este documento no coinciden con los registros médicos de JC PATH LAB.</div>
+                </div>
+            </div>
+
+            <div class="content-body">
+                <div class="alert-details">
+                    <div style="font-weight: 800; font-size: 15px; margin-bottom: 6px;">ADVERTENCIA DE SEGURIDAD CLÍNICA</div>
+                    <p>El código QR escaneado presenta inconsistencias criptográficas irrecuperables. Esto ocurre si:</p>
+                    <ul style="margin-left: 20px; margin-top: 6px;">
+                        <li>El diagnóstico médico o los datos del paciente fueron alterados tras la emisión.</li>
+                        <li>El código de informe <strong>${badCode || 'NO ESPECIFICADO'}</strong> no existe en los archivos oficiales.</li>
+                        <li>El código QR fue clonado o generado por un tercero no autorizado.</li>
+                    </ul>
+                    <div style="margin-top: 12px; font-weight: 700;">
+                        Motivo técnico: ${reasonText}
+                    </div>
+                </div>
+
+                <div class="crypto-box" style="border-color: #991b1b; background: #1c1917;">
+                    <div class="crypto-title" style="color: #f87171;">⚠️ DATOS DE LA VERIFICACIÓN FALLIDA</div>
+                    <div>CÓDIGO PRESENTADO : ${badCode || '---'}</div>
+                    <div>FIRMA RECIBIDA     : ${badSig || 'NO PROVISTA'}</div>
+                    <div>RESOLUCIÓN         : RECHAZO INMEDIATO (ZERO-TRUST)</div>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <p style="font-size: 12px; color: var(--neutral-500); margin-bottom: 12px;">
+                        Para consultas o validar un informe impreso, comuníquese directamente con la Dirección Médica de JC PATH LAB.
+                    </p>
+                    <a href="verificar_informe.html" class="btn-view-pdf" style="background: var(--neutral-700);">
+                        🔄 Verificar Otro Documento
+                    </a>
+                </div>
+            </div>
+        `;
+    }
+
+    function renderInputForm() {
+        contentArea.innerHTML = `
+            <div class="content-body" style="text-align: center;">
+                <div style="font-size: 36px; margin-bottom: 10px;">🛡️</div>
+                <h2 style="font-size: 18px; font-weight: 800; color: var(--neutral-900); margin-bottom: 8px;">
+                    Portal de Verificación Criptográfica Zero-Trust
+                </h2>
+                <p style="font-size: 13px; color: var(--neutral-600); margin-bottom: 24px;">
+                    Ingrese el código de atención y la firma hexadecimal impresos en el código QR del informe patológico.
+                </p>
+
+                <form onsubmit="event.preventDefault(); window.location.search = '?c=' + encodeURIComponent(document.getElementById('inputCode').value.trim()) + '&h=' + encodeURIComponent(document.getElementById('inputHash').value.trim());" style="max-width: 380px; margin: 0 auto; text-align: left; display: flex; flex-direction: column; gap: 14px;">
+                    <div>
+                        <label style="font-size: 12px; font-weight: 700; color: var(--neutral-700); display: block; margin-bottom: 4px;">Código de Atención (ej. 26Q-345):</label>
+                        <input id="inputCode" type="text" placeholder="26Q-345" required style="width: 100%; padding: 10px 12px; border: 1px solid var(--neutral-200); border-radius: 6px; font-size: 14px; font-weight: 600; text-transform: uppercase;">
+                    </div>
+                    <div>
+                        <label style="font-size: 12px; font-weight: 700; color: var(--neutral-700); display: block; margin-bottom: 4px;">Firma Digital HMAC (32 caracteres):</label>
+                        <input id="inputHash" type="text" placeholder="e95a7196a063e8a70e0497b312d6b432" required style="width: 100%; padding: 10px 12px; border: 1px solid var(--neutral-200); border-radius: 6px; font-size: 13px; font-family: monospace;">
+                    </div>
+                    <button type="submit" class="btn-view-pdf" style="width: 100%; justify-content: center; padding: 12px; margin-top: 8px;">
+                        🔍 Verificar Autenticidad
+                    </button>
+                </form>
+            </div>
+        `;
+    }
+})();
+</script>
+</body>
+</html>

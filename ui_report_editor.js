@@ -1,4 +1,4 @@
-import { patientDatabase, doctorsDatabase, triggerAutomaticBackup, categoriesDatabase, defaultCategories, templatesDatabase, addTemplateToDatabase, mapPatientToDb, savePatient, deletePatient, cleanTextContentLocal, sortPatientArray, normalizeSexo, getPatientFromIndexedDB, getSurgicalCaseFromLRU, fetchFullPatientDetails } from './db_service.js?v=v602.1012_0705';
+import { safeDeepClone, safeMonotonicMerge, patientDatabase, doctorsDatabase, triggerAutomaticBackup, categoriesDatabase, defaultCategories, templatesDatabase, addTemplateToDatabase, mapPatientToDb, savePatient, deletePatient, cleanTextContentLocal, sortPatientArray, normalizeSexo, getPatientFromIndexedDB, getSurgicalCaseFromLRU, fetchFullPatientDetails } from './db_service.js?v=v602.1012_0705';
 
 import { renderTable, applyFilters } from './ui_tables.js?v=v602.1012_0705';
 
@@ -202,113 +202,381 @@ export function resolveEditorImage(key, existingFallback = '') {
 
 // ============================================================================
 
-// CERO PÉRDIDA DE DATOS: AUTOGUARDADO CONTINUO EN BORRADOR LOCAL
+// CERO PÉRDIDA DE DATOS: AUTOGUARDADO DUAL CONTINUO (LOCALSTORAGE + INDEXEDDB)
 
 // ============================================================================
 
+const DRAFT_DB_NAME = 'JcPathLabDraftsDB';
+
+const DRAFT_DB_VERSION = 1;
+
+const DRAFT_STORE_NAME = 'report_drafts';
+
+
+
+let draftDbPromise = null;
+
+
+
+function getDraftsDB() {
+
+    if (typeof indexedDB === 'undefined') return Promise.resolve(null);
+
+    if (!draftDbPromise) {
+
+        draftDbPromise = new Promise((resolve) => {
+
+            try {
+
+                const req = indexedDB.open(DRAFT_DB_NAME, DRAFT_DB_VERSION);
+
+                req.onupgradeneeded = (e) => {
+
+                    const db = e.target.result;
+
+                    if (!db.objectStoreNames.contains(DRAFT_STORE_NAME)) {
+
+                        db.createObjectStore(DRAFT_STORE_NAME, { keyPath: 'cleanKey' });
+
+                    }
+
+                };
+
+                req.onsuccess = (e) => {
+
+                    resolve(e.target.result);
+
+                };
+
+                req.onerror = (e) => {
+
+                    console.warn('[Draft IndexedDB] Error opening database:', e);
+
+                    resolve(null);
+
+                };
+
+            } catch (err) {
+
+                console.warn('[Draft IndexedDB] Exception opening DB:', err);
+
+                resolve(null);
+
+            }
+
+        });
+
+    }
+
+    return draftDbPromise;
+
+}
+
+
+
+export async function saveDraftToIndexedDB(cleanKey, draftData) {
+
+    if (!cleanKey || !draftData) return;
+
+    try {
+
+        const db = await getDraftsDB();
+
+        if (!db) return;
+
+        const tx = db.transaction(DRAFT_STORE_NAME, 'readwrite');
+
+        const store = tx.objectStore(DRAFT_STORE_NAME);
+
+        const record = {
+
+            cleanKey: cleanKey,
+
+            ...draftData
+
+        };
+
+        store.put(record);
+
+    } catch (e) {
+
+        console.warn('[Draft IndexedDB] Error en guardado dual:', e);
+
+    }
+
+}
+
+
+
+export async function getDraftFromIndexedDB(cleanKey) {
+
+    if (!cleanKey) return null;
+
+    try {
+
+        const db = await getDraftsDB();
+
+        if (!db) return null;
+
+        return new Promise((resolve) => {
+
+            try {
+
+                const tx = db.transaction(DRAFT_STORE_NAME, 'readonly');
+
+                const store = tx.objectStore(DRAFT_STORE_NAME);
+
+                const req = store.get(cleanKey);
+
+                req.onsuccess = () => resolve(req.result || null);
+
+                req.onerror = () => resolve(null);
+
+            } catch (err) {
+
+                resolve(null);
+
+            }
+
+        });
+
+    } catch (e) {
+
+        return null;
+
+    }
+
+}
+
+
+
+export async function deleteDraftFromIndexedDB(cleanKey) {
+
+    if (!cleanKey) return;
+
+    try {
+
+        const db = await getDraftsDB();
+
+        if (!db) return;
+
+        const tx = db.transaction(DRAFT_STORE_NAME, 'readwrite');
+
+        const store = tx.objectStore(DRAFT_STORE_NAME);
+
+        store.delete(cleanKey);
+
+    } catch (e) {
+
+        console.warn('[Draft IndexedDB] Error eliminando borrador:', e);
+
+    }
+
+}
+
+
+
 let draftDebounceTimer = null;
+
+let draftIntervalTimer = null;
+
+let lastSavedDraftJson = '';
 
 
 
 export function saveLocalActiveDraft(explicitCode = null) {
 
-    try {
+    const doSave = () => {
 
-        const modalEl = document.getElementById('reportEditorModalOverlay');
+        try {
 
-        // Si el modal del editor NO está activo ni visible, NUNCA guardar borrador huérfano
+            const modalEl = document.getElementById('reportEditorModalOverlay');
 
-        if (!modalEl || !modalEl.classList.contains('active') || modalEl.style.display === 'none') {
+            // Si el modal del editor NO está activo ni visible, NUNCA guardar borrador huérfano
 
-            return;
+            if (!modalEl || !modalEl.classList.contains('active') || modalEl.style.display === 'none') {
+
+                return;
+
+            }
+
+            const cod = explicitCode || editingCodAtencion || originalCodAtencion || window.activePatientCode || document.getElementById('re_codAtencion')?.value;
+
+            if (!cod) return;
+
+            const cleanKey = 'active_draft_' + String(cod).trim().toLowerCase().replace(/[-_\s]/g, '');
+
+
+
+            const macroEl = document.getElementById('re_macroDesc');
+
+            const microEl = document.getElementById('re_microDesc');
+
+            const diagEl = document.getElementById('re_diagnostico');
+
+            const clinicaEl = document.getElementById('re_clinica');
+
+            const medEl = document.getElementById('re_medSolicitante');
+
+            const motEl = document.getElementById('re_motivoEstudio');
+
+            const telEl = document.getElementById('re_telContacto') || document.getElementById('re_telefono');
+
+            const casEl = document.getElementById('re_casetes');
+
+            const docEl = document.getElementById('re_doctor');
+
+            const dniEl = document.getElementById('re_dni');
+
+            const nomEl = document.getElementById('re_nomPaciente');
+
+            const apeEl = document.getElementById('re_apePaciente');
+
+            const edadEl = document.getElementById('re_edad');
+
+            const fecIngEl = document.getElementById('re_fecIngreso');
+
+            const fecEntEl = document.getElementById('re_fecEntregaReal');
+
+            const catMacroEl = document.getElementById('re_catMacro');
+
+            const planMacroEl = document.getElementById('re_planMacro');
+
+            const catMicroEl = document.getElementById('re_catMicro');
+
+            const planMicroEl = document.getElementById('re_planMicro');
+
+            const catDiagEl = document.getElementById('re_catDiag');
+
+            const planDiagEl = document.getElementById('re_planDiag');
+
+
+
+            const macroVal = macroEl ? (macroEl.innerHTML || '') : '';
+
+            const microVal = microEl ? (microEl.innerHTML || '') : '';
+
+            const diagVal = diagEl ? (diagEl.innerHTML || '') : '';
+
+
+
+            // Solo persistir borrador si hay contenido clínico relevante, órdenes o datos ingresados
+
+            const cleanMacro = macroVal.replace(/<[^>]*>/g, '').trim();
+
+            const cleanMicro = microVal.replace(/<[^>]*>/g, '').trim();
+
+            const cleanDiag = diagVal.replace(/<[^>]*>/g, '').trim();
+
+            const hasDraftContent = cleanMacro !== '' || cleanMicro !== '' || cleanDiag !== '' ||
+
+                (medEl && medEl.value.trim() !== '') || (motEl && motEl.value.trim() !== '');
+
+
+
+            if (!hasDraftContent) return;
+
+
+
+            const draftData = {
+
+                codAtencion: cod,
+
+                timestamp: Date.now(),
+
+                macroDesc: macroVal,
+
+                microDesc: microVal,
+
+                diagnostico: diagVal,
+
+                clinica: clinicaEl ? clinicaEl.value : '',
+
+                medSolicitante: medEl ? medEl.value : '',
+
+                motivoEstudio: motEl ? motEl.value : '',
+
+                telContacto: telEl ? telEl.value : '',
+
+                casetes: casEl ? casEl.value : '1',
+
+                doctor: docEl ? docEl.value : '',
+
+                dni: dniEl ? dniEl.value : '',
+
+                nombres: nomEl ? nomEl.value : '',
+
+                apellidos: apeEl ? apeEl.value : '',
+
+                edad: edadEl ? edadEl.value : '',
+
+                fecRegistro: fecIngEl ? fecIngEl.value : '',
+
+                fecEntrega: fecEntEl ? fecEntEl.value : '',
+
+                catMacro: catMacroEl ? catMacroEl.value : '',
+
+                planMacro: planMacroEl ? planMacroEl.value : '',
+
+                catMicro: catMicroEl ? catMicroEl.value : '',
+
+                planMicro: planMicroEl ? planMicroEl.value : '',
+
+                catDiag: catDiagEl ? catDiagEl.value : '',
+
+                planDiag: planDiagEl ? planDiagEl.value : ''
+
+            };
+
+
+
+            const payloadStr = JSON.stringify(draftData);
+
+            if (payloadStr === lastSavedDraftJson) return;
+
+            lastSavedDraftJson = payloadStr;
+
+
+
+            // 1. Guardado en LocalStorage con protección de cuota
+
+            try {
+
+                localStorage.setItem(cleanKey, payloadStr);
+
+            } catch (eStorage) {
+
+                console.warn("[Draft AutoSave] LocalStorage lleno o restringido, persistiendo en IndexedDB:", eStorage);
+
+            }
+
+
+
+            // 2. Guardado dual asíncrono en IndexedDB (cero congelamiento, sin límite de 5MB)
+
+            saveDraftToIndexedDB(cleanKey, draftData);
+
+
+
+        } catch (e) {
+
+            console.warn("[Draft AutoSave] Error guardando borrador dual:", e);
 
         }
 
-        const cod = explicitCode || editingCodAtencion || originalCodAtencion || window.activePatientCode || document.getElementById('re_codAtencion')?.value;
-
-        if (!cod) return;
-
-        const cleanKey = 'active_draft_' + String(cod).trim().toLowerCase().replace(/[-_\s]/g, '');
+    };
 
 
 
-        const macroEl = document.getElementById('re_macroDesc');
+    // Ejecución asíncrona sin congelar la interfaz
 
-        const microEl = document.getElementById('re_microDesc');
+    if (typeof window !== 'undefined' && typeof window.requestIdleCallback === 'function') {
 
-        const diagEl = document.getElementById('re_diagnostico');
+        window.requestIdleCallback(doSave, { timeout: 300 });
 
-        const clinicaEl = document.getElementById('re_clinica');
+    } else {
 
-        const medEl = document.getElementById('re_medSolicitante');
-
-        const motEl = document.getElementById('re_motivoEstudio');
-
-        const telEl = document.getElementById('re_telContacto');
-
-        const casEl = document.getElementById('re_casetes');
-
-        const docEl = document.getElementById('re_doctor');
-
-
-
-        const macroVal = macroEl ? (macroEl.innerHTML || '') : '';
-
-        const microVal = microEl ? (microEl.innerHTML || '') : '';
-
-        const diagVal = diagEl ? (diagEl.innerHTML || '') : '';
-
-
-
-        // Solo persistir borrador si hay contenido clínico relevante
-
-        const cleanMacro = macroVal.replace(/<[^>]*>/g, '').trim();
-
-        const cleanMicro = microVal.replace(/<[^>]*>/g, '').trim();
-
-        const cleanDiag = diagVal.replace(/<[^>]*>/g, '').trim();
-
-        const hasDraftContent = cleanMacro !== '' || cleanMicro !== '' || cleanDiag !== '';
-
-
-
-        if (!hasDraftContent) return;
-
-
-
-        const draftData = {
-
-            codAtencion: cod,
-
-            timestamp: Date.now(),
-
-            macroDesc: macroVal,
-
-            microDesc: microVal,
-
-            diagnostico: diagVal,
-
-            clinica: clinicaEl ? clinicaEl.value : '',
-
-            medSolicitante: medEl ? medEl.value : '',
-
-            motivoEstudio: motEl ? motEl.value : '',
-
-            telContacto: telEl ? telEl.value : '',
-
-            casetes: casEl ? casEl.value : '1',
-
-            doctor: docEl ? docEl.value : ''
-
-        };
-
-
-
-        localStorage.setItem(cleanKey, JSON.stringify(draftData));
-
-    } catch (e) {
-
-        console.warn("[Draft AutoSave] Error guardando borrador local:", e);
+        setTimeout(doSave, 0);
 
     }
 
@@ -330,17 +598,41 @@ export function triggerDebouncedDraftSave() {
 
 
 
+export function startDraftAutoSaveInterval() {
+
+    if (draftIntervalTimer) return;
+
+    draftIntervalTimer = setInterval(() => {
+
+        const modalEl = document.getElementById('reportEditorModalOverlay');
+
+        if (modalEl && modalEl.classList.contains('active') && modalEl.style.display !== 'none') {
+
+            saveLocalActiveDraft();
+
+        }
+
+    }, 2000);
+
+}
+
+
+
 export function discardLocalActiveDraft(codAtencion) {
 
     if (!codAtencion) return;
 
     const cleanKey = 'active_draft_' + String(codAtencion).trim().toLowerCase().replace(/[-_\s]/g, '');
 
+    lastSavedDraftJson = '';
+
     try {
 
         localStorage.removeItem(cleanKey);
 
     } catch (e) {}
+
+    deleteDraftFromIndexedDB(cleanKey);
 
 }
 
@@ -353,6 +645,14 @@ if (typeof window !== 'undefined') {
     window.triggerDebouncedDraftSave = triggerDebouncedDraftSave;
 
     window.discardLocalActiveDraft = discardLocalActiveDraft;
+
+    window.getDraftFromIndexedDB = getDraftFromIndexedDB;
+
+    window.saveDraftToIndexedDB = saveDraftToIndexedDB;
+
+    window.deleteDraftFromIndexedDB = deleteDraftFromIndexedDB;
+
+    window.startDraftAutoSaveInterval = startDraftAutoSaveInterval;
 
 
 
@@ -367,6 +667,12 @@ if (typeof window !== 'undefined') {
         } catch (e) {}
 
     });
+
+
+
+    // Iniciar latido de autoguardado continuo cada 2 segundos
+
+    startDraftAutoSaveInterval();
 
 }
 
@@ -2558,6 +2864,129 @@ function setFieldLockState(inputId, buttonId, isLocked) {
 
 
 
+
+// =========================================================================
+// SISTEMA DE BLINDAJE MILITAR 1:1 ÓRGANO ESTRICTO Y CANDADO DE FIRMA MÉDICA
+// JC PATH LAB - CERO ALUCINACIONES - VERDAD ABSOLUTA - CERO COMPLACENCIA
+// =========================================================================
+export const OrganStrictGuard = {
+    ORGAN_RULES: {
+        'GINECOLOGIA': {
+            label: 'Ginecología y Citología Cervical',
+            catIds: ['4', '18', '28', '29'],
+            keywords: ['CERVIX', 'CERVICAL', 'CÉRVIZ', 'CÉRVIC', 'ENDOMETR', 'UTER', 'ÚTER', 'CUELLO', 'VAGIN', 'VULV', 'OVARI', 'ANEX', 'LEGRAD', 'LEEP', 'CONO', 'CONIZACION', 'CONIZACIÓN', 'HISTERECTOM', 'PAP', 'PAPANICOLAOU', 'COLPOSCOP', 'MIOMA', 'ADENOMIOSIS'],
+            forbiddenDiag: ['GASTRITIS', 'HELICOBACTER', 'MUCOSA GASTRICA', 'MUCOSA GÁSTRICA', 'COLECISTITIS', 'LITIASIS BILIAR', 'PROSTATA', 'PRÓSTATA', 'GLEASON', 'APENDICITIS', 'GLÁNDULA MAMARIA', 'GLANDULA MAMARIA', 'CARCINOMA DUCTAL INFILTRANTE']
+        },
+        'GASTROENTEROLOGIA': {
+            label: 'Gastroenterología',
+            catIds: ['3', '17'],
+            keywords: ['GASTR', 'GÁSTR', 'ESTOMAG', 'ESTÓMAG', 'DUODEN', 'COLON', 'ILEON', 'ÍLEON', 'RECTO', 'ESOFAG', 'ESÓFAG', 'POLIPECTOM', 'POLIPO COLON', 'PÓLIPO', 'ANTRO', 'CORPUS', 'CARDIA', 'INTESTIN'],
+            forbiddenDiag: ['CERVIX', 'CÉRVIZ', 'ENDOMETRIO', 'COLECISTITIS', 'PROSTATA', 'PRÓSTATA', 'GLEASON', 'MAMA', 'MAMARIA']
+        },
+        'VESICULA_BILIAR': {
+            label: 'Vesícula Biliar',
+            catIds: ['23', '24'],
+            keywords: ['VESICUL', 'VESÍCUL', 'COLECIST', 'BILIAR'],
+            forbiddenDiag: ['CERVIX', 'ENDOMETRIO', 'GASTRITIS', 'HELICOBACTER', 'PROSTATA', 'PRÓSTATA', 'APENDICITIS', 'MAMA']
+        },
+        'APENDICE_CECAL': {
+            label: 'Apéndice Cecal',
+            catIds: ['22', '13'],
+            keywords: ['APENDIC', 'APÉNDIC', 'CECAL'],
+            forbiddenDiag: ['CERVIX', 'ENDOMETRIO', 'GASTRITIS', 'PROSTATA', 'COLECISTITIS', 'MAMA']
+        },
+        'UROLOGIA': {
+            label: 'Urología',
+            catIds: ['9', '25'],
+            keywords: ['PROSTAT', 'PRÓSTAT', 'RTUP', 'TURP', 'HOLEP', 'ENUCLEACION PROSTATICA', 'VEJIGA', 'RINON', 'RIÑÓN', 'TESTICUL', 'URETER', 'URÉTER', 'RENAL'],
+            forbiddenDiag: ['CERVIX', 'ENDOMETRIO', 'GASTRITIS', 'COLECISTITIS', 'MAMARIA']
+        },
+        'MAMA': {
+            label: 'Patología Mamaria',
+            catIds: ['5', '20'],
+            keywords: ['MAMA', 'MAMARI', 'SENO', 'MASTECTOM', 'FIBROADENOMA', 'CUADRANTECTOM'],
+            forbiddenDiag: ['CERVIX', 'GASTRITIS', 'COLECISTITIS', 'PROSTATA', 'PRÓSTATA']
+        },
+        'DERMATOPATOLOGIA': {
+            label: 'Dermatopatología',
+            catIds: ['2', '16'],
+            keywords: ['PIEL', 'CUTAN', 'CUTÁN', 'DERM', 'EPIDERM', 'LIPOMA', 'NEVO', 'QUERATO', 'MELANOMA', 'BASOCELULAR', 'ESPINOCELULAR', 'LOBULO DE OREJA', 'CUERO CABELLUDO', 'VERRUGA'],
+            forbiddenDiag: ['CERVIX', 'ENDOMETRIO', 'GASTRITIS', 'COLECISTITIS', 'PROSTATA']
+        },
+        'CABEZA_Y_CUELLO': {
+            label: 'Cabeza y Cuello / Glándula Salival / Tiroides',
+            catIds: ['32', '14'],
+            keywords: ['SALIVAL', 'PAROTID', 'PARÓTID', 'SUBMAXIL', 'TIROID', 'TIROIDES', 'LARING', 'FARING', 'AMIGDAL', 'AMÍGDAL'],
+            forbiddenDiag: ['CERVIX', 'ENDOMETRIO', 'GASTRITIS', 'COLECISTITIS', 'PROSTATA']
+        },
+        'PARTES_BLANDAS': {
+            label: 'Partes Blandas',
+            catIds: ['8', '31'],
+            keywords: ['PARTE BLANDA', 'PARTES BLANDAS', 'SINOVIAL', 'SARCOMA', 'FIBROMA'],
+            forbiddenDiag: ['CERVIX', 'ENDOMETRIO', 'GASTRITIS', 'COLECISTITIS', 'PROSTATA']
+        }
+    },
+
+    cleanStr: function(s) {
+        return (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toUpperCase().trim();
+    },
+
+    detectOrgan: function(patientOrSpecimen) {
+        if (!patientOrSpecimen) return null;
+        let text = '';
+        if (typeof patientOrSpecimen === 'string') {
+            text = patientOrSpecimen;
+        } else {
+            text = (patientOrSpecimen.especimen || '') + ' ' + (patientOrSpecimen.sample || '') + ' ' + (patientOrSpecimen.motivoEstudio || '') + ' ' + (patientOrSpecimen.telContacto || '');
+        }
+        const clean = this.cleanStr(text);
+        for (const [organKey, rule] of Object.entries(this.ORGAN_RULES)) {
+            if (rule.keywords.some(kw => clean.includes(this.cleanStr(kw)))) {
+                return organKey;
+            }
+        }
+        return null;
+    },
+
+    isCategoryAllowed: function(organKey, catId) {
+        if (!organKey) return true;
+        const rule = this.ORGAN_RULES[organKey];
+        if (!rule) return true;
+        const strId = String(catId).trim();
+        return rule.catIds.includes(strId);
+    },
+
+    isTemplateAllowed: function(organKey, templateObj) {
+        if (!organKey || !templateObj) return true;
+        const rule = this.ORGAN_RULES[organKey];
+        if (!rule) return true;
+        const strCatId = String(templateObj.categoryId).trim();
+        return rule.catIds.includes(strCatId);
+    },
+
+    validateDiagnosisConcordance: function(organKey, diagText) {
+        if (!organKey || !diagText) return { valid: true };
+        const rule = this.ORGAN_RULES[organKey];
+        if (!rule) return { valid: true };
+        const clean = this.cleanStr(diagText);
+        for (const forbidden of rule.forbiddenDiag) {
+            const cleanForbidden = this.cleanStr(forbidden);
+            if (clean.includes(cleanForbidden)) {
+                return {
+                    valid: false,
+                    violation: forbidden,
+                    message: `Discrepancia crítica: La muestra clínica es de ${rule.label}, pero el diagnóstico contiene '${forbidden}'.`
+                };
+            }
+        }
+        return { valid: true };
+    }
+};
+if (typeof window !== 'undefined') {
+    window.OrganStrictGuard = OrganStrictGuard;
+}
+
+
 export function populateEditorModal(codAtencion) {
 
     resetEditorCropperWorkspaces();
@@ -2991,12 +3420,25 @@ export function populateEditorModal(codAtencion) {
 
         } else {
 
-            // Si no hay categoría detectada explícitamente en el paciente o en el reporte, NO forzar Vesícula Biliar
-
             defaultCatMacroId = defaultCatMacroId || "";
 
             defaultCatMicroId = defaultCatMicroId || "";
 
+        }
+
+        // BLINDAJE MILITAR ESTRICTO: Si el órgano fue detectado, forzar sus categorías canónicas
+        const detectedStrictOrgan = OrganStrictGuard.detectOrgan(patient);
+        if (detectedStrictOrgan) {
+            const rule = OrganStrictGuard.ORGAN_RULES[detectedStrictOrgan];
+            if (rule && rule.catIds && rule.catIds.length >= 2) {
+                if (isCitologiaCase && detectedStrictOrgan === 'GINECOLOGIA') {
+                    defaultCatMacroId = "28";
+                    defaultCatMicroId = "29";
+                } else {
+                    defaultCatMacroId = rule.catIds[0];
+                    defaultCatMicroId = rule.catIds[1];
+                }
+            }
         }
 
     }
@@ -3363,15 +3805,223 @@ export function populateEditorModal(codAtencion) {
 
     // ========================================================================
 
-    // CERO PÉRDIDA DE DATOS: RECUPERACIÓN AUTOMÁTICA DE BORRADOR LOCAL
+    // CERO PÉRDIDA DE DATOS: RECUPERACIÓN AUTOMÁTICA DE BORRADOR (LOCALSTORAGE + INDEXEDDB)
 
     // ========================================================================
 
+    const cleanCod = String(patient.codAtencion || patient.cod_atencion || codAtencion || '').trim().toLowerCase().replace(/[-_\s]/g, '');
+
+    const cleanKey = 'active_draft_' + cleanCod;
+
+
+
+    const restoreDraftPayload = (draft, source = 'LocalStorage') => {
+
+        if (!draft || !draft.timestamp) return 0;
+
+        let restoredCount = 0;
+
+
+
+        const isMeaningfullyDifferent = (draftStr, currentStr) => {
+
+            if (!draftStr || typeof draftStr !== 'string') return false;
+
+            const cleanD = draftStr.replace(/<[^>]*>/g, '').trim().toLowerCase();
+
+            if (cleanD === '') return false;
+
+            if (!currentStr || typeof currentStr !== 'string') return true;
+
+            const cleanC = currentStr.replace(/<[^>]*>/g, '').trim().toLowerCase();
+
+            return cleanD !== cleanC;
+
+        };
+
+
+
+        // 1. Macroscopía: Si el borrador contiene texto dictado más reciente o diferente a lo guardado
+
+        if (draft.macroDesc && isMeaningfullyDifferent(draft.macroDesc, patient.macroDesc)) {
+
+            safeSet('re_macroDesc', draft.macroDesc);
+
+            safeSet('re_macroDesc_full', draft.macroDesc);
+
+            restoredCount++;
+
+        }
+
+
+
+        // 2. Microscopía: Si el borrador contiene texto dictado más reciente o diferente a lo guardado
+
+        if (draft.microDesc && isMeaningfullyDifferent(draft.microDesc, patient.microDesc)) {
+
+            safeSet('re_microDesc', draft.microDesc);
+
+            safeSet('re_microDesc_full', draft.microDesc);
+
+            restoredCount++;
+
+        }
+
+
+
+        // 3. Diagnóstico: Si el borrador contiene texto dictado más reciente o diferente a lo guardado
+
+        if (draft.diagnostico && isMeaningfullyDifferent(draft.diagnostico, patient.diagnostico)) {
+
+            safeSet('re_diagnostico', draft.diagnostico);
+
+            safeSet('re_diagnostico_full', draft.diagnostico);
+
+            restoredCount++;
+
+        }
+
+
+
+        // 4. Órdenes médicas, clínica, médico solicitante y otros campos
+
+        if (draft.clinica && draft.clinica !== patient.clinica && draft.clinica !== 'SIN CLINICA DEFINIDA') {
+
+            safeSet('re_clinica', draft.clinica);
+
+            restoredCount++;
+
+        }
+
+
+
+        if (draft.medSolicitante && draft.medSolicitante !== patient.medSolicitante) {
+
+            safeSet('re_medSolicitante', draft.medSolicitante);
+
+            restoredCount++;
+
+        }
+
+
+
+        if (draft.motivoEstudio && draft.motivoEstudio !== patient.motivoEstudio) {
+
+            safeSet('re_motivoEstudio', draft.motivoEstudio);
+
+            restoredCount++;
+
+        }
+
+
+
+        if (draft.telContacto && draft.telContacto !== patient.telContacto) {
+
+            safeSet('re_telContacto', draft.telContacto);
+
+            restoredCount++;
+
+        }
+
+
+
+        if (draft.casetes && String(draft.casetes) !== String(patient.casetes)) {
+
+            safeSet('re_casetes', draft.casetes);
+
+        }
+
+
+
+        if (draft.doctor && draft.doctor !== patient.doctor) {
+
+            safeSet('re_doctor', draft.doctor);
+
+        }
+
+
+
+        if (draft.catMacro && draft.catMacro !== patient.catMacro) {
+
+            safeSet('re_catMacro', draft.catMacro);
+
+            safeSet('re_catMacro_full', draft.catMacro);
+
+        }
+
+
+
+        if (draft.planMacro && draft.planMacro !== patient.planMacro) {
+
+            safeSet('re_planMacro', draft.planMacro);
+
+            safeSet('re_planMacro_full', draft.planMacro);
+
+        }
+
+
+
+        if (draft.catMicro && draft.catMicro !== patient.catMicro) {
+
+            safeSet('re_catMicro', draft.catMicro);
+
+            safeSet('re_catMicro_full', draft.catMicro);
+
+        }
+
+
+
+        if (draft.planMicro && draft.planMicro !== patient.planMicro) {
+
+            safeSet('re_planMicro', draft.planMicro);
+
+            safeSet('re_planMicro_full', draft.planMicro);
+
+        }
+
+
+
+        if (draft.catDiag && draft.catDiag !== patient.catDiag) {
+
+            safeSet('re_catDiag', draft.catDiag);
+
+            safeSet('re_catDiag_full', draft.catDiag);
+
+        }
+
+
+
+        if (draft.planDiag && draft.planDiag !== patient.planDiag) {
+
+            safeSet('re_planDiag', draft.planDiag);
+
+            safeSet('re_planDiag_full', draft.planDiag);
+
+        }
+
+
+
+        if (restoredCount > 0 && typeof window.showToast === 'function') {
+
+            const timeStr = draft.timestamp ? new Date(draft.timestamp).toLocaleTimeString() : '';
+
+            window.showToast(`🛡️ Borrador local recuperado de inmediato (${source} - ${timeStr}): ${restoredCount} campo(s) sincronizados.`, 'info');
+
+        }
+
+
+
+        return restoredCount;
+
+    };
+
+
+
+    let localDraftTimestamp = 0;
+
+
+
     try {
-
-        const cleanCod = String(patient.codAtencion || patient.cod_atencion || codAtencion || '').trim().toLowerCase().replace(/[-_\s]/g, '');
-
-        const cleanKey = 'active_draft_' + cleanCod;
 
         const savedDraftJson = localStorage.getItem(cleanKey);
 
@@ -3381,71 +4031,9 @@ export function populateEditorModal(codAtencion) {
 
             if (draft && draft.timestamp) {
 
-                // Si el borrador tiene contenido clínico más detallado o no guardado
+                localDraftTimestamp = draft.timestamp;
 
-                let restoredCount = 0;
-
-                if (draft.macroDesc && draft.macroDesc.trim() !== '' && (!patient.macroDesc || patient.macroDesc.trim() === '')) {
-
-                    safeSet('re_macroDesc', draft.macroDesc);
-
-                    safeSet('re_macroDesc_full', draft.macroDesc);
-
-                    restoredCount++;
-
-                }
-
-                if (draft.microDesc && draft.microDesc.trim() !== '' && (!patient.microDesc || patient.microDesc.trim() === '')) {
-
-                    safeSet('re_microDesc', draft.microDesc);
-
-                    safeSet('re_microDesc_full', draft.microDesc);
-
-                    restoredCount++;
-
-                }
-
-                if (draft.diagnostico && draft.diagnostico.trim() !== '' && (!patient.diagnostico || patient.diagnostico.trim() === '')) {
-
-                    safeSet('re_diagnostico', draft.diagnostico);
-
-                    safeSet('re_diagnostico_full', draft.diagnostico);
-
-                    restoredCount++;
-
-                }
-
-                if (draft.clinica && (!patient.clinica || patient.clinica === 'SIN CLINICA DEFINIDA')) {
-
-                    safeSet('re_clinica', draft.clinica);
-
-                }
-
-                if (draft.medSolicitante && !patient.medSolicitante) {
-
-                    safeSet('re_medSolicitante', draft.medSolicitante);
-
-                }
-
-                if (draft.motivoEstudio && !patient.motivoEstudio) {
-
-                    safeSet('re_motivoEstudio', draft.motivoEstudio);
-
-                }
-
-                if (draft.telContacto && !patient.telContacto) {
-
-                    safeSet('re_telContacto', draft.telContacto);
-
-                }
-
-
-
-                if (restoredCount > 0 && typeof window.showToast === 'function') {
-
-                    window.showToast(`🛡️ Borrador local recuperado automáticamente (${new Date(draft.timestamp).toLocaleTimeString()})`, 'info');
-
-                }
+                restoreDraftPayload(draft, 'LocalStorage');
 
             }
 
@@ -3453,7 +4041,29 @@ export function populateEditorModal(codAtencion) {
 
     } catch (eDraft) {
 
-        console.warn("[Draft Restore] Error al verificar borrador local:", eDraft);
+        console.warn("[Draft Restore] Error al verificar borrador local en LocalStorage:", eDraft);
+
+    }
+
+
+
+    // Comprobación complementaria en IndexedDB si existe borrador más reciente
+
+    if (typeof getDraftFromIndexedDB === 'function') {
+
+        getDraftFromIndexedDB(cleanKey).then(idbDraft => {
+
+            if (idbDraft && idbDraft.timestamp && idbDraft.timestamp > localDraftTimestamp) {
+
+                restoreDraftPayload(idbDraft, 'IndexedDB');
+
+            }
+
+        }).catch(eIdb => {
+
+            console.warn("[Draft Restore] Error al consultar IndexedDB:", eIdb);
+
+        });
 
     }
 
@@ -6287,37 +6897,32 @@ function bindAiRetouchButtonsGlobally() {
 
     // ========================================================================
 
-    const draftInputIds = [
-
-        're_macroDesc', 're_microDesc', 're_diagnostico',
-
+        const draftInputIds = [
+        're_macroDesc', 're_macroDesc_full',
+        're_microDesc', 're_microDesc_full',
+        're_diagnostico', 're_diagnostico_full',
         're_clinica', 're_medSolicitante', 're_motivoEstudio',
-
-        're_telContacto', 're_casetes', 're_doctor'
-
+        're_telContacto', 're_casetes', 're_doctor',
+        're_codAtencion', 're_dni', 're_nomPaciente', 're_apePaciente', 're_edad',
+        're_catMacro', 're_planMacro', 're_catMicro', 're_planMicro', 're_catDiag', 're_planDiag'
     ];
 
     draftInputIds.forEach(id => {
-
         const el = document.getElementById(id);
-
         if (el) {
-
             el.addEventListener('input', () => {
-
                 triggerDebouncedDraftSave();
-
             });
-
             el.addEventListener('change', () => {
-
                 saveLocalActiveDraft();
-
             });
-
         }
-
     });
+
+    // Latido incondicional de persistencia dual cada 2 segundos sin congelar la interfaz
+    if (typeof startDraftAutoSaveInterval === 'function') {
+        startDraftAutoSaveInterval();
+    }
 
 
 
@@ -6483,7 +7088,7 @@ function bindAiRetouchButtonsGlobally() {
 
             // Clonar para evitar mutar el original en patientDatabase antes del borrado
 
-            const targetPatient = codeChanged ? { ...patient } : patient;
+            const targetPatient = safeDeepClone(patient);
 
             if (codeChanged) {
 
@@ -6541,7 +7146,7 @@ function bindAiRetouchButtonsGlobally() {
 
             targetPatient.motivoEstudio = document.getElementById('re_motivoEstudio').value;
 
-            targetPatient.especimen = targetPatient.telContacto;
+            targetPatient.especimen = targetPatient.telContacto || targetPatient.especimen || '';
 
 
 
@@ -6591,30 +7196,19 @@ function bindAiRetouchButtonsGlobally() {
 
 
 
-            if (hasDiagSaved) {
-
-                targetPatient.firmado = true;
-
-                targetPatient.modificado = true;
-
+            // BLINDAJE MILITAR DE FIRMA MÉDICA (JC PATH LAB):
+            // Guardar datos en el editor es un BORRADOR y NUNCA firma automáticamente el informe.
+            // La firma médica solo se establece mediante el botón explícito de Firmar con confirmación del patólogo.
+            targetPatient.modificado = true;
+            if (targetPatient.firmado === true) {
                 targetPatient.estado = 'Completado';
-
-            } else if (hasDraftSaved) {
-
+            } else if (hasDiagSaved || hasDraftSaved) {
                 targetPatient.firmado = false;
-
-                targetPatient.modificado = true;
-
                 targetPatient.estado = 'En Proceso';
-
             } else {
-
                 targetPatient.firmado = false;
-
                 targetPatient.modificado = false;
-
                 targetPatient.estado = 'Pendiente';
-
             }
 
 
@@ -6831,47 +7425,51 @@ function bindAiRetouchButtonsGlobally() {
 
 
 
-            // Asegurar que si el diagnóstico está en blanco se coloque la firma de confirmación
-
+            // BLINDAJE MILITAR: CANDADO DE FIRMA MÉDICA INVIOLABLE (DR. JOSÉ CASTILLO)
             const diagEl = document.getElementById('re_diagnostico');
+            const cleanDiagText = (diagEl ? (diagEl.textContent || diagEl.innerText || '') : '').trim();
 
-            if (diagEl) {
-
-                const cleanDiagText = (diagEl.textContent || diagEl.innerText || '').trim();
-
-                if (!cleanDiagText) {
-
-                    diagEl.innerHTML = '<b>INFORME COMPLETO Y FIRMADO POR PATOLOGÍA.</b>';
-
-                }
-
+            // 1. Diagnóstico definitivo obligatorio (Prohibido firmar en blanco o con texto falso)
+            if (!cleanDiagText || cleanDiagText.length < 8) {
+                showToast("⛔ NO SE PUEDE FIRMAR: El diagnóstico definitivo está vacío. Ingrese el diagnóstico antes de firmar.", "error");
+                alert("⛔ ACCIÓN DENEGADA: No se puede emitir ni firmar un informe con el DIAGNÓSTICO EN BLANCO.");
+                return;
             }
-
-
-
-            // MARCAR FIRMADO DIRECTAMENTE ANTES DE GUARDAR PARA ATOMICIDAD PERFECTA (0.0s)
 
             const cleanCode = String(originalCodAtencion || editingCodAtencion || '').trim().toLowerCase();
-
             const cleanNoHyphen = cleanCode.replace(/[-_\s]/g, '');
-
             let targetPatient = patientDatabase.find(x => {
-
                 const code = String(x.codAtencion || '').trim().toLowerCase();
-
                 return code === cleanCode || code.replace(/[-_\s]/g, '') === cleanNoHyphen;
+            }) || window.currentEditingPatient;
 
-            });
-
-
-
-            if (targetPatient) {
-
-                targetPatient.firmado = true;
-
-                targetPatient.estado = 'Completado';
-
+            if (!targetPatient) {
+                showToast("Paciente no encontrado en la base de datos", "error");
+                return;
             }
+
+            // 2. Verificación de concordancia estricta entre espécimen y diagnóstico
+            const organKeyStrict = OrganStrictGuard.detectOrgan(targetPatient);
+            const concordanciaDiag = OrganStrictGuard.validateDiagnosisConcordance(organKeyStrict, cleanDiagText);
+            if (!concordanciaDiag.valid) {
+                showToast("🚨 DISCREPANCIA CRÍTICA DE ÓRGANO: Firma médica bloqueada.", "error");
+                alert(`🚨 ALERTA CRÍTICA DE SEGURIDAD DEL PACIENTE - FIRMA RECHAZADA:\n\n${concordanciaDiag.message}\n\nQueda terminantemente prohibido estampar la firma del Dr. José Castillo en un informe donde el diagnóstico contradice al órgano o espécimen de la biopsia.`);
+                return;
+            }
+
+            // 3. Confirmación médica explícita del patólogo
+            const patNombre = `${targetPatient.apellidos || ''} ${targetPatient.nombres || ''}`.trim() || targetPatient.paciente || 'Paciente';
+            const confirmMsg = `🔬 CONFIRMACIÓN DE EMISIÓN Y FIRMA MÉDICA OFICIAL\n\n¿Desea autorizar y estampar la FIRMA MÉDICA del DR. JOSEHP CHRISTOPHER CASTILLO CUENCA en este informe?\n\n• Paciente: ${patNombre}\n• Código: ${targetPatient.codAtencion}\n• Espécimen: ${targetPatient.especimen || 'No especificada'}\n• Especialidad: ${organKeyStrict ? OrganStrictGuard.ORGAN_RULES[organKeyStrict].label : 'General'}\n\nEsta acción otorgará validez médico-legal al resultado y cambiará su estado a COMPLETADO (FIRMADO).`;
+
+            if (!confirm(confirmMsg)) {
+                showToast("Operación de firma cancelada por el patólogo.", "info");
+                return;
+            }
+
+            targetPatient.firmado = true;
+            targetPatient.estado = 'Completado';
+            targetPatient.firmadoPor = 'DR. JOSEHP CHRISTOPHER CASTILLO CUENCA';
+            targetPatient.fechaFirma = new Date().toISOString();
 
 
 
@@ -7175,6 +7773,26 @@ function bindAiRetouchButtonsGlobally() {
 
 
 
+        // Si categoriaId viene vacío, recuperar del selector DOM si existe
+
+        if (!categoriaId || String(categoriaId).trim() === '') {
+
+            const domFallbackEl = (tipo === 'macro') ? (document.getElementById('re_catMacro') || document.getElementById('re_catMacro_full'))
+
+                                : (tipo === 'micro') ? (document.getElementById('re_catMicro') || document.getElementById('re_catMicro_full'))
+
+                                : (document.getElementById('re_catDiag') || document.getElementById('re_catDiag_full'));
+
+            if (domFallbackEl && domFallbackEl.value) {
+
+                categoriaId = domFallbackEl.value;
+
+            }
+
+        }
+
+
+
         // REGLA ESTRICTA 1: Si no se selecciona categoría (vacío o "SELECCIONAR"), el combo debe permanecer limpio
 
         if (!categoriaId || String(categoriaId).trim() === '') {
@@ -7197,51 +7815,175 @@ function bindAiRetouchButtonsGlobally() {
 
 
 
+        // Leer texto visual de la opción seleccionada en el select correspondiente
+
+        let visualOptionText = '';
+
+        const domCatEl = (tipo === 'macro') ? (document.getElementById('re_catMacro') || document.getElementById('re_catMacro_full'))
+
+                       : (tipo === 'micro') ? (document.getElementById('re_catMicro') || document.getElementById('re_catMicro_full'))
+
+                       : (document.getElementById('re_catDiag') || document.getElementById('re_catDiag_full'));
+
+        if (domCatEl && domCatEl.selectedIndex >= 0 && domCatEl.options[domCatEl.selectedIndex]) {
+
+            visualOptionText = domCatEl.options[domCatEl.selectedIndex].text || '';
+
+        }
+
+
+
         // Resolver objeto y nombres de categoría
 
         const categoryObj = catsDb.find(c => String(c.id) === strCatId || cleanStr(c.categoria) === cleanStr(strCatId) || normalizeCategoryName(c.categoria) === normalizeCategoryName(strCatId));
 
-        const rawCatName = categoryObj ? (categoryObj.categoria || '') : strCatId;
+        let rawCatName = categoryObj ? (categoryObj.categoria || '') : strCatId;
 
-        const normName = normalizeCategoryName(rawCatName);
+        let normName = normalizeCategoryName(rawCatName);
 
-        const cleanCatName = cleanStr(rawCatName);
+        let cleanCatName = cleanStr(rawCatName);
+
+        const cleanVisual = cleanStr(visualOptionText);
 
 
 
-        // Agrupar todos los IDs asociados a la categoría seleccionada (ej: Macro + Micro de la misma especialidad)
+        // BLINDAJE MILITAR INVIOLABLE: DETECCIÓN ESTRICTA GASTROENTEROLOGÍA (IDs 3 y 17)
+
+        const isGastro = (
+
+            normName === 'GASTROENTEROLOGIA' ||
+
+            strCatId === '3' ||
+
+            strCatId === '17' ||
+
+            cleanCatName.includes('GASTRO') ||
+
+            cleanStr(strCatId).includes('GASTRO') ||
+
+            cleanVisual.includes('GASTRO')
+
+        );
+
+
+
+        // BLINDAJE MILITAR INVIOLABLE: DETECCIÓN ESTRICTA GINECOLOGÍA (IDs 4 y 18)
+
+        const isGyn = !isGastro && (
+
+            normName === 'GINECOLOGIA' ||
+
+            strCatId === '4' ||
+
+            strCatId === '18' ||
+
+            cleanCatName.includes('GINECO') ||
+
+            cleanStr(strCatId).includes('GINECO') ||
+
+            cleanVisual.includes('GINECO')
+
+        );
+
+
+
+        // Agrupar todos los IDs asociados a la categoría seleccionada
 
         const matchingCatIds = new Set();
 
-        if (strCatId) matchingCatIds.add(strCatId);
+
+
+        if (isGastro) {
+
+            normName = 'GASTROENTEROLOGIA';
+
+            rawCatName = 'GASTROENTEROLOGIA';
+
+            cleanCatName = 'GASTROENTEROLOGIA';
+
+            matchingCatIds.add('3');
+
+            matchingCatIds.add('17');
+
+        } else if (isGyn) {
+
+            normName = 'GINECOLOGIA';
+
+            rawCatName = 'GINECOLOGIA';
+
+            cleanCatName = 'GINECOLOGIA';
+
+            matchingCatIds.add('4');
+
+            matchingCatIds.add('18');
+
+        } else {
+
+            if (strCatId) matchingCatIds.add(strCatId);
+
+            catsDb.forEach(c => {
+
+                const cNorm = normalizeCategoryName(c.categoria);
+
+                const cClean = cleanStr(c.categoria);
+
+                if (cNorm === normName || cClean === cleanCatName) {
+
+                    matchingCatIds.add(String(c.id));
+
+                }
+
+            });
+
+        }
 
 
 
-        catsDb.forEach(c => {
+        const isProtocolos = !isGastro && !isGyn && (normName === 'PROTOCOLOS SISTEMATIZADOS' || ['1', '10', '11', '100', '101'].includes(strCatId));
 
-            const cNorm = normalizeCategoryName(c.categoria);
-
-            const cClean = cleanStr(c.categoria);
-
-            if (cNorm === normName || cClean === cleanCatName) {
-
-                matchingCatIds.add(String(c.id));
-
-            }
-
-        });
-
-
-
-        const isProtocolos = (normName === 'PROTOCOLOS SISTEMATIZADOS' || ['1', '10', '11', '100', '101'].includes(strCatId));
-
-        const isQuistesLester = (cleanCatName.includes('LESTER') || cleanCatName === 'QUISTES (LESTER)' || strCatId === '40' || strCatId === '41');
+        const isQuistesLester = !isGastro && !isGyn && (cleanCatName.includes('LESTER') || cleanCatName === 'QUISTES (LESTER)' || strCatId === '40' || strCatId === '41');
 
 
 
         let plantillas = [];
 
-        if (isProtocolos) {
+        if (isGastro) {
+
+            // BLINDAJE ABSOLUTO GASTROENTEROLOGÍA: Única y exclusivamente IDs 3 y 17 (Estómago, Duodeno, Pólipos, CAP Gástrico/Colon)
+
+            plantillas = tplsDb.filter(t => ['3', '17'].includes(String(t.categoryId)));
+
+            // EXCLUSIÓN TOTAL Y ERRADICACIÓN DE GINECOLOGÍA: Ni una sola plantilla ginecológica podrá aparecer
+
+            const gynKeywords = ['CERVIX', 'CRVIX', 'ENDOMETR', 'OVARIO', 'LEEP', 'MOLA', 'PLACENT', 'LEIOMIOMA', 'VAGIN', 'VULV', 'GESTAC', 'HISTERECTOM', 'CITOLOGIA CERVICAL', 'PAPANICOLAOU'];
+
+            plantillas = plantillas.filter(t => {
+
+                const tit = cleanStr(t.titulo || '');
+
+                return !gynKeywords.some(kw => tit.includes(kw));
+
+            });
+
+        } else if (isGyn) {
+
+            // BLINDAJE ABSOLUTO GINECOLOGÍA: Única y exclusivamente IDs 4 y 18
+
+            plantillas = tplsDb.filter(t => ['4', '18'].includes(String(t.categoryId)));
+
+            // EXCLUSIÓN ESTRICTA DE GASTROENTEROLOGÍA
+
+            const gastroKeywords = ['ESTOMAGO', 'ESTÓMAGO', 'GASTRIT', 'DUODEN', 'COLON', 'RECTO', 'GIST', 'HELICOBACTER', 'FUNDIC'];
+
+            plantillas = plantillas.filter(t => {
+
+                const tit = cleanStr(t.titulo || '');
+
+                return !gastroKeywords.some(kw => tit.includes(kw));
+
+            });
+
+        } else if (isProtocolos) {
 
             plantillas = tplsDb.filter(t => matchingCatIds.has(String(t.categoryId)) || (t.titulo || '').toUpperCase().startsWith('CAP -') || (t.titulo || '').toUpperCase().includes('PROTOCOLO'));
 
@@ -7395,6 +8137,8 @@ function bindAiRetouchButtonsGlobally() {
 
     }
 
+
+
     window.actualizarPlantillasSegunEspecialidad = actualizarPlantillasSegunEspecialidad;
 
 
@@ -7443,11 +8187,15 @@ function bindAiRetouchButtonsGlobally() {
 
                 : (window.defaultCategories || []));
 
-        const uniqueCatNames = [...new Set(cats.map(c => normalizeCategoryName(c.categoria)))].sort();
+        const currentEditingPat = window.currentEditingPatient || (typeof patient !== 'undefined' ? patient : null);
+        const strictOrganKey = OrganStrictGuard.detectOrgan(currentEditingPat);
 
+        let filteredCatNames = [...new Set(cats.map(c => normalizeCategoryName(c.categoria)))].sort();
 
+        // OPCIÓN B SOBERANA: El selector despliega siempre TODAS las especialidades disponibles.
+        // La validación clínica permanece activa al guardar o seleccionar para resguardar la muestra.
 
-        uniqueCatNames.forEach(catName => {
+        filteredCatNames.forEach(catName => {
 
             const catObj = cats.find(c => normalizeCategoryName(c.categoria) === catName);
 
@@ -7625,6 +8373,15 @@ function bindAiRetouchButtonsGlobally() {
 
             }
 
+            // BLINDAJE MILITAR: Validación estricta 1:1 de espécimen vs plantilla
+            const activePatObj = window.currentEditingPatient;
+            const strictOrgan = OrganStrictGuard.detectOrgan(activePatObj);
+            if (strictOrgan && !OrganStrictGuard.isTemplateAllowed(strictOrgan, plantilla)) {
+                alert(`🚨 ACCIÓN DENEGADA POR SEGURIDAD CLÍNICA:\n\nLa muestra de la biopsia es '${activePatObj?.especimen || 'No especificada'}'.\nLa plantilla seleccionada ('${plantilla.titulo}') no corresponde a ${OrganStrictGuard.ORGAN_RULES[strictOrgan].label}.\n\nQueda TERMINANTEMENTE PROHIBIDO mezclar órganos para evitar errores cruzados de diagnóstico.`);
+                showToast('Plantilla incompatible con el espécimen de la biopsia', 'error');
+                return;
+            }
+
 
 
             let textoAInsertar = plantilla.macro || '';
@@ -7725,6 +8482,15 @@ function bindAiRetouchButtonsGlobally() {
 
                 return;
 
+            }
+
+            // BLINDAJE MILITAR: Validación estricta 1:1 de espécimen vs plantilla
+            const activePatObj = window.currentEditingPatient;
+            const strictOrgan = OrganStrictGuard.detectOrgan(activePatObj);
+            if (strictOrgan && !OrganStrictGuard.isTemplateAllowed(strictOrgan, plantilla)) {
+                alert(`🚨 ACCIÓN DENEGADA POR SEGURIDAD CLÍNICA:\n\nLa muestra de la biopsia es '${activePatObj?.especimen || 'No especificada'}'.\nLa plantilla seleccionada ('${plantilla.titulo}') no corresponde a ${OrganStrictGuard.ORGAN_RULES[strictOrgan].label}.\n\nQueda TERMINANTEMENTE PROHIBIDO mezclar órganos para evitar errores cruzados de diagnóstico.`);
+                showToast('Plantilla incompatible con el espécimen de la biopsia', 'error');
+                return;
             }
 
 
@@ -7965,135 +8731,96 @@ function bindAiRetouchButtonsGlobally() {
 
 
 
-    // --- TEMPLATE DROPDOWNS COORDINATION ---
-
+                // --- TEMPLATE DROPDOWNS COORDINATION (SINCRONIZACION TOTAL DE ESPECIALIDAD) ---
     function coordinarCategorias(sourceTipo, selectedCategoryId) {
-
         if (!selectedCategoryId) return;
+        sourceTipo = (sourceTipo || '').replace('_full', '');
 
-        sourceTipo = sourceTipo.replace('_full', '');
+        const cats = (categoriesDatabase && categoriesDatabase.length > 0)
+            ? categoriesDatabase
+            : (window.defaultCategories || (typeof defaultCategories !== 'undefined' ? defaultCategories : []));
 
-        
+        const cleanStr = (s) => (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().toUpperCase();
+        const strVal = String(selectedCategoryId).trim();
 
-        // Si la fuente es macro, es completamente independiente
-
-        if (sourceTipo === 'macro') return;
-
-
-
-        const cats = categoriesDatabase || [];
-
-        const sourceCat = cats.find(c => String(c.id) === String(selectedCategoryId));
-
+        const sourceCat = cats.find(c => String(c.id) === strVal
+                                      || cleanStr(c.categoria) === cleanStr(strVal)
+                                      || normalizeCategoryName(c.categoria) === normalizeCategoryName(strVal));
         if (!sourceCat) return;
 
-        
+        const sourceNorm = normalizeCategoryName(sourceCat.categoria || '');
 
-        const sourceName = (sourceCat.categoria || '').trim().toUpperCase();
+        // Encontrar categoria homologa para Macroscopica y Microscopica/Diagnostico
+        const targetMacroCat = cats.find(c => normalizeCategoryName(c.categoria) === sourceNorm && c.tipo === 'Macroscopica')
+                            || cats.find(c => normalizeCategoryName(c.categoria) === sourceNorm)
+                            || sourceCat;
+        const targetMicroCat = cats.find(c => normalizeCategoryName(c.categoria) === sourceNorm && c.tipo === 'Microscopica')
+                            || cats.find(c => normalizeCategoryName(c.categoria) === sourceNorm)
+                            || sourceCat;
 
-        
+        // 1. Sincronizar Macro si la fuente no es macro
+        if (sourceTipo !== 'macro' && targetMacroCat) {
+            const el = document.getElementById('re_catMacro');
+            const elFull = document.getElementById('re_catMacro_full');
+            if (el && el.value !== String(targetMacroCat.id)) el.value = targetMacroCat.id;
+            if (elFull && elFull.value !== String(targetMacroCat.id)) elFull.value = targetMacroCat.id;
+            actualizarPlantillasSegunEspecialidad('macro', targetMacroCat.id);
+        }
 
-        // Sincronizar categorías por nombre homólogo únicamente entre micro y diag
+        // 2. Sincronizar Micro si la fuente no es micro
+        if (sourceTipo !== 'micro' && targetMicroCat) {
+            const el = document.getElementById('re_catMicro');
+            const elFull = document.getElementById('re_catMicro_full');
+            if (el && el.value !== String(targetMicroCat.id)) el.value = targetMicroCat.id;
+            if (elFull && elFull.value !== String(targetMicroCat.id)) elFull.value = targetMicroCat.id;
+            actualizarPlantillasSegunEspecialidad('micro', targetMicroCat.id);
+        }
 
-        cats.forEach(c => {
-
-            const name = (c.categoria || '').trim().toUpperCase();
-
-            if (name === sourceName && c.tipo === 'Microscopica') {
-
-                if (sourceTipo !== 'micro') {
-
-                    const el = document.getElementById('re_catMicro');
-
-                    const elFull = document.getElementById('re_catMicro_full');
-
-                    if (el && el.value !== String(c.id)) el.value = c.id;
-
-                    if (elFull && elFull.value !== String(c.id)) elFull.value = c.id;
-
-                    actualizarPlantillasSegunEspecialidad('micro', c.id);
-
-                }
-
-                if (sourceTipo !== 'diag') {
-
-                    const el = document.getElementById('re_catDiag');
-
-                    const elFull = document.getElementById('re_catDiag_full');
-
-                    if (el && el.value !== String(c.id)) el.value = c.id;
-
-                    if (elFull && elFull.value !== String(c.id)) elFull.value = c.id;
-
-                    actualizarPlantillasSegunEspecialidad('diag', c.id);
-
-                }
-
-            }
-
-        });
-
+        // 3. Sincronizar Diag si la fuente no es diag
+        if (sourceTipo !== 'diag' && targetMicroCat) {
+            const el = document.getElementById('re_catDiag');
+            const elFull = document.getElementById('re_catDiag_full');
+            if (el && el.value !== String(targetMicroCat.id)) el.value = targetMicroCat.id;
+            if (elFull && elFull.value !== String(targetMicroCat.id)) elFull.value = targetMicroCat.id;
+            actualizarPlantillasSegunEspecialidad('diag', targetMicroCat.id);
+        }
     }
-
-
+    window.coordinarCategorias = coordinarCategorias;
 
     function coordinarPlantillaSeleccionada(sourceTipo, selectedTemplateId) {
+        if (!selectedTemplateId) return;
+        sourceTipo = (sourceTipo || '').replace('_full', '');
+        const strTplId = String(selectedTemplateId);
 
-        sourceTipo = sourceTipo.replace('_full', '');
+        // Sincronizar bidireccionalmente entre macro, micro y diag si la plantilla existe en sus opciones
+        const targetIds = [];
+        if (sourceTipo !== 'macro') targetIds.push('re_planMacro', 're_planMacro_full');
+        if (sourceTipo !== 'micro') targetIds.push('re_planMicro', 're_planMicro_full');
+        if (sourceTipo !== 'diag') targetIds.push('re_planDiag', 're_planDiag_full');
 
-        // 'macro' es completamente independiente y no se sincroniza
-
-        if (sourceTipo === 'micro' || sourceTipo === 'diag') {
-
-            const targetTipo = sourceTipo === 'micro' ? 'diag' : 'micro';
-
-            const ids = targetTipo === 'micro' ? ['re_planMicro', 're_planMicro_full'] : ['re_planDiag', 're_planDiag_full'];
-
-            
-
-            ids.forEach(id => {
-
-                const el = document.getElementById(id);
-
-                if (el) {
-
-                    const hasOption = Array.from(el.options).some(o => o.value === String(selectedTemplateId));
-
-                    if (hasOption && el.value !== String(selectedTemplateId)) {
-
-                        el.value = selectedTemplateId;
-
-                    }
-
+        targetIds.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                const hasOption = Array.from(el.options).some(o => o.value === strTplId);
+                if (hasOption && el.value !== strTplId) {
+                    el.value = strTplId;
                 }
-
-            });
-
-        }
-
-
-
-        const selectedTemplate = templatesDatabase.find(t => String(t.id) === String(selectedTemplateId));
-
-        if (selectedTemplate) {
-
-            const schema = getWizardSchemaForTemplate(selectedTemplate.id, selectedTemplate.titulo);
-
-            if (schema) {
-
-                const targetMode = (sourceTipo === 'macro') ? 'fase1_macro' : 'fase2_micro';
-
-                abrirPlantillaWizard(selectedTemplate.id, selectedTemplate.titulo, targetMode);
-
-            } else {
-
-                checkAndSetupSynopticAssistant(selectedTemplate.plantilla || selectedTemplate.titulo || "");
-
             }
+        });
 
+        const tplsDb = (templatesDatabase && templatesDatabase.length > 0) ? templatesDatabase : (window.defaultTemplates || (typeof defaultTemplates !== 'undefined' ? defaultTemplates : []));
+        const selectedTemplate = tplsDb.find(t => String(t.id) === strTplId);
+        if (selectedTemplate) {
+            const schema = getWizardSchemaForTemplate(selectedTemplate.id, selectedTemplate.titulo);
+            if (schema) {
+                const targetMode = (sourceTipo === 'macro') ? 'fase1_macro' : 'fase2_micro';
+                abrirPlantillaWizard(selectedTemplate.id, selectedTemplate.titulo, targetMode);
+            } else {
+                checkAndSetupSynopticAssistant(selectedTemplate.plantilla || selectedTemplate.titulo || "");
+            }
         }
-
     }
+    window.coordinarPlantillaSeleccionada = coordinarPlantillaSeleccionada;
 
 
 
@@ -8163,21 +8890,31 @@ function bindAiRetouchButtonsGlobally() {
 
 
 
-        el1.addEventListener('change', () => {
+        const handleSync1 = () => {
 
             if (el2.value !== el1.value) el2.value = el1.value;
 
             if (onSyncChange) onSyncChange(el1.value);
 
-        });
+        };
 
-        el2.addEventListener('change', () => {
+        const handleSync2 = () => {
 
             if (el1.value !== el2.value) el1.value = el2.value;
 
             if (onSyncChange) onSyncChange(el2.value);
 
-        });
+        };
+
+
+
+        el1.addEventListener('change', handleSync1);
+
+        el1.addEventListener('input', handleSync1);
+
+        el2.addEventListener('change', handleSync2);
+
+        el2.addEventListener('input', handleSync2);
 
     }
 
@@ -8459,6 +9196,15 @@ function bindAiRetouchButtonsGlobally() {
 
             return false;
 
+        }
+
+        // BLINDAJE MILITAR: Validación estricta 1:1
+        const activePatFull = window.currentEditingPatient;
+        const strictOrganFull = OrganStrictGuard.detectOrgan(activePatFull);
+        if (strictOrganFull && !OrganStrictGuard.isTemplateAllowed(strictOrganFull, plantilla)) {
+            alert(`🚨 ACCIÓN DENEGADA POR SEGURIDAD CLÍNICA:\n\nLa muestra es '${activePatFull?.especimen || 'No especificada'}'.\nLa plantilla '${plantilla.titulo}' pertenece a otra especialidad incompatible.\n\nQueda terminantemente prohibido desplegarla.`);
+            showToast('Plantilla incompatible con el espécimen de la biopsia', 'error');
+            return false;
         }
 
 

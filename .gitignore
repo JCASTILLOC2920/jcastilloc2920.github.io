@@ -15,3 +15,8 @@ reportes.css
 ui_tables.js
 mobile_report_reader.js
 mobile_report_reader.css
+
+# Blindaje de privacidad de pacientes y respaldos con llaves
+pacientes_maestro_backup_soberano.json
+*.bak*
+*.log

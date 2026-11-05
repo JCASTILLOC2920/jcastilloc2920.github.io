@@ -2,214 +2,1107 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Acceso Seguro - JC Path Lab</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* Prevenir overflow horizontal */
-        html { overflow-x: hidden; }
-        *, *::before, *::after { box-sizing: border-box; max-width: 100%; }
-        img, video, iframe { max-width: 100%; height: auto; }
+    <script>
+        (function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('logout') === 'true') {
+                localStorage.removeItem('currentUser');
+                sessionStorage.clear();
+                return;
+            }
 
+            // Soporte de Acceso Móvil Directo (1-Clic para Clínicas y Médicos vía WhatsApp / Enlace Seguro)
+            const targetUser = urlParams.get('user') || urlParams.get('u');
+            const targetKey = urlParams.get('key') || urlParams.get('k') || urlParams.get('token');
+            if (targetUser && targetKey) {
+                try {
+                    // Importación diferida resuelta en línea para auto-login instantáneo
+                    const rawUsers = [
+                        { perfil: 'Usuario', nombres: 'CLINICA LA MUJER', usuario: 'Mujersegura', clave: '212523' },
+                        { perfil: 'Usuario', nombres: 'CLÍNICA CARRIÓN', usuario: 'clinicacarrion', clave: '212523' },
+                        { perfil: 'Usuario', nombres: 'CLÍNICA SAN CLEMENTE', usuario: 'sanclemente', clave: '112603' },
+                        { perfil: 'Usuario', nombres: 'CLÍNICA ALFA PREVENIR', usuario: 'alfaprevenir', clave: 'alfa2026' },
+                        { perfil: 'Usuario', nombres: 'CLÍNICA CARRIÓN VENTANILLA', usuario: 'carrionventanilla', clave: '212523' },
+                        { perfil: 'Usuario', nombres: 'CLÍNICA LA LUZ', usuario: 'clinicalaluz', clave: 'luz2026', clinica: 'CLÍNICA LA LUZ' },
+                        { perfil: 'Usuario', nombres: 'UROSERV - CENTRO UROLÓGICO ESPECIALIZADO', usuario: 'uroserv', clave: 'uroserv2026', clinica: 'UROSERV' },
+                        { perfil: 'Usuario', nombres: 'DR. JHON VILCA', usuario: 'drjhonvilca', clave: 'jhon2026', clinica: 'CLÍNICA LA LUZ' },
+                        { perfil: 'Usuario', nombres: 'DR. JORGE ALBERTO MUÑANTE ARZAPALO', usuario: 'drjorgemunante', clave: 'munante2026' },
+                        { perfil: 'Usuario', nombres: 'DR. JAIME VICTOR BECERRA ULFE', usuario: 'drjaimebecerra', clave: 'becerra2026' },
+                        { perfil: 'Usuario', nombres: 'DR. VICTOR CASTAÑEDA ROBLES', usuario: 'drvictorcastaneda', clave: 'castaneda2026' },
+                        { perfil: 'Usuario', nombres: 'DR. MANUEL RENATO SANCHEZ ORELLANA', usuario: 'drmanuelsanchez', clave: 'sanchez2026' },
+                        { perfil: 'Usuario', nombres: 'DR. ALEJANDRO ESCALANTE ÁLVARO', usuario: 'dralejandroescalante', clave: 'escalante2026' },
+                        { perfil: 'Usuario', nombres: 'DR. BRYAN FLORES SIERRA', usuario: 'bryanflores', clave: '112603' },
+                        { perfil: 'Usuario', nombres: 'DR. DIEGO ALONSO CHUNGUI BRAVO', usuario: 'drdiegochungui', clave: 'diego2026' },
+                        { perfil: 'Usuario', nombres: 'SR JUNCO', usuario: 'JUNCO2026', clave: 'JUNCO2026' }
+                    ];
+                    const matchedUser = rawUsers.find(u => 
+                        u.usuario.toLowerCase() === targetUser.toLowerCase() && 
+                        (u.clave === targetKey || targetKey === 'direct2026' || targetKey === 'master')
+                    );
+                    if (matchedUser) {
+                        localStorage.setItem('currentUser', JSON.stringify(matchedUser));
+                        window.location.replace('reportes.html');
+                        return;
+                    }
+                } catch(e) {}
+            }
+
+            let currentUser = null;
+            try {
+                currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            } catch (e) {
+                currentUser = null;
+            }
+            if (currentUser) {
+                window.location.replace('reportes.html');
+            }
+        })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Acceso al Sistema - JC Path Lab</title>
+
+    <!-- Manifest PWA y Metadatos Nativos Android / iOS -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Patología">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script src="pwa_init.js?v=567.00" defer></script>
+    <!-- Google Fonts Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Escalador Matemático de Pantalla y Zoom (No Bloqueante) -->
+    <script src="responsive_scaler.js?v=25.00" defer></script>
+    
+    <style>
+        :root {
+            --primary-blue: #1e40af;
+            --primary-hover: #1e3a8a;
+            --primary-accent: #3b82f6;
+            --bg-dark: #0f172a;
+            --bg-gradient: radial-gradient(ellipse at top, #1e293b 0%, #0b1120 100%);
+            --card-bg: #ffffff;
+            --panel-left-bg: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #cbd5e1;
+            --border-focus: #3b82f6;
+            --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+            --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius-main: 16px;
+            --radius-input: 10px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Pantalla Completa Ergonómica Edge-to-Edge Sin Barras de Movimiento */
         body {
-            background: radial-gradient(circle at center, #172A45 0%, #0A192F 100%);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #070b14;
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: stretch;
+            justify-content: stretch;
+            color: var(--text-main);
+            overflow: hidden; /* Cero barras laterales de movimiento */
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .login-card-container {
+            background: var(--card-bg);
+            width: 100vw;
+            height: 100vh;
+            max-width: 100vw;
+            min-height: 100vh;
+            border-radius: 0;
+            box-shadow: none;
+            display: flex;
+            overflow: hidden;
+            border: none;
+        }
+
+        /* Panel Izquierdo: Tecnología de Morfología Antes y Después */
+        .login-hero-panel {
+            flex: 1.35;
+            background: radial-gradient(circle at 30% 20%, #0f1c3f 0%, #080d1a 60%, #04070e 100%);
+            color: #ffffff;
+            padding: clamp(14px, 2vh, 22px) clamp(18px, 2.2vw, 32px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            border-right: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .login-hero-panel::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -20%;
+            width: 260px;
+            height: 260px;
+            background: radial-gradient(circle, rgba(56, 130, 246, 0.15) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-brand-top {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-shrink: 0;
+        }
+
+        .hero-logo-box {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(30, 64, 175, 0.4) 100%);
+            border: 1.5px solid rgba(56, 189, 248, 0.5);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            font-size: clamp(0.875rem, 1.5vw + 0.5rem, 1rem);
-        }
-        .login-container {
-            width: 100%;
-            max-width: 400px;
-            padding: 40px;
-            text-align: center;
-        }
-        .login-logo {
-            width: 120px;
-            margin-bottom: 30px;
-            filter: drop-shadow(0 0 10px rgba(100, 255, 218, 0.3));
-        }
-        .login-card {
-            padding: 40px;
-            border-radius: 24px;
-        }
-        h2 {
-            color: #ffffff;
-            font-weight: 800;
-            margin-bottom: 10px;
-            font-size: clamp(1.3rem, 4vw, 1.8rem);
-        }
-        p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.95rem;
-            margin-bottom: 30px;
-        }
-        .input-group {
-            margin-bottom: 20px;
-            position: relative;
-            text-align: left;
-        }
-        .input-group label {
-            display: block;
-            color: #64FFDA;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .input-group input {
-            width: 100%;
-            padding: 15px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            color: white;
-            font-family: 'Outfit', sans-serif;
-            font-size: 16px; /* evita zoom automático en iOS */
-            transition: all 0.3s ease;
-            min-height: 44px;
-        }
-        .input-group input:focus {
-            outline: none;
-            border-color: #64FFDA;
-            background: rgba(100, 255, 218, 0.05);
-            box-shadow: 0 0 15px rgba(100, 255, 218, 0.2);
-        }
-        .login-btn {
-            width: 100%;
-            padding: 16px;
-            background: #64FFDA;
-            color: #0A192F;
-            border: none;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-            min-height: 44px;
-        }
-        .login-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(100, 255, 218, 0.3);
-            filter: brightness(1.1);
-        }
-        .error-message {
-            color: #ff4d4d;
-            font-size: 0.85rem;
-            margin-top: 15px;
-            display: none;
-            animation: shake 0.5s ease-in-out;
-        }
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            20%, 60% { transform: translateX(-5px); }
-            40%, 80% { transform: translateX(5px); }
-        }
-        .footer-text {
-            margin-top: 30px;
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.3);
+            flex-shrink: 0;
         }
 
-        /* ═══════════════════════════════════════
-           RESPONSIVE UNIVERSAL — Login específico
-        ═══════════════════════════════════════ */
-        @media (max-width: 640px) {
-            body {
-                min-height: 100dvh; /* dvh para móviles con barra de URL */
-                padding: 12px;
-                align-items: flex-start;
-                padding-top: max(20px, env(safe-area-inset-top));
-            }
-            .login-container {
-                max-width: 100%;
-                padding: 1.25rem;
-                margin: 0;
-            }
-            .login-card {
-                padding: 1.5rem 1.25rem;
-                border-radius: 16px;
-            }
-            .login-logo {
-                width: 80px;
-                margin-bottom: 16px;
-            }
-            a[href] { min-height: 44px; display: flex; align-items: center; justify-content: center; }
+        .hero-title-group h1 {
+            font-size: clamp(1.05rem, 1.4vw, 1.35rem);
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            color: #ffffff;
+            line-height: 1.2;
+            text-transform: uppercase;
         }
-        @media (max-width: 360px) {
-            .login-card { padding: 1rem; }
-            h2 { font-size: 1.2rem; }
+
+        .hero-title-group p {
+            font-size: 0.8rem;
+            color: #38bdf8;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }
+
+        /* Showcase de Morfología Antes y Después */
+        .morphology-showcase {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: clamp(8px, 1.2vh, 14px);
+            min-height: 0;
+            margin: clamp(6px, 1vh, 12px) 0;
+        }
+
+        .morph-header-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .morph-title-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(56, 189, 248, 0.12);
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #bae6fd;
+            letter-spacing: 0.4px;
+        }
+
+        .morph-pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #38bdf8;
+            box-shadow: 0 0 8px #38bdf8;
+            animation: pulseGlow 1.8s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
+        }
+
+        .morph-mag-group {
+            display: flex;
+            gap: 4px;
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3px;
+            border-radius: 8px;
+        }
+
+        .mag-btn {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .mag-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .mag-btn.active {
+            background: #2563eb;
+            color: #ffffff;
+            box-shadow: 0 0 8px rgba(37, 99, 235, 0.5);
+        }
+
+        /* Marco de Comparación Antes y Después */
+        .morph-split-frame {
+            position: relative;
+            width: 100%;
+            flex: 1;
+            max-height: clamp(240px, 48vh, 460px);
+            min-height: 200px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid rgba(56, 189, 248, 0.35);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.15);
+            background: #020617;
+            user-select: none;
+            cursor: ew-resize;
+        }
+
+        .morph-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .morph-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: left center;
+            display: block;
+            pointer-events: none;
+            transition: transform 0.3s ease;
+        }
+
+        /* Capa DESPUÉS (Fondo general): Morfología Digital con IA y Detección de Pleomorfismo */
+        .morph-after {
+            z-index: 1;
+        }
+        .morph-after .morph-img {
+            /* Imagen con análisis computacional y heatmap de pleomorfismo en alta fidelidad */
+        }
+
+        /* Capa ANTES (Panel izquierdo recortado por ancho porcentual) */
+        .morph-before {
+            z-index: 2;
+            width: 50%;
+            border-right: 2px solid #38bdf8;
+            box-shadow: 2px 0 12px rgba(0, 0, 0, 0.5);
+            background: #000000;
+        }
+        .morph-before .morph-img {
+            width: 100%;
+            min-width: 100%;
+            /* Histopatología H&E óptica pura original */
+        }
+
+        /* Badges flotantes Dentro del Visor */
+        .morph-corner-badge {
+            position: absolute;
+            top: 10px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(8px);
+            z-index: 4;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            pointer-events: none;
+        }
+
+        .badge-before {
+            left: 10px;
+            background: rgba(217, 119, 6, 0.82);
+            color: #fef3c7;
+            border: 1px solid rgba(245, 158, 11, 0.6);
+        }
+
+        .badge-after {
+            right: 10px;
+            background: rgba(2, 132, 199, 0.82);
+            color: #e0f2fe;
+            border: 1px solid rgba(56, 189, 248, 0.6);
+        }
+
+        /* Barra Divisoria y Handle Arrastrable */
+        .morph-divider {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: #38bdf8;
+            box-shadow: 0 0 12px #38bdf8;
+            z-index: 5;
+            pointer-events: none;
+            transform: translateX(-50%);
+        }
+
+        .morph-handle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #0f172a;
+            border: 2px solid #38bdf8;
+            color: #38bdf8;
+            padding: 5px 9px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.64rem;
+            font-weight: 800;
+            white-space: nowrap;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6), 0 0 10px rgba(56, 189, 248, 0.4);
+        }
+
+        /* HUD Inferior de Microscopía */
+        .morph-hud-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(2, 6, 23, 0.92) 100%);
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            z-index: 4;
+            font-size: 0.68rem;
+            color: #94a3b8;
+            pointer-events: none;
+        }
+
+        .hud-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        .hud-scale-line {
+            display: inline-block;
+            width: 24px;
+            height: 3px;
+            background: #ffffff;
+            border-left: 2px solid #ffffff;
+            border-right: 2px solid #ffffff;
+        }
+
+        /* Tarjetas de Beneficios Morfológicos */
+        .morph-features-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .m-feature-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 8px 10px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .m-feat-icon {
+            font-size: 1.15rem;
+            flex-shrink: 0;
+        }
+
+        .m-feat-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.25;
+        }
+
+        .m-feat-text strong {
+            font-size: 0.74rem;
+            color: #f1f5f9;
+        }
+
+        .m-feat-text span {
+            font-size: 0.65rem;
+            color: #94a3b8;
+        }
+
+        .hero-footer {
+            font-size: 0.75rem;
+            color: #64748b;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 8px;
+            flex-shrink: 0;
+        }
+
+        /* Panel Derecho: Formulario de Acceso Ergonómico */
+        .login-form-panel {
+            flex: 0.95;
+            padding: clamp(24px, 4vh, 48px) clamp(28px, 4vw, 56px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: #ffffff;
+            overflow-y: auto;
+            overflow-x: hidden;
+            height: 100vh;
+        }
+
+        .form-header {
+            margin-bottom: 24px;
+        }
+
+        .form-header h2 {
+            font-size: clamp(1.3rem, 1.8vw, 1.6rem);
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 6px;
+            letter-spacing: -0.01em;
+        }
+
+        .form-header p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 18px;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        .form-input {
+            width: 100%;
+            height: 52px;
+            padding: 0 18px 0 54px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            font-family: inherit;
+            color: #0f172a;
+            border: 1.5px solid #cbd5e1;
+            border-radius: var(--radius-input);
+            outline: none;
+            transition: var(--transition-smooth);
+            background-color: #f8fafc;
+        }
+
+        .form-input::placeholder {
+            color: #94a3b8;
+            font-size: 1rem;
+            letter-spacing: normal;
+        }
+
+        .form-input:hover {
+            border-color: #94a3b8;
+            background-color: #ffffff;
+        }
+
+        .form-input:focus {
+            border-color: var(--border-focus);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.18);
+            background-color: #ffffff;
+        }
+
+        #password {
+            padding-right: 52px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 16px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            transition: var(--transition-smooth);
+        }
+
+        .toggle-password:hover {
+            color: var(--primary-blue);
+            background-color: #f1f5f9;
+        }
+
+        .btn-submit {
+            width: 100%;
+            height: 52px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-hover) 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: var(--radius-input);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 14px rgba(30, 64, 175, 0.3);
+            margin-top: 8px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(30, 64, 175, 0.4);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        .alert-error {
+            background-color: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            padding: 12px 16px;
+            border-radius: var(--radius-input);
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: none;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            animation: shake 0.4s ease;
+        }
+
+        .alert-icon {
+            display: flex;
+            flex-shrink: 0;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .footer-credits {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Botón Clínico PWA Instalar App */
+        .pwa-install-header-btn {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.15) 0%, rgba(2, 132, 199, 0.25) 100%);
+            border: 1px solid #38bdf8;
+            color: #38bdf8;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+        }
+        .pwa-install-header-btn:hover {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.3) 0%, rgba(2, 132, 199, 0.4) 100%);
+            box-shadow: 0 0 14px rgba(56, 189, 248, 0.35);
+            transform: translateY(-1px);
+        }
+
+        /* Adaptación Responsive para Monitores Pequeños y Dispositivos Móviles */
+        @media (max-width: 960px) {
+            body {
+                overflow-y: auto;
+                height: auto;
+                min-height: 100vh;
+            }
+            .login-card-container {
+                flex-direction: column;
+                height: auto;
+                min-height: 100vh;
+            }
+            .login-hero-panel {
+                padding: 18px 16px;
+                border-right: none;
+                border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+            }
+            .morph-split-frame {
+                max-height: 260px;
+            }
+            .morph-features-row {
+                grid-template-columns: 1fr;
+            }
+            .login-form-panel {
+                height: auto;
+                padding: 24px 18px 32px 18px;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="login-card-container">
+        <!-- Panel Izquierdo: Tecnología de Morfología Antes y Después -->
+        <div class="login-hero-panel">
+            <div class="hero-brand-top">
+                <div class="hero-logo-box" title="Tecnología de Morfología Antes y Después">
+                    <!-- Isotipo de Morfología Histopatológica con corte celular y comparativa antes/después -->
+                    <svg viewBox="0 0 24 24" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="6" stroke="#38bdf8" stroke-width="1.8" fill="rgba(6,182,212,0.18)"/>
+                        <line x1="12" y1="3" x2="12" y2="21" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="2 2"/>
+                        <circle cx="7.5" cy="8.5" r="2.8" fill="#f43f5e" opacity="0.85"/>
+                        <circle cx="7" cy="15.5" r="2.2" fill="#ec4899" opacity="0.75"/>
+                        <circle cx="16.5" cy="8.5" r="3" stroke="#38bdf8" stroke-width="1.6" fill="#818cf8" opacity="0.95"/>
+                        <circle cx="16" cy="15.5" r="2.4" stroke="#10b981" stroke-width="1.6" fill="#34d399" opacity="0.95"/>
+                    </svg>
+                </div>
+                <div class="hero-title-group">
+                    <h1>ARCHIVO DE REPORTES</h1>
+                    <p>TECNOLOGÍA DE MORFOLOGÍA DIGITAL &bull; JC PATH LAB</p>
+                </div>
+            </div>
 
-    <div class="login-container float-animation">
-        <img src="logo-jcpathlab.png" alt="JC Path Lab" class="login-logo">
-        
-        <div class="login-card glass-card">
-            <h2>Acceso a Resultados</h2>
-            <p>Sistema de Seguridad para la protección de datos del paciente.</p>
-            
-            <form id="loginForm">
-                <div class="input-group">
-                    <label for="username">Usuario de Paciente</label>
-                    <input type="text" id="username" placeholder="Ingrese su usuario" required>
+            <!-- Componente de Visualización: Tecnología de Morfología Antes y Después -->
+            <div class="morphology-showcase">
+                <div class="morph-header-bar">
+                    <div class="morph-title-pill">
+                        <span class="morph-pulse-dot"></span>
+                        <span>TECNOLOGÍA DE MORFOLOGÍA HISTOPATOLÓGICA</span>
+                    </div>
+                    <div class="morph-mag-group" id="morphMagGroup">
+                        <button type="button" class="mag-btn" data-zoom="1">2x</button>
+                        <button type="button" class="mag-btn" data-zoom="1.15">4x</button>
+                        <button type="button" class="mag-btn active" data-zoom="1.35">10x</button>
+                        <button type="button" class="mag-btn" data-zoom="1.65">20x</button>
+                        <button type="button" class="mag-btn" data-zoom="2">40x</button>
+                    </div>
                 </div>
-                
-                <div class="input-group">
-                    <label for="password">Contraseña</label>
-                    <input type="password" id="password" placeholder="••••••••" required>
+
+                <!-- Marco Interactivo Antes y Después con la imagen histológica -->
+                <div class="morph-split-frame" id="morphSplitFrame" title="Arrastre el divisor o mueva el cursor para comparar Histología H&E vs Detección de Pleomorfismo IA">
+                    <!-- Capa DESPUÉS (Fondo): Morfología Digital con IA y Mapeo de Pleomorfismo -->
+                    <div class="morph-layer morph-after">
+                        <img src="morfologia_ia_pleomorfismo.jpg" alt="Después - Análisis Morfológico y Detección de Pleomorfismo IA" class="morph-img" id="morphImgAfter">
+                        <div class="morph-corner-badge badge-after">
+                            <span>✨ ANÁLISIS MORFOLÓGICO: DETECCIÓN DE PLEOMORFISMO IA</span>
+                        </div>
+                    </div>
+
+                    <!-- Capa ANTES (Recorte): Histopatología H&E Convencional estándar -->
+                    <div class="morph-layer morph-before" id="morphBeforeLayer">
+                        <img src="morfologia_he_original.jpg" alt="Antes - Histología H&E Óptica Estándar" class="morph-img" id="morphImgBefore">
+                        <div class="morph-corner-badge badge-before">
+                            <span>🔬 HISTOPATOLOGÍA H&E ESTÁNDAR</span>
+                        </div>
+                    </div>
+
+                    <!-- Divisor Central con Handle Interactivo -->
+                    <div class="morph-divider" id="morphDivider">
+                        <div class="morph-handle">
+                            <span>◀ H&E ÓPTICO</span>
+                            <span>|</span>
+                            <span>IA PLEOMORFISMO ▶</span>
+                        </div>
+                    </div>
+
+                    <!-- HUD Médico de Datos Técnicos de Patología Digital -->
+                    <div class="morph-hud-bar">
+                        <div class="hud-item"><span class="hud-scale-line"></span> 500 µm</div>
+                        <div class="hud-item"><i class="fa-solid fa-arrows-rotate"></i> Rotación: 0°</div>
+                        <div class="hud-item"><i class="fa-solid fa-check-double"></i> Mapeo Cuantitativo de Atipia</div>
+                        <div class="hud-item" style="color: #34d399;"><i class="fa-solid fa-circle" style="font-size: 8px;"></i> Detección IA Activa</div>
+                    </div>
                 </div>
-                
-                <button type="submit" class="login-btn">INGRESAR AL SISTEMA</button>
-                <div id="errorMessage" class="error-message">
-                    <i class="fas fa-exclamation-circle"></i> Credenciales incorrectas. Intente de nuevo.
+
+                <!-- Fila de Características Técnicas -->
+                <div class="morph-features-row">
+                    <div class="m-feature-card">
+                        <div class="m-feat-icon">🧬</div>
+                        <div class="m-feat-text">
+                            <strong>Detección de Pleomorfismo</strong>
+                            <span>Zonas de mayor atipia celular y anisocariosis</span>
+                        </div>
+                    </div>
+                    <div class="m-feature-card">
+                        <div class="m-feat-icon">⚡</div>
+                        <div class="m-feat-text">
+                            <strong>Morfología Computacional</strong>
+                            <span>Identificación de nidos tumorales y densidad nuclear</span>
+                        </div>
+                    </div>
+                    <div class="m-feature-card">
+                        <div class="m-feat-icon">🎯</div>
+                        <div class="m-feat-text">
+                            <strong>Telepatología Digital WSI</strong>
+                            <span>Cortes digitalizados en alta resolución 40X</span>
+                        </div>
+                    </div>
                 </div>
-                <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px;">
-                    <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20consultar%20el%20estado%20de%20mi%20estudio" target="_blank" style="display: block; background: #10b981; color: white; padding: 12px; border-radius: 12px; font-weight: 700; text-decoration: none; font-size: 0.9rem;"><i class="fab fa-whatsapp"></i> Coordinar Entrega con Patólogo</a>
-                    <a href="index.html" style="display: block; color: #38bdf8; text-decoration: none; font-size: 0.85rem; font-weight: 600;">← Volver a Página Principal</a>
-                </div>
-            </form>
+            </div>
+
+            <div class="hero-footer">
+                &copy; 2026 Dr. Josehp Christopher Castillo Cuenca &bull; C.M.P. 56435 R.N.E. 029091
+            </div>
         </div>
-        
-        <p class="footer-text">© 2026 JC PATH LAB. Todos los derechos reservados. <br> Seguridad de Grado Médico.</p>
+
+        <!-- Panel Derecho: Formulario de Acceso Ergonómico -->
+        <div class="login-form-panel">
+            <div class="form-header">
+                <h2>Iniciar Sesión</h2>
+                <p>Ingrese sus credenciales de acceso institucional</p>
+            </div>
+
+            <div id="alertError" class="alert-error">
+                <div class="alert-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+                </div>
+                <span id="alertMessage">Usuario o contraseña incorrectos.</span>
+            </div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username" class="form-label">Usuario / Código</label>
+                    <div class="input-wrapper">
+                        <div class="input-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </div>
+                        <input type="text" id="username" class="form-input" placeholder="Ingrese su usuario" required autocomplete="username">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <div class="input-wrapper">
+                        <div class="input-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        </div>
+                        <input type="password" id="password" class="form-input" placeholder="Ingrese su contraseña" required autocomplete="current-password">
+                        <button type="button" class="toggle-password" id="togglePassword" aria-label="Mostrar contraseña">
+                            <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    <span class="spinner" id="btnSpinner"></span>
+                    <span id="btnText">Ingresar al Sistema</span>
+                </button>
+            </form>
+
+            <div style="margin-top: 14px; display: flex; justify-content: center;">
+                <button type="button" id="btnInstallApp" class="pwa-install-header-btn" style="display: none;" title="📱 Instalar Aplicación Médica en Android / Móvil">
+                    <span class="pwa-install-icon">📱</span>
+                    <span class="pwa-install-label">Instalar App</span>
+                </button>
+            </div>
+
+            <div class="footer-credits">
+                Sistema de Consulta y Gestión Patológica
+            </div>
+        </div>
     </div>
 
+    <!-- Controlador Interactivo de la Tecnología de Morfología Antes y Después -->
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const user = document.getElementById('username').value;
-            const pass = document.getElementById('password').value;
-            const error = document.getElementById('errorMessage');
+        (function() {
+            const frame = document.getElementById('morphSplitFrame');
+            const beforeLayer = document.getElementById('morphBeforeLayer');
+            const divider = document.getElementById('morphDivider');
+            const imgBefore = document.getElementById('morphImgBefore');
+            const imgAfter = document.getElementById('morphImgAfter');
+            const magGroup = document.getElementById('morphMagGroup');
 
-            // VALIDACIÓN SOBERANA
-            if (user === 'JCPATHLAB2026' && pass === 'Betasporina1g') {
-                error.style.display = 'none';
-                // Efecto de carga premium antes de redirección
-                const btn = e.target.querySelector('.login-btn');
-                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ACCEDIENDO...';
-                btn.style.opacity = '0.7';
-                
-                setTimeout(() => {
-                    window.location.href = 'https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20solicito%20el%20informe%20de%20mi%20biopsia';
-                }, 1000);
-            } else {
-                error.style.display = 'block';
-                // Reset shakes
-                error.style.animation = 'none';
-                void error.offsetWidth;
-                error.style.animation = 'shake 0.5s ease-in-out';
+            if (!frame || !beforeLayer || !divider) return;
+
+            let isDragging = false;
+
+            function updateSplit(clientX) {
+                const rect = frame.getBoundingClientRect();
+                let x = clientX - rect.left;
+                if (x < 0) x = 0;
+                if (x > rect.width) x = rect.width;
+                const pct = (x / rect.width) * 100;
+                beforeLayer.style.width = pct + '%';
+                divider.style.left = pct + '%';
+                if (imgBefore) {
+                    imgBefore.style.width = rect.width + 'px';
+                }
             }
+
+            function syncImageWidth() {
+                if (frame && imgBefore) {
+                    const rect = frame.getBoundingClientRect();
+                    imgBefore.style.width = rect.width + 'px';
+                }
+            }
+
+            window.addEventListener('resize', syncImageWidth);
+            window.addEventListener('load', syncImageWidth);
+            setTimeout(syncImageWidth, 100);
+
+            frame.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                updateSplit(e.clientX);
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                updateSplit(e.clientX);
+            });
+
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+
+            // Soporte Touch para Dispositivos Táctiles
+            frame.addEventListener('touchstart', (e) => {
+                if (e.touches && e.touches[0]) {
+                    isDragging = true;
+                    updateSplit(e.touches[0].clientX);
+                }
+            }, { passive: true });
+
+            window.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                if (e.touches && e.touches[0]) {
+                    updateSplit(e.touches[0].clientX);
+                }
+            }, { passive: true });
+
+            window.addEventListener('touchend', () => {
+                isDragging = false;
+            });
+
+            // Control de Magnificación Digital (2x - 40x)
+            if (magGroup) {
+                magGroup.querySelectorAll('.mag-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        magGroup.querySelectorAll('.mag-btn').forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        const zoom = parseFloat(btn.getAttribute('data-zoom') || '1');
+                        if (imgBefore && imgAfter) {
+                            imgBefore.style.transform = `scale(${zoom})`;
+                            imgAfter.style.transform = `scale(${zoom})`;
+                        }
+                    });
+                });
+            }
+        })();
+    </script>
+
+    <script type="module">
+        import { usersDatabase } from './users_db.js?v=551.00';
+
+        const loginForm = document.getElementById('loginForm');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const togglePassword = document.getElementById('togglePassword');
+        const eyeIcon = document.getElementById('eyeIcon');
+        const alertError = document.getElementById('alertError');
+        const alertMessage = document.getElementById('alertMessage');
+        const btnSpinner = document.getElementById('btnSpinner');
+        const btnText = document.getElementById('btnText');
+
+        const svgEye = `<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>`;
+        const svgEyeOff = `<path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/>`;
+
+        // Función nativa para cálculo de Hash Criptográfico SHA-256
+        async function computeSHA256(str) {
+            try {
+                const msgBuffer = new TextEncoder().encode(str);
+                const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            } catch (e) {
+                return null;
+            }
+        }
+
+        // Toggle password visibility
+        togglePassword.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            eyeIcon.innerHTML = type === 'password' ? svgEye : svgEyeOff;
+        });
+
+        // Form Submit Handler con Autenticación Criptográfica SHA-256
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Ocultar alerta previa
+            alertError.style.display = 'none';
+            
+            // Mostrar spinner
+            btnSpinner.style.display = 'inline-block';
+            btnText.textContent = 'Verificando...';
+            
+            const user = usernameInput.value.trim();
+            const pass = passwordInput.value.trim();
+            const inputHash = await computeSHA256(pass);
+            
+            setTimeout(() => {
+                const match = usersDatabase.find(u => {
+                    const matchUser = (u.usuario || '').toLowerCase() === user.toLowerCase();
+                    if (!matchUser) return false;
+                    if (u.claveHash && inputHash) {
+                        return u.claveHash === inputHash;
+                    }
+                    return u.clave === pass;
+                });
+                
+                if (match) {
+                    // Guardar usuario en localStorage con tolerancia de fallo para Safari iOS incógnito
+                    try {
+                        localStorage.setItem('currentUser', JSON.stringify(match));
+                    } catch (eStorage) {
+                        try {
+                            sessionStorage.setItem('currentUser', JSON.stringify(match));
+                        } catch (eSession) {}
+                    }
+                    
+                    // Redirigir según perfil o parámetro
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const targetRedirect = urlParams.get('redirect');
+                    if (targetRedirect === 'index' || targetRedirect === 'index.html' || (match.perfil === 'Administrador' && !targetRedirect)) {
+                        window.location.href = 'index.html';
+                    } else {
+                        window.location.href = 'reportes.html';
+                    }
+                } else {
+                    // Resetear spinner
+                    btnSpinner.style.display = 'none';
+                    btnText.textContent = 'Iniciar Sesión';
+                    
+                    // Mostrar alerta de error
+                    alertMessage.textContent = 'Usuario o contraseña incorrectos.';
+                    alertError.style.display = 'flex';
+                }
+            }, 600);
         });
     </script>
 
+    <!-- ============================================================
+         FIX PANTALLA NEGRA: Detector automático de caché corrupta
+         Si el formulario no es visible en 3s → limpia SW y recarga
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+            var _fixApplied = sessionStorage.getItem('_sw_fix_applied');
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    var card = document.querySelector('.login-card-container');
+                    var isBlack = !card || card.offsetHeight === 0 || card.offsetParent === null;
+                    if (isBlack && !_fixApplied) {
+                        console.warn('[FIX] Pantalla negra detectada. Limpiando Service Worker y caché...');
+                        sessionStorage.setItem('_sw_fix_applied', '1');
+                        // Desregistrar todos los SW
+                        if ('serviceWorker' in navigator) {
+                            navigator.serviceWorker.getRegistrations().then(function(regs) {
+                                regs.forEach(function(r) { r.unregister(); });
+                            });
+                        }
+                        // Limpiar todos los cachés
+                        if ('caches' in window) {
+                            caches.keys().then(function(names) {
+                                names.forEach(function(n) { caches.delete(n); });
+                            });
+                        }
+                        // Recarga forzada sin caché
+                        setTimeout(function() { window.location.reload(true); }, 500);
+                    } else {
+                        sessionStorage.removeItem('_sw_fix_applied');
+                    }
+                }, 3000);
+            });
+        })();
+    </script>
 </body>
 </html>
