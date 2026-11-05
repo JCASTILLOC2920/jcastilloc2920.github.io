@@ -3,7 +3,7 @@
     'use strict';
 
     // Guardián de versión y auto-purga para sincronización multi-dispositivo
-    const APP_BUILD_VERSION = '20261105_v672';
+    const APP_BUILD_VERSION = '20261105_v673';
     const savedVersion = localStorage.getItem('app_version');
     if (savedVersion !== APP_BUILD_VERSION) {
         console.warn(`[PWA Version Guard] Versión previa detectada (${savedVersion} vs ${APP_BUILD_VERSION}). Purgando cachés y sincronizando...`);
@@ -11,10 +11,7 @@
         if ('caches' in window) {
             caches.keys().then(names => names.forEach(n => caches.delete(n)));
         }
-        try {
-            localStorage.removeItem('patientDatabaseLocal');
-            localStorage.removeItem('pacientesDB');
-        } catch(e) {}
+        // Directiva Suprema: NUNCA purgar patientDatabaseLocal ni pacientesDB del almacenamiento local
     }
 
     // Purgar cachés obsoletas del navegador cliente de inmediato
@@ -37,14 +34,14 @@
         navigator.serviceWorker.addEventListener('controllerchange', function() {
             if (!refreshing) {
                 refreshing = true;
-                console.log('[PWA Medical] Nuevo Service Worker activo (v655). Actualizando interfaz automáticamente...');
-                localStorage.setItem('app_version', 'v655');
+                console.log(`[PWA Medical] Nuevo Service Worker activo (${APP_BUILD_VERSION}). Actualizando interfaz automáticamente...`);
+                localStorage.setItem('app_version', APP_BUILD_VERSION);
                 window.location.reload();
             }
         });
 
         window.addEventListener('load', function() {
-            navigator.serviceWorker.register('sw.js?v=20261105_v672', { scope: './', updateViaCache: 'none' })
+            navigator.serviceWorker.register('sw.js?v=20261105_v673', { scope: './', updateViaCache: 'none' })
                 .then(function(registration) {
                     registration.update().catch(function() {});
                     console.log('[PWA Medical] Service Worker registrado con éxito (v655). Scope:', registration.scope);

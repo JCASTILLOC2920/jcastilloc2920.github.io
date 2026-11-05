@@ -1,16 +1,16 @@
-import { safeDeepClone, safeMonotonicMerge, patientDatabase, doctorsDatabase, triggerAutomaticBackup, categoriesDatabase, defaultCategories, templatesDatabase, addTemplateToDatabase, mapPatientToDb, savePatient, deletePatient, cleanTextContentLocal, sortPatientArray, normalizeSexo, getPatientFromIndexedDB, getSurgicalCaseFromLRU, fetchFullPatientDetails } from './db_service.js?v=v602.1012_0705';
+import { safeDeepClone, safeMonotonicMerge, patientDatabase, doctorsDatabase, triggerAutomaticBackup, categoriesDatabase, defaultCategories, templatesDatabase, addTemplateToDatabase, mapPatientToDb, savePatient, deletePatient, cleanTextContentLocal, sortPatientArray, normalizeSexo, getPatientFromIndexedDB, getSurgicalCaseFromLRU, fetchFullPatientDetails } from './db_service.js?v=20261105_v673';
 
-import { renderTable, applyFilters } from './ui_tables.js?v=v602.1012_0705';
+import { renderTable, applyFilters } from './ui_tables.js?v=20261105_v673';
 
-import { populateModalDoctorsSelect } from './ui_admin.js?v=v602.1012_0705';
+import { populateModalDoctorsSelect } from './ui_admin.js?v=20261105_v673';
 
-import { closeModal } from './ui_editor.js?v=v615.0_1012';
+import { closeModal, openModal } from './ui_editor.js?v=20261105_v673';
 
-import { synopticSchemas, compileSynopticReport, compileLongReport, compileSeparateReportParts } from './synoptic_schemas.js?v=v602.1012_0705';
+import { synopticSchemas, compileSynopticReport, compileLongReport, compileSeparateReportParts } from './synoptic_schemas.js?v=20261105_v673';
 
-import { extract24FramesFromVideo, Macro360Viewer } from './macro_viewer_360.js?v=v602.1012_0705';
+import { extract24FramesFromVideo, Macro360Viewer } from './macro_viewer_360.js?v=20261105_v673';
 
-import { gynMacroWizardConfig, renderMacroWizardModal } from './js/macro_wizard.js?v=v602.1012_0705';
+import { gynMacroWizardConfig, renderMacroWizardModal } from './js/macro_wizard.js?v=20261105_v673';
 
 
 
@@ -2986,14 +2986,27 @@ if (typeof window !== 'undefined') {
     window.OrganStrictGuard = OrganStrictGuard;
 }
 
+// Helper de normalización de nombres de categoría (alcance modular global para populateEditorModal y selects)
+export function normalizeCategoryName(rawName) {
+    if (!rawName) return 'OTROS';
+    let name = rawName.trim().toUpperCase();
+    if (name.includes('PROTOCOLO') || name.includes('SISTEMATIZADO')) {
+        return 'PROTOCOLOS SISTEMATIZADOS';
+    }
+    name = name.replace(/^\((?:MACRO|MICRO)\)\s*/i, '').trim();
+    const norm = name.trim().toUpperCase();
+    if (norm === 'DERMATOLOGIA' || norm === 'DERMATOLOGÍA' || norm.startsWith('DERMATOLOG')) return 'DERMATOPATOLOGIA';
+    return name || 'OTROS';
+}
+if (typeof window !== 'undefined') {
+    window.normalizeCategoryName = normalizeCategoryName;
+}
 
 export function populateEditorModal(codAtencion) {
 
     resetEditorCropperWorkspaces();
 
     if (!codAtencion) return false;
-
-
 
     // Reset all editor input fields and contenteditable elements to prevent cross-patient DOM leakage
 
@@ -3019,8 +3032,6 @@ export function populateEditorModal(codAtencion) {
 
     });
 
-
-
     const editablesToClear = [
 
         're_macroDesc', 're_macroDesc_full',
@@ -3039,8 +3050,6 @@ export function populateEditorModal(codAtencion) {
 
     });
 
-
-
     let patient = null;
 
     if (typeof codAtencion === 'object' && codAtencion !== null) {
@@ -3053,23 +3062,47 @@ export function populateEditorModal(codAtencion) {
 
         const cleanNoHyphen = cleanCode.replace(/[-_\s]/g, '');
 
-        patient = patientDatabase.find(x => {
+        // 1. Buscar en patientDatabase local del módulo
+        if (Array.isArray(patientDatabase)) {
+            patient = patientDatabase.find(x => {
+                const code = String(x.codAtencion || x.cod_atencion || '').trim().toLowerCase();
+                return code === cleanCode || code.replace(/[-_\s]/g, '') === cleanNoHyphen;
+            });
+        }
 
-            const code = String(x.codAtencion || '').trim().toLowerCase();
+        // 2. Buscar en window.patientDatabase global
+        if (!patient && typeof window !== 'undefined' && Array.isArray(window.patientDatabase)) {
+            patient = window.patientDatabase.find(x => {
+                const code = String(x.codAtencion || x.cod_atencion || '').trim().toLowerCase();
+                return code === cleanCode || code.replace(/[-_\s]/g, '') === cleanNoHyphen;
+            });
+        }
 
-            return code === cleanCode || code.replace(/[-_\s]/g, '') === cleanNoHyphen;
+        // 3. Buscar en window.REAL_SUPABASE_PATIENTS
+        if (!patient && typeof window !== 'undefined' && Array.isArray(window.REAL_SUPABASE_PATIENTS)) {
+            patient = window.REAL_SUPABASE_PATIENTS.find(x => {
+                const code = String(x.codAtencion || x.cod_atencion || '').trim().toLowerCase();
+                return code === cleanCode || code.replace(/[-_\s]/g, '') === cleanNoHyphen;
+            });
+        }
 
-        });
+        // 4. Buscar en localStorage
+        if (!patient && typeof localStorage !== 'undefined') {
+            try {
+                const localPts = JSON.parse(localStorage.getItem('patientDatabase') || localStorage.getItem('patientDatabaseLocal') || '[]');
+                if (Array.isArray(localPts)) {
+                    patient = localPts.find(x => {
+                        const code = String(x.codAtencion || x.cod_atencion || '').trim().toLowerCase();
+                        return code === cleanCode || code.replace(/[-_\s]/g, '') === cleanNoHyphen;
+                    });
+                }
+            } catch(e) {}
+        }
 
-    }
-
-
-
-    if (!patient) {
-
-        if (typeof showToast === 'function') showToast(`No se encontró el registro ${codAtencion}.`, 'error');
-
-        return false;
+        // 5. Fallback garantizado: si aún no existe, inicializar objeto para permitir llenarlo
+        if (!patient) {
+            patient = { codAtencion: String(codAtencion).trim() };
+        }
 
     }
 
@@ -3329,7 +3362,7 @@ export function populateEditorModal(codAtencion) {
 
     const cleanClinica = (patient.clinica || '').trim();
     const medNormVilcaModal = (patient.medSolicitante || patient.doctor || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-    if (medNormVilcaModal.includes('vilca') || medNormVilcaModal.includes('jhon')) {
+    if (medNormVilcaModal.includes('vilca')) {
         safeSet('re_clinica', 'CLÍNICA LA LUZ');
     } else {
         const isSinClinica = !cleanClinica || ['sin clinica', 'sin clínica', 'sin clinica definida', 'sin clínica definida', 'clinica no conocida', 'clínica no conocida'].includes(cleanClinica.toLowerCase());
@@ -3581,6 +3614,10 @@ export function populateEditorModal(codAtencion) {
 
             getPatientFromIndexedDB(pCodeToLookup).then(fromIdb => {
 
+                const currentCode = (document.getElementById('re_codAtencion')?.value || '').trim().toLowerCase().replace(/[-_\s]/g, '');
+                const targetCode = String(pCodeToLookup).trim().toLowerCase().replace(/[-_\s]/g, '');
+                if (currentCode !== targetCode) return; // Blindaje estricto: Prevenir inyección de fotos/solicitud desfasadas de otro paciente
+
                 const foundSol = fromIdb?.solicitudInforme || fromIdb?.solicitud_informe;
 
                 if (foundSol && typeof foundSol === 'string' && foundSol.trim() !== '') {
@@ -3696,6 +3733,32 @@ export function populateEditorModal(codAtencion) {
     originalImg01Src = patient.img01 || '';
 
     originalImg02Src = patient.img02 || '';
+
+    // Hidratación reactiva desde Bóveda IndexedDB ('media_blobs')
+    if (!patient.img01 || !patient.solicitudInforme) {
+        if (typeof window.getMediaBlobFromIndexedDB === 'function') {
+            window.getMediaBlobFromIndexedDB(patient.codAtencion || patient.cod_atencion).then(media => {
+                if (media) {
+                    if (!patient.img01 && media.img01) {
+                        patient.img01 = media.img01;
+                        setupImage('img01', patient.img01);
+                        originalImg01Src = patient.img01;
+                        if (typeof window.syncImageWidgetsState === 'function') window.syncImageWidgetsState('img01');
+                    }
+                    if (!patient.solicitudInforme && (media.solicitudInforme || media.solicitud_informe)) {
+                        const sol = media.solicitudInforme || media.solicitud_informe;
+                        patient.solicitudInforme = sol;
+                        patient.solicitud_informe = sol;
+                        window.currentUploadedFileBase64 = sol;
+                        window.currentUploadedFileUrl = sol;
+                        if (document.getElementById('re_fileStatus')) {
+                            document.getElementById('re_fileStatus').textContent = "✅ Solicitud cargada y lista";
+                        }
+                    }
+                }
+            }).catch(e => console.warn('[EditorMedia] Aviso recuperando media blob:', e));
+        }
+    }
 
     if (typeof window.syncImageWidgetsState === 'function') {
 
@@ -4111,6 +4174,29 @@ export function populateEditorModal(codAtencion) {
 
     return true;
 
+}
+
+export function openReportEditor(codAtencion) {
+    if (!codAtencion || codAtencion === '---') return;
+    const cleanCod = String(codAtencion).trim();
+    populateEditorModal(cleanCod);
+    if (typeof openModal === 'function') {
+        openModal('reportEditorModalOverlay');
+    } else {
+        const modal = document.getElementById('reportEditorModalOverlay');
+        if (modal) {
+            modal.classList.add('active');
+            modal.style.setProperty('display', 'flex', 'important');
+            modal.style.setProperty('z-index', '999999', 'important');
+            modal.style.setProperty('visibility', 'visible', 'important');
+            modal.style.setProperty('opacity', '1', 'important');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+}
+if (typeof window !== 'undefined') {
+    window.openReportEditor = openReportEditor;
+    window.populateEditorModal = populateEditorModal;
 }
 
 
@@ -6699,7 +6785,7 @@ function bindAiRetouchButtonsGlobally() {
 
                 reClinicaInput.value = 'CLÍNICA SAN CLEMENTE';
 
-            } else if (val.includes('vilca') || val.includes('jhon')) {
+            } else if (val.includes('vilca')) {
 
                 reClinicaInput.value = 'CLÍNICA LA LUZ';
 
@@ -6897,7 +6983,7 @@ function bindAiRetouchButtonsGlobally() {
 
     // ========================================================================
 
-        const draftInputIds = [
+    const draftInputIds = [
         're_macroDesc', 're_macroDesc_full',
         're_microDesc', 're_microDesc_full',
         're_diagnostico', 're_diagnostico_full',
@@ -7156,7 +7242,7 @@ function bindAiRetouchButtonsGlobally() {
 
             const enteredClinica = document.getElementById('re_clinica') ? document.getElementById('re_clinica').value.trim() : '';
             const medNormVilcaSave = (targetPatient.medSolicitante || targetPatient.doctor || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-            if (medNormVilcaSave.includes('vilca') || medNormVilcaSave.includes('jhon')) {
+            if (medNormVilcaSave.includes('vilca')) {
                 targetPatient.clinica = 'CLÍNICA LA LUZ';
                 targetPatient.procedencia = 'CLÍNICA LA LUZ';
             } else {

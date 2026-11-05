@@ -8,17 +8,17 @@ if (typeof window !== 'undefined' && !window._colmenaListenersInitialized) {
 // main.js
 // PROTOCOLO ACTOR-CRITICO: Orquestador Principal (Punto de Entrada Modular)
 
-import { initLocalDatabases, patientDatabase, loadDoctorsData, doctorsDatabase, categoriesDatabase, templatesDatabase, sortPatientArray, triggerAutomaticBackup, syncPatientsFromSupabase, syncTemplatesFromSupabase, syncCategoriesFromSupabase, subscribePatientsRealtime, savePatient, deletePatient, updateSyncStatusUI, fetchFullPatientDetails, fetchDeltaUpdates, processSyncQueue, uploadAllLocalReportsToSupabase, normalizeSexo, saveSurgicalCaseToLRU, getSurgicalCaseFromLRU, getRecentSurgicalCasesLRU, syncEngine } from './db_service.js?v=20261101_v658';
-import { initTableUI, renderTable, applyFilters, setCurrentService } from './ui_tables.js?v=20261101_v658';
-import { initModalListeners, openModal, closeModal } from './ui_editor.js?v=20261101_v658';
-import { openPrintWindow } from './pdf_engine.js?v=20261101_v658';
-import { initDictaphone, startDictation } from './dictaphone_core.js?v=20261101_v658';
-import { initReportEditorLogic, populateEditorModal, openReportEditor } from './ui_report_editor.js?v=20261101_v658';
-import { initAdminUI, populateModalDoctorsSelect } from './ui_admin.js?v=20261101_v658';
-import { initBoletasModule, getStoredEmpresas, getStoredBoletas, generateNextBoletaCode, generateBoletaPDF, renderEmpresasSelect, renderEmpresasTable, renderBoletasTable } from './boletas_manager.js?v=20261101_v658';
-import { openMobileReportReader, closeMobileReportReader } from './mobile_report_reader.js?v=20261101_v658';
-import { initClientSimulator, openClientSimulatorModal, switchToClient, exitClientSimulation } from './client_simulator.js?v=20261101_v658';
-import { initGroqCopilot, openGroqCopilotModal } from './groq_copilot.js?v=20261101_v658';
+import { initLocalDatabases, patientDatabase, loadDoctorsData, doctorsDatabase, categoriesDatabase, templatesDatabase, sortPatientArray, triggerAutomaticBackup, syncPatientsFromSupabase, syncTemplatesFromSupabase, syncCategoriesFromSupabase, subscribePatientsRealtime, savePatient, deletePatient, updateSyncStatusUI, fetchFullPatientDetails, fetchDeltaUpdates, processSyncQueue, uploadAllLocalReportsToSupabase, normalizeSexo, saveSurgicalCaseToLRU, getSurgicalCaseFromLRU, getRecentSurgicalCasesLRU, syncEngine } from './db_service.js?v=20261105_v673';
+import { initTableUI, renderTable, applyFilters, setCurrentService } from './ui_tables.js?v=20261105_v673';
+import { initModalListeners, openModal, closeModal } from './ui_editor.js?v=20261105_v673';
+import { openPrintWindow } from './pdf_engine.js?v=20261105_v673';
+import { initDictaphone, startDictation } from './dictaphone_core.js?v=20261105_v673';
+import { initReportEditorLogic, populateEditorModal, openReportEditor } from './ui_report_editor.js?v=20261105_v673';
+import { initAdminUI, populateModalDoctorsSelect } from './ui_admin.js?v=20261105_v673';
+import { initBoletasModule, getStoredEmpresas, getStoredBoletas, generateNextBoletaCode, generateBoletaPDF, renderEmpresasSelect, renderEmpresasTable, renderBoletasTable } from './boletas_manager.js?v=20261105_v673';
+import { openMobileReportReader, closeMobileReportReader } from './mobile_report_reader.js?v=20261105_v673';
+import { initClientSimulator, openClientSimulatorModal, switchToClient, exitClientSimulation } from './client_simulator.js?v=20261105_v673';
+import { initGroqCopilot, openGroqCopilotModal } from './groq_copilot.js?v=20261105_v673';
 
 
 
@@ -281,15 +281,26 @@ try {
         if (typeof sortPatientArray === 'function') {
             sortPatientArray(displaySet);
         } else {
+            var parseKey = function(cod) {
+                var codStr = String(cod || '').toUpperCase().trim();
+                var sW = 3;
+                if (codStr.includes('C-') || /C[-_\s0-9]|^C\d|\dC\d/.test(codStr)) sW = 2;
+                else if (codStr.includes('I-') || /I[-_\s0-9]|^I\d|\dI\d/.test(codStr)) sW = 1;
+                var m = codStr.match(/(?:20)?(\d{2})[^\d]*(\d+)([A-Z])?/);
+                if (m) {
+                    var y = parseInt(m[1], 10);
+                    var n = parseInt(m[2], 10);
+                    var sub = m[3] ? m[3].charCodeAt(0) - 64 : 0;
+                    if (y === 26 && n > 2000) n = 0;
+                    return y * 10000000000 + sW * 10000000 + n * 100 + sub;
+                }
+                var digits = codStr.replace(/\D/g, '');
+                return digits ? parseInt(digits, 10) : 0;
+            };
             displaySet.sort(function(a, b) {
-                var parse = function(cod) {
-                    var m = String(cod || '').toUpperCase().match(/(?:20)?(\d{2})[^\d]*(\d+)/);
-                    return m ? { y: parseInt(m[1], 10), n: parseInt(m[2], 10) } : { y: 0, n: 0 };
-                };
-                var pA = parse(a.codAtencion || a.cod_atencion);
-                var pB = parse(b.codAtencion || b.cod_atencion);
-                if (pB.y !== pA.y) return pB.y - pA.y;
-                return pB.n - pA.n;
+                var kA = parseKey(a.codAtencion || a.cod_atencion || a.codigo);
+                var kB = parseKey(b.codAtencion || b.cod_atencion || b.codigo);
+                return kB - kA;
             });
         }
         displaySet = displaySet.slice(0, 30);

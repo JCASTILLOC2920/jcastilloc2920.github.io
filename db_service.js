@@ -143,51 +143,61 @@ const MAX_LRU_CASES = 2000;
 
 
 export function parseCodAtencionForSort(cod) {
-    if (!cod) return { year: -1, num: 0, service: 'Q' };
+    if (!cod) return { year: -1, num: 0, service: 'Q', sub: 0, key: 0 };
     const codStr = String(cod || '').trim().toUpperCase();
     
     let service = 'Q';
+    let serviceWeight = 3;
     if (codStr.includes('C-') || /C[-_\s0-9]|^C\d|\dC\d/.test(codStr)) {
         service = 'C';
+        serviceWeight = 2;
     } else if (codStr.includes('I-') || /I[-_\s0-9]|^I\d|\dI\d/.test(codStr)) {
         service = 'I';
-    } else {
-        service = 'Q';
+        serviceWeight = 1;
     }
 
     // GARANTÍA MILITAR:
-    // Soporta formatos de 2 o 4 dígitos de año: 26Q-280, 2026Q-280, 26-Q-280, 26C-015, 26I-003, etc.
-    const match = codStr.match(/(?:20)?(\d{2})[^\d]*(\d+)/);
+    // Soporta formatos de 2 o 4 dígitos de año: 26Q-280, 2026Q-280, 26-Q-280, 26C-015, 26I-003, etc., más sufijo alfanumérico
+    const match = codStr.match(/(?:20)?(\d{2})[^\d]*(\d+)([A-Z])?/);
     if (match) {
         const yr = parseInt(match[1], 10);
         let n = parseInt(match[2], 10);
+        const sub = match[3] ? match[3].charCodeAt(0) - 64 : 0;
         // Si el año es 26 pero el número es absurdo (> 2000, ej: 18974), es un ID de BD que no debe colocarse arriba de biopsias reales
         if (yr === 26 && n > 2000) {
             n = 0;
         }
+        const key = yr * 10000000000 + serviceWeight * 10000000 + n * 100 + sub;
         return {
             year: yr,
             num: n,
-            service: service
+            service: service,
+            sub: sub,
+            key: key
         };
     }
     const numOnly = codStr.match(/(\d+)/);
+    const n = numOnly ? parseInt(numOnly[1], 10) : 0;
     return {
         year: 0,
-        num: numOnly ? parseInt(numOnly[1], 10) : 0,
-        service: service
+        num: n,
+        service: service,
+        sub: 0,
+        key: n
     };
 }
 
 export function attachSortKeys(p, force = false) {
     if (!p) return p;
-    const currentCode = String(p.codAtencion || p.cod_atencion || '').trim();
+    const currentCode = String(p.codAtencion || p.cod_atencion || p.codigo || '').trim();
     
     // GARANTÍA MILITAR: Si el código cambió o faltan las llaves, re-calcular SIEMPRE (previene llaves caché obsoletas)
-    if (force || p._sortCodeRaw !== currentCode || p._sortYear === undefined || p._sortNum === undefined) {
+    if (force || p._sortCodeRaw !== currentCode || p._sortKey === undefined || p._sortYear === undefined || p._sortNum === undefined) {
         const parsed = parseCodAtencionForSort(currentCode);
         p._sortYear = parsed.year;
         p._sortNum = parsed.num;
+        p._sortService = parsed.service;
+        p._sortKey = parsed.key;
         p._sortCodeRaw = currentCode;
     }
     if (force || !p._searchKey || p._searchCodeRaw !== currentCode) {
@@ -206,15 +216,12 @@ export function sortPatientArray(arr) {
         }
     }
     return arr.sort((a, b) => {
-        const yA = (a && a._sortYear !== undefined) ? a._sortYear : -1;
-        const yB = (b && b._sortYear !== undefined) ? b._sortYear : -1;
-        if (yB !== yA) return yB - yA;
-
-        const nA = (a && a._sortNum !== undefined) ? a._sortNum : 0;
-        const nB = (b && b._sortNum !== undefined) ? b._sortNum : 0;
-        return nB - nA;
+        const kA = (a && a._sortKey !== undefined) ? a._sortKey : 0;
+        const kB = (b && b._sortKey !== undefined) ? b._sortKey : 0;
+        return kB - kA;
     });
 }
+
 
 
 /**
