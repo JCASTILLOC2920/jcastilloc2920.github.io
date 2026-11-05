@@ -37,19 +37,29 @@ if (typeof window !== 'undefined') {
     window.patientMap = patientMap;
 }
 
-// Auto-actualización inmediata y soberana de localStorage e IndexedDB si contienen menos de 1,222 registros
+// Auto-actualización inmediata y soberana de localStorage e IndexedDB si contienen menos de 1,222 registros o datos corruptos
 (function autoActualizarLocalStorageSoberano() {
     if (typeof window === 'undefined' || typeof localStorage === 'undefined') return;
     try {
         const raw = localStorage.getItem('patientDatabaseLocal') || localStorage.getItem('patientDatabase') || localStorage.getItem('pacientesDB');
         let parsedCount = 0;
+        let hasGhostData = false;
         if (raw) {
-            try { parsedCount = JSON.parse(raw).length; } catch(e) {}
+            try {
+                const parsed = JSON.parse(raw);
+                parsedCount = parsed.length;
+                hasGhostData = parsed.some(p => {
+                    if (!p) return false;
+                    const nom = String(p.paciente || '').toUpperCase();
+                    const cod = String(p.codAtencion || p.cod_atencion || '').toUpperCase();
+                    return nom.includes('SIN NOMBRE') || /26Q-18\d{3}/.test(cod);
+                });
+            } catch(e) {}
         }
         const master = getRealSupabasePatients();
         const targetCount = Math.max(1222, master.length);
-        if (parsedCount < targetCount && master.length >= 1222) {
-            console.log(`[Auto-Heal LocalStorage] Purgando almacenamiento local obsoleto (${parsedCount} registros). Auto-actualizando inmediatamente a ${master.length} pacientes SSOT de Docker n8n...`);
+        if ((parsedCount < targetCount || hasGhostData) && master.length >= 1222) {
+            console.log(`[Auto-Heal LocalStorage] Purgando almacenamiento local obsoleto o contaminado (${parsedCount} registros, hasGhostData=${hasGhostData}). Auto-actualizando inmediatamente a ${master.length} pacientes SSOT de Docker n8n...`);
             safeSetLocalStorage('patientDatabaseLocal', JSON.stringify(master));
             try { localStorage.setItem('patientDatabase', JSON.stringify(master)); } catch(e) {}
             try { localStorage.setItem('pacientesDB', JSON.stringify(master)); } catch(e) {}
@@ -149,9 +159,15 @@ export function parseCodAtencionForSort(cod) {
     // Soporta formatos de 2 o 4 dígitos de año: 26Q-280, 2026Q-280, 26-Q-280, 26C-015, 26I-003, etc.
     const match = codStr.match(/(?:20)?(\d{2})[^\d]*(\d+)/);
     if (match) {
+        const yr = parseInt(match[1], 10);
+        let n = parseInt(match[2], 10);
+        // Si el año es 26 pero el número es absurdo (> 2000, ej: 18974), es un ID de BD que no debe colocarse arriba de biopsias reales
+        if (yr === 26 && n > 2000) {
+            n = 0;
+        }
         return {
-            year: parseInt(match[1], 10),
-            num: parseInt(match[2], 10),
+            year: yr,
+            num: n,
             service: service
         };
     }
@@ -1681,6 +1697,14 @@ export function initLocalDatabases(force = false) {
     if (localPatientBackup) {
         try {
             parsed = JSON.parse(localPatientBackup) || [];
+            if (Array.isArray(parsed) && parsed.length > 0) {
+                parsed = parsed.filter(p => {
+                    if (!p) return false;
+                    const nom = String(p.paciente || '').toUpperCase();
+                    const cod = String(p.codAtencion || p.cod_atencion || '').toUpperCase();
+                    return !nom.includes('SIN NOMBRE') && !/26Q-18\d{3}/.test(cod);
+                });
+            }
         } catch (e) {
             console.error("Error al cargar el respaldo local de pacientes", e);
             parsed = [];
