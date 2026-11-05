@@ -1,408 +1,544 @@
 /**
  * ============================================================================
- * CORTANA VIRTUAL ASSISTANT - ASISTENTE VIRTUAL PARA PACIENTES Y MÉDICOS
- * JC PATH LAB • Entidad #21 de La Colmena • Orquestador n8n Local
- * 100% Offline Soberano • Cero Créditos de Nube • Latencia < 200 ms
+ * CORTANA - ASISTENTE Y SECRETARIA MÉDICA DIGITAL DE ALTA GAMA (JC PATH LAB)
+ * Entidad #21 de La Colmena • 100% Offline • Cero Créditos
+ * Avatar Fotorrealista • Localización Instantánea de Expedientes para Secretarias
  * ============================================================================
  */
 
 (function() {
-  const N8N_CORTANA_WEBHOOK = 'http://localhost:5678/webhook/chat-cortana';
+  const AVATAR_URL = 'assets/cortana/cortana_avatar_face.jpg';
 
-  // Inicializar interfaz al cargar el DOM
-  document.addEventListener('DOMContentLoaded', () => {
-    initCortanaWidget();
-  });
+  // Pool de frases humanas, empáticas y ejecutivas
+  const FRASES_SECRETARIA = [
+    'Hola, estoy lista para ayudarte a ubicar cualquier biopsia o resultado.',
+    'Buenas tardes, ¿qué paciente o informe necesitas localizar en este momento?',
+    'Hola, dime el código de atención o apellido y lo encuentro de inmediato.',
+    '¿En qué reporte te colaboro el día de hoy?',
+    'Buenas tardes, ¿deseas revisar algún paciente de Clínica La Luz, Carrión o San Clemente?',
+    '¿Te puedo ayudar a verificar algún estado de citología o biopsia quirúrgica?'
+  ];
 
-  function initCortanaWidget() {
-    if (document.getElementById('cortanaChatOverlay')) return;
+  let fraseIndex = 0;
+  function obtenerFraseProactiva() {
+    const f = FRASES_SECRETARIA[fraseIndex % FRASES_SECRETARIA.length];
+    fraseIndex++;
+    return f;
+  }
 
-    // 1. Inyectar botón flotante (FAB)
-    const fab = document.createElement('div');
-    fab.id = 'cortanaFabBtn';
-    fab.className = 'cortana-fab-btn';
-    fab.setAttribute('role', 'button');
-    fab.setAttribute('title', 'Conversar con Cortana (Asistente Médico JC PATH LAB)');
-    fab.innerHTML = `
-      <div class="cortana-fab-avatar">
-        <div class="cortana-fab-ring"></div>
-        <i class="fa-solid fa-atom" style="font-size:1.1rem;color:#38bdf8;"></i>
+  // 1. INICIALIZACIÓN
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCortanaSystem);
+  } else {
+    initCortanaSystem();
+  }
+
+  function initCortanaSystem() {
+    inyectarUIFlotanteCortana();
+    conectarEventosCortana();
+  }
+
+  // 2. INYECCIÓN DINÁMICA DEL WIDGET FLOTANTE Y PANEL
+  function inyectarUIFlotanteCortana() {
+    if (document.getElementById('cortanaFloatingBadge')) return;
+
+    // A. Badge Flotante Inferior
+    const badge = document.createElement('div');
+    badge.id = 'cortanaFloatingBadge';
+    badge.className = 'cortana-floating-badge';
+    badge.title = 'Cortana · Secretaria Médica Digital (Clic para abrir)';
+    badge.innerHTML = `
+      <div class="cortana-avatar-ring">
+        <img src="${AVATAR_URL}" alt="Cortana Secretaria Médica" class="cortana-avatar-img" onerror="this.onerror=null; this.src='icon-192.png';">
+        <span class="cortana-status-pulse"></span>
       </div>
-      <div style="display:flex;flex-direction:column;align-items:flex-start;line-height:1.2;">
-        <span class="cortana-fab-label">Cortana IA</span>
-        <span style="font-size:0.62rem;color:#94a3b8;">Asistente 24/7</span>
+      <div class="cortana-badge-text">
+        <span class="cortana-badge-name">Cortana <i class="fa-solid fa-sparkles" style="color:#38bdf8; font-size:0.75rem;"></i></span>
+        <span class="cortana-badge-role">Secretaria Médica IA</span>
       </div>
-      <span class="cortana-fab-badge"><i class="fa-solid fa-circle" style="font-size:0.4rem;color:#10b981;margin-right:2px;"></i> ONLINE</span>
+      <span class="cortana-badge-chip">Ayuda 1-Clic</span>
     `;
-    document.body.appendChild(fab);
+    document.body.appendChild(badge);
 
-    // 2. Inyectar overlay del modal
-    const overlay = document.createElement('div');
-    overlay.id = 'cortanaChatOverlay';
-    overlay.className = 'cortana-chat-overlay';
-    overlay.innerHTML = `
-      <div class="cortana-chat-container">
-        <!-- Header -->
-        <div class="cortana-header">
-          <div class="cortana-profile">
-            <div class="cortana-avatar-large">
-              <div class="cortana-fab-ring" style="inset: -4px; border-color: rgba(56, 189, 248, 0.8);"></div>
-              <i class="fa-solid fa-atom cortana-avatar-icon" style="color:#38bdf8;font-size:1.3rem;"></i>
-            </div>
-            <div class="cortana-title-wrap">
-              <h4 style="margin:0;font-size:0.95rem;color:#fff;">Cortana IA <span class="cortana-status-pill"><i class="fa-solid fa-circle" style="font-size:0.45rem;color:#10b981;"></i> En Línea</span></h4>
-              <p style="margin:2px 0 0 0;font-size:0.72rem;color:#94a3b8;">Entidad #21 • Asistente Virtual Oficial JC PATH LAB</p>
-            </div>
+    // B. Panel Desplegable de Asistencia
+    const panel = document.createElement('div');
+    panel.id = 'cortanaAssistantPanel';
+    panel.className = 'cortana-assistant-panel';
+    panel.style.display = 'none';
+    panel.innerHTML = `
+      <div class="cortana-panel-header">
+        <div class="cortana-header-profile">
+          <div class="cortana-avatar-wrapper">
+            <img src="${AVATAR_URL}" alt="Cortana" class="cortana-header-avatar" onerror="this.onerror=null; this.src='icon-192.png';">
+            <span class="cortana-online-dot"></span>
           </div>
-          <button type="button" class="cortana-header-close-btn" id="cortanaCloseBtn" title="Cerrar Asistente">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </div>
-
-        <!-- Barra de Chips rápidos -->
-        <div class="cortana-chips-bar" id="cortanaChipsBar">
-          <button type="button" class="cortana-chip" data-msg="¿Cómo puedo consultar el estado de mi biopsia?"><i class="fa-solid fa-file-waveform"></i> Estado de Biopsia</button>
-          <button type="button" class="cortana-chip" data-msg="¿Cuáles son las tarifas y costos 2026 de JC PATH LAB?"><i class="fa-solid fa-tags"></i> Tarifas 2026</button>
-          <button type="button" class="cortana-chip" data-msg="¿Cuáles son los tiempos de entrega de resultados histopatológicos?"><i class="fa-solid fa-clock"></i> Tiempos de Entrega</button>
-          <button type="button" class="cortana-chip" data-msg="¿Dónde queda el laboratorio y cuáles son los horarios de atención?"><i class="fa-solid fa-location-dot"></i> Ubicación y Horario</button>
-          <button type="button" class="cortana-chip" data-msg="¿Cómo enviar muestras quirúrgicas desde provincia por Olva Courier?"><i class="fa-solid fa-truck-fast"></i> Muestras de Provincia</button>
-          <button type="button" class="cortana-chip" data-msg="¿Cómo abrir el aplicativo móvil quirúrgico?"><i class="fa-solid fa-mobile-screen"></i> App Móvil</button>
-        </div>
-
-        <!-- Cuerpo de Mensajes -->
-        <div class="cortana-messages-body" id="cortanaMessagesBody">
-          <!-- Mensaje de bienvenida inicial -->
-          <div class="cortana-msg-row bot">
-            <div class="cortana-bot-icon"><i class="fa-solid fa-atom"></i></div>
-            <div class="cortana-bubble">
-              <p>¡Hola! Le saluda <strong>Cortana</strong> (Entidad #21 de La Colmena), Asistente Virtual Oficial de <strong>JC PATH LAB</strong>.</p>
-              <p>Estoy aquí para atenderle en tiempo real las 24 horas: consultar el estado de su biopsia o Papanicolaou, informarle sobre tarifas 2026, tiempos de entrega, o contactarle directamente con el <strong>Dr. José Castillo</strong>.</p>
-              <p>¿En qué puedo orientarle hoy?</p>
-              <div class="cortana-msg-meta">
-                <span>⚡ Enlace Soberano n8n / Local</span>
-                <span>•</span>
-                <span>Cero Créditos ($0.00)</span>
-              </div>
-            </div>
+          <div class="cortana-header-info">
+            <div class="cortana-header-name">Cortana <span class="cortana-role-badge">JC PATH LAB</span></div>
+            <div class="cortana-header-sub">Secretaria Médica Digital · Asistencia Rápida</div>
           </div>
         </div>
-
-        <!-- Barra de Entrada -->
-        <div class="cortana-input-bar">
-          <button type="button" class="cortana-btn-icon cortana-btn-mic" id="cortanaMicBtn" title="Dictar por voz">
-            <i class="fa-solid fa-microphone"></i>
-          </button>
-          <input type="text" class="cortana-input-field" id="cortanaInputField" placeholder="Escriba su consulta o código de muestra (ej: 26Q-281)..." autocomplete="off">
-          <button type="button" class="cortana-btn-icon cortana-btn-send" id="cortanaSendBtn" title="Enviar consulta">
-            <i class="fa-solid fa-paper-plane"></i>
-          </button>
+        <div class="cortana-header-actions">
+          <button type="button" class="cortana-header-btn" id="btnCortanaClearChat" title="Limpiar conversación"><i class="fa-solid fa-trash-can"></i></button>
+          <button type="button" class="cortana-header-btn" id="btnCortanaClosePanel" title="Cerrar asistente"><i class="fa-solid fa-xmark"></i></button>
         </div>
       </div>
+      <div class="cortana-quick-chips">
+        <button type="button" class="cortana-chip" data-query="informes listos de hoy">📋 Listos hoy</button>
+        <button type="button" class="cortana-chip" data-query="pacientes de Clinica La Luz">🏥 Clínica La Luz</button>
+        <button type="button" class="cortana-chip" data-query="pacientes de San Clemente">🏥 San Clemente</button>
+        <button type="button" class="cortana-chip" data-query="como registro un paciente">❓ Nuevo Paciente</button>
+        <button type="button" class="cortana-chip" data-query="como imprimo o descargo un informe">🖨️ Imprimir / PDF</button>
+      </div>
+      <div id="cortanaMessagesContainer" class="cortana-messages-container"></div>
+      <div class="cortana-panel-input-box">
+        <input type="text" id="cortanaPanelInput" class="cortana-panel-input" placeholder="Pregunta por paciente, código o escribe una duda..." autocomplete="off">
+        <button type="button" id="btnCortanaVoiceInPanel" class="cortana-input-btn voice" title="Dictar consulta por voz"><i class="fa-solid fa-microphone"></i></button>
+        <button type="button" id="btnCortanaSendInPanel" class="cortana-input-btn send" title="Enviar"><i class="fa-solid fa-paper-plane"></i></button>
+      </div>
     `;
-    document.body.appendChild(overlay);
+    document.body.appendChild(panel);
+  }
 
-    // 3. Event Listeners
-    fab.addEventListener('click', () => abrirCortanaChat());
-    document.getElementById('cortanaCloseBtn').addEventListener('click', () => cerrarCortanaChat());
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) cerrarCortanaChat();
-    });
+  // 3. CONEXIÓN DE EVENTOS
+  function conectarEventosCortana() {
+    const badge = document.getElementById('cortanaFloatingBadge');
+    const panel = document.getElementById('cortanaAssistantPanel');
+    const closeBtn = document.getElementById('btnCortanaClosePanel');
+    const clearBtn = document.getElementById('btnCortanaClearChat');
+    const input = document.getElementById('cortanaPanelInput');
+    const sendBtn = document.getElementById('btnCortanaSendInPanel');
+    const voiceBtn = document.getElementById('btnCortanaVoiceInPanel');
 
-    const sendBtn = document.getElementById('cortanaSendBtn');
-    const inputField = document.getElementById('cortanaInputField');
+    if (badge) {
+      badge.addEventListener('click', () => toggleCortanaPanel());
+    }
 
-    sendBtn.addEventListener('click', () => enviarMensajeCortana());
-    inputField.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') enviarMensajeCortana();
-    });
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => closeCortanaPanel());
+    }
 
-    // Chips rápidos
-    document.querySelectorAll('.cortana-chip').forEach(chip => {
-      chip.addEventListener('click', () => {
-        const msg = chip.getAttribute('data-msg');
-        if (msg) {
-          inputField.value = msg;
-          enviarMensajeCortana();
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => limpiarMensajesCortana());
+    }
+
+    if (sendBtn && input) {
+      sendBtn.addEventListener('click', () => enviarMensajeUsuario());
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          enviarMensajeUsuario();
+        } else if (e.key === 'Escape') {
+          closeCortanaPanel();
         }
       });
+    }
+
+    // Chips de consulta rápida
+    document.addEventListener('click', (e) => {
+      const chip = e.target.closest('.cortana-chip');
+      if (chip && chip.dataset.query) {
+        const q = chip.dataset.query;
+        openCortanaPanel(q);
+      }
     });
 
-    // Micrófono por voz
-    document.getElementById('cortanaMicBtn').addEventListener('click', () => {
-      iniciarDictadoVoz();
-    });
+    // Soporte de voz (Web Speech API)
+    if (voiceBtn && ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const recognition = new SpeechRecognition();
+      recognition.lang = 'es-PE';
+      recognition.continuous = false;
+      recognition.interimResults = false;
+
+      let isListening = false;
+      voiceBtn.addEventListener('click', () => {
+        if (!isListening) {
+          try {
+            recognition.start();
+            isListening = true;
+            voiceBtn.classList.add('recording');
+          } catch(err) {}
+        } else {
+          recognition.stop();
+          isListening = false;
+          voiceBtn.classList.remove('recording');
+        }
+      });
+
+      recognition.onresult = (ev) => {
+        const transcript = ev.results[0][0].transcript;
+        if (input) input.value = transcript;
+        enviarMensajeUsuario();
+        isListening = false;
+        voiceBtn.classList.remove('recording');
+      };
+
+      recognition.onerror = () => {
+        isListening = false;
+        voiceBtn.classList.remove('recording');
+      };
+
+      recognition.onend = () => {
+        isListening = false;
+        voiceBtn.classList.remove('recording');
+      };
+    }
   }
 
-  function abrirCortanaChat() {
-    const overlay = document.getElementById('cortanaChatOverlay');
-    if (!overlay) return;
-    overlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-
-    const inputField = document.getElementById('cortanaInputField');
-    setTimeout(() => {
-      if (inputField) inputField.focus();
-    }, 300);
+  // 4. CONTROL DE VISIBILIDAD
+  function toggleCortanaPanel() {
+    const panel = document.getElementById('cortanaAssistantPanel');
+    if (!panel) return;
+    if (panel.style.display === 'none' || !panel.style.display) {
+      openCortanaPanel();
+    } else {
+      closeCortanaPanel();
+    }
   }
 
-  function cerrarCortanaChat() {
-    const overlay = document.getElementById('cortanaChatOverlay');
-    if (!overlay) return;
-    overlay.classList.remove('active');
-    document.body.style.overflow = '';
+  function openCortanaPanel(initialQuery = null) {
+    const panel = document.getElementById('cortanaAssistantPanel');
+    const input = document.getElementById('cortanaPanelInput');
+    const container = document.getElementById('cortanaMessagesContainer');
+
+    if (!panel) return;
+    panel.style.display = 'flex';
+
+    // Saludo proactivo inicial si está vacío
+    if (container && (!container.hasChildNodes() || container.children.length === 0)) {
+      saludoInicialCortana();
+    }
+
+    if (initialQuery && initialQuery.trim()) {
+      if (input) input.value = initialQuery;
+      enviarMensajeUsuario();
+    } else if (input) {
+      setTimeout(() => input.focus(), 100);
+    }
   }
 
-  function enviarMensajeCortana() {
-    const input = document.getElementById('cortanaInputField');
-    const msg = (input ? input.value : '').trim();
-    if (!msg) return;
+  function closeCortanaPanel() {
+    const panel = document.getElementById('cortanaAssistantPanel');
+    if (panel) panel.style.display = 'none';
+  }
 
+  function saludoInicialCortana() {
+    const user = getSessionUser();
+    const nombre = obtenerTratamientoUsuario(user);
+    const frase = obtenerFraseProactiva();
+
+    agregarMensajeBot(`
+      <p>Hola <strong>${escapeHtml(nombre)}</strong>. ${frase}</p>
+      <p style="font-size:0.77rem; color:#94a3b8; margin-top:4px;">
+        💡 Puedes preguntarme por:
+      </p>
+      <ul style="margin:4px 0 0 16px; padding:0; font-size:0.76rem; color:#cbd5e1; line-height:1.45;">
+        <li>Código de atención (ej. <em>"384"</em> o <em>"26Q-343"</em>)</li>
+        <li>Apellidos del paciente (ej. <em>"Bustamante"</em>, <em>"Cama"</em>)</li>
+        <li>Pacientes por sede (ej. <em>"Clínica La Luz"</em>, <em>"Carrión"</em>)</li>
+        <li>Ayuda operativa: <em>"¿Cómo registro un paciente?"</em></li>
+      </ul>
+    `);
+  }
+
+  function limpiarMensajesCortana() {
+    const container = document.getElementById('cortanaMessagesContainer');
+    if (container) {
+      container.innerHTML = '';
+      saludoInicialCortana();
+    }
+  }
+
+  // 5. ENVÍO Y PROCESAMIENTO DE MENSAJES
+  function enviarMensajeUsuario() {
+    const input = document.getElementById('cortanaPanelInput');
+    if (!input) return;
+    const texto = input.value.trim();
+    if (!texto) return;
+
+    agregarMensajeUsuario(texto);
     input.value = '';
-    agregarMensajeUsuario(msg);
-    consultarServicioCortana(msg);
+
+    procesarPreguntaSecretaria(texto);
   }
 
   function agregarMensajeUsuario(texto) {
-    const body = document.getElementById('cortanaMessagesBody');
-    if (!body) return;
+    const container = document.getElementById('cortanaMessagesContainer');
+    if (!container) return;
 
     const row = document.createElement('div');
     row.className = 'cortana-msg-row user';
     row.innerHTML = `
-      <div class="cortana-bubble">
+      <div class="cortana-bubble user">
         <p>${escapeHtml(texto)}</p>
-        <div class="cortana-msg-meta" style="justify-content: flex-end; color: rgba(255,255,255,0.7);">
-          <span>${obtenerHoraActual()}</span>
-        </div>
+        <span class="cortana-time-tag">${obtenerHoraActual()}</span>
       </div>
     `;
-    body.appendChild(row);
-    body.scrollTop = body.scrollHeight;
+    container.appendChild(row);
+    container.scrollTop = container.scrollHeight;
   }
 
-  function mostrarIndicadorEscritura() {
-    const body = document.getElementById('cortanaMessagesBody');
-    if (!body) return null;
-
-    const typingDiv = document.createElement('div');
-    typingDiv.id = 'cortanaTypingIndicator';
-    typingDiv.className = 'cortana-msg-row bot';
-    typingDiv.innerHTML = `
-      <div class="cortana-bot-icon"><i class="fa-solid fa-atom"></i></div>
-      <div class="cortana-typing">
-        <div class="cortana-dot"></div>
-        <div class="cortana-dot"></div>
-        <div class="cortana-dot"></div>
-      </div>
-    `;
-    body.appendChild(typingDiv);
-    body.scrollTop = body.scrollHeight;
-    return typingDiv;
-  }
-
-  function removerIndicadorEscritura() {
-    const el = document.getElementById('cortanaTypingIndicator');
-    if (el) el.remove();
-  }
-
-  async function consultarServicioCortana(mensaje) {
-    mostrarIndicadorEscritura();
-    const t0 = performance.now();
-
-    const payload = {
-      mensaje: mensaje,
-      remitente: 'web_cliente',
-      especialidad: 'Anatomía Patológica y Uropatología',
-      timestamp: new Date().toISOString()
-    };
-
-    try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 2500);
-
-      // Intento inteligente POST / Fallback GET hacia n8n o Motor Local Soberano (<2ms)
-      let response = null;
-      try {
-        response = await fetch(N8N_CORTANA_WEBHOOK, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-          signal: controller.signal
-        });
-        if (!response.ok && response.status === 405) {
-          // Si n8n espera GET, enviar query params
-          response = await fetch(`${N8N_CORTANA_WEBHOOK}?mensaje=${encodeURIComponent(mensaje)}`, {
-            method: 'GET',
-            signal: controller.signal
-          });
-        }
-      } catch (postErr) {
-        throw postErr;
-      }
-      clearTimeout(timeoutId);
-
-      const t1 = performance.now();
-      const latenciaMs = Math.round(t1 - t0);
-      removerIndicadorEscritura();
-
-      if (response.ok) {
-        const data = await response.json();
-        renderizarRespuestaCortana(data.respuesta || data.mensaje || 'Consulta procesada con éxito.', data.pacienteDetectado, latenciaMs, 0, false);
-      } else {
-        throw new Error('HTTP ' + response.status);
-      }
-    } catch (err) {
-      removerIndicadorEscritura();
-      const t1 = performance.now();
-      const latenciaLocal = Math.round(t1 - t0);
-      const respuestaFallback = generarFallbackLocalCortana(mensaje);
-      renderizarRespuestaCortana(respuestaFallback.texto, respuestaFallback.paciente, latenciaLocal, 0, true);
-    }
-  }
-
-  function renderizarRespuestaCortana(textoMarkdown, pacienteObj, latenciaMs, creditos, isLocal) {
-    creditos = creditos || 0;
-    isLocal = !!isLocal;
-    const body = document.getElementById('cortanaMessagesBody');
-    if (!body) return;
-
-    const htmlFormateado = formatearMarkdownCortana(textoMarkdown);
-    const hora = obtenerHoraActual();
-
-    let botonesAccion = '';
-    if (pacienteObj && pacienteObj.codigo) {
-      botonesAccion = `
-        <div class="cortana-msg-actions">
-          <a href="app.html" target="_blank" class="cortana-btn-action cortana-btn-pdf" style="text-decoration:none;">
-            <i class="fa-solid fa-mobile-screen"></i> Ver en App Móvil
-          </a>
-          <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20solicito%20informaci%C3%B3n%20sobre%20la%20muestra%20${encodeURIComponent(pacienteObj.codigo)}" target="_blank" class="cortana-btn-action cortana-btn-360" style="text-decoration:none;">
-            <i class="fa-brands fa-whatsapp"></i> WhatsApp Directo
-          </a>
-        </div>
-      `;
-    }
+  function agregarMensajeBot(htmlContent) {
+    const container = document.getElementById('cortanaMessagesContainer');
+    if (!container) return;
 
     const row = document.createElement('div');
     row.className = 'cortana-msg-row bot';
     row.innerHTML = `
-      <div class="cortana-bot-icon"><i class="fa-solid fa-atom"></i></div>
-      <div class="cortana-bubble">
-        ${htmlFormateado}
-        ${botonesAccion}
-        <div class="cortana-msg-meta">
-          <span>⚡ ${latenciaMs} ms (${isLocal ? 'Motor Soberano Local' : 'n8n Conectado'})</span>
-          <span>•</span>
-          <span>0 Créditos ($0.00)</span>
-          <span>•</span>
-          <span>${hora}</span>
-        </div>
+      <img src="${AVATAR_URL}" alt="Cortana" class="cortana-bubble-avatar" onerror="this.onerror=null; this.src='icon-192.png';">
+      <div class="cortana-bubble bot">
+        ${htmlContent}
+        <span class="cortana-time-tag">Cortana • ${obtenerHoraActual()}</span>
       </div>
     `;
-    body.appendChild(row);
-    body.scrollTop = body.scrollHeight;
+    container.appendChild(row);
+    container.scrollTop = container.scrollHeight;
   }
 
-  function formatearMarkdownCortana(texto) {
-    if (!texto) return '';
-    let html = escapeHtml(texto);
-    html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    html = html.replace(/\\n\\n/g, '</p><p>').replace(/\\n/g, '<br>');
-    html = html.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>');
-    return `<p>${html}</p>`;
+  function mostrarEscribiendo() {
+    const container = document.getElementById('cortanaMessagesContainer');
+    if (!container) return null;
+
+    const row = document.createElement('div');
+    row.id = 'cortanaTypingIndicator';
+    row.className = 'cortana-msg-row bot';
+    row.innerHTML = `
+      <img src="${AVATAR_URL}" alt="Cortana" class="cortana-bubble-avatar">
+      <div class="cortana-bubble bot" style="display:flex; align-items:center; gap:6px;">
+        <span style="font-size:0.75rem; color:#94a3b8;">Cortana está buscando...</span>
+        <div class="cortana-inline-dot" style="width:6px; height:6px; border-radius:50%; background:#38bdf8;"></div>
+      </div>
+    `;
+    container.appendChild(row);
+    container.scrollTop = container.scrollHeight;
+    return row;
   }
 
-  function generarFallbackLocalCortana(msg) {
-    const m = msg.toLowerCase();
-
-    // 1. Consulta de estado por código de paciente
-    const matchCod = msg.match(/26[QC]-\d+/i);
-    if (matchCod) {
-      const cod = matchCod[0].toUpperCase();
-      return {
-        texto: `He verificado el código **${cod}** en el archivo histopatológico de JC PATH LAB:\n\n📋 **Estado:** Informe completado y firmado por el **Dr. José Castillo**.\n🔬 **Procesamiento:** Digitalización microscópica y reporte estructurado listos para entrega inmediata.\n\nPuede revisar el informe completo en nuestro **Aplicativo Móvil Quirúrgico** o comunicarse vía WhatsApp con el Dr. Castillo al **+51 986 396 733**.`,
-        paciente: { codigo: cod }
-      };
-    }
-
-    // 2. Tarifas y costos 2026
-    if (m.includes('tarifa') || m.includes('precio') || m.includes('costo') || m.includes('cuanto') || m.includes('cuánto') || m.includes('cobran')) {
-      return {
-        texto: `📊 **Tarifario Oficial 2026 — JC PATH LAB (Dossier UROSUR):**\n\n• **Papanicolaou Convencional (Bethesda 2014):** S/ 35.00\n• **Citología en Base Líquida:** S/ 70.00\n• **Biopsia Gástrica / Endoscópica (H&E):** S/ 120.00\n• **Biopsia de Cérvix / Cuello Uterino:** S/ 80.00\n• **Biopsia Prostática / Enucleación Holmium:** S/ 250.00\n• **Morcelado Prostático con Mapeo:** S/ 250.00\n• **Inmunohistoquímica (marcador individual):** S/ 150.00\n• **Panel Triaje PIN-4 (p63 + CK-HMW + AMACR):** S/ 380.00\n\n*Todos los estudios incluyen fotodocumentación microscópica y entrega digital.*`,
-        paciente: null
-      };
-    }
-
-    // 3. Tiempos de entrega
-    if (m.includes('tiempo') || m.includes('entrega') || m.includes('demora') || m.includes('plazo') || m.includes('cuándo') || m.includes('cuando')) {
-      return {
-        texto: `⏱️ **Tiempos de Entrega de Resultados — JC PATH LAB:**\n\n• **Citologías y Papanicolaou:** 24 horas hábiles.\n• **Biopsias habituales y endoscópicas:** 48 horas hábiles.\n• **Morcelados prostáticos y piezas quirúrgicas complejas:** 72 horas hábiles.\n• **Inmunohistoquímica especializada:** 4 a 5 días hábiles.\n\n*Despacho inmediato en PDF con firma médica y entrega directa a la app del médico especialista.*`,
-        paciente: null
-      };
-    }
-
-    // 4. Ubicación y contacto
-    if (m.includes('donde') || m.includes('dónde') || m.includes('ubicacion') || m.includes('ubicación') || m.includes('direccion') || m.includes('dirección') || m.includes('horario') || m.includes('telefono') || m.includes('teléfono') || m.includes('whatsapp')) {
-      return {
-        texto: `📍 **Sede Central JC PATH LAB:**\n\n• **Dirección:** Jardines de Chillón Mz. M2 Lote 13, Puente Piedra, Lima - Perú.\n• **Horario de Atención:** Lunes a Sábado de 8:00 AM a 7:00 PM.\n• **Central Telefónica / WhatsApp:** **+51 986 396 733** (Atención directa con el Dr. José Castillo).\n• **Cobertura:** Lima Metropolitana y envíos a nivel nacional con cadena de custodia Olva Courier.`,
-        paciente: null
-      };
-    }
-
-    // 5. Muestras de provincia / envíos
-    if (m.includes('provincia') || m.includes('envio') || m.includes('envío') || m.includes('olva') || m.includes('courier') || m.includes('formol')) {
-      return {
-        texto: `📦 **Protocolo de Envío de Muestras desde Provincia:**\n\n1. **Fijación Óptima:** Colocar el espécimen quirúrgico en frasco hermético con Formol neutro tamponado al 10% (relación volumétrica recomendada 10:1 respecto al tejido).\n2. **Rotulado Riguroso:** Nombre del paciente, DNI, fecha y tipo de muestra.\n3. **Despacho:** Enviar por Olva Courier a nombre de **Dr. José Castillo — JC PATH LAB**, Puente Piedra, Lima (WhatsApp: +51 986 396 733).\n4. **Seguimiento:** Al recibir la muestra le notificamos inmediatamente e iniciamos el procesamiento con entrega digital en 48-72h.`,
-        paciente: null
-      };
-    }
-
-    // 6. App móvil
-    if (m.includes('app') || m.includes('movil') || m.includes('móvil') || m.includes('aplicacion') || m.includes('aplicativo') || m.includes('android')) {
-      return {
-        texto: `📱 **Aplicativo Móvil Quirúrgico JC PATH LAB:**\n\nContamos con un aplicativo móvil exclusivo para médicos y cirujanos especialistas donde pueden revisar:\n• Listado completo de sus pacientes y biopsias.\n• Informes histopatológicos oficiales en PDF.\n• Visor Macroscópico 360° para evaluar márgenes y pesos tisulares.\n• Control de acceso por médico tratante (privacidad médica estricta).\n\nPuede probarlo haciendo clic en **[Abrir App Móvil](app.html)**.`,
-        paciente: { codigo: '26Q-281' }
-      };
-    }
-
-    // 7. Saludo o consulta general
-    return {
-      texto: `Soy **Cortana**, la asistente virtual de **JC PATH LAB**. Puedo orientarle en:\n\n• Consultar el estado de su biopsia o Papanicolaou (indique su código de muestra o apellidos).\n• Precios oficiales del tarifario 2026.\n• Tiempos de entrega de resultados.\n• Envíos desde clínicas y provincias vía Olva Courier.\n• Comunicación directa con el **Dr. José Castillo** (+51 986 396 733).\n\n¿En qué puedo asistirle?`,
-      paciente: null
-    };
+  function removerEscribiendo() {
+    const el = document.getElementById('cortanaTypingIndicator');
+    if (el) el.remove();
   }
 
-  function iniciarDictadoVoz() {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) {
-      alert('El dictado por voz no está disponible en este navegador. Escriba su consulta en el campo de texto.');
-      return;
+  // 6. MOTOR INTELIGENTE DE RESPUESTAS PARA SECRETARIAS (0ms SOBERANO)
+  function procesarPreguntaSecretaria(query) {
+    mostrarEscribiendo();
+
+    // Pequeño retardo humano natural de 250ms
+    setTimeout(() => {
+      removerEscribiendo();
+      const resHtml = resolverConsulta(query);
+      agregarMensajeBot(resHtml);
+    }, 280);
+  }
+
+  function resolverConsulta(rawQuery) {
+    const q = (rawQuery || '').trim().toLowerCase();
+    const user = getSessionUser();
+    const isAdmin = checkIsAdmin(user);
+    const userClinic = String(user.clinica || user.sede || user.nombres || '').trim().toLowerCase();
+
+    // Obtener base de datos en memoria O(1)
+    const db = (Array.isArray(window.patientDatabase) && window.patientDatabase.length > 0) ? window.patientDatabase :
+               (Array.isArray(window.REAL_SUPABASE_PATIENTS) && window.REAL_SUPABASE_PATIENTS.length > 0) ? window.REAL_SUPABASE_PATIENTS :
+               (Array.isArray(window.realSupabaseBackup) && window.realSupabaseBackup.length > 0) ? window.realSupabaseBackup : [];
+
+    // A. Consultas de Ayuda Operativa
+    if (q.includes('como registro') || q.includes('nuevo paciente') || q.includes('ingresar paciente') || q.includes('registrar')) {
+      return `
+        <p><strong>Para ingresar un nuevo paciente al sistema:</strong></p>
+        <ol style="margin:4px 0 6px 16px; padding:0; font-size:0.78rem; line-height:1.5;">
+          <li>Haz clic en el botón verde <strong>"Nuevo"</strong> del menú lateral o presiona <code>F2</code>.</li>
+          <li>Ingresa el <strong>DNI</strong> (si es DNI peruano de 8 dígitos se autocompletará) o los apellidos y nombres.</li>
+          <li>Selecciona la <strong>Clínica de Procedencia</strong> y el servicio (Biopsia Quirúrgica 'Q' o Citología 'C').</li>
+          <li>Haz clic en <strong>"Guardar Expediente"</strong>. El sistema le asignará su código correlativo de inmediato.</li>
+        </ol>
+        <div class="cortana-card-actions">
+          <button type="button" class="cortana-act-btn view" onclick="window.openModal ? window.openModal('patientRegistrationModal') : (document.getElementById('patientRegistrationModal') ? document.getElementById('patientRegistrationModal').classList.add('active') : null)">
+            <i class="fa-solid fa-user-plus"></i> Abrir Formulario de Registro
+          </button>
+        </div>
+      `;
     }
 
-    const recognition = new SpeechRecognition();
-    recognition.lang = 'es-PE';
-    recognition.interimResults = false;
+    if (q.includes('como imprimo') || q.includes('descargar pdf') || q.includes('imprimir') || q.includes('boleta') || q.includes('ticket')) {
+      return `
+        <p><strong>Para descargar o imprimir informes y boletas:</strong></p>
+        <ul style="margin:4px 0 6px 16px; padding:0; font-size:0.78rem; line-height:1.5;">
+          <li><strong>Informe Médico en PDF:</strong> En la tabla principal, pulsa el botón con icono de PDF 📄 (o el botón verde "Descargar"). Se abrirá el documento listo para guardar o imprimir.</li>
+          <li><strong>Boleta / Constancia:</strong> Usa el botón superior <strong>"Reporte de Boletas"</strong> o pulsa "Imprimir Boleta" en la tarjeta de cualquier paciente.</li>
+        </ul>
+        <div class="cortana-card-actions">
+          <button type="button" class="cortana-act-btn view" onclick="window.switchSidebarView ? window.switchSidebarView('boletas') : null">
+            <i class="fa-solid fa-file-invoice-dollar"></i> Ir a Reporte de Boletas
+          </button>
+        </div>
+      `;
+    }
 
-    const micBtn = document.getElementById('cortanaMicBtn');
-    if (micBtn) micBtn.style.color = '#ef4444';
+    if (q.includes('formol') || q.includes('fijador') || q.includes('fijacion') || q.includes('tamponado')) {
+      return `
+        <p><strong>Protocolo Institucional de Fijación de Muestras:</strong></p>
+        <ul style="margin:4px 0 6px 16px; padding:0; font-size:0.78rem; line-height:1.5;">
+          <li><strong>Fijador oficial:</strong> Formaldehído neutro al 10% tamponado (buffer fosfato a pH 7.0).</li>
+          <li><strong>Proporción obligatoria:</strong> 10 volúmenes de formol por cada 1 volumen de muestra tisular (10:1).</li>
+          <li><strong>Precaución:</strong> No usar alcohol ni suero fisiológico para biopsias que requieran estudio histológico.</li>
+        </ul>
+      `;
+    }
 
-    recognition.onresult = (event) => {
-      const transcript = event.results[0][0].transcript;
-      const input = document.getElementById('cortanaInputField');
-      if (input) input.value = transcript;
-      if (micBtn) micBtn.style.color = '';
-      enviarMensajeCortana();
-    };
+    // B. Búsqueda por Código de Atención o DNI
+    const codeMatch = q.match(/\b(?:26)?([qc])-?(\d{1,4})\b/i) || q.match(/\b(\d{2,4})\b/);
+    const dniMatch = q.match(/\b\d{8}\b/);
 
-    recognition.onerror = () => {
-      if (micBtn) micBtn.style.color = '';
-    };
+    let pacienteEncontrado = null;
 
-    recognition.onend = () => {
-      if (micBtn) micBtn.style.color = '';
-    };
+    if (codeMatch) {
+      const numTarget = codeMatch[codeMatch.length - 1];
+      pacienteEncontrado = db.find(p => {
+        const c = String(p.codAtencion || p.cod_atencion || p.codigo || '').toLowerCase();
+        return c.includes(numTarget);
+      });
+    }
 
-    recognition.start();
+    if (!pacienteEncontrado && dniMatch) {
+      const dniTarget = dniMatch[0];
+      pacienteEncontrado = db.find(p => {
+        const d = String(p.dni || p.numDni || p.numero_documento || '').replace(/\D/g, '');
+        return d === dniTarget;
+      });
+    }
+
+    // Búsqueda por texto (nombre, apellido o espécimen)
+    if (!pacienteEncontrado) {
+      const tokens = q.split(/\s+/).filter(t => t.length >= 3 && !['buscar', 'caso', 'biopsia', 'donde', 'esta', 'paciente', 'doctor', 'muestra', 'informe', 'favor', 'como'].includes(t));
+      if (tokens.length > 0) {
+        pacienteEncontrado = db.find(p => {
+          const nom = String(p.paciente || ((p.apellidos || '') + ' ' + (p.nombres || ''))).toLowerCase();
+          const med = String(p.medico || p.medSolicitante || '').toLowerCase();
+          const esp = String(p.especimen || p.tipoMuestra || '').toLowerCase();
+          return tokens.some(t => nom.includes(t) || med.includes(t) || esp.includes(t));
+        });
+      }
+    }
+
+    // SI ENCONTRÓ UN PACIENTE ESPECÍFICO:
+    if (pacienteEncontrado) {
+      const cod = pacienteEncontrado.codAtencion || pacienteEncontrado.cod_atencion || pacienteEncontrado.codigo || 'S/C';
+      const nom = pacienteEncontrado.paciente || ((pacienteEncontrado.apellidos || '') + ', ' + (pacienteEncontrado.nombres || ''));
+      const dni = pacienteEncontrado.dni || pacienteEncontrado.numDni || 'Sin DNI';
+      const esp = pacienteEncontrado.especimen || pacienteEncontrado.tipoMuestra || 'Biopsia quirúrgica';
+      const med = pacienteEncontrado.medico || pacienteEncontrado.medSolicitante || 'Dr. Solicitante';
+      const cli = pacienteEncontrado.clinica || pacienteEncontrado.clinicaProcedencia || 'JC PATH LAB';
+      const diag = pacienteEncontrado.diagnostico || pacienteEncontrado.diagFinal || 'En proceso de lectura microscópica.';
+      const rec = pacienteEncontrado.fecRecepcion || pacienteEncontrado.fecRegistro || pacienteEncontrado.fechaIngreso || '-';
+      const esListo = String(pacienteEncontrado.estado || '').toLowerCase().includes('list') || !!pacienteEncontrado.informeListo;
+
+      const safeCod = escapeHtml(cod);
+
+      return `
+        <p>¡Localicé el expediente solicitado!</p>
+        <div class="cortana-patient-card ${esListo ? 'ready' : 'processing'}">
+          <span class="cortana-card-code">${safeCod}</span>
+          <div class="cortana-card-title">${escapeHtml(nom)} (DNI: ${escapeHtml(dni)})</div>
+          <div class="cortana-card-detail">🧪 <strong>Estudio:</strong> ${escapeHtml(esp)}</div>
+          <div class="cortana-card-detail">🏥 <strong>Sede:</strong> ${escapeHtml(cli)} • <strong>Médico:</strong> ${escapeHtml(med)}</div>
+          <div class="cortana-card-detail" style="margin-top:4px; padding-top:4px; border-top:1px dashed rgba(255,255,255,0.1);">
+            📋 <strong>Diagnóstico:</strong> <span style="color:${esListo ? '#34d399' : '#fbbf24'}; font-weight:600;">${escapeHtml(diag)}</span>
+          </div>
+          <div class="cortana-card-detail" style="font-size:0.72rem; color:#64748b; margin-top:2px;">
+            📅 Ingreso: ${escapeHtml(rec)} | Estado: <strong>${esListo ? 'LISTO' : 'EN PROCESO'}</strong>
+          </div>
+          <div class="cortana-card-actions">
+            <button type="button" class="cortana-act-btn view" onclick="window.handleAction ? window.handleAction('editar', '${safeCod}') : null">
+              <i class="fa-solid fa-file-pen"></i> Ver / Editar
+            </button>
+            <button type="button" class="cortana-act-btn pdf" onclick="window.handleAction ? window.handleAction('descargar_pdf', '${safeCod}') : window.open('imprimir.html?autoDownload=true&codAtencion=${safeCod}')">
+              <i class="fa-solid fa-file-pdf"></i> Descargar PDF
+            </button>
+            <button type="button" class="cortana-act-btn print" onclick="window.open('imprimir.html?autoDownload=true&codAtencion=${safeCod}', '_blank')">
+              <i class="fa-solid fa-print"></i> Boleta
+            </button>
+            <button type="button" class="cortana-act-btn filter" onclick="window.cortanaFiltrarEnTabla('${safeCod}')">
+              <i class="fa-solid fa-table"></i> Ubicar en Tabla
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    // C. Búsqueda por Clínicas (La Luz, Carrión, San Clemente, La Mujer, Alfa Prevenir)
+    const clinicasConocidas = ['luz', 'carrion', 'clemente', 'mujer', 'alfa', 'chungui', 'junco', 'uroserv'];
+    const clinicaDetectada = clinicasConocidas.find(c => q.includes(c));
+
+    if (clinicaDetectada) {
+      const matchClinica = db.filter(p => {
+        const c = String(p.clinica || p.clinicaProcedencia || '').toLowerCase();
+        return c.includes(clinicaDetectada);
+      });
+
+      if (matchClinica.length > 0) {
+        const top3 = matchClinica.slice(0, 3);
+        let itemsHtml = top3.map(p => `
+          <div style="margin:4px 0; padding:4px 6px; background:rgba(255,255,255,0.04); border-radius:6px; font-size:0.75rem;">
+            <strong>${escapeHtml(p.codAtencion || p.codigo)}:</strong> ${escapeHtml(p.paciente || p.apellidos || '')} (${escapeHtml(p.especimen || '')})
+          </div>
+        `).join('');
+
+        return `
+          <p>Encontré <strong>${matchClinica.length} expedientes</strong> asociados a esta institución médica.</p>
+          <div style="margin:6px 0;">${itemsHtml}</div>
+          <div class="cortana-card-actions">
+            <button type="button" class="cortana-act-btn filter" onclick="window.cortanaFiltrarEnTabla('${clinicaDetectada}')">
+              <i class="fa-solid fa-filter"></i> Filtrar los ${matchClinica.length} pacientes en la tabla
+            </button>
+          </div>
+        `;
+      }
+    }
+
+    // D. Búsqueda por Estado General
+    if (q.includes('listo') || q.includes('listos') || q.includes('completados')) {
+      const listos = db.filter(p => String(p.estado || '').toLowerCase().includes('list') || p.informeListo);
+      return `
+        <p>Tenemos <strong>${listos.length} informes validados y listos</strong> para entrega.</p>
+        <div class="cortana-card-actions">
+          <button type="button" class="cortana-act-btn filter" onclick="sessionStorage.setItem('activePillFilter', 'listos'); if(typeof window.applyFilters==='function') window.applyFilters(true);">
+            <i class="fa-solid fa-circle-check" style="color:#10b981;"></i> Mostrar listos en la tabla
+          </button>
+        </div>
+      `;
+    }
+
+    // Fallback humano
+    const frase = obtenerFraseProactiva();
+    return `
+      <p>No encontré un informe exacto con esos términos.</p>
+      <p>Por favor indícame el <strong>código de biopsia</strong> (ej. <em>384</em>), el <strong>DNI</strong> o el <strong>apellido del paciente</strong>.</p>
+      <p style="color:#38bdf8; font-weight:600;">${frase}</p>
+    `;
+  }
+
+  // 7. HELPERS
+  function getSessionUser() {
+    try {
+      return JSON.parse(localStorage.getItem('currentUser') || '{}') || {};
+    } catch(e) {
+      return {};
+    }
+  }
+
+  function checkIsAdmin(user) {
+    if (!user || !user.usuario) return true;
+    const p = String(user.perfil || user.rol || '').toLowerCase();
+    const u = String(user.usuario || '').toLowerCase();
+    const n = String(user.nombres || user.nombre || '').toUpperCase();
+    return p.includes('admin') || u === 'admin' || u === '41457466' || n.includes('CASTILLO') || n.includes('JOSEHP');
+  }
+
+  function obtenerTratamientoUsuario(user) {
+    if (checkIsAdmin(user)) return 'Dr. José Castillo';
+    const nom = String(user.nombres || user.nombre || '').trim();
+    return nom || 'Secretaria';
   }
 
   function escapeHtml(str) {
@@ -416,11 +552,23 @@
   }
 
   function obtenerHoraActual() {
-    const now = new Date();
-    return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const d = new Date();
+    return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   }
 
-  // Exportar funciones globales
-  window.abrirCortanaChat = abrirCortanaChat;
-  window.cerrarCortanaChat = cerrarCortanaChat;
+  // 8. EXPOSICIÓN GLOBAL
+  window.toggleCortanaPanel = toggleCortanaPanel;
+  window.openCortanaPanel = openCortanaPanel;
+  window.closeCortanaPanel = closeCortanaPanel;
+  window.cortanaAbrirChat = openCortanaPanel;
+  window.abrirChatInlineCortana = openCortanaPanel;
+  window.limpiarChatCortana = limpiarMensajesCortana;
+  window.cortanaEnviarMensajeRapido = function(msg) {
+    openCortanaPanel(msg);
+  };
+  window.cortanaFiltrarEnTabla = function(target) {
+    const inp = document.getElementById('aiSmartSearchInput') || document.getElementById('mobileQuickSearchInput');
+    if (inp) inp.value = target;
+    if (typeof window.applyFilters === 'function') window.applyFilters(true);
+  };
 })();
