@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JC PATH LAB — Centro Soberano de Seguridad y Videovigilancia</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="modern_pathology_theme.css">
+    <style>
+        :root {
+            --bg-dark: #070b16;
+            --panel-bg: rgba(13, 22, 44, 0.85);
+            --border-glow: rgba(0, 242, 254, 0.25);
+            --accent-cyan: #00f2fe;
+            --accent-red: #ef4444;
+            --accent-green: #10b981;
+            --accent-purple: #c084fc;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #f1f5f9;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        .security-header {
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.95), rgba(7, 11, 22, 0.9));
+            border-bottom: 1px solid var(--border-glow);
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .header-brand i {
+            font-size: 1.8rem;
+            color: var(--accent-cyan);
+            text-shadow: 0 0 12px rgba(0, 242, 254, 0.6);
+        }
+
+        .header-title h1 {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            background: linear-gradient(90deg, #ffffff, #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-title p {
+            margin: 2px 0 0;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-sec {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(30, 41, 59, 0.8);
+            color: #ffffff;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .btn-sec:hover {
+            background: rgba(51, 65, 85, 0.9);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+        }
+
+        .btn-sec.active {
+            background: rgba(239, 68, 68, 0.25);
+            border-color: #ef4444;
+            color: #fca5a5;
+            box-shadow: 0 0 12px rgba(239, 68, 68, 0.4);
+        }
+
+        .security-container {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 16px;
+            padding: 16px;
+            flex: 1;
+            box-sizing: border-box;
+        }
+
+        .video-grid-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .grid-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--panel-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 8px 16px;
+        }
+
+        .grid-layout-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .layout-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #94a3b8;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .layout-btn.active, .layout-btn:hover {
+            background: rgba(0, 242, 254, 0.15);
+            border-color: var(--accent-cyan);
+            color: #ffffff;
+        }
+
+        .cctv-grid {
+            display: grid;
+            gap: 14px;
+            flex: 1;
+            min-height: 520px;
+        }
+
+        .cctv-grid.grid-1 { grid-template-columns: 1fr; }
+        .cctv-grid.grid-2 { grid-template-columns: 1fr 1fr; }
+        .cctv-grid.grid-4 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+        .cctv-grid.grid-6 { grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr; }
+
+        .camera-card {
+            background: #020617;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            transition: border-color 0.3s ease;
+        }
+
+        .camera-card.motion-alarm {
+            border: 2px solid var(--accent-red) !important;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.6) !important;
+            animation: pulse-red 1s infinite alternate;
+        }
+
+        @keyframes pulse-red {
+            from { border-color: rgba(239, 68, 68, 0.6); }
+            to { border-color: rgba(239, 68, 68, 1); }
+        }
+
+        .camera-card-header {
+            background: rgba(15, 23, 42, 0.9);
+            padding: 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            z-index: 5;
+        }
+
+        .cam-name {
+            font-weight: 700;
+            color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cam-select {
+            background: #0f172a;
+            color: #38bdf8;
+            border: 1px solid #334155;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            max-width: 170px;
+        }
+
+        .camera-view-container {
+            position: relative;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000000;
+            overflow: hidden;
+            min-height: 220px;
+        }
+
+        .camera-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .cam-overlay {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .cam-badge-live {
+            background: rgba(239, 68, 68, 0.85);
+            color: #ffffff;
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            width: fit-content;
+            letter-spacing: 0.5px;
+        }
+
+        .cam-badge-live .rec-dot {
+            width: 6px;
+            height: 6px;
+            background: #ffffff;
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
+        }
+
+        .cam-badge-info {
+            background: rgba(15, 23, 42, 0.75);
+            color: #cbd5e1;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            width: fit-content;
+        }
+
+        .motion-alert-badge {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(239, 68, 68, 0.95);
+            color: #ffffff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            display: none;
+            align-items: center;
+            gap: 8px;
+            z-index: 4;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.8);
+        }
+
+        .cam-bottom-controls {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            display: flex;
+            gap: 6px;
+            z-index: 4;
+            opacity: 0.4;
+            transition: opacity 0.2s ease;
+        }
+
+        .camera-card:hover .cam-bottom-controls {
+            opacity: 1;
+        }
+
+        .btn-cam-action {
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.75rem;
+        }
+
+        .btn-cam-action:hover {
+            background: var(--accent-cyan);
+            color: #020617;
+        }
+
+        .security-sidebar {
+            background: var(--panel-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .sidebar-header {
+            padding: 14px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sidebar-header h3 {
+            margin: 0;
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: #f8fafc;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sidebar-content {
+            padding: 14px 16px;
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .guard-status-card {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .guard-status-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .guard-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--accent-green);
+        }
+
+        .setting-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            margin-top: 8px;
+        }
+
+        .setting-row input[type="range"] {
+            width: 100px;
+        }
+
+        .incident-log-title {
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #64748b;
+            letter-spacing: 0.5px;
+            margin-top: 6px;
+        }
+
+        .incident-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 280px;
+            overflow-y: auto;
+        }
+
+        .incident-item {
+            background: rgba(2, 6, 23, 0.6);
+            border-left: 3px solid var(--accent-red);
+            border-radius: 0 6px 6px 0;
+            padding: 8px 10px;
+            font-size: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .incident-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .incident-cam {
+            font-weight: 700;
+            color: #f1f5f9;
+        }
+
+        .incident-time {
+            font-family: 'JetBrains Mono', monospace;
+            color: #94a3b8;
+            font-size: 0.7rem;
+        }
+
+        .snapshot-thumb {
+            width: 44px;
+            height: 32px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+        }
+
+        .snapshot-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .snapshot-modal.active {
+            display: flex;
+        }
+
+        .snapshot-modal img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: 8px;
+            border: 2px solid var(--accent-cyan);
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="security-header">
+        <div class="header-brand">
+            <i class="fa-solid fa-shield-halved"></i>
+            <div class="header-title">
+                <h1>CENTRO DE SEGURIDAD & VIGILANCIA — JC PATH LAB</h1>
+                <p>NÚCLEO SOBERANO OFFLINE · LOGITECH B525 · MOTIC USB2 · DETECCIÓN DE INTRUSIÓN</p>
+            </div>
+        </div>
+        <div class="header-actions">
+            <button type="button" class="btn-sec" id="btnEscanearCamaras" title="Detectar Webcams y Cámaras de Red">
+                <i class="fa-solid fa-arrows-rotate"></i> Escanear Cámaras
+            </button>
+            <button type="button" class="btn-sec" id="btnModoAlarmaNocturna" title="Activar Detección de Movimiento 24/7">
+                <i class="fa-solid fa-bell"></i> Guardia Nocturna: <span id="alarmStatusText" style="color:#10b981; margin-left:4px;">OFF</span>
+            </button>
+            <a href="reportes.html" class="btn-sec">
+                <i class="fa-solid fa-file-medical"></i> Volver a Reportes
+            </a>
+        </div>
+    </header>
+
+    <div class="security-container">
+        <div class="video-grid-wrapper">
+            <div class="grid-toolbar">
+                <div style="font-size: 0.85rem; font-weight: 700; color: #94a3b8; display:flex; align-items:center; gap:8px;">
+                    <i class="fa-solid fa-video" style="color:var(--accent-cyan);"></i> MONITOREO ACTIVO DEL BÚNKER
+                </div>
+                <div class="grid-layout-buttons">
+                    <button type="button" class="layout-btn" data-grid="1">1x1</button>
+                    <button type="button" class="layout-btn" data-grid="2">1x2</button>
+                    <button type="button" class="layout-btn active" data-grid="4">2x2</button>
+                    <button type="button" class="layout-btn" data-grid="6">3x2</button>
+                    <button type="button" class="layout-btn" id="btnFullscreenGrid" title="Pantalla Completa"><i class="fa-solid fa-expand"></i></button>
+                </div>
+            </div>
+
+            <div class="cctv-grid grid-4" id="cctvGrid">
+                <!-- Canal 1 -->
+                <div class="camera-card" id="camCard1" data-channel="1">
+                    <div class="camera-card-header">
+                        <span class="cam-name"><i class="fa-solid fa-door-open" style="color:#38bdf8;"></i> CH1: ACCESO & RECEPCIÓN</span>
+                        <select class="cam-select" id="camSelect1"></select>
+                    </div>
+                    <div class="camera-view-container">
+                        <div class="cam-overlay">
+                            <span class="cam-badge-live"><span class="rec-dot"></span> EN VIVO</span>
+                            <span class="cam-badge-info" id="camInfo1">STANDBY</span>
+                        </div>
+                        <div class="motion-alert-badge" id="alertBadge1"><i class="fa-solid fa-triangle-exclamation"></i> MOVIMIENTO DETECTADO</div>
+                        <video class="camera-video" id="video1" autoplay playsinline muted></video>
+                        <div class="cam-bottom-controls">
+                            <button type="button" class="btn-cam-action" onclick="window.capturarFotoCanal(1)" title="Capturar Foto"><i class="fa-solid fa-camera"></i></button>
+                            <button type="button" class="btn-cam-action" onclick="window.toggleFullscreenCanal(1)" title="Maximizar"><i class="fa-solid fa-maximize"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Canal 2 -->
+                <div class="camera-card" id="camCard2" data-channel="2">
+                    <div class="camera-card-header">
+                        <span class="cam-name"><i class="fa-solid fa-microscope" style="color:#c084fc;"></i> CH2: SALA DE MICROSCOPÍA</span>
+                        <select class="cam-select" id="camSelect2"></select>
+                    </div>
+                    <div class="camera-view-container">
+                        <div class="cam-overlay">
+                            <span class="cam-badge-live"><span class="rec-dot"></span> EN VIVO</span>
+                            <span class="cam-badge-info" id="camInfo2">STANDBY</span>
+                        </div>
+                        <div class="motion-alert-badge" id="alertBadge2"><i class="fa-solid fa-triangle-exclamation"></i> MOVIMIENTO DETECTADO</div>
+                        <video class="camera-video" id="video2" autoplay playsinline muted></video>
+                        <div class="cam-bottom-controls">
+                            <button type="button" class="btn-cam-action" onclick="window.capturarFotoCanal(2)" title="Capturar Foto"><i class="fa-solid fa-camera"></i></button>
+                            <button type="button" class="btn-cam-action" onclick="window.toggleFullscreenCanal(2)" title="Maximizar"><i class="fa-solid fa-maximize"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Canal 3 -->
+                <div class="camera-card" id="camCard3" data-channel="3">
+                    <div class="camera-card-header">
+                        <span class="cam-name"><i class="fa-solid fa-flask" style="color:#34d399;"></i> CH3: MACROSCOPÍA & TINCIONES</span>
+                        <select class="cam-select" id="camSelect3"></select>
+                    </div>
+                    <div class="camera-view-container">
+                        <div class="cam-overlay">
+                            <span class="cam-badge-live"><span class="rec-dot"></span> EN VIVO</span>
+                            <span class="cam-badge-info" id="camInfo3">STANDBY</span>
+                        </div>
+                        <div class="motion-alert-badge" id="alertBadge3"><i class="fa-solid fa-triangle-exclamation"></i> MOVIMIENTO DETECTADO</div>
+                        <video class="camera-video" id="video3" autoplay playsinline muted></video>
+                        <div class="cam-bottom-controls">
+                            <button type="button" class="btn-cam-action" onclick="window.capturarFotoCanal(3)" title="Capturar Foto"><i class="fa-solid fa-camera"></i></button>
+                            <button type="button" class="btn-cam-action" onclick="window.toggleFullscreenCanal(3)" title="Maximizar"><i class="fa-solid fa-maximize"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Canal 4 -->
+                <div class="camera-card" id="camCard4" data-channel="4">
+                    <div class="camera-card-header">
+                        <span class="cam-name"><i class="fa-solid fa-boxes-stacked" style="color:#f59e0b;"></i> CH4: ALMACÉN & COMPUTADORAS</span>
+                        <select class="cam-select" id="camSelect4"></select>
+                    </div>
+                    <div class="camera-view-container">
+                        <div class="cam-overlay">
+                            <span class="cam-badge-live"><span class="rec-dot"></span> EN VIVO</span>
+                            <span class="cam-badge-info" id="camInfo4">STANDBY</span>
+                        </div>
+                        <div class="motion-alert-badge" id="alertBadge4"><i class="fa-solid fa-triangle-exclamation"></i> MOVIMIENTO DETECTADO</div>
+                        <video class="camera-video" id="video4" autoplay playsinline muted></video>
+                        <div class="cam-bottom-controls">
+                            <button type="button" class="btn-cam-action" onclick="window.capturarFotoCanal(4)" title="Capturar Foto"><i class="fa-solid fa-camera"></i></button>
+                            <button type="button" class="btn-cam-action" onclick="window.toggleFullscreenCanal(4)" title="Maximizar"><i class="fa-solid fa-maximize"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <aside class="security-sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fa-solid fa-shield-virus" style="color:var(--accent-cyan);"></i> GUARDIA PERIMETRAL</h3>
+            </div>
+            <div class="sidebar-content">
+                <div class="guard-status-card">
+                    <div class="guard-status-header">
+                        <span>ESTADO DE VIGILANCIA:</span>
+                        <span class="guard-indicator" id="guardIndicator"><i class="fa-solid fa-circle"></i> ACTIVO</span>
+                    </div>
+                    <div class="setting-row">
+                        <span>Sensibilidad de Intrusión:</span>
+                        <input type="range" id="motionSensitivity" min="5" max="50" value="20">
+                    </div>
+                    <div class="setting-row">
+                        <span>Alerta Sonora:</span>
+                        <input type="checkbox" id="chkAudioAlarm" checked>
+                    </div>
+                    <div class="setting-row">
+                        <span>Auto-Captura en Intrusión:</span>
+                        <input type="checkbox" id="chkAutoSnapshot" checked>
+                    </div>
+                </div>
+
+                <div class="incident-log-title">
+                    <i class="fa-solid fa-camera-retro"></i> REGISTRO DE EVENTOS & CAPTURAS
+                </div>
+                <div class="incident-list" id="incidentList">
+                    <div style="color: #64748b; font-size: 0.75rem; text-align: center; padding: 12px;" id="emptyLogMsg">
+                        Sin incidentes registrados en esta sesión.
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <div class="snapshot-modal" id="snapshotModal" onclick="this.classList.remove('active')">
+        <img id="snapshotModalImg" src="" alt="Captura de Intrusión">
+    </div>
+
+    <script src="seguridad_engine.js?v=20261105_v665"></script>
+</body>
+</html>

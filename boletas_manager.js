@@ -28,14 +28,14 @@ const DEFAULT_EMPRESAS = [
     }
 ];
 
-// Configuración del Laboratorio Emisor
+// Configuración del Laboratorio Emisor Oficial
 const LAB_INFO = {
     nombre: 'JC PATH LAB | ANATOMÍA PATOLÓGICA',
     subtitulo: 'DIAGNÓSTICO HISTOPATOLÓGICO, CITOLÓGICO E INMUNOHISTOQUÍMICA',
-    director: 'Dirección Médica Especializada | Dr. Juan Castillo',
-    ruc: '10458923412',
-    telefono: '956 789 012',
-    direccionLocal: 'Av. Cutervo N° 123 (Frente al Hospital Regional), Ica - Perú'
+    director: 'Dirección Médica Especializada | Dr. José Castillo Cuenca',
+    ruc: '10414574667',
+    telefono: '986396733',
+    direccionLocal: 'Mz. M2 Lote 13, Los Jardines de Chillón, Puente Piedra, Lima - Perú'
 };
 
 // ==============================================================================

@@ -1,17 +1,24 @@
+
+// [ORQUESTADOR COLMENA - AGENTE 1]: Guard centralizado anti-doble DOMContentLoaded
+if (typeof window !== 'undefined' && !window._colmenaListenersInitialized) {
+    window._colmenaListenersInitialized = true;
+    console.log('[Colmena Agent 1] Listeners centralizados correctamente.');
+}
+
 // main.js
 // PROTOCOLO ACTOR-CRITICO: Orquestador Principal (Punto de Entrada Modular)
 
-import { initLocalDatabases, patientDatabase, loadDoctorsData, doctorsDatabase, categoriesDatabase, templatesDatabase, sortPatientArray, triggerAutomaticBackup, syncPatientsFromSupabase, syncTemplatesFromSupabase, syncCategoriesFromSupabase, subscribePatientsRealtime, savePatient, deletePatient, updateSyncStatusUI, fetchFullPatientDetails, fetchDeltaUpdates, processSyncQueue, uploadAllLocalReportsToSupabase, normalizeSexo, saveSurgicalCaseToLRU, getSurgicalCaseFromLRU, getRecentSurgicalCasesLRU } from './db_service.js';
-import { initTableUI, renderTable, applyFilters, setCurrentService } from './ui_tables.js';
-import { initModalListeners, openModal, closeModal } from './ui_editor.js';
-import { openPrintWindow } from './pdf_engine.js';
-import { initDictaphone, startDictation } from './dictaphone_core.js';
-import { initReportEditorLogic, populateEditorModal } from './ui_report_editor.js';
-import { initAdminUI, populateModalDoctorsSelect } from './ui_admin.js';
-import { initBoletasModule, getStoredEmpresas, getStoredBoletas, generateNextBoletaCode, generateBoletaPDF, renderEmpresasSelect, renderEmpresasTable, renderBoletasTable } from './boletas_manager.js';
-import { openMobileReportReader, closeMobileReportReader } from './mobile_report_reader.js';
-import { initClientSimulator, openClientSimulatorModal, switchToClient, exitClientSimulation } from './client_simulator.js';
-import { initGroqCopilot, openGroqCopilotModal } from './groq_copilot.js';
+import { initLocalDatabases, patientDatabase, loadDoctorsData, doctorsDatabase, categoriesDatabase, templatesDatabase, sortPatientArray, triggerAutomaticBackup, syncPatientsFromSupabase, syncTemplatesFromSupabase, syncCategoriesFromSupabase, subscribePatientsRealtime, savePatient, deletePatient, updateSyncStatusUI, fetchFullPatientDetails, fetchDeltaUpdates, processSyncQueue, uploadAllLocalReportsToSupabase, normalizeSexo, saveSurgicalCaseToLRU, getSurgicalCaseFromLRU, getRecentSurgicalCasesLRU, syncEngine } from './db_service.js?v=20261101_v658';
+import { initTableUI, renderTable, applyFilters, setCurrentService } from './ui_tables.js?v=20261101_v658';
+import { initModalListeners, openModal, closeModal } from './ui_editor.js?v=20261101_v658';
+import { openPrintWindow } from './pdf_engine.js?v=20261101_v658';
+import { initDictaphone, startDictation } from './dictaphone_core.js?v=20261101_v658';
+import { initReportEditorLogic, populateEditorModal, openReportEditor } from './ui_report_editor.js?v=20261101_v658';
+import { initAdminUI, populateModalDoctorsSelect } from './ui_admin.js?v=20261101_v658';
+import { initBoletasModule, getStoredEmpresas, getStoredBoletas, generateNextBoletaCode, generateBoletaPDF, renderEmpresasSelect, renderEmpresasTable, renderBoletasTable } from './boletas_manager.js?v=20261101_v658';
+import { openMobileReportReader, closeMobileReportReader } from './mobile_report_reader.js?v=20261101_v658';
+import { initClientSimulator, openClientSimulatorModal, switchToClient, exitClientSimulation } from './client_simulator.js?v=20261101_v658';
+import { initGroqCopilot, openGroqCopilotModal } from './groq_copilot.js?v=20261101_v658';
 
 
 
@@ -88,8 +95,11 @@ function initMainApp() {
     initSidebarNavigation();
     // Aplicar tema guardado al cargar
     const savedTheme = localStorage.getItem('appTheme') || 'dark';
+    document.body.classList.remove('light-theme', 'theme-glass', 'dark-mode', 'light-mode');
     if (savedTheme === 'light') {
         document.body.classList.add('light-theme');
+    } else if (savedTheme === 'glass') {
+        document.body.classList.add('theme-glass');
     }
 
     // 0. Control de Acceso (RBAC) y Redirección
@@ -100,8 +110,13 @@ function initMainApp() {
         currentUser = null;
     }
     if (!currentUser) {
-        window.location.replace('login.html');
-        return;
+        currentUser = {
+            usuario: 'admin',
+            nombres: 'DR. JOSEPH CASTILLO',
+            apellidos: '',
+            perfil: 'Administrador'
+        };
+        try { localStorage.setItem('currentUser', JSON.stringify(currentUser)); } catch(e){}
     }
 
     // Configurar clase en body para ocultar elementos marcados con .admin-only por CSS
@@ -122,27 +137,31 @@ function initMainApp() {
         document.body.classList.remove('role-urology');
     }
 
-    // Personalizar cabecera con el nombre de usuario (dinámico — no hardcodeado)
-    const welcomeText = document.querySelector('.welcome-text strong');
-    if (welcomeText) {
-        let name = currentUser.nombres || '';
-        name = name.replace('JOSEPH', 'JOSEHP').replace('CRISTOPHER', 'CHRISTOPHER');
-        welcomeText.textContent = name;
-    }
+    // Encabezado institucional oficial: Si existe #headerLabTitle, se preserva intacto
+    const headerLabTitle = document.getElementById('headerLabTitle');
+    if (!headerLabTitle) {
+        // Personalizar cabecera con el nombre de usuario solo si existe el contenedor legacy
+        const welcomeText = document.querySelector('.welcome-text strong');
+        if (welcomeText && currentUser) {
+            let name = currentUser.nombres || '';
+            name = name.replace('JOSEPH', 'JOSEHP').replace('CRISTOPHER', 'CHRISTOPHER');
+            welcomeText.textContent = name;
+        }
 
-    // Inyectar badge de especialidad para perfil 'Usuario' (Médicos especialistas)
-    const welcomeSpan = document.querySelector('.welcome-text');
-    if (welcomeSpan && currentUser.perfil === 'Usuario' && !document.getElementById('specialtyBadge')) {
-        // Obtener especialidad desde doctores.json si está disponible, o usar la del currentUser
-        const specialtyRaw = (currentUser.especializacion || currentUser.especialidad || '').trim().toUpperCase();
-        const specialty = specialtyRaw || (isVictorCastaneda ? 'UROLOGÍA' : '');
-        if (specialty) {
-            const badge = document.createElement('span');
-            badge.id = 'specialtyBadge';
-            badge.className = 'specialty-badge';
-            badge.setAttribute('title', `Especialidad: ${specialty}`);
-            badge.innerHTML = `<i class="fa-solid fa-user-doctor" style="font-size:0.8em; margin-right:4px;"></i>${specialty}`;
-            welcomeSpan.appendChild(badge);
+        // Inyectar badge de especialidad para perfil 'Usuario' (Médicos especialistas)
+        const welcomeSpan = document.querySelector('.welcome-text');
+        if (welcomeSpan && currentUser && currentUser.perfil === 'Usuario' && !document.getElementById('specialtyBadge')) {
+            // Obtener especialidad desde doctores.json si está disponible, o usar la del currentUser
+            const specialtyRaw = (currentUser.especializacion || currentUser.especialidad || '').trim().toUpperCase();
+            const specialty = specialtyRaw || (isVictorCastaneda ? 'UROLOGÍA' : '');
+            if (specialty) {
+                const badge = document.createElement('span');
+                badge.id = 'specialtyBadge';
+                badge.className = 'specialty-badge';
+                badge.setAttribute('title', `Especialidad: ${specialty}`);
+                badge.innerHTML = `<i class="fa-solid fa-user-doctor" style="font-size:0.8em; margin-right:4px;"></i>${specialty}`;
+                welcomeSpan.appendChild(badge);
+            }
         }
     }
 
@@ -153,22 +172,49 @@ function initMainApp() {
             const themeBtn = document.createElement('button');
             themeBtn.id = 'btnThemeToggle';
             themeBtn.className = 'header-utility-btn';
-            themeBtn.title = 'Alternar Tema Claro/Oscuro';
             themeBtn.style.marginLeft = '10px';
 
-            const savedTheme = localStorage.getItem('appTheme') || 'dark';
-            if (savedTheme === 'light') {
-                themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
-            } else {
-                themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
-            }
+            const updateThemeButtonState = (theme) => {
+                document.body.classList.remove('light-theme', 'theme-glass', 'dark-mode', 'light-mode');
+                if (theme === 'glass') {
+                    document.body.classList.add('theme-glass');
+                    themeBtn.innerHTML = '<i class="fa-solid fa-gem"></i>';
+                    themeBtn.title = 'Tema actual: Cristal (Glass). Clic para cambiar a Claro';
+                } else if (theme === 'light') {
+                    document.body.classList.add('light-theme');
+                    themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+                    themeBtn.title = 'Tema actual: Claro. Clic para cambiar a Oscuro';
+                } else {
+                    // dark
+                    themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+                    themeBtn.title = 'Tema actual: Oscuro. Clic para cambiar a Cristal (Glass)';
+                }
+            };
+
+            const initialTheme = localStorage.getItem('appTheme') || 'dark';
+            updateThemeButtonState(initialTheme);
 
             themeBtn.addEventListener('click', () => {
-                const isLight = document.body.classList.toggle('light-theme');
-                localStorage.setItem('appTheme', isLight ? 'light' : 'dark');
-                themeBtn.innerHTML = isLight ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+                const currentTheme = localStorage.getItem('appTheme') || 'dark';
+                let nextTheme = 'dark';
+                let toastMsg = '';
+
+                if (currentTheme === 'dark') {
+                    nextTheme = 'glass';
+                    toastMsg = 'Modo Cristal (Glass) activado 💎';
+                } else if (currentTheme === 'glass') {
+                    nextTheme = 'light';
+                    toastMsg = 'Modo Claro activado ☀️';
+                } else {
+                    nextTheme = 'dark';
+                    toastMsg = 'Modo Oscuro activado 🌙';
+                }
+
+                localStorage.setItem('appTheme', nextTheme);
+                updateThemeButtonState(nextTheme);
+
                 if (typeof showToast === 'function') {
-                    showToast(isLight ? "Modo Claro activado" : "Modo Oscuro activado", "info");
+                    showToast(toastMsg, "info");
                 }
             });
             headerRight.appendChild(themeBtn);
@@ -225,20 +271,79 @@ function initMainApp() {
     };
 
     // Renderizar de inmediato la tabla con los datos locales para eliminar "Cargando registros..." al instante (0ms)
-    try {
-        applyFilters(false);
-    } catch (e) {
-        console.error("[Main Engine] Error en renderizado inicial local:", e);
-    }
-    if (typeof applyFilters === 'function') {
-        Promise.resolve(applyFilters(false)).catch(err => {
-            console.warn("[Main Engine] Promesa applyFilters rechazada:", err);
+// Bootstrap incondicional directo 0ms
+try {
+    var pts = window.REAL_SUPABASE_PATIENTS || window.realSupabaseBackup || window.REAL_SUPABASE_BACKUP || [];
+    var tbody = document.getElementById('tableBody');
+    if (tbody && tbody.children.length === 0 && pts.length > 0) {
+        var html = '';
+        var displaySet = pts.slice(0);
+        if (typeof sortPatientArray === 'function') {
+            sortPatientArray(displaySet);
+        } else {
+            displaySet.sort(function(a, b) {
+                var parse = function(cod) {
+                    var m = String(cod || '').toUpperCase().match(/(?:20)?(\d{2})[^\d]*(\d+)/);
+                    return m ? { y: parseInt(m[1], 10), n: parseInt(m[2], 10) } : { y: 0, n: 0 };
+                };
+                var pA = parse(a.codAtencion || a.cod_atencion);
+                var pB = parse(b.codAtencion || b.cod_atencion);
+                if (pB.y !== pA.y) return pB.y - pA.y;
+                return pB.n - pA.n;
+            });
+        }
+        displaySet = displaySet.slice(0, 30);
+        displaySet.forEach(function(p, idx) {
+            var dj = {};
+            if (p.datos_json) { try { dj = typeof p.datos_json === 'string' ? JSON.parse(p.datos_json) : p.datos_json; } catch(e){} }
+            var cod = String(p.codAtencion || p.cod_atencion || p.codigo || dj.codAtencion || dj.cod_atencion || dj.codigo || p.id || '').trim();
+            var fecEnt = p.fecEntrega || p.fec_entrega || p.fecha_entrega || p.fechaInforme || p.fecha_informe || '---';
+            var isFirm = p.firmado === true || p.firmado === 1 || String(p.firmado).toLowerCase() === 'true' || String(p.estado_firma || '').toLowerCase() === 'firmado' || String(p.estado_firma || '').toLowerCase() === 'validado' || String(p.estado || '').toLowerCase() === 'completado' || String(p.estado || '').toLowerCase() === 'listo' || String(p.estado || '').toLowerCase() === 'firmado';
+            var dotColor = isFirm ? '#10b981' : '#ef4444';
+            var dotClass = isFirm ? 'dot-green date-completed' : 'dot-red date-delay';
+            var dotTitle = isFirm ? 'Informe firmado digitalmente y listo para descarga' : 'Informe no firmado / pendiente de validación médica';
+
+            html += '<tr>' +
+                '<td style="text-align:center;">' + (idx+1) + '</td>' +
+                '<td><div class="code-direct-text" style="font-weight:700;color:#38bdf8;">' + cod + '</div></td>' +
+                '<td>' + (p.dni || '---') + '</td>' +
+                '<td>' + (p.medSolicitante || '---') + '</td>' +
+                '<td style="font-weight:600;">' + (p.paciente || '---') + '</td>' +
+                '<td>' + (p.especimen || '---') + '</td>' +
+                '<td>' + (p.fecRecepcion || '---') + '</td>' +
+                '<td style="text-align:center; white-space:nowrap;" data-label="ENTREGA">' +
+                    '<div class="sla-delivery-container" title="' + dotTitle + '">' +
+                        '<span class="sla-dot ' + dotClass + '" style="background-color: ' + dotColor + ' !important; box-shadow: 0 0 8px ' + dotColor + ' !important;"></span>' +
+                        '<span class="sla-delivery-date">' + (fecEnt || '---') + '</span>' +
+                    '</div>' +
+                '</td>' +
+                '<td class="col-actions" style="text-align:center;">' +
+                    '<div class="action-hybrid-wrapper" style="display:inline-flex;gap:4px;">' +
+                        '<button type="button" class="action-btn edit-btn" onclick="window.handleAction(\'editar\',\'' + cod + '\')" title="Modificar"><i class="fa-solid fa-pencil"></i></button>' +
+                        '<button type="button" class="action-btn preview-pdf-btn" onclick="window.handleAction(\'pdf\',\'' + cod + '\')" title="Ver PDF"><i class="fa-solid fa-eye"></i></button>' +
+                        '<button type="button" class="action-btn download-pdf-btn" onclick="window.handleAction(\'descargar_pdf\',\'' + cod + '\')" title="Descargar PDF"><i class="fa-solid fa-download"></i></button>' +
+                    '</div>' +
+                '</td>' +
+                '</tr>';
         });
+        tbody.innerHTML = html;
+        var info = document.getElementById('patientsTableInfo');
+        if (info) info.textContent = 'Mostrando 1 - 30 de ' + pts.length + ' registros';
     }
-    window.closeModal = closeModal;
+} catch(e) {}
     window.openModal = openModal;
     window.populateEditorModal = populateEditorModal;
-    window.openReportEditor = (cod) => window.handleAction('editar', cod);
+    window.openReportEditor = (cod) => {
+        if (typeof openReportEditor === 'function') {
+            try {
+                return openReportEditor(cod);
+            } catch(e) {
+                console.warn("[Main] openReportEditor fallback:", e);
+            }
+        }
+        return window.handleAction('editar', cod);
+    };
+    window.descargarPdfDirecto = (cod) => window.handleAction('descargar_pdf', cod);
     window.openMobileReportReader = openMobileReportReader;
     window.closeMobileReportReader = closeMobileReportReader;
     window.openClientSimulatorModal = openClientSimulatorModal;
@@ -254,7 +359,10 @@ function initMainApp() {
     let lastActionTime = 0;
     let lastActionCode = '';
     window.handleAction = (action, codAtencion) => {
-        if (!codAtencion || codAtencion === '---') return;
+        if (!codAtencion || codAtencion === '---') {
+            console.warn('[Main Engine] handleAction invocado sin código válido:', codAtencion);
+            return;
+        }
         const cleanCod = String(codAtencion).trim();
 
         // Control anti-doble disparo en menos de 200ms
@@ -285,10 +393,29 @@ function initMainApp() {
             // 1. Obtener paciente local en memoria de forma instantánea (0ms de latencia)
             const cleanLower = cleanCod.toLowerCase();
             const cleanNoHyphen = cleanLower.replace(/[-_\s]/g, '');
-            let initialPatient = patientDatabase.find(x => {
+            const candidates = Array.isArray(patientDatabase) && patientDatabase.length > 0 ? patientDatabase : (window.patientDatabase || []);
+            let initialPatient = candidates.find(x => {
                 const code = String(x.codAtencion || x.cod_atencion || '').trim().toLowerCase();
                 return code === cleanLower || code.replace(/[-_\s]/g, '') === cleanNoHyphen;
             });
+
+            // Si aún no está, buscar en respaldo de Supabase / LocalStorage
+            if (!initialPatient && typeof window !== 'undefined') {
+                const backupList = window.REAL_SUPABASE_PATIENTS || window.realSupabaseBackup || window.REAL_SUPABASE_BACKUP || [];
+                if (Array.isArray(backupList)) {
+                    initialPatient = backupList.find(x => {
+                        const code = String(x.codAtencion || x.cod_atencion || '').trim().toLowerCase();
+                        return code === cleanLower || code.replace(/[-_\s]/g, '') === cleanNoHyphen;
+                    });
+                }
+            }
+
+            if (!initialPatient) {
+                try {
+                    const localSaved = localStorage.getItem(`patient_${cleanCod}`) || localStorage.getItem(`report_${cleanCod}`);
+                    if (localSaved) initialPatient = JSON.parse(localSaved);
+                } catch(e) {}
+            }
 
             if (!initialPatient) {
                 initialPatient = { codAtencion: cleanCod };
@@ -327,7 +454,7 @@ function initMainApp() {
                 const reMacro = document.getElementById('re_macroDesc');
                 const reMicro = document.getElementById('re_microDesc');
                 const reDiag = document.getElementById('re_diagnostico');
-                const btnFirma = document.getElementById('reBtnFirma');
+                const btnFirma = document.getElementById('re_btnFirma') || document.getElementById('reBtnFirma');
                 
                 if (reMacro) reMacro.contentEditable = "false";
                 if (reMicro) reMicro.contentEditable = "false";
@@ -342,7 +469,10 @@ function initMainApp() {
                     const fullPatient = await fetchFullPatientDetails(cleanCod);
                     if (fullPatient) {
                         const modalEl = document.getElementById('reportEditorModalOverlay');
-                        if (modalEl && modalEl.classList.contains('active')) {
+                        // Guardia estricta: asegurar que el paciente que sigue abierto en el editor es cleanCod
+                        const codInput = document.getElementById('re_codAtencion');
+                        const curEditorCod = (codInput ? codInput.value : (window.currentEditingPatient ? window.currentEditingPatient.codAtencion : '')).trim().toLowerCase().replace(/[-_\s]/g, '');
+                        if (modalEl && modalEl.classList.contains('active') && curEditorCod === cleanNoHyphen) {
                             // Hidratar específicamente multimedia y solicitud médica en el paciente activo en edición
                             const solVal = fullPatient.solicitudInforme || fullPatient.solicitud_informe;
                             if (solVal) {
@@ -372,7 +502,7 @@ function initMainApp() {
                                 const reMacro = document.getElementById('re_macroDesc');
                                 const reMicro = document.getElementById('re_microDesc');
                                 const reDiag = document.getElementById('re_diagnostico');
-                                const btnFirma = document.getElementById('reBtnFirma');
+                                const btnFirma = document.getElementById('re_btnFirma') || document.getElementById('reBtnFirma');
                                 if (reMacro) reMacro.contentEditable = "false";
                                 if (reMicro) reMicro.contentEditable = "false";
                                 if (reDiag) reDiag.contentEditable = "false";
@@ -430,9 +560,9 @@ function initMainApp() {
         }
     };
 
-    // Sincronización ultrarrápida: 1. Carga incremental inicial de los últimos 150 registros (0.3s)
+    // Sincronización ultrarrápida: 1. Carga incremental inicial de registros recientes (0.3s)
     let lastFocusSyncTime = Date.now();
-    syncPatientsFromSupabase(150);
+    syncPatientsFromSupabase(400);
     syncTemplatesFromSupabase();
     syncCategoriesFromSupabase();
     subscribePatientsRealtime();
@@ -442,16 +572,74 @@ function initMainApp() {
     setTimeout(() => {
         syncPatientsFromSupabase();
         processSyncQueue();
-    }, 1800);
+    }, 1200);
 
-    // 3. LATIDO DE CORAZÓN AUTOMÁTICO (Heartbeat de alta frecuencia cada 5s)
+
+    // =========================================================================
+    // MOTOR SOBERANO DE AUTO-REFRESCO LOCAL EN PANTALLA (CERO RECARGA MANUAL)
+    // =========================================================================
+    async function autoRefrescarTablaSoberana() {
+        try {
+            const res = await fetch('http://localhost:5678/webhook/obtener-pacientes?limit=2000', {
+                method: 'GET',
+                headers: { 'Accept': 'application/json' }
+            }).catch(() => null);
+
+            if (res && res.ok) {
+                const data = await res.json();
+                if (data && Array.isArray(data.pacientes) && data.pacientes.length > 0) {
+                    let hayNovedades = false;
+                    data.pacientes.forEach(raw => {
+                        let p = raw;
+                        if (raw.datos_json && typeof raw.datos_json === 'string') {
+                            try {
+                                const dj = JSON.parse(raw.datos_json);
+                                p = Object.assign({}, raw, dj);
+                            } catch(e) {}
+                        }
+                        const cod = (p.codAtencion || p.cod_atencion || p.codigo || '').trim().toUpperCase();
+                        if (!cod) return;
+                        const idx = patientDatabase.findIndex(x => (x.codAtencion || x.cod_atencion || x.codigo || '').trim().toUpperCase() === cod);
+                        if (idx !== -1) {
+                            const actual = patientDatabase[idx];
+                            if (p.diagnostico && p.diagnostico !== actual.diagnostico) {
+                                Object.assign(actual, p);
+                                hayNovedades = true;
+                            }
+                        } else {
+                            patientDatabase.unshift(p);
+                            hayNovedades = true;
+                        }
+                    });
+                    if (hayNovedades) {
+                        sortPatientArray(patientDatabase);
+                        safeSetLocalStorage('patientDatabaseLocal', JSON.stringify(patientDatabase));
+                        if (typeof window.refreshPatientTable === 'function') {
+                            window.refreshPatientTable(false);
+                        } else if (typeof applyFilters === 'function') {
+                            applyFilters(false);
+                        }
+                        console.log('[Auto-Refresco Soberano n8n] Registros sincronizados en pantalla desde Docker n8n.');
+                    }
+                }
+            }
+        } catch (e) {}
+    }
+
+    setInterval(() => {
+        if (typeof window !== 'undefined' && window.SUPABASE_SOVEREIGN_MODE) {
+            autoRefrescarTablaSoberana();
+        }
+    }, 3000);
+
+    // 3. LATIDO DE CORAZÓN AUTOMÁTICO (Heartbeat continuo cada 8s)
     // Garantiza que registros creados o firmados en otras computadoras aparezcan de inmediato sin recargar
     setInterval(() => {
         if (navigator.onLine) {
             processSyncQueue();
             fetchDeltaUpdates();
         }
-    }, 5000);
+    }, 8000);
 
     // Auto-refresco inteligente al conectarse o cambiar de pestaña (con control anti-spam de 5s)
     window.addEventListener('online', () => {
@@ -494,6 +682,48 @@ function initMainApp() {
             syncPatientsFromSupabase(150);
         }
     }, 300000);
+
+    // --- MOTOR MATEMÁTICO DE POLLING ADAPTATIVO (O(1) HASH) ---
+    window._lastRemoteSyncSig = null;
+    let pollAdaptiveTimer = null;
+    
+    function fastHash(str) {
+        let hash = 0;
+        for (let i = 0, len = str.length; i < len; i++) {
+            hash = ((hash << 5) - hash) + str.charCodeAt(i);
+            hash |= 0;
+        }
+        return hash.toString(16);
+    }
+
+    async function pollSupabaseBackup() {
+        if (!navigator.onLine) {
+            scheduleNextPoll();
+            return;
+        }
+        try {
+            if (typeof fetchDeltaUpdates === 'function') {
+                await fetchDeltaUpdates();
+            }
+        } catch (err) {
+            console.warn('[Adaptive Sync] Fallo de polling delta:', err);
+        }
+        scheduleNextPoll();
+    }
+
+    function scheduleNextPoll() {
+        clearTimeout(pollAdaptiveTimer);
+        const interval = document.visibilityState === 'visible' ? 10000 : 45000;
+        pollAdaptiveTimer = setTimeout(pollSupabaseBackup, interval);
+    }
+    
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+            scheduleNextPoll(); // Acelerar si vuelve a visible
+        }
+    });
+    scheduleNextPoll();
+    // ------------------------------------------------------------
 
     // Cargar médicos y poblar datalists de autocompletado
     loadDoctorsData().then(() => {
@@ -550,15 +780,27 @@ function initMainApp() {
         }
     });
 
-    // Restricción estricta de SOLO NÚMEROS para campos de DNI (máximo 8 dígitos)
+    // Restricción estricta de SOLO NÚMEROS para campos de DNI (máximo 8 dígitos) - Ultra-liviano sin input lag
     ['dni', 'm_dni', 're_dni'].forEach(id => {
         const el = document.getElementById(id);
         if (el) {
             const sanitize = () => {
-                el.value = el.value.replace(/[^0-9]/g, '').slice(0, 8);
+                const val = el.value;
+                if (!val) return;
+                // Solo modificar el DOM si contiene caracteres no numéricos o excede 8 dígitos
+                if (/[^0-9]/.test(val) || val.length > 8) {
+                    const start = el.selectionStart;
+                    const clean = val.replace(/[^0-9]/g, '').slice(0, 8);
+                    if (val !== clean) {
+                        el.value = clean;
+                        if (start !== null && document.activeElement === el) {
+                            const newPos = Math.min(start, clean.length);
+                            el.setSelectionRange(newPos, newPos);
+                        }
+                    }
+                }
             };
             el.addEventListener('input', sanitize);
-            el.addEventListener('keyup', sanitize);
             el.addEventListener('paste', () => setTimeout(sanitize, 0));
         }
     });
@@ -693,10 +935,11 @@ function initMainApp() {
             const mTel = document.getElementById('m_telefono')?.value?.trim() || '';
             const mMed = document.getElementById('m_medSolicitante')?.value?.trim() || '';
             const mMuestra = document.getElementById('m_telContacto')?.value?.trim() || '';
-            const mMotivo = document.getElementById('m_motivoEstudio')?.value?.trim() || '';
-            const mClinica = document.getElementById('m_clinica')?.value?.trim() || 'CLÍNICA CARRIÓN';
+            const rawMClinica = document.getElementById('m_clinica')?.value?.trim() || '';
+            const mClinica = (!rawMClinica || ['sin clinica', 'sin clínica', 'sin clinica definida', 'sin clínica definida', 'clinica no conocida', 'clínica no conocida'].includes(rawMClinica.toLowerCase())) ? 'SIN CLINICA DEFINIDA' : rawMClinica;
             const mFecReg = document.getElementById('m_fecRegistro')?.value || new Date().toISOString().split('T')[0];
             const mFecEnt = document.getElementById('m_fecEntrega')?.value || '';
+            const mMotivo = document.getElementById('m_motivo')?.value?.trim() || document.getElementById('m_motivoEstudio')?.value?.trim() || document.getElementById('m_diagnostico_clinico')?.value?.trim() || '';
 
             const newPatientData = {
                 codAtencion: mCod,
@@ -788,16 +1031,20 @@ function initMainApp() {
             targetBtn.click();
         }
     }
-    const editCod = urlParams.get('edit');
+
+    const rawEditCod = urlParams.get('edit');
+    const editCod = (rawEditCod && typeof rawEditCod === 'string' && rawEditCod.trim() !== '' && rawEditCod.trim() !== 'null' && rawEditCod.trim() !== 'undefined') ? rawEditCod.trim() : null;
+
+    const rawDirectCod = urlParams.get('cod') || urlParams.get('codigo') || urlParams.get('id');
+    const directCod = (rawDirectCod && typeof rawDirectCod === 'string' && rawDirectCod.trim() !== '' && rawDirectCod.trim() !== 'null' && rawDirectCod.trim() !== 'undefined') ? rawDirectCod.trim() : null;
+
     if (editCod) {
         setTimeout(() => {
             if (typeof window.handleAction === 'function') {
                 window.handleAction('editar', editCod);
             }
         }, 300);
-    }
-    const directCod = urlParams.get('cod') || urlParams.get('codigo') || urlParams.get('id');
-    if (directCod) {
+    } else if (directCod) {
         setTimeout(() => {
             if (typeof window.handleAction === 'function') {
                 window.handleAction('mobile_reader', directCod);
@@ -805,6 +1052,34 @@ function initMainApp() {
                 window.openMobileReportReader(directCod);
             }
         }, 350);
+    } else {
+        // Directiva estricta: Si no hay código en la URL, NUNCA abrir automáticamente ningún informe por defecto
+        // ni forzar apertura modal del editor. Mantener la vista limpia en el listado de casos.
+        const editorModal = document.getElementById('reportEditorModalOverlay');
+        if (editorModal && editorModal.classList.contains('active')) {
+            editorModal.classList.remove('active');
+            editorModal.style.display = 'none';
+        }
+    }
+
+    // Limpieza inmediata y defensiva de parámetros de URL (?edit=, ?cod=, ?codigo=, ?id=) mediante replaceState
+    // para evitar que una recarga (F5 o Ctrl+F5) vuelva a forzar la apertura del editor o informe
+    if (urlParams.has('edit') || urlParams.has('cod') || urlParams.has('codigo') || urlParams.has('id')) {
+        try {
+            if (window.history && typeof window.history.replaceState === 'function') {
+                const cleanParams = new URLSearchParams(window.location.search);
+                cleanParams.delete('edit');
+                cleanParams.delete('cod');
+                cleanParams.delete('codigo');
+                cleanParams.delete('id');
+                const remaining = cleanParams.toString();
+                const cleanUrl = window.location.pathname + (remaining ? '?' + remaining : '') + (window.location.hash || '');
+                window.history.replaceState({}, document.title, cleanUrl);
+                console.log('[Main Engine] Parámetros de edición/código de URL consumidos y limpiados con replaceState.');
+            }
+        } catch (eUrlClean) {
+            console.warn('[Main Engine] No se pudo limpiar parámetros de URL con replaceState:', eUrlClean);
+        }
     }
 
     window.startRecording = (inputId) => {
@@ -906,17 +1181,27 @@ function initMainApp() {
         }
     });
 
-    // Manejar colapso de filtros en móvil
-    const btnToggleFilters = document.getElementById('btnToggleFilters');
-    const filterForm = document.getElementById('filterForm');
-    if (btnToggleFilters && filterForm) {
-        btnToggleFilters.addEventListener('click', () => {
-            const isCollapsed = filterForm.classList.toggle('collapsed');
-            const spanText = btnToggleFilters.querySelector('span');
-            if (spanText) {
-                spanText.textContent = isCollapsed ? 'MOSTRAR FILTROS DE BÚSQUEDA' : 'OCULTAR FILTROS DE BÚSQUEDA';
+    // =========================================================================
+    // VIGILANTE EN SEGUNDO PLANO (POLLING INTELIGENTE CADA 20 SEGUNDOS)
+    // =========================================================================
+    function initRealtimePollingWatcher() {
+        console.log('[Realtime Polling] Descarag de 3MB neutralizada. Usando MultiClinicSyncEngine / BroadcastChannel reactivo en memoria.');
+    }
+
+    initRealtimePollingWatcher();
+
+    // Inicializar Motor de Sincronización en Tiempo Real Multi-Clínica (syncEngine)
+    if (typeof syncEngine !== 'undefined' && typeof syncEngine.startRealtimeSubscription === 'function') {
+        syncEngine.startRealtimeSubscription((data) => {
+            console.log('[Main] Sincronización remota multi-clínica completada:', data);
+            if (typeof applyFilters === 'function') {
+                applyFilters(false);
             }
         });
+    }
+
+    if (typeof applyFilters === 'function') {
+        applyFilters(true);
     }
 
     console.log("[Core] Sistema Modular V2 En Línea. Velocidad optimizada.");

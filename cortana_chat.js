@@ -220,12 +220,25 @@
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 2500);
 
-      const response = await fetch(N8N_CORTANA_WEBHOOK, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-        signal: controller.signal
-      });
+      // Intento inteligente POST / Fallback GET hacia n8n o Motor Local Soberano (<2ms)
+      let response = null;
+      try {
+        response = await fetch(N8N_CORTANA_WEBHOOK, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+          signal: controller.signal
+        });
+        if (!response.ok && response.status === 405) {
+          // Si n8n espera GET, enviar query params
+          response = await fetch(`${N8N_CORTANA_WEBHOOK}?mensaje=${encodeURIComponent(mensaje)}`, {
+            method: 'GET',
+            signal: controller.signal
+          });
+        }
+      } catch (postErr) {
+        throw postErr;
+      }
       clearTimeout(timeoutId);
 
       const t1 = performance.now();
