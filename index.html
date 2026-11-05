@@ -82,7 +82,7 @@ function parseAtencionSortKey(cod) {
 
     <!-- Preload de Estilos Esenciales del Formulario -->
     <link rel="preload" href="style.css?v=v640" as="style">
-    <link rel="preload" href="reportes.css?v=20261105_v673" as="style">
+    <link rel="preload" href="reportes.css?v=20261105_v674" as="style">
 
     <!-- Escalador Matemático de Pantalla y Zoom -->
     <script src="responsive_scaler.js?v=v602.1012_0730" defer></script>
@@ -102,8 +102,8 @@ function parseAtencionSortKey(cod) {
     
     <!-- Hojas de Estilos Externas -->
     <link rel="stylesheet" href="style.css?v=v640">
-    <link rel="stylesheet" href="reportes.css?v=20261105_v673">
-    <link rel="stylesheet" href="cortana_chat.css?v=20261105_v673">
+    <link rel="stylesheet" href="reportes.css?v=20261105_v674">
+    <link rel="stylesheet" href="cortana_chat.css?v=20261105_v674">
     <style id="modern-pathology-force-2026">
 /* ============================================================
    JC PATH LAB — MASTER VISUAL SYSTEM (ANATOMÍA PATOLÓGICA)
@@ -813,9 +813,9 @@ html body .mobile-patient-card {
     <div id="toastContainer" class="toast-container"></div>
 
     <!-- Módulo Centralizado de Utilidades -->
-    <script type="module" src="utils.js?v=20261105_v673"></script>
+    <script type="module" src="utils.js?v=20261105_v674"></script>
     <!-- Respaldo Maestro Real de Supabase PROD (Carga Síncrona Garantizada: 1,222 Pacientes) -->
-    <script src="real_supabase_backup.js?v=20261105_v673"></script>
+    <script src="real_supabase_backup.js?v=20261105_v674"></script>
     <script>
         try {
             const rawLocal = localStorage.getItem('patientDatabaseLocal');
@@ -838,7 +838,7 @@ html body .mobile-patient-card {
             if (window._mediaBlobsLoading || (window.MEDIA_BLOBS_SEED && Object.keys(window.MEDIA_BLOBS_SEED).length > 0)) return;
             window._mediaBlobsLoading = true;
             var s = document.createElement('script');
-            s.src = 'media_blobs_seed.js?v=20261105_v673';
+            s.src = 'media_blobs_seed.js?v=20261105_v674';
             s.async = true;
             document.head.appendChild(s);
         };
@@ -858,10 +858,10 @@ html body .mobile-patient-card {
     <!-- SDK de Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2?v=20261022_1028" defer></script>
     <!-- Configuración de Supabase -->
-    <script src="supabase_config.js?v=20261105_v673" defer></script>
+    <script src="supabase_config.js?v=20261105_v674" defer></script>
     <!-- Inicialización de Base de Datos y Seguridad (RBAC) -->
     <script type="module">
-        import { initLocalDatabases, patientDatabase, triggerAutomaticBackup, syncPatientsFromSupabase, savePatient, deletePatient, subscribePatientsRealtime } from './db_service.js?v=20261105_v673';
+        import { initLocalDatabases, patientDatabase, triggerAutomaticBackup, syncPatientsFromSupabase, savePatient, deletePatient, subscribePatientsRealtime } from './db_service.js?v=20261105_v674';
         
         // Inicializar bases de datos locales inmediatamente para que getNextAttentionCode disponga de los 1,222 registros
         initLocalDatabases();
@@ -886,7 +886,7 @@ html body .mobile-patient-card {
         }
     </script>
     <!-- Script Externa -->
-    <script src="script.js?v=20261105_v673" defer></script>
+    <script src="script.js?v=20261105_v674" defer></script>
 
     <!-- Visor Quirúrgico 3D con Three.js y WebGL -->
     <script type="module">
@@ -916,6 +916,6 @@ html body .mobile-patient-card {
     <script src="chat_ia_asistente.js?v=v602.1012_0730" defer></script>
     <script src="floating_chat_widget.js?v=v602.1012_0730" defer></script>
     <script src="js/webcam_patient_scanner.js?v=v602.1012_0730" defer></script>
-    <script src="cortana_chat.js?v=20261105_v673" defer></script>
+    <script src="cortana_chat.js?v=20261105_v674" defer></script>
 </body>
 </html>
