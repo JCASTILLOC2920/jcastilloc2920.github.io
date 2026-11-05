@@ -3,7 +3,7 @@
     'use strict';
 
     // Guardián de versión y auto-purga para sincronización multi-dispositivo
-    const APP_BUILD_VERSION = '20261105_v671';
+    const APP_BUILD_VERSION = '20261105_v672';
     const savedVersion = localStorage.getItem('app_version');
     if (savedVersion !== APP_BUILD_VERSION) {
         console.warn(`[PWA Version Guard] Versión previa detectada (${savedVersion} vs ${APP_BUILD_VERSION}). Purgando cachés y sincronizando...`);
@@ -44,7 +44,7 @@
         });
 
         window.addEventListener('load', function() {
-            navigator.serviceWorker.register('sw.js?v=20261105_v671', { scope: './', updateViaCache: 'none' })
+            navigator.serviceWorker.register('sw.js?v=20261105_v672', { scope: './', updateViaCache: 'none' })
                 .then(function(registration) {
                     registration.update().catch(function() {});
                     console.log('[PWA Medical] Service Worker registrado con éxito (v655). Scope:', registration.scope);

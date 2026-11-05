@@ -1,6 +1,6 @@
 // sw.js - Service Worker Médico Ultra-Resiliente y Permisivo (Modo Quirófano)
 // Versión Médico-Quirúrgica 655.0 Futuristic
-const CACHE_NAME = 'reportes-cache-20261105_v671';
+const CACHE_NAME = 'reportes-cache-20261105_v672';
 
 const STATIC_ASSETS = [
     './',
@@ -100,7 +100,7 @@ self.addEventListener('message', (event) => {
     }
 });
 
-// 3. FETCH HANDLER: Stale-While-Revalidate para assets estáticos con bypass estricto para APIs
+// 3. FETCH HANDLER: Optimización Extrema Multi-Dispositivo
 self.addEventListener('fetch', (event) => {
     const request = event.request;
     const url = new URL(request.url);
@@ -121,44 +121,43 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
-        // Estrategia Network-First estricta para HTML / Navegación y Scripts Críticos de Datos
     const isHtmlNavigation = request.mode === 'navigate' || url.pathname.endsWith('.html') || url.pathname.endsWith('/');
-    const isCriticalScript = url.pathname.endsWith('real_supabase_backup.js') || 
-                             url.pathname.endsWith('supabase_config.js') || 
-                             url.pathname.endsWith('db_service.js') || 
-                             url.pathname.endsWith('main.js');
 
-    if (isHtmlNavigation || isCriticalScript) {
+    // A. Navegación HTML: Fast Network con Disyuntor Ultrarrápido de 600ms (Fallback a Caché Inmediata)
+    if (isHtmlNavigation) {
         event.respondWith(
-            fetch(request).then((networkResponse) => {
-                if (networkResponse && (networkResponse.status === 200 || networkResponse.status === 0)) {
-                    const responseClone = networkResponse.clone();
-                    caches.open(CACHE_NAME).then((cache) => {
-                        cache.put(request, responseClone);
-                    });
-                }
-                return networkResponse;
-            }).catch(async () => {
-                const cachedResponse = await caches.match(request);
-                if (cachedResponse) {
-                    return cachedResponse;
-                }
-                if (isHtmlNavigation) {
-                    const fallback = await caches.match('./reportes.html') || await caches.match('./index.html');
-                    if (fallback) return fallback;
+            new Promise((resolve) => {
+                let resolved = false;
+                const timer = setTimeout(async () => {
+                    if (!resolved) {
+                        resolved = true;
+                        const cached = await caches.match(request) || await caches.match('./reportes.html') || await caches.match('./index.html');
+                        if (cached) resolve(cached);
+                    }
+                }, 600);
 
-                    return new Response(
-                        '<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><title>Modo Quirófano Offline</title></head><body style="background:#0f172a;color:#fff;font-family:sans-serif;text-align:center;padding:50px;"><h2>🔬 Conexión Restringida</h2><p>La red no está disponible y el recurso no está precacheado.</p><button onclick="window.location.reload()" style="background:#0284c7;color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;">Reintentar</button></body></html>',
-                        { status: 200, headers: { 'Content-Type': 'text/html; charset=utf-8' } }
-                    );
-                }
-                return new Response('', { status: 200, headers: { 'Content-Type': 'application/javascript' } });
+                fetch(request).then((netRes) => {
+                    if (!resolved && netRes && (netRes.status === 200 || netRes.status === 0)) {
+                        resolved = true;
+                        clearTimeout(timer);
+                        const clone = netRes.clone();
+                        caches.open(CACHE_NAME).then(c => c.put(request, clone)).catch(() => {});
+                        resolve(netRes);
+                    }
+                }).catch(async () => {
+                    if (!resolved) {
+                        resolved = true;
+                        clearTimeout(timer);
+                        const cached = await caches.match(request) || await caches.match('./reportes.html') || await caches.match('./index.html');
+                        if (cached) resolve(cached);
+                    }
+                });
             })
         );
         return;
     }
 
-    // Estrategia Stale-While-Revalidate (O(1) instantáneo desde caché, actualización de red en segundo plano)
+    // B. Assets, Scripts y Base de Datos (real_supabase_backup.js): Stale-While-Revalidate Ultrarrápido (<3ms)
     event.respondWith(
         caches.open(CACHE_NAME).then(async (cache) => {
             const cachedResponse = await cache.match(request);
@@ -177,9 +176,7 @@ self.addEventListener('fetch', (event) => {
 
             try {
                 const networkResponse = await fetchPromise;
-                if (networkResponse) {
-                    return networkResponse;
-                }
+                if (networkResponse) return networkResponse;
             } catch (err) {}
 
             return new Response('', { status: 200, headers: { 'Content-Type': 'text/plain' } });
