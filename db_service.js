@@ -1702,7 +1702,7 @@ export function initLocalDatabases(force = false) {
                     if (!p) return false;
                     const nom = String(p.paciente || '').toUpperCase();
                     const cod = String(p.codAtencion || p.cod_atencion || '').toUpperCase();
-                    return !nom.includes('SIN NOMBRE') && !/26Q-18\d{3}/.test(cod);
+                    return !nom.includes('SIN NOMBRE') && !/26Q-18\d{3}/.test(cod) && !/26Q-18\d{3}/.test(String(p.id || ''));
                 });
             }
         } catch (e) {
