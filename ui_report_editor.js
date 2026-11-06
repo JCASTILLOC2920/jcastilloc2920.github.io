@@ -4014,6 +4014,13 @@ export function populateEditorModal(codAtencion) {
     const restoreDraftPayload = (draft, source = 'LocalStorage') => {
 
         if (!draft || !draft.timestamp) return 0;
+        // Blindaje absoluto: Si el caso es 26Q-383 o ya está firmado/completado oficialmente, purgar borrador obsoleto y no sobrescribir
+        const targetCleanCheck = String(patient.codAtencion || patient.cod_atencion || codAtencion || '').trim().toLowerCase().replace(/[-_\s]/g, '');
+        if (targetCleanCheck === '26q383' || patient.firmado === true || patient.estado === 'Listo' || patient.estado === 'Completado') {
+            try { localStorage.removeItem('active_draft_' + targetCleanCheck); } catch(e){}
+            console.log('[Draft Guard] Caso ' + targetCleanCheck + ' completado/firmado oficialmente. Borrador obsoleto purgado.');
+            return 0;
+        }
 
         let restoredCount = 0;
 
