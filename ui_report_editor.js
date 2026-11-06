@@ -3229,39 +3229,6 @@ export function populateEditorModal(codAtencion) {
         }
     }
 
-    if (false) { || !patient.microDesc || !patient.diagnostico) && typeof window !== 'undefined' && Array.isArray(window.REAL_SUPABASE_PATIENTS)) {
-
-        const bkp = window.REAL_SUPABASE_PATIENTS.find(b => String(b.codAtencion || b.cod_atencion || b.codigo || '').trim().toUpperCase().replace(/[-_\s]/g, '') === pTargetCode);
-
-        if (bkp) {
-
-            if (!patient.macroDesc) patient.macroDesc = bkp.macroDesc || bkp.macro_desc || bkp.descripcion_macro || bkp.macro || '';
-
-            if (!patient.microDesc) patient.microDesc = bkp.microDesc || bkp.micro_desc || bkp.descripcion_micro || bkp.micro || '';
-
-            if (!patient.diagnostico) patient.diagnostico = bkp.diagnostico || bkp.conclusion || bkp.diag || bkp.diagnostico_citologico || '';
-
-            if (!patient.especimen) patient.especimen = bkp.especimen || bkp.muestra || '';
-
-            if (!patient.dni) patient.dni = bkp.dni || '';
-
-            if (!patient.paciente) patient.paciente = bkp.paciente || '';
-
-            if (!patient.nombres) patient.nombres = bkp.nombres || '';
-
-            if (!patient.apellidos) patient.apellidos = bkp.apellidos || '';
-
-            if (!patient.medSolicitante) patient.medSolicitante = bkp.medSolicitante || bkp.med_solicitante || '';
-
-            if (!patient.clinica) patient.clinica = bkp.clinica || '';
-
-            if (!patient.fecRegistro) patient.fecRegistro = bkp.fecRegistro || bkp.fec_registro || '';
-
-            if (!patient.fecEntrega) patient.fecEntrega = bkp.fecEntrega || bkp.fec_entrega || bkp.fecInforme || bkp.fec_informe || '';
-
-        }
-
-    }
 
     
 
@@ -4405,47 +4372,20 @@ if (typeof window !== 'undefined') {
 
 
 export function closeReportEditor() {
-
     window.activePatientCode = null;
-
     editingCodAtencion = null;
-
+    const m = document.getElementById('reportEditorModalOverlay');
+    if (m) {
+        m.classList.remove('active');
+        m.style.display = 'none';
+        document.body.style.overflow = '';
+    }
     if (typeof window.refreshPatientTable === 'function') {
-
-        window.refreshPatientTable();
-
+        try { window.refreshPatientTable(); } catch(e){}
     } else if (typeof applyFilters === 'function') {
-
-        applyFilters(false);
-
+        try { applyFilters(false); } catch(e){}
     }
-
-    if (typeof closeModal === 'function') {
-
-        closeModal('reportEditorModalOverlay');
-
-    } else if (typeof window.closeModal === 'function') {
-
-        window.closeModal('reportEditorModalOverlay');
-
-    } else {
-
-        const m = document.getElementById('reportEditorModalOverlay');
-
-        if (m) {
-
-            m.classList.remove('active');
-
-            m.style.display = 'none';
-
-            document.body.style.overflow = '';
-
-        }
-
-    }
-
 }
-
 window.closeReportEditor = closeReportEditor;
 
 

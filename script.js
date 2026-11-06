@@ -552,8 +552,23 @@ function initScriptApp() {
     /* ==========================================================================
        INTERACCIONES DE SALIDA Y CIERRE (ANIMACION Y REAPERTURA)
        ========================================================================== */
-    function closeModal() {
-        // Si estamos en la vista independiente index.html, Salir debe navegar de vuelta a la lista de reportes
+    function closeModal(modalId) {
+        if (modalId) {
+            const targetModal = document.getElementById(modalId);
+            if (targetModal) {
+                targetModal.classList.remove('active');
+                targetModal.style.display = 'none';
+                if (modalId === 'reportEditorModalOverlay') {
+                    window.activePatientCode = null;
+                    if (typeof window.closeReportEditor === 'function') {
+                        try { window.closeReportEditor(); } catch(e){}
+                    }
+                }
+                document.body.style.overflow = '';
+                return;
+            }
+        }
+        // Si estamos en la vista independiente index.html, Salir debe navegar de vuelta a la lista de reportes index.html, Salir debe navegar de vuelta a la lista de reportes
         const isStandaloneIndex = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/');
         if (isStandaloneIndex) {
             window.location.href = 'reportes.html';
@@ -1816,3 +1831,5 @@ document.addEventListener('keydown', function(e) {
         }
     }
 });
+
+window.closeModal = closeModal;
