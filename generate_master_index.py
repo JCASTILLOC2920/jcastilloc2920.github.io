@@ -1,0 +1,2097 @@
+# -*- coding: utf-8 -*-
+import sys
+import os
+
+HTML_FILE = r"C:\Users\HP\Desktop\repositorio 2\jcastilloc2920.github.io\index.html"
+
+def get_html_content():
+    return '''<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JC PATH LAB | Laboratorio de Anatomía Patológica, Biopsias y Patología Digital WSI 40x en Lima</title>
+    
+    <!-- SEO Meta Tags Supremos -->
+    <meta name="description" content="Laboratorio de Anatomía Patológica y Uropatología en Lima dirigido por el Dr. Joseph C. Castillo Cuenca (CMP 56435 / RNE 029291). Biopsias gástricas, próstata Tru-Cut, piezas oncológicas, patología digital WSI 40x, simulador ImmunoQuery y entrega en 48-72h. Cobertura en todo el Perú.">
+    <meta name="keywords" content="laboratorio anatomia patologica lima, biopsias lima, uropatologia, patologia digital WSI, immunoquery, patologo lima norte, biopsia prostata tru-cut, papanicolaou lima, biopsia gastrica, doctor joseph castillo cuenca, jc path lab">
+    <meta name="author" content="Dr. Joseph C. Castillo Cuenca">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://jcastilloc2920.github.io/">
+
+    <!-- Open Graph / Redes Sociales -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jcastilloc2920.github.io/">
+    <meta property="og:title" content="JC PATH LAB | Innovación en Anatomía Patológica & WSI 40x">
+    <meta property="og:description" content="Diagnósticos patológicos de máxima precisión en 48-72 horas con servidor WSI propio, microscopio digital, trazabilidad quirúrgica y simulador bayesiano ImmunoQuery.">
+    <meta property="og:image" content="https://jcastilloc2920.github.io/assets/fotos_hd/microscopio.jpg">
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#080D1A',
+                        darkCard: '#0F172A',
+                        darkPanel: '#131D31',
+                        clinicalWhite: '#F8FAFC',
+                        cyanCobalt: '#0284C7',
+                        cyanGlow: '#38BDF8',
+                        emeraldLive: '#10B981',
+                        purpleHemato: '#7C3AED',
+                        goldBanner: '#F59E0B'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Menlo', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts & FontAwesome & AOS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Schema.org JSON-LD para MedicalBusiness & PathologyLab (E-E-A-T Google) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "MedicalBusiness",
+          "@id": "https://jcastilloc2920.github.io/#organization",
+          "name": "JC PATH LAB - Laboratorio de Anatomía Patológica & Patología Digital WSI",
+          "url": "https://jcastilloc2920.github.io/",
+          "logo": "https://jcastilloc2920.github.io/assets/fotos_hd/microscopio.jpg",
+          "image": "https://jcastilloc2920.github.io/assets/fotos_hd/area_de_macroscopia.jpg",
+          "description": "Centro especializado en diagnóstico histopatológico, uropatología, biopsias por punción, piezas oncológicas complejas y patología digital WSI 40x.",
+          "telephone": "+51986396733",
+          "email": "jclab59@gmail.com",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Jardines de Chillón Mz M2 Lote 13",
+            "addressLocality": "Puente Piedra / Los Olivos",
+            "addressRegion": "Lima",
+            "addressCountry": "PE"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -11.8654,
+            "longitude": -77.0782
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+              "opens": "07:30",
+              "closes": "20:00"
+            }
+          ],
+          "priceRange": "$$"
+        },
+        {
+          "@type": "Physician",
+          "@id": "https://jcastilloc2920.github.io/#director",
+          "name": "Dr. Joseph C. Castillo Cuenca",
+          "jobTitle": "Director Médico y Médico Especialista en Anatomía Patológica",
+          "medicalSpecialty": "Pathology",
+          "identifier": [
+            {
+              "@type": "PropertyValue",
+              "name": "CMP",
+              "value": "56435"
+            },
+            {
+              "@type": "PropertyValue",
+              "name": "RNE",
+              "value": "029291"
+            }
+          ],
+          "worksFor": {
+            "@id": "https://jcastilloc2920.github.io/#organization"
+          }
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        /* Estilos Base & Glassmorphism Clínico */
+        body {
+            background-color: #080D1A;
+            color: #E2E8F0;
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.82);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(19, 29, 49, 0.70);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-glow:hover {
+            border-color: rgba(2, 132, 199, 0.5);
+            box-shadow: 0 12px 35px -10px rgba(2, 132, 199, 0.35);
+        }
+        .pulse-emerald {
+            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            animation: pulse-green 2s infinite;
+        }
+        @keyframes pulse-green {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        /* WSI Deep Zoom Engine Styles */
+        .wsi-viewport {
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: none;
+            cursor: grab;
+            background: radial-gradient(circle at center, #111827 0%, #030712 100%);
+        }
+        .wsi-viewport:active {
+            cursor: grabbing;
+        }
+        .wsi-layer-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform-origin: 0 0;
+            will-change: transform;
+            transition: transform 0.04s linear;
+        }
+        .wsi-minimap-box {
+            position: absolute;
+            border: 2px solid #38BDF8;
+            background: rgba(56, 189, 248, 0.25);
+            pointer-events: auto;
+            cursor: move;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+        }
+
+        /* Bounding boxes & Heatmap */
+        .ai-annotation-box {
+            position: absolute;
+            border: 2px solid;
+            border-radius: 4px;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .ai-annotation-box::after {
+            content: attr(data-label);
+            position: absolute;
+            top: -22px;
+            left: -2px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 3px;
+            white-space: nowrap;
+        }
+        .ai-box-green {
+            border-color: #10B981;
+            background: rgba(16, 185, 129, 0.18);
+        }
+        .ai-box-green::after {
+            background: #10B981;
+            color: #030712;
+        }
+        .ai-box-amber {
+            border-color: #F59E0B;
+            background: rgba(245, 158, 11, 0.18);
+        }
+        .ai-box-amber::after {
+            background: #F59E0B;
+            color: #030712;
+        }
+        .ai-box-purple {
+            border-color: #A855F7;
+            background: rgba(168, 85, 247, 0.18);
+        }
+        .ai-box-purple::after {
+            background: #A855F7;
+            color: #FFFFFF;
+        }
+
+        /* Heatmap Canvas */
+        .ai-heatmap-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            opacity: 0.65;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Pipeline / Trazabilidad */
+        .step-active {
+            border-color: #0284C7 !important;
+            background: rgba(2, 132, 199, 0.18) !important;
+            box-shadow: 0 0 25px -5px rgba(2, 132, 199, 0.5);
+        }
+        .step-pulse-dot {
+            animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        /* ImmunoQuery Bars */
+        .bayes-progress-bar {
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.4s ease;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080D1A;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E293B;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0284C7;
+        }
+    </style>
+</head>
+<body class="bg-darkBg text-slate-100 font-sans selection:bg-cyanCobalt selection:text-white antialiased overflow-x-hidden">
+
+    <!-- 0. TOP BANNER SUPREMO DE ESTADO TÉCNICO & PROTOCOLO -->
+    <div class="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border-b border-slate-800/80 text-[11px] py-1.5 px-4 hidden md:block">
+        <div class="max-w-7xl mx-auto flex justify-between items-center text-slate-400 font-mono">
+            <div class="flex items-center gap-4">
+                <span class="flex items-center gap-1.5 text-cyan-400">
+                    <i class="fa-solid fa-microscope text-xs"></i>
+                    <span>PATOLOGÍA DIGITAL SOBERANA 40x</span>
+                </span>
+                <span class="text-slate-600">|</span>
+                <span class="flex items-center gap-1.5 text-emerald-400">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-emerald"></span>
+                    <span>SERVIDOR WSI FÍSICO LOCAL: ONLINE (0.25 µm/px)</span>
+                </span>
+                <span class="text-slate-600">|</span>
+                <span class="text-slate-400">CMP 56435 &bull; RNE 029291</span>
+            </div>
+            <div class="flex items-center gap-5 text-slate-300">
+                <a href="tel:+51986396733" class="hover:text-cyan-400 transition-colors">
+                    <i class="fa-solid fa-phone text-emerald-400 mr-1"></i> +51 986 396 733
+                </a>
+                <span class="text-slate-600">|</span>
+                <span class="text-slate-400"><i class="fa-solid fa-clock text-cyan-400 mr-1"></i> Lun-Sáb: 07:30 - 20:00</span>
+                <span class="text-slate-600">|</span>
+                <a href="verificar_informe.html" class="text-purple-400 hover:text-purple-300 font-bold transition-colors">
+                    <i class="fa-solid fa-shield-halved mr-1"></i> Validar Informe QR
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 1. STICKY NAVBAR INTELIGENTE CON STATUS WSI -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-slate-800/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo & Indicador Soberano -->
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-cyanCobalt via-purpleHemato to-blue-600 p-[2px] shadow-lg shadow-cyanCobalt/25 group-hover:scale-105 transition-transform">
+                    <div class="w-full h-full bg-darkBg rounded-[10px] flex items-center justify-center">
+                        <i class="fa-solid fa-microscope text-cyan-400 text-lg"></i>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-cyan-300">JC PATH LAB</span>
+                        <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-emerald"></span>
+                            WSI 40x Live
+                        </span>
+                    </div>
+                    <p class="text-[10px] text-slate-400 font-medium tracking-wide">DR. JOSEPH C. CASTILLO CUENCA &bull; ANATOMÍA PATOLÓGICA</p>
+                </div>
+            </a>
+
+            <!-- Menú Central Completo -->
+            <nav class="hidden lg:flex items-center gap-5 text-xs font-semibold text-slate-300">
+                <a href="#inicio" class="hover:text-cyan-400 text-cyan-400 font-bold transition-colors">Inicio</a>
+                <a href="#wsi-viewer" class="hover:text-cyan-400 transition-colors flex items-center gap-1">
+                    <i class="fa-solid fa-expand text-cyan-400 text-[10px]"></i> Visor WSI 40x
+                </a>
+                <a href="#trazabilidad" class="hover:text-cyan-400 transition-colors flex items-center gap-1">
+                    <i class="fa-solid fa-route text-emerald-400 text-[10px]"></i> Trazabilidad Bóveda
+                </a>
+                <a href="#immunoquery" class="hover:text-cyan-400 transition-colors flex items-center gap-1">
+                    <i class="fa-solid fa-dna text-purple-400 text-[10px]"></i> ImmunoQuery IA
+                </a>
+                <a href="#tarifario" class="hover:text-cyan-400 transition-colors">Servicios 48h</a>
+                <a href="convenios-clinicas-provincias.html" class="hover:text-cyan-400 transition-colors">Provincias</a>
+                <a href="traductor-informes-biopsia.html" class="hover:text-cyan-400 transition-colors">Segunda Opinión</a>
+            </nav>
+
+            <!-- Acciones Rápidas -->
+            <div class="flex items-center gap-2.5 sm:gap-3">
+                <a href="solicitud.html" class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all">
+                    <i class="fa-solid fa-hospital-user text-cyan-400"></i> Portal Médicos
+                </a>
+                <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20cotizar%20un%20estudio%20de%20biopsia" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-extrabold bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white shadow-lg shadow-emerald-600/30 transition-all hover:scale-105">
+                    <i class="fa-brands fa-whatsapp text-sm"></i> Cotizar WhatsApp
+                </a>
+                <!-- Mobile button -->
+                <button type="button" onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-lg bg-slate-800 text-slate-300 hover:text-white" aria-label="Menú móvil">
+                    <i class="fa-solid fa-bars text-base"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Container -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-slate-950/95 border-b border-slate-800 px-4 py-4 space-y-3 text-sm">
+            <a href="#inicio" onclick="toggleMobileMenu()" class="block text-cyan-400 font-bold">Inicio</a>
+            <a href="#wsi-viewer" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-white">Visor WSI 40x Deep Zoom</a>
+            <a href="#trazabilidad" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-white">Trazabilidad Bóveda Quirúrgica</a>
+            <a href="#immunoquery" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-white">ImmunoQuery IA Soberano</a>
+            <a href="#tarifario" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-white">Cartera de Servicios & Tarifario</a>
+            <a href="biopsia-prostata-urologia.html" class="block text-slate-300 hover:text-white">Biopsia de Próstata Tru-Cut</a>
+            <a href="biopsia-gastrica-endoscopia.html" class="block text-slate-300 hover:text-white">Biopsia Gástrica & Endoscópica</a>
+            <a href="inmunohistoquimica-lima.html" class="block text-slate-300 hover:text-white">Inmunohistoquímica Especializada</a>
+            <a href="convenios-clinicas-provincias.html" class="block text-slate-300 hover:text-white">Convenios & Provincias 72h</a>
+            <a href="traductor-informes-biopsia.html" class="block text-slate-300 hover:text-white">Traductor / Segunda Opinión</a>
+            <a href="solicitud.html" class="block text-slate-300 hover:text-white">Portal Cirujanos / Clínicas</a>
+            <a href="verificar_informe.html" class="block text-purple-400 font-bold">Verificar Informe Oficial con QR</a>
+        </div>
+    </header>
+
+    <!-- 2. HERO SECTION CON CONMUTADOR INTERACTIVO PACIENTE / CIRUJANO -->
+    <section id="inicio" class="relative pt-14 pb-20 overflow-hidden">
+        <!-- Luces de fondo y mesh gradient -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[400px] bg-gradient-to-tr from-cyanCobalt/20 via-purpleHemato/15 to-transparent blur-[140px] pointer-events-none -z-10"></div>
+        <div class="absolute -top-20 -left-20 w-96 h-96 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
+            
+            <!-- Badge de Autoridad -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold bg-slate-900/90 border border-slate-700/80 text-cyan-300 mb-6 shadow-inner">
+                <i class="fa-solid fa-certificate text-goldBanner"></i>
+                Único Laboratorio en Perú con Servidor Físico WSI 40x y Entrega Certificada en 48-72h
+            </div>
+
+            <!-- Titular H1 Supremo -->
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white max-w-5xl mx-auto leading-tight sm:leading-none">
+                Precisión Diagnóstica en <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400">Anatomía Patológica</span> & Patología Digital WSI
+            </h1>
+            
+            <p class="mt-6 text-base sm:text-xl text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed">
+                Dirigido por el <strong class="text-white font-semibold">Dr. Joseph C. Castillo Cuenca</strong> (CMP 56435 / RNE 029291). Certeza médica incuestionable con microscopía digital gigapíxel a 40x, trazabilidad de muestras sin pérdida y copilotaje bayesiano de inmunohistoquímica.
+            </p>
+
+            <!-- METRIC STRIP SUPREMO -->
+            <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto">
+                <div class="glass-card rounded-xl p-3 border-slate-800">
+                    <span class="block text-xl sm:text-2xl font-extrabold text-cyan-400 font-mono">+18,400</span>
+                    <span class="text-[11px] text-slate-400">Biopsias Diagnosticadas</span>
+                </div>
+                <div class="glass-card rounded-xl p-3 border-slate-800">
+                    <span class="block text-xl sm:text-2xl font-extrabold text-emerald-400 font-mono">0.25 µm/px</span>
+                    <span class="text-[11px] text-slate-400">Escaneo WSI a 40x Real</span>
+                </div>
+                <div class="glass-card rounded-xl p-3 border-slate-800">
+                    <span class="block text-xl sm:text-2xl font-extrabold text-purple-400 font-mono">48h - 72h</span>
+                    <span class="text-[11px] text-slate-400">Tiempo de Entrega Rápido</span>
+                </div>
+                <div class="glass-card rounded-xl p-3 border-slate-800">
+                    <span class="block text-xl sm:text-2xl font-extrabold text-amber-400 font-mono">100% Soberano</span>
+                    <span class="text-[11px] text-slate-400">Bóveda Criptográfica Local</span>
+                </div>
+            </div>
+
+            <!-- CONMUTADOR INTERACTIVO HERO (Paciente vs Médico) -->
+            <div class="mt-10 max-w-3xl mx-auto">
+                <div class="inline-flex p-1.5 rounded-xl bg-slate-900/90 border border-slate-800 shadow-2xl mb-6">
+                    <button type="button" id="tabHeroPaciente" onclick="switchHeroTab('paciente')" class="px-6 py-3 rounded-lg text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-2.5 bg-gradient-to-r from-cyanCobalt to-blue-600 text-white shadow-lg">
+                        <i class="fa-solid fa-heart-pulse"></i> Soy Paciente / Familiar
+                    </button>
+                    <button type="button" id="tabHeroMedico" onclick="switchHeroTab('medico')" class="px-6 py-3 rounded-lg text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-2.5 text-slate-400 hover:text-white">
+                        <i class="fa-solid fa-user-doctor"></i> Soy Cirujano / Clínica / Urólogo
+                    </button>
+                </div>
+
+                <!-- Contenido A: Paciente -->
+                <div id="contentHeroPaciente" class="glass-panel rounded-2xl p-6 sm:p-10 text-left transition-all duration-300">
+                    <div class="flex flex-col md:flex-row gap-6 sm:gap-8 items-center justify-between">
+                        <div class="space-y-4 max-w-xl">
+                            <span class="px-3 py-1 rounded-md text-xs font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Acompañamiento Humano & Certeza Médica</span>
+                            <h3 class="text-xl sm:text-2xl font-bold text-white">Sabemos que detrás de cada biopsia hay una familia esperando respuestas claras.</h3>
+                            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                                No te preocupes por el trámite técnico. Recogemos tu frasco con formol en cualquier distrito de Lima o te orientamos paso a paso para enviarlo seguro vía Olva Courier desde provincias. Recibe tu informe oficial firmado digitalmente en 48 a 72 horas con explicación comprensible.
+                            </p>
+                            <div class="grid grid-cols-3 gap-2 sm:gap-3 pt-2 text-[11px] sm:text-xs">
+                                <div class="bg-slate-800/60 p-2.5 sm:p-3 rounded-lg border border-slate-700/50">
+                                    <strong class="block text-cyan-400 mb-0.5">1. En Formol 10%</strong>
+                                    Conserva el frasco sellado.
+                                </div>
+                                <div class="bg-slate-800/60 p-2.5 sm:p-3 rounded-lg border border-slate-700/50">
+                                    <strong class="block text-emerald-400 mb-0.5">2. Envío o Recojo</strong>
+                                    Motorizado a domicilio.
+                                </div>
+                                <div class="bg-slate-800/60 p-2.5 sm:p-3 rounded-lg border border-slate-700/50">
+                                    <strong class="block text-purple-400 mb-0.5">3. Informe en 48-72h</strong>
+                                    PDF interactivo con fotos HD.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-shrink-0 flex flex-col gap-3 w-full md:w-auto">
+                            <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20tengo%20una%20orden%20de%20biopsia%20y%20deseo%20saber%20el%20costo%20y%20recojo" target="_blank" class="px-6 py-4 rounded-xl text-center font-extrabold bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white shadow-xl shadow-emerald-500/25 flex items-center justify-center gap-3 transition-transform hover:scale-105">
+                                <i class="fa-brands fa-whatsapp text-xl"></i> Cotizar Biopsia Inmediata
+                            </a>
+                            <span class="text-[11px] text-slate-400 text-center"><i class="fa-solid fa-truck-medical text-cyan-400"></i> Servicio de recojo motorizado en Lima</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contenido B: Médico / Clínica (Inicialmente oculto) -->
+                <div id="contentHeroMedico" class="glass-panel rounded-2xl p-6 sm:p-10 text-left hidden transition-all duration-300">
+                    <div class="flex flex-col md:flex-row gap-6 sm:gap-8 items-center justify-between">
+                        <div class="space-y-4 max-w-xl">
+                            <span class="px-3 py-1 rounded-md text-xs font-bold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Alianza B2B para Clínicas, Urólogos & Cirujanos</span>
+                            <h3 class="text-xl sm:text-2xl font-bold text-white">Despacho Digital Automatizado, Trazabilidad QR y Visor 360°.</h3>
+                            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                                Integramos a su centro quirúrgico o clínica privada con nuestra plataforma web soberana: descarga de informes en PDF con fotos microscópicas de calidad atlas, estudio fotográfico de márgenes quirúrgicos y correlación clínico-patológica directa con el Dr. Castillo.
+                            </p>
+                            <div class="grid grid-cols-3 gap-2 sm:gap-3 pt-2 text-[11px] sm:text-xs">
+                                <div class="bg-slate-800/60 p-2.5 sm:p-3 rounded-lg border border-slate-700/50">
+                                    <strong class="block text-indigo-400 mb-0.5">App Quirúrgica</strong>
+                                    Notificación al celular al firmarse.
+                                </div>
+                                <div class="bg-slate-800/60 p-2.5 sm:p-3 rounded-lg border border-slate-700/50">
+                                    <strong class="block text-cyan-400 mb-0.5">Visor 360°</strong>
+                                    Tinta china y márgenes oncológicos.
+                                </div>
+                                <div class="bg-slate-800/60 p-2.5 sm:p-3 rounded-lg border border-slate-700/50">
+                                    <strong class="block text-goldBanner mb-0.5">Convenios 48h</strong>
+                                    Tarifario preferencial B2B.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-shrink-0 flex flex-col gap-3 w-full md:w-auto">
+                            <a href="https://wa.me/51986396733?text=Estimado%20Dr.%20Castillo,%20represento%20a%20una%20cl%C3%ADnica/cirujano%20y%20deseamos%20convenio%20de%20biopsias" target="_blank" class="px-6 py-4 rounded-xl text-center font-extrabold bg-gradient-to-r from-cyanCobalt to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white shadow-xl shadow-cyanCobalt/25 flex items-center justify-center gap-3 transition-transform hover:scale-105">
+                                <i class="fa-solid fa-file-contract text-lg"></i> Solicitar Convenio Clínico
+                            </a>
+                            <span class="text-[11px] text-slate-400 text-center"><i class="fa-solid fa-shield-halved text-emerald-400"></i> Secreto médico & Blindaje legal total</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 3. MÓDULO INTERACTIVO 1: VISOR WHOLE SLIDE IMAGING (WSI) 40x CON IA       -->
+    <!-- ========================================================================= -->
+    <section id="wsi-viewer" class="py-20 relative bg-slate-950/90 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-10" data-aos="fade-up">
+                <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-cyanCobalt/15 text-cyan-400 border border-cyan-500/30 uppercase tracking-wider inline-flex items-center gap-1.5">
+                    <i class="fa-solid fa-microchip"></i> Patología Digital Soberana
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3">
+                    Visor Interactivo Whole Slide Imaging (WSI) 40x
+                </h2>
+                <p class="text-slate-300 mt-3 text-sm sm:text-base leading-relaxed">
+                    Navega láminas virtuales gigapíxel tal como lo hace el patólogo en el microscopio digital. Arrastra para desplazarte, usa la rueda o el slider para hacer <strong>Deep Zoom hasta 40x</strong> y activa el copilotaje algorítmico de IA en tiempo real.
+                </p>
+            </div>
+
+            <!-- CONSOLA DIGITAL WSI -->
+            <div class="glass-panel rounded-3xl p-4 sm:p-6 border-cyanCobalt/30 shadow-2xl relative" data-aos="fade-up">
+                
+                <!-- Barra Superior de la Consola: Selector de Casos y Estatus -->
+                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 pb-4 border-b border-slate-800">
+                    
+                    <!-- Píldoras de Casos Clínicos Reales -->
+                    <div class="flex flex-wrap items-center gap-2 w-full lg:w-auto">
+                        <span class="text-xs font-bold text-slate-400 mr-1"><i class="fa-solid fa-folder-open text-cyan-400"></i> CASO:</span>
+                        <button type="button" onclick="loadWsiCase('prostata')" id="btnCaseProstata" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-cyanCobalt text-white shadow-md transition-all flex items-center gap-1.5">
+                            <i class="fa-solid fa-vial"></i> <span>Próstata Tru-Cut (Gleason 4+3)</span>
+                        </button>
+                        <button type="button" onclick="loadWsiCase('gastrica')" id="btnCaseGastrica" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all flex items-center gap-1.5">
+                            <i class="fa-solid fa-bacterium"></i> <span>Gástrica (Adenocarcinoma)</span>
+                        </button>
+                        <button type="button" onclick="loadWsiCase('renal')" id="btnCaseRenal" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all flex items-center gap-1.5">
+                            <i class="fa-solid fa-kidneys"></i> <span>Renal (ccRCC Células Claras)</span>
+                        </button>
+                    </div>
+
+                    <!-- Metadatos de la Estación Digital -->
+                    <div class="flex items-center gap-3 text-[11px] font-mono text-slate-400">
+                        <span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-emerald-400 flex items-center gap-1">
+                            <i class="fa-solid fa-circle-check"></i> Escáner 40x Físico
+                        </span>
+                        <span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-cyan-300">
+                            Resolución: 0.25 µm/px
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Barra de Controles del Visor (Aumentos, IA y Herramientas) -->
+                <div class="flex flex-wrap items-center justify-between gap-3 py-3 text-xs border-b border-slate-800/80 bg-slate-900/40 px-2 rounded-lg my-3">
+                    
+                    <!-- Botones de Aumento Preset -->
+                    <div class="flex items-center gap-1 sm:gap-1.5">
+                        <span class="text-slate-400 text-[11px] font-bold mr-1 hidden sm:inline">AUMENTO:</span>
+                        <button type="button" onclick="setWsiZoom(1.0)" class="px-2.5 py-1 rounded font-mono font-bold bg-slate-800 hover:bg-cyanCobalt text-slate-200 hover:text-white transition-colors">1x</button>
+                        <button type="button" onclick="setWsiZoom(4.0)" class="px-2.5 py-1 rounded font-mono font-bold bg-slate-800 hover:bg-cyanCobalt text-slate-200 hover:text-white transition-colors">4x</button>
+                        <button type="button" onclick="setWsiZoom(10.0)" class="px-2.5 py-1 rounded font-mono font-bold bg-slate-800 hover:bg-cyanCobalt text-slate-200 hover:text-white transition-colors">10x</button>
+                        <button type="button" onclick="setWsiZoom(20.0)" class="px-2.5 py-1 rounded font-mono font-bold bg-slate-800 hover:bg-cyanCobalt text-slate-200 hover:text-white transition-colors">20x</button>
+                        <button type="button" onclick="setWsiZoom(40.0)" class="px-2.5 py-1 rounded font-mono font-bold bg-gradient-to-r from-purpleHemato to-indigo-600 text-white shadow-md">40x Ultra</button>
+                    </div>
+
+                    <!-- Slider de Zoom Continuo -->
+                    <div class="flex items-center gap-2 flex-1 max-w-[200px] sm:max-w-xs">
+                        <i class="fa-solid fa-magnifying-glass-minus text-slate-400 text-xs"></i>
+                        <input type="range" id="wsiZoomSlider" min="1" max="40" step="0.5" value="1" oninput="onWsiSliderChange(this.value)" class="w-full accent-cyan-400 cursor-pointer">
+                        <i class="fa-solid fa-magnifying-glass-plus text-cyan-400 text-xs"></i>
+                        <span id="labelZoomValue" class="font-mono text-cyan-400 font-bold min-w-[45px] text-right">1.0x</span>
+                    </div>
+
+                    <!-- Conmutadores de Capas de Inteligencia Artificial -->
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button type="button" id="btnToggleAiBoxes" onclick="toggleWsiAiBoxes()" class="px-3 py-1 rounded-lg font-bold text-[11px] bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all flex items-center gap-1.5">
+                            <i class="fa-solid fa-draw-polygon text-emerald-400"></i>
+                            <span>Atipia & Mitosis</span>
+                        </button>
+                        <button type="button" id="btnToggleAiHeatmap" onclick="toggleWsiAiHeatmap()" class="px-3 py-1 rounded-lg font-bold text-[11px] bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all flex items-center gap-1.5">
+                            <i class="fa-solid fa-fire-flame-curved text-amber-400"></i>
+                            <span>Heatmap Densidad</span>
+                        </button>
+                        <button type="button" onclick="resetWsiView()" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors" title="Centrar Lámina">
+                            <i class="fa-solid fa-crosshairs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- EL VIEWPORT INTERACTIVO GIGAPÍXEL -->
+                <div id="wsiViewportContainer" class="wsi-viewport h-[450px] sm:h-[540px] rounded-2xl border border-slate-700 relative overflow-hidden">
+                    
+                    <!-- Capa Móvil de la Lámina -->
+                    <div id="wsiSlideLayer" class="wsi-layer-slide w-full h-full flex items-center justify-center">
+                        <img id="wsiSlideImg" src="wsi_slides/biopsia_prostatica_gleason.webp" alt="Lámina Histológica WSI" class="max-w-none w-full h-full object-contain pointer-events-none transition-none" draggable="false">
+                        
+                        <!-- Capa de Inferencia IA: Bounding Boxes -->
+                        <div id="wsiAiAnnotationsLayer" class="absolute inset-0 pointer-events-none hidden">
+                            <!-- Bounding Boxes dinámicas según caso -->
+                            <div class="ai-annotation-box ai-box-amber" style="top: 28%; left: 32%; width: 22%; height: 26%;" data-label="Patrón 4 Cribiforme (Gleason 4) - 98.4%"></div>
+                            <div class="ai-annotation-box ai-box-green" style="top: 62%; left: 54%; width: 14%; height: 18%;" data-label="Infiltración Perineural - 94.2%"></div>
+                            <div class="ai-annotation-box ai-box-purple" style="top: 42%; left: 70%; width: 10%; height: 12%;" data-label="Mitosis Atípica - 97.8%"></div>
+                        </div>
+
+                        <!-- Capa de Inferencia IA: Heatmap Canvas -->
+                        <canvas id="wsiHeatmapCanvas" class="ai-heatmap-canvas hidden"></canvas>
+                    </div>
+
+                    <!-- HUD Superior: Telemetría del Patólogo en Vivo -->
+                    <div class="absolute top-3 left-3 bg-slate-950/85 backdrop-blur-md border border-slate-800 p-2.5 rounded-xl font-mono text-[11px] text-slate-300 space-y-1 shadow-lg pointer-events-none z-20">
+                        <div class="flex items-center gap-2 text-cyan-400 font-bold">
+                            <i class="fa-solid fa-compass"></i>
+                            <span id="hudCoords">PLATINA: X: 14,820 µm | Y: 08,310 µm</span>
+                        </div>
+                        <div class="text-slate-400 text-[10px] flex items-center gap-3">
+                            <span>AUMENTO: <strong id="hudZoom" class="text-white">1.0x</strong></span>
+                            <span>ÓPTICA: <strong class="text-emerald-400">Plan-Apo 40x NA 0.95</strong></span>
+                        </div>
+                        <div class="text-slate-400 text-[10px] flex items-center gap-3 pt-0.5">
+                            <span>CÉLULAS EN CAMPO: <strong id="hudCells" class="text-purple-300">1,240</strong></span>
+                            <span>ÍNDICE N/C: <strong id="hudNcRatio" class="text-amber-400">38% (Atípico)</strong></span>
+                        </div>
+                    </div>
+
+                    <!-- Badge de Guía de Uso Rápido -->
+                    <div class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-slate-800 text-[10px] text-slate-300 hidden sm:flex items-center gap-2 pointer-events-none z-20">
+                        <i class="fa-solid fa-computer-mouse text-cyan-400"></i>
+                        <span>Arrastra para navegar &bull; Rueda para Deep Zoom</span>
+                    </div>
+
+                    <!-- Escala Dinámica en Micras (Scale Bar) -->
+                    <div class="absolute bottom-3 left-3 bg-slate-950/90 border border-slate-800 px-3 py-1.5 rounded-lg font-mono text-[10px] text-slate-300 flex items-center gap-2 z-20 pointer-events-none">
+                        <div class="h-1.5 bg-white border border-slate-900 rounded-sm" id="wsiScaleBarLine" style="width: 80px;"></div>
+                        <span id="wsiScaleBarText">250 µm</span>
+                    </div>
+
+                    <!-- MINIMAP RADAR INTERACTIVO -->
+                    <div class="absolute bottom-3 right-3 w-32 h-24 bg-slate-950/90 rounded-xl border border-slate-700/80 overflow-hidden shadow-2xl z-20">
+                        <div class="w-full h-full relative">
+                            <img id="wsiMinimapImg" src="wsi_slides/biopsia_prostatica_gleason.webp" alt="Minimap WSI" class="w-full h-full object-cover opacity-60">
+                            <!-- Marco rojo/cian de posición del viewport -->
+                            <div id="wsiMinimapBox" class="wsi-minimap-box" style="top: 0; left: 0; width: 100%; height: 100%;"></div>
+                        </div>
+                        <div class="absolute top-1 left-1.5 text-[8px] font-mono text-cyan-400 font-bold bg-slate-950/80 px-1 rounded">RADAR</div>
+                    </div>
+
+                </div>
+
+                <!-- FICHA DIAGNÓSTICA OFICIAL DEL CASO (Cambia al alternar casos) -->
+                <div id="wsiCaseDetailsBox" class="mt-4 p-4 rounded-2xl bg-slate-900/80 border border-slate-800 text-xs">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-3">
+                        <div class="space-y-1">
+                            <div class="flex items-center gap-2">
+                                <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-cyanCobalt/20 text-cyan-300 border border-cyanCobalt/40" id="caseBadgeId">CASO: 26Q-URO-849</span>
+                                <h4 class="text-sm font-extrabold text-white" id="caseTitle">Biopsia de Próstata por Punción Tru-Cut (12 Cilindros)</h4>
+                            </div>
+                            <p class="text-slate-300" id="caseDiagnosis">
+                                <strong class="text-white">Diagnóstico Histológico:</strong> Adenocarcinoma Acinar de Próstata, Score Gleason 4+3 = 7 (Patrón 4 cribiforme 65%, Patrón 3 35%), Grupo Grado ISUP 3. Invasión perineural focal observada en cilindro apical derecho.
+                            </p>
+                        </div>
+                        <div class="flex-shrink-0 flex items-center gap-2">
+                            <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20consultar%20sobre%20el%20estudio%20de%20Biopsia%20de%20Pr%C3%B3stata%20Tru-Cut" target="_blank" class="px-4 py-2 rounded-lg font-bold bg-cyanCobalt hover:bg-sky-500 text-white transition-colors flex items-center gap-1.5">
+                                <i class="fa-brands fa-whatsapp"></i> Consultar este Estudio
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 4. MÓDULO INTERACTIVO 2: TRAZABILIDAD QUIRÚRGICA & BÓVEDA SOBERANA       -->
+    <!-- ========================================================================= -->
+    <section id="trazabilidad" class="py-24 relative bg-slate-900/40 border-t border-slate-800 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+                <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 uppercase tracking-wider inline-flex items-center gap-1.5">
+                    <i class="fa-solid fa-shield-halved"></i> Cadena de Custodia Total
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3">
+                    Trazabilidad de Informes & Bóveda Digital Soberana
+                </h2>
+                <p class="text-slate-300 mt-3 text-sm sm:text-base leading-relaxed">
+                    Visualiza el recorrido milimétrico de la muestra biológica: desde el frasco rotulado en quirófano hasta el cassette milimetrado y la bóveda digital con custodia legal de 20 años sin pérdida física.
+                </p>
+            </div>
+
+            <!-- BOTONES DE CONTROL DE LA ANIMACIÓN DE TRAZABILIDAD -->
+            <div class="flex justify-center items-center gap-3 mb-10" data-aos="fade-up">
+                <button type="button" id="btnTourTrace" onclick="toggleTraceAutoTour()" class="px-5 py-2.5 rounded-xl font-extrabold text-xs bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white shadow-lg shadow-emerald-500/25 flex items-center gap-2 transition-all">
+                    <i class="fa-solid fa-play" id="iconTourTrace"></i> <span id="labelTourTrace">Reproducir Recorrido Guiado</span>
+                </button>
+                <button type="button" onclick="openTraceAuditModal()" class="px-4 py-2.5 rounded-xl font-bold text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center gap-2 transition-all">
+                    <i class="fa-solid fa-fingerprint text-cyan-400"></i> Simular Auditoría Criptográfica SHA-256
+                </button>
+            </div>
+
+            <!-- INFOGRAFÍA DE 5 ETAPAS INTERACTIVAS -->
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4 relative" data-aos="fade-up">
+                
+                <!-- Etapa 1: Quirófano -->
+                <div onclick="selectTraceStep(1)" id="traceCard1" class="glass-card rounded-2xl p-5 border-cyanCobalt/60 step-active cursor-pointer transition-all hover:scale-[1.02] flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="w-7 h-7 rounded-full bg-cyanCobalt/30 text-cyan-400 font-mono font-bold text-xs flex items-center justify-center border border-cyan-500/40">01</span>
+                            <span class="px-2 py-0.5 rounded text-[9px] font-bold bg-cyan-500/20 text-cyan-300">QUIRÓFANO</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-white mb-2">Recepción & Fijación 10%</h4>
+                        <p class="text-[11px] text-slate-300 leading-relaxed">
+                            Formol neutro al 10% inmediato con isquemia fría &lt; 30 min. Sellado hermético con código único de paciente.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-800 text-[10px] text-emerald-400 flex items-center gap-1">
+                        <i class="fa-solid fa-check"></i> Ratio 1:10 v/v verificado
+                    </div>
+                </div>
+
+                <!-- Etapa 2: Talla Macroscópica con Regla Milimetrada -->
+                <div onclick="selectTraceStep(2)" id="traceCard2" class="glass-card rounded-2xl p-5 border-slate-800 cursor-pointer transition-all hover:scale-[1.02] flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="w-7 h-7 rounded-full bg-slate-800 text-slate-300 font-mono font-bold text-xs flex items-center justify-center border border-slate-700">02</span>
+                            <span class="px-2 py-0.5 rounded text-[9px] font-bold bg-amber-500/20 text-amber-300">MACROSCOPÍA</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-white mb-2">Cassette & Regla Milimetrada</h4>
+                        <p class="text-[11px] text-slate-300 leading-relaxed">
+                            Corte milimétrico en estación macro con tinta china de márgenes. Grabado láser DataMatrix indeleble en biocassette.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-800 text-[10px] text-slate-400 flex items-center gap-1">
+                        <i class="fa-solid fa-ruler-combined text-amber-400"></i> Registro foto 360°
+                    </div>
+                </div>
+
+                <!-- Etapa 3: Procesamiento Tisular e Inclusión -->
+                <div onclick="selectTraceStep(3)" id="traceCard3" class="glass-card rounded-2xl p-5 border-slate-800 cursor-pointer transition-all hover:scale-[1.02] flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="w-7 h-7 rounded-full bg-slate-800 text-slate-300 font-mono font-bold text-xs flex items-center justify-center border border-slate-700">03</span>
+                            <span class="px-2 py-0.5 rounded text-[9px] font-bold bg-indigo-500/20 text-indigo-300">HISTOTECNOLOGÍA</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-white mb-2">Inclusión & Microtomía 3 µm</h4>
+                        <p class="text-[11px] text-slate-300 leading-relaxed">
+                            Inclusión en parafina de alta pureza a 56°C. Corte ultrafino en microtomo Leica y tinción automatizada H&E.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-800 text-[10px] text-slate-400 flex items-center gap-1">
+                        <i class="fa-solid fa-microscope text-indigo-400"></i> Control espesor submicrón
+                    </div>
+                </div>
+
+                <!-- Etapa 4: Escaneo WSI & Hash Criptográfico -->
+                <div onclick="selectTraceStep(4)" id="traceCard4" class="glass-card rounded-2xl p-5 border-slate-800 cursor-pointer transition-all hover:scale-[1.02] flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="w-7 h-7 rounded-full bg-slate-800 text-slate-300 font-mono font-bold text-xs flex items-center justify-center border border-slate-700">04</span>
+                            <span class="px-2 py-0.5 rounded text-[9px] font-bold bg-purple-500/20 text-purple-300">DIGITALIZACIÓN</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-white mb-2">Escáner WSI 40x & SHA-256</h4>
+                        <p class="text-[11px] text-slate-300 leading-relaxed">
+                            Digitalización física a 0.25 µm/px. Generación de huella criptográfica SHA-256 inmutable de la lámina virtual.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-800 text-[10px] text-slate-400 flex items-center gap-1">
+                        <i class="fa-solid fa-lock text-purple-400"></i> Hash inalterable
+                    </div>
+                </div>
+
+                <!-- Etapa 5: Bóveda Digital Soberana & Despacho -->
+                <div onclick="selectTraceStep(5)" id="traceCard5" class="glass-card rounded-2xl p-5 border-slate-800 cursor-pointer transition-all hover:scale-[1.02] flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="w-7 h-7 rounded-full bg-slate-800 text-slate-300 font-mono font-bold text-xs flex items-center justify-center border border-slate-700">05</span>
+                            <span class="px-2 py-0.5 rounded text-[9px] font-bold bg-emerald-500/20 text-emerald-300">BÓVEDA</span>
+                        </div>
+                        <h4 class="text-sm font-bold text-white mb-2">Bóveda Soberana & Entrega</h4>
+                        <p class="text-[11px] text-slate-300 leading-relaxed">
+                            Almacenamiento RAID físico local 20 años. Firma digital certificada CMP/RNE y despacho automático en 48-72h.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-800 text-[10px] text-emerald-400 flex items-center gap-1">
+                        <i class="fa-solid fa-file-shield text-emerald-400"></i> PDF Interactivo Listo
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- PANEL DETALLADO DEL PASO SELECCIONADO (Drawer de Inspección) -->
+            <div id="traceStepDetailBox" class="mt-8 glass-panel rounded-2xl p-6 border-cyanCobalt/30 transition-all">
+                <div class="flex flex-col lg:flex-row gap-6 items-center justify-between">
+                    <div class="space-y-2 max-w-2xl">
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-cyanCobalt/20 text-cyan-300 border border-cyanCobalt/40" id="detailStepNum">FASE 01 / 05</span>
+                            <h3 class="text-lg font-bold text-white" id="detailStepTitle">Recepción de la Muestra en Quirófano & Fijación Química Inmediata</h3>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed" id="detailStepDesc">
+                            La muestra tisular extraída por el cirujano es recibida en recipiente estanco con formol neutro tamponado al 10% (pH 7.0 - 7.4). El tiempo de isquemia fría se registra estrictamente (&lt; 30 minutos) para evitar cualquier artefacto de autólisis que comprometa la morfometría celular posterior.
+                        </p>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 text-[11px] font-mono" id="detailStepSpecs">
+                            <div class="p-2 bg-slate-900 rounded border border-slate-800 text-slate-300">
+                                <span class="text-slate-500 block text-[9px]">REACTIVO:</span>
+                                <strong class="text-cyan-300">Formol Buffer 10%</strong>
+                            </div>
+                            <div class="p-2 bg-slate-900 rounded border border-slate-800 text-slate-300">
+                                <span class="text-slate-500 block text-[9px]">TEMP. CONTROL:</span>
+                                <strong class="text-emerald-300">20°C - 22°C Ambiente</strong>
+                            </div>
+                            <div class="p-2 bg-slate-900 rounded border border-slate-800 text-slate-300">
+                                <span class="text-slate-500 block text-[9px]">ETIQUETADO:</span>
+                                <strong class="text-purple-300">DataMatrix Indeleble</strong>
+                            </div>
+                            <div class="p-2 bg-slate-900 rounded border border-slate-800 text-slate-300">
+                                <span class="text-slate-500 block text-[9px]">CONTROL QC:</span>
+                                <strong class="text-goldBanner">APROBADO (Isquemia OK)</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0 flex flex-col gap-2 w-full lg:w-auto">
+                        <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20conocer%20el%20protocolo%20de%20env%C3%ADo%20de%20muestras%20quir%C3%BArgicas" target="_blank" class="px-5 py-3 rounded-xl font-bold text-xs bg-cyanCobalt hover:bg-sky-500 text-white transition-all text-center flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-file-circle-check"></i> Solicitar Frascos con Formol Rotulados
+                        </a>
+                        <span class="text-[10px] text-slate-400 text-center"><i class="fa-solid fa-truck text-emerald-400"></i> Entrega de insumos para clínicas sin costo</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 5. MÓDULO INTERACTIVO 3: IMMUNOQUERY SOBERANO - SIMULADOR BAYESIANO      -->
+    <!-- ========================================================================= -->
+    <section id="immunoquery" class="py-24 relative bg-slate-950 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-12" data-aos="fade-up">
+                <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-purpleHemato/20 text-purple-300 border border-purple-500/40 uppercase tracking-wider inline-flex items-center gap-1.5">
+                    <i class="fa-solid fa-dna"></i> Algoritmo Bayesiano en Tiempo Real
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3">
+                    ImmunoQuery Soberano: Simulador Diagnóstico IHQ
+                </h2>
+                <p class="text-slate-300 mt-3 text-sm sm:text-base leading-relaxed">
+                    Resuelve dilemas patológicos de alta dificultad diagnóstica. Marca los anticuerpos disponibles como positivos (<strong class="text-emerald-400">+</strong>), negativos (<strong class="text-rose-400">-</strong>) o indeterminados (<strong class="text-slate-400">?</strong>) y observa el recálculo dinámico de probabilidades bayesianas.
+                </p>
+            </div>
+
+            <!-- SIMULADOR INTERACTIVO IMMUNOQUERY -->
+            <div class="glass-panel rounded-3xl p-6 sm:p-10 border-purpleHemato/30 shadow-2xl" data-aos="fade-up">
+                
+                <!-- Selector de Dilemas Clínicos -->
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-6 border-b border-slate-800">
+                    <div class="space-y-1">
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-purple-400">Dilema Diagnóstico Activo:</span>
+                        <div class="flex flex-wrap gap-2 pt-1">
+                            <button type="button" onclick="selectImmunoDilemma('renal')" id="btnDilemmaRenal" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-gradient-to-r from-purpleHemato to-indigo-600 text-white shadow-md transition-all">
+                                1. Neoplasia Renal (ccRCC vs Cromófobo vs Oncocitoma)
+                            </button>
+                            <button type="button" onclick="selectImmunoDilemma('pulmon')" id="btnDilemmaPulmon" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all">
+                                2. Pulmón vs Mesotelioma
+                            </button>
+                            <button type="button" onclick="selectImmunoDilemma('prostata')" id="btnDilemmaProstata" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all">
+                                3. Próstata (Adenocarcinoma vs PIN vs Benigno)
+                            </button>
+                        </div>
+                    </div>
+                    <button type="button" onclick="resetImmunoMarkers()" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors flex items-center gap-1.5 self-end sm:self-auto">
+                        <i class="fa-solid fa-rotate-left"></i> Restablecer Panel
+                    </button>
+                </div>
+
+                <!-- CONTENIDO DEL SIMULADOR: MATRIZ DE ANTICUERPOS + BARRAS BAYESIANAS -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-8 items-start">
+                    
+                    <!-- Columna Izquierda: Matriz de Anticuerpos Tri-State -->
+                    <div class="lg:col-span-6 space-y-4">
+                        <div class="flex justify-between items-center mb-1">
+                            <h4 class="text-sm font-extrabold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-flask-vial text-purple-400"></i> Panel de Anticuerpos Específicos:
+                            </h4>
+                            <span class="text-[10px] text-slate-400 font-mono">Haz clic para alternar (+ / - / ?)</span>
+                        </div>
+                        
+                        <!-- Lista dinámica de anticuerpos del dilema actual -->
+                        <div id="immunoAntibodiesList" class="space-y-2">
+                            <!-- Inyectado por JavaScript -->
+                        </div>
+
+                        <!-- Indicador de Stock Físico en Lima -->
+                        <div class="p-3 rounded-xl bg-slate-900/90 border border-slate-800 flex items-center justify-between text-xs">
+                            <span class="text-slate-300 flex items-center gap-1.5">
+                                <i class="fa-solid fa-boxes-stacked text-emerald-400"></i> Disponibilidad en Laboratorio:
+                            </span>
+                            <span class="px-2.5 py-0.5 rounded font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[11px]">
+                                Todos en Stock Físico (72h)
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Columna Derecha: Probabilidades Bayesianas Calculadas en Tiempo Real -->
+                    <div class="lg:col-span-6 bg-slate-900/70 p-6 rounded-2xl border border-slate-800 space-y-5">
+                        <div>
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-xs font-bold uppercase tracking-wider text-cyan-400">Inferencia Bayesiana en Vivo</span>
+                                <span class="text-[10px] font-mono text-slate-400">Algoritmo P(Dx | IHQ)</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white">Probabilidad Diagnóstica Condicionada</h3>
+                        </div>
+
+                        <!-- Barras de Probabilidad Dinámicas -->
+                        <div id="immunoProbabilityBars" class="space-y-4">
+                            <!-- Inyectado por JavaScript -->
+                        </div>
+
+                        <!-- Conclusión Diagnóstica Síntesis del Dr. Castillo -->
+                        <div id="immunoDiagnosticCard" class="p-4 rounded-xl bg-purple-950/40 border border-purple-800/40 text-xs space-y-2 transition-all">
+                            <div class="flex items-center gap-2 text-purple-300 font-bold">
+                                <i class="fa-solid fa-brain"></i>
+                                <span id="immunoTopDxTitle">Diagnóstico Concluyente: Carcinoma de Células Claras</span>
+                            </div>
+                            <p class="text-slate-300 leading-relaxed" id="immunoTopDxDesc">
+                                El fenotipo con reactividad intensa a PAX8 y CD10 junto a negatividad para CK7 descarta con 98% de certeza un Oncocitoma o un Carcinoma Cromófobo. Sugiere correlación con estadificación tumoral Fuhrman/ISUP.
+                            </p>
+                        </div>
+
+                        <!-- Botón de Cotización Directa con el Panel Marcado -->
+                        <div class="pt-2">
+                            <a id="btnImmunoOrderWhatsapp" href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20solicitar%20el%20panel%20de%20inmunohistoqu%C3%ADmica%20para%20neoplasia%20renal" target="_blank" class="w-full py-3 rounded-xl font-extrabold text-xs bg-gradient-to-r from-purpleHemato to-indigo-600 hover:from-purple-600 hover:to-indigo-500 text-white shadow-xl shadow-purpleHemato/25 flex items-center justify-center gap-2 transition-all">
+                                <i class="fa-brands fa-whatsapp text-sm"></i> Solicitar este Panel IHQ por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 6. CATÁLOGO DE SERVICIOS & TARIFARIO TRANSPARENTE                         -->
+    <!-- ========================================================================= -->
+    <section id="tarifario" class="py-24 bg-slate-900/60 border-t border-slate-800 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14" data-aos="fade-up">
+                <span class="text-xs font-bold text-cyan-400 tracking-wider uppercase">Cartera de Servicios & Tarifario Transparente</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Diagnóstico Histopatológico Especializado</h2>
+                <p class="text-slate-400 mt-4 text-sm sm:text-base">Sin costos ocultos. Informes detallados con microfotografías a color, clasificación CAP/AJCC y conducta sugerida.</p>
+            </div>
+
+            <!-- Grid de Servicios -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Tarjeta 1: Biopsias Menores -->
+                <div class="glass-panel glass-glow rounded-2xl p-6 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-cyanCobalt/20 text-cyan-400 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-vial"></i>
+                        </div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-cyan-400">Entrega en 48 Horas</span>
+                        <h3 class="text-lg font-bold text-white mt-1">Biopsias Quirúrgicas Menores & Endoscópicas</h3>
+                        <p class="text-xs text-slate-300 mt-3 leading-relaxed">
+                            Muestras gástricas, pólipos colónicos, biopsias de piel (punch/afeitado), cuello uterino, endometrio y mucosa oral.
+                        </p>
+                        <ul class="mt-4 space-y-2 text-xs text-slate-400">
+                            <li><i class="fa-solid fa-check text-emerald-400 mr-1.5"></i> Coloración H&E de alta resolución</li>
+                            <li><i class="fa-solid fa-check text-emerald-400 mr-1.5"></i> Giemsa para H. pylori incluido</li>
+                            <li><i class="fa-solid fa-check text-emerald-400 mr-1.5"></i> Entrega física y digital en PDF</li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800">
+                        <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20consultar%20sobre%20Biopsias%20Quir%C3%BArgicas%20Menores%20y%20Endosc%C3%B3picas" target="_blank" class="w-full py-2.5 rounded-lg text-center text-xs font-bold bg-slate-800 hover:bg-cyanCobalt text-white transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp"></i> Consultar Tarifa
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2: Biopsias de Próstata Tru-Cut -->
+                <div class="glass-panel glass-glow rounded-2xl p-6 flex flex-col justify-between border-cyanCobalt/40 relative" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute -top-3 right-4 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-gradient-to-r from-cyanCobalt to-blue-600 text-white shadow-md">
+                        ESPECIALIDAD UROPATOLOGÍA
+                    </div>
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-purpleHemato/20 text-purple-400 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-dna"></i>
+                        </div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-purple-400">Entrega en 72 Horas</span>
+                        <h3 class="text-lg font-bold text-white mt-1">Biopsia de Próstata Tru-Cut (Hasta 12 Cilindros)</h3>
+                        <p class="text-xs text-slate-300 mt-3 leading-relaxed">
+                            Mapeo individualizado cilindro por cilindro con Score Gleason y Grupos Grado ISUP/OMS para guiar el tratamiento urológico.
+                        </p>
+                        <ul class="mt-4 space-y-2 text-xs text-slate-400">
+                            <li><i class="fa-solid fa-check text-emerald-400 mr-1.5"></i> % de tumor por cilindro y extensión</li>
+                            <li><i class="fa-solid fa-check text-emerald-400 mr-1.5"></i> Invasión perineural e infiltración</li>
+                            <li><i class="fa-solid fa-check text-emerald-400 mr-1.5"></i> Panel PIN-4 ante duda diagnóstica</li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800">
+                        <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20consultar%20sobre%20Biopsia%20de%20Pr%C3%B3stata%20por%20Punci%C3%B3n%20Tru-Cut" target="_blank" class="w-full py-2.5 rounded-lg text-center text-xs font-bold bg-cyanCobalt hover:bg-sky-500 text-white transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp"></i> Consultar Tarifa
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3: Piezas Oncológicas Complejas -->
+                <div class="glass-panel glass-glow rounded-2xl p-6 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="300">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-goldBanner/20 text-amber-400 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-scissors"></i>
+                        </div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400">Entrega 48h a 5 Días</span>
+                        <h3 class="text-lg font-bold text-white mt-1">Piezas Oncológicas Complejas & Tinta China</h3>
+                        <p class="text-xs text-slate-300 mt-3 leading-relaxed">
+                            Prostatectomías radicales, morcelados HoLEP/ThuLEP, mastectomías, gastrectomías, colectomías y disecciones ganglionares.
+                        </p>
+                        <ul class="mt-4 space-y-2 text-xs text-slate-400">
+                            <li><i class="fa-solid fa-check text-emerald-400 mr-1.5"></i> Marcaje con tinta china de márgenes</li>
+                            <li><i class="fa-solid fa-check text-emerald-400 mr-1.5"></i> Registro fotográfico macroscópico 360°</li>
+                            <li><i class="fa-solid fa-check text-emerald-400 mr-1.5"></i> Estadificación TNM 8va edición</li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800">
+                        <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20consultar%20sobre%20Piezas%20Quir%C3%BArgicas%20Complejas%20y%20Oncol%C3%B3gicas" target="_blank" class="w-full py-2.5 rounded-lg text-center text-xs font-bold bg-slate-800 hover:bg-cyanCobalt text-white transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp"></i> Consultar Tarifa
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 4: Citología e Inmunohistoquímica -->
+                <div class="glass-panel glass-glow rounded-2xl p-6 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="400">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-microscope"></i>
+                        </div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-400">Entrega 48h a 72h</span>
+                        <h3 class="text-lg font-bold text-white mt-1">Citología Especializada & Inmunohistoquímica</h3>
+                        <p class="text-xs text-slate-300 mt-3 leading-relaxed">
+                            Papanicolaou cervicovaginal (Bethesda), citología en base líquida, BAAF de tiroides y mama, y paneles de anticuerpos IHQ.
+                        </p>
+                        <ul class="mt-4 space-y-2 text-xs text-slate-400">
+                            <li><i class="fa-solid fa-check text-emerald-400 mr-1.5"></i> BAAF tiroideo (Sistema Bethesda)</li>
+                            <li><i class="fa-solid fa-check text-emerald-400 mr-1.5"></i> Paneles: PIN-4, Ki-67, RE/RP, HER2</li>
+                            <li><i class="fa-solid fa-check text-emerald-400 mr-1.5"></i> Diagnóstico diferencial de certeza</li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800">
+                        <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20consultar%20sobre%20Citolog%C3%ADa%20Especializada%20e%20Inmunohistoqu%C3%ADmica" target="_blank" class="w-full py-2.5 rounded-lg text-center text-xs font-bold bg-slate-800 hover:bg-cyanCobalt text-white transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp"></i> Consultar Tarifa
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 7. TABLA COMPARATIVA TEXTUAL PARA GEO & PACIENTES                         -->
+    <!-- ========================================================================= -->
+    <section class="py-16 bg-slate-950/80 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10" data-aos="fade-up">
+                <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider">Certeza Médica & Tecnología de Punta</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">Laboratorio Tradicional vs. JC PATH LAB</h2>
+                <p class="text-xs sm:text-sm text-slate-400 mt-2">¿Por qué cirujanos, clínicas y familias en todo el Perú confían sus biopsias en nosotros?</p>
+            </div>
+
+            <div class="glass-panel rounded-2xl overflow-hidden shadow-2xl" data-aos="fade-up">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-xs text-left">
+                        <thead class="bg-slate-900 border-b border-slate-800 text-slate-300 uppercase text-[10px] tracking-wider">
+                            <tr>
+                                <th class="py-3.5 px-4">Parámetro de Calidad</th>
+                                <th class="py-3.5 px-4 text-slate-400">Laboratorio Convencional</th>
+                                <th class="py-3.5 px-4 text-cyan-400 font-bold bg-cyanCobalt/10">JC PATH LAB (Dr. Joseph Castillo)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800/80 text-slate-300">
+                            <tr class="hover:bg-slate-800/30">
+                                <td class="py-3 px-4 font-semibold text-white">Tiempo de Entrega Biopsias Menores</td>
+                                <td class="py-3 px-4 text-rose-400">7 a 15 días hábiles</td>
+                                <td class="py-3 px-4 text-emerald-400 font-bold bg-cyanCobalt/5">48 a 72 horas garantizadas</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/30">
+                                <td class="py-3 px-4 font-semibold text-white">Piezas Oncológicas Complejas</td>
+                                <td class="py-3 px-4 text-rose-400">15 a 30 días hábiles</td>
+                                <td class="py-3 px-4 text-emerald-400 font-bold bg-cyanCobalt/5">4 a 5 días hábiles</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/30">
+                                <td class="py-3 px-4 font-semibold text-white">Digitalización Whole Slide Imaging</td>
+                                <td class="py-3 px-4">Inexistente o nubes ajenas lentas</td>
+                                <td class="py-3 px-4 text-emerald-400 font-bold bg-cyanCobalt/5">Servidor WSI Físico Propio (40x Gigapíxel)</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/30">
+                                <td class="py-3 px-4 font-semibold text-white">Morfometría e Inteligencia Artificial</td>
+                                <td class="py-3 px-4">Cero IA (lectura manual única)</td>
+                                <td class="py-3 px-4 text-emerald-400 font-bold bg-cyanCobalt/5">Copiloto IA 40x (Doble lectura de atipia nuclear)</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/30">
+                                <td class="py-3 px-4 font-semibold text-white">Estudio Fotográfico de Márgenes</td>
+                                <td class="py-3 px-4">Fotos estáticas en blanco y negro</td>
+                                <td class="py-3 px-4 text-emerald-400 font-bold bg-cyanCobalt/5">Visor 360° con Tinta China Quirúrgica</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/30">
+                                <td class="py-3 px-4 font-semibold text-white">Acceso a Informes para Cirujanos</td>
+                                <td class="py-3 px-4">Papel físico impreso tardío</td>
+                                <td class="py-3 px-4 text-emerald-400 font-bold bg-cyanCobalt/5">App Móvil con despacho en PDF en tiempo real</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 8. RED NACIONAL DE COBERTURA & ENVÍO DESDE PROVINCIAS                     -->
+    <!-- ========================================================================= -->
+    <section id="cobertura" class="py-20 relative bg-slate-900/40 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel rounded-3xl p-8 sm:p-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center" data-aos="fade-up">
+                <div class="lg:col-span-7 space-y-4">
+                    <span class="text-xs font-bold text-goldBanner uppercase tracking-wide">Red Nacional de Biopsias en Todo el Perú</span>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-white">Cobertura Nacional: Arequipa, Trujillo, Jaén, Cusco y Provincias</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Nuestra logística aprovecha el tiempo de tránsito biológico: el traslado de 48 a 72 horas vía Olva Courier se integra perfectamente con el tiempo estándar de fijación en formol neutro al 10%. La muestra llega a Lima fijada de manera óptima para el tallado y procesamiento inmediato.
+                    </p>
+                    <div class="flex flex-wrap gap-2 pt-2 text-xs">
+                        <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700"><i class="fa-solid fa-location-dot text-cyanCobalt mr-1"></i> Arequipa</span>
+                        <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700"><i class="fa-solid fa-location-dot text-cyanCobalt mr-1"></i> Trujillo</span>
+                        <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700"><i class="fa-solid fa-location-dot text-cyanCobalt mr-1"></i> Cusco</span>
+                        <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700"><i class="fa-solid fa-location-dot text-cyanCobalt mr-1"></i> Jaén / Cajamarca</span>
+                        <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700"><i class="fa-solid fa-location-dot text-cyanCobalt mr-1"></i> Chiclayo / Piura</span>
+                        <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700"><i class="fa-solid fa-location-dot text-cyanCobalt mr-1"></i> Huancayo / Iquitos</span>
+                    </div>
+                </div>
+                <div class="lg:col-span-5 bg-slate-900/90 rounded-2xl p-6 border border-slate-800 text-center space-y-3">
+                    <div class="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl mx-auto">
+                        <i class="fa-solid fa-box-tissue"></i>
+                    </div>
+                    <h4 class="text-base font-bold text-white">¿Cómo enviar tu muestra desde provincia?</h4>
+                    <p class="text-xs text-slate-400">Te enviamos el instructivo formal en PDF y la guía de remisión prepagada para dejarla en la agencia Olva Courier de tu ciudad.</p>
+                    <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20enviar%20una%20biopsia%20desde%20provincia" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-extrabold bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg transition-transform hover:scale-105">
+                        <i class="fa-brands fa-whatsapp"></i> Solicitar Envío desde Provincia
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 9. SECCIÓN DE AUTORIDAD MÉDICA (E-E-A-T GOOGLE)                           -->
+    <!-- ========================================================================= -->
+    <section class="py-20 bg-slate-950/90 border-t border-slate-800 relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-panel rounded-3xl p-8 sm:p-12 flex flex-col md:flex-row gap-8 items-center">
+                <div class="w-36 h-36 rounded-2xl overflow-hidden border-2 border-cyanCobalt shadow-xl flex-shrink-0">
+                    <img src="assets/fotos_hd/ofcinaprincipal1.jpg" onerror="this.src='OFCINAPRINCIPAL1.jpg'" alt="Dr. Joseph C. Castillo Cuenca" class="w-full h-full object-cover">
+                </div>
+                <div class="space-y-3 text-center md:text-left flex-1">
+                    <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider">Dirección Médica Científica</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Dr. Joseph C. Castillo Cuenca</h2>
+                    <div class="flex flex-wrap gap-3 justify-center md:justify-start text-xs font-mono text-slate-300">
+                        <span class="px-2.5 py-1 rounded bg-slate-800 border border-slate-700">CMP: <strong>56435</strong></span>
+                        <span class="px-2.5 py-1 rounded bg-slate-800 border border-slate-700">RNE: <strong>029291</strong> (Anatomía Patológica)</span>
+                    </div>
+                    <p class="text-sm text-slate-300 leading-relaxed pt-1">
+                        Especialista con dedicación exclusiva al diagnóstico anatomopatológico, uropatología oncológica y patología digital. Líder en la implementación de la primera estación Whole Slide Imaging y copiloto de morfometría algorítmica en Lima Norte.
+                    </p>
+                    <div class="pt-3">
+                        <a href="https://wa.me/51986396733?text=Estimado%20Dr.%20Castillo,%20deseo%20una%20interconsulta%20m%C3%A9dica%20especializada" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-bold bg-cyanCobalt hover:bg-sky-500 text-white shadow-md transition-all">
+                            <i class="fa-solid fa-user-doctor"></i> Iniciar Interconsulta Directa con el Patólogo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 10. PREGUNTAS FRECUENTES (FAQ ACORDEÓN)                                   -->
+    <!-- ========================================================================= -->
+    <section class="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12" data-aos="fade-up">
+            <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider">Centro de Respuestas</span>
+            <h2 class="text-3xl font-extrabold text-white mt-1">Preguntas Frecuentes</h2>
+        </div>
+
+        <div class="space-y-4">
+            
+            <details class="glass-panel rounded-xl p-5 group cursor-pointer" open>
+                <summary class="font-bold text-white flex justify-between items-center text-sm sm:text-base">
+                    <span>¿Cuánto tiempo demora el resultado de una biopsia en JC PATH LAB?</span>
+                    <i class="fa-solid fa-chevron-down text-cyan-400 group-open:rotate-180 transition-transform"></i>
+                </summary>
+                <p class="mt-3 text-xs sm:text-sm text-slate-300 leading-relaxed pl-1">
+                    Las biopsias quirúrgicas menores (endoscópicas gástricas, piel, cuello uterino) se entregan en <strong>48 a 72 horas</strong>. Las piezas quirúrgicas oncológicas complejas o biopsias de próstata Tru-Cut requieren entre <strong>72 horas y 5 días hábiles</strong> debido a los tiempos indispensables de fijación en formol y procesamiento especial.
+                </p>
+            </details>
+
+            <details class="glass-panel rounded-xl p-5 group cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center text-sm sm:text-base">
+                    <span>¿Cómo debo conservar y enviar una muestra de biopsia desde Lima o provincias?</span>
+                    <i class="fa-solid fa-chevron-down text-cyan-400 group-open:rotate-180 transition-transform"></i>
+                </summary>
+                <p class="mt-3 text-xs sm:text-sm text-slate-300 leading-relaxed pl-1">
+                    La muestra debe sumergirse inmediatamente después de la toma en un frasco con <strong>formol neutro al 10%</strong> (volumen de formol de 5 a 10 veces el tamaño de la muestra) herméticamente sellado. No se debe usar alcohol ni agua. Coordinamos el recojo motorizado en Lima o el envío por Olva Courier en provincia.
+                </p>
+            </details>
+
+            <details class="glass-panel rounded-xl p-5 group cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center text-sm sm:text-base">
+                    <span>¿Qué ventaja tiene la Patología Digital WSI y la Morfometría IA para mi diagnóstico?</span>
+                    <i class="fa-solid fa-chevron-down text-cyan-400 group-open:rotate-180 transition-transform"></i>
+                </summary>
+                <p class="mt-3 text-xs sm:text-sm text-slate-300 leading-relaxed pl-1">
+                    La digitalización Whole Slide Imaging a 40x permite escanear la lámina histológica completa a nivel submicrónico (0.25 µm/px). La inteligencia artificial actúa como un copiloto de doble lectura: cuantifica mitosis, evalúa pleomorfismo nuclear CAP y reduce drásticamente cualquier probabilidad de error o falso negativo.
+                </p>
+            </details>
+
+            <details class="glass-panel rounded-xl p-5 group cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center text-sm sm:text-base">
+                    <span>¿Realizan convenios con clínicas, policlínicos y cirujanos particulares?</span>
+                    <i class="fa-solid fa-chevron-down text-cyan-400 group-open:rotate-180 transition-transform"></i>
+                </summary>
+                <p class="mt-3 text-xs sm:text-sm text-slate-300 leading-relaxed pl-1">
+                    Sí. Ofrecemos tarifas B2B preferenciales, suministro de frascos con formol rotulados, logística de recojo programado y acceso exclusivo al <strong>Portal Clínico Web</strong> para descargar informes con fotos microscópicas y macroscópicas 360° en tiempo real.
+                </p>
+            </details>
+
+        </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 11. FOOTER CORPORATIVO CON NAVEGACIÓN COMPLETA                           -->
+    <!-- ========================================================================= -->
+    <footer class="bg-slate-950 border-t border-slate-800 text-slate-400 text-xs py-14">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="space-y-3">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyanCobalt to-purpleHemato p-0.5">
+                        <div class="w-full h-full bg-darkBg rounded-[6px] flex items-center justify-center">
+                            <i class="fa-solid fa-microscope text-cyan-400 text-sm"></i>
+                        </div>
+                    </div>
+                    <span class="text-lg font-extrabold text-white">JC PATH LAB</span>
+                </div>
+                <p class="text-[11px] leading-relaxed">
+                    Especialistas en Anatomía Patológica, Uropatología y Diagnóstico Digital WSI. Máxima certeza diagnóstica en Lima y todo el Perú.
+                </p>
+                <div class="text-[11px] text-slate-500 font-mono">
+                    CMP 56435 &bull; RNE 029291
+                </div>
+            </div>
+
+            <div>
+                <strong class="text-white block mb-3 text-sm">Servicios Especializados</strong>
+                <ul class="space-y-2 text-[11px]">
+                    <li><a href="biopsia-prostata-urologia.html" class="hover:text-cyan-400 transition-colors">Biopsia de Próstata Tru-Cut</a></li>
+                    <li><a href="biopsia-gastrica-endoscopia.html" class="hover:text-cyan-400 transition-colors">Biopsias Endoscópicas y Gástricas</a></li>
+                    <li><a href="inmunohistoquimica-lima.html" class="hover:text-cyan-400 transition-colors">Inmunohistoquímica (Paneles IHQ)</a></li>
+                    <li><a href="convenios-clinicas-provincias.html" class="hover:text-cyan-400 transition-colors">Convenios Clínicos & Provincias</a></li>
+                    <li><a href="traductor-informes-biopsia.html" class="hover:text-cyan-400 transition-colors">Traductor & Segunda Opinión</a></li>
+                    <li><a href="verificar_informe.html" class="hover:text-cyan-400 transition-colors">Validación de Informe Oficial QR</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <strong class="text-white block mb-3 text-sm">Sede Central Lima</strong>
+                <p class="text-[11px] leading-relaxed">
+                    <i class="fa-solid fa-map-location-dot text-cyan-400 mr-1.5"></i> Jardines de Chillón Mz M2 Lote 13<br>
+                    Lima Norte (Puente Piedra / Los Olivos), Lima - Perú.
+                </p>
+                <p class="mt-2 text-[11px]">
+                    <i class="fa-solid fa-phone text-emerald-400 mr-1.5"></i> +51 986 396 733<br>
+                    <i class="fa-solid fa-envelope text-purple-400 mr-1.5"></i> jclab59@gmail.com
+                </p>
+                <div class="mt-2">
+                    <a href="https://maps.google.com/?q=Jardines+de+Chillon+Mz+M2+Lote+13+Lima" target="_blank" class="inline-flex items-center gap-1.5 text-cyan-400 hover:underline text-[11px]">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Ver en Google Maps
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <strong class="text-white block mb-3 text-sm">Horario de Atención</strong>
+                <p class="text-[11px] leading-relaxed">
+                    Lunes a Sábado: 07:30 a.m. - 08:00 p.m.<br>
+                    Recepción de Biopsias de Emergencia 24/7 previa coordinación telefónica.
+                </p>
+                <div class="mt-4 p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-[10px]">
+                    <span class="text-emerald-400 font-bold block mb-0.5"><i class="fa-solid fa-server"></i> Servidor WSI Dedicado:</span>
+                    <span class="text-slate-400">Almacenamiento RAID local 100% soberano bajo Ley General de Salud N° 26842.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-slate-900 text-center text-[11px] text-slate-500">
+            &copy; 2026 JC PATH LAB. Todos los derechos reservados. Director Médico: Dr. Joseph C. Castillo Cuenca (CMP 56435 / RNE 029291).
+        </div>
+    </footer>
+
+    <!-- ========================================================================= -->
+    <!-- 12. WIDGET DE CHATBOT FLOTANTE CORTANA IA & WHATSAPP                      -->
+    <!-- ========================================================================= -->
+    <div id="chatbotContainer" class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        
+        <!-- Ventana de Chat (Inicialmente oculta) -->
+        <div id="chatWindow" class="w-[340px] sm:w-[380px] h-[480px] bg-slate-950/95 border border-cyanCobalt/40 rounded-2xl shadow-2xl backdrop-blur-xl flex flex-col overflow-hidden mb-3 hidden transition-all duration-300">
+            <!-- Header Chat -->
+            <div class="p-3.5 bg-gradient-to-r from-slate-900 to-slate-950 border-b border-slate-800 flex justify-between items-center">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-full bg-cyanCobalt/20 border border-cyan-400 flex items-center justify-center text-cyan-400">
+                        <i class="fa-solid fa-robot text-xs"></i>
+                    </div>
+                    <div>
+                        <strong class="text-xs text-white block">Cortana IA &bull; Concierge Patológico</strong>
+                        <span class="text-[9px] text-emerald-400 flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-emerald"></span> Online 24/7 &bull; JC PATH LAB
+                        </span>
+                    </div>
+                </div>
+                <button type="button" onclick="toggleChatWindow()" class="text-slate-400 hover:text-white p-1 text-sm">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Mensajes -->
+            <div id="chatMessages" class="flex-1 p-3.5 overflow-y-auto space-y-3 text-xs">
+                <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 text-slate-200">
+                    <strong class="text-cyan-400 block mb-1">¡Hola! Soy Cortana, asistente IA de JC PATH LAB.</strong>
+                    ¿En qué puedo ayudarte hoy con tu biopsia o estudio? Elige una opción rápida o escribe tu consulta:
+                </div>
+                
+                <!-- Botones Rápidos -->
+                <div class="space-y-1.5 pt-1">
+                    <button onclick="enviarMensajeRapido('Deseo cotizar una biopsia')" class="w-full text-left p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 text-[11px] transition-colors flex items-center justify-between">
+                        <span><i class="fa-solid fa-tag text-cyan-400 mr-1.5"></i> Cotizar una biopsia</span>
+                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                    </button>
+                    <button onclick="enviarMensajeRapido('¿Cómo debo entregar mi muestra en formol?')" class="w-full text-left p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 text-[11px] transition-colors flex items-center justify-between">
+                        <span><i class="fa-solid fa-vial text-emerald-400 mr-1.5"></i> ¿Cómo entrego mi muestra?</span>
+                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                    </button>
+                    <button onclick="enviarMensajeRapido('Soy médico o clínica y deseo convenio')" class="w-full text-left p-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 text-[11px] transition-colors flex items-center justify-between">
+                        <span><i class="fa-solid fa-user-doctor text-purple-400 mr-1.5"></i> Soy médico / clínica</span>
+                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-500"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Input Box -->
+            <form id="chatForm" onsubmit="handleChatSubmit(event)" class="p-2.5 bg-slate-900 border-t border-slate-800 flex gap-2">
+                <input type="text" id="chatInputText" placeholder="Escribe tu consulta médica..." class="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-cyanCobalt">
+                <button type="submit" class="w-9 h-9 rounded-lg bg-cyanCobalt hover:bg-sky-500 text-white flex items-center justify-center flex-shrink-0 transition-colors">
+                    <i class="fa-solid fa-paper-plane text-xs"></i>
+                </button>
+            </form>
+        </div>
+
+        <!-- Botones Flotantes (WhatsApp + Asistente IA) -->
+        <div class="flex items-center gap-3">
+            <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20hacer%20una%20consulta" target="_blank" class="w-13 h-13 p-3.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white shadow-xl shadow-emerald-600/30 flex items-center justify-center text-xl transition-transform hover:scale-110" title="Escribir al WhatsApp Oficial">
+                <i class="fa-brands fa-whatsapp"></i>
+            </a>
+
+            <button type="button" onclick="toggleChatWindow()" class="px-4 py-3 rounded-full bg-gradient-to-r from-cyanCobalt to-purpleHemato hover:from-cyan-500 hover:to-purple-600 text-white shadow-xl shadow-cyanCobalt/30 flex items-center gap-2.5 text-xs font-bold transition-transform hover:scale-105" title="Abrir Asistente IA Patológico">
+                <i class="fa-solid fa-brain text-sm"></i>
+                <span class="hidden sm:inline">Asistente IA 24/7</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- SCRIPTS INTERACTIVOS: WSI ENGINE, TRAZABILIDAD, IMMUNOQUERY BAYES, AOS    -->
+    <!-- ========================================================================= -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 750, once: true });
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // ==========================================
+        // 1. SELECTOR HERO (Paciente vs Médico)
+        // ==========================================
+        function switchHeroTab(tab) {
+            const btnP = document.getElementById('tabHeroPaciente');
+            const btnM = document.getElementById('tabHeroMedico');
+            const contP = document.getElementById('contentHeroPaciente');
+            const contM = document.getElementById('contentHeroMedico');
+
+            if (tab === 'paciente') {
+                btnP.className = 'px-6 py-3 rounded-lg text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-2.5 bg-gradient-to-r from-cyanCobalt to-blue-600 text-white shadow-lg';
+                btnM.className = 'px-6 py-3 rounded-lg text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-2.5 text-slate-400 hover:text-white';
+                contP.classList.remove('hidden');
+                contM.classList.add('hidden');
+            } else {
+                btnM.className = 'px-6 py-3 rounded-lg text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-2.5 bg-gradient-to-r from-cyanCobalt to-blue-600 text-white shadow-lg';
+                btnP.className = 'px-6 py-3 rounded-lg text-xs sm:text-sm font-bold transition-all duration-300 flex items-center gap-2.5 text-slate-400 hover:text-white';
+                contM.classList.remove('hidden');
+                contP.classList.add('hidden');
+            }
+        }
+
+        // ==========================================
+        // 2. WSI DEEP ZOOM ENGINE INTERACTIVO
+        // ==========================================
+        const wsiCases = {
+            prostata: {
+                title: "Biopsia de Próstata por Punción Tru-Cut (12 Cilindros)",
+                idBadge: "CASO: 26Q-URO-849",
+                slideImg: "wsi_slides/biopsia_prostatica_gleason.webp",
+                diagnosis: "Adenocarcinoma Acinar de Próstata, Score Gleason 4+3 = 7 (Patrón 4 cribiforme 65%, Patrón 3 35%), Grupo Grado ISUP 3. Invasión perineural focal observada en cilindro apical derecho.",
+                annotations: [
+                    { top: "28%", left: "32%", width: "22%", height: "26%", class: "ai-box-amber", label: "Patrón 4 Cribiforme (Gleason 4) - 98.4%" },
+                    { top: "62%", left: "54%", width: "14%", height: "18%", class: "ai-box-green", label: "Infiltración Perineural - 94.2%" },
+                    { top: "42%", left: "70%", width: "10%", height: "12%", class: "ai-box-purple", label: "Mitosis Atípica - 97.8%" }
+                ],
+                ncRatio: "38% (Atípico)",
+                baseCells: 1420
+            },
+            gastrica: {
+                title: "Biopsia Gástrica Antral Endoscópica",
+                idBadge: "CASO: 26Q-GAS-512",
+                slideImg: "wsi_slides/biopsia_gastrica.webp",
+                diagnosis: "Adenocarcinoma gástrico moderadamente diferenciado (tipo intestinal de Lauren), colonización por Helicobacter pylori positiva (+++/3), metaplasia intestinal incompleta de alto grado.",
+                annotations: [
+                    { top: "22%", left: "25%", width: "18%", height: "20%", class: "ai-box-green", label: "H. pylori en moco foveolar - 99.1%" },
+                    { top: "48%", left: "42%", width: "25%", height: "30%", class: "ai-box-amber", label: "Displasia Glandular Severa - 96.5%" },
+                    { top: "35%", left: "68%", width: "16%", height: "18%", class: "ai-box-purple", label: "Pérdida de polaridad celular - 95.8%" }
+                ],
+                ncRatio: "45% (Elevado)",
+                baseCells: 1890
+            },
+            renal: {
+                title: "Nefrectomía Parcial: Carcinoma Renal de Células Claras",
+                idBadge: "CASO: 26Q-REN-190",
+                slideImg: "wsi_slides/corte_quirurgico_renal.webp",
+                diagnosis: "Carcinoma Renal de Células Claras (ccRCC), Grado Nuclear OMS/ISUP 2 (Fuhrman 2). Red sinusoidal vascular fina típica, márgenes quirúrgicos libres de neoplasia.",
+                annotations: [
+                    { top: "30%", left: "30%", width: "24%", height: "28%", class: "ai-box-amber", label: "Citoplasma Claro Rico en Glucógeno - 98.9%" },
+                    { top: "58%", left: "50%", width: "18%", height: "22%", class: "ai-box-green", label: "Red Capilar Sinusoidal - 97.2%" },
+                    { top: "40%", left: "65%", width: "12%", height: "14%", class: "ai-box-purple", label: "Grado OMS/ISUP 2 (Nucléolo 40x) - 96.1%" }
+                ],
+                ncRatio: "32% (ccRCC Clásico)",
+                baseCells: 1650
+            }
+        };
+
+        let currentWsiCase = 'prostata';
+        let wsiZoom = 1.0;
+        let wsiPanX = 0;
+        let wsiPanY = 0;
+        let isWsiDragging = false;
+        let wsiStartX = 0;
+        let wsiStartY = 0;
+        let showAiBoxes = false;
+        let showAiHeatmap = false;
+
+        const viewportEl = document.getElementById('wsiViewportContainer');
+        const slideLayerEl = document.getElementById('wsiSlideLayer');
+        const slideImgEl = document.getElementById('wsiSlideImg');
+        const minimapImgEl = document.getElementById('wsiMinimapImg');
+        const minimapBoxEl = document.getElementById('wsiMinimapBox');
+        const annotationsLayerEl = document.getElementById('wsiAiAnnotationsLayer');
+        const heatmapCanvasEl = document.getElementById('wsiHeatmapCanvas');
+        const zoomSliderEl = document.getElementById('wsiZoomSlider');
+        const labelZoomValEl = document.getElementById('labelZoomValue');
+        const hudZoomEl = document.getElementById('hudZoom');
+        const hudCoordsEl = document.getElementById('hudCoords');
+        const hudCellsEl = document.getElementById('hudCells');
+        const hudNcRatioEl = document.getElementById('hudNcRatio');
+        const scaleBarLineEl = document.getElementById('wsiScaleBarLine');
+        const scaleBarTextEl = document.getElementById('wsiScaleBarText');
+
+        function loadWsiCase(caseKey) {
+            currentWsiCase = caseKey;
+            const data = wsiCases[caseKey];
+
+            // Update tab styles
+            document.getElementById('btnCaseProstata').className = caseKey === 'prostata' 
+                ? 'px-3 py-1.5 rounded-lg text-xs font-bold bg-cyanCobalt text-white shadow-md transition-all flex items-center gap-1.5'
+                : 'px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all flex items-center gap-1.5';
+            document.getElementById('btnCaseGastrica').className = caseKey === 'gastrica'
+                ? 'px-3 py-1.5 rounded-lg text-xs font-bold bg-cyanCobalt text-white shadow-md transition-all flex items-center gap-1.5'
+                : 'px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all flex items-center gap-1.5';
+            document.getElementById('btnCaseRenal').className = caseKey === 'renal'
+                ? 'px-3 py-1.5 rounded-lg text-xs font-bold bg-cyanCobalt text-white shadow-md transition-all flex items-center gap-1.5'
+                : 'px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all flex items-center gap-1.5';
+
+            // Update images
+            slideImgEl.src = data.slideImg;
+            minimapImgEl.src = data.slideImg;
+
+            // Update report
+            document.getElementById('caseBadgeId').innerText = data.idBadge;
+            document.getElementById('caseTitle').innerText = data.title;
+            document.getElementById('caseDiagnosis').innerHTML = '<strong class="text-white">Diagnóstico Histológico:</strong> ' + data.diagnosis;
+            hudNcRatioEl.innerText = data.ncRatio;
+
+            // Render annotations
+            renderAnnotations(data.annotations);
+            resetWsiView();
+            drawHeatmap();
+        }
+
+        function renderAnnotations(annList) {
+            annotationsLayerEl.innerHTML = '';
+            annList.forEach(ann => {
+                const box = document.createElement('div');
+                box.className = `ai-annotation-box ${ann.class}`;
+                box.style.top = ann.top;
+                box.style.left = ann.left;
+                box.style.width = ann.width;
+                box.style.height = ann.height;
+                box.setAttribute('data-label', ann.label);
+                annotationsLayerEl.appendChild(box);
+            });
+        }
+
+        function updateWsiTransform() {
+            slideLayerEl.style.transform = `translate(${wsiPanX}px, ${wsiPanY}px) scale(${wsiZoom})`;
+            
+            // Sync slider and labels
+            zoomSliderEl.value = wsiZoom;
+            labelZoomValEl.innerText = wsiZoom.toFixed(1) + 'x';
+            hudZoomEl.innerText = wsiZoom.toFixed(1) + 'x';
+
+            // Update Telemetry
+            const micronX = Math.round(Math.abs(wsiPanX) * 0.25 * (40 / wsiZoom) + 12000);
+            const micronY = Math.round(Math.abs(wsiPanY) * 0.25 * (40 / wsiZoom) + 7500);
+            hudCoordsEl.innerText = `PLATINA: X: ${micronX.toLocaleString()} µm | Y: ${micronY.toLocaleString()} µm`;
+            
+            const cellCount = Math.round(wsiCases[currentWsiCase].baseCells / (wsiZoom * 0.8));
+            hudCellsEl.innerText = Math.max(12, cellCount).toLocaleString();
+
+            // Update Scale Bar
+            const baseMicrons = 250;
+            const currentMicrons = Math.max(5, Math.round(baseMicrons / wsiZoom));
+            scaleBarTextEl.innerText = currentMicrons + ' µm';
+            scaleBarLineEl.style.width = Math.min(100, Math.max(30, 80 * (wsiZoom > 10 ? 1.5 : 1))) + 'px';
+
+            // Update Minimap radar box
+            const boxW = Math.max(8, 100 / wsiZoom);
+            const boxH = Math.max(8, 100 / wsiZoom);
+            const boxL = Math.min(100 - boxW, Math.max(0, (-wsiPanX / (viewportEl.clientWidth * (wsiZoom - 1 || 1))) * (100 - boxW)));
+            const boxT = Math.min(100 - boxH, Math.max(0, (-wsiPanY / (viewportEl.clientHeight * (wsiZoom - 1 || 1))) * (100 - boxH)));
+            
+            minimapBoxEl.style.width = boxW + '%';
+            minimapBoxEl.style.height = boxH + '%';
+            minimapBoxEl.style.left = boxL + '%';
+            minimapBoxEl.style.top = boxT + '%';
+        }
+
+        function setWsiZoom(z) {
+            wsiZoom = Math.min(40.0, Math.max(1.0, z));
+            clampPan();
+            updateWsiTransform();
+        }
+
+        function onWsiSliderChange(val) {
+            setWsiZoom(parseFloat(val));
+        }
+
+        function resetWsiView() {
+            wsiZoom = 1.0;
+            wsiPanX = 0;
+            wsiPanY = 0;
+            updateWsiTransform();
+        }
+
+        function clampPan() {
+            if (wsiZoom <= 1.0) {
+                wsiPanX = 0;
+                wsiPanY = 0;
+                return;
+            }
+            const maxPanX = (viewportEl.clientWidth * (wsiZoom - 1)) / 2;
+            const maxPanY = (viewportEl.clientHeight * (wsiZoom - 1)) / 2;
+            wsiPanX = Math.min(maxPanX, Math.max(-maxPanX, wsiPanX));
+            wsiPanY = Math.min(maxPanY, Math.max(-maxPanY, wsiPanY));
+        }
+
+        // Viewport Dragging Event Listeners
+        viewportEl.addEventListener('mousedown', (e) => {
+            if (e.target === minimapBoxEl) return;
+            isWsiDragging = true;
+            wsiStartX = e.clientX - wsiPanX;
+            wsiStartY = e.clientY - wsiPanY;
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isWsiDragging) return;
+            wsiPanX = e.clientX - wsiStartX;
+            wsiPanY = e.clientY - wsiStartY;
+            clampPan();
+            updateWsiTransform();
+        });
+
+        window.addEventListener('mouseup', () => {
+            isWsiDragging = false;
+        });
+
+        // Touch event support
+        viewportEl.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 1) {
+                isWsiDragging = true;
+                wsiStartX = e.touches[0].clientX - wsiPanX;
+                wsiStartY = e.touches[0].clientY - wsiPanY;
+            }
+        }, { passive: true });
+
+        viewportEl.addEventListener('touchmove', (e) => {
+            if (isWsiDragging && e.touches.length === 1) {
+                wsiPanX = e.touches[0].clientX - wsiStartX;
+                wsiPanY = e.touches[0].clientY - wsiStartY;
+                clampPan();
+                updateWsiTransform();
+            }
+        }, { passive: true });
+
+        viewportEl.addEventListener('touchend', () => {
+            isWsiDragging = false;
+        });
+
+        // Mouse Wheel Zoom centered on cursor
+        viewportEl.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const delta = e.deltaY < 0 ? 1.2 : 0.8;
+            setWsiZoom(wsiZoom * delta);
+        }, { passive: false });
+
+        // AI Toggles
+        function toggleWsiAiBoxes() {
+            showAiBoxes = !showAiBoxes;
+            const btn = document.getElementById('btnToggleAiBoxes');
+            if (showAiBoxes) {
+                annotationsLayerEl.classList.remove('hidden');
+                btn.className = 'px-3 py-1 rounded-lg font-bold text-[11px] bg-emerald-600 text-white shadow-md transition-all flex items-center gap-1.5';
+            } else {
+                annotationsLayerEl.classList.add('hidden');
+                btn.className = 'px-3 py-1 rounded-lg font-bold text-[11px] bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all flex items-center gap-1.5';
+            }
+        }
+
+        function toggleWsiAiHeatmap() {
+            showAiHeatmap = !showAiHeatmap;
+            const btn = document.getElementById('btnToggleAiHeatmap');
+            if (showAiHeatmap) {
+                heatmapCanvasEl.classList.remove('hidden');
+                btn.className = 'px-3 py-1 rounded-lg font-bold text-[11px] bg-amber-500 text-slate-950 font-extrabold shadow-md transition-all flex items-center gap-1.5';
+                drawHeatmap();
+            } else {
+                heatmapCanvasEl.classList.add('hidden');
+                btn.className = 'px-3 py-1 rounded-lg font-bold text-[11px] bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all flex items-center gap-1.5';
+            }
+        }
+
+        function drawHeatmap() {
+            heatmapCanvasEl.width = viewportEl.clientWidth || 800;
+            heatmapCanvasEl.height = viewportEl.clientHeight || 500;
+            const ctx = heatmapCanvasEl.getContext('2d');
+            ctx.clearRect(0, 0, heatmapCanvasEl.width, heatmapCanvasEl.height);
+
+            const points = [
+                { x: heatmapCanvasEl.width * 0.4, y: heatmapCanvasEl.height * 0.45, r: 160 },
+                { x: heatmapCanvasEl.width * 0.65, y: heatmapCanvasEl.height * 0.6, r: 130 },
+                { x: heatmapCanvasEl.width * 0.3, y: heatmapCanvasEl.height * 0.7, r: 110 }
+            ];
+
+            points.forEach(p => {
+                const grad = ctx.createRadialGradient(p.x, p.y, 10, p.x, p.y, p.r);
+                grad.addColorStop(0, 'rgba(239, 68, 68, 0.75)');
+                grad.addColorStop(0.4, 'rgba(245, 158, 11, 0.55)');
+                grad.addColorStop(0.7, 'rgba(56, 189, 248, 0.3)');
+                grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                ctx.fillStyle = grad;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fill();
+            });
+        }
+
+        // ==========================================
+        // 3. TRAZABILIDAD QUIRÚRGICA & BÓVEDA
+        // ==========================================
+        const traceStepsData = {
+            1: {
+                num: "FASE 01 / 05",
+                title: "Recepción de la Muestra en Quirófano & Fijación Química Inmediata",
+                desc: "La muestra tisular extraída por el cirujano es sumergida de inmediato en frasco hermético con formol neutro tamponado al 10% (pH 7.0 - 7.4). El tiempo de isquemia fría se monitoriza estrictamente (< 30 minutos) para prevenir artefactos de autólisis que comprometan la morfometría celular.",
+                specs: [
+                    { label: "REACTIVO:", val: "Formol Buffer 10%", color: "text-cyan-300" },
+                    { label: "TEMP. CONTROL:", val: "20°C - 22°C Ambiente", color: "text-emerald-300" },
+                    { label: "ETIQUETADO:", val: "DataMatrix Indeleble", color: "text-purple-300" },
+                    { label: "CONTROL QC:", val: "APROBADO (Isquemia OK)", color: "text-amber-400" }
+                ]
+            },
+            2: {
+                num: "FASE 02 / 05",
+                title: "Talla Macroscópica & Cassette Rotulado con Regla Milimetrada",
+                desc: "En la mesa de tallado bajo campana de extracción de gases, el Dr. Castillo mide la pieza con regla milimetrada de precisión médica. Se aplica tinta china quirúrgica para mapear márgenes oncológicos y se introduce en biocassettes grabados por láser resistente a xilol y alcohol.",
+                specs: [
+                    { label: "INSTRUMENTAL:", val: "Regla Acero Quirúrgico", color: "text-cyan-300" },
+                    { label: "TINTA CHINA:", val: "Marcaje Multicolor", color: "text-amber-300" },
+                    { label: "CASSETTE:", val: "Biocassette Láser QR", color: "text-purple-300" },
+                    { label: "FOTO MACRO:", val: "Registro 360° Digital", color: "text-emerald-300" }
+                ]
+            },
+            3: {
+                num: "FASE 03 / 05",
+                title: "Procesamiento Tisular Automatizado & Microtomía Leica a 3 Micras",
+                desc: "El procesador de tejidos ejecuta ciclos graduales de deshidratación en alcoholes puros, aclaramiento y desparafinado. Luego se incluye en bloques sólidos de parafina histológica a 56°C. El microtomo Leica realiza cortes ultrafinos de 3 a 4 micras, teñidos con Hematoxilina y Eosina robotizada.",
+                specs: [
+                    { label: "PARAFINA:", val: "Punto Fusión 56°C", color: "text-cyan-300" },
+                    { label: "ESPESOR CORTE:", val: "3 a 4 Micras (µm)", color: "text-emerald-300" },
+                    { label: "MICROTOMO:", val: "Leica de Precisión", color: "text-purple-300" },
+                    { label: "COLORACIÓN:", val: "H&E de Alta Fidelidad", color: "text-amber-400" }
+                ]
+            },
+            4: {
+                num: "FASE 04 / 05",
+                title: "Digitalización WSI a 40x & Sellado Criptográfico SHA-256",
+                desc: "La lámina física se escanea en nuestro servidor físico dedicado a 40x real (0.25 micras por píxel). De inmediato, el motor soberano genera una huella criptográfica SHA-256 inmutable de la imagen gigapíxel, garantizando que el archivo nunca pueda ser adulterado ni confundido.",
+                specs: [
+                    { label: "RESOLUCIÓN:", val: "0.25 µm / px", color: "text-cyan-300" },
+                    { label: "ESCANEO:", val: "Estación 40x Físico", color: "text-purple-300" },
+                    { label: "HASH CRIPTO:", val: "SHA-256 Inmutable", color: "text-emerald-300" },
+                    { label: "INTEGRIDAD:", val: "100% Verificable", color: "text-amber-400" }
+                ]
+            },
+            5: {
+                num: "FASE 05 / 05",
+                title: "Bóveda Digital Soberana Sin Pérdidas & Despacho al Médico",
+                desc: "El archivo gigapíxel y el informe se resguardan en un clúster RAID local bajo custodia médico-legal de 20 años (Ley N° 26842). Cero riesgo de pérdidas de tacos o láminas. El informe con microfotografías HD y firma digital con CMP/RNE se despacha al WhatsApp y app del cirujano en 48-72h.",
+                specs: [
+                    { label: "CUSTODIA:", val: "20 Años Ley N° 26842", color: "text-emerald-300" },
+                    { label: "FIRMA DIGITAL:", val: "CMP 56435 / RNE 029291", color: "text-cyan-300" },
+                    { label: "DESPACHO:", val: "48 - 72 Horas", color: "text-purple-300" },
+                    { label: "FORMATO:", val: "PDF Interactivo Seguro", color: "text-amber-400" }
+                ]
+            }
+        };
+
+        let currentTraceStep = 1;
+        let traceTourInterval = null;
+
+        function selectTraceStep(stepNum) {
+            currentTraceStep = stepNum;
+            for (let i = 1; i <= 5; i++) {
+                const card = document.getElementById(`traceCard${i}`);
+                if (i === stepNum) {
+                    card.className = "glass-card rounded-2xl p-5 border-cyanCobalt/60 step-active cursor-pointer transition-all hover:scale-[1.02] flex flex-col justify-between";
+                } else {
+                    card.className = "glass-card rounded-2xl p-5 border-slate-800 cursor-pointer transition-all hover:scale-[1.02] flex flex-col justify-between";
+                }
+            }
+
+            const data = traceStepsData[stepNum];
+            document.getElementById('detailStepNum').innerText = data.num;
+            document.getElementById('detailStepTitle').innerText = data.title;
+            document.getElementById('detailStepDesc').innerText = data.desc;
+
+            const specsContainer = document.getElementById('detailStepSpecs');
+            specsContainer.innerHTML = '';
+            data.specs.forEach(sp => {
+                const div = document.createElement('div');
+                div.className = "p-2 bg-slate-900 rounded border border-slate-800 text-slate-300";
+                div.innerHTML = `<span class="text-slate-500 block text-[9px]">${sp.label}</span><strong class="${sp.color}">${sp.val}</strong>`;
+                specsContainer.appendChild(div);
+            });
+        }
+
+        function toggleTraceAutoTour() {
+            const btn = document.getElementById('btnTourTrace');
+            const icon = document.getElementById('iconTourTrace');
+            const label = document.getElementById('labelTourTrace');
+
+            if (traceTourInterval) {
+                clearInterval(traceTourInterval);
+                traceTourInterval = null;
+                icon.className = "fa-solid fa-play";
+                label.innerText = "Reproducir Recorrido Guiado";
+                btn.className = "px-5 py-2.5 rounded-xl font-extrabold text-xs bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white shadow-lg shadow-emerald-500/25 flex items-center gap-2 transition-all";
+            } else {
+                label.innerText = "Pausar Recorrido Guiado";
+                icon.className = "fa-solid fa-pause";
+                btn.className = "px-5 py-2.5 rounded-xl font-extrabold text-xs bg-slate-800 text-slate-200 border border-slate-700 flex items-center gap-2 transition-all";
+                traceTourInterval = setInterval(() => {
+                    let next = currentTraceStep + 1;
+                    if (next > 5) next = 1;
+                    selectTraceStep(next);
+                }, 3000);
+            }
+        }
+
+        function openTraceAuditModal() {
+            const hashSimulado = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
+            alert("AUDITORÍA CRIPTOGRÁFICA SHA-256 SOBERANA:\\n\\n" +
+                  "Orden ID: JC-2026-Q918\\n" +
+                  "Estado: BÓVEDA CUSTODIA PERMANENTE VÁLIDA\\n" +
+                  "Huella Digital SHA-256:\\n" + hashSimulado + "\\n\\n" +
+                  "Firma: Dr. Joseph C. Castillo Cuenca (CMP 56435 / RNE 029291)\\n" +
+                  "Sello de Tiempo: 2026-11-06 08:45:12 UTC-05\\n" +
+                  "Resultado: Integridad 100% Verificada. Muestra protegida sin riesgo de pérdida.");
+        }
+
+        // ==========================================
+        // 4. IMMUNOQUERY SOBERANO BAYES ENGINE
+        // ==========================================
+        const immunoDilemmas = {
+            renal: {
+                title: "Neoplasia Renal: Células Claras vs Cromófobo vs Oncocitoma",
+                diagnoses: [
+                    { id: "ccRCC", name: "Carcinoma Renal Células Claras (ccRCC)", prior: 0.60, color: "from-cyan-500 to-blue-600", desc: "Patrón alveolar clásico con citoplasma rico en lípidos. Altamente sensible a inhibidores tirosina-kinasa/inmunoterapia." },
+                    { id: "chRCC", name: "Carcinoma Renal Cromófobo (chRCC)", prior: 0.25, color: "from-purple-500 to-indigo-600", desc: "Células vegetales con halo perinuclear. Pronóstico generalmente más favorable que ccRCC." },
+                    { id: "onco", name: "Oncocitoma Renal (Benigno)", prior: 0.15, color: "from-emerald-500 to-teal-600", desc: "Neoplasia epitelial benigna densamente oncocítica. Curación completa con resección conservadora." }
+                ],
+                antibodies: [
+                    { id: "PAX8", name: "PAX8", probs: { ccRCC: 0.98, chRCC: 0.90, onco: 0.85 } },
+                    { id: "CD10", name: "CD10", probs: { ccRCC: 0.95, chRCC: 0.15, onco: 0.20 } },
+                    { id: "CK7", name: "Citoqueratina 7 (CK7)", probs: { ccRCC: 0.10, chRCC: 0.95, onco: 0.05 } },
+                    { id: "CD117", name: "CD117 (c-kit)", probs: { ccRCC: 0.05, chRCC: 0.85, onco: 0.90 } },
+                    { id: "CAIX", name: "CAIX (Carbónica IX)", probs: { ccRCC: 0.96, chRCC: 0.12, onco: 0.05 } },
+                    { id: "VIM", name: "Vimentina", probs: { ccRCC: 0.92, chRCC: 0.15, onco: 0.10 } }
+                ]
+            },
+            pulmon: {
+                title: "Cáncer Pulmonar vs Mesotelioma Pleural",
+                diagnoses: [
+                    { id: "adeno", name: "Adenocarcinoma Pulmonar", prior: 0.45, color: "from-cyan-500 to-blue-600", desc: "Crecimiento acinar/lepídico con expresión nuclear de TTF-1. Candidato a terapias dirigidas (EGFR/ALK/ROS1)." },
+                    { id: "escam", name: "Carcinoma Epidermoide (Escamoso)", prior: 0.35, color: "from-amber-500 to-orange-600", desc: "Queratinización y puentes intercelulares con intensa sobreexpresión de p40/p63." },
+                    { id: "meso", name: "Mesotelioma Pleural Maligno", prior: 0.20, color: "from-purple-500 to-indigo-600", desc: "Proliferación mesotelial con patrón bifásico o epitelioide. Marcadores mesoteliales difusos." }
+                ],
+                antibodies: [
+                    { id: "TTF1", name: "TTF-1", probs: { adeno: 0.88, escam: 0.02, meso: 0.01 } },
+                    { id: "p40", name: "p40 (DeltaNp63)", probs: { adeno: 0.03, escam: 0.98, meso: 0.04 } },
+                    { id: "Napsina", name: "Napsina A", probs: { adeno: 0.82, escam: 0.01, meso: 0.01 } },
+                    { id: "Calretinina", name: "Calretinina", probs: { adeno: 0.04, escam: 0.08, meso: 0.95 } },
+                    { id: "WT1", name: "WT1 (Wilms Tumor 1)", probs: { adeno: 0.02, escam: 0.02, meso: 0.90 } },
+                    { id: "CK56", name: "Citoqueratina 5/6", probs: { adeno: 0.08, escam: 0.94, meso: 0.92 } }
+                ]
+            },
+            prostata: {
+                title: "Glándulas Prostáticas: Adenocarcinoma vs PIN vs Benigno",
+                diagnoses: [
+                    { id: "ca_prost", name: "Adenocarcinoma Acinar Prostático", prior: 0.50, color: "from-rose-500 to-red-600", desc: "Glándulas infiltrativas sin capa de células basales, con marcada sobreexpresión de racemasa (AMACR)." },
+                    { id: "pin_alto", name: "PIN de Alto Grado (HGPIN)", prior: 0.25, color: "from-purple-500 to-indigo-600", desc: "Atipia nuclear similar al cáncer pero con preservación discontinua de células basales (p63 / 34betaE12)." },
+                    { id: "benigno", name: "Glándulas Benignas / Hiperplasia", prior: 0.25, color: "from-emerald-500 to-teal-600", desc: "Doble capa celular íntegra. Racemasa negativa o basal débil." }
+                ],
+                antibodies: [
+                    { id: "AMACR", name: "AMACR (Racemasa p504s)", probs: { ca_prost: 0.95, pin_alto: 0.85, benigno: 0.05 } },
+                    { id: "p63", name: "p63 (Células Basales)", probs: { ca_prost: 0.02, pin_alto: 0.92, benigno: 0.98 } },
+                    { id: "HMWCK", name: "34betaE12 (HMW-CK)", probs: { ca_prost: 0.03, pin_alto: 0.90, benigno: 0.98 } }
+                ]
+            }
+        };
+
+        let currentDilemmaKey = 'renal';
+        let markerStates = {}; // markerId: 'pos' | 'neg' | 'unset'
+
+        function selectImmunoDilemma(key) {
+            currentDilemmaKey = key;
+            markerStates = {};
+            
+            // Buttons style
+            document.getElementById('btnDilemmaRenal').className = key === 'renal'
+                ? 'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-gradient-to-r from-purpleHemato to-indigo-600 text-white shadow-md transition-all'
+                : 'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all';
+            document.getElementById('btnDilemmaPulmon').className = key === 'pulmon'
+                ? 'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-gradient-to-r from-purpleHemato to-indigo-600 text-white shadow-md transition-all'
+                : 'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all';
+            document.getElementById('btnDilemmaProstata').className = key === 'prostata'
+                ? 'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-gradient-to-r from-purpleHemato to-indigo-600 text-white shadow-md transition-all'
+                : 'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all';
+
+            renderImmunoAntibodies();
+            computeBayes();
+        }
+
+        function renderImmunoAntibodies() {
+            const listContainer = document.getElementById('immunoAntibodiesList');
+            listContainer.innerHTML = '';
+            const dil = immunoDilemmas[currentDilemmaKey];
+
+            dil.antibodies.forEach(ab => {
+                markerStates[ab.id] = markerStates[ab.id] || 'unset';
+                const row = document.createElement('div');
+                row.className = 'flex items-center justify-between p-2.5 rounded-xl bg-slate-900 border border-slate-800 transition-colors';
+                
+                const state = markerStates[ab.id];
+                let stateBadge = '<span class="text-slate-400 font-mono text-xs">Indeterminado (?)</span>';
+                if (state === 'pos') stateBadge = '<span class="text-emerald-400 font-bold font-mono text-xs"><i class="fa-solid fa-plus mr-1"></i>Positivo (+)</span>';
+                if (state === 'neg') stateBadge = '<span class="text-rose-400 font-bold font-mono text-xs"><i class="fa-solid fa-minus mr-1"></i>Negativo (-)</span>';
+
+                row.innerHTML = `
+                    <div>
+                        <strong class="text-xs text-white block">${ab.name}</strong>
+                        ${stateBadge}
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <button type="button" onclick="cycleMarker('${ab.id}', 'pos')" class="px-2.5 py-1 rounded text-xs font-mono font-bold ${state === 'pos' ? 'bg-emerald-600 text-white' : 'bg-slate-800 text-slate-400 hover:text-white'} transition-colors">+</button>
+                        <button type="button" onclick="cycleMarker('${ab.id}', 'neg')" class="px-2.5 py-1 rounded text-xs font-mono font-bold ${state === 'neg' ? 'bg-rose-600 text-white' : 'bg-slate-800 text-slate-400 hover:text-white'} transition-colors">-</button>
+                        <button type="button" onclick="cycleMarker('${ab.id}', 'unset')" class="px-2 py-1 rounded text-xs font-mono ${state === 'unset' ? 'bg-slate-700 text-slate-200' : 'bg-slate-800 text-slate-500 hover:text-slate-300'} transition-colors">?</button>
+                    </div>
+                `;
+                listContainer.appendChild(row);
+            });
+        }
+
+        function cycleMarker(markerId, newState) {
+            markerStates[markerId] = newState;
+            renderImmunoAntibodies();
+            computeBayes();
+        }
+
+        function resetImmunoMarkers() {
+            const dil = immunoDilemmas[currentDilemmaKey];
+            dil.antibodies.forEach(ab => {
+                markerStates[ab.id] = 'unset';
+            });
+            renderImmunoAntibodies();
+            computeBayes();
+        }
+
+        function computeBayes() {
+            const dil = immunoDilemmas[currentDilemmaKey];
+            const scores = {};
+
+            // Calculate Likelihood * Prior
+            dil.diagnoses.forEach(dx => {
+                let p = dx.prior;
+                dil.antibodies.forEach(ab => {
+                    const st = markerStates[ab.id];
+                    if (st === 'pos') {
+                        p *= (ab.probs[dx.id] || 0.01);
+                    } else if (st === 'neg') {
+                        p *= (1 - (ab.probs[dx.id] || 0.01));
+                    }
+                });
+                scores[dx.id] = p;
+            });
+
+            // Normalize probabilities to 100%
+            let total = 0;
+            Object.values(scores).forEach(v => total += v);
+            if (total === 0) total = 0.0001;
+
+            const finalProbs = {};
+            dil.diagnoses.forEach(dx => {
+                finalProbs[dx.id] = (scores[dx.id] / total) * 100;
+            });
+
+            // Render bars
+            const barsContainer = document.getElementById('immunoProbabilityBars');
+            barsContainer.innerHTML = '';
+            let topDx = dil.diagnoses[0];
+            let topProb = -1;
+
+            dil.diagnoses.forEach(dx => {
+                const prob = Math.max(0.1, Math.min(99.9, finalProbs[dx.id]));
+                if (prob > topProb) {
+                    topProb = prob;
+                    topDx = dx;
+                }
+
+                const div = document.createElement('div');
+                div.className = 'space-y-1';
+                div.innerHTML = `
+                    <div class="flex justify-between text-xs font-semibold">
+                        <span class="text-slate-200">${dx.name}</span>
+                        <span class="font-mono text-cyan-300 font-bold">${prob.toFixed(1)}%</span>
+                    </div>
+                    <div class="w-full h-3 bg-slate-950 rounded-full overflow-hidden border border-slate-800 p-0.5">
+                        <div class="bayes-progress-bar h-full rounded-full bg-gradient-to-r ${dx.color}" style="width: ${prob}%;"></div>
+                    </div>
+                `;
+                barsContainer.appendChild(div);
+            });
+
+            // Update top diagnosis conclusion
+            document.getElementById('immunoTopDxTitle').innerText = `Diagnóstico Más Probable: ${topDx.name} (${topProb.toFixed(1)}%)`;
+            document.getElementById('immunoTopDxDesc').innerText = topDx.desc;
+
+            // Update WhatsApp order link with active markers
+            const activeMarkersList = [];
+            dil.antibodies.forEach(ab => {
+                const s = markerStates[ab.id];
+                if (s === 'pos') activeMarkersList.push(`${ab.name} (+)`);
+                if (s === 'neg') activeMarkersList.push(`${ab.name} (-)`);
+            });
+            const textMarkers = activeMarkersList.length > 0 ? activeMarkersList.join(', ') : 'Panel completo sugerido';
+            const whatsappMsg = `Estimado Dr. Joseph Castillo, en el simulador ImmunoQuery seleccioné: ${dil.title} con perfil [${textMarkers}]. Deseo cotizar este panel para una biopsia.`;
+            document.getElementById('btnImmunoOrderWhatsapp').href = `https://wa.me/51986396733?text=${encodeURIComponent(whatsappMsg)}`;
+        }
+
+        // ==========================================
+        // 5. CHATBOT FLOTANTE CON CORTANA IA & n8n
+        // ==========================================
+        const N8N_WEBHOOK_URL = "http://127.0.0.1:8766/api/chat_consultas";
+        let sessionIdGenerado = "web_" + Math.random().toString(36).substring(2, 10);
+
+        function toggleChatWindow() {
+            const win = document.getElementById('chatWindow');
+            win.classList.toggle('hidden');
+        }
+
+        function appendMessage(sender, text, isError = false) {
+            const container = document.getElementById('chatMessages');
+            const div = document.createElement('div');
+            if (sender === 'user') {
+                div.className = 'bg-cyanCobalt/20 border border-cyanCobalt/40 p-2.5 rounded-xl text-white ml-6 text-right';
+                div.innerHTML = text;
+            } else {
+                div.className = isError 
+                    ? 'bg-rose-950/60 border border-rose-800/60 p-2.5 rounded-xl text-slate-200 mr-6'
+                    : 'bg-slate-900 border border-slate-800 p-2.5 rounded-xl text-slate-200 mr-6';
+                div.innerHTML = text;
+            }
+            container.appendChild(div);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        async function enviarMensajeN8N(mensajeUsuario) {
+            appendMessage('user', mensajeUsuario);
+            const idWait = 'wait_' + Date.now();
+            appendMessage('bot', '<span id="' + idWait + '" class="italic text-slate-400"><i class="fa-solid fa-spinner fa-spin"></i> Cortana está escribiendo...</span>');
+            
+            try {
+                const res = await fetch(N8N_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ chatInput: mensajeUsuario, sessionId: sessionIdGenerado })
+                });
+                
+                const waitEl = document.getElementById(idWait);
+                if (waitEl && waitEl.parentNode) waitEl.parentNode.remove();
+
+                if (res.ok) {
+                    const data = await res.json();
+                    const respuesta = data.output || data.text || data.message || "Tu consulta ha sido registrada.";
+                    appendMessage('bot', respuesta);
+                } else {
+                    throw new Error('Servidor IA no disponible');
+                }
+            } catch (err) {
+                const waitEl = document.getElementById(idWait);
+                if (waitEl && waitEl.parentNode) waitEl.parentNode.remove();
+                
+                appendMessage('bot', `
+                    <strong>Atención Médica Directa:</strong><br>
+                    Para cotizaciones inmediatas o consultas sobre tu orden médica, contáctate directamente con el Dr. Joseph Castillo en WhatsApp:
+                    <a href="https://wa.me/51986396733?text=${encodeURIComponent('Hola Dr. Castillo, tengo la siguiente consulta: ' + mensajeUsuario)}" target="_blank" class="mt-2 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-bold text-[11px] block text-center">
+                        <i class="fa-brands fa-whatsapp"></i> Continuar por WhatsApp (+51 986 396 733)
+                    </a>
+                `, false);
+            }
+        }
+
+        function handleChatSubmit(e) {
+            e.preventDefault();
+            const input = document.getElementById('chatInputText');
+            const val = input.value.trim();
+            if (!val) return;
+            input.value = '';
+            enviarMensajeN8N(val);
+        }
+
+        function enviarMensajeRapido(msg) {
+            enviarMensajeN8N(msg);
+        }
+
+        // ==========================================
+        // INICIALIZACIÓN GENERAL AL CARGAR DOM
+        // ==========================================
+        window.addEventListener('DOMContentLoaded', () => {
+            loadWsiCase('prostata');
+            selectTraceStep(1);
+            selectImmunoDilemma('renal');
+        });
+    </script>
+</body>
+</html>
+'''
+
+if __name__ == "__main__":
+    content = get_html_content()
+    with open(HTML_FILE, "w", encoding="utf-8") as f:
+        f.write(content)
+    print(f"Master index.html written successfully to {HTML_FILE}. Size: {len(content)} characters.")
