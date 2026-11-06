@@ -1,13 +1,17 @@
 // Base de datos de plantillas estáticas (Desconectado de Supabase)
+
 // Formato: id (num), categoryId (num), titulo (string), macro (string), micro (string), diag (string)
+
 // Categorías ordenadas alfabéticamente por especialidad médica
+
+
 
 const defaultTemplates = [
     {
         "id": 997,
         "categoryId": 9,
         "titulo": "PROSTATECTOMÍA RADICAL",
-        "macro": "se recibe espécimen quirúrgico rotulado como PROSTATECTOMÍA RADICAL, fijado en formol, que pesa [peso] g y mide [dimensiones] cm. acompaña vesícula seminal derecha de 3.0 x 1.2 cm, vesícula seminal izquierda de 2.8 x 1.1 cm y conductos deferentes de 1.5 cm. la superficie externa se encuentra íntegra.
+        "macro": `se recibe espécimen quirúrgico rotulado como PROSTATECTOMÍA RADICAL, fijado en formol, que pesa [peso] g y mide [dimensiones] cm. acompaña vesícula seminal derecha de 3.0 x 1.2 cm, vesícula seminal izquierda de 2.8 x 1.1 cm y conductos deferentes de 1.5 cm. la superficie externa se encuentra íntegra.
 
 se realiza entintado tridimensional según protocolo de Susan Lester (2010):
 - hemicara derecha: tinta china negra.
@@ -15,8 +19,8 @@ se realiza entintado tridimensional según protocolo de Susan Lester (2010):
 
 se resecan el margen apical (DUM) y margen del cuello vesical / base (PUM) mediante cortes sagitales perpendiculares a la uretra. el cuerpo prostático se corta transversalmente en rebanadas seriadas de 3 a 4 mm desde el ápex a la base, mapeadas en 4 cuadrantes (RA, LA, RP, LP). en la zona periférica posterior se identifica una lesión de consistencia firme, color pardo-amarillento de 1.6 cm que dista 2.0 mm del margen entintado más próximo, sin disrupción capsular macroscópica evidente. ambas vesículas seminales al corte no muestran lesiones sólidas ni necrosis. se incluye muestra representativa total de ápex, base, vesículas seminales y cuadrantes tumorales en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Lester, S. C. (2010). Manual of Surgical Pathology (3rd ed., pp. 424–428). Elsevier / Saunders. / College of American Pathologists (CAP v4.2.0.0, 2023).</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia maligna epitelial correspondiente a ADENOCARCINOMA ACINAR DE PRÓSTATA (OMS 5.ª Edición).
+<small style=\"font-size: 0.72rem; color: #64748b;\">Lester, S. C. (2010). Manual of Surgical Pathology (3rd ed., pp. 424–428). Elsevier / Saunders. / College of American Pathologists (CAP v4.2.0.0, 2023).</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia maligna epitelial correspondiente a ADENOCARCINOMA ACINAR DE PRÓSTATA (OMS 5.ª Edición).
 
 ARQUITECTURA Y DIFERENCIACIÓN (SISTEMA GLEASON / ISUP 2022):
 • patrón histológico primario: gleason 3.
@@ -36,8 +40,8 @@ EXTENSIÓN TUMORAL E INVASIONES:
 
 EVALUACIÓN DE MÁRGENES QUIRÚRGICOS (ESTÁNDAR CAP / LESTER \"INK ON TUMOR\"):
 • todos los márgenes quirúrgicos examinados (apical uretral, cuello vesical y radiales circunferenciales) se encuentran libres de neoplasia invasora (R0). distancia mínima al margen entintado más próximo: 2.0 mm.
-• parénquima prostático no tumoral acompañante: hiperplasia nodular prostática benigna con prostatitis crónica linfohistiocitaria leve.",
-        "diag": "PRÓSTATA Y VESÍCULAS SEMINALES (PROSTATECTOMÍA RADICAL):
+• parénquima prostático no tumoral acompañante: hiperplasia nodular prostática benigna con prostatitis crónica linfohistiocitaria leve.`,
+        "diag": `PRÓSTATA Y VESÍCULAS SEMINALES (PROSTATECTOMÍA RADICAL):
 - ADENOCARCINOMA ACINAR CONVENCIONAL DE LA PRÓSTATA.
 - GRUPO DE GRADO HISTOLÓGICO ISUP 2 (GLEASON SCORE 3 + 4 = 7).
   * PORCENTAJE DE PATRÓN 4: 15%.
@@ -64,13 +68,13 @@ RESUMEN SINÓPTICO CAP: PROSTATECTOMÍA RADICAL (AJCC 8.ª Ed. / CAP v4.2.0.0)
 • Estado de márgenes: Negativos (R0)
 • Invasión perineural: Presente
 • Invasión linfovascular: No identificada
-================================================================================"
+================================================================================`
     },
     {
         "id": 1997,
         "categoryId": 25,
         "titulo": "PROSTATECTOMÍA RADICAL",
-        "macro": "se recibe espécimen quirúrgico rotulado como PROSTATECTOMÍA RADICAL, fijado en formol, que pesa [peso] g y mide [dimensiones] cm. acompaña vesícula seminal derecha de 3.0 x 1.2 cm, vesícula seminal izquierda de 2.8 x 1.1 cm y conductos deferentes de 1.5 cm. la superficie externa se encuentra íntegra.
+        "macro": `se recibe espécimen quirúrgico rotulado como PROSTATECTOMÍA RADICAL, fijado en formol, que pesa [peso] g y mide [dimensiones] cm. acompaña vesícula seminal derecha de 3.0 x 1.2 cm, vesícula seminal izquierda de 2.8 x 1.1 cm y conductos deferentes de 1.5 cm. la superficie externa se encuentra íntegra.
 
 se realiza entintado tridimensional según protocolo de Susan Lester (2010):
 - hemicara derecha: tinta china negra.
@@ -78,8 +82,8 @@ se realiza entintado tridimensional según protocolo de Susan Lester (2010):
 
 se resecan el margen apical (DUM) y margen del cuello vesical / base (PUM) mediante cortes sagitales perpendiculares a la uretra. el cuerpo prostático se corta transversalmente en rebanadas seriadas de 3 a 4 mm desde el ápex a la base, mapeadas en 4 cuadrantes (RA, LA, RP, LP). en la zona periférica posterior se identifica una lesión de consistencia firme, color pardo-amarillento de 1.6 cm que dista 2.0 mm del margen entintado más próximo, sin disrupción capsular macroscópica evidente. ambas vesículas seminales al corte no muestran lesiones sólidas ni necrosis. se incluye muestra representativa total de ápex, base, vesículas seminales y cuadrantes tumorales en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Lester, S. C. (2010). Manual of Surgical Pathology (3rd ed., pp. 424–428). Elsevier / Saunders. / College of American Pathologists (CAP v4.2.0.0, 2023).</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia maligna epitelial correspondiente a ADENOCARCINOMA ACINAR DE PRÓSTATA (OMS 5.ª Edición).
+<small style=\"font-size: 0.72rem; color: #64748b;\">Lester, S. C. (2010). Manual of Surgical Pathology (3rd ed., pp. 424–428). Elsevier / Saunders. / College of American Pathologists (CAP v4.2.0.0, 2023).</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia maligna epitelial correspondiente a ADENOCARCINOMA ACINAR DE PRÓSTATA (OMS 5.ª Edición).
 
 ARQUITECTURA Y DIFERENCIACIÓN (SISTEMA GLEASON / ISUP 2022):
 • patrón histológico primario: gleason 3.
@@ -99,8 +103,8 @@ EXTENSIÓN TUMORAL E INVASIONES:
 
 EVALUACIÓN DE MÁRGENES QUIRÚRGICOS (ESTÁNDAR CAP / LESTER \"INK ON TUMOR\"):
 • todos los márgenes quirúrgicos examinados (apical uretral, cuello vesical y radiales circunferenciales) se encuentran libres de neoplasia invasora (R0). distancia mínima al margen entintado más próximo: 2.0 mm.
-• parénquima prostático no tumoral acompañante: hiperplasia nodular prostática benigna con prostatitis crónica linfohistiocitaria leve.",
-        "diag": "PRÓSTATA Y VESÍCULAS SEMINALES (PROSTATECTOMÍA RADICAL):
+• parénquima prostático no tumoral acompañante: hiperplasia nodular prostática benigna con prostatitis crónica linfohistiocitaria leve.`,
+        "diag": `PRÓSTATA Y VESÍCULAS SEMINALES (PROSTATECTOMÍA RADICAL):
 - ADENOCARCINOMA ACINAR CONVENCIONAL DE LA PRÓSTATA.
 - GRUPO DE GRADO HISTOLÓGICO ISUP 2 (GLEASON SCORE 3 + 4 = 7).
   * PORCENTAJE DE PATRÓN 4: 15%.
@@ -127,77 +131,77 @@ RESUMEN SINÓPTICO CAP: PROSTATECTOMÍA RADICAL (AJCC 8.ª Ed. / CAP v4.2.0.0)
 • Estado de márgenes: Negativos (R0)
 • Invasión perineural: Presente
 • Invasión linfovascular: No identificada
-================================================================================"
+================================================================================`
     },
     {
         "id": 998,
         "categoryId": 9,
         "titulo": "ENUCLEACIÓN DE PRÓSTATA",
-        "macro": "se recibe espécimen de enucleación prostática consistente en una pieza multilobulada íntegra (lóbulos laterales y medio), con superficie externa pseudo-capsular lisa y congestiva, que mide [dimensiones] cm y pesa [peso] g. a los cortes seriados cada 3 a 5 mm, el parénquima exhibe aspecto nodular pardo-amarillento a pardo-blanquecino, de consistencia elástica, con múltiples formaciones microquísticas ectásicas y secreción coloide, sin induraciones sospechosas ni áreas de necrosis. se incluye muestra representativa según protocolo de enucleación en [n] casete(s).
+        "macro": `se recibe espécimen de enucleación prostática consistente en una pieza multilobulada íntegra (lóbulos laterales y medio), con superficie externa pseudo-capsular lisa y congestiva, que mide [dimensiones] cm y pesa [peso] g. a los cortes seriados cada 3 a 5 mm, el parénquima exhibe aspecto nodular pardo-amarillento a pardo-blanquecino, de consistencia elástica, con múltiples formaciones microquísticas ectásicas y secreción coloide, sin induraciones sospechosas ni áreas de necrosis. se incluye muestra representativa según protocolo de enucleación en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Lester, S. C. (2010). Manual of Surgical Pathology (3rd ed.). Elsevier / Saunders. / College of American Pathologists (CAP, 2023).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Lester, S. C. (2010). Manual of Surgical Pathology (3rd ed.). Elsevier / Saunders. / College of American Pathologists (CAP, 2023).</small>`,
         "micro": "los cortes histológicos muestran parénquima prostático con hiperplasia nodular mixta (glandular y estromal). las unidades acinares exhiben luces dilatadas, plegamientos papilares y cuerpos amiláceos intraluminares, conservando una bicapa celular intacta (células basales continuas y células luminales secretoras) sin atipia citológica. el estroma interglandular presenta hiperplasia fibromuscular acompañada de un leve infiltrado inflamatorio crónico linfohistiocitario focal. la pseudocápsula periférica se encuentra libre de neoplasia. no se identifica proliferación acinar atípica (ASAP), neoplasia intraepitelial prostática de alto grado (HGPIN) ni adenocarcinoma invasor.",
-        "diag": "PRÓSTATA (ENUCLEACIÓN PROSTÁTICA):
+        "diag": `PRÓSTATA (ENUCLEACIÓN PROSTÁTICA):
 - HIPERPLASIA NODULAR PROSTÁTICA BENIGNA (COMPONENTE GLANDULAR Y FIBROMUSCULAR).
 - PROSTATITIS CRÓNICA LINFOHISTIOCITARIA LEVE INESPECÍFICA.
 - PSEUDOCÁPSULA QUIRÚRGICA LIBRE DE NEOPLASIA.
-- NEGATIVO PARA NEOPLASIA INTRAEPITELIAL PROSTÁTICA DE ALTO GRADO (HGPIN) Y NEGATIVO PARA MALIGNIDAD EN EL MATERIAL EXAMINADO."
+- NEGATIVO PARA NEOPLASIA INTRAEPITELIAL PROSTÁTICA DE ALTO GRADO (HGPIN) Y NEGATIVO PARA MALIGNIDAD EN EL MATERIAL EXAMINADO.`
     },
     {
         "id": 1998,
         "categoryId": 25,
         "titulo": "ENUCLEACIÓN DE PRÓSTATA",
-        "macro": "se recibe espécimen de enucleación prostática consistente en una pieza multilobulada íntegra (lóbulos laterales y medio), con superficie externa pseudo-capsular lisa y congestiva, que mide [dimensiones] cm y pesa [peso] g. a los cortes seriados cada 3 a 5 mm, el parénquima exhibe aspecto nodular pardo-amarillento a pardo-blanquecino, de consistencia elástica, con múltiples formaciones microquísticas ectásicas y secreción coloide, sin induraciones sospechosas ni áreas de necrosis. se incluye muestra representativa según protocolo de enucleación en [n] casete(s).
+        "macro": `se recibe espécimen de enucleación prostática consistente en una pieza multilobulada íntegra (lóbulos laterales y medio), con superficie externa pseudo-capsular lisa y congestiva, que mide [dimensiones] cm y pesa [peso] g. a los cortes seriados cada 3 a 5 mm, el parénquima exhibe aspecto nodular pardo-amarillento a pardo-blanquecino, de consistencia elástica, con múltiples formaciones microquísticas ectásicas y secreción coloide, sin induraciones sospechosas ni áreas de necrosis. se incluye muestra representativa según protocolo de enucleación en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Lester, S. C. (2010). Manual of Surgical Pathology (3rd ed.). Elsevier / Saunders. / College of American Pathologists (CAP, 2023).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Lester, S. C. (2010). Manual of Surgical Pathology (3rd ed.). Elsevier / Saunders. / College of American Pathologists (CAP, 2023).</small>`,
         "micro": "los cortes histológicos muestran parénquima prostático con hiperplasia nodular mixta (glandular y estromal). las unidades acinares exhiben luces dilatadas, plegamientos papilares y cuerpos amiláceos intraluminares, conservando una bicapa celular intacta (células basales continuas y células luminales secretoras) sin atipia citológica. el estroma interglandular presenta hiperplasia fibromuscular acompañada de un leve infiltrado inflamatorio crónico linfohistiocitario focal. la pseudocápsula periférica se encuentra libre de neoplasia. no se identifica proliferación acinar atípica (ASAP), neoplasia intraepitelial prostática de alto grado (HGPIN) ni adenocarcinoma invasor.",
-        "diag": "PRÓSTATA (ENUCLEACIÓN PROSTÁTICA):
+        "diag": `PRÓSTATA (ENUCLEACIÓN PROSTÁTICA):
 - HIPERPLASIA NODULAR PROSTÁTICA BENIGNA (COMPONENTE GLANDULAR Y FIBROMUSCULAR).
 - PROSTATITIS CRÓNICA LINFOHISTIOCITARIA LEVE INESPECÍFICA.
 - PSEUDOCÁPSULA QUIRÚRGICA LIBRE DE NEOPLASIA.
-- NEGATIVO PARA NEOPLASIA INTRAEPITELIAL PROSTÁTICA DE ALTO GRADO (HGPIN) Y NEGATIVO PARA MALIGNIDAD EN EL MATERIAL EXAMINADO."
+- NEGATIVO PARA NEOPLASIA INTRAEPITELIAL PROSTÁTICA DE ALTO GRADO (HGPIN) Y NEGATIVO PARA MALIGNIDAD EN EL MATERIAL EXAMINADO.`
     },
     {
         "id": 999,
         "categoryId": 9,
         "titulo": "MORCELADOS DE PRÓSTATA (ASISTENTE WIZARD)",
-        "macro": "Se reciben múltiples fragmentos tisulares irregulares de tejido prostático (virutas de morcelación quirúrgica láser HoLEP / ThuLEP o resección transuretral), de coloración pardo-blanquecina a pardo-amarillenta y consistencia elástica, que en conjunto miden [dimensiones] cm y pesan [peso] g. Se incluye muestra representativa en [n] casete(s).
+        "macro": `Se reciben múltiples fragmentos tisulares irregulares de tejido prostático (virutas de morcelación quirúrgica láser HoLEP / ThuLEP o resección transuretral), de coloración pardo-blanquecina a pardo-amarillenta y consistencia elástica, que en conjunto miden [dimensiones] cm y pesan [peso] g. Se incluye muestra representativa en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Lester, S. C. (2010). Manual of Surgical Pathology (3rd ed.). Elsevier / Saunders. / WHO Classification of Tumours of the Urinary System and Male Genital Organs (5th ed., 2022).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Lester, S. C. (2010). Manual of Surgical Pathology (3rd ed.). Elsevier / Saunders. / WHO Classification of Tumours of the Urinary System and Male Genital Organs (5th ed., 2022).</small>`,
         "micro": "Los cortes histológicos coloreados con H&E revelan parénquima prostático de la zona de transición con hiperplasia nodular mixta (glandular adenomatosa y estromal fibromuscular). Las unidades acinares presentan arquitectura lobulillar armónica con luces de calibre variable, pliegues papilares intraluminares revestidos por doble hilera celular epitelial conservada (capa luminal de células secretoras cilíndricas sin macronucléolos y capa externa de células basales continuas intactas). Se identifican cuerpos amiláceos intraluminares acidófilos. El estroma interglandular demuestra proliferación de haces de músculo liso entrelazados con tejido conjuntivo laxo y discreto infiltrado inflamatorio crónico linfohistiocitario periglandular inespecífico. No se observan nidos sólidos infiltrativos, patrones cribiformes atípicos, proliferaciones microacinares desprovistas de estrato basal (ASAP), neoplasia intraepitelial prostática de alto grado (HGPIN) ni adenocarcinoma invasor.",
-        "diag": "PRÓSTATA (PRODUCTO DE MORCELADO / ENUCLEACIÓN LÁSER):
+        "diag": `PRÓSTATA (PRODUCTO DE MORCELADO / ENUCLEACIÓN LÁSER):
 - HIPERPLASIA NODULAR PROSTÁTICA BENIGNA (COMPONENTES GLANDULAR ADENOMATOSO Y ESTROMAL FIBROMUSCULAR MIXTOS).
 - PROSTATITIS CRÓNICA LINFOHISTIOCITARIA LEVE INESPECÍFICA.
 - NEGATIVO PARA NEOPLASIA INTRAEPITELIAL PROSTÁTICA DE ALTO GRADO (HGPIN).
-- NEGATIVO PARA NEOPLASIA MALIGNA (ADENOCARCINOMA PROSTÁTICO INVASOR) EN EL MATERIAL EXAMINADO (ISUP / OMS 2022)."
+- NEGATIVO PARA NEOPLASIA MALIGNA (ADENOCARCINOMA PROSTÁTICO INVASOR) EN EL MATERIAL EXAMINADO (ISUP / OMS 2022).`
     },
     {
         "id": 1999,
         "categoryId": 25,
         "titulo": "MORCELADOS DE PRÓSTATA (ASISTENTE WIZARD)",
-        "macro": "Se reciben múltiples fragmentos tisulares irregulares de tejido prostático (virutas de morcelación quirúrgica láser HoLEP / ThuLEP o resección transuretral), de coloración pardo-blanquecina a pardo-amarillenta y consistencia elástica, que en conjunto miden [dimensiones] cm y pesan [peso] g. Se incluye muestra representativa en [n] casete(s).
+        "macro": `Se reciben múltiples fragmentos tisulares irregulares de tejido prostático (virutas de morcelación quirúrgica láser HoLEP / ThuLEP o resección transuretral), de coloración pardo-blanquecina a pardo-amarillenta y consistencia elástica, que en conjunto miden [dimensiones] cm y pesan [peso] g. Se incluye muestra representativa en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Lester, S. C. (2010). Manual of Surgical Pathology (3rd ed.). Elsevier / Saunders. / WHO Classification of Tumours of the Urinary System and Male Genital Organs (5th ed., 2022).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Lester, S. C. (2010). Manual of Surgical Pathology (3rd ed.). Elsevier / Saunders. / WHO Classification of Tumours of the Urinary System and Male Genital Organs (5th ed., 2022).</small>`,
         "micro": "Los cortes histológicos coloreados con H&E revelan parénquima prostático de la zona de transición con hiperplasia nodular mixta (glandular adenomatosa y estromal fibromuscular). Las unidades acinares presentan arquitectura lobulillar armónica con luces de calibre variable, pliegues papilares intraluminares revestidos por doble hilera celular epitelial conservada (capa luminal de células secretoras cilíndricas sin macronucléolos y capa externa de células basales continuas intactas). Se identifican cuerpos amiláceos intraluminares acidófilos. El estroma interglandular demuestra proliferación de haces de músculo liso entrelazados con tejido conjuntivo laxo y discreto infiltrado inflamatorio crónico linfohistiocitario periglandular inespecífico. No se observan nidos sólidos infiltrativos, patrones cribiformes atípicos, proliferaciones microacinares desprovistas de estrato basal (ASAP), neoplasia intraepitelial prostática de alto grado (HGPIN) ni adenocarcinoma invasor.",
-        "diag": "PRÓSTATA (PRODUCTO DE MORCELADO / ENUCLEACIÓN LÁSER):
+        "diag": `PRÓSTATA (PRODUCTO DE MORCELADO / ENUCLEACIÓN LÁSER):
 - HIPERPLASIA NODULAR PROSTÁTICA BENIGNA (COMPONENTES GLANDULAR ADENOMATOSO Y ESTROMAL FIBROMUSCULAR MIXTOS).
 - PROSTATITIS CRÓNICA LINFOHISTIOCITARIA LEVE INESPECÍFICA.
 - NEGATIVO PARA NEOPLASIA INTRAEPITELIAL PROSTÁTICA DE ALTO GRADO (HGPIN).
-- NEGATIVO PARA NEOPLASIA MALIGNA (ADENOCARCINOMA PROSTÁTICO INVASOR) EN EL MATERIAL EXAMINADO (ISUP / OMS 2022)."
+- NEGATIVO PARA NEOPLASIA MALIGNA (ADENOCARCINOMA PROSTÁTICO INVASOR) EN EL MATERIAL EXAMINADO (ISUP / OMS 2022).`
     },
     {
         "id": 1,
         "categoryId": 2,
         "titulo": "NEVUS INTRADÉRMICO",
-        "macro": "se recibe losange de piel que mide [dimensiones] cm. la superficie epidérmica exhibe una lesión sobreelevada de aspecto papilomatoso y circunscrito, de coloración pardo-clara a normopigmentada, que mide [diámetro] cm en su eje mayor, con bordes netos y regulares. al corte, el tejido subyacente es blanquecino, homogéneo y elástico. los márgenes quirúrgicos periféricos y profundo se encuentran macroscópicamente libres. se incluye la totalidad de la muestra en [n] casete(s).
+        "macro": `se recibe losange de piel que mide [dimensiones] cm. la superficie epidérmica exhibe una lesión sobreelevada de aspecto papilomatoso y circunscrito, de coloración pardo-clara a normopigmentada, que mide [diámetro] cm en su eje mayor, con bordes netos y regulares. al corte, el tejido subyacente es blanquecino, homogéneo y elástico. los márgenes quirúrgicos periféricos y profundo se encuentran macroscópicamente libres. se incluye la totalidad de la muestra en [n] casete(s).
 
 <small style=\"font-size: 0.72rem; color: #64748b;\">Lester, S. C. (2010). Manual of Surgical Pathology (3rd ed.). Elsevier / Saunders. / College of American Pathologists (CAP, 2023).</small>
-Calonje, E., Brenn, T., Lazar, A. J., & Billings, S. D. (2019). McKee's Pathology of the Skin with Clinical Correlations (5th ed.). Elsevier.",
+Calonje, E., Brenn, T., Lazar, A. J., & Billings, S. D. (2019). McKee's Pathology of the Skin with Clinical Correlations (5th ed.). Elsevier.`,
         "micro": "los cortes histológicos muestran epidermis de revestimiento con arquitectura conservada, sin atipia ni migración pagetoide. en la dermis papilar y reticular se identifica una proliferación melanocítica benigna dispuesta en nidos y cordones uniformes, sin actividad de unión dermoepidérmica. se reconoce un gradiente de maduración conservado hacia la profundidad, observándose transición de células tipo a epitelioides a células tipo c neuroides en la base. no se identifica atipia citológica, pleomorfismo nuclear, figuras de mitosis dérmicas ni necrosis. los márgenes de resección quirúrgicos laterales y profundo se encuentran libres de lesión névica.",
-        "diag": "PIEL [LOCALIZACIÓN], EXÉRESIS / BIOPSIA ESCISIONAL:
+        "diag": `PIEL [LOCALIZACIÓN], EXÉRESIS / BIOPSIA ESCISIONAL:
 - NEVUS MELANOCÍTICO INTRADÉRMICO (BENIGNO).
 - MÁRGENES QUIRÚRGICOS LATERALES Y PROFUNDO LIBRES DE LESIÓN NÉVICA.
-- NEGATIVO PARA ATIPIA CITOLÓGICA O MALIGNIDAD (NEGATIVO PARA MELANOMA)."
+- NEGATIVO PARA ATIPIA CITOLÓGICA O MALIGNIDAD (NEGATIVO PARA MELANOMA).`
     },
     {
         "id": 2,
@@ -212,119 +216,119 @@ Calonje, E., Brenn, T., Lazar, A. J., & Billings, S. D. (2019). McKee's Patholog
         "categoryId": 3,
         "titulo": "BIOPSIAS DE ESTÓMAGO X 1",
         "macro": "se recibe 1 biopsia de estómago que mide 0.3 x 0.2 cm, de color blanco grisáceo. se incluye la totalidad de la muestra en 1 casete.",
-        "micro": "los cortes histológicos muestran mucosa gástrica con arquitectura foveolar y glandular conservada. la lámina propia presenta un leve infiltrado inflamatorio crónico linfohistiocitario sin actividad neutrofílica.
+        "micro": `los cortes histológicos muestran mucosa gástrica con arquitectura foveolar y glandular conservada. la lámina propia presenta un leve infiltrado inflamatorio crónico linfohistiocitario sin actividad neutrofílica.
 • atrofia: no identificada
 • metaplasia: no identificada
 • displasia: no identificada
-• helicobacter pylori: no se observan (0/+++)",
-        "diag": "MUESTRA GÁSTRICA, BIOPSIA:
+• helicobacter pylori: no se observan (0/+++)`,
+        "diag": `MUESTRA GÁSTRICA, BIOPSIA:
 - GASTRITIS CRÓNICA LEVE INESPECÍFICA NO ACTIVA.
-- NEGATIVO PARA HELICOBACTER PYLORI, ATROFIA O MALIGNIDAD."
+- NEGATIVO PARA HELICOBACTER PYLORI, ATROFIA O MALIGNIDAD.`
     },
     {
         "id": 4,
         "categoryId": 3,
         "titulo": "BIOPSIAS DE ESTÓMAGO X 2",
         "macro": "se reciben 2 biopsias de estómago que miden entre 0.3 cm y 0.2 cm, de color blanco grisáceo. se incluye la totalidad de la muestra en 1 casete.",
-        "micro": "los cortes histológicos muestran fragmentos de mucosa gástrica antro-corporal con arquitectura glandular conservada. en la lámina propia se reconoce un leve infiltrado inflamatorio crónico linfohistiocitario. no se identifican neutrófilos intraepiteliales ni erosiones mucosas.
+        "micro": `los cortes histológicos muestran fragmentos de mucosa gástrica antro-corporal con arquitectura glandular conservada. en la lámina propia se reconoce un leve infiltrado inflamatorio crónico linfohistiocitario. no se identifican neutrófilos intraepiteliales ni erosiones mucosas.
 • atrofia: no identificada
 • metaplasia: no identificada
 • displasia: no identificada
-• helicobacter pylori: no se observan (0/+++)",
-        "diag": "MUESTRAS GÁSTRICAS, BIOPSIA (X 2):
+• helicobacter pylori: no se observan (0/+++)`,
+        "diag": `MUESTRAS GÁSTRICAS, BIOPSIA (X 2):
 - GASTRITIS CRÓNICA LEVE NO ACTIVA.
-- NEGATIVO PARA HELICOBACTER PYLORI, ATROFIA O MALIGNIDAD."
+- NEGATIVO PARA HELICOBACTER PYLORI, ATROFIA O MALIGNIDAD.`
     },
     {
         "id": 5,
         "categoryId": 3,
         "titulo": "BIOPSIAS DE ESTÓMAGO X 3",
         "macro": "se reciben 3 biopsias de estómago, la mayor de las cuales mide 0.4 cm y la menor mide 0.2 cm, de color blanco grisáceo. se incluye la totalidad de la muestra en 1 casete.",
-        "micro": "los cortes histológicos muestran múltiples fragmentos de mucosa gástrica antro-corporal con relación foveolo-glandular conservada. la lámina propia exhibe leve infiltrado linfohistiocitario monomorfo sin agregados foliculares ni actividad polimorfonuclear neutrofílica.
+        "micro": `los cortes histológicos muestran múltiples fragmentos de mucosa gástrica antro-corporal con relación foveolo-glandular conservada. la lámina propia exhibe leve infiltrado linfohistiocitario monomorfo sin agregados foliculares ni actividad polimorfonuclear neutrofílica.
 • atrofia: no identificada
 • metaplasia: no identificada
 • displasia: no identificada
-• helicobacter pylori: no se observan (0/+++)",
-        "diag": "MUESTRAS GÁSTRICAS, BIOPSIA (X 3):
+• helicobacter pylori: no se observan (0/+++)`,
+        "diag": `MUESTRAS GÁSTRICAS, BIOPSIA (X 3):
 - GASTRITIS CRÓNICA LEVE NO ACTIVA.
-- NEGATIVO PARA HELICOBACTER PYLORI, METAPLASIA O MALIGNIDAD."
+- NEGATIVO PARA HELICOBACTER PYLORI, METAPLASIA O MALIGNIDAD.`
     },
     {
         "id": 6,
         "categoryId": 3,
         "titulo": "GASTRITIS CRÓNICA MODERADA ACTIVA",
         "macro": "se reciben 2 biopsias gástricas, la mayor de las cuales mide 0.4 cm y la menor mide 0.2 cm. se incluye la totalidad de la muestra en 1 casete.",
-        "micro": "el estudio histológico muestra mucosa gástrica con arquitectura foveolar conservada en áreas, exhibiendo un infiltrado inflamatorio crónico de intensidad moderada (grado 2/3 según la escala visual analógica del sistema sydney) en la lámina propia, compuesto predominantemente por linfocitos y células plasmáticas, asociado a una actividad neutrofílica moderada (grado 2/3).
+        "micro": `el estudio histológico muestra mucosa gástrica con arquitectura foveolar conservada en áreas, exhibiendo un infiltrado inflamatorio crónico de intensidad moderada (grado 2/3 según la escala visual analógica del sistema sydney) en la lámina propia, compuesto predominantemente por linfocitos y células plasmáticas, asociado a una actividad neutrofílica moderada (grado 2/3).
 • atrofia: no identificada
 • metaplasia: no identificada
 • displasia: no identificada
-• helicobacter pylori: presente (+/+++)",
-        "diag": "MUESTRA GÁSTRICA, BIOPSIA:
+• helicobacter pylori: presente (+/+++)`,
+        "diag": `MUESTRA GÁSTRICA, BIOPSIA:
 GASTRITIS CRÓNICA MODERADA, ACTIVA, ASOCIADA A HELICOBACTER PYLORI.
 
-NOTA: EVALUACIÓN HISTOPATOLÓGICA REALIZADA BAJO LOS CRITERIOS DEL SISTEMA SYDNEY ACTUALIZADO (HOUSTON, 1994)."
+NOTA: EVALUACIÓN HISTOPATOLÓGICA REALIZADA BAJO LOS CRITERIOS DEL SISTEMA SYDNEY ACTUALIZADO (HOUSTON, 1994).`
     },
     {
         "id": 51,
         "categoryId": 3,
         "titulo": "GASTRITIS CRÓNICA LEVE NO ACTIVA",
         "macro": "se reciben 2 biopsias gástricas, la mayor de las cuales mide 0.4 cm y la menor mide 0.2 cm. se incluye la totalidad de la muestra en 1 casete.",
-        "micro": "el estudio histológico muestra mucosa gástrica con arquitectura foveolar conservada, exhibiendo un discreto infiltrado inflamatorio crónico de intensidad leve (grado 1/3 según la escala visual analógica del sistema sydney) en la lámina propia, compuesto por linfocitos y células plasmáticas maduras. no se observa actividad polimorfonuclear neutrofílica.
+        "micro": `el estudio histológico muestra mucosa gástrica con arquitectura foveolar conservada, exhibiendo un discreto infiltrado inflamatorio crónico de intensidad leve (grado 1/3 según la escala visual analógica del sistema sydney) en la lámina propia, compuesto por linfocitos y células plasmáticas maduras. no se observa actividad polimorfonuclear neutrofílica.
 • atrofia: no identificada
 • metaplasia: no identificada
 • displasia: no identificada
-• helicobacter pylori: no se observan (0/+++)",
-        "diag": "MUESTRA GÁSTRICA, BIOPSIA:
+• helicobacter pylori: no se observan (0/+++)`,
+        "diag": `MUESTRA GÁSTRICA, BIOPSIA:
 GASTRITIS CRÓNICA LEVE, NO ACTIVA.
 
-NOTA: EVALUACIÓN HISTOPATOLÓGICA REALIZADA BAJO LOS CRITERIOS DEL SISTEMA SYDNEY ACTUALIZADO (HOUSTON, 1994)."
+NOTA: EVALUACIÓN HISTOPATOLÓGICA REALIZADA BAJO LOS CRITERIOS DEL SISTEMA SYDNEY ACTUALIZADO (HOUSTON, 1994).`
     },
     {
         "id": 65,
         "categoryId": 3,
         "titulo": "GASTRITIS CRÓNICA LEVE NO ACTIVA ASOCIADA A GASTROPATÍA REACTIVA",
         "macro": "se reciben 2 biopsias gástricas, la mayor de las cuales mide 0.4 cm y la menor mide 0.2 cm. se incluye la totalidad de la muestra en 1 casete.",
-        "micro": "el estudio histológico muestra mucosa gástrica que exhibe hiperplasia foveolar caracterizada por elongación, tortuosidad e hipercromasia foveolar focal, con repleción/depleción mucinosa apical y congestión capilar superficial en la lámina propia, asociada a proliferación de fibras musculares lisas que se proyectan verticalmente desde la muscularis mucosae. la lámina propia presenta un discreto infiltrado inflamatorio crónico de intensidad leve (grado 1/3 según la escala visual analógica del sistema sydney), compuesto predominantemente por linfocitos y células plasmáticas maduras. no se observa actividad neutrofílica epitelial ni intracríptica (grado 0/3).
+        "micro": `el estudio histológico muestra mucosa gástrica que exhibe hiperplasia foveolar caracterizada por elongación, tortuosidad e hipercromasia foveolar focal, con repleción/depleción mucinosa apical y congestión capilar superficial en la lámina propia, asociada a proliferación de fibras musculares lisas que se proyectan verticalmente desde la muscularis mucosae. la lámina propia presenta un discreto infiltrado inflamatorio crónico de intensidad leve (grado 1/3 según la escala visual analógica del sistema sydney), compuesto predominantemente por linfocitos y células plasmáticas maduras. no se observa actividad neutrofílica epitelial ni intracríptica (grado 0/3).
 • atrofia: no identificada
 • metaplasia: no identificada
 • displasia: no identificada
-• helicobacter pylori: no se observan (0/+++)",
-        "diag": "MUESTRA GÁSTRICA (ANTRO / CUERPO), BIOPSIA:
+• helicobacter pylori: no se observan (0/+++)`,
+        "diag": `MUESTRA GÁSTRICA (ANTRO / CUERPO), BIOPSIA:
 - GASTRITIS CRÓNICA LEVE, NO ACTIVA.
 - CAMBIOS HISTOLÓGICOS COMPATIBLES CON GASTROPATÍA REACTIVA (QUÍMICA / POR REFLUJO BILIAR O AINEs).
 - NEGATIVO PARA ATROFIA GLANDULAR, METAPLASIA INTESTINAL O MALIGNIDAD EN EL MATERIAL EXAMINADO.
 
-NOTA: EVALUACIÓN HISTOPATOLÓGICA REALIZADA BAJO LOS CRITERIOS DEL SISTEMA SYDNEY ACTUALIZADO (HOUSTON, 1994)."
+NOTA: EVALUACIÓN HISTOPATOLÓGICA REALIZADA BAJO LOS CRITERIOS DEL SISTEMA SYDNEY ACTUALIZADO (HOUSTON, 1994).`
     },
     {
         "id": 52,
         "categoryId": 3,
         "titulo": "GASTRITIS CRÓNICA SEVERA ACTIVA CON HELICOBACTER PYLORI",
         "macro": "se reciben 2 biopsias gástricas, la mayor de las cuales mide 0.4 cm y la menor mide 0.2 cm. se incluye la totalidad de la muestra en 1 casete.",
-        "micro": "el estudio histológico muestra mucosa gástrica con distorsión foveolar focal, exhibiendo un denso e intenso infiltrado inflamatorio crónico (grado 3/3 según la escala visual analógica del sistema sydney) que expande la lámina propia, compuesto por abundantes linfocitos, células plasmáticas y folículos linfoides con centros germinales. se acompaña de una marcada actividad neutrofílica (grado 3/3) con infiltración neutrofílica del epitelio foveolar y abscesos crípticos.
+        "micro": `el estudio histológico muestra mucosa gástrica con distorsión foveolar focal, exhibiendo un denso e intenso infiltrado inflamatorio crónico (grado 3/3 según la escala visual analógica del sistema sydney) que expande la lámina propia, compuesto por abundantes linfocitos, células plasmáticas y folículos linfoides con centros germinales. se acompaña de una marcada actividad neutrofílica (grado 3/3) con infiltración neutrofílica del epitelio foveolar y abscesos crípticos.
 • atrofia: no identificada
 • metaplasia: no identificada
 • displasia: no identificada
-• helicobacter pylori: presente (++/+++ a +++/+++)",
-        "diag": "MUESTRA GÁSTRICA, BIOPSIA:
+• helicobacter pylori: presente (++/+++ a +++/+++)`,
+        "diag": `MUESTRA GÁSTRICA, BIOPSIA:
 GASTRITIS CRÓNICA SEVERA, ACTIVA, ASOCIADA A HELICOBACTER PYLORI.
 
-NOTA: EVALUACIÓN HISTOPATOLÓGICA REALIZADA BAJO LOS CRITERIOS DEL SISTEMA SYDNEY ACTUALIZADO (HOUSTON, 1994)."
+NOTA: EVALUACIÓN HISTOPATOLÓGICA REALIZADA BAJO LOS CRITERIOS DEL SISTEMA SYDNEY ACTUALIZADO (HOUSTON, 1994).`
     },
     {
         "id": 53,
         "categoryId": 3,
         "titulo": "GASTRITIS CRÓNICA MODERADA ACTIVA CON ATROFIA Y METAPLASIA ASOCIADA A HELICOBACTER PYLORI",
         "macro": "se reciben 2 biopsias gástricas, la mayor de las cuales mide 0.4 cm y la menor mide 0.2 cm. se incluye la totalidad de la muestra en 1 casete.",
-        "micro": "el estudio histológico muestra mucosa gástrica con distorsión de la arquitectura foveolar, exhibiendo un infiltrado inflamatorio crónico de intensidad moderada (grado 2/3 según la escala visual analógica del sistema sydney) en la lámina propia, compuesto por linfocitos y células plasmáticas, asociado a una actividad neutrofílica moderada (grado 2/3). se reconoce atrofia glandular focal caracterizada por pérdida moderada de glándulas propias y reemplazo por estroma fibrovascular, acompañado de focos de metaplasia intestinal completa con presencia de células caliciformes y borde en cepillo.
+        "micro": `el estudio histológico muestra mucosa gástrica con distorsión de la arquitectura foveolar, exhibiendo un infiltrado inflamatorio crónico de intensidad moderada (grado 2/3 según la escala visual analógica del sistema sydney) en la lámina propia, compuesto por linfocitos y células plasmáticas, asociado a una actividad neutrofílica moderada (grado 2/3). se reconoce atrofia glandular focal caracterizada por pérdida moderada de glándulas propias y reemplazo por estroma fibrovascular, acompañado de focos de metaplasia intestinal completa con presencia de células caliciformes y borde en cepillo.
 • atrofia: presente (focal / leve a moderada)
 • metaplasia: presente (metaplasia intestinal focal)
 • displasia: no identificada
-• helicobacter pylori: presente (+/+++ a ++/+++)",
-        "diag": "MUESTRA GÁSTRICA, BIOPSIA:
+• helicobacter pylori: presente (+/+++ a ++/+++)`,
+        "diag": `MUESTRA GÁSTRICA, BIOPSIA:
 GASTRITIS CRÓNICA MODERADA, ACTIVA, CON ATROFIA GLANDULAR FOCAL Y METAPLASIA INTESTINAL, ASOCIADA A HELICOBACTER PYLORI.
 
-NOTA: EVALUACIÓN HISTOPATOLÓGICA REALIZADA BAJO LOS CRITERIOS DEL SISTEMA SYDNEY ACTUALIZADO (HOUSTON, 1994)."
+NOTA: EVALUACIÓN HISTOPATOLÓGICA REALIZADA BAJO LOS CRITERIOS DEL SISTEMA SYDNEY ACTUALIZADO (HOUSTON, 1994).`
     },
     {
         "id": 54,
@@ -332,10 +336,10 @@ NOTA: EVALUACIÓN HISTOPATOLÓGICA REALIZADA BAJO LOS CRITERIOS DEL SISTEMA SYDN
         "titulo": "PÓLIPO DE GLÁNDULAS FÚNDICAS",
         "macro": "se recibe un fragmento polipoide de consistencia blanda, superficie mucosa lisa y color pardo-amarillento, que mide 0.8 x 0.6 x 0.4 cm. es sésil, con base de resección aparentemente íntegra. se incluye en su totalidad para procesamiento histológico en 1 casete.",
         "micro": "los cortes histológicos muestran mucosa gástrica de cuerpo/fundus con arquitectura conservada, pero glándulas oxínticas notablemente dilatadas de forma quística y ectásicas, revestidas por epitelio cúbico o aplanado, con diferenciación celular dual (células principales basófilas y parietales eosinófilas, con núcleos centrales). no se identifica atipia citológica significativa, aumento mitótico ni displasia de alto grado ni de bajo grado. el estroma adyacente es edematoso y escasamente inflamatorio, sin metaplasia intestinal, atrofia glandular, infección por helicobacter pylori ni proliferación neuroendocrina. los bordes de resección se encuentran libres de lesión.",
-        "diag": "ESTÓMAGO (CUERPO / FUNDUS), POLIPECTOMÍA / BIOPSIA:
+        "diag": `ESTÓMAGO (CUERPO / FUNDUS), POLIPECTOMÍA / BIOPSIA:
 PÓLIPO DE GLÁNDULAS FÚNDICAS (FGP).
 MARGEN DE RESECCIÓN LIBRE DE LESIÓN.
-NEGATIVO PARA DISPLASIA NI MALIGNIDAD EN EL MATERIAL EXAMINADO."
+NEGATIVO PARA DISPLASIA NI MALIGNIDAD EN EL MATERIAL EXAMINADO.`
     },
     {
         "id": 7,
@@ -343,8 +347,8 @@ NEGATIVO PARA DISPLASIA NI MALIGNIDAD EN EL MATERIAL EXAMINADO."
         "titulo": "BIOPSIA ENDOMETRIAL CON MATERIAL HEMÁTICO E HIPERPLASIA SIMPLE",
         "macro": "se recibe una muestra de curetaje endometrial que consiste en un volumen total aproximado de 1.5 cc, compuesto en un 70% por coágulos hemáticos oscuros y fragmentos fibrinoides, y en un 30% por tejido de aspecto friable, pardogrisáceo y de consistencia blanda. el material remitido se incluye en su totalidad para procesamiento histológico en dos casetes.",
         "micro": "los cortes histológicos revelan un patrón mixto donde predominan extensos depósitos de sangre aguda y material fibrinoide. en las áreas de epitelio endometrial viable, se observa un endometrio en fase proliferativa que muestra un incremento en la densidad glandular con una relación glándula/estroma superior a la esperada para la fase del ciclo. las glándulas presentan morfología variable, con formas redondeadas u ovaladas, algunas ligeramente anguladas, pero sin evidencia de complejidad arquitectural (no hay fenestración, empapelamiento ni brotes). el epitelio glandular es columnar, con núcleos seudoestratificados de cromatina fina, uniformes en tamaño y forma, con nucléolos inconspicuos o ausentes, y con polaridad mantenida. no se identifican atipias citológicas (nucleomegalia, hipercromasia, irregularidades de la membrana nuclear ni nucléolos prominentes). el estroma es compacto, celular y muestra actividad mitótica escasa, sin atipia estromal. no se observan cambios preneoplásicos de mayor grado ni elementos de malignidad.",
-        "diag": "ENDOMETRIO, CURETAJE:
-ENDOMETRIO CON HIPERPLASIA SIMPLE (GLANDULAR Y ESTROMAL) SIN ATIPIA CITOLÓGICA, EN UN CONTEXTO DE MATERIAL HEMÁTICO ABUNDANTE; NEGATIVA PARA HIPERPLASIA ATÍPICA O CARCINOMA."
+        "diag": `ENDOMETRIO, CURETAJE:
+ENDOMETRIO CON HIPERPLASIA SIMPLE (GLANDULAR Y ESTROMAL) SIN ATIPIA CITOLÓGICA, EN UN CONTEXTO DE MATERIAL HEMÁTICO ABUNDANTE; NEGATIVA PARA HIPERPLASIA ATÍPICA O CARCINOMA.`
     },
     {
         "id": 8,
@@ -352,10 +356,10 @@ ENDOMETRIO CON HIPERPLASIA SIMPLE (GLANDULAR Y ESTROMAL) SIN ATIPIA CITOLÓGICA,
         "titulo": "BIOPSIAS DE CÉRVIX X 1",
         "macro": "se recibe 1 biopsia de cérvix que mide 0.3 x 0.2 cm, de color blanco grisáceo. se incluye la totalidad de la muestra en 1 casete.",
         "micro": "los cortes histológicos muestran mucosa cervical con epitelio escamoso estratificado exocervical y epitelio columnar endocervical con zona de transformación representada. el epitelio escamoso exhibe maduración conservada sin atipia citológica ni cambios coilocíticos. en el estroma subyacente se observa un discreto infiltrado inflamatorio crónico linfohistiocitario.",
-        "diag": "CÉRVIX UTERINO, BIOPSIA:
+        "diag": `CÉRVIX UTERINO, BIOPSIA:
 - CERVICITIS CRÓNICA LEVE INESPECÍFICA.
 - ZONA DE TRANSFORMACIÓN SIN ATIPIA.
-- NEGATIVO PARA LESIÓN INTRAEPITELIAL (LIE / NIC) O MALIGNIDAD."
+- NEGATIVO PARA LESIÓN INTRAEPITELIAL (LIE / NIC) O MALIGNIDAD.`
     },
     {
         "id": 9,
@@ -363,10 +367,10 @@ ENDOMETRIO CON HIPERPLASIA SIMPLE (GLANDULAR Y ESTROMAL) SIN ATIPIA CITOLÓGICA,
         "titulo": "BIOPSIAS DE CÉRVIX X 2",
         "macro": "se reciben 2 biopsias de cérvix que miden entre 0.3 cm y 0.2 cm, de color blanco grisáceo. se incluye la totalidad de la muestra en 1 casete.",
         "micro": "los cortes histológicos muestran mucosa cervical con epitelio escamoso estratificado exocervical y epitelio columnar endocervical con zona de transformación representada. el epitelio escamoso exhibe maduración conservada sin atipia citológica ni cambios coilocíticos. en el estroma subyacente se observa un discreto infiltrado inflamatorio crónico linfohistiocitario.",
-        "diag": "CÉRVIX UTERINO, BIOPSIA (X 2):
+        "diag": `CÉRVIX UTERINO, BIOPSIA (X 2):
 - CERVICITIS CRÓNICA LEVE INESPECÍFICA.
 - ZONA DE TRANSFORMACIÓN SIN ATIPIA.
-- NEGATIVO PARA LESIÓN INTRAEPITELIAL (LIE / NIC) O MALIGNIDAD."
+- NEGATIVO PARA LESIÓN INTRAEPITELIAL (LIE / NIC) O MALIGNIDAD.`
     },
     {
         "id": 10,
@@ -374,10 +378,10 @@ ENDOMETRIO CON HIPERPLASIA SIMPLE (GLANDULAR Y ESTROMAL) SIN ATIPIA CITOLÓGICA,
         "titulo": "BIOPSIAS DE CÉRVIX X 3",
         "macro": "se reciben 3 biopsias de cérvix, la mayor de las cuales mide 0.4 cm y la menor mide 0.2 cm, de color blanco grisáceo. se incluye la totalidad de la muestra en 1 casete.",
         "micro": "los cortes histológicos muestran mucosa cervical con epitelio escamoso estratificado exocervical y epitelio columnar endocervical con zona de transformación representada. el epitelio escamoso exhibe maduración conservada sin atipia citológica ni cambios coilocíticos. en el estroma subyacente se observa un discreto infiltrado inflamatorio crónico linfohistiocitario.",
-        "diag": "CÉRVIX UTERINO, BIOPSIA (X 3):
+        "diag": `CÉRVIX UTERINO, BIOPSIA (X 3):
 - CERVICITIS CRÓNICA LEVE INESPECÍFICA.
 - ZONA DE TRANSFORMACIÓN SIN ATIPIA.
-- NEGATIVO PARA LESIÓN INTRAEPITELIAL (LIE / NIC) O MALIGNIDAD."
+- NEGATIVO PARA LESIÓN INTRAEPITELIAL (LIE / NIC) O MALIGNIDAD.`
     },
     {
         "id": 11,
@@ -401,11 +405,11 @@ ENDOMETRIO CON HIPERPLASIA SIMPLE (GLANDULAR Y ESTROMAL) SIN ATIPIA CITOLÓGICA,
         "titulo": "MUESTRA ENDOMETRIAL INSUFICIENTE PARA DIAGNÓSTICO",
         "macro": "se recibe un único fragmento mucoide de aproximadamente 0.1 cm. consistencia viscosa y aspecto translúcido. ante la ausencia de tejido sólido, se incluye la totalidad de la muestra en un casete.",
         "micro": "los cortes muestran material mucinoso acelular con escasos histiocitos y células epiteliales descamadas aisladas. no se identifica estroma ni glándulas endometriales. la muestra es insuficiente y carece de tejido representativo para diagnóstico.",
-        "diag": "MUESTRA ENDOMETRIAL INSUFICIENTE PARA DIAGNÓSTICO ANATOMOPATOLÓGICO.
+        "diag": `MUESTRA ENDOMETRIAL INSUFICIENTE PARA DIAGNÓSTICO ANATOMOPATOLÓGICO.
 
 EL ESPÉCIMEN CONTIENE ÚNICAMENTE MATERIAL MUCOIDE SIN TEJIDO ENDOMETRIAL REPRESENTATIVO. SE SUGIERE NUEVA TOMA DE MUESTRA PARA EVALUACIÓN HISTOLÓGICA ADECUADA.
 
-NOTA DEL PATÓLOGO: EL MOCO AISLADO ES INESPECÍFICO Y NO PERMITE DESCARTAR PATOLOGÍA DE FONDO. SE REQUIERE CORRELACIÓN CLÍNICA Y NUEVA BIOPSIA."
+NOTA DEL PATÓLOGO: EL MOCO AISLADO ES INESPECÍFICO Y NO PERMITE DESCARTAR PATOLOGÍA DE FONDO. SE REQUIERE CORRELACIÓN CLÍNICA Y NUEVA BIOPSIA.`
     },
     {
         "id": 14,
@@ -413,8 +417,8 @@ NOTA DEL PATÓLOGO: EL MOCO AISLADO ES INESPECÍFICO Y NO PERMITE DESCARTAR PATO
         "titulo": "PÓLIPO ENDOCERVICAL CON INFLAMACIÓN AGUDA Y TEJIDO DE GRANULACIÓN",
         "macro": "se recibe un fragmento polipoide de tejido blando, de consistencia firme-elástica, que mide 1.8 x 1.2 x 0.9 cm en sus dimensiones máximas. la superficie externa es ligeramente lobulada, de color pardo-rojiza, con áreas focales de aspecto hemorrágico. el corte transversal muestra una estructura sólida de aspecto mixoide y vascular, sin áreas quísticas ni focos indurados evidentes. el espécimen se incluye en su totalidad en dos casetes.",
         "micro": "el estudio histológico revela una lesión polipoide exofítica cubierta por epitelio cilíndrico simple mucosecretor, de tipo endocervical, con áreas de metaplasia escamosa inmadura focal. el estroma del pólipo está expandido por un tejido de granulación exuberante, caracterizado por una proliferación de capilares delgados de disposición perpendicular a la superficie, rodeados por un estroma edematoso y mixoide con inflamación crónica de base. destaca un infiltrado inflamatorio agudo extenso, compuesto por abundantes neutrófilos polimorfonucleares, que se extienden desde la superficie epitelial (exocitosis) hacia el estroma superficial, asociado a depósitos de fibrina y eritrocitos extravasados. no se identifican atipias citológicas ni arquitecturales en el epitelio de cobertura, ni en las glándulas endocervicales subyacentes. el estroma carece de células fusiformes atípicas, figuras mitóticas anormales o necrosis tumoral. los bordes de resección muestran márgenes libres de lesión.",
-        "diag": "PÓLIPO ENDOCERVICAL, EXÉRESIS:
-PÓLIPO ENDOCERVICAL CON INFLAMACIÓN AGUDA ACTIVA Y TEJIDO DE GRANULACIÓN EXUBERANTE, NEGATIVO PARA DISPLASIA O MALIGNIDAD."
+        "diag": `PÓLIPO ENDOCERVICAL, EXÉRESIS:
+PÓLIPO ENDOCERVICAL CON INFLAMACIÓN AGUDA ACTIVA Y TEJIDO DE GRANULACIÓN EXUBERANTE, NEGATIVO PARA DISPLASIA O MALIGNIDAD.`
     },
     {
         "id": 15,
@@ -430,9 +434,9 @@ PÓLIPO ENDOCERVICAL CON INFLAMACIÓN AGUDA ACTIVA Y TEJIDO DE GRANULACIÓN EXUB
         "titulo": "LIPOMA (TEJIDO BLANDO)",
         "macro": "se recibe espécimen de tejido nodular, blando, bien circunscrito, de coloración amarillenta uniforme, que mide [ dimensiones ] cm y pesa [ peso ] g. la superficie externa es lobulada, cubierta por una tenue pseudocápsula. al corte, la lesión está formada por tejido adiposo maduro unilocular, homogéneo y untuoso, sin áreas de hemorragia, necrosis ni induraciones. se incluye muestra representativa en 1 casete.",
         "micro": "el estudio histológico (H&E) muestra una neoplasia mesenquimal benigna circunscrita por una fina cápsula conectiva. la lesión está constituida exclusivamente por una proliferación ordenada de adipocitos maduros uniloculares con vacuolas lipídicas que desplazan el núcleo a la periferia. no se aprecian atipia nuclear, pleomorfismo, lipoblastos, necrosis ni mitosis. el tumor está tabicado por finos septos fibrosos vascularizados.",
-        "diag": "TEJIDO BLANDO (LOCALIZACIÓN), EXÉRESIS / RESECCIÓN:
+        "diag": `TEJIDO BLANDO (LOCALIZACIÓN), EXÉRESIS / RESECCIÓN:
 - LIPOMA CONVENCIONAL BENIGNO.
-- MÁRGENES QUIRÚRGICOS LIBRES DE NEOPLASIA."
+- MÁRGENES QUIRÚRGICOS LIBRES DE NEOPLASIA.`
     },
     {
         "id": 66,
@@ -440,9 +444,9 @@ PÓLIPO ENDOCERVICAL CON INFLAMACIÓN AGUDA ACTIVA Y TEJIDO DE GRANULACIÓN EXUB
         "titulo": "FIBROLIPOMA DE TEJIDO BLANDO",
         "macro": "se recibe espécimen de tejido blando, de configuración ovoide, que mide 4.5 x 3.2 x 2.0 cm y pesa 28 g. la superficie externa es parcialmente lobulada, de consistencia elástica y color amarillo pálido. al corte, la lesión es heterogénea: predominan áreas adiposas amarillo dorado, bien delimitadas, entre las que se intercalan bandas firmes, blanco-grisáceas y de aspecto fibrilar, que ocupan aproximadamente el 30% de la superficie de corte. los bordes quirúrgicos se marcan con tinta china. 1 casete.",
         "micro": "el estudio histológico (H&E) revela una proliferación neoplásica benigna, bien circunscrita, compuesta por una población dual. el componente mayoritario está formado por adipocitos maduros de morfología uniforme, sin atipia nuclear, lipoblastos ni figuras de mitosis, dispuestos en lóbulos separados por finos septos fibrosos. el componente fibroso consiste en bandas extensas de colágeno hialinizado, denso y paucicelular, con fibroblastos fusiformes de núcleos regulares, alargados y sin pleomorfismo, que entrecruzan y disecan el tejido adiposo sin sustituirlo. no se observan necrosis tumoral, actividad mitótica atípica, células gigantes multinucleadas, metaplasia condroide ni osificación. la inmunohistoquímica muestra positividad para S-100 en adipocitos y vimentina en el estroma fibroso, con Ki-67 inferior al 1%. los márgenes quirúrgicos evaluados se encuentran libres de neoplasia a una distancia de 3 mm.",
-        "diag": "TEJIDO BLANDO (LOCALIZACIÓN), EXÉRESIS / RESECCIÓN:
+        "diag": `TEJIDO BLANDO (LOCALIZACIÓN), EXÉRESIS / RESECCIÓN:
 - FIBROLIPOMA MADURO BENIGNO.
-- MÁRGENES QUIRÚRGICOS DE RESECCIÓN LIBRES DE LESIÓN TUMORAL (DISTANCIA MÍNIMA: 3 MM)."
+- MÁRGENES QUIRÚRGICOS DE RESECCIÓN LIBRES DE LESIÓN TUMORAL (DISTANCIA MÍNIMA: 3 MM).`
     },
     {
         "id": 67,
@@ -450,9 +454,9 @@ PÓLIPO ENDOCERVICAL CON INFLAMACIÓN AGUDA ACTIVA Y TEJIDO DE GRANULACIÓN EXUB
         "titulo": "FIBROLIPOMA 2",
         "macro": "se recibe fragmento de tejido conectivo-adiposo de aspecto nodular, de 4.5 x 3.2 x 2.0 cm y peso de 28 g, de contorno ovoide y consistencia blanda-elástica. la superficie externa muestra lóbulos cubiertos por una tenue cápsula fibrosa. las secciones parenquimatosas exhiben una superficie de corte untuosa, amarillo brillante, tabicada por múltiples tractos y septos fibrosos firmes de coloración blanco-nacarada, los cuales abarcan el 30% del volumen tumoral. se efectúa margen entintado periférico. 1 casete.",
         "micro": "las secciones histológicas coloreadas con H&E muestran una neoplasia mesenquimatosa benigna circunscrita, caracterizada por un patrón estromal mixto. se aprecia una prolífica población de adipocitos uninucleados maduros de citoplasma claro ópticamente vacío y núcleo periférico aplanado, desprovisto de atipias o pleomorfismo. intercalados entre las sábanas adiposas, se identifican prominentes haces de estroma colágeno denso hialinizado con fibroblastos bien diferenciados de morfología fusocelular sin mitosis ni atipia. la inmunofenotipificación corrobora reactividad estromal para vimentina y nuclear/citoplasmática para S-100 en el componente graso, con un índice de proliferación celular Ki-67 < 1%. no hay lipoblastos, necrosis ni células multinucleadas. los bordes de resección se encuentran despejados de lesión a 3 mm.",
-        "diag": "TEJIDO BLANDO (LOCALIZACIÓN), EXÉRESIS SURGICAL / RESECCIÓN:
+        "diag": `TEJIDO BLANDO (LOCALIZACIÓN), EXÉRESIS SURGICAL / RESECCIÓN:
 - FIBROLIPOMA BENIGNO (VARIANTE HISTOLÓGICA DE LIPOMA CON ESTROMA FIBROSO PROMINENTE).
-- BORDES QUIRÚRGICOS LIBRES DE COMPROMISO NEOPLÁSICO (MARGEN MÍNIMO DE SEGURIDAD: 3 MM)."
+- BORDES QUIRÚRGICOS LIBRES DE COMPROMISO NEOPLÁSICO (MARGEN MÍNIMO DE SEGURIDAD: 3 MM).`
     },
     {
         "id": 68,
@@ -460,111 +464,111 @@ PÓLIPO ENDOCERVICAL CON INFLAMACIÓN AGUDA ACTIVA Y TEJIDO DE GRANULACIÓN EXUB
         "titulo": "LIPOMA 2",
         "macro": "se recibe pieza quirúrgica nodular de tejido blando, bien delimitada, de 4.0 x 3.0 x 2.2 cm y 22 g de peso. la superficie exterior es lobulada y amarillenta, revestida por delicada cápsula transparente. al seccionamiento, la masa muestra un parénquima homogéneo de aspecto graso maduro, de tonalidad amarillo oro brillante y consistencia blanda, desprovisto de áreas de necrosis, degeneración quística o tabiques gruesos indurados. se entintan los bordes y se incluye muestra representativa en 1 casete.",
         "micro": "las secciones histológicas coloreadas con H&E demuestran una proliferación tumoral benigna circunscrita de estirpe adiposa madura. el parénquima se compone uniformemente de lóbulos de adipocitos uniloculares normotípicos con amplia vacuola citoplasmática clara y núcleos excéntricos pequeños sin hipercromasia ni nucléolos prominentes. la arquitectura lobular está sustentada por finos septos de colágeno hialino con delgados capilares. ausencia total de lipoblastos, pleomorfismo nuclear, mitosis atípicas o focos de necrosis tumoral. los bordes de resección tisular se encuentran despejados de lesión.",
-        "diag": "TEJIDO BLANDO (LOCALIZACIÓN), RESECCIÓN / EXÉRESIS COMPLETA:
+        "diag": `TEJIDO BLANDO (LOCALIZACIÓN), RESECCIÓN / EXÉRESIS COMPLETA:
 - LIPOMA BENIGNO DE TEJIDO BLANDO.
-- LÍMITES QUIRÚRGICOS DE RESECCIÓN NO COMPROMETIDOS POR LA NEOPLASIA."
+- LÍMITES QUIRÚRGICOS DE RESECCIÓN NO COMPROMETIDOS POR LA NEOPLASIA.`
     },
     {
         "id": 17,
         "categoryId": 9,
         "titulo": "LIQUEN SIMPLE CRÓNICO EN PENE",
         "macro": "un fragmento tisular de piel y mucosa de pene que mide 1.0 x 0.7 x 0.4 cm, de superficie irregular y color blanquecino-rosado. el espécimen se orienta, procesa e incluye íntegramente en un solo bloque.",
-        "micro": "las secciones histológicas teñidas con hematoxilina-eosina muestran un fragmento de tejido cutáneo-mucoso revestido por epitelio escamoso estratificado que exhibe hiperqueratosis ortoqueratósica prominente, acantosis regular de las crestas epidérmicas y papilomatosis focal leve sin atipia citológica significativa.
+        "micro": `las secciones histológicas teñidas con hematoxilina-eosina muestran un fragmento de tejido cutáneo-mucoso revestido por epitelio escamoso estratificado que exhibe hiperqueratosis ortoqueratósica prominente, acantosis regular de las crestas epidérmicas y papilomatosis focal leve sin atipia citológica significativa.
 
-no se identifican figuras mitóticas atípicas, pérdida de la polaridad madurativa, pleomorfismo nuclear ni puentes intercelulares alterados que sugieran displasia o carcinoma epidermoide in situ / infiltrante. el estroma subyacente consta de tejido conectivo fibrovascular que muestra un infiltrado inflamatorio mononuclear crónico perivascular leve a moderado. no hay evidencia de invasión linfovascular ni perineural en los campos examinados.",
-        "diag": "HIPERPLASIA ESCAMOSA BENIGNA, COMPATIBLE CON LIQUEN SIMPLE CRÓNICO (LSC).
+no se identifican figuras mitóticas atípicas, pérdida de la polaridad madurativa, pleomorfismo nuclear ni puentes intercelulares alterados que sugieran displasia o carcinoma epidermoide in situ / infiltrante. el estroma subyacente consta de tejido conectivo fibrovascular que muestra un infiltrado inflamatorio mononuclear crónico perivascular leve a moderado. no hay evidencia de invasión linfovascular ni perineural en los campos examinados.`,
+        "diag": `HIPERPLASIA ESCAMOSA BENIGNA, COMPATIBLE CON LIQUEN SIMPLE CRÓNICO (LSC).
 
 JUSTIFICACIÓN: EL PATRÓN DE ACANTOSIS REGULAR (ENGROSAMIENTO EPIDÉRMICO) JUNTO CON HIPERQUERATOSIS Y EL INFILTRADO INFLAMATORIO CRÓNICO DÉRMICO SUPERFICIAL ES EL CUADRO CLÁSICO DE UNA RESPUESTA REACTIVA SECUNDARIA A FRICCIÓN CRÓNICA, RASCADO O IRRITACIÓN PROLONGADA EN LA ZONA GENITAL.
 
 NEGATIVO PARA MALIGNIDAD
-SE SUGIERE SEGUIMIENTO Y CONTROL DEL PACIENTE"
+SE SUGIERE SEGUIMIENTO Y CONTROL DEL PACIENTE`
     },
     {
         "id": 18,
         "categoryId": 9,
         "titulo": "MORCELADO DE PRÓSTATA (VARIANTE 1: HIPERPLASIA NODULAR MIXTA TÍPICA)",
-        "macro": "Se reciben múltiples fragmentos tisulares alargados e irregulares (virutas de morcelado prostático láser HoLEP / ThuLEP o resección transuretral), de superficie lobulada, coloración pardo-blanquecina a pardo-amarillenta y consistencia elástica firme con sectores esponjosos, que en conjunto miden [dimensiones] cm y registran un peso neto de [peso] g. Al corte, los fragmentos muestran microquistes con contenido coloide translúcido y nódulos estromales blanquecinos bien delimitados. No se observan áreas friables, necróticas ni nódulos amarillentos xantomatosos. Se incluye muestreo representativo en [n] casete(s).
+        "macro": `Se reciben múltiples fragmentos tisulares alargados e irregulares (virutas de morcelado prostático láser HoLEP / ThuLEP o resección transuretral), de superficie lobulada, coloración pardo-blanquecina a pardo-amarillenta y consistencia elástica firme con sectores esponjosos, que en conjunto miden [dimensiones] cm y registran un peso neto de [peso] g. Al corte, los fragmentos muestran microquistes con contenido coloide translúcido y nódulos estromales blanquecinos bien delimitados. No se observan áreas friables, necróticas ni nódulos amarillentos xantomatosos. Se incluye muestreo representativo en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Lester, S. C. (2010). Manual of Surgical Pathology (3rd ed.). Elsevier / Saunders. / WHO Classification of Tumours of the Urinary System and Male Genital Organs (5th ed., 2022).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Lester, S. C. (2010). Manual of Surgical Pathology (3rd ed.). Elsevier / Saunders. / WHO Classification of Tumours of the Urinary System and Male Genital Organs (5th ed., 2022).</small>`,
         "micro": "Los cortes histológicos coloreados con H&E revelan parénquima prostático correspondiente a la zona de transición con hiperplasia nodular benigna clásica de patrón mixto (adenomatoso y fibromuscular equilibrado). Las unidades glandulares muestran luces acinares de calibre variable, con pliegues papilares intraluminares revestidos por una doble capa epitelial íntegra y bien diferenciada: capa interna de células secretoras cilíndricas de citoplasma claro o finamente granular sin atipia ni macronucléolos prominentes, y capa externa continua de células basales mioepiteliales paralelas a la membrana basal. Se aprecian abundantes cuerpos amiláceos intraluminares basófilos y acidófilos laminares. El estroma interacinar demuestra proliferación ordenada de fascículos de músculo liso y fibroblastos maduros sin hipercromatismo ni actividad mitótica. No se observan atipias nucleares, cribas atípicas, proliferación microacinar carente de capa basal (ASAP), neoplasia intraepitelial prostática de alto grado (HGPIN) ni adenocarcinoma acinar invasor.",
-        "diag": "TEJIDO PROSTÁTICO (PRODUCTO DE MORCELADO / ENUCLEACIÓN):
+        "diag": `TEJIDO PROSTÁTICO (PRODUCTO DE MORCELADO / ENUCLEACIÓN):
 - HIPERPLASIA NODULAR PROSTÁTICA BENIGNA (PATRÓN MIXTO ADENOMATOSO Y FIBROMUSCULAR EQUILIBRADO).
 - ECTASIA DUCTO-ACINAR CON CUERPOS AMILÁCEOS INTRALUMINARES MÚLTIPLES.
 - NEGATIVO PARA PROCESO INFLAMATORIO AGUDO O CRÓNICO SIGNIFICATIVO.
 - NEGATIVO PARA PROLIFERACIÓN ACINAR ATÍPICA (ASAP) O NEOPLASIA INTRAEPITELIAL PROSTÁTICA DE ALTO GRADO (HGPIN).
-- NEGATIVO PARA NEOPLASIA MALIGNA (ADENOCARCINOMA PROSTÁTICO INVASOR) EN EL MATERIAL EXAMINADO (ISUP / OMS 2022)."
+- NEGATIVO PARA NEOPLASIA MALIGNA (ADENOCARCINOMA PROSTÁTICO INVASOR) EN EL MATERIAL EXAMINADO (ISUP / OMS 2022).`
     },
     {
         "id": 19,
         "categoryId": 9,
         "titulo": "MORCELADO DE PRÓSTATA (VARIANTE 2: HIPERPLASIA CON PROSTATITIS CRÓNICA ACTIVA)",
-        "macro": "Se reciben abundantes fragmentos y tiras tisulares irregulares de tejido prostático procedentes de morcelado quirúrgico, de color pardo-rojizo a pardo-amarillento oscuro con áreas congestivas focales, de consistencia predominantemente elástica y consistencia blanda en zonas hiperémicas, con dimensiones agrupadas de [dimensiones] cm y peso acumulado de [peso] g. La superficie de corte exhibe sectores rojizos congestivos con discreta exudación translúcida. No se delimitan cavidades abscedadas francas ni nódulos indurados pétreos. Se incluye muestra representativa tisular en [n] casete(s).
+        "macro": `Se reciben abundantes fragmentos y tiras tisulares irregulares de tejido prostático procedentes de morcelado quirúrgico, de color pardo-rojizo a pardo-amarillento oscuro con áreas congestivas focales, de consistencia predominantemente elástica y consistencia blanda en zonas hiperémicas, con dimensiones agrupadas de [dimensiones] cm y peso acumulado de [peso] g. La superficie de corte exhibe sectores rojizos congestivos con discreta exudación translúcida. No se delimitan cavidades abscedadas francas ni nódulos indurados pétreos. Se incluye muestra representativa tisular en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Epstein, J. I. (2020). Biopsy Interpretation of the Prostate. Wolters Kluwer. / WHO Classification of Tumours (5th ed., 2022).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Epstein, J. I. (2020). Biopsy Interpretation of the Prostate. Wolters Kluwer. / WHO Classification of Tumours (5th ed., 2022).</small>`,
         "micro": "El examen histopatológico muestra parénquima prostático con arquitectura distorsionada por hiperplasia nodular acinar y estromal asociada a un conspicuo proceso inflamatorio crónico linfo-histiocitario y plasmocitario de distribución difusa e intersticial periacinar, con formación de agregados linfoides foliculares reactivos estromales. Se evidencia migración leucocitaria neutrofílica focal a través del epitelio secretor acinar con degeneración epitelial reactiva, vacuolización citoplasmática, cariomegalia reactiva uniforme con nucléolos pequeños centrales sin hipercromatismo patológico y conservación demostrable de la hilera basal continua. Las luces acinares alojan detritos celulares, neutrófilos atrapados y macrófagos espumosos (microabscesos intraluminares en fase de reabsorción). El estroma circundante presenta proliferación fibroblástica reparativa, edema intersticial y marcada congestión vascular capilar. Se descarta vasculitis necrotizante, granulomas tuberculoides o caseosis. No se identifican criterios morfológicos de malignidad, ASAP, HGPIN ni adenocarcinoma.",
-        "diag": "TEJIDO PROSTÁTICO MORCELADO (PRODUCTO DE ENUCLEACIÓN / MORCELACIÓN):
+        "diag": `TEJIDO PROSTÁTICO MORCELADO (PRODUCTO DE ENUCLEACIÓN / MORCELACIÓN):
 - HIPERPLASIA NODULAR PROSTÁTICA BENIGNA (ADENOMATOSA Y ESTROMAL).
 - PROSTATITIS CRÓNICA ACTIVA MODERADA A SEVERA, CON INFILTRADO LINFOPLASMOCITARIO ESTROMAL, AGREGADOS LINFOIDES REACTIVOS Y MICROABSCESOS INTRALUMINARES FOCALES.
 - ATIPIA EPITELIAL REACTIVA / REPARATIVA ASOCIADA AL FOCO INFLAMATORIO, CON ESTRATO DE CÉLULAS BASALES ÍNTEGRO.
-- NEGATIVO PARA NEOPLASIA INTRAEPITELIAL PROSTÁTICA DE ALTO GRADO (HGPIN) O ADENOCARCINOMA PROSTÁTICO INVASOR (ISUP / OMS 2022)."
+- NEGATIVO PARA NEOPLASIA INTRAEPITELIAL PROSTÁTICA DE ALTO GRADO (HGPIN) O ADENOCARCINOMA PROSTÁTICO INVASOR (ISUP / OMS 2022).`
     },
     {
         "id": 20,
         "categoryId": 9,
         "titulo": "MORCELADO DE PRÓSTATA (VARIANTE 3: HIPERPLASIA CON ATROFIA ACINAR Y CUERPOS AMILÁCEOS)",
-        "macro": "Se recepciona espécimen de morcelación prostática constituido por múltiples fragmentos y virutas aplanadas de tonalidad pardo-grisácea pálida y amarillenta, consistencia elástica firme con resistencia crujiente focal al corte y tacto calcáreo discreto, que en volumen agrupado miden [dimensiones] cm y presentan un peso de [peso] g. En la superficie de sección se identifican microscópicas concreciones parduscas litiásicas arenosas de cuerpos amiláceos condensados. Se incluye muestreo representativo en [n] casete(s).
+        "macro": `Se recepciona espécimen de morcelación prostática constituido por múltiples fragmentos y virutas aplanadas de tonalidad pardo-grisácea pálida y amarillenta, consistencia elástica firme con resistencia crujiente focal al corte y tacto calcáreo discreto, que en volumen agrupado miden [dimensiones] cm y presentan un peso de [peso] g. En la superficie de sección se identifican microscópicas concreciones parduscas litiásicas arenosas de cuerpos amiláceos condensados. Se incluye muestreo representativo en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Humphrey, P. A. (2016). Prostate Pathology. ASCP Press. / WHO Classification of Tumours (5th ed., 2022).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Humphrey, P. A. (2016). Prostate Pathology. ASCP Press. / WHO Classification of Tumours (5th ed., 2022).</small>`,
         "micro": "Las secciones histológicas muestran parénquima prostático con hiperplasia nodular glandular sobre la que asienta un patrón prominente y difuso de atrofia acinar prostática (atrofia simple y esclerosante). Las glándulas atróficas se aprecian disminuidas de calibre o irregularmente distendidas, revestidas por un epitelio cúbico bajo o aplanado con escaso citoplasma basófilo y núcleos regulares sin cromatina granular tosca ni mitosis, con hilera de células basales continuas intactas. Las luces acinares se encuentran profusamente ocupadas por voluminosos cuerpos amiláceos concéntricos calcificados (calciesferitas / litiasis prostática intraluminal distrófica). El estroma fibroso interglandular demuestra esclerosis colágena hialinizada con pérdida del componente muscular liso y fibrosis periacinar circundante sin desmoplasia tumoral. Se reconoce un leve infiltrado inflamatorio mononuclear pericalcificación. No se aprecia proliferación microacinar atípica (ASAP), atipia cribiforme, HGPIN ni evidencia de neoplasia invasora.",
-        "diag": "MATERIAL DE MORCELADO PROSTÁTICO:
+        "diag": `MATERIAL DE MORCELADO PROSTÁTICO:
 - HIPERPLASIA NODULAR PROSTÁTICA BENIGNA ASOCIADA A ATROFIA ACINAR DIFUSA (TIPOS SIMPLE Y ESCLEROSANTE).
 - CUERPOS AMILÁCEOS ABUNDANTES Y CALCIFICACIONES DISTRÓFICAS INTRALUMINARES Y ESTROMALES (LITIASIS PROSTÁTICA CONCRÉCICA).
 - ESCLEROSIS Y FIBROSIS COLÁGENA INTERACINAR BENIGNA.
-- NEGATIVO PARA ATIPIA CITOLÓGICA, NEOPLASIA INTRAEPITELIAL DE ALTO GRADO (HGPIN) O ADENOCARCINOMA PROSTÁTICO INVASOR (ISUP / OMS 2022)."
+- NEGATIVO PARA ATIPIA CITOLÓGICA, NEOPLASIA INTRAEPITELIAL DE ALTO GRADO (HGPIN) O ADENOCARCINOMA PROSTÁTICO INVASOR (ISUP / OMS 2022).`
     },
     {
         "id": 21,
         "categoryId": 9,
         "titulo": "MORCELADO DE PRÓSTATA (VARIANTE 4: HIPERPLASIA CON INFARTO Y METAPLASIA ESCAMOSA)",
-        "macro": "Se recibe producto de morcelado prostático conformado por numerosos fragmentos tisulares alargados de aspecto heterogéneo, coloración pardo-clara con focos bien delimitados rojo-parduscos y amarillo-opacos de aspecto friable y consistencia discretamente reblandecida que alternan con áreas elásticas habituales. El espécimen mide en conjunto [dimensiones] cm y registra un peso de [peso] g. Las zonas opacas sugieren cambios isquémicos focales. Se realiza muestreo tisular exhaustivo incluyendo la totalidad de las áreas de aspecto friable en [n] casete(s).
+        "macro": `Se recibe producto de morcelado prostático conformado por numerosos fragmentos tisulares alargados de aspecto heterogéneo, coloración pardo-clara con focos bien delimitados rojo-parduscos y amarillo-opacos de aspecto friable y consistencia discretamente reblandecida que alternan con áreas elásticas habituales. El espécimen mide en conjunto [dimensiones] cm y registra un peso de [peso] g. Las zonas opacas sugieren cambios isquémicos focales. Se realiza muestreo tisular exhaustivo incluyendo la totalidad de las áreas de aspecto friable en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Epstein, J. I., & Netto, G. J. (2014). Biopsy Interpretation of the Prostate. / WHO Classification of Tumours (5th ed., 2022).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Epstein, J. I., & Netto, G. J. (2014). Biopsy Interpretation of the Prostate. / WHO Classification of Tumours (5th ed., 2022).</small>`,
         "micro": "El estudio microscópico revela tejido prostático con hiperplasia nodular acinar y estromal en cuyo seno se identifican extensos focos de infarto prostático isquémico coagulativo en diferentes estadios de organización evolutiva. Se observan áreas centrales de necrosis de coagulación de glándulas y estroma (sombras fantasmales tisulares) rodeadas por una corona periférica de histiocitos espumosos, siderófagos y capilares de neoformación fibroblástica reactiva. En la periferia inmediata del infarto destaca una exuberante proliferación de células epiteliales con metaplasia escamosa madura e inmadura reactiva que reviste y oblitera luces acinares remanentes; las células escamosas exhiben bordes poligonales netos, puentes intercelulares visibles, citoplasma acidófilo amplio y núcleos ovoides regulares sin pleomorfismo, sin mitosis atípicas ni queratinización atípica desordenada. No hay infiltración estromal invasiva por nidos córneos. La inmunomorfología demuestra preservación de la membrana basal y marcaje p63 difuso en los nidos escamosos. No se identifica carcinoma epidermoide ni adenocarcinoma prostático.",
-        "diag": "FRAGMENTOS PROCEDENTES DE MORCELACIÓN PROSTÁTICA:
+        "diag": `FRAGMENTOS PROCEDENTES DE MORCELACIÓN PROSTÁTICA:
 - HIPERPLASIA NODULAR PROSTÁTICA BENIGNA.
 - INFARTO PROSTÁTICO ISQUÉMICO FOCAL RECIENTE Y ANTIGUO EN ORGANIZACIÓN.
 - METAPLASIA ESCAMOSA EPITELIAL EXTENSA BENIGNA (REACTIVA / REPARATIVA PERI-INFARTO).
 - REACCIÓN HISTIOCITARIA XANTOMATOSA Y FIBROSIS CICATRIZAL PERIFÉRICA.
-- NEGATIVO PARA NEOPLASIA INTRAEPITELIAL PROSTÁTICA DE ALTO GRADO (HGPIN), CARCINOMA ESCAMOSO O ADENOCARCINOMA PROSTÁTICO (ISUP / OMS 2022)."
+- NEGATIVO PARA NEOPLASIA INTRAEPITELIAL PROSTÁTICA DE ALTO GRADO (HGPIN), CARCINOMA ESCAMOSO O ADENOCARCINOMA PROSTÁTICO (ISUP / OMS 2022).`
     },
     {
         "id": 22,
         "categoryId": 9,
         "titulo": "MORCELADO DE PRÓSTATA (VARIANTE 5: HIPERPLASIA ADENOMATOSA FLORIDA Y DILATACIÓN DUCTAL)",
-        "macro": "Se reciben múltiples fragmentos tisulares obtenidos por morcelación prostática endoscópica, de superficie granular fina a multinodular esponjosa, coloración pardo-amarillenta pálida y consistencia elástica blanda. Al corte seriado se aprecia marcada multiplicidad de cavidades microquísticas y ectasias ductales con salida de secreción mucoide y coloide clara. Las dimensiones agrupadas son de [dimensiones] cm y el peso neto asciende a [peso] g. No se reconocen induraciones sospechosas ni áreas de hemorragia focal. Se incluye muestra representativa en [n] casete(s).
+        "macro": `Se reciben múltiples fragmentos tisulares obtenidos por morcelación prostática endoscópica, de superficie granular fina a multinodular esponjosa, coloración pardo-amarillenta pálida y consistencia elástica blanda. Al corte seriado se aprecia marcada multiplicidad de cavidades microquísticas y ectasias ductales con salida de secreción mucoide y coloide clara. Las dimensiones agrupadas son de [dimensiones] cm y el peso neto asciende a [peso] g. No se reconocen induraciones sospechosas ni áreas de hemorragia focal. Se incluye muestra representativa en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Lester, S. C. (2010). Manual of Surgical Pathology (3rd ed.). / WHO Classification of Tumours (5th ed., 2022).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Lester, S. C. (2010). Manual of Surgical Pathology (3rd ed.). / WHO Classification of Tumours (5th ed., 2022).</small>`,
         "micro": "El examen histopatológico demuestra hiperplasia prostática benigna con marcada preponderancia del componente adenomatoso glandular florido (proliferación microacinar y macroacinar densamente empaquetada). Los acinos se encuentran notablemente hiperplásicos, con marcada dilatación ducto-acinar quística y proyecciones papilares intraluminares de ejes conectivo-vasculares delgados revestidos por células secretoras cilíndricas mucosas altas con polaridad nuclear conservada, núcleos basales uniformes de cromatina laxa y ausencia de nucléolos patológicos destacados. Se comprueba un estrato celular basal continuo y bien definido que rodea circunferencialmente cada una de las estructuras glandulares. El estroma interacinar se encuentra comprimido y reducido a delgadas bandas fibromusculares no desmoplásicas. Las luces glandulares contienen líquido coloide acidófilo proteináceo y corpora amilácea esferoidales. No se detectan glándulas cribiformes atípicas fusionadas, invasión perineural, ASAP, HGPIN ni evidencia de adenocarcinoma acinar invasor.",
-        "diag": "TEJIDO PROSTÁTICO MORCELADO (PRODUCTO DE ENUCLEACIÓN):
+        "diag": `TEJIDO PROSTÁTICO MORCELADO (PRODUCTO DE ENUCLEACIÓN):
 - HIPERPLASIA NODULAR PROSTÁTICA BENIGNA DE PREDOMINIO ADENOMATOSO GLANDULAR FLORIDO.
 - ECTASIA Y DILATACIÓN DUCTO-ACINAR MICROQUÍSTICA CON PROYECCIONES PAPILARES INTRALUMINARES BENIGNAS.
 - ESTROMA FIBROMUSCULAR COMPRIMIDO NO ATÍPICO.
 - NEGATIVO PARA NEOPLASIA INTRAEPITELIAL PROSTÁTICA DE ALTO GRADO (HGPIN) O PROLIFERACIÓN ACINAR ATÍPICA (ASAP).
-- NEGATIVO PARA NEOPLASIA MALIGNA (ADENOCARCINOMA PROSTÁTICO INVASOR) (ISUP / OMS 2022)."
+- NEGATIVO PARA NEOPLASIA MALIGNA (ADENOCARCINOMA PROSTÁTICO INVASOR) (ISUP / OMS 2022).`
     },
     {
         "id": 23,
         "categoryId": 9,
         "titulo": "MORCELADO DE PRÓSTATA (VARIANTE 6: HIPERPLASIA BENIGNA ESTROMAL PREDOMINANTE)",
-        "macro": "Se recepciona producto de morcelado de tejido prostático integrado por múltiples virutas y nódulos elásticos de superficie lisa o abollonada, consistencia elástica carnosa homogénea y firme al corte, tonalidad pardo-grisácea a blanquecina nacarada uniforme, que en conjunto miden [dimensiones] cm y alcanzan un peso total de [peso] g. La superficie seccionada es compacta, fasciculada y arremolinada, sin cavidades quísticas prominentes ni calcificaciones. Se procesa muestreo histológico representativo en [n] casete(s).
+        "macro": `Se recepciona producto de morcelado de tejido prostático integrado por múltiples virutas y nódulos elásticos de superficie lisa o abollonada, consistencia elástica carnosa homogénea y firme al corte, tonalidad pardo-grisácea a blanquecina nacarada uniforme, que en conjunto miden [dimensiones] cm y alcanzan un peso total de [peso] g. La superficie seccionada es compacta, fasciculada y arremolinada, sin cavidades quísticas prominentes ni calcificaciones. Se procesa muestreo histológico representativo en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours of the Urinary System and Male Genital Organs (5th ed., 2022). / CAP Consensus Guidelines for Prostate Specimen Reporting (2023).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours of the Urinary System and Male Genital Organs (5th ed., 2022). / CAP Consensus Guidelines for Prostate Specimen Reporting (2023).</small>`,
         "micro": "Los cortes histológicos teñidos con H&E revelan parénquima prostático con marcada alteración arquitectural por predominio masivo de nódulos mesenquimales estromales benignos (nódulos de leiomioma / adenoleiomioma prostático). El tejido está compuesto por una densa proliferación de fascículos entrelazados y haces concéntricos de células musculares lisas fusiformes y miofibroblastos maduros, con citoplasmas eosinófilos elongados y núcleos ovoides de extremos romos en forma de cigarro, cromatina uniforme, sin pleomorfismo, sin atipia nuclear ni figuras mitóticas atípicas. El componente glandular epitelial es sumamente escaso y disperso, observándose únicamente glándulas atróficas aisladas comprimidas por las masas estromales mesenquimales, conservando su hilera de células basales continuas. No se detectan áreas mixoides acelulares expansivas, células gigantes multinucleadas atípicas ni necrosis. Se descarta tumor estromal de potencial maligno incierto (STUMP) y sarcoma prostático. No hay evidencia de adenocarcinoma.",
-        "diag": "PRODUCTO DE MORCELACIÓN PROSTÁTICA:
+        "diag": `PRODUCTO DE MORCELACIÓN PROSTÁTICA:
 - HIPERPLASIA NODULAR BENIGNA ESTROMAL Y FIBROMUSCULAR PREDOMINANTE (PATRÓN MESENQUIMAL PURO / ADENOLEIOMIOMA PROSTÁTICO BENIGNO).
 - COMPONENTE GLANDULAR ESCASO COMPRIMIDO SIN ATIPIA CITOLÓGICA.
 - NEGATIVO PARA TUMOR ESTROMAL PROSTÁTICO DE POTENCIAL MALIGNO INCIERTO (STUMP) O PROCESO SARCOMATOSO.
-- NEGATIVO PARA NEOPLASIA MALIGNA EPITELIAL (ADENOCARCINOMA PROSTÁTICO INVASOR) (ISUP / OMS 2022)."
+- NEGATIVO PARA NEOPLASIA MALIGNA EPITELIAL (ADENOCARCINOMA PROSTÁTICO INVASOR) (ISUP / OMS 2022).`
     },
     {
         "id": 24,
@@ -588,13 +592,13 @@ SE SUGIERE SEGUIMIENTO Y CONTROL DEL PACIENTE"
         "titulo": "CERVICITIS CRÓNICA SEVERA CON CAMBIOS GLANDULARES REACTIVOS Y HEMORRAGIA",
         "macro": "se reciben fragmentos de tejido endocervical y exocervical que miden en conjunto 0.8 x 0.6 x 0.3 cm, de color pardo-rojizo con áreas congestivas. se incluye la totalidad en 1 casete.",
         "micro": "los cortes muestran fragmentos de tejido correspondientes a mucosa endocervical. la arquitectura general revela criptas y glándulas endocervicales revestidas por un epitelio cilíndrico simple mucosecretor. se observan marcados cambios reactivos en el epitelio glandular, caracterizados por un leve agrandamiento nuclear y una focal pérdida de la mucina apical, secundarios al entorno inflamatorio. algunas glándulas presentan dilatación quística. el hallazgo más prominente es un denso y extenso infiltrado inflamatorio en el estroma. este infiltrado es de carácter crónico, constituido predominantemente por linfocitos y células plasmáticas, el cual expande el estroma endocervical. se asocian áreas de marcada congestión vascular y extensos focos de hemorragia intersticial y superficial reciente. a los aumentos proporcionados, la maduración epitelial (donde es evaluable) parece conservada y no se identifican atipias citológicas significativas, pérdida de la polaridad nuclear, figuras mitóticas atípicas, ni reacción estromal desmoplásica. no hay evidencia morfológica de neoplasia intraepitelial cervical (nic/hsil), adenocarcinoma in situ (ais) ni carcinoma invasor en los campos evaluados.",
-        "diag": "CÉRVIX, BIOPSIA:
+        "diag": `CÉRVIX, BIOPSIA:
 MUCOSA ENDOCERVICAL CON CERVICITIS CRÓNICA SEVERA Y CAMBIOS GLANDULARES REACTIVOS.
 EXTENSA CONGESTIÓN VASCULAR Y HEMORRAGIA RECIENTE.
 NEGATIVO PARA DISPLASIA Y MALIGNIDAD EN EL MATERIAL EXAMINADO.
 
 COMENTARIO:
-LOS HALLAZGOS SON CONSISTENTES CON UN PROCESO INFLAMATORIO SEVERO DE NATURALEZA BENIGNA (CERVICITIS). SE SUGIERE CORRELACIÓN CLÍNICA PARA DESCARTAR ETIOLOGÍAS INFECCIOSAS ESPECÍFICAS U OTRAS CAUSAS DE INFLAMACIÓN PÉLVICA/CERVICAL SEVERA."
+LOS HALLAZGOS SON CONSISTENTES CON UN PROCESO INFLAMATORIO SEVERO DE NATURALEZA BENIGNA (CERVICITIS). SE SUGIERE CORRELACIÓN CLÍNICA PARA DESCARTAR ETIOLOGÍAS INFECCIOSAS ESPECÍFICAS U OTRAS CAUSAS DE INFLAMACIÓN PÉLVICA/CERVICAL SEVERA.`
     },
     {
         "id": 27,
@@ -737,7 +741,7 @@ LOS HALLAZGOS SON CONSISTENTES CON UN PROCESO INFLAMATORIO SEVERO DE NATURALEZA 
         "categoryId": 28,
         "titulo": "PAPANICOLAOU ATRÓFICO",
         "macro": "se recibe 1 extendido cervicovaginal convencional.",
-        "micro": "tinción: Papanicolaou
+        "micro": `tinción: Papanicolaou
 
 clasificación: sistema Bethesda 2014
 
@@ -763,18 +767,18 @@ microorganismos: no se detectan.
 
 cambios reactivos/reparativos: cambios celulares asociados a atrofia. inflamación aguda de intensidad leve.
 
-otros hallazgos: no identificados.",
-        "diag": "DIAGNÓSTICO CITOLÓGICO
+otros hallazgos: no identificados.`,
+        "diag": `DIAGNÓSTICO CITOLÓGICO
 (ADAPTADO DE BETHESDA SYSTEM 2014, NATIONAL INSTITUTES OF HEALTH)
 NEGATIVO PARA LESIÓN ESCAMOSA INTRAEPITELIAL O NEOPLASIA MALIGNA.
-- FROTIS CON PATRÓN ATRÓFICO."
+- FROTIS CON PATRÓN ATRÓFICO.`
     },
     {
         "id": 43,
         "categoryId": 28,
         "titulo": "PAPANICOLAOU NORMAL (EXTENDIDO TRÓFICO)",
         "macro": "se recibe 1 extendido cervicovaginal convencional.",
-        "micro": "tinción: Papanicolaou
+        "micro": `tinción: Papanicolaou
 
 clasificación: sistema Bethesda 2014
 
@@ -790,18 +794,18 @@ células glandulares: endocervicales presentes sin alteraciones.
 3. hallazgos adicionales
 microorganismos: flora bacilar saprófita habitual (lactobacillus spp. / bacilos de Döderlein).
 cambios reactivos/reparativos: no identificados.
-otros hallazgos: no se observan microorganismos patógenos ni evidencia de atipia intraepitelial.",
-        "diag": "DIAGNÓSTICO CITOLÓGICO
+otros hallazgos: no se observan microorganismos patógenos ni evidencia de atipia intraepitelial.`,
+        "diag": `DIAGNÓSTICO CITOLÓGICO
 (ADAPTADO DE BETHESDA SYSTEM 2014, NATIONAL INSTITUTES OF HEALTH)
 NEGATIVO PARA LESIÓN ESCAMOSA INTRAEPITELIAL O NEOPLASIA MALIGNA (NILM).
-- EXTENDIDO TRÓFICO DENTRO DE LÍMITES NORMALES."
+- EXTENDIDO TRÓFICO DENTRO DE LÍMITES NORMALES.`
     },
     {
         "id": 55,
         "categoryId": 28,
         "titulo": "PAPANICOLAOU NORMAL (CON INFLAMACIÓN LEVE INESPECÍFICA)",
         "macro": "se recibe 1 extendido cervicovaginal convencional.",
-        "micro": "tinción: Papanicolaou
+        "micro": `tinción: Papanicolaou
 
 clasificación: sistema Bethesda 2014
 
@@ -817,18 +821,18 @@ células glandulares: endocervicales presentes.
 3. hallazgos adicionales
 microorganismos: no detectados.
 cambios reactivos/reparativos: inflamación aguda de intensidad leve.
-otros hallazgos: fondo con moderados polimorfonucleares leucocitarios y escaso moco de fondo.",
-        "diag": "DIAGNÓSTICO CITOLÓGICO
+otros hallazgos: fondo con moderados polimorfonucleares leucocitarios y escaso moco de fondo.`,
+        "diag": `DIAGNÓSTICO CITOLÓGICO
 (ADAPTADO DE BETHESDA SYSTEM 2014, NATIONAL INSTITUTES OF HEALTH)
 NEGATIVO PARA LESIÓN ESCAMOSA INTRAEPITELIAL O NEOPLASIA MALIGNA (NILM).
-- CAMBIOS CELULARES REACTIVOS ASOCIADOS A INFLAMACIÓN LEVE INESPECÍFICA."
+- CAMBIOS CELULARES REACTIVOS ASOCIADOS A INFLAMACIÓN LEVE INESPECÍFICA.`
     },
     {
         "id": 56,
         "categoryId": 28,
         "titulo": "PAPANICOLAOU NORMAL (CON CITÓLISIS FISIOLÓGICA)",
         "macro": "se recibe 1 extendido cervicovaginal convencional.",
-        "micro": "tinción: Papanicolaou
+        "micro": `tinción: Papanicolaou
 
 clasificación: sistema Bethesda 2014
 
@@ -844,18 +848,18 @@ células glandulares: endocervicales presentes sin atipia.
 3. hallazgos adicionales
 microorganismos: abundante flora lactobacilar de Döderlein asociada a fenómeno citolítico.
 cambios reactivos/reparativos: no identificados.
-otros hallazgos: ausencia de atipia nuclear, coilocitos o células displásicas.",
-        "diag": "DIAGNÓSTICO CITOLÓGICO
+otros hallazgos: ausencia de atipia nuclear, coilocitos o células displásicas.`,
+        "diag": `DIAGNÓSTICO CITOLÓGICO
 (ADAPTADO DE BETHESDA SYSTEM 2014, NATIONAL INSTITUTES OF HEALTH)
 NEGATIVO PARA LESIÓN ESCAMOSA INTRAEPITELIAL O NEOPLASIA MALIGNA (NILM).
-- EXTENDIDO CON CAMBIOS CITOLÍTICOS FISIOLÓGICOS BENIGNOS."
+- EXTENDIDO CON CAMBIOS CITOLÍTICOS FISIOLÓGICOS BENIGNOS.`
     },
     {
         "id": 57,
         "categoryId": 28,
         "titulo": "PAPANICOLAOU NORMAL (PATRÓN HIPOESTROGÉNICO / TRANSICIONAL)",
         "macro": "se recibe 1 extendido cervicovaginal convencional.",
-        "micro": "tinción: Papanicolaou
+        "micro": `tinción: Papanicolaou
 
 clasificación: sistema Bethesda 2014
 
@@ -871,18 +875,18 @@ células glandulares: endocervicales presentes.
 3. hallazgos adicionales
 microorganismos: escasa flora bacilar habitual.
 cambios reactivos/reparativos: no identificados.
-otros hallazgos: no se observan microorganismos patógenos ni signos de atipia nuclear escamosa o glandular.",
-        "diag": "DIAGNÓSTICO CITOLÓGICO
+otros hallazgos: no se observan microorganismos patógenos ni signos de atipia nuclear escamosa o glandular.`,
+        "diag": `DIAGNÓSTICO CITOLÓGICO
 (ADAPTADO DE BETHESDA SYSTEM 2014, NATIONAL INSTITUTES OF HEALTH)
 NEGATIVO PARA LESIÓN ESCAMOSA INTRAEPITELIAL O NEOPLASIA MALIGNA (NILM).
-- PATRÓN HIPOESTROGÉNICO / TRANSICIONAL SIN ATIPIA."
+- PATRÓN HIPOESTROGÉNICO / TRANSICIONAL SIN ATIPIA.`
     },
     {
         "id": 62,
         "categoryId": 28,
         "titulo": "PAPANICOLAOU NORMAL (PATRÓN GESTACIONAL / NAVICULAR)",
         "macro": "se recibe 1 extendido cervicovaginal convencional.",
-        "micro": "tinción: Papanicolaou
+        "micro": `tinción: Papanicolaou
 
 clasificación: sistema Bethesda 2014
 
@@ -898,18 +902,18 @@ células glandulares: endocervicales presentes en grupos y sábanas de aspecto r
 3. hallazgos adicionales
 microorganismos: abundante flora bacilar de Döderlein.
 cambios reactivos/reparativos: frotis compatible con patrón gestacional (navicular/citolítico). inflamación de intensidad leve.
-otros hallazgos: no se observan microorganismos patógenos ni atipias escamosas o glandulares.",
-        "diag": "DIAGNÓSTICO CITOLÓGICO
+otros hallazgos: no se observan microorganismos patógenos ni atipias escamosas o glandulares.`,
+        "diag": `DIAGNÓSTICO CITOLÓGICO
 (ADAPTADO DE BETHESDA SYSTEM 2014, NATIONAL INSTITUTES OF HEALTH)
 NEGATIVO PARA LESIÓN ESCAMOSA INTRAEPITELIAL O NEOPLASIA MALIGNA (NILM).
-- EXTENDIDO CON CAMBIOS CELULARES FISIOLÓGICOS ASOCIADOS A GESTACIÓN (PATRÓN NAVICULAR Y CITOLÍTICO BENIGNO)."
+- EXTENDIDO CON CAMBIOS CELULARES FISIOLÓGICOS ASOCIADOS A GESTACIÓN (PATRÓN NAVICULAR Y CITOLÍTICO BENIGNO).`
     },
     {
         "id": 58,
         "categoryId": 28,
         "titulo": "PAPANICOLAOU - ASCUS (ATIPIA ESCAMOSA DE SIGNIFICADO INCIERTO)",
         "macro": "se recibe 1 extendido cervicovaginal convencional.",
-        "micro": "tinción: Papanicolaou
+        "micro": `tinción: Papanicolaou
 
 clasificación: sistema Bethesda 2014
 
@@ -925,18 +929,18 @@ células glandulares: endocervicales presentes sin atipia.
 3. hallazgos adicionales
 microorganismos: flora bacilar habitual.
 cambios reactivos/reparativos: inflamación leve a moderada de fondo.
-otros hallazgos: no se identifican patógenos específicos.",
-        "diag": "DIAGNÓSTICO CITOLÓGICO
+otros hallazgos: no se identifican patógenos específicos.`,
+        "diag": `DIAGNÓSTICO CITOLÓGICO
 (ADAPTADO DE BETHESDA SYSTEM 2014, NATIONAL INSTITUTES OF HEALTH)
 ATIPIA DE CÉLULAS ESCAMOSAS DE SIGNIFICADO INCIERTO (ASC-US).
-- SE SUGIERE PRUEBA MOLECULAR PARA VPH DE ALTO RIESGO O REPETIR CITOLOGÍA CERVICOVAGINAL EN 6 MESES SEGÚN GUÍAS ASCCP."
+- SE SUGIERE PRUEBA MOLECULAR PARA VPH DE ALTO RIESGO O REPETIR CITOLOGÍA CERVICOVAGINAL EN 6 MESES SEGÚN GUÍAS ASCCP.`
     },
     {
         "id": 59,
         "categoryId": 28,
         "titulo": "PAPANICOLAOU - LIE DE BAJO GRADO (LSIL / VPH - NIC 1)",
         "macro": "se recibe 1 extendido cervicovaginal convencional.",
-        "micro": "tinción: Papanicolaou
+        "micro": `tinción: Papanicolaou
 
 clasificación: sistema Bethesda 2014
 
@@ -952,19 +956,19 @@ células glandulares: endocervicales sin alteraciones.
 3. hallazgos adicionales
 microorganismos: no se detectan patógenos específicos.
 cambios reactivos/reparativos: inflamación de intensidad leve a moderada.
-otros hallazgos: ausencia de células parabasales atípicas ni mitosis anormales.",
-        "diag": "DIAGNÓSTICO CITOLÓGICO
+otros hallazgos: ausencia de células parabasales atípicas ni mitosis anormales.`,
+        "diag": `DIAGNÓSTICO CITOLÓGICO
 (ADAPTADO DE BETHESDA SYSTEM 2014, NATIONAL INSTITUTES OF HEALTH)
 LESIÓN ESCAMOSA INTRAEPITELIAL DE BAJO GRADO (LSIL).
 - CAMBIOS CITOPÁTICOS POR VPH / NEOPLASIA INTRAEPITELIAL CERVICAL GRADO 1 (NIC 1).
-- SE SUGIERE EVALUACIÓN COLPOSCÓPICA Y CORRELACIÓN HISTOPATOLÓGICA SEGÚN GUÍAS ASCCP."
+- SE SUGIERE EVALUACIÓN COLPOSCÓPICA Y CORRELACIÓN HISTOPATOLÓGICA SEGÚN GUÍAS ASCCP.`
     },
     {
         "id": 60,
         "categoryId": 28,
         "titulo": "PAPANICOLAOU - ASCH (ATIPIA ESCAMOSA NO PERMITE DESCARTAR LIE DE ALTO GRADO)",
         "macro": "se recibe 1 extendido cervicovaginal convencional.",
-        "micro": "tinción: Papanicolaou
+        "micro": `tinción: Papanicolaou
 
 clasificación: sistema Bethesda 2014
 
@@ -980,18 +984,18 @@ células glandulares: ausentes de atipia.
 3. hallazgos adicionales
 microorganismos: no se identifican.
 cambios reactivos/reparativos: inflamación moderada de fondo.
-otros hallazgos: se sugiere correlación con biopsia dirigida.",
-        "diag": "DIAGNÓSTICO CITOLÓGICO
+otros hallazgos: se sugiere correlación con biopsia dirigida.`,
+        "diag": `DIAGNÓSTICO CITOLÓGICO
 (ADAPTADO DE BETHESDA SYSTEM 2014, NATIONAL INSTITUTES OF HEALTH)
 ATIPIA DE CÉLULAS ESCAMOSAS EN LAS QUE NO SE PUEDE EXCLUIR UNA LESIÓN INTRAEPITELIAL DE ALTO GRADO (ASC-H).
-- SE SUGIERE EVALUACIÓN COLPOSCÓPICA PRIORITARIA Y BIOPSIA DIRIGIDA SEGÚN GUÍAS ASCCP."
+- SE SUGIERE EVALUACIÓN COLPOSCÓPICA PRIORITARIA Y BIOPSIA DIRIGIDA SEGÚN GUÍAS ASCCP.`
     },
     {
         "id": 61,
         "categoryId": 28,
         "titulo": "PAPANICOLAOU - LIE DE ALTO GRADO (HSIL / NIC 2 - NIC 3)",
         "macro": "se recibe 1 extendido cervicovaginal convencional.",
-        "micro": "tinción: Papanicolaou
+        "micro": `tinción: Papanicolaou
 
 clasificación: sistema Bethesda 2014
 
@@ -1007,12 +1011,12 @@ células glandulares: endocervicales presentes sin atipia glandular primaria.
 3. hallazgos adicionales
 microorganismos: no detectados.
 cambios reactivos/reparativos: inflamación de fondo de intensidad moderada.
-otros hallazgos: hallazgos compatibles con NIC 2 / NIC 3.",
-        "diag": "DIAGNÓSTICO CITOLÓGICO
+otros hallazgos: hallazgos compatibles con NIC 2 / NIC 3.`,
+        "diag": `DIAGNÓSTICO CITOLÓGICO
 (ADAPTADO DE BETHESDA SYSTEM 2014, NATIONAL INSTITUTES OF HEALTH)
 LESIÓN ESCAMOSA INTRAEPITELIAL DE ALTO GRADO (HSIL).
 - COMPATIBLE CON NEOPLASIA INTRAEPITELIAL CERVICAL GRADO 2 / GRADO 3 (NIC 2 / NIC 3 / CARCINOMA IN SITU).
-- SE SUGIERE COLPOSCOPIA INMEDIATA Y BIOPSIA DIRIGIDA SEGÚN GUÍAS ASCCP."
+- SE SUGIERE COLPOSCOPIA INMEDIATA Y BIOPSIA DIRIGIDA SEGÚN GUÍAS ASCCP.`
     },
     {
         "id": 45,
@@ -1027,29 +1031,29 @@ LESIÓN ESCAMOSA INTRAEPITELIAL DE ALTO GRADO (HSIL).
         "categoryId": 4,
         "titulo": "RESTOS PLACENTARIOS / CONTENIDO ENDOUTERINO RETENIDO (CRITERIOS MD ANDERSON)",
         "macro": "se reciben múltiples fragmentos tisulares de aspecto membranoso y velloso, de coloración gris-rojiza a pardo-hemática, mezclados con coágulos sanguíneos de reciente formación, que en conjunto miden aproximadamente 3.5 x 3.0 x 1.2 cm y pesan 5.8 gramos; el material se remite íntegramente para estudio histológico tras fijación en formol tamponado al 10% en [ n ] casete(s).",
-        "micro": "el estudio con hematoxilina-eosina evidencia la presencia de vellosidades coriónicas de morfología conservada, tapizadas por dos capas de trofoblasto (citotrofoblasto interno y sincitiotrofoblasto externo), con escasos signos de degeneración hidrópica o hialinización estromales, que en áreas muestran una ligera fibrosis estromal intervellosa. el tejido endometrial adyacente revela decidua basal con cambios necróticos focales y un infiltrado inflamatorio crónico inespecífico (linfocitario y ocasional plasmocitario) en la interfase, sin evidencia de granulomas ni necrosis fibrinoide extensa. los espacios vasculares deciduales muestran trombos organizados en fase de recanalización, compatibles con tejido placentario retenido de larga evolución.
+        "micro": `el estudio con hematoxilina-eosina evidencia la presencia de vellosidades coriónicas de morfología conservada, tapizadas por dos capas de trofoblasto (citotrofoblasto interno y sincitiotrofoblasto externo), con escasos signos de degeneración hidrópica o hialinización estromales, que en áreas muestran una ligera fibrosis estromal intervellosa. el tejido endometrial adyacente revela decidua basal con cambios necróticos focales y un infiltrado inflamatorio crónico inespecífico (linfocitario y ocasional plasmocitario) en la interfase, sin evidencia de granulomas ni necrosis fibrinoide extensa. los espacios vasculares deciduales muestran trombos organizados en fase de recanalización, compatibles con tejido placentario retenido de larga evolución.
 
 EVALUACIÓN MD ANDERSON DE ENFERMEDAD TROFOBLÁSTICA GESTACIONAL (ETG):
 • atipia citológica trofoblástica: no identificada.
 • proliferación trofoblástica circunferencial: ausente.
 • formación de cisternas / cambios molares: ausentes (sin evidencia de mola hidatiforme completa o parcial).
-• invasión o malignidad: ausente (negativo para coriocarcinoma o tumor trofoblástico del sitio placentario).",
-        "diag": "ENDOMETRIO / TEJIDO ENDOUTERINO, CURETAJE / LEGRADO UTERINO INSTRUMENTAL (LUI):
+• invasión o malignidad: ausente (negativo para coriocarcinoma o tumor trofoblástico del sitio placentario).`,
+        "diag": `ENDOMETRIO / TEJIDO ENDOUTERINO, CURETAJE / LEGRADO UTERINO INSTRUMENTAL (LUI):
 - RESTOS PLACENTARIOS (VELLOSIDADES CORIÓNICAS Y DECIDUA BASAL) COMPATIBLES CON CONTENIDO ENDOUTERINO RETENIDO.
 - VASCULOPATÍA DECIDUAL Y TROMBOSIS VASCULAR RECANALIZADA ASOCIADA A RETENCIÓN PROLONGADA.
-- SIN EVIDENCIA DE ATIPIA TROFOBLÁSTICA, CAMBIOS MOLARES (ENFERMEDAD TROFOBLÁSTICA GESTACIONAL) NI NEOPLASIA GESTACIONAL EN EL MATERIAL EXAMINADO."
+- SIN EVIDENCIA DE ATIPIA TROFOBLÁSTICA, CAMBIOS MOLARES (ENFERMEDAD TROFOBLÁSTICA GESTACIONAL) NI NEOPLASIA GESTACIONAL EN EL MATERIAL EXAMINADO.`
     },
     {
         "id": 64,
         "categoryId": 4,
         "titulo": "RESTOS PLACENTARIOS / LEGRADO UTERINO (VOLUMEN 20 CC)",
         "macro": "se reciben múltiples fragmentos tisulares de aspecto membranoso y velloso, de coloración gris-rojiza a pardo-hemática, mezclados con coágulos sanguíneos de reciente formación, que en conjunto hacen un volumen de 20 cc. se incluye muestra representativa en 2 casetes.",
-        "micro": "en los cortes histológicos se observa la presencia de vellosidades coriónicas de morfología conservada, tapizadas por dos capas de trofoblasto (citotrofoblasto interno y sincitiotrofoblasto externo), con escasos signos de degeneración hidrópica o hialinización estromales, que en áreas muestran una ligera fibrosis estromal intervellosa.
+        "micro": `en los cortes histológicos se observa la presencia de vellosidades coriónicas de morfología conservada, tapizadas por dos capas de trofoblasto (citotrofoblasto interno y sincitiotrofoblasto externo), con escasos signos de degeneración hidrópica o hialinización estromales, que en áreas muestran una ligera fibrosis estromal intervellosa.
 • atipia citológica trofoblástica: no identificada.
 • proliferación trofoblástica circunferencial: ausente.
-• formación de cisternas / cambios molares: ausentes.",
-        "diag": "TEJIDO ENDOUTERINO, CURETAJE / LEGRADO UTERINO INSTRUMENTAL (LUI):
-- RESTOS PLACENTARIOS (VELLOSIDADES CORIÓNICAS Y DECIDUA BASAL) COMPATIBLES CON CONTENIDO ENDOUTERINO RETENIDO, SIN EVIDENCIA DE ATIPIA."
+• formación de cisternas / cambios molares: ausentes.`,
+        "diag": `TEJIDO ENDOUTERINO, CURETAJE / LEGRADO UTERINO INSTRUMENTAL (LUI):
+- RESTOS PLACENTARIOS (VELLOSIDADES CORIÓNICAS Y DECIDUA BASAL) COMPATIBLES CON CONTENIDO ENDOUTERINO RETENIDO, SIN EVIDENCIA DE ATIPIA.`
     },
     {
         "id": 69,
@@ -1057,337 +1061,337 @@ EVALUACIÓN MD ANDERSON DE ENFERMEDAD TROFOBLÁSTICA GESTACIONAL (ETG):
         "titulo": "HIPERPLASIA SIMPLE SIN ATIPIA",
         "macro": "se reciben en fijador múltiples fragmentos irregulares de tejido blando, pardo-rojizos y francamente hemorrágicos, que en conjunto miden 1.5 x 1.0 x 0.4 cm. se procesa la totalidad de la muestra en un bloque de parafina.",
         "micro": "los cortes muestran tejido endometrial con incremento difuso en la densidad glandular y alteración de la relación glándula/estroma (>1:1), con glándulas de tamaños variados, dilataciones quísticas y contornos tortuosos. el epitelio conserva la polaridad nuclear, con núcleos monótonos y sin atipia citológica ni pleomorfismo; el estroma interglandular persiste celular, con extravasación hemática focal y artefactos de compresión mecánica.",
-        "diag": "BIOPSIA DE ENDOMETRIO:
+        "diag": `BIOPSIA DE ENDOMETRIO:
 - COMPATIBLE CON HIPERPLASIA ENDOMETRIAL SIN ATIPIA.
 
-RECOMENDACIÓN: SE SUGIERE CORRELACIÓN CLÍNICO-ECOGRÁFICA Y TRATAMIENTO CONSERVADOR CON PROGESTÁGENOS, CON CONTROL DE SEGUIMIENTO PARA VERIFICAR LA REGRESIÓN DE LA LESIÓN."
+RECOMENDACIÓN: SE SUGIERE CORRELACIÓN CLÍNICO-ECOGRÁFICA Y TRATAMIENTO CONSERVADOR CON PROGESTÁGENOS, CON CONTROL DE SEGUIMIENTO PARA VERIFICAR LA REGRESIÓN DE LA LESIÓN.`
     },
     {
         "id": 201,
         "categoryId": 2,
         "titulo": "LUPUS ERITEMATOSO DISCOIDE (CUTÁNEO CRÓNICO)",
-        "macro": "se recibe losange / punch de piel que mide [dimensiones] cm. la superficie epidérmica muestra una placa eritematosa bien delimitada con escama córnea adherente y tapones foliculares queratósicos centrales, de [diámetro] cm. al corte, la dermis es firme, blanco-grisácea y elástica. se incluye en [n] casete(s).
+        "macro": `se recibe losange / punch de piel que mide [dimensiones] cm. la superficie epidérmica muestra una placa eritematosa bien delimitada con escama córnea adherente y tapones foliculares queratósicos centrales, de [diámetro] cm. al corte, la dermis es firme, blanco-grisácea y elástica. se incluye en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin (5th ed.).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin (5th ed.).</small>`,
         "micro": "los cortes histológicos muestran una dermatitis de interfase de tipo degeneración vacuolar con compromiso anexial prominente. la capa córnea exhibe hiperqueratosis ortoqueratósica compacta con marcada dilatación y taponamiento folicular queratósico (follicular plugging). la epidermis muestra atrofia difusa con aplanamiento de los procesos interpapilares, alternando con focos de hipergranulosis irregular y queratinocitos apoptóticos basales (cuerpos coloides). la unión dermoepidérmica presenta degeneración hidrópica y balonizante de las células basales con engrosamiento hialino denso continuo de la membrana basal epidérmica y perinfundibular. en la dermis papilar se aprecia incontinencia pigmentaria marcada con abundantes melanófagos, ectasia vascular y abundantes depósitos de mucina intersticial en la dermis reticular. se identifica un denso infiltrado inflamatorio linfohistiocitario dispuesto en los plexos perivasculares superficial y profundo, con una conspicua distribución perianexial (perifolicular y periecrina) que condiciona atrofia folicular progresiva.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA EN PUNCH / LOSANGE:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA EN PUNCH / LOSANGE:
 - DERMATITIS DE INTERFASE VACUOLAR CRÓNICA CON ATROFIA EPIDÉRMICA, TAPONAMIENTO FOLICULAR, ENGROSAMIENTO DE LA MEMBRANA BASAL, INFILTRADO LINFOIDE PERIANEXIAL PROFUNDO Y MUCINOSIS DÉRMICA.
 - HALLAZGOS HISTOPATOLÓGICOS CARACTERÍSTICOS Y COMPATIBLES CON LUPUS ERITEMATOSO DISCOIDE (LED / LUPUS CUTÁNEO CRÓNICO).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Hallazgos clínicos: Placas eritematosas descamativas con tapones foliculares queratósicos ('signo del tapón de cera o tachuela') y atrofia cicatrizal central con alopecia en cuero cabelludo/cara.
-2. Diagnóstico diferencial: Descartar Dermatomiositis (carece de infiltrado perianexial profundo y el engrosamiento de membrana basal es leve) y Lupus túmido (sin atrofia epidérmica ni daño de interfase basal)."
+2. Diagnóstico diferencial: Descartar Dermatomiositis (carece de infiltrado perianexial profundo y el engrosamiento de membrana basal es leve) y Lupus túmido (sin atrofia epidérmica ni daño de interfase basal).`
     },
     {
         "id": 202,
         "categoryId": 2,
         "titulo": "LUPUS ERITEMATOSO CUTÁNEO SUBAGUDO (LECS)",
-        "macro": "se recibe punch de piel que mide [dimensiones] cm. la superficie cutánea muestra una placa eritematosa anular / psoriasiforme de [diámetro] cm, sin tapones córneos evidentes ni cicatriz central. al corte, el tejido dérmico es elástico y homogéneo. se procesa la totalidad en 1 casete.
+        "macro": `se recibe punch de piel que mide [dimensiones] cm. la superficie cutánea muestra una placa eritematosa anular / psoriasiforme de [diámetro] cm, sin tapones córneos evidentes ni cicatriz central. al corte, el tejido dérmico es elástico y homogéneo. se procesa la totalidad en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology (5th ed.).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology (5th ed.).</small>`,
         "micro": "los cortes histológicos muestran una dermatitis de interfase vacuolar de distribución predominantemente superficial. la capa córnea muestra hiperqueratosis ortoqueratósica laminar con pequeños focos de paraqueratosis. la epidermis presenta atrofia moderada con degeneración hidrópica difusa de la capa basal y abundantes cuerpos apoptóticos (cuerpos de Civatte) distribuidos en los estratos basal y espinoso inferior. la membrana basal exhibe un engrosamiento leve o discontinuo. en la dermis papilar se observa edema y melanófagos dispersos por incontinencia de pigmento, acompañado de un depósito difuso de mucina estromal en la dermis reticular superficial. el infiltrado inflamatorio está constituido por linfocitos e histiocitos confinados a la unión dermoepidérmica y al plexo vascular superficial, respetando la dermis reticular profunda y los anexos cutáneos.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA:
 - DERMATITIS DE INTERFASE VACUOLAR CON CUERPOS APOPTÓTICOS BASALES, INFILTRADO LINFOIDE ESTRICTAMENTE PERIVASCULAR SUPERFICIAL Y DEPÓSITO DE MUCINA DÉRMICA.
 - CUADRO HISTOLÓGICO COMPATIBLE CON LUPUS ERITEMATOSO CUTÁNEO SUBAGUDO (LECS).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Hallazgos clínicos: Lesiones anulares policíclicas o pápulo-escamosas psoriasiformes fotodistribuidas en tórax, cuello y brazos que resuelven sin cicatriz atrófica permanente.
-2. Inmunología: Correlacionar con anticuerpos anti-Ro/SSA y anti-La/SSB (positivos en >80% de casos)."
+2. Inmunología: Correlacionar con anticuerpos anti-Ro/SSA y anti-La/SSB (positivos en >80% de casos).`
     },
     {
         "id": 203,
         "categoryId": 2,
         "titulo": "LUPUS ERITEMATOSO SISTÉMICO (ERITEMA MALAR / RASH AGUDO)",
-        "macro": "se recibe punch de piel que mide [dimensiones] cm proveniente de región malar / facial, con superficie epidérmica eritematoedematosa difusa y lisa, sin escamas induradas ni cicatrización. se procesa en 1 casete.
+        "macro": `se recibe punch de piel que mide [dimensiones] cm proveniente de región malar / facial, con superficie epidérmica eritematoedematosa difusa y lisa, sin escamas induradas ni cicatrización. se procesa en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>`,
         "micro": "los cortes histológicos muestran dermatitis de interfase vacuolar aguda. la epidermis conserva su espesor con ortoqueratosis laminar y degeneración hidrópica de queratinocitos basales con aislados cuerpos apoptóticos. se evidencia un severo edema de la dermis papilar que disgrega los haces de colágeno, asociado a ectasia de capilares dérmicos superficiales con tumefacción endotelial y extravasación focal de hematíes. en la dermis reticular superficial se confirma la presencia de mucina ácida intersticial difusa. el infiltrado inflamatorio es escaso a moderado, de predominio linfohistiocitario perivascular superficial, sin afectación de anexos ni necrosis fibrinoide mural vascular.",
-        "diag": "PIEL FACIAL (REGIÓN MALAR), BIOPSIA:
+        "diag": `PIEL FACIAL (REGIÓN MALAR), BIOPSIA:
 - DERMATITIS DE INTERFASE VACUOLAR AGUDA CON MARCADO EDEMA DE DERMIS PAPILAR, EXTRAVASACIÓN ERITROCITARIA Y DEPOSITACIÓN DE MUCINA DÉRMICA.
 - HALLAZGOS HISTOPATOLÓGICOS CARACTERÍSTICOS DE LUPUS ERITEMATOSO CUTÁNEO AGUDO (ERITEMA MALAR EN LES).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Hallazgos clínicos: Eritema simétrico en 'alas de mariposa' que respeta los surcos nasogenianos, transitorio y coincidente con brotes de actividad sistémica.
-2. Laboratorio: Correlacionar con títulos de anticuerpos anti-ADN de doble cadena (anti-dsDNA) y anti-Sm."
+2. Laboratorio: Correlacionar con títulos de anticuerpos anti-ADN de doble cadena (anti-dsDNA) y anti-Sm.`
     },
     {
         "id": 204,
         "categoryId": 2,
         "titulo": "ERITEMA MULTIFORME",
-        "macro": "se recibe losange / punch de piel que mide [dimensiones] cm. la epidermis exhibe una lesión en diana / escarapela característica de [diámetro] cm, con ampolla / necrosis central y halo eritematovioláceo concéntrico. se incluye en [n] casete(s).
+        "macro": `se recibe losange / punch de piel que mide [dimensiones] cm. la epidermis exhibe una lesión en diana / escarapela característica de [diámetro] cm, con ampolla / necrosis central y halo eritematovioláceo concéntrico. se incluye en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>`,
         "micro": "los cortes histológicos muestran una dermatitis de interfase vacuolar citotóxica aguda prototípica. el estrato córneo se encuentra preservado en cesta de mimbre ortoqueratósico (reflejo de instalación hiperaguda). la epidermis exhibe necrosis y apoptosis diseminada de queratinocitos individuales y en pequeños grupos en todos los estratos epidérmicos ('satelitosis linfoide'), con evolución a necrosis de espesor completo en la zona central. la unión dermoepidérmica presenta degeneración vacuolar intensa que da lugar a una ampolla subepidérmica por lisis basal. la dermis papilar muestra severo edema, ectasia vascular con tumefacción endotelial y un infiltrado inflamatorio linfohistiocitario perivascular superficial denso, con llamativa ausencia de eosinófilos.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA:
 - DERMATITIS DE INTERFASE VACUOLAR CITOTÓXICA AGUDA CON NECROSIS QUERATINOCÍTICA MULTIESTRATO, AMPOLLA SUBEPIDÉRMICA POR DEGENERACIÓN BASAL Y EDEMA PAPILAR SEVERO.
 - PATRÓN HISTOPATOLÓGICO DIAGNÓSTICO DE ERITEMA MULTIFORME (EM).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Hallazgos clínicos: Lesiones en diana típicas acrales (palmas, plantas, antebrazos). Desencadenado comúnmente por infección por Virus Herpes Simple (VHS-1/2) o Mycoplasma pneumoniae.
-2. Diagnóstico diferencial: Descartar Síndrome de Stevens-Johnson / NET (necrosis en sábana con dermis desierta) y toxicodermia fija."
+2. Diagnóstico diferencial: Descartar Síndrome de Stevens-Johnson / NET (necrosis en sábana con dermis desierta) y toxicodermia fija.`
     },
     {
         "id": 205,
         "categoryId": 2,
         "titulo": "DERMATOMIOSITIS",
-        "macro": "se recibe punch de piel que mide [dimensiones] cm. la superficie cutánea presenta pápulas eritematovioláceas aplanadas de [diámetro] cm sobre el dorso articular interfalángico / eritema facial violáceo. se procesa en 1 casete.
+        "macro": `se recibe punch de piel que mide [dimensiones] cm. la superficie cutánea presenta pápulas eritematovioláceas aplanadas de [diámetro] cm sobre el dorso articular interfalángico / eritema facial violáceo. se procesa en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>`,
         "micro": "los cortes histológicos muestran atrofia epidérmica acentuada con aplanamiento de crestas interpapilares e hiperqueratosis ortoqueratósica laminar. la unión dermoepidérmica muestra degeneración hidrópica de la capa basal con queratinocitos apoptóticos basales aislados. la dermis papilar exhibe ectasia capilar superficial prominente, edema y abundantes depósitos intersticiales de mucina ácida en la dermis reticular que separan ampliamente los haces colágenos. el infiltrado inflamatorio linfohistiocitario es de intensidad leve a moderada y se encuentra estrictamente confinado al plexo perivascular superficial y a la interfase, con indemnidad de la dermis profunda y de los folículos pilosos.",
-        "diag": "PIEL [LOCALIZACIÓN, EJ. DORSO DE NUDILLOS / PÁRPADOS], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN, EJ. DORSO DE NUDILLOS / PÁRPADOS], BIOPSIA:
 - DERMATITIS DE INTERFASE VACUOLAR CON ATROFIA EPIDÉRMICA, TELANGIECTASIAS DÉRMICAS, INFILTRADO LINFOIDE SUPERFICIAL Y ABUNDANTE MUCINOSIS DÉRMICA.
 - CUADRO HISTOPATOLÓGICO COMPATIBLE CON DERMATOMIOSITIS (PÁPULAS DE GOTTRON / ERITEMA EN HELIOTROPO).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Hallazgos clínicos: Pápulas/signo de Gottron sobre articulaciones interfalángicas, eritema heliótropo periorbitario y debilidad muscular proximal.
-2. Laboratorio: Solicitar enzimas musculares (CPK, aldolasa) y anticuerpos específicos (anti-Mi-2, anti-TIF1-γ, anti-MDA5)."
+2. Laboratorio: Solicitar enzimas musculares (CPK, aldolasa) y anticuerpos específicos (anti-Mi-2, anti-TIF1-γ, anti-MDA5).`
     },
     {
         "id": 206,
         "categoryId": 2,
         "titulo": "TOXICODERMIA (ERUPCIÓN MEDICAMENTOSA VACUOLAR)",
-        "macro": "se recibe punch / losange de piel que mide [dimensiones] cm, exhibiendo máculas y pápulas eritematosas confluentes pruriginosas de [diámetro] cm. al corte, tejido dérmico elástico y homogéneo. se procesa en 1 casete.
+        "macro": `se recibe punch / losange de piel que mide [dimensiones] cm, exhibiendo máculas y pápulas eritematosas confluentes pruriginosas de [diámetro] cm. al corte, tejido dérmico elástico y homogéneo. se procesa en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>`,
         "micro": "los cortes histológicos muestran dermatitis de interfase vacuolar con espongiosis leve y queratinocitos disqueratósicos/apoptóticos aislados que ascienden a los niveles medio y superior del estrato espinoso. la capa basal exhibe degeneración hidrópica en parches. en la dermis papilar se observa edema moderado e incontinencia pigmentaria. el infiltrado inflamatorio perivascular superficial e interfase es de tipo mixto, caracterizado por linfocitos T, histiocitos y la presencia conspicua y diagnóstica de abundantes eosinófilos distribuidos en el estroma perivascular e intersticial dérmico.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA:
 - DERMATITIS DE INTERFASE VACUOLAR CON ESPONGIOSIS LEVE, QUERATINOCITOS APOPTÓTICOS MULTIESTRATO E INFILTRADO INFLAMATORIO MIXTO PERIVASCULAR CON EOSINÓFILOS.
 - CUADRO HISTOLÓGICO ALTAMENTE SUGESTIVO DE ERUPCIÓN MEDICAMENTOSA (TOXICODERMIA VACUOLAR).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Criterio pivote: La presencia de eosinófilos entremezclados en el infiltrado perivascular y de interfase es la clave histológica para diferenciar una toxicodermia de un exantema viral puro o lupus.
-2. Anamnesis: Evaluar fármacos introducidos en las últimas 1 a 3 semanas (antibióticos, AINEs, anticonvulsivantes)."
+2. Anamnesis: Evaluar fármacos introducidos en las últimas 1 a 3 semanas (antibióticos, AINEs, anticonvulsivantes).`
     },
     {
         "id": 207,
         "categoryId": 2,
         "titulo": "LIQUEN PLANO",
-        "macro": "se recibe losange / punch de piel que mide [dimensiones] cm. la superficie epidérmica muestra una pápula/placa poligonal violácea brillante y aplanada de [diámetro] cm, con finas estrías blanquecinas reticulares en superficie (estrías de Wickham). se incluye en [n] casete(s).
+        "macro": `se recibe losange / punch de piel que mide [dimensiones] cm. la superficie epidérmica muestra una pápula/placa poligonal violácea brillante y aplanada de [diámetro] cm, con finas estrías blanquecinas reticulares en superficie (estrías de Wickham). se incluye en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin (5th ed.).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin (5th ed.).</small>`,
         "micro": "los cortes histológicos muestran una dermatitis de interfase liquenoide clásica. la capa córnea presenta marcada hiperqueratosis ortoqueratósica compacta pura (sin paraqueratosis). la epidermis exhibe hipergranulosis cuneiforme o romboidal prominente, asociada a acantosis irregular con afilamiento cónico de los procesos interpapilares en 'dientes de sierra' (saw-toothed pattern) y abundantes cuerpos coloides/apoptóticos (cuerpos de Civatte) en la basal. la unión dermoepidérmica muestra necrosis licuefactiva basal con despegamientos focales subepidérmicos característicos (espacios de Max-Joseph). en la dermis papilar se identifica un infiltrado inflamatorio extremadamente denso, continuo y en BANDA ('band-like') compuesto monomórficamente por linfocitos T e histiocitos, con incontinencia de melanina y melanófagos abundantes. no se observan eosinófilos ni células plasmáticas. la dermis reticular profunda se encuentra libre de inflamación.",
-        "diag": "PIEL [LOCALIZACIÓN, EJ. CARA ANTERIOR DE MUÑECA / TOBILLO], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN, EJ. CARA ANTERIOR DE MUÑECA / TOBILLO], BIOPSIA:
 - DERMATITIS DE INTERFASE LIQUENOIDE EN BANDA DÉRMICA PAPILAR CON HIPERQUERATOSIS ORTOQUERATÓSICA PURA, HIPERGRANULOSIS CUNEIFORME, ACANTOSIS EN 'DIENTES DE SIERRA', ESPACIOS DE MAX-JOSEPH Y CUERPOS DE CIVATTE.
 - DIAGNÓSTICO HISTOPATOLÓGICO DEFINITIVO DE LIQUEN PLANO CLÁSICO.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Signos clínicos: Las '6 P': Pápulas Poligonales, Purpúricas, Pruriginosas, Planas, Placas y con estrías de Wickham en superficies flexoras.
-2. Diagnóstico diferencial: Erupción liquenoide medicamentosa (presenta paraqueratosis, eosinófilos e infiltrado profundo) y Queratosis liquenoide solitaria."
+2. Diagnóstico diferencial: Erupción liquenoide medicamentosa (presenta paraqueratosis, eosinófilos e infiltrado profundo) y Queratosis liquenoide solitaria.`
     },
     {
         "id": 208,
         "categoryId": 2,
         "titulo": "LIQUEN ESTRIADO",
-        "macro": "se recibe punch de piel que mide [dimensiones] cm. la superficie cutánea exhibe pápulas liquenoides eritemato-rosadas agrupadas en banda lineal siguiendo trayectos de Blaschko, de [diámetro] cm. se incluye en 1 casete.
+        "macro": `se recibe punch de piel que mide [dimensiones] cm. la superficie cutánea exhibe pápulas liquenoides eritemato-rosadas agrupadas en banda lineal siguiendo trayectos de Blaschko, de [diámetro] cm. se incluye en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>`,
         "micro": "los cortes histológicos muestran una dermatitis de interfase liquenoide y espongiótica en parches con compromiso anexial profundo característico. la epidermis presenta hiperqueratosis con focos de paraqueratosis, acantosis irregular, espongiosis intercelular y queratinocitos apoptóticos intraepidérmicos dispersos. la capa basal muestra degeneración hidrópica en parches. en la dermis papilar se observa infiltrado linfohistiocitario que se acompaña de un prominente infiltrado inflamatorio linfoide perianexial profundo con afección electiva del epitelio de los ovillos y conductos sudoríparos ecrinos (hidradenitis ecrina linfoide reactiva). ausencia habitual de eosinófilos.",
-        "diag": "PIEL [LOCALIZACIÓN, EJ. EXTREMIDAD EN NIÑO], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN, EJ. EXTREMIDAD EN NIÑO], BIOPSIA:
 - DERMATITIS DE INTERFASE LIQUENOIDE Y ESPONGIÓTICA EN PARCHES ASOCIADA A INFILTRADO LINFOIDE PERIECRINO PROFUNDO PROMINENTE.
 - HALLAZGOS HISTOPATOLÓGICOS CARACTERÍSTICOS DE LIQUEN ESTRIADO.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Signo patognomónico de Requena: La combinación de dermatitis de interfase liquenoide espongiótica con denso manguito linfoide periecrino profundo es diagnóstica de Liquen Estriado.
-2. Clínica: Erupción lineal autolimitada en niños a lo largo de las líneas de Blaschko."
+2. Clínica: Erupción lineal autolimitada en niños a lo largo de las líneas de Blaschko.`
     },
     {
         "id": 209,
         "categoryId": 2,
         "titulo": "LIQUEN ESCLEROSO Y ATRÓFICO",
-        "macro": "se recibe losange / punch de piel / mucosa que mide [dimensiones] cm. la superficie presenta una placa blanco-marfil nacarada, atrófica, deprimida en 'papel de cigarrillo' arrugado con tapones córneos puntiformes de [diámetro] cm. al corte, la dermis es densa y nacarada. se incluye en [n] casete(s).
+        "macro": `se recibe losange / punch de piel / mucosa que mide [dimensiones] cm. la superficie presenta una placa blanco-marfil nacarada, atrófica, deprimida en 'papel de cigarrillo' arrugado con tapones córneos puntiformes de [diámetro] cm. al corte, la dermis es densa y nacarada. se incluye en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>`,
         "micro": "los cortes histológicos muestran una marcada alteración esclerosante de la interfase. la capa córnea presenta hiperqueratosis ortoqueratósica compacta con prominente taponamiento folicular y orificial queratósico. la epidermis exhibe extrema atrofia del estrato espinoso ('en papel de seda') con aplanamiento y pérdida total de crestas interpapilares y degeneración vacuolar basal residual. en la dermis papilar se observa una amplia banda subepidérmica acelular de edema severo y homogeneización esclerótica hialina del colágeno (colágeno vítreo pálido homogéneo) con pérdida difusa de fibras elásticas. por debajo de esta zona esclerótica, en la dermis reticular media, se identifica un denso infiltrado inflamatorio linfohistiocitario en banda ('infiltrado infralesional'). se reconocen ectasias capilares superficiales con focos de extravasación eritrocitaria. no se observa atipia queratinocítica.",
-        "diag": "PIEL / MUCOSA [LOCALIZACIÓN GENITAL / EXTRAGENITAL], BIOPSIA:
+        "diag": `PIEL / MUCOSA [LOCALIZACIÓN GENITAL / EXTRAGENITAL], BIOPSIA:
 - DERMATITIS DE INTERFASE ESCLEROSANTE CON HIPERQUERATOSIS ORTOQUERATÓSICA, MARCADA ATROFIA EPIDÉRMICA, HOMOGENEIZACIÓN HIALINA ACELULAR DE DERMIS PAPILAR E INFILTRADO LINFOIDE EN BANDA INFRALESIONAL.
 - CUADRO HISTOPATOLÓGICO CLÁSICO Y DEFINITIVO DE LIQUEN ESCLEROSO (Y ATRÓFICO).
 - NEGATIVO PARA ATIPIA CITOLÓGICA O NEOPLASIA INTRAEPITELIAL DIFERENCIADA (dVIN / dPeIN).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Hallazgos clínicos: Placas nacaradas blanco-porcelana en región anogenital (craurosis vulvar / balanitis xerótica obliterante con fimosis) o tronco.
-2. Seguimiento: Control periódico por riesgo aumentado de carcinoma epidermoide cutáneo/mucoso en lesiones crónicas."
+2. Seguimiento: Control periódico por riesgo aumentado de carcinoma epidermoide cutáneo/mucoso en lesiones crónicas.`
     },
     {
         "id": 210,
         "categoryId": 2,
         "titulo": "PITIRIASIS LIQUENOIDE (PLEVA / PLC)",
-        "macro": "se recibe punch de piel que mide [dimensiones] cm, con pápulas eritematosas centradas por vesículo-pústula purpúrica necrótica / costra escamosa en oblea de [diámetro] cm. se procesa en 1 casete.
+        "macro": `se recibe punch de piel que mide [dimensiones] cm, con pápulas eritematosas centradas por vesículo-pústula purpúrica necrótica / costra escamosa en oblea de [diámetro] cm. se procesa en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>`,
         "micro": "los cortes histológicos muestran una dermatitis de interfase liquenoide citotóxica con infiltrado inflamatorio en forma de CUÑA (base dermoepidérmica y vértice en dermis reticular profunda). la capa córnea muestra paraqueratosis confluente con exudado serohemático y neutrófilos atrapados en costra. la epidermis exhibe necrosis queratinocítica diseminada y balonización celular con espongiosis y exocitosis activa de linfocitos y eritrocitos. la unión dermoepidérmica está borrada por el infiltrado linfoide citotóxico. en la dermis papilar y media se identifica un infiltrado linfohistiocitario perivascular e intersticial asociado a tumefacción endotelial y extravasación masiva de hematíes. no se observa necrosis fibrinoide de la pared vascular ni leucocitoclasia neutrofílica verdadera.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA:
 - DERMATITIS DE INTERFASE LIQUENOIDE CITOTÓXICA CON INFILTRADO EN CUÑA DERMOEPIDÉRMICO, NECROSIS QUERATINOCÍTICA, COSTRA PARAQUERATÓSICA HEMORRÁGICA Y EXTRAVASACIÓN ERITROCITARIA MASIVA.
 - HALLAZGOS COMPATIBLES CON PITIRIASIS LIQUENOIDE (PLEVA / ENFERMEDAD DE MUCHA-HABERMANN / PLC SEGÚN FASE CLÍNICA).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Signos clínicos: Brotes de pápulas que evolucionan a vesículas purpúricas, costras necróticas y úlceras varioliformes en tronco y extremidades.
-2. Diagnóstico diferencial: Descartar Papulosis Linfomatoide (presencia de células grandes atípicas CD30+) y Vasculitis leucocitoclástica."
+2. Diagnóstico diferencial: Descartar Papulosis Linfomatoide (presencia de células grandes atípicas CD30+) y Vasculitis leucocitoclástica.`
     },
     {
         "id": 211,
         "categoryId": 2,
         "titulo": "ERUPCIÓN LIQUENOIDE POR FÁRMACOS",
-        "macro": "se recibe losange / punch de piel que mide [dimensiones] cm. la superficie cutánea presenta placas eritemato-violáceas liquenoides con descamación laminar fina de [diámetro] cm. se incluye en 1 casete.
+        "macro": `se recibe losange / punch de piel que mide [dimensiones] cm. la superficie cutánea presenta placas eritemato-violáceas liquenoides con descamación laminar fina de [diámetro] cm. se incluye en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>`,
         "micro": "los cortes histológicos muestran una dermatitis de interfase liquenoide atípica. la capa córnea exhibe hiperqueratosis con focos conspicuos de paraqueratosis. la epidermis presenta acantosis irregular con queratinocitos apoptóticos/disqueratósicos dispersos en todos los estratos epidérmicos (estrato basal, medio y superior). en la unión dermoepidérmica se observa daño licuefactivo con infiltrado en banda en la dermis papilar que se extiende hacia los plexos vasculares de la dermis reticular profunda y perianexial. el infiltrado inflamatorio es de tipo mixto, constituido por linfocitos T, histiocitos, abundantes EOSINÓFILOS y presencia de CÉLULAS PLASMÁTICAS maduras entremezcladas, con incontinencia de melanina.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA:
 - DERMATITIS DE INTERFASE LIQUENOIDE CON PARAQUERATOSIS FOCAL, QUERATINOCITOS DISQUERATÓSICOS MULTIESTRATO E INFILTRADO MIXTO DERMOPAPILAR Y PROFUNDO CON EOSINÓFILOS Y CÉLULAS PLASMÁTICAS.
 - CUADRO HISTOLÓGICO COMPATIBLE CON ERUPCIÓN LIQUENOIDE POR FÁRMACOS (TOXICODERMIA LIQUENOIDE).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Claves vs Liquen Plano idiopático: 1) Presencia de paraqueratosis; 2) Presencia de eosinófilos y plasmocitos; 3) Extensión a dermis profunda/perianexial; 4) Queratinocitos necróticos en estratos altos.
-2. Fármacos causales: Antihipertensivos (betabloqueantes, IECA), tiazidas, antipalúdicos, inhibidores PD-1/PD-L1."
+2. Fármacos causales: Antihipertensivos (betabloqueantes, IECA), tiazidas, antipalúdicos, inhibidores PD-1/PD-L1.`
     },
     {
         "id": 212,
         "categoryId": 2,
         "titulo": "URTICARIA (HABÓN URTICARIANO AGUDO)",
-        "macro": "se recibe punch de piel que mide [dimensiones] cm. la superficie muestra una placa eritemato-edematosa sobreelevada evanescente de [diámetro] cm, lisa y sin descamación ni costras. se incluye en 1 casete.
+        "macro": `se recibe punch de piel que mide [dimensiones] cm. la superficie muestra una placa eritemato-edematosa sobreelevada evanescente de [diámetro] cm, lisa y sin descamación ni costras. se incluye en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>`,
         "micro": "los cortes histológicos muestran una epidermis totalmente normal e intacta en cesta de mimbre, sin espongiosis ni daño de interfase. en la dermis papilar y reticular se identifica un intenso y difuso edema estromal que disocia y espacia ampliamente los haces de colágeno dérmico. los capilares y vénulas dérmicas superficiales se observan dilatados con tumefacción endotelial reactiva. el infiltrado inflamatorio es de intensidad leve a moderada, dispuesto en patrón perivascular superficial e intersticial, compuesto por neutrófilos y eosinófilos alineados entre las fibras colágenas ('en fila india'), acompañados de linfocitos y mastocitos degranulados. no se identifica necrosis fibrinoide vascular ni leucocitoclasia masiva.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA:
 - DERMATITIS PERIVASCULAR SUPERFICIAL E INTERSTICIAL CON MARCADO EDEMA DÉRMICO, NEUTRÓFILOS Y EOSINÓFILOS INTERSTICIALES, Y EPIDERMIS TOTALMENTE RESPETADA.
 - HALLAZGOS HISTOPATOLÓGICOS CARACTERÍSTICOS DE HABÓN URTICARIANO (URTICARIA AGUDA).
 - NEGATIVO PARA VASCULITIS LEUCOCITOCLÁSTICA O NECROSIS VASCULAR.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Hallazgos clínicos: Ronchas eritemato-edematosas intensamente pruriginosas, evanescentes (<24 horas de duración individual) que no dejan púrpura ni pigmentación.
-2. Diagnóstico diferencial: Vasculitis urticariana (dura >24-48 h, deja púrpura e histológicamente muestra necrosis fibrinoide mural y polvo nuclear)."
+2. Diagnóstico diferencial: Vasculitis urticariana (dura >24-48 h, deja púrpura e histológicamente muestra necrosis fibrinoide mural y polvo nuclear).`
     },
     {
         "id": 213,
         "categoryId": 2,
         "titulo": "ERITEMA ANULAR CENTRÍFUGO",
-        "macro": "se recibe punch / losange de piel que mide [dimensiones] cm. en superficie se aprecia el borde sobreelevado de una placa anular eritematosa de [diámetro] cm con collarete descamativo interno. se incluye en 1 casete.
+        "macro": `se recibe punch / losange de piel que mide [dimensiones] cm. en superficie se aprecia el borde sobreelevado de una placa anular eritematosa de [diámetro] cm con collarete descamativo interno. se incluye en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>`,
         "micro": "los cortes histológicos muestran una dermatitis perivascular con patrón característico en manguito. la epidermis muestra espongiosis leve focal con pequeños montículos de paraqueratosis en la variante superficial (o epidermis intacta en la variante profunda). la unión dermoepidérmica está preservada. en la dermis se observa un denso infiltrado inflamatorio linfohistiocitario monomorfo, compacto y estrictamente delimitado alrededor de los vasos sanguíneos dérmicos, configurando el signo patognomónico en 'MANGUITO PERIVASCULAR' o 'EN MANGA DE ABRIGO' (coat-sleeve pattern). no se observan neutrófilos, depósitos de mucina ni necrosis fibrinoide vascular.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA:
 - DERMATITIS PERIVASCULAR CON INFILTRADO LINFOHISTIOCITARIO COMPACTO EN 'MANGUITO' (PATRÓN EN MANGA DE ABRIGO / COAT-SLEEVE) [TIPO SUPERFICIAL / PROFUNDO].
 - CUADRO HISTOPATOLÓGICO TÍPICO DE ERITEMA ANULAR CENTRÍFUGO (EAC DE DARIER).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Hallazgos clínicos: Lesiones anulares o policíclicas que progresan centrífugamente con collarete descamativo interno.
-2. Etiología: Reacción de hipersensibilidad a dermatofitosis (tinea pedis), fármacos o infecciones sistémicas."
+2. Etiología: Reacción de hipersensibilidad a dermatofitosis (tinea pedis), fármacos o infecciones sistémicas.`
     },
     {
         "id": 214,
         "categoryId": 2,
         "titulo": "EXANTEMA VIRAL (MORBILIFORME)",
-        "macro": "se recibe punch de piel que mide [dimensiones] cm, con superficie epidérmica que muestra máculas eritematosas tenues no induradas de [diámetro] cm. se procesa en 1 casete.
+        "macro": `se recibe punch de piel que mide [dimensiones] cm, con superficie epidérmica que muestra máculas eritematosas tenues no induradas de [diámetro] cm. se procesa en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>`,
         "micro": "los cortes histológicos muestran fragmento de piel con dermatitis reactiva perivascular superficial inespecífica. la capa córnea conserva su aspecto en cesta de mimbre con ortoqueratosis. la epidermis presenta espongiosis intercelular leve con queratinocitos discretamente edematosos sin necrosis masiva ni inclusiones virales específicas identificables. la dermis papilar exhibe edema leve y ectasia capilar superficial. el infiltrado inflamatorio es mononuclear (linfocitos T e histiocitos) de intensidad leve a moderada, dispuesto en patrón perivascular superficial, con notoria ausencia de eosinófilos significativos y ausencia de vasculitis.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA:
 - DERMATITIS PERIVASCULAR SUPERFICIAL LINFOHISTIOCITARIA LEVE A MODERADA CON DISCRETA ESPONGIOSIS Y ECTASIA CAPILAR, SIN EOSINOFILIA SIGNIFICATIVA NI VASCULITIS.
 - COMPATIBLE CON EXANTEMA VIRAL (EXANTEMA MACULOPAPULAR / MORBILIFORME INESPECÍFICO).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Hallazgos clínicos: Erupción maculopapular eritematosa súbita difusa precedida de pródromos febriles y síntomas catarrales.
-2. Criterio de Requena: La ausencia de eosinófilos orienta fuertemente a etiología viral frente a toxicodermia medicamentosa."
+2. Criterio de Requena: La ausencia de eosinófilos orienta fuertemente a etiología viral frente a toxicodermia medicamentosa.`
     },
     {
         "id": 215,
         "categoryId": 2,
         "titulo": "DERMATITIS DE CONTACTO ALÉRGICA",
-        "macro": "se recibe losange / punch de piel que mide [dimensiones] cm. la superficie epidérmica muestra aspecto eritemato-edematoso con micropápulas y microvesículas serosas confluentes de [diámetro] cm, sin induración profunda. se procesa en [n] casete(s).
+        "macro": `se recibe losange / punch de piel que mide [dimensiones] cm. la superficie epidérmica muestra aspecto eritemato-edematoso con micropápulas y microvesículas serosas confluentes de [diámetro] cm, sin induración profunda. se procesa en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>`,
         "micro": "los cortes histológicos muestran un patrón de dermatitis espongiótica aguda a subaguda. la epidermis exhibe ortoqueratosis laminar con focos de paraqueratosis y costras serocelulares. en el estrato espinoso se identifica marcada espongiosis intercelular que distiende los desmosomas y progresa a la formación de vesículas y microvesículas espongióticas intraepidérmicas con exocitosis de linfocitos y eosinófilos. la capa basal está intacta. en la dermis papilar se observa marcado edema estromal, ectasia vascular con congestión de capilares y un infiltrado inflamatorio perivascular e intersticial moderado a severo constituido por linfocitos, histiocitos y abundantes eosinófilos.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA POR PUNCH / LOSANGE:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA POR PUNCH / LOSANGE:
 - DERMATITIS ESPONGIÓTICA AGUDA / SUBAGUDA CON VESICULACIÓN INTRAEPIDÉRMICA Y EOSINÓFILOS DÉRMICOS, COMPATIBLE CON DERMATITIS DE CONTACTO ALÉRGICA (HIPERSENSIBILIDAD TIPO IV).
 - NEGATIVO PARA VASCULITIS, ATIPIA CELULAR O PROCESO LINFOPROLIFERATIVO.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Hallazgos clínicos: Placas eritematovesiculosas pruriginosas circunscritas a la zona de exposición al alérgeno (metales, cosméticos, tintes, fragancias).
-2. Diagnóstico diferencial: Contacto irritativo (daño tóxico queratinocítico primario con neutrófilos y sin eosinófilos)."
+2. Diagnóstico diferencial: Contacto irritativo (daño tóxico queratinocítico primario con neutrófilos y sin eosinófilos).`
     },
     {
         "id": 216,
         "categoryId": 2,
         "titulo": "DERMATITIS DE CONTACTO IRRITATIVA",
-        "macro": "se recibe punch de piel que mide [dimensiones] cm. la superficie cutánea se observa eritematosa, apergaminada, con descamación laminar fina y fisuras superficiales de [diámetro] cm, sin ampollas francas. se procesa en 1 casete.
+        "macro": `se recibe punch de piel que mide [dimensiones] cm. la superficie cutánea se observa eritematosa, apergaminada, con descamación laminar fina y fisuras superficiales de [diámetro] cm, sin ampollas francas. se procesa en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>`,
         "micro": "los cortes histológicos muestran epidermis con hiperqueratosis compacta, paraqueratosis focal y focos de necrosis queratinocítica superficial individual (queratinocitos eosinófilos apoptóticos) en los estratos espinoso alto y granuloso. se identifica espongiosis focal irregular leve a moderada con exocitosis de neutrófilos en el estrato córneo y espinoso superior, sin grandes vesículas coalescentes. la dermis superficial exhibe vasodilatación capilar y un infiltrado perivascular superficial leve a moderado de linfocitos e histiocitos con escasos neutrófilos y llamativa escasez de eosinófilos.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA EN PUNCH:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA EN PUNCH:
 - DERMATITIS ESPONGIÓTICA / CITOTÓXICA COMPATIBLE CON DERMATITIS DE CONTACTO IRRITATIVA (DAÑO TÓXICO DIRECTO NO INMUNOLÓGICO).
 - AUSENCIA DE COMPONENTE EOSINOFÍLICO SIGNIFICATIVO.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
-1. Patogenia: Daño directo por detergentes, solventes, fricción o agentes químicos. Predomina el ardor y escozor sobre el prurito."
+1. Patogenia: Daño directo por detergentes, solventes, fricción o agentes químicos. Predomina el ardor y escozor sobre el prurito.`
     },
     {
         "id": 217,
         "categoryId": 2,
         "titulo": "DERMATITIS NUMULAR (ECZEMA DISCOIDE)",
-        "macro": "se recibe punch de piel que mide [dimensiones] cm. la epidermis presenta una placa circular sobreelevada en 'moneda' de [diámetro] cm con superficie costrosa serohemática amarillenta y eritematosa. se procesa en 1 casete.
+        "macro": `se recibe punch de piel que mide [dimensiones] cm. la epidermis presenta una placa circular sobreelevada en 'moneda' de [diámetro] cm con superficie costrosa serohemática amarillenta y eritematosa. se procesa en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>`,
         "micro": "los cortes histológicos muestran una dermatitis espongiótica subaguda a crónica. la epidermis presenta acantosis irregular combinada con espongiosis manifiesta y formación de microvesículas espongióticas intraepidérmicas. el estrato córneo muestra una combinación diagnóstica de hiperqueratosis con prominentes montículos de paraqueratosis (mounds of parakeratosis) que engloban exudado de suero coagulado y neutrófilos (costras serocelulares). la dermis papilar está ensanchada por edema estromal y capilares congestivos rodeados por un denso infiltrado linfoplasmocitario y linfohistiocitario perivascular e intersticial con presencia constante de eosinófilos.",
-        "diag": "PIEL [LOCALIZACIÓN, EJ. MIEMBROS INFERIORES], BIOPSIA EN PUNCH:
+        "diag": `PIEL [LOCALIZACIÓN, EJ. MIEMBROS INFERIORES], BIOPSIA EN PUNCH:
 - DERMATITIS ESPONGIÓTICA SUBAGUDA CON HIPERPLASIA EPIDÉRMICA, MONTÍCULOS DE PARAQUERATOSIS SEROCELULAR Y EOSINÓFILOS DÉRMICOS, CARACTERÍSTICA DE DERMATITIS NUMULAR (ECZEMA DISCOIDE).
 - PAS NEGATIVO PARA DERMATOFITOSIS.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
-1. Hallazgos clínicos: Placas redondeadas en 'moneda' pruriginosas en piernas de adultos con xerosis o insuficiencia venosa."
+1. Hallazgos clínicos: Placas redondeadas en 'moneda' pruriginosas en piernas de adultos con xerosis o insuficiencia venosa.`
     },
     {
         "id": 218,
         "categoryId": 2,
         "titulo": "DERMATITIS ATÓPICA",
-        "macro": "se recibe losange / punch de piel de [dimensiones] cm. la superficie epidérmica está engrosada, liquenificada con cuadriculado cutáneo marcado e hiperqueratosis de [diámetro] cm. se incluye en 1 casete.
+        "macro": `se recibe losange / punch de piel de [dimensiones] cm. la superficie epidérmica está engrosada, liquenificada con cuadriculado cutáneo marcado e hiperqueratosis de [diámetro] cm. se incluye en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>`,
         "micro": "los cortes histológicos revelan dermatitis espongiótica en fase subaguda a crónica liquenificada. se observa marcada acantosis epidérmica irregular con elongación de crestas interpapilares, hiperqueratosis con alternancia de orto y paraqueratosis, y espongiosis leve a moderada en el estrato espinoso con exocitosis linfocitaria. la dermis papilar exhibe engrosamiento y fibrosis con orientación verticalizada de los haces de colágeno (secuela de rascado crónico), vasodilatación y un conspicuo infiltrado inflamatorio mononuclear perivascular superficial compuesto por linfocitos, histiocitos, abundantes eosinófilos y mastocitos degranulados.",
-        "diag": "PIEL [LOCALIZACIÓN, EJ. PLIEGUES FLEXURALES], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN, EJ. PLIEGUES FLEXURALES], BIOPSIA:
 - DERMATITIS ESPONGIÓTICA CRÓNICA LIQUENIFICADA CON FIBROSIS PAPILAR VERTICAL Y EOSINOFILIA TISULAR, COMPATIBLE CON DERMATITIS ATÓPICA / ECCEMA ATÓPICO.
 - CAMBIOS SECUNDARIOS POR RASCADO CRÓNICO (LIQUENIFICACIÓN).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
-1. Hallazgos clínicos: Prurito intenso con distribución flexural en pliegues y antecedentes personales de atopia (asma, rinitis, IgE elevada)."
+1. Hallazgos clínicos: Prurito intenso con distribución flexural en pliegues y antecedentes personales de atopia (asma, rinitis, IgE elevada).`
     },
     {
         "id": 219,
         "categoryId": 2,
         "titulo": "PITIRIASIS ROSADA DE GIBERT",
-        "macro": "se recibe punch de piel de [dimensiones] cm. la epidermis presenta una lesión macular ovalada asalmonada de [diámetro] cm con fino collarete descamativo interno. se procesa en 1 casete.
+        "macro": `se recibe punch de piel de [dimensiones] cm. la epidermis presenta una lesión macular ovalada asalmonada de [diámetro] cm con fino collarete descamativo interno. se procesa en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>`,
         "micro": "los cortes histológicos muestran epidermis con espongiosis focal leve a moderada. el estrato córneo muestra una alteración muy distintiva con montículos focales de paraqueratosis (mounds of parakeratosis) dispuestos de manera inclinada u oblicua hacia orificios infundibulares o crestas epidérmicas, con atenuación localizada de la capa granulosa subyacente. en la dermis papilar destaca una llamativa extravasación de hematíes (eritrocitos libres) que ascienden hacia la epidermis basal sin vasculitis necrosante. los capilares papilares están dilatados y rodeados por un moderado infiltrado linfohistiocitario perivascular.",
-        "diag": "PIEL [LOCALIZACIÓN, EJ. TÓRAX / TRONCO], BIOPSIA EN PUNCH:
+        "diag": `PIEL [LOCALIZACIÓN, EJ. TÓRAX / TRONCO], BIOPSIA EN PUNCH:
 - DERMATITIS ESPONGIÓTICA SUPERFICIAL CON MONTÍCULOS DE PARAQUERATOSIS Y EXTRAVASACIÓN DE HEMATÍES EN DERMIS PAPILAR, CARACTERÍSTICA DE PITIRIASIS ROSADA DE GIBERT.
 - NEGATIVO PARA SÍFILIS SECUNDARIA (IHC NEGATIVA) Y DERMATOFITOSIS (PAS NEGATIVO).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
-1. Signos clínicos: Placa heráldica inicial seguida tras días de erupción en 'árbol de navidad' en líneas de Langer del tronco."
+1. Signos clínicos: Placa heráldica inicial seguida tras días de erupción en 'árbol de navidad' en líneas de Langer del tronco.`
     },
     {
         "id": 220,
         "categoryId": 2,
         "titulo": "DISHIDROSIS (ECZEMA DISHIDRÓTICO / PONFÓLIX)",
-        "macro": "se recibe punch de piel acral (palmar/plantar) de [dimensiones] cm. el estrato córneo es grueso, observándose múltiples vesículas tensas translúcidas de 1 a 3 mm 'en grano de mijo'. se procesa en 1 casete.
+        "macro": `se recibe punch de piel acral (palmar/plantar) de [dimensiones] cm. el estrato córneo es grueso, observándose múltiples vesículas tensas translúcidas de 1 a 3 mm 'en grano de mijo'. se procesa en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>`,
         "micro": "los cortes histológicos muestran piel acral con estrato córneo compacto ortoqueratósico engrosado. en el estrato espinoso se aprecian voluminosas cavidades vesículo-ampollosas intraepidérmicas uniloculares y multiloculares producidas por espongiosis masiva coalescente, conteniendo líquido seroso proteináceo con linfocitos y escasos eosinófilos. los conductos ecrinos intraepidérmicos (acrosiringios) atraviesan la epidermis sin inflamación intrínseca ni obstrucción ostial. la dermis papilar muestra intenso edema con ectasia vascular e infiltrado perivascular linfohistiocitario con eosinófilos.",
-        "diag": "PIEL ACRAL [PALMAR / PLANTAR / DIGITAL], BIOPSIA:
+        "diag": `PIEL ACRAL [PALMAR / PLANTAR / DIGITAL], BIOPSIA:
 - DERMATITIS ESPONGIÓTICA VESICULO-AMPOLLOSA INTRAEPIDÉRMICA ACRAL DE TIPO PONFÓLIX / ECZEMA DISHIDRÓTICO.
 - DUCTOS ECRINOS CONSERVADOS SIN OBSTRUCCIÓN.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
-1. Aclaración anatomopatológica: El término histórico 'dishidrosis' es equívoco, pues la histopatología demuestra que el origen es un eccema espongiótico y no una alteración primaria del conducto sudoríparo."
+1. Aclaración anatomopatológica: El término histórico 'dishidrosis' es equívoco, pues la histopatología demuestra que el origen es un eccema espongiótico y no una alteración primaria del conducto sudoríparo.`
     },
     {
         "id": 221,
         "categoryId": 2,
         "titulo": "PSORIASIS VULGAR",
-        "macro": "se recibe losange / punch de piel que mide [dimensiones] cm. la superficie epidérmica exhibe una placa sobreelevada eritematosa infiltrada de [diámetro] cm, cubierta por escamas blanco-nacaradas plateadas micáceas. se incluye en [n] casete(s).
+        "macro": `se recibe losange / punch de piel que mide [dimensiones] cm. la superficie epidérmica exhibe una placa sobreelevada eritematosa infiltrada de [diámetro] cm, cubierta por escamas blanco-nacaradas plateadas micáceas. se incluye en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin (5th ed.).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin (5th ed.).</small>`,
         "micro": "los cortes histológicos muestran la hiperplasia psoriasiforme regular clásica. la epidermis presenta hiperqueratosis con paraqueratosis confluente continua en bandas laminares, con ausencia o marcada atenuación de la capa granulosa (agranulosis subparaqueratósica). se observa acantosis regular caracterizada por elongación simétrica homogénea de las crestas interpapilares ('en batidor de huevos / dedos de guante') con ensanchamiento en sus bases. se identifican colecciones de neutrófilos en la capa córnea paraqueratósica (microabscesos de Munro) y en el estrato espinoso alto (pústulas espongiformes de Kogoj). las placas suprapapilares se encuentran marcadamente adelgazadas sobre papilas dérmicas elongadas y edematosas que contienen capilares tortuosos, ectásicos y congestivos. en la dermis superficial se aprecia infiltrado inflamatorio linfohistiocitario perivascular con neutrófilos y sin eosinófilos.",
-        "diag": "PIEL [LOCALIZACIÓN, EJ. CODOS / RODILLAS / REGIÓN SACRA], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN, EJ. CODOS / RODILLAS / REGIÓN SACRA], BIOPSIA:
 - DERMATITIS PSORIASIFORME CLÁSICA CON MICROABSCESOS DE MUNRO, PÚSTULAS ESPONGIFORMES DE KOGOJ, ADELGAZAMIENTO SUPRAPAPILAR Y ECTASIA CAPILAR TORTUOSA.
 - DIAGNÓSTICO HISTOPATOLÓGICO DE PSORIASIS VULGAR EN PLACAS.
 - PAS NEGATIVO PARA HONGOS.
@@ -1396,559 +1400,559 @@ CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Sustrato anatómico de signos clínicos:
    - Signo de la bujía/vela: Desprendimiento de escamas paraqueratósicas secas.
    - Signo del rocío sangrante de Auspitz: Ruptura de capilares tortuosos al desprender la escama sobre las placas suprapapilares adelgazadas.
-2. Fenómeno de Koebner positivo."
+2. Fenómeno de Koebner positivo.`
     },
     {
         "id": 222,
         "categoryId": 2,
         "titulo": "DERMATITIS SEBORREICA",
-        "macro": "se recibe punch de piel que mide [dimensiones] cm proveniente de piel cabelluda / rostro, con eritema moderado cubierto por escamas amarillentas untuosas y grasientas de [diámetro] cm. se procesa en 1 casete.
+        "macro": `se recibe punch de piel que mide [dimensiones] cm proveniente de piel cabelluda / rostro, con eritema moderado cubierto por escamas amarillentas untuosas y grasientas de [diámetro] cm. se procesa en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>`,
         "micro": "los cortes histológicos muestran un patrón híbrido psoriasiforme y espongiótico. la epidermis exhibe acantosis psoriasiforme irregular. el estrato córneo muestra hiperqueratosis con focos de paraqueratosis localizados prominentemente en los márgenes de los orificios infundibulares foliculares ('paraqueratosis en hombro folicular'), mezclada con restos neutrofílicos y costras serocelulares. la capa granulosa está preservada. en el estrato espinoso se constata espongiosis focal leve con exocitosis linfocítica. la dermis papilar muestra vasodilatación capilar y un infiltrado inflamatorio linfohistiocitario perivascular e infundibular superficial con células plasmáticas y neutrófilos dispersos.",
-        "diag": "PIEL [CUERO CABELLUDO / SURCO NASOGENIANO / TÓRAX], BIOPSIA:
+        "diag": `PIEL [CUERO CABELLUDO / SURCO NASOGENIANO / TÓRAX], BIOPSIA:
 - DERMATITIS PSORIASIFORME Y ESPONGIÓTICA SUPERFICIAL CON PARAQUERATOSIS EN HOMBRO FOLICULAR Y COSTRAS SEROCELULARES, COMPATIBLE CON DERMATITIS SEBORREICA.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
-1. Hallazgos clínicos: Placas eritematoescamosas untuosas en áreas seborreicas (cara, cuero cabelludo, preesternal) asociadas a colonización por levaduras Malassezia spp."
+1. Hallazgos clínicos: Placas eritematoescamosas untuosas en áreas seborreicas (cara, cuero cabelludo, preesternal) asociadas a colonización por levaduras Malassezia spp.`
     },
     {
         "id": 223,
         "categoryId": 2,
         "titulo": "PITIRIASIS RUBRA PILARIS",
-        "macro": "se recibe punch de piel de [dimensiones] cm. la superficie cutánea se observa indurada con hiperqueratosis folicular prominente (pápulas córneas acuminadas) sobre fondo eritemato-anaranjado de [diámetro] cm. se incluye en 1 casete.
+        "macro": `se recibe punch de piel de [dimensiones] cm. la superficie cutánea se observa indurada con hiperqueratosis folicular prominente (pápulas córneas acuminadas) sobre fondo eritemato-anaranjado de [diámetro] cm. se incluye en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>`,
         "micro": "los cortes histológicos muestran la tríada diagnóstica patognomónica: 1) Marcada hiperqueratosis en 'tablero de ajedrez' (checkerboard pattern), con alternancia regular de ortoqueratosis y paraqueratosis tanto en sentido vertical como horizontal; 2) Dilatación infundibular folicular ocupada por un denso tapón de queratina compacta con collar de paraqueratosis perifolicular; 3) Capa granulosa preservada y engrosada (hipergranulosis marcada). la epidermis muestra acantosis psoriasiforme con crestas interpapilares gruesas y romas sin adelgazamiento suprapapilar ni microabscesos neutrofílicos de Munro. la dermis superficial presenta leve infiltrado linfohistiocitario perivascular.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA EN PUNCH:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA EN PUNCH:
 - DERMATITIS PSORIASIFORME CON HIPERQUERATOSIS EN 'TABLERO DE AJEDREZ' (ORTO Y PARAQUERATOSIS ALTERNANTE), HIPERGRANULOSIS Y TAPONAMIENTO CÓRNEO FOLICULAR, DIAGNÓSTICA DE PITIRIASIS RUBRA PILARIS (PRP).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
-1. Signos clínicos: Pápulas foliculares queratósicas en dorso de dedos ('signo del rallador de nuez moscada'), placas anaranjadas con islotes de piel sana respetada y queratodermia palmoplantar cerosa en sandalia."
+1. Signos clínicos: Pápulas foliculares queratósicas en dorso de dedos ('signo del rallador de nuez moscada'), placas anaranjadas con islotes de piel sana respetada y queratodermia palmoplantar cerosa en sandalia.`
     },
     {
         "id": 224,
         "categoryId": 2,
         "titulo": "PÉNFIGO VULGAR",
-        "macro": "se recibe punch de piel / mucosa de [dimensiones] cm tomado del borde de una ampolla flácida colapsada con fondo cruento erosivo de [diámetro] cm. se procesa en 1 casete.
+        "macro": `se recibe punch de piel / mucosa de [dimensiones] cm tomado del borde de una ampolla flácida colapsada con fondo cruento erosivo de [diámetro] cm. se procesa en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin (5th ed.).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin (5th ed.).</small>`,
         "micro": "los cortes histológicos muestran una ampolla intraepidérmica suprabasal acantolítica. se evidencia una hendidura y despegamiento inmediatamente por encima de la capa de células basales, manteniéndose los queratinocitos basales firmemente anclados a la membrana basal dérmica en disposición característica en 'hilera de lápidas' (row of tombstones). en el interior de la cavidad ampollosa flotan abundantes queratinocitos acantolíticos redondeados con núcleos aumentados de tamaño (células de Tzanck). las papilas dérmicas denudadas ('villi') protruyen hacia la cavidad. el clivaje se extiende a lo largo de la vaina radicular externa folicular. la dermis papilar muestra edema estromal e infiltrado perivascular linfohistiocitario moderado con abundantes eosinófilos.",
-        "diag": "PIEL / MUCOSA [LOCALIZACIÓN, EJ. MUCOSA ORAL / TRONCO], BIOPSIA DE BORDE DE AMPOLLA:
+        "diag": `PIEL / MUCOSA [LOCALIZACIÓN, EJ. MUCOSA ORAL / TRONCO], BIOPSIA DE BORDE DE AMPOLLA:
 - DERMATOSIS AMPOLLOSA INTRAEPIDÉRMICA CON ACANTÓLISIS SUPRABASAL EXTENSA, CAPA BASAL EN 'HILERA DE LÁPIDAS' Y CÉLULAS ACANTOLÍTICAS, DIAGNÓSTICA DE PÉNFIGO VULGAR.
 - SE SUGIERE CONFIRMACIÓN CON INMUNOFLUORESCENCIA DIRECTA (IFD).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Signos clínicos: Ampollas flácidas de fácil ruptura con signo de Nikolsky directo y Asboe-Hansen positivos; afectación de mucosa oral en >70% de casos.
-2. Inmunofluorescencia Directa (IFD): Depósito de IgG y C3 intercelular intraepidérmico en 'malla de alambre' (contra Desmogleína 3 y Desmogleína 1)."
+2. Inmunofluorescencia Directa (IFD): Depósito de IgG y C3 intercelular intraepidérmico en 'malla de alambre' (contra Desmogleína 3 y Desmogleína 1).`
     },
     {
         "id": 225,
         "categoryId": 2,
         "titulo": "PÉNFIGO FOLIÁCEO",
-        "macro": "se recibe punch de piel de [dimensiones] cm. la superficie cutánea exhibe lesiones escamo-costrosas eritematosas superficiales 'en hojas de hojaldre' de [diámetro] cm. se procesa en 1 casete.
+        "macro": `se recibe punch de piel de [dimensiones] cm. la superficie cutánea exhibe lesiones escamo-costrosas eritematosas superficiales 'en hojas de hojaldre' de [diámetro] cm. se procesa en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>`,
         "micro": "los cortes histológicos muestran una ampolla y clivaje intraepidérmico superficial a nivel subcórneo o en el estrato granuloso alto. la acantólisis es localizada, observándose queratinocitos acantolíticos redondeados en el piso y techo de la ampolla subcórnea. los estratos espinoso y basal se encuentran completamente preservados sin clivaje suprabasal. el techo ampolloso está constituido únicamente por estrato córneo y restos de capa granulosa con costras serocelulares. en la dermis superficial se aprecia leve a moderado infiltrado linfohistiocitario perivascular con eosinófilos dispersos.",
-        "diag": "PIEL [LOCALIZACIÓN, EJ. CARA / TRONCO SUPERIOR], BIOPSIA EN PUNCH:
+        "diag": `PIEL [LOCALIZACIÓN, EJ. CARA / TRONCO SUPERIOR], BIOPSIA EN PUNCH:
 - DERMATOSIS AMPOLLOSA INTRAEPIDÉRMICA SUBCÓRNEA / GRANULOSA CON ACANTÓLISIS SUPERFICIAL, COMPATIBLE CON PÉNFIGO FOLIÁCEO (O SU VARIANTE FOGO SELVAGEM).
 - INTEGRIDAD COMPLETA DE ESTRATOS BASAL Y ESPINOSO PROFUNDO.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
-1. Diagnóstico diferencial: A diferencia del pénfigo vulgar, el foliáceo NO afecta mucosas (debido a que los anticuerpos van dirigidos exclusivamente contra Desmogleína 1 y en mucosas la Desmogleína 3 preserva la adhesión)."
+1. Diagnóstico diferencial: A diferencia del pénfigo vulgar, el foliáceo NO afecta mucosas (debido a que los anticuerpos van dirigidos exclusivamente contra Desmogleína 1 y en mucosas la Desmogleína 3 preserva la adhesión).`
     },
     {
         "id": 226,
         "categoryId": 2,
         "titulo": "PENFIGOIDE AMPOLLOSO",
-        "macro": "se recibe punch / losange de piel de [dimensiones] cm que incluye ampolla tensa intacta de [diámetro] cm sobre base eritematosa, de contenido seroso claro y pared gruesa resistente. se incluye en 1 casete.
+        "macro": `se recibe punch / losange de piel de [dimensiones] cm que incluye ampolla tensa intacta de [diámetro] cm sobre base eritematosa, de contenido seroso claro y pared gruesa resistente. se incluye en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin (5th ed.).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin (5th ed.).</small>`,
         "micro": "los cortes histológicos muestran una ampolla subepidérmica franca de cavidad amplia. el despegamiento se produce a nivel de la unión dermoepidérmica (lámina lúcida), estando el techo ampolloso constituido por el espesor íntegro de una epidermis viable sin acantólisis. la cavidad ampollosa contiene abundante líquido seroso fibrinoide con un denso infiltrado inflamatorio rico en eosinófilos, linfocitos y escasos neutrófilos. en la epidermis perilesional se observa espongiosis eosinofílica. la dermis papilar (suelo ampolloso) se encuentra marcadamente edematosa con un conspicuo infiltrado perivascular e intersticial de predominio eosinofílico y linfohistiocitario.",
-        "diag": "PIEL [LOCALIZACIÓN, EJ. ABDOMEN / EXTREMIDADES], BIOPSIA CUTÁNEA:
+        "diag": `PIEL [LOCALIZACIÓN, EJ. ABDOMEN / EXTREMIDADES], BIOPSIA CUTÁNEA:
 - DERMATOSIS AMPOLLOSA SUBEPIDÉRMICA NO ACANTOLÍTICA CON ABUNDANTES EOSINÓFILOS EN CAVIDAD Y DERMIS PAPILAR (ESPONGIOSIS EOSINOFÍLICA), CARACTERÍSTICA DE PENFIGOIDE AMPOLLOSO.
 - SE SUGIERE CONFIRMACIÓN POR IFD / SALT-SPLIT SKIN.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Signos clínicos: Grandes ampollas tensas sobre placas urticarianas en adultos mayores (>65 años), con signo de Nikolsky negativo y prurito intenso.
-2. Inmunofluorescencia Directa (IFD): Depósito lineal continuo de IgG y C3 a lo largo de la zona de membrana basal (antígenos BP180 NC16A y BP230)."
+2. Inmunofluorescencia Directa (IFD): Depósito lineal continuo de IgG y C3 a lo largo de la zona de membrana basal (antígenos BP180 NC16A y BP230).`
     },
     {
         "id": 227,
         "categoryId": 2,
         "titulo": "DERMATITIS HERPETIFORME DE DUHRING-BROCQ",
-        "macro": "se recibe punch de piel de [dimensiones] cm con micropápulas y vesículas agrupadas en racimo ('disposición herpetiforme') de [diámetro] cm sobre superficies extensoras con excoriaciones. se procesa en 1 casete.
+        "macro": `se recibe punch de piel de [dimensiones] cm con micropápulas y vesículas agrupadas en racimo ('disposición herpetiforme') de [diámetro] cm sobre superficies extensoras con excoriaciones. se procesa en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>`,
         "micro": "los cortes histológicos muestran una dermatosis ampollosa subepidérmica microfocal muy característica. en los vértices o cúspides de las papilas dérmicas (papillary tips) se observan densas acumulaciones focales de neutrófilos polimorfonucleares con polvo nuclear (microabscesos neutrofílicos papilares con leucocitoclasia), fibrina y escasos eosinófilos. la lisis neutrofílica induce vacuolización y microdespegamientos subepidérmicos en las cúspides papilares que coalescen formando hendiduras subepidérmicas. el techo epidérmico es viable sin acantólisis. la dermis reticular superficial exhibe ectasia capilar e infiltrado perivascular linfohistiocitario y neutrofílico.",
-        "diag": "PIEL [SUPERFICIES EXTENSORAS: CODOS / RODILLAS / GLÚTEOS], BIOPSIA EN PUNCH:
+        "diag": `PIEL [SUPERFICIES EXTENSORAS: CODOS / RODILLAS / GLÚTEOS], BIOPSIA EN PUNCH:
 - DERMATITIS AMPOLLOSA SUBEPIDÉRMICA CON MICROABSCESOS NEUTRÓFILOS EN CÚSPIDES DE PAPILAS DÉRMICAS Y LEUCOCITOCLASIA PAPILAR, COMPATIBLE CON DERMATITIS HERPETIFORME DE DUHRING-BROCQ.
 - SE REQUIERE TOMA DE BIOPSIA DE PIEL PERILESIONAL SANA PARA INMUNOFLUORESCENCIA DIRECTA (IFD).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Signos clínicos: Vesículas excoriadas intensamente pruriginosas agrupadas simétricamente en codos, rodillas y glúteos.
 2. Asociación: Prácticamente el 100% de los pacientes presenta enteropatía sensible al gluten (Enfermedad Celíaca).
-3. IFD (Gold Standard): Depósito granular de IgA en cúspides papilares (anticuerpos anti-transglutaminasa epidérmica eTG)."
+3. IFD (Gold Standard): Depósito granular de IgA en cúspides papilares (anticuerpos anti-transglutaminasa epidérmica eTG).`
     },
     {
         "id": 228,
         "categoryId": 2,
         "titulo": "VASCULITIS LEUCOCITOCLÁSTICA DE PEQUEÑO VASO",
-        "macro": "se recibe punch / losange de piel que mide [dimensiones] cm. la superficie epidérmica muestra múltiples lesiones purpúricas palpables milimétricas que no blanquean a la vitropresión, con diámetro de [diámetro] cm. al corte, la dermis presenta punteado hemorrágico sobre fondo grisáceo. se incluye en [n] casete(s).
+        "macro": `se recibe punch / losange de piel que mide [dimensiones] cm. la superficie epidérmica muestra múltiples lesiones purpúricas palpables milimétricas que no blanquean a la vitropresión, con diámetro de [diámetro] cm. al corte, la dermis presenta punteado hemorrágico sobre fondo grisáceo. se incluye en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Sánchez Yus, E. (2001). Cutaneous vasculitis: A review of the histopathologic spectrum. J Am Acad Dermatol, 48(4), 546-574.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Sánchez Yus, E. (2001). Cutaneous vasculitis: A review of the histopathologic spectrum. J Am Acad Dermatol, 48(4), 546-574.</small>`,
         "micro": "los cortes histológicos muestran compromiso vascular necrosante centrado en las vénulas poscapilares y capilares de la dermis papilar y reticular superficial. se evidencia tumefacción y desprendimiento de células endoteliales con depósito intramural y perivascular de fibrina eosinófila densa (necrosis fibrinoide de la pared vascular). se identifica un denso infiltrado inflamatorio predominantemente neutrofílico perivascular e intersticial con marcada leucocitoclasia caracterizada por abundantes restos nucleares cariorrécticos ('polvo nuclear'). se asocia a conspicua extravasación de eritrocitos en el estroma dérmico y edema papilar. no se observan granulomas dérmicos ni trombosis de vasos de gran calibre.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA EN PUNCH / INCISIONAL:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA EN PUNCH / INCISIONAL:
 - VASCULITIS LEUCOCITOCLÁSTICA DE PEQUEÑO VASO (VASCULITIS CUTÁNEA NECROSANTE).
 - NECROSIS FIBRINOIDE DE LA PARED VASCULAR, LEUCOCITOCLASIA Y EXTRAVASACIÓN ERITROCITARIA PROMINENTE.
 - NEGATIVO PARA VASCULITIS GRANULOMATOSA O MALIGNIDAD.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Hallazgos clínicos: Púrpura palpable en extremidades inferiores mediada por inmunocomplejos.
-2. IFD temprana (<24-48 h): Depósito vascular de IgA orienta a Púrpura de Henoch-Schönlein; IgG/IgM/C3 orienta a vasculitis por hipersensibilidad o conectivopatía."
+2. IFD temprana (<24-48 h): Depósito vascular de IgA orienta a Púrpura de Henoch-Schönlein; IgG/IgM/C3 orienta a vasculitis por hipersensibilidad o conectivopatía.`
     },
     {
         "id": 229,
         "categoryId": 2,
         "titulo": "VASCULITIS LINFOCÍTICA CUTÁNEA",
-        "macro": "se recibe punch de piel que mide [dimensiones] cm, exhibiendo máculas y placas purpúricas eritematovioláceas de [diámetro] cm. al corte, tejido dérmico elástico y homogéneo. se incluye en 1 casete.
+        "macro": `se recibe punch de piel que mide [dimensiones] cm, exhibiendo máculas y placas purpúricas eritematovioláceas de [diámetro] cm. al corte, tejido dérmico elástico y homogéneo. se incluye en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Sánchez Yus, E. (2001). Cutaneous vasculitis. J Am Acad Dermatol. / Carlson, J. A. (2010). Am J Dermatopathol.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Sánchez Yus, E. (2001). Cutaneous vasculitis. J Am Acad Dermatol. / Carlson, J. A. (2010). Am J Dermatopathol.</small>`,
         "micro": "los cortes histológicos muestran dermis superficial y media con infiltrado inflamatorio perivascular e intramural denso compuesto predominantemente por linfocitos maduros e histiocitos que penetran y distorsionan las paredes de vénulas y capilares dérmicos. se aprecia tumefacción endotelial con estenosis luminal, depósito focal de material fibrinoide subendotelial y extravasación de hematíes en la dermis papilar. no se observa componente neutrofílico significativo, leucocitoclasia prominente ni granulomas. atipia citológica linfoide ausente.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA:
 - VASCULITIS LINFOCÍTICA CUTÁNEA.
 - INFILTRADO LINFOHISTIOCITARIO TRANSMURAL PERIVASCULAR CON DAÑO ENDOTELIAL Y EXTRAVASACIÓN HEMÁTICA.
 - NEGATIVO PARA ATIPIA CITOLÓGICA LINFOIDE O VASCULITIS LEUCOCITOCLÁSTICA TÍPICA.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
-1. Diagnóstico diferencial: Fase tardía de vasculitis leucocitoclástica, erupción medicamentosa fija, lupus eritematoso, eritema anular centrífugo profundo o PLEVA."
+1. Diagnóstico diferencial: Fase tardía de vasculitis leucocitoclástica, erupción medicamentosa fija, lupus eritematoso, eritema anular centrífugo profundo o PLEVA.`
     },
     {
         "id": 230,
         "categoryId": 2,
         "titulo": "GRANULOMA ANULAR",
-        "macro": "se recibe losange / punch de piel que mide [dimensiones] cm. la superficie exhibe pápulas o placas eritematosas anulares sobreelevadas con centro deprimido de [diámetro] cm. al corte, la dermis muestra áreas nodulares blanquecino-nacaradas. se incluye en [n] casete(s).
+        "macro": `se recibe losange / punch de piel que mide [dimensiones] cm. la superficie exhibe pápulas o placas eritematosas anulares sobreelevadas con centro deprimido de [diámetro] cm. al corte, la dermis muestra áreas nodulares blanquecino-nacaradas. se incluye en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Fernández-Figueras, M. T. (2007). Semin Cutan Med Surg. / McKee's Pathology of the Skin (5th ed.).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Fernández-Figueras, M. T. (2007). Semin Cutan Med Surg. / McKee's Pathology of the Skin (5th ed.).</small>`,
         "micro": "los cortes histológicos muestran epidermis conservada. en la dermis reticular superficial y media se identifican focos característicos de necrobiosis de colágeno, donde los haces colágenos se aprecian pálidos, desorganizados y embebidos en una abundante sustancia fundamental basófila correspondiente a depósito de mucina estromal (ácido hialurónico). estas áreas de colágeno degenerado se encuentran delimitadas por una empalizada de histiocitos epitelioides y células gigantes multinucleadas, con linfocitos en la periferia y patrón histiocítico intersticial adyacente. las fibras elásticas se encuentran marcadamente disminuidas o fragmentadas en las zonas necrobióticas. no se observan células plasmáticas abundantes ni necrosis caseosa.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA:
 - DERMATITIS GRANULOMATOSA EN EMPALIZADA E INTERSTICIAL, COMPATIBLE CON GRANULOMA ANULAR.
 - FOCOS DE NECROBIOSIS DE COLÁGENO CON ABUNDANTE DEPÓSITO DE MUCINA ESTROMAL.
 - TINCIONES ESPECIALES NEGATIVAS PARA HONGOS Y MICOBACTERIAS (PAS Y ZIEHL-NEELSEN NEGATIVOS).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Hallazgos clínicos: Pápulas y placas anulares en extremidades (dorso de manos y pies).
-2. En variantes generalizadas/diseminadas: Descartar diabetes mellitus, disfunción tiroidea o hiperlipidemias."
+2. En variantes generalizadas/diseminadas: Descartar diabetes mellitus, disfunción tiroidea o hiperlipidemias.`
     },
     {
         "id": 231,
         "categoryId": 2,
         "titulo": "NECROBIOSIS LIPOÍDICA",
-        "macro": "se recibe losange de piel que mide [dimensiones] cm proveniente de región pretibial. la epidermis se observa adelgazada, brillante y amarillenta con finas telangiectasias de [diámetro] cm y borde eritematovioláceo indurado. al corte, todo el espesor dérmico y subcutáneo superficial se muestran escleróticos blanco-amarillentos en capas horizontales. se incluye en [n] casete(s).
+        "macro": `se recibe losange de piel que mide [dimensiones] cm proveniente de región pretibial. la epidermis se observa adelgazada, brillante y amarillenta con finas telangiectasias de [diámetro] cm y borde eritematovioláceo indurado. al corte, todo el espesor dérmico y subcutáneo superficial se muestran escleróticos blanco-amarillentos en capas horizontales. se incluye en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Sánchez Yus, E. (2008). Panniculitis. J Am Acad Dermatol. / Weedon's Skin Pathology.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Sánchez Yus, E. (2008). Panniculitis. J Am Acad Dermatol. / Weedon's Skin Pathology.</small>`,
         "micro": "los cortes histológicos revelan un proceso granulomatoso inflamatorio y esclerótico extenso que compromete todo el espesor dérmico y se extiende hacia los septos subcutáneos. se dispone en un patrón laminar horizontal en capas ('tier-like' o en sándwich), donde alternan bandas anchas acelulares de colágeno necrobiótico pálido y esclerótico con bandas de infiltrado granulomatoso. el infiltrado está constituido por histiocitos en empalizada, células gigantes multinucleadas (tipo Touton con citoplasma xantomatoso y de tipo Langhans) y abundantes células plasmáticas y linfocitos perivasculares en la dermis profunda. los vasos dérmicos profundos exhiben engrosamiento endotelial y endarteritis obliterante reactiva. mucina escasa o ausente.",
-        "diag": "PIEL [REGIÓN PRETIBIAL], BIOPSIA EN LOSANGE PROFUNDO:
+        "diag": `PIEL [REGIÓN PRETIBIAL], BIOPSIA EN LOSANGE PROFUNDO:
 - DERMATITIS Y PANICULITIS GRANULOMATOSA EN EMPALIZADA ESTRATIFICADA EXTENSA, HISTOPATOLÓGICAMENTE COMPATIBLE CON NECROBIOSIS LIPOÍDICA (NECROBIOSIS LIPOIDICA DIABETICORUM).
 - ESCLEROSIS DE COLÁGENO, CÉLULAS GIGANTES TIPO TOUTON Y CÉLULAS PLASMÁTICAS PERIVASCULARES PROFUNDAS.
 - NEGATIVO PARA MALIGNIDAD.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
-1. Hallazgos clínicos: Placas amarillentas escleróticas pretibiales con telangiectasias asociadas a Diabetes Mellitus en >65% de casos."
+1. Hallazgos clínicos: Placas amarillentas escleróticas pretibiales con telangiectasias asociadas a Diabetes Mellitus en >65% de casos.`
     },
     {
         "id": 232,
         "categoryId": 2,
         "titulo": "SARCOIDOSIS CUTÁNEA",
-        "macro": "se recibe punch / losange de piel que mide [dimensiones] cm. la superficie cutánea presenta lesiones pápulo-nodulares firmes eritematovioláceas a pardo-amarillentas ('jalea de manzana' a la diascopia) de [diámetro] cm. al corte, la dermis muestra nódulos blanquecinos duros y bien delimitados. se incluye en [n] casete(s).
+        "macro": `se recibe punch / losange de piel que mide [dimensiones] cm. la superficie cutánea presenta lesiones pápulo-nodulares firmes eritematovioláceas a pardo-amarillentas ('jalea de manzana' a la diascopia) de [diámetro] cm. al corte, la dermis muestra nódulos blanquecinos duros y bien delimitados. se incluye en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Sánchez Yus, E. (2007). Cutaneous Sarcoidosis. Semin Cutan Med Surg. / McKee's Pathology of the Skin.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Sánchez Yus, E. (2007). Cutaneous Sarcoidosis. Semin Cutan Med Surg. / McKee's Pathology of the Skin.</small>`,
         "micro": "los cortes histológicos de piel exhiben una epidermis preservada. en la dermis reticular y adventicial se identifican múltiples granulomas epitelioides no caseificantes, discretos y bien delimitados, característicamente 'desnudos' (naked granulomas), definidos por un ribete linfocítico periférico mínimo o ausente. los granulomas están compuestos por agregados cohesivos de histiocitos epitelioides y células gigantes multinucleadas tipo Langhans y a cuerpo extraño (con ocasionales cuerpos asteroides y de Schaumann). no se observa necrosis caseosa central, leucocitoclasia ni neutrófilos. la red de fibras reticulares rodea adecuadamente los granulomas.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA:
 - DERMATITIS GRANULOMATOSA NO CASEIFICANTE DE PATRÓN SARCOIDEO ('GRANULOMAS DESNUDOS'), HISTOPATOLÓGICAMENTE COMPATIBLE CON SARCOIDOSIS CUTÁNEA.
 - NEGATIVO PARA NECROSIS CASEOSA CENTRAL.
 - TINCIONES ESPECIALES NEGATIVAS PARA MICOBACTERIAS Y HONGOS (ZIEHL-NEELSEN, FITE-FARACO, PAS Y GROCOTT NEGATIVOS).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Diagnóstico de exclusión: Tinciones ZN y PAS negativas y ausencia de partículas birrefringentes bajo luz polarizada.
-2. Evaluación sistémica: Radiografía/TC de tórax (adenopatías hiliares), ECA sérica, calcio y prueba de tuberculina (PPD/IGRA anérgico)."
+2. Evaluación sistémica: Radiografía/TC de tórax (adenopatías hiliares), ECA sérica, calcio y prueba de tuberculina (PPD/IGRA anérgico).`
     },
     {
         "id": 233,
         "categoryId": 2,
         "titulo": "GRANULOMA A CUERPO EXTRAÑO",
-        "macro": "se recibe fragmento de piel y tejido subcutáneo que mide [dimensiones] cm con una lesión nodular indurada de [diámetro] cm. al corte, el nódulo es firme, pardo-blanquecino con áreas grisáceas. se incluye en [n] casete(s).
+        "macro": `se recibe fragmento de piel y tejido subcutáneo que mide [dimensiones] cm con una lesión nodular indurada de [diámetro] cm. al corte, el nódulo es firme, pardo-blanquecino con áreas grisáceas. se incluye en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., et al. (2015). Adverse cutaneous reactions to foreign bodies. Dermatol Clin. / McKee's Pathology of the Skin.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., et al. (2015). Adverse cutaneous reactions to foreign bodies. Dermatol Clin. / McKee's Pathology of the Skin.</small>`,
         "micro": "los cortes histológicos muestran dermis reticular y tejido celular subcutáneo con reacción inflamatoria granulomatosa de patrón nodular y difuso. el infiltrado está constituido por histiocitos epitelioides y abundantes células gigantes multinucleadas de tipo cuerpo extraño con núcleos agrupados irregularmente en el citoplasma, acompañados de linfocitos, fibroblastos reactivos y fibrosis estromal. en el citoplasma de las células gigantes y extracelularmente se identifican partículas de material particulado exógeno/endógeno no digerible, las cuales demuestran birrefringencia positiva bajo luz polarizada. no se observa necrosis caseosa ni vasculitis necrosante.",
-        "diag": "PIEL Y TEJIDO SUBCUTÁNEO [LOCALIZACIÓN], BIOPSIA / RESECCIÓN:
+        "diag": `PIEL Y TEJIDO SUBCUTÁNEO [LOCALIZACIÓN], BIOPSIA / RESECCIÓN:
 - REACCIÓN GRANULOMATOSA NODULAR A CUERPO EXTRAÑO CON CÉLULAS GIGANTES MULTINUCLEADAS.
 - PRESENCIA DE MATERIAL HETERÓLOGO / PARTICULADO CONFIRMADO BAJO LUZ POLARIZADA.
 - NEGATIVO PARA MICOBACTERIAS O MICOSIS PROFUNDA (ZN Y PAS NEGATIVOS).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
-1. Anamnesis: Correlacionar con antecedentes de traumatismos penetrantes (espinas, astillas), materiales de relleno cosmético, tatuajes o suturas quirúrgicas previas."
+1. Anamnesis: Correlacionar con antecedentes de traumatismos penetrantes (espinas, astillas), materiales de relleno cosmético, tatuajes o suturas quirúrgicas previas.`
     },
     {
         "id": 234,
         "categoryId": 2,
         "titulo": "ERITEMA NUDOSO (PANICULITIS SEPTAL)",
-        "macro": "se recibe losange profundo de piel y tejido celular subcutáneo en cuña que mide [dimensiones] cm de superficie y [profundidad] cm de espesor hasta hipodermis profunda. en superficie se observa placa nodular eritematosa indurada de [diámetro] cm en cara anterior de pierna. al corte, los septos fibrosos del tejido adiposo subcutáneo se observan notablemente ensanchados, edematosos y blanco-grisáceos, contrastando con los lobulillos grasos amarillos preservados. se incluye en [n] casete(s).
+        "macro": `se recibe losange profundo de piel y tejido celular subcutáneo en cuña que mide [dimensiones] cm de superficie y [profundidad] cm de espesor hasta hipodermis profunda. en superficie se observa placa nodular eritematosa indurada de [diámetro] cm en cara anterior de pierna. al corte, los septos fibrosos del tejido adiposo subcutáneo se observan notablemente ensanchados, edematosos y blanco-grisáceos, contrastando con los lobulillos grasos amarillos preservados. se incluye en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Sánchez Yus, E. (2008). Panniculitis. Part I. Mostly septal panniculitis. J Am Acad Dermatol, 58(6), 940-972.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Sánchez Yus, E. (2008). Panniculitis. Part I. Mostly septal panniculitis. J Am Acad Dermatol, 58(6), 940-972.</small>`,
         "micro": "los cortes histológicos muestran una paniculitis de patrón predominantemente septal con respeto de los centros lobulillares adiposos. los tabiques o septos conectivos interlobulillares se encuentran marcadamente ensanchados por edema, proliferación fibroblástica y un denso infiltrado inflamatorio. en los septos y en la periferia de los lobulillos grasos se identifican los característicos GRANULOMAS RADIALES DE MIESCHER, conformados por pequeños acúmulos nodulares de histiocitos epitelioides orientados radialmente alrededor de una hendidura central estrellada o capilar colapsado. se asocian a neutrófilos extravasados y linfocitos en etapas agudas, y a células gigantes multinucleadas y fibrosis septal en fases evolucionadas. no se observa vasculitis de vasos de mediano calibre ni necrosis grasa caseosa.",
-        "diag": "PIEL Y TEJIDO CELULAR SUBCUTÁNEO [LOCALIZACIÓN PRETIBIAL], BIOPSIA EN CUÑA PROFUNDA:
+        "diag": `PIEL Y TEJIDO CELULAR SUBCUTÁNEO [LOCALIZACIÓN PRETIBIAL], BIOPSIA EN CUÑA PROFUNDA:
 - PANICULITIS PREDOMINANTEMENTE SEPTAL SIN VASCULITIS, CON GRANULOMAS RADIALES DE MIESCHER, HISTOPATOLÓGICAMENTE COMPATIBLE CON ERITEMA NUDOSO.
 - AUSENCIA DE VASCULITIS DE MEDIANO O GRAN CALIBRE Y AUSENCIA DE NECROSIS CASEOSA.
 - ZN Y PAS NEGATIVOS PARA MICROORGANISMOS.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Hallazgos clínicos: Nódulos eritematosos dolorosos pretibiales bilaterales.
-2. Etiologías asociadas: Infección estreptocócica (ASO), Sarcoidosis (Síndrome de Löfgren), Tuberculosis (PPD/IGRA), EII (Crohn/colitis ulcerosa) o fármacos."
+2. Etiologías asociadas: Infección estreptocócica (ASO), Sarcoidosis (Síndrome de Löfgren), Tuberculosis (PPD/IGRA), EII (Crohn/colitis ulcerosa) o fármacos.`
     },
     {
         "id": 235,
         "categoryId": 2,
         "titulo": "ERITEMA INDURADO DE BAZIN / VASCULITIS NODULAR (PANICULITIS LOBULILLAR)",
-        "macro": "se recibe biopsia en cuña profunda de piel y tejido celular subcutáneo que mide [dimensiones] cm de superficie y [profundidad] cm de espesor. en superficie muestra nódulo eritematovioláceo indurado y ulcerado en cara posterior de pantorrilla de [diámetro] cm. al corte, el tejido graso subcutáneo presenta aspecto heterogéneo moteado con áreas blanco-amarillentas de necrosis grasa y fibrosis. se incluye en [n] casete(s).
+        "macro": `se recibe biopsia en cuña profunda de piel y tejido celular subcutáneo que mide [dimensiones] cm de superficie y [profundidad] cm de espesor. en superficie muestra nódulo eritematovioláceo indurado y ulcerado en cara posterior de pantorrilla de [diámetro] cm. al corte, el tejido graso subcutáneo presenta aspecto heterogéneo moteado con áreas blanco-amarillentas de necrosis grasa y fibrosis. se incluye en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Sánchez Yus, E. (2008). Panniculitis. Part II. Mostly lobular panniculitis. J Am Acad Dermatol, 58(8), 1001-1025.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Sánchez Yus, E. (2008). Panniculitis. Part II. Mostly lobular panniculitis. J Am Acad Dermatol, 58(8), 1001-1025.</small>`,
         "micro": "los cortes histológicos muestran una paniculitis de distribución predominantemente lobulillar con compromiso septal secundario y extensa necrosis grasa de tipo coagulativo / caseoso en los adipocitos lobulillares. el infiltrado inflamatorio es granulomatoso y denso, compuesto por histiocitos epitelioides, células gigantes multinucleadas de tipo Langhans y a cuerpo extraño, linfocitos y células plasmáticas. en los septos interlobulillares y unión septo-lobulillar se identifica de manera constante una VASCULITIS GRANULOMATOSA Y NECROSANTE DE VASOS MUSCULARES ARTERIALES Y VENOSOS DE MEDIANO Y PEQUEÑO CALIBRE, con necrosis fibrinoide mural, infiltrado transmural, proliferación de la íntima y trombosis oclusiva con recanalización.",
-        "diag": "PIEL Y TEJIDO CELULAR SUBCUTÁNEO [CARA POSTERIOR DE PIERNA], BIOPSIA EN CUÑA PROFUNDA:
+        "diag": `PIEL Y TEJIDO CELULAR SUBCUTÁNEO [CARA POSTERIOR DE PIERNA], BIOPSIA EN CUÑA PROFUNDA:
 - PANICULITIS PREDOMINANTEMENTE LOBULILLAR CON VASCULITIS NECROSANTE / GRANULOMATOSA DE VASOS DE MEDIANO CALIBRE Y NECROSIS CASEOSA, HISTOPATOLÓGICAMENTE COMPATIBLE CON ERITEMA INDURADO DE BAZIN / VASCULITIS NODULAR.
 - NECROSIS ADIPOSA LOBULILLAR EXTENSA Y GRANULOMAS TUBERCULOIDES CON CÉLULAS DE LANGHANS.
 - NEGATIVO PARA MALIGNIDAD.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Criterio de Requena: Combinación diagnóstica de paniculitis lobulillar con vasculitis de vasos musculares de mediano calibre.
-2. Etiología: Si se asocia a hipersensibilidad a Mycobacterium tuberculosis se denomina Eritema Indurado de Bazin (solicitar PCR para M. tuberculosis y PPD/IGRA); si es idiopática o asociada a otras causas se denomina Vasculitis Nodular."
+2. Etiología: Si se asocia a hipersensibilidad a Mycobacterium tuberculosis se denomina Eritema Indurado de Bazin (solicitar PCR para M. tuberculosis y PPD/IGRA); si es idiopática o asociada a otras causas se denomina Vasculitis Nodular.`
     },
     {
         "id": 1201,
         "categoryId": 16,
         "titulo": "LUPUS ERITEMATOSO DISCOIDE (CUTÁNEO CRÓNICO)",
-        "macro": "se recibe losange / punch de piel que mide [dimensiones] cm. la superficie epidérmica muestra una placa eritematosa bien delimitada con escama córnea adherente y tapones foliculares queratósicos centrales, de [diámetro] cm. al corte, la dermis es firme, blanco-grisácea y elástica. se incluye en [n] casete(s).
+        "macro": `se recibe losange / punch de piel que mide [dimensiones] cm. la superficie epidérmica muestra una placa eritematosa bien delimitada con escama córnea adherente y tapones foliculares queratósicos centrales, de [diámetro] cm. al corte, la dermis es firme, blanco-grisácea y elástica. se incluye en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin (5th ed.).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin (5th ed.).</small>`,
         "micro": "los cortes histológicos muestran una dermatitis de interfase de tipo degeneración vacuolar con compromiso anexial prominente. la capa córnea exhibe hiperqueratosis ortoqueratósica compacta con marcada dilatación y taponamiento folicular queratósico (follicular plugging). la epidermis muestra atrofia difusa con aplanamiento de los procesos interpapilares, alternando con focos de hipergranulosis irregular y queratinocitos apoptóticos basales (cuerpos coloides). la unión dermoepidérmica presenta degeneración hidrópica y balonizante de las células basales con engrosamiento hialino denso continuo de la membrana basal epidérmica y perinfundibular. en la dermis papilar se aprecia incontinencia pigmentaria marcada con abundantes melanófagos, ectasia vascular y abundantes depósitos de mucina intersticial en la dermis reticular. se identifica un denso infiltrado inflamatorio linfohistiocitario dispuesto en los plexos perivasculares superficial y profundo, con una conspicua distribución perianexial (perifolicular y periecrina) que condiciona atrofia folicular progresiva.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA EN PUNCH / LOSANGE:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA EN PUNCH / LOSANGE:
 - DERMATITIS DE INTERFASE VACUOLAR CRÓNICA CON ATROFIA EPIDÉRMICA, TAPONAMIENTO FOLICULAR, ENGROSAMIENTO DE LA MEMBRANA BASAL, INFILTRADO LINFOIDE PERIANEXIAL PROFUNDO Y MUCINOSIS DÉRMICA.
 - HALLAZGOS HISTOPATOLÓGICOS CARACTERÍSTICOS Y COMPATIBLES CON LUPUS ERITEMATOSO DISCOIDE (LED / LUPUS CUTÁNEO CRÓNICO).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Hallazgos clínicos: Placas eritematosas descamativas con tapones foliculares queratósicos ('signo del tapón de cera o tachuela') y atrofia cicatrizal central con alopecia en cuero cabelludo/cara.
-2. Diagnóstico diferencial: Descartar Dermatomiositis (carece de infiltrado perianexial profundo y el engrosamiento de membrana basal es leve) y Lupus túmido (sin atrofia epidérmica ni daño de interfase basal)."
+2. Diagnóstico diferencial: Descartar Dermatomiositis (carece de infiltrado perianexial profundo y el engrosamiento de membrana basal es leve) y Lupus túmido (sin atrofia epidérmica ni daño de interfase basal).`
     },
     {
         "id": 1202,
         "categoryId": 16,
         "titulo": "LUPUS ERITEMATOSO CUTÁNEO SUBAGUDO (LECS)",
-        "macro": "se recibe punch de piel que mide [dimensiones] cm. la superficie cutánea muestra una placa eritematosa anular / psoriasiforme de [diámetro] cm, sin tapones córneos evidentes ni cicatriz central. al corte, el tejido dérmico es elástico y homogéneo. se procesa la totalidad en 1 casete.
+        "macro": `se recibe punch de piel que mide [dimensiones] cm. la superficie cutánea muestra una placa eritematosa anular / psoriasiforme de [diámetro] cm, sin tapones córneos evidentes ni cicatriz central. al corte, el tejido dérmico es elástico y homogéneo. se procesa la totalidad en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology (5th ed.).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology (5th ed.).</small>`,
         "micro": "los cortes histológicos muestran una dermatitis de interfase vacuolar de distribución predominantemente superficial. la capa córnea muestra hiperqueratosis ortoqueratósica laminar con pequeños focos de paraqueratosis. la epidermis presenta atrofia moderada con degeneración hidrópica difusa de la capa basal y abundantes cuerpos apoptóticos (cuerpos de Civatte) distribuidos en los estratos basal y espinoso inferior. la membrana basal exhibe un engrosamiento leve o discontinuo. en la dermis papilar se observa edema y melanófagos dispersos por incontinencia de pigmento, acompañado de un depósito difuso de mucina estromal en la dermis reticular superficial. el infiltrado inflamatorio está constituido por linfocitos e histiocitos confinados a la unión dermoepidérmica y al plexo vascular superficial, respetando la dermis reticular profunda y los anexos cutáneos.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA:
 - DERMATITIS DE INTERFASE VACUOLAR CON CUERPOS APOPTÓTICOS BASALES, INFILTRADO LINFOIDE ESTRICTAMENTE PERIVASCULAR SUPERFICIAL Y DEPÓSITO DE MUCINA DÉRMICA.
 - CUADRO HISTOLÓGICO COMPATIBLE CON LUPUS ERITEMATOSO CUTÁNEO SUBAGUDO (LECS).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Hallazgos clínicos: Lesiones anulares policíclicas o pápulo-escamosas psoriasiformes fotodistribuidas en tórax, cuello y brazos que resuelven sin cicatriz atrófica permanente.
-2. Inmunología: Correlacionar con anticuerpos anti-Ro/SSA y anti-La/SSB (positivos en >80% de casos)."
+2. Inmunología: Correlacionar con anticuerpos anti-Ro/SSA y anti-La/SSB (positivos en >80% de casos).`
     },
     {
         "id": 1203,
         "categoryId": 16,
         "titulo": "LUPUS ERITEMATOSO SISTÉMICO (ERITEMA MALAR / RASH AGUDO)",
-        "macro": "se recibe punch de piel que mide [dimensiones] cm proveniente de región malar / facial, con superficie epidérmica eritematoedematosa difusa y lisa, sin escamas induradas ni cicatrización. se procesa en 1 casete.
+        "macro": `se recibe punch de piel que mide [dimensiones] cm proveniente de región malar / facial, con superficie epidérmica eritematoedematosa difusa y lisa, sin escamas induradas ni cicatrización. se procesa en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>`,
         "micro": "los cortes histológicos muestran dermatitis de interfase vacuolar aguda. la epidermis conserva su espesor con ortoqueratosis laminar y degeneración hidrópica de queratinocitos basales con aislados cuerpos apoptóticos. se evidencia un severo edema de la dermis papilar que disgrega los haces de colágeno, asociado a ectasia de capilares dérmicos superficiales con tumefacción endotelial y extravasación focal de hematíes. en la dermis reticular superficial se confirma la presencia de mucina ácida intersticial difusa. el infiltrado inflamatorio es escaso a moderado, de predominio linfohistiocitario perivascular superficial, sin afectación de anexos ni necrosis fibrinoide mural vascular.",
-        "diag": "PIEL FACIAL (REGIÓN MALAR), BIOPSIA:
+        "diag": `PIEL FACIAL (REGIÓN MALAR), BIOPSIA:
 - DERMATITIS DE INTERFASE VACUOLAR AGUDA CON MARCADO EDEMA DE DERMIS PAPILAR, EXTRAVASACIÓN ERITROCITARIA Y DEPOSITACIÓN DE MUCINA DÉRMICA.
 - HALLAZGOS HISTOPATOLÓGICOS CARACTERÍSTICOS DE LUPUS ERITEMATOSO CUTÁNEO AGUDO (ERITEMA MALAR EN LES).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Hallazgos clínicos: Eritema simétrico en 'alas de mariposa' que respeta los surcos nasogenianos, transitorio y coincidente con brotes de actividad sistémica.
-2. Laboratorio: Correlacionar con títulos de anticuerpos anti-ADN de doble cadena (anti-dsDNA) y anti-Sm."
+2. Laboratorio: Correlacionar con títulos de anticuerpos anti-ADN de doble cadena (anti-dsDNA) y anti-Sm.`
     },
     {
         "id": 1204,
         "categoryId": 16,
         "titulo": "ERITEMA MULTIFORME",
-        "macro": "se recibe losange / punch de piel que mide [dimensiones] cm. la epidermis exhibe una lesión en diana / escarapela característica de [diámetro] cm, con ampolla / necrosis central y halo eritematovioláceo concéntrico. se incluye en [n] casete(s).
+        "macro": `se recibe losange / punch de piel que mide [dimensiones] cm. la epidermis exhibe una lesión en diana / escarapela característica de [diámetro] cm, con ampolla / necrosis central y halo eritematovioláceo concéntrico. se incluye en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>`,
         "micro": "los cortes histológicos muestran una dermatitis de interfase vacuolar citotóxica aguda prototípica. el estrato córneo se encuentra preservado en cesta de mimbre ortoqueratósico (reflejo de instalación hiperaguda). la epidermis exhibe necrosis y apoptosis diseminada de queratinocitos individuales y en pequeños grupos en todos los estratos epidérmicos ('satelitosis linfoide'), con evolución a necrosis de espesor completo en la zona central. la unión dermoepidérmica presenta degeneración vacuolar intensa que da lugar a una ampolla subepidérmica por lisis basal. la dermis papilar muestra severo edema, ectasia vascular con tumefacción endotelial y un infiltrado inflamatorio linfohistiocitario perivascular superficial denso, con llamativa ausencia de eosinófilos.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA:
 - DERMATITIS DE INTERFASE VACUOLAR CITOTÓXICA AGUDA CON NECROSIS QUERATINOCÍTICA MULTIESTRATO, AMPOLLA SUBEPIDÉRMICA POR DEGENERACIÓN BASAL Y EDEMA PAPILAR SEVERO.
 - PATRÓN HISTOPATOLÓGICO DIAGNÓSTICO DE ERITEMA MULTIFORME (EM).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Hallazgos clínicos: Lesiones en diana típicas acrales (palmas, plantas, antebrazos). Desencadenado comúnmente por infección por Virus Herpes Simple (VHS-1/2) o Mycoplasma pneumoniae.
-2. Diagnóstico diferencial: Descartar Síndrome de Stevens-Johnson / NET (necrosis en sábana con dermis desierta) y toxicodermia fija."
+2. Diagnóstico diferencial: Descartar Síndrome de Stevens-Johnson / NET (necrosis en sábana con dermis desierta) y toxicodermia fija.`
     },
     {
         "id": 1205,
         "categoryId": 16,
         "titulo": "DERMATOMIOSITIS",
-        "macro": "se recibe punch de piel que mide [dimensiones] cm. la superficie cutánea presenta pápulas eritematovioláceas aplanadas de [diámetro] cm sobre el dorso articular interfalángico / eritema facial violáceo. se procesa en 1 casete.
+        "macro": `se recibe punch de piel que mide [dimensiones] cm. la superficie cutánea presenta pápulas eritematovioláceas aplanadas de [diámetro] cm sobre el dorso articular interfalángico / eritema facial violáceo. se procesa en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>`,
         "micro": "los cortes histológicos muestran atrofia epidérmica acentuada con aplanamiento de crestas interpapilares e hiperqueratosis ortoqueratósica laminar. la unión dermoepidérmica muestra degeneración hidrópica de la capa basal con queratinocitos apoptóticos basales aislados. la dermis papilar exhibe ectasia capilar superficial prominente, edema y abundantes depósitos intersticiales de mucina ácida en la dermis reticular que separan ampliamente los haces colágenos. el infiltrado inflamatorio linfohistiocitario es de intensidad leve a moderada y se encuentra estrictamente confinado al plexo perivascular superficial y a la interfase, con indemnidad de la dermis profunda y de los folículos pilosos.",
-        "diag": "PIEL [LOCALIZACIÓN, EJ. DORSO DE NUDILLOS / PÁRPADOS], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN, EJ. DORSO DE NUDILLOS / PÁRPADOS], BIOPSIA:
 - DERMATITIS DE INTERFASE VACUOLAR CON ATROFIA EPIDÉRMICA, TELANGIECTASIAS DÉRMICAS, INFILTRADO LINFOIDE SUPERFICIAL Y ABUNDANTE MUCINOSIS DÉRMICA.
 - CUADRO HISTOPATOLÓGICO COMPATIBLE CON DERMATOMIOSITIS (PÁPULAS DE GOTTRON / ERITEMA EN HELIOTROPO).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Hallazgos clínicos: Pápulas/signo de Gottron sobre articulaciones interfalángicas, eritema heliótropo periorbitario y debilidad muscular proximal.
-2. Laboratorio: Solicitar enzimas musculares (CPK, aldolasa) y anticuerpos específicos (anti-Mi-2, anti-TIF1-γ, anti-MDA5)."
+2. Laboratorio: Solicitar enzimas musculares (CPK, aldolasa) y anticuerpos específicos (anti-Mi-2, anti-TIF1-γ, anti-MDA5).`
     },
     {
         "id": 1206,
         "categoryId": 16,
         "titulo": "TOXICODERMIA (ERUPCIÓN MEDICAMENTOSA VACUOLAR)",
-        "macro": "se recibe punch / losange de piel que mide [dimensiones] cm, exhibiendo máculas y pápulas eritematosas confluentes pruriginosas de [diámetro] cm. al corte, tejido dérmico elástico y homogéneo. se procesa en 1 casete.
+        "macro": `se recibe punch / losange de piel que mide [dimensiones] cm, exhibiendo máculas y pápulas eritematosas confluentes pruriginosas de [diámetro] cm. al corte, tejido dérmico elástico y homogéneo. se procesa en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>`,
         "micro": "los cortes histológicos muestran dermatitis de interfase vacuolar con espongiosis leve y queratinocitos disqueratósicos/apoptóticos aislados que ascienden a los niveles medio y superior del estrato espinoso. la capa basal exhibe degeneración hidrópica en parches. en la dermis papilar se observa edema moderado e incontinencia pigmentaria. el infiltrado inflamatorio perivascular superficial e interfase es de tipo mixto, caracterizado por linfocitos T, histiocitos y la presencia conspicua y diagnóstica de abundantes eosinófilos distribuidos en el estroma perivascular e intersticial dérmico.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA:
 - DERMATITIS DE INTERFASE VACUOLAR CON ESPONGIOSIS LEVE, QUERATINOCITOS APOPTÓTICOS MULTIESTRATO E INFILTRADO INFLAMATORIO MIXTO PERIVASCULAR CON EOSINÓFILOS.
 - CUADRO HISTOLÓGICO ALTAMENTE SUGESTIVO DE ERUPCIÓN MEDICAMENTOSA (TOXICODERMIA VACUOLAR).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Criterio pivote: La presencia de eosinófilos entremezclados en el infiltrado perivascular y de interfase es la clave histológica para diferenciar una toxicodermia de un exantema viral puro o lupus.
-2. Anamnesis: Evaluar fármacos introducidos en las últimas 1 a 3 semanas (antibióticos, AINEs, anticonvulsivantes)."
+2. Anamnesis: Evaluar fármacos introducidos en las últimas 1 a 3 semanas (antibióticos, AINEs, anticonvulsivantes).`
     },
     {
         "id": 1207,
         "categoryId": 16,
         "titulo": "LIQUEN PLANO",
-        "macro": "se recibe losange / punch de piel que mide [dimensiones] cm. la superficie epidérmica muestra una pápula/placa poligonal violácea brillante y aplanada de [diámetro] cm, con finas estrías blanquecinas reticulares en superficie (estrías de Wickham). se incluye en [n] casete(s).
+        "macro": `se recibe losange / punch de piel que mide [dimensiones] cm. la superficie epidérmica muestra una pápula/placa poligonal violácea brillante y aplanada de [diámetro] cm, con finas estrías blanquecinas reticulares en superficie (estrías de Wickham). se incluye en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin (5th ed.).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin (5th ed.).</small>`,
         "micro": "los cortes histológicos muestran una dermatitis de interfase liquenoide clásica. la capa córnea presenta marcada hiperqueratosis ortoqueratósica compacta pura (sin paraqueratosis). la epidermis exhibe hipergranulosis cuneiforme o romboidal prominente, asociada a acantosis irregular con afilamiento cónico de los procesos interpapilares en 'dientes de sierra' (saw-toothed pattern) y abundantes cuerpos coloides/apoptóticos (cuerpos de Civatte) en la basal. la unión dermoepidérmica muestra necrosis licuefactiva basal con despegamientos focales subepidérmicos característicos (espacios de Max-Joseph). en la dermis papilar se identifica un infiltrado inflamatorio extremadamente denso, continuo y en BANDA ('band-like') compuesto monomórficamente por linfocitos T e histiocitos, con incontinencia de melanina y melanófagos abundantes. no se observan eosinófilos ni células plasmáticas. la dermis reticular profunda se encuentra libre de inflamación.",
-        "diag": "PIEL [LOCALIZACIÓN, EJ. CARA ANTERIOR DE MUÑECA / TOBILLO], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN, EJ. CARA ANTERIOR DE MUÑECA / TOBILLO], BIOPSIA:
 - DERMATITIS DE INTERFASE LIQUENOIDE EN BANDA DÉRMICA PAPILAR CON HIPERQUERATOSIS ORTOQUERATÓSICA PURA, HIPERGRANULOSIS CUNEIFORME, ACANTOSIS EN 'DIENTES DE SIERRA', ESPACIOS DE MAX-JOSEPH Y CUERPOS DE CIVATTE.
 - DIAGNÓSTICO HISTOPATOLÓGICO DEFINITIVO DE LIQUEN PLANO CLÁSICO.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Signos clínicos: Las '6 P': Pápulas Poligonales, Purpúricas, Pruriginosas, Planas, Placas y con estrías de Wickham en superficies flexoras.
-2. Diagnóstico diferencial: Erupción liquenoide medicamentosa (presenta paraqueratosis, eosinófilos e infiltrado profundo) y Queratosis liquenoide solitaria."
+2. Diagnóstico diferencial: Erupción liquenoide medicamentosa (presenta paraqueratosis, eosinófilos e infiltrado profundo) y Queratosis liquenoide solitaria.`
     },
     {
         "id": 1208,
         "categoryId": 16,
         "titulo": "LIQUEN ESTRIADO",
-        "macro": "se recibe punch de piel que mide [dimensiones] cm. la superficie cutánea exhibe pápulas liquenoides eritemato-rosadas agrupadas en banda lineal siguiendo trayectos de Blaschko, de [diámetro] cm. se incluye en 1 casete.
+        "macro": `se recibe punch de piel que mide [dimensiones] cm. la superficie cutánea exhibe pápulas liquenoides eritemato-rosadas agrupadas en banda lineal siguiendo trayectos de Blaschko, de [diámetro] cm. se incluye en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>`,
         "micro": "los cortes histológicos muestran una dermatitis de interfase liquenoide y espongiótica en parches con compromiso anexial profundo característico. la epidermis presenta hiperqueratosis con focos de paraqueratosis, acantosis irregular, espongiosis intercelular y queratinocitos apoptóticos intraepidérmicos dispersos. la capa basal muestra degeneración hidrópica en parches. en la dermis papilar se observa infiltrado linfohistiocitario que se acompaña de un prominente infiltrado inflamatorio linfoide perianexial profundo con afección electiva del epitelio de los ovillos y conductos sudoríparos ecrinos (hidradenitis ecrina linfoide reactiva). ausencia habitual de eosinófilos.",
-        "diag": "PIEL [LOCALIZACIÓN, EJ. EXTREMIDAD EN NIÑO], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN, EJ. EXTREMIDAD EN NIÑO], BIOPSIA:
 - DERMATITIS DE INTERFASE LIQUENOIDE Y ESPONGIÓTICA EN PARCHES ASOCIADA A INFILTRADO LINFOIDE PERIECRINO PROFUNDO PROMINENTE.
 - HALLAZGOS HISTOPATOLÓGICOS CARACTERÍSTICOS DE LIQUEN ESTRIADO.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Signo patognomónico de Requena: La combinación de dermatitis de interfase liquenoide espongiótica con denso manguito linfoide periecrino profundo es diagnóstica de Liquen Estriado.
-2. Clínica: Erupción lineal autolimitada en niños a lo largo de las líneas de Blaschko."
+2. Clínica: Erupción lineal autolimitada en niños a lo largo de las líneas de Blaschko.`
     },
     {
         "id": 1209,
         "categoryId": 16,
         "titulo": "LIQUEN ESCLEROSO Y ATRÓFICO",
-        "macro": "se recibe losange / punch de piel / mucosa que mide [dimensiones] cm. la superficie presenta una placa blanco-marfil nacarada, atrófica, deprimida en 'papel de cigarrillo' arrugado con tapones córneos puntiformes de [diámetro] cm. al corte, la dermis es densa y nacarada. se incluye en [n] casete(s).
+        "macro": `se recibe losange / punch de piel / mucosa que mide [dimensiones] cm. la superficie presenta una placa blanco-marfil nacarada, atrófica, deprimida en 'papel de cigarrillo' arrugado con tapones córneos puntiformes de [diámetro] cm. al corte, la dermis es densa y nacarada. se incluye en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>`,
         "micro": "los cortes histológicos muestran una marcada alteración esclerosante de la interfase. la capa córnea presenta hiperqueratosis ortoqueratósica compacta con prominente taponamiento folicular y orificial queratósico. la epidermis exhibe extrema atrofia del estrato espinoso ('en papel de seda') con aplanamiento y pérdida total de crestas interpapilares y degeneración vacuolar basal residual. en la dermis papilar se observa una amplia banda subepidérmica acelular de edema severo y homogeneización esclerótica hialina del colágeno (colágeno vítreo pálido homogéneo) con pérdida difusa de fibras elásticas. por debajo de esta zona esclerótica, en la dermis reticular media, se identifica un denso infiltrado inflamatorio linfohistiocitario en banda ('infiltrado infralesional'). se reconocen ectasias capilares superficiales con focos de extravasación eritrocitaria. no se observa atipia queratinocítica.",
-        "diag": "PIEL / MUCOSA [LOCALIZACIÓN GENITAL / EXTRAGENITAL], BIOPSIA:
+        "diag": `PIEL / MUCOSA [LOCALIZACIÓN GENITAL / EXTRAGENITAL], BIOPSIA:
 - DERMATITIS DE INTERFASE ESCLEROSANTE CON HIPERQUERATOSIS ORTOQUERATÓSICA, MARCADA ATROFIA EPIDÉRMICA, HOMOGENEIZACIÓN HIALINA ACELULAR DE DERMIS PAPILAR E INFILTRADO LINFOIDE EN BANDA INFRALESIONAL.
 - CUADRO HISTOPATOLÓGICO CLÁSICO Y DEFINITIVO DE LIQUEN ESCLEROSO (Y ATRÓFICO).
 - NEGATIVO PARA ATIPIA CITOLÓGICA O NEOPLASIA INTRAEPITELIAL DIFERENCIADA (dVIN / dPeIN).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Hallazgos clínicos: Placas nacaradas blanco-porcelana en región anogenital (craurosis vulvar / balanitis xerótica obliterante con fimosis) o tronco.
-2. Seguimiento: Control periódico por riesgo aumentado de carcinoma epidermoide cutáneo/mucoso en lesiones crónicas."
+2. Seguimiento: Control periódico por riesgo aumentado de carcinoma epidermoide cutáneo/mucoso en lesiones crónicas.`
     },
     {
         "id": 1210,
         "categoryId": 16,
         "titulo": "PITIRIASIS LIQUENOIDE (PLEVA / PLC)",
-        "macro": "se recibe punch de piel que mide [dimensiones] cm, con pápulas eritematosas centradas por vesículo-pústula purpúrica necrótica / costra escamosa en oblea de [diámetro] cm. se procesa en 1 casete.
+        "macro": `se recibe punch de piel que mide [dimensiones] cm, con pápulas eritematosas centradas por vesículo-pústula purpúrica necrótica / costra escamosa en oblea de [diámetro] cm. se procesa en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>`,
         "micro": "los cortes histológicos muestran una dermatitis de interfase liquenoide citotóxica con infiltrado inflamatorio en forma de CUÑA (base dermoepidérmica y vértice en dermis reticular profunda). la capa córnea muestra paraqueratosis confluente con exudado serohemático y neutrófilos atrapados en costra. la epidermis exhibe necrosis queratinocítica diseminada y balonización celular con espongiosis y exocitosis activa de linfocitos y eritrocitos. la unión dermoepidérmica está borrada por el infiltrado linfoide citotóxico. en la dermis papilar y media se identifica un infiltrado linfohistiocitario perivascular e intersticial asociado a tumefacción endotelial y extravasación masiva de hematíes. no se observa necrosis fibrinoide de la pared vascular ni leucocitoclasia neutrofílica verdadera.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA:
 - DERMATITIS DE INTERFASE LIQUENOIDE CITOTÓXICA CON INFILTRADO EN CUÑA DERMOEPIDÉRMICO, NECROSIS QUERATINOCÍTICA, COSTRA PARAQUERATÓSICA HEMORRÁGICA Y EXTRAVASACIÓN ERITROCITARIA MASIVA.
 - HALLAZGOS COMPATIBLES CON PITIRIASIS LIQUENOIDE (PLEVA / ENFERMEDAD DE MUCHA-HABERMANN / PLC SEGÚN FASE CLÍNICA).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Signos clínicos: Brotes de pápulas que evolucionan a vesículas purpúricas, costras necróticas y úlceras varioliformes en tronco y extremidades.
-2. Diagnóstico diferencial: Descartar Papulosis Linfomatoide (presencia de células grandes atípicas CD30+) y Vasculitis leucocitoclástica."
+2. Diagnóstico diferencial: Descartar Papulosis Linfomatoide (presencia de células grandes atípicas CD30+) y Vasculitis leucocitoclástica.`
     },
     {
         "id": 1211,
         "categoryId": 16,
         "titulo": "ERUPCIÓN LIQUENOIDE POR FÁRMACOS",
-        "macro": "se recibe losange / punch de piel que mide [dimensiones] cm. la superficie cutánea presenta placas eritemato-violáceas liquenoides con descamación laminar fina de [diámetro] cm. se incluye en 1 casete.
+        "macro": `se recibe losange / punch de piel que mide [dimensiones] cm. la superficie cutánea presenta placas eritemato-violáceas liquenoides con descamación laminar fina de [diámetro] cm. se incluye en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>`,
         "micro": "los cortes histológicos muestran una dermatitis de interfase liquenoide atípica. la capa córnea exhibe hiperqueratosis con focos conspicuos de paraqueratosis. la epidermis presenta acantosis irregular con queratinocitos apoptóticos/disqueratósicos dispersos en todos los estratos epidérmicos (estrato basal, medio y superior). en la unión dermoepidérmica se observa daño licuefactivo con infiltrado en banda en la dermis papilar que se extiende hacia los plexos vasculares de la dermis reticular profunda y perianexial. el infiltrado inflamatorio es de tipo mixto, constituido por linfocitos T, histiocitos, abundantes EOSINÓFILOS y presencia de CÉLULAS PLASMÁTICAS maduras entremezcladas, con incontinencia de melanina.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA:
 - DERMATITIS DE INTERFASE LIQUENOIDE CON PARAQUERATOSIS FOCAL, QUERATINOCITOS DISQUERATÓSICOS MULTIESTRATO E INFILTRADO MIXTO DERMOPAPILAR Y PROFUNDO CON EOSINÓFILOS Y CÉLULAS PLASMÁTICAS.
 - CUADRO HISTOLÓGICO COMPATIBLE CON ERUPCIÓN LIQUENOIDE POR FÁRMACOS (TOXICODERMIA LIQUENOIDE).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Claves vs Liquen Plano idiopático: 1) Presencia de paraqueratosis; 2) Presencia de eosinófilos y plasmocitos; 3) Extensión a dermis profunda/perianexial; 4) Queratinocitos necróticos en estratos altos.
-2. Fármacos causales: Antihipertensivos (betabloqueantes, IECA), tiazidas, antipalúdicos, inhibidores PD-1/PD-L1."
+2. Fármacos causales: Antihipertensivos (betabloqueantes, IECA), tiazidas, antipalúdicos, inhibidores PD-1/PD-L1.`
     },
     {
         "id": 1212,
         "categoryId": 16,
         "titulo": "URTICARIA (HABÓN URTICARIANO AGUDO)",
-        "macro": "se recibe punch de piel que mide [dimensiones] cm. la superficie muestra una placa eritemato-edematosa sobreelevada evanescente de [diámetro] cm, lisa y sin descamación ni costras. se incluye en 1 casete.
+        "macro": `se recibe punch de piel que mide [dimensiones] cm. la superficie muestra una placa eritemato-edematosa sobreelevada evanescente de [diámetro] cm, lisa y sin descamación ni costras. se incluye en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>`,
         "micro": "los cortes histológicos muestran una epidermis totalmente normal e intacta en cesta de mimbre, sin espongiosis ni daño de interfase. en la dermis papilar y reticular se identifica un intenso y difuso edema estromal que disocia y espacia ampliamente los haces de colágeno dérmico. los capilares y vénulas dérmicas superficiales se observan dilatados con tumefacción endotelial reactiva. el infiltrado inflamatorio es de intensidad leve a moderada, dispuesto en patrón perivascular superficial e intersticial, compuesto por neutrófilos y eosinófilos alineados entre las fibras colágenas ('en fila india'), acompañados de linfocitos y mastocitos degranulados. no se identifica necrosis fibrinoide vascular ni leucocitoclasia masiva.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA:
 - DERMATITIS PERIVASCULAR SUPERFICIAL E INTERSTICIAL CON MARCADO EDEMA DÉRMICO, NEUTRÓFILOS Y EOSINÓFILOS INTERSTICIALES, Y EPIDERMIS TOTALMENTE RESPETADA.
 - HALLAZGOS HISTOPATOLÓGICOS CARACTERÍSTICOS DE HABÓN URTICARIANO (URTICARIA AGUDA).
 - NEGATIVO PARA VASCULITIS LEUCOCITOCLÁSTICA O NECROSIS VASCULAR.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Hallazgos clínicos: Ronchas eritemato-edematosas intensamente pruriginosas, evanescentes (<24 horas de duración individual) que no dejan púrpura ni pigmentación.
-2. Diagnóstico diferencial: Vasculitis urticariana (dura >24-48 h, deja púrpura e histológicamente muestra necrosis fibrinoide mural y polvo nuclear)."
+2. Diagnóstico diferencial: Vasculitis urticariana (dura >24-48 h, deja púrpura e histológicamente muestra necrosis fibrinoide mural y polvo nuclear).`
     },
     {
         "id": 1213,
         "categoryId": 16,
         "titulo": "ERITEMA ANULAR CENTRÍFUGO",
-        "macro": "se recibe punch / losange de piel que mide [dimensiones] cm. en superficie se aprecia el borde sobreelevado de una placa anular eritematosa de [diámetro] cm con collarete descamativo interno. se incluye en 1 casete.
+        "macro": `se recibe punch / losange de piel que mide [dimensiones] cm. en superficie se aprecia el borde sobreelevado de una placa anular eritematosa de [diámetro] cm con collarete descamativo interno. se incluye en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>`,
         "micro": "los cortes histológicos muestran una dermatitis perivascular con patrón característico en manguito. la epidermis muestra espongiosis leve focal con pequeños montículos de paraqueratosis en la variante superficial (o epidermis intacta en la variante profunda). la unión dermoepidérmica está preservada. en la dermis se observa un denso infiltrado inflamatorio linfohistiocitario monomorfo, compacto y estrictamente delimitado alrededor de los vasos sanguíneos dérmicos, configurando el signo patognomónico en 'MANGUITO PERIVASCULAR' o 'EN MANGA DE ABRIGO' (coat-sleeve pattern). no se observan neutrófilos, depósitos de mucina ni necrosis fibrinoide vascular.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA:
 - DERMATITIS PERIVASCULAR CON INFILTRADO LINFOHISTIOCITARIO COMPACTO EN 'MANGUITO' (PATRÓN EN MANGA DE ABRIGO / COAT-SLEEVE) [TIPO SUPERFICIAL / PROFUNDO].
 - CUADRO HISTOPATOLÓGICO TÍPICO DE ERITEMA ANULAR CENTRÍFUGO (EAC DE DARIER).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Hallazgos clínicos: Lesiones anulares o policíclicas que progresan centrífugamente con collarete descamativo interno.
-2. Etiología: Reacción de hipersensibilidad a dermatofitosis (tinea pedis), fármacos o infecciones sistémicas."
+2. Etiología: Reacción de hipersensibilidad a dermatofitosis (tinea pedis), fármacos o infecciones sistémicas.`
     },
     {
         "id": 1214,
         "categoryId": 16,
         "titulo": "EXANTEMA VIRAL (MORBILIFORME)",
-        "macro": "se recibe punch de piel que mide [dimensiones] cm, con superficie epidérmica que muestra máculas eritematosas tenues no induradas de [diámetro] cm. se procesa en 1 casete.
+        "macro": `se recibe punch de piel que mide [dimensiones] cm, con superficie epidérmica que muestra máculas eritematosas tenues no induradas de [diámetro] cm. se procesa en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>`,
         "micro": "los cortes histológicos muestran fragmento de piel con dermatitis reactiva perivascular superficial inespecífica. la capa córnea conserva su aspecto en cesta de mimbre con ortoqueratosis. la epidermis presenta espongiosis intercelular leve con queratinocitos discretamente edematosos sin necrosis masiva ni inclusiones virales específicas identificables. la dermis papilar exhibe edema leve y ectasia capilar superficial. el infiltrado inflamatorio es mononuclear (linfocitos T e histiocitos) de intensidad leve a moderada, dispuesto en patrón perivascular superficial, con notoria ausencia de eosinófilos significativos y ausencia de vasculitis.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA:
 - DERMATITIS PERIVASCULAR SUPERFICIAL LINFOHISTIOCITARIA LEVE A MODERADA CON DISCRETA ESPONGIOSIS Y ECTASIA CAPILAR, SIN EOSINOFILIA SIGNIFICATIVA NI VASCULITIS.
 - COMPATIBLE CON EXANTEMA VIRAL (EXANTEMA MACULOPAPULAR / MORBILIFORME INESPECÍFICO).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Hallazgos clínicos: Erupción maculopapular eritematosa súbita difusa precedida de pródromos febriles y síntomas catarrales.
-2. Criterio de Requena: La ausencia de eosinófilos orienta fuertemente a etiología viral frente a toxicodermia medicamentosa."
+2. Criterio de Requena: La ausencia de eosinófilos orienta fuertemente a etiología viral frente a toxicodermia medicamentosa.`
     },
     {
         "id": 1215,
         "categoryId": 16,
         "titulo": "DERMATITIS DE CONTACTO ALÉRGICA",
-        "macro": "se recibe losange / punch de piel que mide [dimensiones] cm. la superficie epidérmica muestra aspecto eritemato-edematoso con micropápulas y microvesículas serosas confluentes de [diámetro] cm, sin induración profunda. se procesa en [n] casete(s).
+        "macro": `se recibe losange / punch de piel que mide [dimensiones] cm. la superficie epidérmica muestra aspecto eritemato-edematoso con micropápulas y microvesículas serosas confluentes de [diámetro] cm, sin induración profunda. se procesa en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>`,
         "micro": "los cortes histológicos muestran un patrón de dermatitis espongiótica aguda a subaguda. la epidermis exhibe ortoqueratosis laminar con focos de paraqueratosis y costras serocelulares. en el estrato espinoso se identifica marcada espongiosis intercelular que distiende los desmosomas y progresa a la formación de vesículas y microvesículas espongióticas intraepidérmicas con exocitosis de linfocitos y eosinófilos. la capa basal está intacta. en la dermis papilar se observa marcado edema estromal, ectasia vascular con congestión de capilares y un infiltrado inflamatorio perivascular e intersticial moderado a severo constituido por linfocitos, histiocitos y abundantes eosinófilos.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA POR PUNCH / LOSANGE:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA POR PUNCH / LOSANGE:
 - DERMATITIS ESPONGIÓTICA AGUDA / SUBAGUDA CON VESICULACIÓN INTRAEPIDÉRMICA Y EOSINÓFILOS DÉRMICOS, COMPATIBLE CON DERMATITIS DE CONTACTO ALÉRGICA (HIPERSENSIBILIDAD TIPO IV).
 - NEGATIVO PARA VASCULITIS, ATIPIA CELULAR O PROCESO LINFOPROLIFERATIVO.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Hallazgos clínicos: Placas eritematovesiculosas pruriginosas circunscritas a la zona de exposición al alérgeno (metales, cosméticos, tintes, fragancias).
-2. Diagnóstico diferencial: Contacto irritativo (daño tóxico queratinocítico primario con neutrófilos y sin eosinófilos)."
+2. Diagnóstico diferencial: Contacto irritativo (daño tóxico queratinocítico primario con neutrófilos y sin eosinófilos).`
     },
     {
         "id": 1216,
         "categoryId": 16,
         "titulo": "DERMATITIS DE CONTACTO IRRITATIVA",
-        "macro": "se recibe punch de piel que mide [dimensiones] cm. la superficie cutánea se observa eritematosa, apergaminada, con descamación laminar fina y fisuras superficiales de [diámetro] cm, sin ampollas francas. se procesa en 1 casete.
+        "macro": `se recibe punch de piel que mide [dimensiones] cm. la superficie cutánea se observa eritematosa, apergaminada, con descamación laminar fina y fisuras superficiales de [diámetro] cm, sin ampollas francas. se procesa en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>`,
         "micro": "los cortes histológicos muestran epidermis con hiperqueratosis compacta, paraqueratosis focal y focos de necrosis queratinocítica superficial individual (queratinocitos eosinófilos apoptóticos) en los estratos espinoso alto y granuloso. se identifica espongiosis focal irregular leve a moderada con exocitosis de neutrófilos en el estrato córneo y espinoso superior, sin grandes vesículas coalescentes. la dermis superficial exhibe vasodilatación capilar y un infiltrado perivascular superficial leve a moderado de linfocitos e histiocitos con escasos neutrófilos y llamativa escasez de eosinófilos.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA EN PUNCH:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA EN PUNCH:
 - DERMATITIS ESPONGIÓTICA / CITOTÓXICA COMPATIBLE CON DERMATITIS DE CONTACTO IRRITATIVA (DAÑO TÓXICO DIRECTO NO INMUNOLÓGICO).
 - AUSENCIA DE COMPONENTE EOSINOFÍLICO SIGNIFICATIVO.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
-1. Patogenia: Daño directo por detergentes, solventes, fricción o agentes químicos. Predomina el ardor y escozor sobre el prurito."
+1. Patogenia: Daño directo por detergentes, solventes, fricción o agentes químicos. Predomina el ardor y escozor sobre el prurito.`
     },
     {
         "id": 1217,
         "categoryId": 16,
         "titulo": "DERMATITIS NUMULAR (ECZEMA DISCOIDE)",
-        "macro": "se recibe punch de piel que mide [dimensiones] cm. la epidermis presenta una placa circular sobreelevada en 'moneda' de [diámetro] cm con superficie costrosa serohemática amarillenta y eritematosa. se procesa en 1 casete.
+        "macro": `se recibe punch de piel que mide [dimensiones] cm. la epidermis presenta una placa circular sobreelevada en 'moneda' de [diámetro] cm con superficie costrosa serohemática amarillenta y eritematosa. se procesa en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>`,
         "micro": "los cortes histológicos muestran una dermatitis espongiótica subaguda a crónica. la epidermis presenta acantosis irregular combinada con espongiosis manifiesta y formación de microvesículas espongióticas intraepidérmicas. el estrato córneo muestra una combinación diagnóstica de hiperqueratosis con prominentes montículos de paraqueratosis (mounds of parakeratosis) que engloban exudado de suero coagulado y neutrófilos (costras serocelulares). la dermis papilar está ensanchada por edema estromal y capilares congestivos rodeados por un denso infiltrado linfoplasmocitario y linfohistiocitario perivascular e intersticial con presencia constante de eosinófilos.",
-        "diag": "PIEL [LOCALIZACIÓN, EJ. MIEMBROS INFERIORES], BIOPSIA EN PUNCH:
+        "diag": `PIEL [LOCALIZACIÓN, EJ. MIEMBROS INFERIORES], BIOPSIA EN PUNCH:
 - DERMATITIS ESPONGIÓTICA SUBAGUDA CON HIPERPLASIA EPIDÉRMICA, MONTÍCULOS DE PARAQUERATOSIS SEROCELULAR Y EOSINÓFILOS DÉRMICOS, CARACTERÍSTICA DE DERMATITIS NUMULAR (ECZEMA DISCOIDE).
 - PAS NEGATIVO PARA DERMATOFITOSIS.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
-1. Hallazgos clínicos: Placas redondeadas en 'moneda' pruriginosas en piernas de adultos con xerosis o insuficiencia venosa."
+1. Hallazgos clínicos: Placas redondeadas en 'moneda' pruriginosas en piernas de adultos con xerosis o insuficiencia venosa.`
     },
     {
         "id": 1218,
         "categoryId": 16,
         "titulo": "DERMATITIS ATÓPICA",
-        "macro": "se recibe losange / punch de piel de [dimensiones] cm. la superficie epidérmica está engrosada, liquenificada con cuadriculado cutáneo marcado e hiperqueratosis de [diámetro] cm. se incluye en 1 casete.
+        "macro": `se recibe losange / punch de piel de [dimensiones] cm. la superficie epidérmica está engrosada, liquenificada con cuadriculado cutáneo marcado e hiperqueratosis de [diámetro] cm. se incluye en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>`,
         "micro": "los cortes histológicos revelan dermatitis espongiótica en fase subaguda a crónica liquenificada. se observa marcada acantosis epidérmica irregular con elongación de crestas interpapilares, hiperqueratosis con alternancia de orto y paraqueratosis, y espongiosis leve a moderada en el estrato espinoso con exocitosis linfocitaria. la dermis papilar exhibe engrosamiento y fibrosis con orientación verticalizada de los haces de colágeno (secuela de rascado crónico), vasodilatación y un conspicuo infiltrado inflamatorio mononuclear perivascular superficial compuesto por linfocitos, histiocitos, abundantes eosinófilos y mastocitos degranulados.",
-        "diag": "PIEL [LOCALIZACIÓN, EJ. PLIEGUES FLEXURALES], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN, EJ. PLIEGUES FLEXURALES], BIOPSIA:
 - DERMATITIS ESPONGIÓTICA CRÓNICA LIQUENIFICADA CON FIBROSIS PAPILAR VERTICAL Y EOSINOFILIA TISULAR, COMPATIBLE CON DERMATITIS ATÓPICA / ECCEMA ATÓPICO.
 - CAMBIOS SECUNDARIOS POR RASCADO CRÓNICO (LIQUENIFICACIÓN).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
-1. Hallazgos clínicos: Prurito intenso con distribución flexural en pliegues y antecedentes personales de atopia (asma, rinitis, IgE elevada)."
+1. Hallazgos clínicos: Prurito intenso con distribución flexural en pliegues y antecedentes personales de atopia (asma, rinitis, IgE elevada).`
     },
     {
         "id": 1219,
         "categoryId": 16,
         "titulo": "PITIRIASIS ROSADA DE GIBERT",
-        "macro": "se recibe punch de piel de [dimensiones] cm. la epidermis presenta una lesión macular ovalada asalmonada de [diámetro] cm con fino collarete descamativo interno. se procesa en 1 casete.
+        "macro": `se recibe punch de piel de [dimensiones] cm. la epidermis presenta una lesión macular ovalada asalmonada de [diámetro] cm con fino collarete descamativo interno. se procesa en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>`,
         "micro": "los cortes histológicos muestran epidermis con espongiosis focal leve a moderada. el estrato córneo muestra una alteración muy distintiva con montículos focales de paraqueratosis (mounds of parakeratosis) dispuestos de manera inclinada u oblicua hacia orificios infundibulares o crestas epidérmicas, con atenuación localizada de la capa granulosa subyacente. en la dermis papilar destaca una llamativa extravasación de hematíes (eritrocitos libres) que ascienden hacia la epidermis basal sin vasculitis necrosante. los capilares papilares están dilatados y rodeados por un moderado infiltrado linfohistiocitario perivascular.",
-        "diag": "PIEL [LOCALIZACIÓN, EJ. TÓRAX / TRONCO], BIOPSIA EN PUNCH:
+        "diag": `PIEL [LOCALIZACIÓN, EJ. TÓRAX / TRONCO], BIOPSIA EN PUNCH:
 - DERMATITIS ESPONGIÓTICA SUPERFICIAL CON MONTÍCULOS DE PARAQUERATOSIS Y EXTRAVASACIÓN DE HEMATÍES EN DERMIS PAPILAR, CARACTERÍSTICA DE PITIRIASIS ROSADA DE GIBERT.
 - NEGATIVO PARA SÍFILIS SECUNDARIA (IHC NEGATIVA) Y DERMATOFITOSIS (PAS NEGATIVO).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
-1. Signos clínicos: Placa heráldica inicial seguida tras días de erupción en 'árbol de navidad' en líneas de Langer del tronco."
+1. Signos clínicos: Placa heráldica inicial seguida tras días de erupción en 'árbol de navidad' en líneas de Langer del tronco.`
     },
     {
         "id": 1220,
         "categoryId": 16,
         "titulo": "DISHIDROSIS (ECZEMA DISHIDRÓTICO / PONFÓLIX)",
-        "macro": "se recibe punch de piel acral (palmar/plantar) de [dimensiones] cm. el estrato córneo es grueso, observándose múltiples vesículas tensas translúcidas de 1 a 3 mm 'en grano de mijo'. se procesa en 1 casete.
+        "macro": `se recibe punch de piel acral (palmar/plantar) de [dimensiones] cm. el estrato córneo es grueso, observándose múltiples vesículas tensas translúcidas de 1 a 3 mm 'en grano de mijo'. se procesa en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>`,
         "micro": "los cortes histológicos muestran piel acral con estrato córneo compacto ortoqueratósico engrosado. en el estrato espinoso se aprecian voluminosas cavidades vesículo-ampollosas intraepidérmicas uniloculares y multiloculares producidas por espongiosis masiva coalescente, conteniendo líquido seroso proteináceo con linfocitos y escasos eosinófilos. los conductos ecrinos intraepidérmicos (acrosiringios) atraviesan la epidermis sin inflamación intrínseca ni obstrucción ostial. la dermis papilar muestra intenso edema con ectasia vascular e infiltrado perivascular linfohistiocitario con eosinófilos.",
-        "diag": "PIEL ACRAL [PALMAR / PLANTAR / DIGITAL], BIOPSIA:
+        "diag": `PIEL ACRAL [PALMAR / PLANTAR / DIGITAL], BIOPSIA:
 - DERMATITIS ESPONGIÓTICA VESICULO-AMPOLLOSA INTRAEPIDÉRMICA ACRAL DE TIPO PONFÓLIX / ECZEMA DISHIDRÓTICO.
 - DUCTOS ECRINOS CONSERVADOS SIN OBSTRUCCIÓN.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
-1. Aclaración anatomopatológica: El término histórico 'dishidrosis' es equívoco, pues la histopatología demuestra que el origen es un eccema espongiótico y no una alteración primaria del conducto sudoríparo."
+1. Aclaración anatomopatológica: El término histórico 'dishidrosis' es equívoco, pues la histopatología demuestra que el origen es un eccema espongiótico y no una alteración primaria del conducto sudoríparo.`
     },
     {
         "id": 1221,
         "categoryId": 16,
         "titulo": "PSORIASIS VULGAR",
-        "macro": "se recibe losange / punch de piel que mide [dimensiones] cm. la superficie epidérmica exhibe una placa sobreelevada eritematosa infiltrada de [diámetro] cm, cubierta por escamas blanco-nacaradas plateadas micáceas. se incluye en [n] casete(s).
+        "macro": `se recibe losange / punch de piel que mide [dimensiones] cm. la superficie epidérmica exhibe una placa sobreelevada eritematosa infiltrada de [diámetro] cm, cubierta por escamas blanco-nacaradas plateadas micáceas. se incluye en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin (5th ed.).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin (5th ed.).</small>`,
         "micro": "los cortes histológicos muestran la hiperplasia psoriasiforme regular clásica. la epidermis presenta hiperqueratosis con paraqueratosis confluente continua en bandas laminares, con ausencia o marcada atenuación de la capa granulosa (agranulosis subparaqueratósica). se observa acantosis regular caracterizada por elongación simétrica homogénea de las crestas interpapilares ('en batidor de huevos / dedos de guante') con ensanchamiento en sus bases. se identifican colecciones de neutrófilos en la capa córnea paraqueratósica (microabscesos de Munro) y en el estrato espinoso alto (pústulas espongiformes de Kogoj). las placas suprapapilares se encuentran marcadamente adelgazadas sobre papilas dérmicas elongadas y edematosas que contienen capilares tortuosos, ectásicos y congestivos. en la dermis superficial se aprecia infiltrado inflamatorio linfohistiocitario perivascular con neutrófilos y sin eosinófilos.",
-        "diag": "PIEL [LOCALIZACIÓN, EJ. CODOS / RODILLAS / REGIÓN SACRA], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN, EJ. CODOS / RODILLAS / REGIÓN SACRA], BIOPSIA:
 - DERMATITIS PSORIASIFORME CLÁSICA CON MICROABSCESOS DE MUNRO, PÚSTULAS ESPONGIFORMES DE KOGOJ, ADELGAZAMIENTO SUPRAPAPILAR Y ECTASIA CAPILAR TORTUOSA.
 - DIAGNÓSTICO HISTOPATOLÓGICO DE PSORIASIS VULGAR EN PLACAS.
 - PAS NEGATIVO PARA HONGOS.
@@ -1957,241 +1961,241 @@ CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Sustrato anatómico de signos clínicos:
    - Signo de la bujía/vela: Desprendimiento de escamas paraqueratósicas secas.
    - Signo del rocío sangrante de Auspitz: Ruptura de capilares tortuosos al desprender la escama sobre las placas suprapapilares adelgazadas.
-2. Fenómeno de Koebner positivo."
+2. Fenómeno de Koebner positivo.`
     },
     {
         "id": 1222,
         "categoryId": 16,
         "titulo": "DERMATITIS SEBORREICA",
-        "macro": "se recibe punch de piel que mide [dimensiones] cm proveniente de piel cabelluda / rostro, con eritema moderado cubierto por escamas amarillentas untuosas y grasientas de [diámetro] cm. se procesa en 1 casete.
+        "macro": `se recibe punch de piel que mide [dimensiones] cm proveniente de piel cabelluda / rostro, con eritema moderado cubierto por escamas amarillentas untuosas y grasientas de [diámetro] cm. se procesa en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>`,
         "micro": "los cortes histológicos muestran un patrón híbrido psoriasiforme y espongiótico. la epidermis exhibe acantosis psoriasiforme irregular. el estrato córneo muestra hiperqueratosis con focos de paraqueratosis localizados prominentemente en los márgenes de los orificios infundibulares foliculares ('paraqueratosis en hombro folicular'), mezclada con restos neutrofílicos y costras serocelulares. la capa granulosa está preservada. en el estrato espinoso se constata espongiosis focal leve con exocitosis linfocítica. la dermis papilar muestra vasodilatación capilar y un infiltrado inflamatorio linfohistiocitario perivascular e infundibular superficial con células plasmáticas y neutrófilos dispersos.",
-        "diag": "PIEL [CUERO CABELLUDO / SURCO NASOGENIANO / TÓRAX], BIOPSIA:
+        "diag": `PIEL [CUERO CABELLUDO / SURCO NASOGENIANO / TÓRAX], BIOPSIA:
 - DERMATITIS PSORIASIFORME Y ESPONGIÓTICA SUPERFICIAL CON PARAQUERATOSIS EN HOMBRO FOLICULAR Y COSTRAS SEROCELULARES, COMPATIBLE CON DERMATITIS SEBORREICA.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
-1. Hallazgos clínicos: Placas eritematoescamosas untuosas en áreas seborreicas (cara, cuero cabelludo, preesternal) asociadas a colonización por levaduras Malassezia spp."
+1. Hallazgos clínicos: Placas eritematoescamosas untuosas en áreas seborreicas (cara, cuero cabelludo, preesternal) asociadas a colonización por levaduras Malassezia spp.`
     },
     {
         "id": 1223,
         "categoryId": 16,
         "titulo": "PITIRIASIS RUBRA PILARIS",
-        "macro": "se recibe punch de piel de [dimensiones] cm. la superficie cutánea se observa indurada con hiperqueratosis folicular prominente (pápulas córneas acuminadas) sobre fondo eritemato-anaranjado de [diámetro] cm. se incluye en 1 casete.
+        "macro": `se recibe punch de piel de [dimensiones] cm. la superficie cutánea se observa indurada con hiperqueratosis folicular prominente (pápulas córneas acuminadas) sobre fondo eritemato-anaranjado de [diámetro] cm. se incluye en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin.</small>`,
         "micro": "los cortes histológicos muestran la tríada diagnóstica patognomónica: 1) Marcada hiperqueratosis en 'tablero de ajedrez' (checkerboard pattern), con alternancia regular de ortoqueratosis y paraqueratosis tanto en sentido vertical como horizontal; 2) Dilatación infundibular folicular ocupada por un denso tapón de queratina compacta con collar de paraqueratosis perifolicular; 3) Capa granulosa preservada y engrosada (hipergranulosis marcada). la epidermis muestra acantosis psoriasiforme con crestas interpapilares gruesas y romas sin adelgazamiento suprapapilar ni microabscesos neutrofílicos de Munro. la dermis superficial presenta leve infiltrado linfohistiocitario perivascular.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA EN PUNCH:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA EN PUNCH:
 - DERMATITIS PSORIASIFORME CON HIPERQUERATOSIS EN 'TABLERO DE AJEDREZ' (ORTO Y PARAQUERATOSIS ALTERNANTE), HIPERGRANULOSIS Y TAPONAMIENTO CÓRNEO FOLICULAR, DIAGNÓSTICA DE PITIRIASIS RUBRA PILARIS (PRP).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
-1. Signos clínicos: Pápulas foliculares queratósicas en dorso de dedos ('signo del rallador de nuez moscada'), placas anaranjadas con islotes de piel sana respetada y queratodermia palmoplantar cerosa en sandalia."
+1. Signos clínicos: Pápulas foliculares queratósicas en dorso de dedos ('signo del rallador de nuez moscada'), placas anaranjadas con islotes de piel sana respetada y queratodermia palmoplantar cerosa en sandalia.`
     },
     {
         "id": 1224,
         "categoryId": 16,
         "titulo": "PÉNFIGO VULGAR",
-        "macro": "se recibe punch de piel / mucosa de [dimensiones] cm tomado del borde de una ampolla flácida colapsada con fondo cruento erosivo de [diámetro] cm. se procesa en 1 casete.
+        "macro": `se recibe punch de piel / mucosa de [dimensiones] cm tomado del borde de una ampolla flácida colapsada con fondo cruento erosivo de [diámetro] cm. se procesa en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin (5th ed.).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin (5th ed.).</small>`,
         "micro": "los cortes histológicos muestran una ampolla intraepidérmica suprabasal acantolítica. se evidencia una hendidura y despegamiento inmediatamente por encima de la capa de células basales, manteniéndose los queratinocitos basales firmemente anclados a la membrana basal dérmica en disposición característica en 'hilera de lápidas' (row of tombstones). en el interior de la cavidad ampollosa flotan abundantes queratinocitos acantolíticos redondeados con núcleos aumentados de tamaño (células de Tzanck). las papilas dérmicas denudadas ('villi') protruyen hacia la cavidad. el clivaje se extiende a lo largo de la vaina radicular externa folicular. la dermis papilar muestra edema estromal e infiltrado perivascular linfohistiocitario moderado con abundantes eosinófilos.",
-        "diag": "PIEL / MUCOSA [LOCALIZACIÓN, EJ. MUCOSA ORAL / TRONCO], BIOPSIA DE BORDE DE AMPOLLA:
+        "diag": `PIEL / MUCOSA [LOCALIZACIÓN, EJ. MUCOSA ORAL / TRONCO], BIOPSIA DE BORDE DE AMPOLLA:
 - DERMATOSIS AMPOLLOSA INTRAEPIDÉRMICA CON ACANTÓLISIS SUPRABASAL EXTENSA, CAPA BASAL EN 'HILERA DE LÁPIDAS' Y CÉLULAS ACANTOLÍTICAS, DIAGNÓSTICA DE PÉNFIGO VULGAR.
 - SE SUGIERE CONFIRMACIÓN CON INMUNOFLUORESCENCIA DIRECTA (IFD).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Signos clínicos: Ampollas flácidas de fácil ruptura con signo de Nikolsky directo y Asboe-Hansen positivos; afectación de mucosa oral en >70% de casos.
-2. Inmunofluorescencia Directa (IFD): Depósito de IgG y C3 intercelular intraepidérmico en 'malla de alambre' (contra Desmogleína 3 y Desmogleína 1)."
+2. Inmunofluorescencia Directa (IFD): Depósito de IgG y C3 intercelular intraepidérmico en 'malla de alambre' (contra Desmogleína 3 y Desmogleína 1).`
     },
     {
         "id": 1225,
         "categoryId": 16,
         "titulo": "PÉNFIGO FOLIÁCEO",
-        "macro": "se recibe punch de piel de [dimensiones] cm. la superficie cutánea exhibe lesiones escamo-costrosas eritematosas superficiales 'en hojas de hojaldre' de [diámetro] cm. se procesa en 1 casete.
+        "macro": `se recibe punch de piel de [dimensiones] cm. la superficie cutánea exhibe lesiones escamo-costrosas eritematosas superficiales 'en hojas de hojaldre' de [diámetro] cm. se procesa en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>`,
         "micro": "los cortes histológicos muestran una ampolla y clivaje intraepidérmico superficial a nivel subcórneo o en el estrato granuloso alto. la acantólisis es localizada, observándose queratinocitos acantolíticos redondeados en el piso y techo de la ampolla subcórnea. los estratos espinoso y basal se encuentran completamente preservados sin clivaje suprabasal. el techo ampolloso está constituido únicamente por estrato córneo y restos de capa granulosa con costras serocelulares. en la dermis superficial se aprecia leve a moderado infiltrado linfohistiocitario perivascular con eosinófilos dispersos.",
-        "diag": "PIEL [LOCALIZACIÓN, EJ. CARA / TRONCO SUPERIOR], BIOPSIA EN PUNCH:
+        "diag": `PIEL [LOCALIZACIÓN, EJ. CARA / TRONCO SUPERIOR], BIOPSIA EN PUNCH:
 - DERMATOSIS AMPOLLOSA INTRAEPIDÉRMICA SUBCÓRNEA / GRANULOSA CON ACANTÓLISIS SUPERFICIAL, COMPATIBLE CON PÉNFIGO FOLIÁCEO (O SU VARIANTE FOGO SELVAGEM).
 - INTEGRIDAD COMPLETA DE ESTRATOS BASAL Y ESPINOSO PROFUNDO.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
-1. Diagnóstico diferencial: A diferencia del pénfigo vulgar, el foliáceo NO afecta mucosas (debido a que los anticuerpos van dirigidos exclusivamente contra Desmogleína 1 y en mucosas la Desmogleína 3 preserva la adhesión)."
+1. Diagnóstico diferencial: A diferencia del pénfigo vulgar, el foliáceo NO afecta mucosas (debido a que los anticuerpos van dirigidos exclusivamente contra Desmogleína 1 y en mucosas la Desmogleína 3 preserva la adhesión).`
     },
     {
         "id": 1226,
         "categoryId": 16,
         "titulo": "PENFIGOIDE AMPOLLOSO",
-        "macro": "se recibe punch / losange de piel de [dimensiones] cm que incluye ampolla tensa intacta de [diámetro] cm sobre base eritematosa, de contenido seroso claro y pared gruesa resistente. se incluye en 1 casete.
+        "macro": `se recibe punch / losange de piel de [dimensiones] cm que incluye ampolla tensa intacta de [diámetro] cm sobre base eritematosa, de contenido seroso claro y pared gruesa resistente. se incluye en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin (5th ed.).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / McKee's Pathology of the Skin (5th ed.).</small>`,
         "micro": "los cortes histológicos muestran una ampolla subepidérmica franca de cavidad amplia. el despegamiento se produce a nivel de la unión dermoepidérmica (lámina lúcida), estando el techo ampolloso constituido por el espesor íntegro de una epidermis viable sin acantólisis. la cavidad ampollosa contiene abundante líquido seroso fibrinoide con un denso infiltrado inflamatorio rico en eosinófilos, linfocitos y escasos neutrófilos. en la epidermis perilesional se observa espongiosis eosinofílica. la dermis papilar (suelo ampolloso) se encuentra marcadamente edematosa con un conspicuo infiltrado perivascular e intersticial de predominio eosinofílico y linfohistiocitario.",
-        "diag": "PIEL [LOCALIZACIÓN, EJ. ABDOMEN / EXTREMIDADES], BIOPSIA CUTÁNEA:
+        "diag": `PIEL [LOCALIZACIÓN, EJ. ABDOMEN / EXTREMIDADES], BIOPSIA CUTÁNEA:
 - DERMATOSIS AMPOLLOSA SUBEPIDÉRMICA NO ACANTOLÍTICA CON ABUNDANTES EOSINÓFILOS EN CAVIDAD Y DERMIS PAPILAR (ESPONGIOSIS EOSINOFÍLICA), CARACTERÍSTICA DE PENFIGOIDE AMPOLLOSO.
 - SE SUGIERE CONFIRMACIÓN POR IFD / SALT-SPLIT SKIN.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Signos clínicos: Grandes ampollas tensas sobre placas urticarianas en adultos mayores (>65 años), con signo de Nikolsky negativo y prurito intenso.
-2. Inmunofluorescencia Directa (IFD): Depósito lineal continuo de IgG y C3 a lo largo de la zona de membrana basal (antígenos BP180 NC16A y BP230)."
+2. Inmunofluorescencia Directa (IFD): Depósito lineal continuo de IgG y C3 a lo largo de la zona de membrana basal (antígenos BP180 NC16A y BP230).`
     },
     {
         "id": 1227,
         "categoryId": 16,
         "titulo": "DERMATITIS HERPETIFORME DE DUHRING-BROCQ",
-        "macro": "se recibe punch de piel de [dimensiones] cm con micropápulas y vesículas agrupadas en racimo ('disposición herpetiforme') de [diámetro] cm sobre superficies extensoras con excoriaciones. se procesa en 1 casete.
+        "macro": `se recibe punch de piel de [dimensiones] cm con micropápulas y vesículas agrupadas en racimo ('disposición herpetiforme') de [diámetro] cm sobre superficies extensoras con excoriaciones. se procesa en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L. (2015). Patrones Histopatológicos de las Enfermedades Inflamatorias de la Piel. / Weedon's Skin Pathology.</small>`,
         "micro": "los cortes histológicos muestran una dermatosis ampollosa subepidérmica microfocal muy característica. en los vértices o cúspides de las papilas dérmicas (papillary tips) se observan densas acumulaciones focales de neutrófilos polimorfonucleares con polvo nuclear (microabscesos neutrofílicos papilares con leucocitoclasia), fibrina y escasos eosinófilos. la lisis neutrofílica induce vacuolización y microdespegamientos subepidérmicos en las cúspides papilares que coalescen formando hendiduras subepidérmicas. el techo epidérmico es viable sin acantólisis. la dermis reticular superficial exhibe ectasia capilar e infiltrado perivascular linfohistiocitario y neutrofílico.",
-        "diag": "PIEL [SUPERFICIES EXTENSORAS: CODOS / RODILLAS / GLÚTEOS], BIOPSIA EN PUNCH:
+        "diag": `PIEL [SUPERFICIES EXTENSORAS: CODOS / RODILLAS / GLÚTEOS], BIOPSIA EN PUNCH:
 - DERMATITIS AMPOLLOSA SUBEPIDÉRMICA CON MICROABSCESOS NEUTRÓFILOS EN CÚSPIDES DE PAPILAS DÉRMICAS Y LEUCOCITOCLASIA PAPILAR, COMPATIBLE CON DERMATITIS HERPETIFORME DE DUHRING-BROCQ.
 - SE REQUIERE TOMA DE BIOPSIA DE PIEL PERILESIONAL SANA PARA INMUNOFLUORESCENCIA DIRECTA (IFD).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Signos clínicos: Vesículas excoriadas intensamente pruriginosas agrupadas simétricamente en codos, rodillas y glúteos.
 2. Asociación: Prácticamente el 100% de los pacientes presenta enteropatía sensible al gluten (Enfermedad Celíaca).
-3. IFD (Gold Standard): Depósito granular de IgA en cúspides papilares (anticuerpos anti-transglutaminasa epidérmica eTG)."
+3. IFD (Gold Standard): Depósito granular de IgA en cúspides papilares (anticuerpos anti-transglutaminasa epidérmica eTG).`
     },
     {
         "id": 1228,
         "categoryId": 16,
         "titulo": "VASCULITIS LEUCOCITOCLÁSTICA DE PEQUEÑO VASO",
-        "macro": "se recibe punch / losange de piel que mide [dimensiones] cm. la superficie epidérmica muestra múltiples lesiones purpúricas palpables milimétricas que no blanquean a la vitropresión, con diámetro de [diámetro] cm. al corte, la dermis presenta punteado hemorrágico sobre fondo grisáceo. se incluye en [n] casete(s).
+        "macro": `se recibe punch / losange de piel que mide [dimensiones] cm. la superficie epidérmica muestra múltiples lesiones purpúricas palpables milimétricas que no blanquean a la vitropresión, con diámetro de [diámetro] cm. al corte, la dermis presenta punteado hemorrágico sobre fondo grisáceo. se incluye en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Sánchez Yus, E. (2001). Cutaneous vasculitis: A review of the histopathologic spectrum. J Am Acad Dermatol, 48(4), 546-574.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Sánchez Yus, E. (2001). Cutaneous vasculitis: A review of the histopathologic spectrum. J Am Acad Dermatol, 48(4), 546-574.</small>`,
         "micro": "los cortes histológicos muestran compromiso vascular necrosante centrado en las vénulas poscapilares y capilares de la dermis papilar y reticular superficial. se evidencia tumefacción y desprendimiento de células endoteliales con depósito intramural y perivascular de fibrina eosinófila densa (necrosis fibrinoide de la pared vascular). se identifica un denso infiltrado inflamatorio predominantemente neutrofílico perivascular e intersticial con marcada leucocitoclasia caracterizada por abundantes restos nucleares cariorrécticos ('polvo nuclear'). se asocia a conspicua extravasación de eritrocitos en el estroma dérmico y edema papilar. no se observan granulomas dérmicos ni trombosis de vasos de gran calibre.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA EN PUNCH / INCISIONAL:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA EN PUNCH / INCISIONAL:
 - VASCULITIS LEUCOCITOCLÁSTICA DE PEQUEÑO VASO (VASCULITIS CUTÁNEA NECROSANTE).
 - NECROSIS FIBRINOIDE DE LA PARED VASCULAR, LEUCOCITOCLASIA Y EXTRAVASACIÓN ERITROCITARIA PROMINENTE.
 - NEGATIVO PARA VASCULITIS GRANULOMATOSA O MALIGNIDAD.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Hallazgos clínicos: Púrpura palpable en extremidades inferiores mediada por inmunocomplejos.
-2. IFD temprana (<24-48 h): Depósito vascular de IgA orienta a Púrpura de Henoch-Schönlein; IgG/IgM/C3 orienta a vasculitis por hipersensibilidad o conectivopatía."
+2. IFD temprana (<24-48 h): Depósito vascular de IgA orienta a Púrpura de Henoch-Schönlein; IgG/IgM/C3 orienta a vasculitis por hipersensibilidad o conectivopatía.`
     },
     {
         "id": 1229,
         "categoryId": 16,
         "titulo": "VASCULITIS LINFOCÍTICA CUTÁNEA",
-        "macro": "se recibe punch de piel que mide [dimensiones] cm, exhibiendo máculas y placas purpúricas eritematovioláceas de [diámetro] cm. al corte, tejido dérmico elástico y homogéneo. se incluye en 1 casete.
+        "macro": `se recibe punch de piel que mide [dimensiones] cm, exhibiendo máculas y placas purpúricas eritematovioláceas de [diámetro] cm. al corte, tejido dérmico elástico y homogéneo. se incluye en 1 casete.
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Sánchez Yus, E. (2001). Cutaneous vasculitis. J Am Acad Dermatol. / Carlson, J. A. (2010). Am J Dermatopathol.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Sánchez Yus, E. (2001). Cutaneous vasculitis. J Am Acad Dermatol. / Carlson, J. A. (2010). Am J Dermatopathol.</small>`,
         "micro": "los cortes histológicos muestran dermis superficial y media con infiltrado inflamatorio perivascular e intramural denso compuesto predominantemente por linfocitos maduros e histiocitos que penetran y distorsionan las paredes de vénulas y capilares dérmicos. se aprecia tumefacción endotelial con estenosis luminal, depósito focal de material fibrinoide subendotelial y extravasación de hematíes en la dermis papilar. no se observa componente neutrofílico significativo, leucocitoclasia prominente ni granulomas. atipia citológica linfoide ausente.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA:
 - VASCULITIS LINFOCÍTICA CUTÁNEA.
 - INFILTRADO LINFOHISTIOCITARIO TRANSMURAL PERIVASCULAR CON DAÑO ENDOTELIAL Y EXTRAVASACIÓN HEMÁTICA.
 - NEGATIVO PARA ATIPIA CITOLÓGICA LINFOIDE O VASCULITIS LEUCOCITOCLÁSTICA TÍPICA.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
-1. Diagnóstico diferencial: Fase tardía de vasculitis leucocitoclástica, erupción medicamentosa fija, lupus eritematoso, eritema anular centrífugo profundo o PLEVA."
+1. Diagnóstico diferencial: Fase tardía de vasculitis leucocitoclástica, erupción medicamentosa fija, lupus eritematoso, eritema anular centrífugo profundo o PLEVA.`
     },
     {
         "id": 1230,
         "categoryId": 16,
         "titulo": "GRANULOMA ANULAR",
-        "macro": "se recibe losange / punch de piel que mide [dimensiones] cm. la superficie exhibe pápulas o placas eritematosas anulares sobreelevadas con centro deprimido de [diámetro] cm. al corte, la dermis muestra áreas nodulares blanquecino-nacaradas. se incluye en [n] casete(s).
+        "macro": `se recibe losange / punch de piel que mide [dimensiones] cm. la superficie exhibe pápulas o placas eritematosas anulares sobreelevadas con centro deprimido de [diámetro] cm. al corte, la dermis muestra áreas nodulares blanquecino-nacaradas. se incluye en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Fernández-Figueras, M. T. (2007). Semin Cutan Med Surg. / McKee's Pathology of the Skin (5th ed.).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Fernández-Figueras, M. T. (2007). Semin Cutan Med Surg. / McKee's Pathology of the Skin (5th ed.).</small>`,
         "micro": "los cortes histológicos muestran epidermis conservada. en la dermis reticular superficial y media se identifican focos característicos de necrobiosis de colágeno, donde los haces colágenos se aprecian pálidos, desorganizados y embebidos en una abundante sustancia fundamental basófila correspondiente a depósito de mucina estromal (ácido hialurónico). estas áreas de colágeno degenerado se encuentran delimitadas por una empalizada de histiocitos epitelioides y células gigantes multinucleadas, con linfocitos en la periferia y patrón histiocítico intersticial adyacente. las fibras elásticas se encuentran marcadamente disminuidas o fragmentadas en las zonas necrobióticas. no se observan células plasmáticas abundantes ni necrosis caseosa.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA:
 - DERMATITIS GRANULOMATOSA EN EMPALIZADA E INTERSTICIAL, COMPATIBLE CON GRANULOMA ANULAR.
 - FOCOS DE NECROBIOSIS DE COLÁGENO CON ABUNDANTE DEPÓSITO DE MUCINA ESTROMAL.
 - TINCIONES ESPECIALES NEGATIVAS PARA HONGOS Y MICOBACTERIAS (PAS Y ZIEHL-NEELSEN NEGATIVOS).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Hallazgos clínicos: Pápulas y placas anulares en extremidades (dorso de manos y pies).
-2. En variantes generalizadas/diseminadas: Descartar diabetes mellitus, disfunción tiroidea o hiperlipidemias."
+2. En variantes generalizadas/diseminadas: Descartar diabetes mellitus, disfunción tiroidea o hiperlipidemias.`
     },
     {
         "id": 1231,
         "categoryId": 16,
         "titulo": "NECROBIOSIS LIPOÍDICA",
-        "macro": "se recibe losange de piel que mide [dimensiones] cm proveniente de región pretibial. la epidermis se observa adelgazada, brillante y amarillenta con finas telangiectasias de [diámetro] cm y borde eritematovioláceo indurado. al corte, todo el espesor dérmico y subcutáneo superficial se muestran escleróticos blanco-amarillentos en capas horizontales. se incluye en [n] casete(s).
+        "macro": `se recibe losange de piel que mide [dimensiones] cm proveniente de región pretibial. la epidermis se observa adelgazada, brillante y amarillenta con finas telangiectasias de [diámetro] cm y borde eritematovioláceo indurado. al corte, todo el espesor dérmico y subcutáneo superficial se muestran escleróticos blanco-amarillentos en capas horizontales. se incluye en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Sánchez Yus, E. (2008). Panniculitis. J Am Acad Dermatol. / Weedon's Skin Pathology.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Sánchez Yus, E. (2008). Panniculitis. J Am Acad Dermatol. / Weedon's Skin Pathology.</small>`,
         "micro": "los cortes histológicos revelan un proceso granulomatoso inflamatorio y esclerótico extenso que compromete todo el espesor dérmico y se extiende hacia los septos subcutáneos. se dispone en un patrón laminar horizontal en capas ('tier-like' o en sándwich), donde alternan bandas anchas acelulares de colágeno necrobiótico pálido y esclerótico con bandas de infiltrado granulomatoso. el infiltrado está constituido por histiocitos en empalizada, células gigantes multinucleadas (tipo Touton con citoplasma xantomatoso y de tipo Langhans) y abundantes células plasmáticas y linfocitos perivasculares en la dermis profunda. los vasos dérmicos profundos exhiben engrosamiento endotelial y endarteritis obliterante reactiva. mucina escasa o ausente.",
-        "diag": "PIEL [REGIÓN PRETIBIAL], BIOPSIA EN LOSANGE PROFUNDO:
+        "diag": `PIEL [REGIÓN PRETIBIAL], BIOPSIA EN LOSANGE PROFUNDO:
 - DERMATITIS Y PANICULITIS GRANULOMATOSA EN EMPALIZADA ESTRATIFICADA EXTENSA, HISTOPATOLÓGICAMENTE COMPATIBLE CON NECROBIOSIS LIPOÍDICA (NECROBIOSIS LIPOIDICA DIABETICORUM).
 - ESCLEROSIS DE COLÁGENO, CÉLULAS GIGANTES TIPO TOUTON Y CÉLULAS PLASMÁTICAS PERIVASCULARES PROFUNDAS.
 - NEGATIVO PARA MALIGNIDAD.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
-1. Hallazgos clínicos: Placas amarillentas escleróticas pretibiales con telangiectasias asociadas a Diabetes Mellitus en >65% de casos."
+1. Hallazgos clínicos: Placas amarillentas escleróticas pretibiales con telangiectasias asociadas a Diabetes Mellitus en >65% de casos.`
     },
     {
         "id": 1232,
         "categoryId": 16,
         "titulo": "SARCOIDOSIS CUTÁNEA",
-        "macro": "se recibe punch / losange de piel que mide [dimensiones] cm. la superficie cutánea presenta lesiones pápulo-nodulares firmes eritematovioláceas a pardo-amarillentas ('jalea de manzana' a la diascopia) de [diámetro] cm. al corte, la dermis muestra nódulos blanquecinos duros y bien delimitados. se incluye en [n] casete(s).
+        "macro": `se recibe punch / losange de piel que mide [dimensiones] cm. la superficie cutánea presenta lesiones pápulo-nodulares firmes eritematovioláceas a pardo-amarillentas ('jalea de manzana' a la diascopia) de [diámetro] cm. al corte, la dermis muestra nódulos blanquecinos duros y bien delimitados. se incluye en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Sánchez Yus, E. (2007). Cutaneous Sarcoidosis. Semin Cutan Med Surg. / McKee's Pathology of the Skin.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Sánchez Yus, E. (2007). Cutaneous Sarcoidosis. Semin Cutan Med Surg. / McKee's Pathology of the Skin.</small>`,
         "micro": "los cortes histológicos de piel exhiben una epidermis preservada. en la dermis reticular y adventicial se identifican múltiples granulomas epitelioides no caseificantes, discretos y bien delimitados, característicamente 'desnudos' (naked granulomas), definidos por un ribete linfocítico periférico mínimo o ausente. los granulomas están compuestos por agregados cohesivos de histiocitos epitelioides y células gigantes multinucleadas tipo Langhans y a cuerpo extraño (con ocasionales cuerpos asteroides y de Schaumann). no se observa necrosis caseosa central, leucocitoclasia ni neutrófilos. la red de fibras reticulares rodea adecuadamente los granulomas.",
-        "diag": "PIEL [LOCALIZACIÓN], BIOPSIA:
+        "diag": `PIEL [LOCALIZACIÓN], BIOPSIA:
 - DERMATITIS GRANULOMATOSA NO CASEIFICANTE DE PATRÓN SARCOIDEO ('GRANULOMAS DESNUDOS'), HISTOPATOLÓGICAMENTE COMPATIBLE CON SARCOIDOSIS CUTÁNEA.
 - NEGATIVO PARA NECROSIS CASEOSA CENTRAL.
 - TINCIONES ESPECIALES NEGATIVAS PARA MICOBACTERIAS Y HONGOS (ZIEHL-NEELSEN, FITE-FARACO, PAS Y GROCOTT NEGATIVOS).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Diagnóstico de exclusión: Tinciones ZN y PAS negativas y ausencia de partículas birrefringentes bajo luz polarizada.
-2. Evaluación sistémica: Radiografía/TC de tórax (adenopatías hiliares), ECA sérica, calcio y prueba de tuberculina (PPD/IGRA anérgico)."
+2. Evaluación sistémica: Radiografía/TC de tórax (adenopatías hiliares), ECA sérica, calcio y prueba de tuberculina (PPD/IGRA anérgico).`
     },
     {
         "id": 1233,
         "categoryId": 16,
         "titulo": "GRANULOMA A CUERPO EXTRAÑO",
-        "macro": "se recibe fragmento de piel y tejido subcutáneo que mide [dimensiones] cm con una lesión nodular indurada de [diámetro] cm. al corte, el nódulo es firme, pardo-blanquecino con áreas grisáceas. se incluye en [n] casete(s).
+        "macro": `se recibe fragmento de piel y tejido subcutáneo que mide [dimensiones] cm con una lesión nodular indurada de [diámetro] cm. al corte, el nódulo es firme, pardo-blanquecino con áreas grisáceas. se incluye en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., et al. (2015). Adverse cutaneous reactions to foreign bodies. Dermatol Clin. / McKee's Pathology of the Skin.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., et al. (2015). Adverse cutaneous reactions to foreign bodies. Dermatol Clin. / McKee's Pathology of the Skin.</small>`,
         "micro": "los cortes histológicos muestran dermis reticular y tejido celular subcutáneo con reacción inflamatoria granulomatosa de patrón nodular y difuso. el infiltrado está constituido por histiocitos epitelioides y abundantes células gigantes multinucleadas de tipo cuerpo extraño con núcleos agrupados irregularmente en el citoplasma, acompañados de linfocitos, fibroblastos reactivos y fibrosis estromal. en el citoplasma de las células gigantes y extracelularmente se identifican partículas de material particulado exógeno/endógeno no digerible, las cuales demuestran birrefringencia positiva bajo luz polarizada. no se observa necrosis caseosa ni vasculitis necrosante.",
-        "diag": "PIEL Y TEJIDO SUBCUTÁNEO [LOCALIZACIÓN], BIOPSIA / RESECCIÓN:
+        "diag": `PIEL Y TEJIDO SUBCUTÁNEO [LOCALIZACIÓN], BIOPSIA / RESECCIÓN:
 - REACCIÓN GRANULOMATOSA NODULAR A CUERPO EXTRAÑO CON CÉLULAS GIGANTES MULTINUCLEADAS.
 - PRESENCIA DE MATERIAL HETERÓLOGO / PARTICULADO CONFIRMADO BAJO LUZ POLARIZADA.
 - NEGATIVO PARA MICOBACTERIAS O MICOSIS PROFUNDA (ZN Y PAS NEGATIVOS).
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
-1. Anamnesis: Correlacionar con antecedentes de traumatismos penetrantes (espinas, astillas), materiales de relleno cosmético, tatuajes o suturas quirúrgicas previas."
+1. Anamnesis: Correlacionar con antecedentes de traumatismos penetrantes (espinas, astillas), materiales de relleno cosmético, tatuajes o suturas quirúrgicas previas.`
     },
     {
         "id": 1234,
         "categoryId": 16,
         "titulo": "ERITEMA NUDOSO (PANICULITIS SEPTAL)",
-        "macro": "se recibe losange profundo de piel y tejido celular subcutáneo en cuña que mide [dimensiones] cm de superficie y [profundidad] cm de espesor hasta hipodermis profunda. en superficie se observa placa nodular eritematosa indurada de [diámetro] cm en cara anterior de pierna. al corte, los septos fibrosos del tejido adiposo subcutáneo se observan notablemente ensanchados, edematosos y blanco-grisáceos, contrastando con los lobulillos grasos amarillos preservados. se incluye en [n] casete(s).
+        "macro": `se recibe losange profundo de piel y tejido celular subcutáneo en cuña que mide [dimensiones] cm de superficie y [profundidad] cm de espesor hasta hipodermis profunda. en superficie se observa placa nodular eritematosa indurada de [diámetro] cm en cara anterior de pierna. al corte, los septos fibrosos del tejido adiposo subcutáneo se observan notablemente ensanchados, edematosos y blanco-grisáceos, contrastando con los lobulillos grasos amarillos preservados. se incluye en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Sánchez Yus, E. (2008). Panniculitis. Part I. Mostly septal panniculitis. J Am Acad Dermatol, 58(6), 940-972.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Sánchez Yus, E. (2008). Panniculitis. Part I. Mostly septal panniculitis. J Am Acad Dermatol, 58(6), 940-972.</small>`,
         "micro": "los cortes histológicos muestran una paniculitis de patrón predominantemente septal con respeto de los centros lobulillares adiposos. los tabiques o septos conectivos interlobulillares se encuentran marcadamente ensanchados por edema, proliferación fibroblástica y un denso infiltrado inflamatorio. en los septos y en la periferia de los lobulillos grasos se identifican los característicos GRANULOMAS RADIALES DE MIESCHER, conformados por pequeños acúmulos nodulares de histiocitos epitelioides orientados radialmente alrededor de una hendidura central estrellada o capilar colapsado. se asocian a neutrófilos extravasados y linfocitos en etapas agudas, y a células gigantes multinucleadas y fibrosis septal en fases evolucionadas. no se observa vasculitis de vasos de mediano calibre ni necrosis grasa caseosa.",
-        "diag": "PIEL Y TEJIDO CELULAR SUBCUTÁNEO [LOCALIZACIÓN PRETIBIAL], BIOPSIA EN CUÑA PROFUNDA:
+        "diag": `PIEL Y TEJIDO CELULAR SUBCUTÁNEO [LOCALIZACIÓN PRETIBIAL], BIOPSIA EN CUÑA PROFUNDA:
 - PANICULITIS PREDOMINANTEMENTE SEPTAL SIN VASCULITIS, CON GRANULOMAS RADIALES DE MIESCHER, HISTOPATOLÓGICAMENTE COMPATIBLE CON ERITEMA NUDOSO.
 - AUSENCIA DE VASCULITIS DE MEDIANO O GRAN CALIBRE Y AUSENCIA DE NECROSIS CASEOSA.
 - ZN Y PAS NEGATIVOS PARA MICROORGANISMOS.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Hallazgos clínicos: Nódulos eritematosos dolorosos pretibiales bilaterales.
-2. Etiologías asociadas: Infección estreptocócica (ASO), Sarcoidosis (Síndrome de Löfgren), Tuberculosis (PPD/IGRA), EII (Crohn/colitis ulcerosa) o fármacos."
+2. Etiologías asociadas: Infección estreptocócica (ASO), Sarcoidosis (Síndrome de Löfgren), Tuberculosis (PPD/IGRA), EII (Crohn/colitis ulcerosa) o fármacos.`
     },
     {
         "id": 1235,
         "categoryId": 16,
         "titulo": "ERITEMA INDURADO DE BAZIN / VASCULITIS NODULAR (PANICULITIS LOBULILLAR)",
-        "macro": "se recibe biopsia en cuña profunda de piel y tejido celular subcutáneo que mide [dimensiones] cm de superficie y [profundidad] cm de espesor. en superficie muestra nódulo eritematovioláceo indurado y ulcerado en cara posterior de pantorrilla de [diámetro] cm. al corte, el tejido graso subcutáneo presenta aspecto heterogéneo moteado con áreas blanco-amarillentas de necrosis grasa y fibrosis. se incluye en [n] casete(s).
+        "macro": `se recibe biopsia en cuña profunda de piel y tejido celular subcutáneo que mide [dimensiones] cm de superficie y [profundidad] cm de espesor. en superficie muestra nódulo eritematovioláceo indurado y ulcerado en cara posterior de pantorrilla de [diámetro] cm. al corte, el tejido graso subcutáneo presenta aspecto heterogéneo moteado con áreas blanco-amarillentas de necrosis grasa y fibrosis. se incluye en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Sánchez Yus, E. (2008). Panniculitis. Part II. Mostly lobular panniculitis. J Am Acad Dermatol, 58(8), 1001-1025.</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Requena, L., & Sánchez Yus, E. (2008). Panniculitis. Part II. Mostly lobular panniculitis. J Am Acad Dermatol, 58(8), 1001-1025.</small>`,
         "micro": "los cortes histológicos muestran una paniculitis de distribución predominantemente lobulillar con compromiso septal secundario y extensa necrosis grasa de tipo coagulativo / caseoso en los adipocitos lobulillares. el infiltrado inflamatorio es granulomatoso y denso, compuesto por histiocitos epitelioides, células gigantes multinucleadas de tipo Langhans y a cuerpo extraño, linfocitos y células plasmáticas. en los septos interlobulillares y unión septo-lobulillar se identifica de manera constante una VASCULITIS GRANULOMATOSA Y NECROSANTE DE VASOS MUSCULARES ARTERIALES Y VENOSOS DE MEDIANO Y PEQUEÑO CALIBRE, con necrosis fibrinoide mural, infiltrado transmural, proliferación de la íntima y trombosis oclusiva con recanalización.",
-        "diag": "PIEL Y TEJIDO CELULAR SUBCUTÁNEO [CARA POSTERIOR DE PIERNA], BIOPSIA EN CUÑA PROFUNDA:
+        "diag": `PIEL Y TEJIDO CELULAR SUBCUTÁNEO [CARA POSTERIOR DE PIERNA], BIOPSIA EN CUÑA PROFUNDA:
 - PANICULITIS PREDOMINANTEMENTE LOBULILLAR CON VASCULITIS NECROSANTE / GRANULOMATOSA DE VASOS DE MEDIANO CALIBRE Y NECROSIS CASEOSA, HISTOPATOLÓGICAMENTE COMPATIBLE CON ERITEMA INDURADO DE BAZIN / VASCULITIS NODULAR.
 - NECROSIS ADIPOSA LOBULILLAR EXTENSA Y GRANULOMAS TUBERCULOIDES CON CÉLULAS DE LANGHANS.
 - NEGATIVO PARA MALIGNIDAD.
 
 CORRELACIÓN CLÍNICO-PATOLÓGICA (DR. LUIS REQUENA):
 1. Criterio de Requena: Combinación diagnóstica de paniculitis lobulillar con vasculitis de vasos musculares de mediano calibre.
-2. Etiología: Si se asocia a hipersensibilidad a Mycobacterium tuberculosis se denomina Eritema Indurado de Bazin (solicitar PCR para M. tuberculosis y PPD/IGRA); si es idiopática o asociada a otras causas se denomina Vasculitis Nodular."
+2. Etiología: Si se asocia a hipersensibilidad a Mycobacterium tuberculosis se denomina Eritema Indurado de Bazin (solicitar PCR para M. tuberculosis y PPD/IGRA); si es idiopática o asociada a otras causas se denomina Vasculitis Nodular.`
     },
     {
         "id": 301,
         "categoryId": 1,
         "titulo": "CAP - COLON Y RECTO: ADENOCARCINOMA INVASOR (COLECTOMÍA)",
-        "macro": "se recibe espécimen de colectomía [derecha / izquierda / sigmoidea / resección anterior baja / proctocolectomía] fijado en formol, que mide [longitud] cm de longitud por [calibre] cm de diámetro promedio. a la apertura longitudinal por el borde antimesentérico, a [distancia_proximal] cm del margen proximal y a [distancia_distal] cm del margen distal, se identifica una lesión tumoral [ulcerada / polipoide / estenosante anular / vegetante] que mide [dimensión mayor] x [dimensión intermedia] x [dimensión menor] cm. al corte, el tumor es blanco-grisáceo, de consistencia firme, e infiltra la pared colónica alcanzando macroscópicamente [la submucosa / la muscular propia / el tejido adiposo subseroso / la serosa peritoneal / el margen circunferencial-radial]. la distancia más cercana al margen circunferencial (radial o retroperitoneal) es de [distancia_radial] mm. la mucosa no tumoral adyacente exhibe [pliegues conservados / pólipos adenomatosos sincrónicos / enfermedad inflamatoria]. en el tejido adiposo mesocólico / mesorrectal se aíslan mediante disección minuciosa [número_ganglios] ganglios linfáticos, con diámetros de [menor_ganglio] a [mayor_ganglio] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, MP margen proximal, MD margen distal, MR margen radial, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen de colectomía [derecha / izquierda / sigmoidea / resección anterior baja / proctocolectomía] fijado en formol, que mide [longitud] cm de longitud por [calibre] cm de diámetro promedio. a la apertura longitudinal por el borde antimesentérico, a [distancia_proximal] cm del margen proximal y a [distancia_distal] cm del margen distal, se identifica una lesión tumoral [ulcerada / polipoide / estenosante anular / vegetante] que mide [dimensión mayor] x [dimensión intermedia] x [dimensión menor] cm. al corte, el tumor es blanco-grisáceo, de consistencia firme, e infiltra la pared colónica alcanzando macroscópicamente [la submucosa / la muscular propia / el tejido adiposo subseroso / la serosa peritoneal / el margen circunferencial-radial]. la distancia más cercana al margen circunferencial (radial o retroperitoneal) es de [distancia_radial] mm. la mucosa no tumoral adyacente exhibe [pliegues conservados / pólipos adenomatosos sincrónicos / enfermedad inflamatoria]. en el tejido adiposo mesocólico / mesorrectal se aíslan mediante disección minuciosa [número_ganglios] ganglios linfáticos, con diámetros de [menor_ganglio] a [mayor_ganglio] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, MP margen proximal, MD margen distal, MR margen radial, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Carcinoma of the Colon and Rectum. AJCC Cancer Staging Manual, 8th/9th Ed.</small>",
-        "micro": "los cortes histológicos del segmento colorrectal confirman la presencia de una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como adenocarcinoma invasor de tipo usual [o subtipo mucinoso / células en anillo de sello / medular / micropapilar]. el tumor está constituido por estructuras glandulares [bien formadas / complejas e irregulares / sábanas sólidas] con atipia citológica marcada, pleomorfismo nuclear, nucléolos prominentes, mitosis atípicas y áreas de necrosis sucia intraluminal.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Carcinoma of the Colon and Rectum. AJCC Cancer Staging Manual, 8th/9th Ed.</small>`,
+        "micro": `los cortes histológicos del segmento colorrectal confirman la presencia de una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como adenocarcinoma invasor de tipo usual [o subtipo mucinoso / células en anillo de sello / medular / micropapilar]. el tumor está constituido por estructuras glandulares [bien formadas / complejas e irregulares / sábanas sólidas] con atipia citológica marcada, pleomorfismo nuclear, nucléolos prominentes, mitosis atípicas y áreas de necrosis sucia intraluminal.
 
 la profundidad máxima de invasión tumoral compromete: [la capa submucosa (pT1) / la capa muscular propia (pT2) / el tejido adiposo subseroso o mesocólico no peritonealizado (pT3) / perfora el peritoneo visceral o invade órganos vecinos (pT4)].
 invasión linfovascular (lvi): [no identificada / presente (pequeños vasos / venas extramurales)].
@@ -2201,8 +2205,8 @@ márgenes quirúrgicos: margen proximal [libre a [x] cm], margen distal [libre a
 ganglios linfáticos: se examinan [n] ganglios linfáticos, de los cuales [n_positivos] albergan metástasis de adenocarcinoma. extensión extranodal (ene): [ausente / presente].
 inestabilidad de microsatélites (ihq mmr): [expresión conservada de MLH1, PMS2, MSH2, MSH6 (MSS / pMMR) / pérdida de expresión de [proteína] (MSI-H / dMMR)].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / CAP Colon and Rectum Protocol 2024.</small>",
-        "diag": "COLON / RECTO ([SEGMENTO ESPECIFICADO]), RESECCIÓN QUIRÚRGICA ([TIPO DE PROCEDIMIENTO]):
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / CAP Colon and Rectum Protocol 2024.</small>`,
+        "diag": `COLON / RECTO ([SEGMENTO ESPECIFICADO]), RESECCIÓN QUIRÚRGICA ([TIPO DE PROCEDIMIENTO]):
 - ADENOCARCINOMA INVASOR DE TIPO USUAL [O SUBTIPO ESPECÍFICO], [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO (GRADO [1 / 2 / 3] OMS).
 - PROFUNDIDAD DE INVASIÓN: INFILTRA HASTA [SUBMUCOSA / MUSCULAR PROPIA / TEJIDO ADIPOSO SUBSEROSO O MESORRECTO / SEROSA VISCERAL].
 - INVASIÓN LINFOVASCULAR: [NO IDENTIFICADA / PRESENTE].
@@ -2236,16 +2240,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1 / pT2 / pT3 / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1a / pN1b / pN1c / pN2a / pN2b]
   * Metástasis a distancia (pM): [pM0 / pM1a / pM1b / pM1c / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 1301,
         "categoryId": 11,
         "titulo": "CAP - COLON Y RECTO: ADENOCARCINOMA INVASOR (COLECTOMÍA)",
-        "macro": "se recibe espécimen de colectomía [derecha / izquierda / sigmoidea / resección anterior baja / proctocolectomía] fijado en formol, que mide [longitud] cm de longitud por [calibre] cm de diámetro promedio. a la apertura longitudinal por el borde antimesentérico, a [distancia_proximal] cm del margen proximal y a [distancia_distal] cm del margen distal, se identifica una lesión tumoral [ulcerada / polipoide / estenosante anular / vegetante] que mide [dimensión mayor] x [dimensión intermedia] x [dimensión menor] cm. al corte, el tumor es blanco-grisáceo, de consistencia firme, e infiltra la pared colónica alcanzando macroscópicamente [la submucosa / la muscular propia / el tejido adiposo subseroso / la serosa peritoneal / el margen circunferencial-radial]. la distancia más cercana al margen circunferencial (radial o retroperitoneal) es de [distancia_radial] mm. la mucosa no tumoral adyacente exhibe [pliegues conservados / pólipos adenomatosos sincrónicos / enfermedad inflamatoria]. en el tejido adiposo mesocólico / mesorrectal se aíslan mediante disección minuciosa [número_ganglios] ganglios linfáticos, con diámetros de [menor_ganglio] a [mayor_ganglio] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, MP margen proximal, MD margen distal, MR margen radial, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen de colectomía [derecha / izquierda / sigmoidea / resección anterior baja / proctocolectomía] fijado en formol, que mide [longitud] cm de longitud por [calibre] cm de diámetro promedio. a la apertura longitudinal por el borde antimesentérico, a [distancia_proximal] cm del margen proximal y a [distancia_distal] cm del margen distal, se identifica una lesión tumoral [ulcerada / polipoide / estenosante anular / vegetante] que mide [dimensión mayor] x [dimensión intermedia] x [dimensión menor] cm. al corte, el tumor es blanco-grisáceo, de consistencia firme, e infiltra la pared colónica alcanzando macroscópicamente [la submucosa / la muscular propia / el tejido adiposo subseroso / la serosa peritoneal / el margen circunferencial-radial]. la distancia más cercana al margen circunferencial (radial o retroperitoneal) es de [distancia_radial] mm. la mucosa no tumoral adyacente exhibe [pliegues conservados / pólipos adenomatosos sincrónicos / enfermedad inflamatoria]. en el tejido adiposo mesocólico / mesorrectal se aíslan mediante disección minuciosa [número_ganglios] ganglios linfáticos, con diámetros de [menor_ganglio] a [mayor_ganglio] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, MP margen proximal, MD margen distal, MR margen radial, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Carcinoma of the Colon and Rectum. AJCC Cancer Staging Manual, 8th/9th Ed.</small>",
-        "micro": "los cortes histológicos del segmento colorrectal confirman la presencia de una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como adenocarcinoma invasor de tipo usual [o subtipo mucinoso / células en anillo de sello / medular / micropapilar]. el tumor está constituido por estructuras glandulares [bien formadas / complejas e irregulares / sábanas sólidas] con atipia citológica marcada, pleomorfismo nuclear, nucléolos prominentes, mitosis atípicas y áreas de necrosis sucia intraluminal.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Carcinoma of the Colon and Rectum. AJCC Cancer Staging Manual, 8th/9th Ed.</small>`,
+        "micro": `los cortes histológicos del segmento colorrectal confirman la presencia de una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como adenocarcinoma invasor de tipo usual [o subtipo mucinoso / células en anillo de sello / medular / micropapilar]. el tumor está constituido por estructuras glandulares [bien formadas / complejas e irregulares / sábanas sólidas] con atipia citológica marcada, pleomorfismo nuclear, nucléolos prominentes, mitosis atípicas y áreas de necrosis sucia intraluminal.
 
 la profundidad máxima de invasión tumoral compromete: [la capa submucosa (pT1) / la capa muscular propia (pT2) / el tejido adiposo subseroso o mesocólico no peritonealizado (pT3) / perfora el peritoneo visceral o invade órganos vecinos (pT4)].
 invasión linfovascular (lvi): [no identificada / presente (pequeños vasos / venas extramurales)].
@@ -2255,8 +2259,8 @@ márgenes quirúrgicos: margen proximal [libre a [x] cm], margen distal [libre a
 ganglios linfáticos: se examinan [n] ganglios linfáticos, de los cuales [n_positivos] albergan metástasis de adenocarcinoma. extensión extranodal (ene): [ausente / presente].
 inestabilidad de microsatélites (ihq mmr): [expresión conservada de MLH1, PMS2, MSH2, MSH6 (MSS / pMMR) / pérdida de expresión de [proteína] (MSI-H / dMMR)].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / CAP Colon and Rectum Protocol 2024.</small>",
-        "diag": "COLON / RECTO ([SEGMENTO ESPECIFICADO]), RESECCIÓN QUIRÚRGICA ([TIPO DE PROCEDIMIENTO]):
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / CAP Colon and Rectum Protocol 2024.</small>`,
+        "diag": `COLON / RECTO ([SEGMENTO ESPECIFICADO]), RESECCIÓN QUIRÚRGICA ([TIPO DE PROCEDIMIENTO]):
 - ADENOCARCINOMA INVASOR DE TIPO USUAL [O SUBTIPO ESPECÍFICO], [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO (GRADO [1 / 2 / 3] OMS).
 - PROFUNDIDAD DE INVASIÓN: INFILTRA HASTA [SUBMUCOSA / MUSCULAR PROPIA / TEJIDO ADIPOSO SUBSEROSO O MESORRECTO / SEROSA VISCERAL].
 - INVASIÓN LINFOVASCULAR: [NO IDENTIFICADA / PRESENTE].
@@ -2290,16 +2294,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1 / pT2 / pT3 / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1a / pN1b / pN1c / pN2a / pN2b]
   * Metástasis a distancia (pM): [pM0 / pM1a / pM1b / pM1c / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 2301,
         "categoryId": 10,
         "titulo": "CAP - COLON Y RECTO: ADENOCARCINOMA INVASOR (COLECTOMÍA)",
-        "macro": "se recibe espécimen de colectomía [derecha / izquierda / sigmoidea / resección anterior baja / proctocolectomía] fijado en formol, que mide [longitud] cm de longitud por [calibre] cm de diámetro promedio. a la apertura longitudinal por el borde antimesentérico, a [distancia_proximal] cm del margen proximal y a [distancia_distal] cm del margen distal, se identifica una lesión tumoral [ulcerada / polipoide / estenosante anular / vegetante] que mide [dimensión mayor] x [dimensión intermedia] x [dimensión menor] cm. al corte, el tumor es blanco-grisáceo, de consistencia firme, e infiltra la pared colónica alcanzando macroscópicamente [la submucosa / la muscular propia / el tejido adiposo subseroso / la serosa peritoneal / el margen circunferencial-radial]. la distancia más cercana al margen circunferencial (radial o retroperitoneal) es de [distancia_radial] mm. la mucosa no tumoral adyacente exhibe [pliegues conservados / pólipos adenomatosos sincrónicos / enfermedad inflamatoria]. en el tejido adiposo mesocólico / mesorrectal se aíslan mediante disección minuciosa [número_ganglios] ganglios linfáticos, con diámetros de [menor_ganglio] a [mayor_ganglio] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, MP margen proximal, MD margen distal, MR margen radial, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen de colectomía [derecha / izquierda / sigmoidea / resección anterior baja / proctocolectomía] fijado en formol, que mide [longitud] cm de longitud por [calibre] cm de diámetro promedio. a la apertura longitudinal por el borde antimesentérico, a [distancia_proximal] cm del margen proximal y a [distancia_distal] cm del margen distal, se identifica una lesión tumoral [ulcerada / polipoide / estenosante anular / vegetante] que mide [dimensión mayor] x [dimensión intermedia] x [dimensión menor] cm. al corte, el tumor es blanco-grisáceo, de consistencia firme, e infiltra la pared colónica alcanzando macroscópicamente [la submucosa / la muscular propia / el tejido adiposo subseroso / la serosa peritoneal / el margen circunferencial-radial]. la distancia más cercana al margen circunferencial (radial o retroperitoneal) es de [distancia_radial] mm. la mucosa no tumoral adyacente exhibe [pliegues conservados / pólipos adenomatosos sincrónicos / enfermedad inflamatoria]. en el tejido adiposo mesocólico / mesorrectal se aíslan mediante disección minuciosa [número_ganglios] ganglios linfáticos, con diámetros de [menor_ganglio] a [mayor_ganglio] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, MP margen proximal, MD margen distal, MR margen radial, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Carcinoma of the Colon and Rectum. AJCC Cancer Staging Manual, 8th/9th Ed.</small>",
-        "micro": "los cortes histológicos del segmento colorrectal confirman la presencia de una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como adenocarcinoma invasor de tipo usual [o subtipo mucinoso / células en anillo de sello / medular / micropapilar]. el tumor está constituido por estructuras glandulares [bien formadas / complejas e irregulares / sábanas sólidas] con atipia citológica marcada, pleomorfismo nuclear, nucléolos prominentes, mitosis atípicas y áreas de necrosis sucia intraluminal.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Carcinoma of the Colon and Rectum. AJCC Cancer Staging Manual, 8th/9th Ed.</small>`,
+        "micro": `los cortes histológicos del segmento colorrectal confirman la presencia de una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como adenocarcinoma invasor de tipo usual [o subtipo mucinoso / células en anillo de sello / medular / micropapilar]. el tumor está constituido por estructuras glandulares [bien formadas / complejas e irregulares / sábanas sólidas] con atipia citológica marcada, pleomorfismo nuclear, nucléolos prominentes, mitosis atípicas y áreas de necrosis sucia intraluminal.
 
 la profundidad máxima de invasión tumoral compromete: [la capa submucosa (pT1) / la capa muscular propia (pT2) / el tejido adiposo subseroso o mesocólico no peritonealizado (pT3) / perfora el peritoneo visceral o invade órganos vecinos (pT4)].
 invasión linfovascular (lvi): [no identificada / presente (pequeños vasos / venas extramurales)].
@@ -2309,8 +2313,8 @@ márgenes quirúrgicos: margen proximal [libre a [x] cm], margen distal [libre a
 ganglios linfáticos: se examinan [n] ganglios linfáticos, de los cuales [n_positivos] albergan metástasis de adenocarcinoma. extensión extranodal (ene): [ausente / presente].
 inestabilidad de microsatélites (ihq mmr): [expresión conservada de MLH1, PMS2, MSH2, MSH6 (MSS / pMMR) / pérdida de expresión de [proteína] (MSI-H / dMMR)].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / CAP Colon and Rectum Protocol 2024.</small>",
-        "diag": "COLON / RECTO ([SEGMENTO ESPECIFICADO]), RESECCIÓN QUIRÚRGICA ([TIPO DE PROCEDIMIENTO]):
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / CAP Colon and Rectum Protocol 2024.</small>`,
+        "diag": `COLON / RECTO ([SEGMENTO ESPECIFICADO]), RESECCIÓN QUIRÚRGICA ([TIPO DE PROCEDIMIENTO]):
 - ADENOCARCINOMA INVASOR DE TIPO USUAL [O SUBTIPO ESPECÍFICO], [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO (GRADO [1 / 2 / 3] OMS).
 - PROFUNDIDAD DE INVASIÓN: INFILTRA HASTA [SUBMUCOSA / MUSCULAR PROPIA / TEJIDO ADIPOSO SUBSEROSO O MESORRECTO / SEROSA VISCERAL].
 - INVASIÓN LINFOVASCULAR: [NO IDENTIFICADA / PRESENTE].
@@ -2344,16 +2348,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1 / pT2 / pT3 / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1a / pN1b / pN1c / pN2a / pN2b]
   * Metástasis a distancia (pM): [pM0 / pM1a / pM1b / pM1c / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 5301,
         "categoryId": 100,
         "titulo": "CAP - COLON Y RECTO: ADENOCARCINOMA INVASOR (COLECTOMÍA)",
-        "macro": "se recibe espécimen de colectomía [derecha / izquierda / sigmoidea / resección anterior baja / proctocolectomía] fijado en formol, que mide [longitud] cm de longitud por [calibre] cm de diámetro promedio. a la apertura longitudinal por el borde antimesentérico, a [distancia_proximal] cm del margen proximal y a [distancia_distal] cm del margen distal, se identifica una lesión tumoral [ulcerada / polipoide / estenosante anular / vegetante] que mide [dimensión mayor] x [dimensión intermedia] x [dimensión menor] cm. al corte, el tumor es blanco-grisáceo, de consistencia firme, e infiltra la pared colónica alcanzando macroscópicamente [la submucosa / la muscular propia / el tejido adiposo subseroso / la serosa peritoneal / el margen circunferencial-radial]. la distancia más cercana al margen circunferencial (radial o retroperitoneal) es de [distancia_radial] mm. la mucosa no tumoral adyacente exhibe [pliegues conservados / pólipos adenomatosos sincrónicos / enfermedad inflamatoria]. en el tejido adiposo mesocólico / mesorrectal se aíslan mediante disección minuciosa [número_ganglios] ganglios linfáticos, con diámetros de [menor_ganglio] a [mayor_ganglio] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, MP margen proximal, MD margen distal, MR margen radial, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen de colectomía [derecha / izquierda / sigmoidea / resección anterior baja / proctocolectomía] fijado en formol, que mide [longitud] cm de longitud por [calibre] cm de diámetro promedio. a la apertura longitudinal por el borde antimesentérico, a [distancia_proximal] cm del margen proximal y a [distancia_distal] cm del margen distal, se identifica una lesión tumoral [ulcerada / polipoide / estenosante anular / vegetante] que mide [dimensión mayor] x [dimensión intermedia] x [dimensión menor] cm. al corte, el tumor es blanco-grisáceo, de consistencia firme, e infiltra la pared colónica alcanzando macroscópicamente [la submucosa / la muscular propia / el tejido adiposo subseroso / la serosa peritoneal / el margen circunferencial-radial]. la distancia más cercana al margen circunferencial (radial o retroperitoneal) es de [distancia_radial] mm. la mucosa no tumoral adyacente exhibe [pliegues conservados / pólipos adenomatosos sincrónicos / enfermedad inflamatoria]. en el tejido adiposo mesocólico / mesorrectal se aíslan mediante disección minuciosa [número_ganglios] ganglios linfáticos, con diámetros de [menor_ganglio] a [mayor_ganglio] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, MP margen proximal, MD margen distal, MR margen radial, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Carcinoma of the Colon and Rectum. AJCC Cancer Staging Manual, 8th/9th Ed.</small>",
-        "micro": "los cortes histológicos del segmento colorrectal confirman la presencia de una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como adenocarcinoma invasor de tipo usual [o subtipo mucinoso / células en anillo de sello / medular / micropapilar]. el tumor está constituido por estructuras glandulares [bien formadas / complejas e irregulares / sábanas sólidas] con atipia citológica marcada, pleomorfismo nuclear, nucléolos prominentes, mitosis atípicas y áreas de necrosis sucia intraluminal.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Carcinoma of the Colon and Rectum. AJCC Cancer Staging Manual, 8th/9th Ed.</small>`,
+        "micro": `los cortes histológicos del segmento colorrectal confirman la presencia de una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como adenocarcinoma invasor de tipo usual [o subtipo mucinoso / células en anillo de sello / medular / micropapilar]. el tumor está constituido por estructuras glandulares [bien formadas / complejas e irregulares / sábanas sólidas] con atipia citológica marcada, pleomorfismo nuclear, nucléolos prominentes, mitosis atípicas y áreas de necrosis sucia intraluminal.
 
 la profundidad máxima de invasión tumoral compromete: [la capa submucosa (pT1) / la capa muscular propia (pT2) / el tejido adiposo subseroso o mesocólico no peritonealizado (pT3) / perfora el peritoneo visceral o invade órganos vecinos (pT4)].
 invasión linfovascular (lvi): [no identificada / presente (pequeños vasos / venas extramurales)].
@@ -2363,8 +2367,8 @@ márgenes quirúrgicos: margen proximal [libre a [x] cm], margen distal [libre a
 ganglios linfáticos: se examinan [n] ganglios linfáticos, de los cuales [n_positivos] albergan metástasis de adenocarcinoma. extensión extranodal (ene): [ausente / presente].
 inestabilidad de microsatélites (ihq mmr): [expresión conservada de MLH1, PMS2, MSH2, MSH6 (MSS / pMMR) / pérdida de expresión de [proteína] (MSI-H / dMMR)].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / CAP Colon and Rectum Protocol 2024.</small>",
-        "diag": "COLON / RECTO ([SEGMENTO ESPECIFICADO]), RESECCIÓN QUIRÚRGICA ([TIPO DE PROCEDIMIENTO]):
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / CAP Colon and Rectum Protocol 2024.</small>`,
+        "diag": `COLON / RECTO ([SEGMENTO ESPECIFICADO]), RESECCIÓN QUIRÚRGICA ([TIPO DE PROCEDIMIENTO]):
 - ADENOCARCINOMA INVASOR DE TIPO USUAL [O SUBTIPO ESPECÍFICO], [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO (GRADO [1 / 2 / 3] OMS).
 - PROFUNDIDAD DE INVASIÓN: INFILTRA HASTA [SUBMUCOSA / MUSCULAR PROPIA / TEJIDO ADIPOSO SUBSEROSO O MESORRECTO / SEROSA VISCERAL].
 - INVASIÓN LINFOVASCULAR: [NO IDENTIFICADA / PRESENTE].
@@ -2398,16 +2402,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1 / pT2 / pT3 / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1a / pN1b / pN1c / pN2a / pN2b]
   * Metástasis a distancia (pM): [pM0 / pM1a / pM1b / pM1c / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 6301,
         "categoryId": 101,
         "titulo": "CAP - COLON Y RECTO: ADENOCARCINOMA INVASOR (COLECTOMÍA)",
-        "macro": "se recibe espécimen de colectomía [derecha / izquierda / sigmoidea / resección anterior baja / proctocolectomía] fijado en formol, que mide [longitud] cm de longitud por [calibre] cm de diámetro promedio. a la apertura longitudinal por el borde antimesentérico, a [distancia_proximal] cm del margen proximal y a [distancia_distal] cm del margen distal, se identifica una lesión tumoral [ulcerada / polipoide / estenosante anular / vegetante] que mide [dimensión mayor] x [dimensión intermedia] x [dimensión menor] cm. al corte, el tumor es blanco-grisáceo, de consistencia firme, e infiltra la pared colónica alcanzando macroscópicamente [la submucosa / la muscular propia / el tejido adiposo subseroso / la serosa peritoneal / el margen circunferencial-radial]. la distancia más cercana al margen circunferencial (radial o retroperitoneal) es de [distancia_radial] mm. la mucosa no tumoral adyacente exhibe [pliegues conservados / pólipos adenomatosos sincrónicos / enfermedad inflamatoria]. en el tejido adiposo mesocólico / mesorrectal se aíslan mediante disección minuciosa [número_ganglios] ganglios linfáticos, con diámetros de [menor_ganglio] a [mayor_ganglio] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, MP margen proximal, MD margen distal, MR margen radial, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen de colectomía [derecha / izquierda / sigmoidea / resección anterior baja / proctocolectomía] fijado en formol, que mide [longitud] cm de longitud por [calibre] cm de diámetro promedio. a la apertura longitudinal por el borde antimesentérico, a [distancia_proximal] cm del margen proximal y a [distancia_distal] cm del margen distal, se identifica una lesión tumoral [ulcerada / polipoide / estenosante anular / vegetante] que mide [dimensión mayor] x [dimensión intermedia] x [dimensión menor] cm. al corte, el tumor es blanco-grisáceo, de consistencia firme, e infiltra la pared colónica alcanzando macroscópicamente [la submucosa / la muscular propia / el tejido adiposo subseroso / la serosa peritoneal / el margen circunferencial-radial]. la distancia más cercana al margen circunferencial (radial o retroperitoneal) es de [distancia_radial] mm. la mucosa no tumoral adyacente exhibe [pliegues conservados / pólipos adenomatosos sincrónicos / enfermedad inflamatoria]. en el tejido adiposo mesocólico / mesorrectal se aíslan mediante disección minuciosa [número_ganglios] ganglios linfáticos, con diámetros de [menor_ganglio] a [mayor_ganglio] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, MP margen proximal, MD margen distal, MR margen radial, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Carcinoma of the Colon and Rectum. AJCC Cancer Staging Manual, 8th/9th Ed.</small>",
-        "micro": "los cortes histológicos del segmento colorrectal confirman la presencia de una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como adenocarcinoma invasor de tipo usual [o subtipo mucinoso / células en anillo de sello / medular / micropapilar]. el tumor está constituido por estructuras glandulares [bien formadas / complejas e irregulares / sábanas sólidas] con atipia citológica marcada, pleomorfismo nuclear, nucléolos prominentes, mitosis atípicas y áreas de necrosis sucia intraluminal.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Carcinoma of the Colon and Rectum. AJCC Cancer Staging Manual, 8th/9th Ed.</small>`,
+        "micro": `los cortes histológicos del segmento colorrectal confirman la presencia de una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como adenocarcinoma invasor de tipo usual [o subtipo mucinoso / células en anillo de sello / medular / micropapilar]. el tumor está constituido por estructuras glandulares [bien formadas / complejas e irregulares / sábanas sólidas] con atipia citológica marcada, pleomorfismo nuclear, nucléolos prominentes, mitosis atípicas y áreas de necrosis sucia intraluminal.
 
 la profundidad máxima de invasión tumoral compromete: [la capa submucosa (pT1) / la capa muscular propia (pT2) / el tejido adiposo subseroso o mesocólico no peritonealizado (pT3) / perfora el peritoneo visceral o invade órganos vecinos (pT4)].
 invasión linfovascular (lvi): [no identificada / presente (pequeños vasos / venas extramurales)].
@@ -2417,8 +2421,8 @@ márgenes quirúrgicos: margen proximal [libre a [x] cm], margen distal [libre a
 ganglios linfáticos: se examinan [n] ganglios linfáticos, de los cuales [n_positivos] albergan metástasis de adenocarcinoma. extensión extranodal (ene): [ausente / presente].
 inestabilidad de microsatélites (ihq mmr): [expresión conservada de MLH1, PMS2, MSH2, MSH6 (MSS / pMMR) / pérdida de expresión de [proteína] (MSI-H / dMMR)].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / CAP Colon and Rectum Protocol 2024.</small>",
-        "diag": "COLON / RECTO ([SEGMENTO ESPECIFICADO]), RESECCIÓN QUIRÚRGICA ([TIPO DE PROCEDIMIENTO]):
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / CAP Colon and Rectum Protocol 2024.</small>`,
+        "diag": `COLON / RECTO ([SEGMENTO ESPECIFICADO]), RESECCIÓN QUIRÚRGICA ([TIPO DE PROCEDIMIENTO]):
 - ADENOCARCINOMA INVASOR DE TIPO USUAL [O SUBTIPO ESPECÍFICO], [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO (GRADO [1 / 2 / 3] OMS).
 - PROFUNDIDAD DE INVASIÓN: INFILTRA HASTA [SUBMUCOSA / MUSCULAR PROPIA / TEJIDO ADIPOSO SUBSEROSO O MESORRECTO / SEROSA VISCERAL].
 - INVASIÓN LINFOVASCULAR: [NO IDENTIFICADA / PRESENTE].
@@ -2452,16 +2456,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1 / pT2 / pT3 / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1a / pN1b / pN1c / pN2a / pN2b]
   * Metástasis a distancia (pM): [pM0 / pM1a / pM1b / pM1c / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 3301,
         "categoryId": 3,
         "titulo": "CAP - COLON Y RECTO: ADENOCARCINOMA INVASOR (COLECTOMÍA)",
-        "macro": "se recibe espécimen de colectomía [derecha / izquierda / sigmoidea / resección anterior baja / proctocolectomía] fijado en formol, que mide [longitud] cm de longitud por [calibre] cm de diámetro promedio. a la apertura longitudinal por el borde antimesentérico, a [distancia_proximal] cm del margen proximal y a [distancia_distal] cm del margen distal, se identifica una lesión tumoral [ulcerada / polipoide / estenosante anular / vegetante] que mide [dimensión mayor] x [dimensión intermedia] x [dimensión menor] cm. al corte, el tumor es blanco-grisáceo, de consistencia firme, e infiltra la pared colónica alcanzando macroscópicamente [la submucosa / la muscular propia / el tejido adiposo subseroso / la serosa peritoneal / el margen circunferencial-radial]. la distancia más cercana al margen circunferencial (radial o retroperitoneal) es de [distancia_radial] mm. la mucosa no tumoral adyacente exhibe [pliegues conservados / pólipos adenomatosos sincrónicos / enfermedad inflamatoria]. en el tejido adiposo mesocólico / mesorrectal se aíslan mediante disección minuciosa [número_ganglios] ganglios linfáticos, con diámetros de [menor_ganglio] a [mayor_ganglio] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, MP margen proximal, MD margen distal, MR margen radial, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen de colectomía [derecha / izquierda / sigmoidea / resección anterior baja / proctocolectomía] fijado en formol, que mide [longitud] cm de longitud por [calibre] cm de diámetro promedio. a la apertura longitudinal por el borde antimesentérico, a [distancia_proximal] cm del margen proximal y a [distancia_distal] cm del margen distal, se identifica una lesión tumoral [ulcerada / polipoide / estenosante anular / vegetante] que mide [dimensión mayor] x [dimensión intermedia] x [dimensión menor] cm. al corte, el tumor es blanco-grisáceo, de consistencia firme, e infiltra la pared colónica alcanzando macroscópicamente [la submucosa / la muscular propia / el tejido adiposo subseroso / la serosa peritoneal / el margen circunferencial-radial]. la distancia más cercana al margen circunferencial (radial o retroperitoneal) es de [distancia_radial] mm. la mucosa no tumoral adyacente exhibe [pliegues conservados / pólipos adenomatosos sincrónicos / enfermedad inflamatoria]. en el tejido adiposo mesocólico / mesorrectal se aíslan mediante disección minuciosa [número_ganglios] ganglios linfáticos, con diámetros de [menor_ganglio] a [mayor_ganglio] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, MP margen proximal, MD margen distal, MR margen radial, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Carcinoma of the Colon and Rectum. AJCC Cancer Staging Manual, 8th/9th Ed.</small>",
-        "micro": "los cortes histológicos del segmento colorrectal confirman la presencia de una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como adenocarcinoma invasor de tipo usual [o subtipo mucinoso / células en anillo de sello / medular / micropapilar]. el tumor está constituido por estructuras glandulares [bien formadas / complejas e irregulares / sábanas sólidas] con atipia citológica marcada, pleomorfismo nuclear, nucléolos prominentes, mitosis atípicas y áreas de necrosis sucia intraluminal.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Carcinoma of the Colon and Rectum. AJCC Cancer Staging Manual, 8th/9th Ed.</small>`,
+        "micro": `los cortes histológicos del segmento colorrectal confirman la presencia de una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como adenocarcinoma invasor de tipo usual [o subtipo mucinoso / células en anillo de sello / medular / micropapilar]. el tumor está constituido por estructuras glandulares [bien formadas / complejas e irregulares / sábanas sólidas] con atipia citológica marcada, pleomorfismo nuclear, nucléolos prominentes, mitosis atípicas y áreas de necrosis sucia intraluminal.
 
 la profundidad máxima de invasión tumoral compromete: [la capa submucosa (pT1) / la capa muscular propia (pT2) / el tejido adiposo subseroso o mesocólico no peritonealizado (pT3) / perfora el peritoneo visceral o invade órganos vecinos (pT4)].
 invasión linfovascular (lvi): [no identificada / presente (pequeños vasos / venas extramurales)].
@@ -2471,8 +2475,8 @@ márgenes quirúrgicos: margen proximal [libre a [x] cm], margen distal [libre a
 ganglios linfáticos: se examinan [n] ganglios linfáticos, de los cuales [n_positivos] albergan metástasis de adenocarcinoma. extensión extranodal (ene): [ausente / presente].
 inestabilidad de microsatélites (ihq mmr): [expresión conservada de MLH1, PMS2, MSH2, MSH6 (MSS / pMMR) / pérdida de expresión de [proteína] (MSI-H / dMMR)].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / CAP Colon and Rectum Protocol 2024.</small>",
-        "diag": "COLON / RECTO ([SEGMENTO ESPECIFICADO]), RESECCIÓN QUIRÚRGICA ([TIPO DE PROCEDIMIENTO]):
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / CAP Colon and Rectum Protocol 2024.</small>`,
+        "diag": `COLON / RECTO ([SEGMENTO ESPECIFICADO]), RESECCIÓN QUIRÚRGICA ([TIPO DE PROCEDIMIENTO]):
 - ADENOCARCINOMA INVASOR DE TIPO USUAL [O SUBTIPO ESPECÍFICO], [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO (GRADO [1 / 2 / 3] OMS).
 - PROFUNDIDAD DE INVASIÓN: INFILTRA HASTA [SUBMUCOSA / MUSCULAR PROPIA / TEJIDO ADIPOSO SUBSEROSO O MESORRECTO / SEROSA VISCERAL].
 - INVASIÓN LINFOVASCULAR: [NO IDENTIFICADA / PRESENTE].
@@ -2506,16 +2510,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1 / pT2 / pT3 / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1a / pN1b / pN1c / pN2a / pN2b]
   * Metástasis a distancia (pM): [pM0 / pM1a / pM1b / pM1c / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 4301,
         "categoryId": 17,
         "titulo": "CAP - COLON Y RECTO: ADENOCARCINOMA INVASOR (COLECTOMÍA)",
-        "macro": "se recibe espécimen de colectomía [derecha / izquierda / sigmoidea / resección anterior baja / proctocolectomía] fijado en formol, que mide [longitud] cm de longitud por [calibre] cm de diámetro promedio. a la apertura longitudinal por el borde antimesentérico, a [distancia_proximal] cm del margen proximal y a [distancia_distal] cm del margen distal, se identifica una lesión tumoral [ulcerada / polipoide / estenosante anular / vegetante] que mide [dimensión mayor] x [dimensión intermedia] x [dimensión menor] cm. al corte, el tumor es blanco-grisáceo, de consistencia firme, e infiltra la pared colónica alcanzando macroscópicamente [la submucosa / la muscular propia / el tejido adiposo subseroso / la serosa peritoneal / el margen circunferencial-radial]. la distancia más cercana al margen circunferencial (radial o retroperitoneal) es de [distancia_radial] mm. la mucosa no tumoral adyacente exhibe [pliegues conservados / pólipos adenomatosos sincrónicos / enfermedad inflamatoria]. en el tejido adiposo mesocólico / mesorrectal se aíslan mediante disección minuciosa [número_ganglios] ganglios linfáticos, con diámetros de [menor_ganglio] a [mayor_ganglio] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, MP margen proximal, MD margen distal, MR margen radial, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen de colectomía [derecha / izquierda / sigmoidea / resección anterior baja / proctocolectomía] fijado en formol, que mide [longitud] cm de longitud por [calibre] cm de diámetro promedio. a la apertura longitudinal por el borde antimesentérico, a [distancia_proximal] cm del margen proximal y a [distancia_distal] cm del margen distal, se identifica una lesión tumoral [ulcerada / polipoide / estenosante anular / vegetante] que mide [dimensión mayor] x [dimensión intermedia] x [dimensión menor] cm. al corte, el tumor es blanco-grisáceo, de consistencia firme, e infiltra la pared colónica alcanzando macroscópicamente [la submucosa / la muscular propia / el tejido adiposo subseroso / la serosa peritoneal / el margen circunferencial-radial]. la distancia más cercana al margen circunferencial (radial o retroperitoneal) es de [distancia_radial] mm. la mucosa no tumoral adyacente exhibe [pliegues conservados / pólipos adenomatosos sincrónicos / enfermedad inflamatoria]. en el tejido adiposo mesocólico / mesorrectal se aíslan mediante disección minuciosa [número_ganglios] ganglios linfáticos, con diámetros de [menor_ganglio] a [mayor_ganglio] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, MP margen proximal, MD margen distal, MR margen radial, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Carcinoma of the Colon and Rectum. AJCC Cancer Staging Manual, 8th/9th Ed.</small>",
-        "micro": "los cortes histológicos del segmento colorrectal confirman la presencia de una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como adenocarcinoma invasor de tipo usual [o subtipo mucinoso / células en anillo de sello / medular / micropapilar]. el tumor está constituido por estructuras glandulares [bien formadas / complejas e irregulares / sábanas sólidas] con atipia citológica marcada, pleomorfismo nuclear, nucléolos prominentes, mitosis atípicas y áreas de necrosis sucia intraluminal.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Carcinoma of the Colon and Rectum. AJCC Cancer Staging Manual, 8th/9th Ed.</small>`,
+        "micro": `los cortes histológicos del segmento colorrectal confirman la presencia de una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como adenocarcinoma invasor de tipo usual [o subtipo mucinoso / células en anillo de sello / medular / micropapilar]. el tumor está constituido por estructuras glandulares [bien formadas / complejas e irregulares / sábanas sólidas] con atipia citológica marcada, pleomorfismo nuclear, nucléolos prominentes, mitosis atípicas y áreas de necrosis sucia intraluminal.
 
 la profundidad máxima de invasión tumoral compromete: [la capa submucosa (pT1) / la capa muscular propia (pT2) / el tejido adiposo subseroso o mesocólico no peritonealizado (pT3) / perfora el peritoneo visceral o invade órganos vecinos (pT4)].
 invasión linfovascular (lvi): [no identificada / presente (pequeños vasos / venas extramurales)].
@@ -2525,8 +2529,8 @@ márgenes quirúrgicos: margen proximal [libre a [x] cm], margen distal [libre a
 ganglios linfáticos: se examinan [n] ganglios linfáticos, de los cuales [n_positivos] albergan metástasis de adenocarcinoma. extensión extranodal (ene): [ausente / presente].
 inestabilidad de microsatélites (ihq mmr): [expresión conservada de MLH1, PMS2, MSH2, MSH6 (MSS / pMMR) / pérdida de expresión de [proteína] (MSI-H / dMMR)].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / CAP Colon and Rectum Protocol 2024.</small>",
-        "diag": "COLON / RECTO ([SEGMENTO ESPECIFICADO]), RESECCIÓN QUIRÚRGICA ([TIPO DE PROCEDIMIENTO]):
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / CAP Colon and Rectum Protocol 2024.</small>`,
+        "diag": `COLON / RECTO ([SEGMENTO ESPECIFICADO]), RESECCIÓN QUIRÚRGICA ([TIPO DE PROCEDIMIENTO]):
 - ADENOCARCINOMA INVASOR DE TIPO USUAL [O SUBTIPO ESPECÍFICO], [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO (GRADO [1 / 2 / 3] OMS).
 - PROFUNDIDAD DE INVASIÓN: INFILTRA HASTA [SUBMUCOSA / MUSCULAR PROPIA / TEJIDO ADIPOSO SUBSEROSO O MESORRECTO / SEROSA VISCERAL].
 - INVASIÓN LINFOVASCULAR: [NO IDENTIFICADA / PRESENTE].
@@ -2560,16 +2564,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1 / pT2 / pT3 / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1a / pN1b / pN1c / pN2a / pN2b]
   * Metástasis a distancia (pM): [pM0 / pM1a / pM1b / pM1c / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 302,
         "categoryId": 1,
         "titulo": "CAP - ESTÓMAGO: ADENOCARCINOMA GÁSTRICO (GASTRECTOMÍA)",
-        "macro": "se recibe espécimen de gastrectomía [total / subtotal distal / proximal] con epiplón mayor y menor, fijado en formol. la pieza mide [longitud curvatura mayor] cm por la curvatura mayor y [longitud curvatura menor] cm por la menor. a la apertura gástrica por la curvatura mayor (respetando la lesión), en la región [antral / cuerpo / fúndica / cardial / incisura angularis], a [distancia_proximal] cm del margen esofágico/proximal y a [distancia_distal] cm del margen duodenal/distal, se aprecia una lesión tumoral [ulcerada e infiltrante (Borrmann III) / polipoide vegetante (Borrmann I) / úlcerocreciente delimitada (Borrmann II) / difusamente infiltrante (linitis plástica - Borrmann IV)] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor es blanquecino, nacarado y firme, con infiltración hasta [la submucosa / la muscular propia / el tejido subseroso / la serosa peritoneal]. en las cadenas ganglionares de curvatura mayor y menor se aíslan [número_ganglios] ganglios linfáticos de [menor] a [mayor] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, ME margen proximal/esofágico, MD margen distal/duodenal, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen de gastrectomía [total / subtotal distal / proximal] con epiplón mayor y menor, fijado en formol. la pieza mide [longitud curvatura mayor] cm por la curvatura mayor y [longitud curvatura menor] cm por la menor. a la apertura gástrica por la curvatura mayor (respetando la lesión), en la región [antral / cuerpo / fúndica / cardial / incisura angularis], a [distancia_proximal] cm del margen esofágico/proximal y a [distancia_distal] cm del margen duodenal/distal, se aprecia una lesión tumoral [ulcerada e infiltrante (Borrmann III) / polipoide vegetante (Borrmann I) / úlcerocreciente delimitada (Borrmann II) / difusamente infiltrante (linitis plástica - Borrmann IV)] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor es blanquecino, nacarado y firme, con infiltración hasta [la submucosa / la muscular propia / el tejido subseroso / la serosa peritoneal]. en las cadenas ganglionares de curvatura mayor y menor se aíslan [número_ganglios] ganglios linfáticos de [menor] a [mayor] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, ME margen proximal/esofágico, MD margen distal/duodenal, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Stomach. AJCC Cancer Staging Manual, 8th Ed.</small>",
-        "micro": "los cortes histológicos de la pared gástrica confirman una neoplasia epitelial maligna clasificada según la OMS 5.ª edición como adenocarcinoma gástrico de tipo tubular [o papilar / mucinoso / pobremente cohesivo con células en anillo de sello / mixto] y según la clasificación de Laurén como tipo [intestinal / difuso / indeterminado]. las células neoplásicas muestran marcada atipia nuclear, pleomorfismo, hipercromasia y figuras mitóticas atípicas.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Stomach. AJCC Cancer Staging Manual, 8th Ed.</small>`,
+        "micro": `los cortes histológicos de la pared gástrica confirman una neoplasia epitelial maligna clasificada según la OMS 5.ª edición como adenocarcinoma gástrico de tipo tubular [o papilar / mucinoso / pobremente cohesivo con células en anillo de sello / mixto] y según la clasificación de Laurén como tipo [intestinal / difuso / indeterminado]. las células neoplásicas muestran marcada atipia nuclear, pleomorfismo, hipercromasia y figuras mitóticas atípicas.
 
 profundidad de invasión tumoral: [infiltra la lámina propia o submucosa (pT1) / muscular propia (pT2) / tejido conectivo subseroso sin comprometer la serosa visceral (pT3) / perfora la serosa visceral (peritoneo) (pT4a) / invade estructuras adyacentes (pT4b)].
 invasión linfovascular (lvi): [no identificada / presente].
@@ -2578,8 +2582,8 @@ márgenes quirúrgicos: margen de resección proximal [libre a [x] cm], margen d
 ganglios linfáticos: se identifican [n] ganglios linfáticos regionales, de los cuales [n_positivos] están comprometidos por metástasis. extensión extranodal (ene): [ausente / presente].
 estudios de biomarcadores (ihq / fish): HER2 [0 / 1+ (negativo) / 2+ (equívoco) / 3+ (positivo)], PD-L1 (CPS = [puntaje]), estado MMR [MSS/pMMR o MSI-H/dMMR].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / Japanese Gastric Cancer Association (JGCA).</small>",
-        "diag": "ESTÓMAGO ([LOCALIZACIÓN ANATÓMICA]), GASTRECTOMÍA [TOTAL / SUBTOTAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / Japanese Gastric Cancer Association (JGCA).</small>`,
+        "diag": `ESTÓMAGO ([LOCALIZACIÓN ANATÓMICA]), GASTRECTOMÍA [TOTAL / SUBTOTAL]:
 - ADENOCARCINOMA GÁSTRICO [TUBULAR / POBREMENTE COHESIVO - CÉLULAS EN ANILLO DE SELLO / MIXTO] (CLASIFICACIÓN DE LAURÉN: TIPO [INTESTINAL / DIFUSO]).
 - GRADO HISTOLÓGICO: [GRADO 1 (BIEN) / GRADO 2 (MODERADO) / GRADO 3 (POBREMENTE DIFERENCIADO)].
 - PROFUNDIDAD DE INVASIÓN: INFILTRA HASTA [SUBMUCOSA / MUSCULAR PROPIA / SUBSEROSA / PERITONEO VISCERAL (SEROSA)].
@@ -2616,16 +2620,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a / pT1b / pT2 / pT3 / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pN2 / pN3a / pN3b]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 1302,
         "categoryId": 11,
         "titulo": "CAP - ESTÓMAGO: ADENOCARCINOMA GÁSTRICO (GASTRECTOMÍA)",
-        "macro": "se recibe espécimen de gastrectomía [total / subtotal distal / proximal] con epiplón mayor y menor, fijado en formol. la pieza mide [longitud curvatura mayor] cm por la curvatura mayor y [longitud curvatura menor] cm por la menor. a la apertura gástrica por la curvatura mayor (respetando la lesión), en la región [antral / cuerpo / fúndica / cardial / incisura angularis], a [distancia_proximal] cm del margen esofágico/proximal y a [distancia_distal] cm del margen duodenal/distal, se aprecia una lesión tumoral [ulcerada e infiltrante (Borrmann III) / polipoide vegetante (Borrmann I) / úlcerocreciente delimitada (Borrmann II) / difusamente infiltrante (linitis plástica - Borrmann IV)] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor es blanquecino, nacarado y firme, con infiltración hasta [la submucosa / la muscular propia / el tejido subseroso / la serosa peritoneal]. en las cadenas ganglionares de curvatura mayor y menor se aíslan [número_ganglios] ganglios linfáticos de [menor] a [mayor] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, ME margen proximal/esofágico, MD margen distal/duodenal, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen de gastrectomía [total / subtotal distal / proximal] con epiplón mayor y menor, fijado en formol. la pieza mide [longitud curvatura mayor] cm por la curvatura mayor y [longitud curvatura menor] cm por la menor. a la apertura gástrica por la curvatura mayor (respetando la lesión), en la región [antral / cuerpo / fúndica / cardial / incisura angularis], a [distancia_proximal] cm del margen esofágico/proximal y a [distancia_distal] cm del margen duodenal/distal, se aprecia una lesión tumoral [ulcerada e infiltrante (Borrmann III) / polipoide vegetante (Borrmann I) / úlcerocreciente delimitada (Borrmann II) / difusamente infiltrante (linitis plástica - Borrmann IV)] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor es blanquecino, nacarado y firme, con infiltración hasta [la submucosa / la muscular propia / el tejido subseroso / la serosa peritoneal]. en las cadenas ganglionares de curvatura mayor y menor se aíslan [número_ganglios] ganglios linfáticos de [menor] a [mayor] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, ME margen proximal/esofágico, MD margen distal/duodenal, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Stomach. AJCC Cancer Staging Manual, 8th Ed.</small>",
-        "micro": "los cortes histológicos de la pared gástrica confirman una neoplasia epitelial maligna clasificada según la OMS 5.ª edición como adenocarcinoma gástrico de tipo tubular [o papilar / mucinoso / pobremente cohesivo con células en anillo de sello / mixto] y según la clasificación de Laurén como tipo [intestinal / difuso / indeterminado]. las células neoplásicas muestran marcada atipia nuclear, pleomorfismo, hipercromasia y figuras mitóticas atípicas.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Stomach. AJCC Cancer Staging Manual, 8th Ed.</small>`,
+        "micro": `los cortes histológicos de la pared gástrica confirman una neoplasia epitelial maligna clasificada según la OMS 5.ª edición como adenocarcinoma gástrico de tipo tubular [o papilar / mucinoso / pobremente cohesivo con células en anillo de sello / mixto] y según la clasificación de Laurén como tipo [intestinal / difuso / indeterminado]. las células neoplásicas muestran marcada atipia nuclear, pleomorfismo, hipercromasia y figuras mitóticas atípicas.
 
 profundidad de invasión tumoral: [infiltra la lámina propia o submucosa (pT1) / muscular propia (pT2) / tejido conectivo subseroso sin comprometer la serosa visceral (pT3) / perfora la serosa visceral (peritoneo) (pT4a) / invade estructuras adyacentes (pT4b)].
 invasión linfovascular (lvi): [no identificada / presente].
@@ -2634,8 +2638,8 @@ márgenes quirúrgicos: margen de resección proximal [libre a [x] cm], margen d
 ganglios linfáticos: se identifican [n] ganglios linfáticos regionales, de los cuales [n_positivos] están comprometidos por metástasis. extensión extranodal (ene): [ausente / presente].
 estudios de biomarcadores (ihq / fish): HER2 [0 / 1+ (negativo) / 2+ (equívoco) / 3+ (positivo)], PD-L1 (CPS = [puntaje]), estado MMR [MSS/pMMR o MSI-H/dMMR].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / Japanese Gastric Cancer Association (JGCA).</small>",
-        "diag": "ESTÓMAGO ([LOCALIZACIÓN ANATÓMICA]), GASTRECTOMÍA [TOTAL / SUBTOTAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / Japanese Gastric Cancer Association (JGCA).</small>`,
+        "diag": `ESTÓMAGO ([LOCALIZACIÓN ANATÓMICA]), GASTRECTOMÍA [TOTAL / SUBTOTAL]:
 - ADENOCARCINOMA GÁSTRICO [TUBULAR / POBREMENTE COHESIVO - CÉLULAS EN ANILLO DE SELLO / MIXTO] (CLASIFICACIÓN DE LAURÉN: TIPO [INTESTINAL / DIFUSO]).
 - GRADO HISTOLÓGICO: [GRADO 1 (BIEN) / GRADO 2 (MODERADO) / GRADO 3 (POBREMENTE DIFERENCIADO)].
 - PROFUNDIDAD DE INVASIÓN: INFILTRA HASTA [SUBMUCOSA / MUSCULAR PROPIA / SUBSEROSA / PERITONEO VISCERAL (SEROSA)].
@@ -2672,16 +2676,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a / pT1b / pT2 / pT3 / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pN2 / pN3a / pN3b]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 2302,
         "categoryId": 10,
         "titulo": "CAP - ESTÓMAGO: ADENOCARCINOMA GÁSTRICO (GASTRECTOMÍA)",
-        "macro": "se recibe espécimen de gastrectomía [total / subtotal distal / proximal] con epiplón mayor y menor, fijado en formol. la pieza mide [longitud curvatura mayor] cm por la curvatura mayor y [longitud curvatura menor] cm por la menor. a la apertura gástrica por la curvatura mayor (respetando la lesión), en la región [antral / cuerpo / fúndica / cardial / incisura angularis], a [distancia_proximal] cm del margen esofágico/proximal y a [distancia_distal] cm del margen duodenal/distal, se aprecia una lesión tumoral [ulcerada e infiltrante (Borrmann III) / polipoide vegetante (Borrmann I) / úlcerocreciente delimitada (Borrmann II) / difusamente infiltrante (linitis plástica - Borrmann IV)] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor es blanquecino, nacarado y firme, con infiltración hasta [la submucosa / la muscular propia / el tejido subseroso / la serosa peritoneal]. en las cadenas ganglionares de curvatura mayor y menor se aíslan [número_ganglios] ganglios linfáticos de [menor] a [mayor] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, ME margen proximal/esofágico, MD margen distal/duodenal, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen de gastrectomía [total / subtotal distal / proximal] con epiplón mayor y menor, fijado en formol. la pieza mide [longitud curvatura mayor] cm por la curvatura mayor y [longitud curvatura menor] cm por la menor. a la apertura gástrica por la curvatura mayor (respetando la lesión), en la región [antral / cuerpo / fúndica / cardial / incisura angularis], a [distancia_proximal] cm del margen esofágico/proximal y a [distancia_distal] cm del margen duodenal/distal, se aprecia una lesión tumoral [ulcerada e infiltrante (Borrmann III) / polipoide vegetante (Borrmann I) / úlcerocreciente delimitada (Borrmann II) / difusamente infiltrante (linitis plástica - Borrmann IV)] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor es blanquecino, nacarado y firme, con infiltración hasta [la submucosa / la muscular propia / el tejido subseroso / la serosa peritoneal]. en las cadenas ganglionares de curvatura mayor y menor se aíslan [número_ganglios] ganglios linfáticos de [menor] a [mayor] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, ME margen proximal/esofágico, MD margen distal/duodenal, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Stomach. AJCC Cancer Staging Manual, 8th Ed.</small>",
-        "micro": "los cortes histológicos de la pared gástrica confirman una neoplasia epitelial maligna clasificada según la OMS 5.ª edición como adenocarcinoma gástrico de tipo tubular [o papilar / mucinoso / pobremente cohesivo con células en anillo de sello / mixto] y según la clasificación de Laurén como tipo [intestinal / difuso / indeterminado]. las células neoplásicas muestran marcada atipia nuclear, pleomorfismo, hipercromasia y figuras mitóticas atípicas.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Stomach. AJCC Cancer Staging Manual, 8th Ed.</small>`,
+        "micro": `los cortes histológicos de la pared gástrica confirman una neoplasia epitelial maligna clasificada según la OMS 5.ª edición como adenocarcinoma gástrico de tipo tubular [o papilar / mucinoso / pobremente cohesivo con células en anillo de sello / mixto] y según la clasificación de Laurén como tipo [intestinal / difuso / indeterminado]. las células neoplásicas muestran marcada atipia nuclear, pleomorfismo, hipercromasia y figuras mitóticas atípicas.
 
 profundidad de invasión tumoral: [infiltra la lámina propia o submucosa (pT1) / muscular propia (pT2) / tejido conectivo subseroso sin comprometer la serosa visceral (pT3) / perfora la serosa visceral (peritoneo) (pT4a) / invade estructuras adyacentes (pT4b)].
 invasión linfovascular (lvi): [no identificada / presente].
@@ -2690,8 +2694,8 @@ márgenes quirúrgicos: margen de resección proximal [libre a [x] cm], margen d
 ganglios linfáticos: se identifican [n] ganglios linfáticos regionales, de los cuales [n_positivos] están comprometidos por metástasis. extensión extranodal (ene): [ausente / presente].
 estudios de biomarcadores (ihq / fish): HER2 [0 / 1+ (negativo) / 2+ (equívoco) / 3+ (positivo)], PD-L1 (CPS = [puntaje]), estado MMR [MSS/pMMR o MSI-H/dMMR].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / Japanese Gastric Cancer Association (JGCA).</small>",
-        "diag": "ESTÓMAGO ([LOCALIZACIÓN ANATÓMICA]), GASTRECTOMÍA [TOTAL / SUBTOTAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / Japanese Gastric Cancer Association (JGCA).</small>`,
+        "diag": `ESTÓMAGO ([LOCALIZACIÓN ANATÓMICA]), GASTRECTOMÍA [TOTAL / SUBTOTAL]:
 - ADENOCARCINOMA GÁSTRICO [TUBULAR / POBREMENTE COHESIVO - CÉLULAS EN ANILLO DE SELLO / MIXTO] (CLASIFICACIÓN DE LAURÉN: TIPO [INTESTINAL / DIFUSO]).
 - GRADO HISTOLÓGICO: [GRADO 1 (BIEN) / GRADO 2 (MODERADO) / GRADO 3 (POBREMENTE DIFERENCIADO)].
 - PROFUNDIDAD DE INVASIÓN: INFILTRA HASTA [SUBMUCOSA / MUSCULAR PROPIA / SUBSEROSA / PERITONEO VISCERAL (SEROSA)].
@@ -2728,16 +2732,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a / pT1b / pT2 / pT3 / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pN2 / pN3a / pN3b]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 5302,
         "categoryId": 100,
         "titulo": "CAP - ESTÓMAGO: ADENOCARCINOMA GÁSTRICO (GASTRECTOMÍA)",
-        "macro": "se recibe espécimen de gastrectomía [total / subtotal distal / proximal] con epiplón mayor y menor, fijado en formol. la pieza mide [longitud curvatura mayor] cm por la curvatura mayor y [longitud curvatura menor] cm por la menor. a la apertura gástrica por la curvatura mayor (respetando la lesión), en la región [antral / cuerpo / fúndica / cardial / incisura angularis], a [distancia_proximal] cm del margen esofágico/proximal y a [distancia_distal] cm del margen duodenal/distal, se aprecia una lesión tumoral [ulcerada e infiltrante (Borrmann III) / polipoide vegetante (Borrmann I) / úlcerocreciente delimitada (Borrmann II) / difusamente infiltrante (linitis plástica - Borrmann IV)] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor es blanquecino, nacarado y firme, con infiltración hasta [la submucosa / la muscular propia / el tejido subseroso / la serosa peritoneal]. en las cadenas ganglionares de curvatura mayor y menor se aíslan [número_ganglios] ganglios linfáticos de [menor] a [mayor] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, ME margen proximal/esofágico, MD margen distal/duodenal, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen de gastrectomía [total / subtotal distal / proximal] con epiplón mayor y menor, fijado en formol. la pieza mide [longitud curvatura mayor] cm por la curvatura mayor y [longitud curvatura menor] cm por la menor. a la apertura gástrica por la curvatura mayor (respetando la lesión), en la región [antral / cuerpo / fúndica / cardial / incisura angularis], a [distancia_proximal] cm del margen esofágico/proximal y a [distancia_distal] cm del margen duodenal/distal, se aprecia una lesión tumoral [ulcerada e infiltrante (Borrmann III) / polipoide vegetante (Borrmann I) / úlcerocreciente delimitada (Borrmann II) / difusamente infiltrante (linitis plástica - Borrmann IV)] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor es blanquecino, nacarado y firme, con infiltración hasta [la submucosa / la muscular propia / el tejido subseroso / la serosa peritoneal]. en las cadenas ganglionares de curvatura mayor y menor se aíslan [número_ganglios] ganglios linfáticos de [menor] a [mayor] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, ME margen proximal/esofágico, MD margen distal/duodenal, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Stomach. AJCC Cancer Staging Manual, 8th Ed.</small>",
-        "micro": "los cortes histológicos de la pared gástrica confirman una neoplasia epitelial maligna clasificada según la OMS 5.ª edición como adenocarcinoma gástrico de tipo tubular [o papilar / mucinoso / pobremente cohesivo con células en anillo de sello / mixto] y según la clasificación de Laurén como tipo [intestinal / difuso / indeterminado]. las células neoplásicas muestran marcada atipia nuclear, pleomorfismo, hipercromasia y figuras mitóticas atípicas.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Stomach. AJCC Cancer Staging Manual, 8th Ed.</small>`,
+        "micro": `los cortes histológicos de la pared gástrica confirman una neoplasia epitelial maligna clasificada según la OMS 5.ª edición como adenocarcinoma gástrico de tipo tubular [o papilar / mucinoso / pobremente cohesivo con células en anillo de sello / mixto] y según la clasificación de Laurén como tipo [intestinal / difuso / indeterminado]. las células neoplásicas muestran marcada atipia nuclear, pleomorfismo, hipercromasia y figuras mitóticas atípicas.
 
 profundidad de invasión tumoral: [infiltra la lámina propia o submucosa (pT1) / muscular propia (pT2) / tejido conectivo subseroso sin comprometer la serosa visceral (pT3) / perfora la serosa visceral (peritoneo) (pT4a) / invade estructuras adyacentes (pT4b)].
 invasión linfovascular (lvi): [no identificada / presente].
@@ -2746,8 +2750,8 @@ márgenes quirúrgicos: margen de resección proximal [libre a [x] cm], margen d
 ganglios linfáticos: se identifican [n] ganglios linfáticos regionales, de los cuales [n_positivos] están comprometidos por metástasis. extensión extranodal (ene): [ausente / presente].
 estudios de biomarcadores (ihq / fish): HER2 [0 / 1+ (negativo) / 2+ (equívoco) / 3+ (positivo)], PD-L1 (CPS = [puntaje]), estado MMR [MSS/pMMR o MSI-H/dMMR].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / Japanese Gastric Cancer Association (JGCA).</small>",
-        "diag": "ESTÓMAGO ([LOCALIZACIÓN ANATÓMICA]), GASTRECTOMÍA [TOTAL / SUBTOTAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / Japanese Gastric Cancer Association (JGCA).</small>`,
+        "diag": `ESTÓMAGO ([LOCALIZACIÓN ANATÓMICA]), GASTRECTOMÍA [TOTAL / SUBTOTAL]:
 - ADENOCARCINOMA GÁSTRICO [TUBULAR / POBREMENTE COHESIVO - CÉLULAS EN ANILLO DE SELLO / MIXTO] (CLASIFICACIÓN DE LAURÉN: TIPO [INTESTINAL / DIFUSO]).
 - GRADO HISTOLÓGICO: [GRADO 1 (BIEN) / GRADO 2 (MODERADO) / GRADO 3 (POBREMENTE DIFERENCIADO)].
 - PROFUNDIDAD DE INVASIÓN: INFILTRA HASTA [SUBMUCOSA / MUSCULAR PROPIA / SUBSEROSA / PERITONEO VISCERAL (SEROSA)].
@@ -2784,16 +2788,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a / pT1b / pT2 / pT3 / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pN2 / pN3a / pN3b]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 6302,
         "categoryId": 101,
         "titulo": "CAP - ESTÓMAGO: ADENOCARCINOMA GÁSTRICO (GASTRECTOMÍA)",
-        "macro": "se recibe espécimen de gastrectomía [total / subtotal distal / proximal] con epiplón mayor y menor, fijado en formol. la pieza mide [longitud curvatura mayor] cm por la curvatura mayor y [longitud curvatura menor] cm por la menor. a la apertura gástrica por la curvatura mayor (respetando la lesión), en la región [antral / cuerpo / fúndica / cardial / incisura angularis], a [distancia_proximal] cm del margen esofágico/proximal y a [distancia_distal] cm del margen duodenal/distal, se aprecia una lesión tumoral [ulcerada e infiltrante (Borrmann III) / polipoide vegetante (Borrmann I) / úlcerocreciente delimitada (Borrmann II) / difusamente infiltrante (linitis plástica - Borrmann IV)] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor es blanquecino, nacarado y firme, con infiltración hasta [la submucosa / la muscular propia / el tejido subseroso / la serosa peritoneal]. en las cadenas ganglionares de curvatura mayor y menor se aíslan [número_ganglios] ganglios linfáticos de [menor] a [mayor] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, ME margen proximal/esofágico, MD margen distal/duodenal, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen de gastrectomía [total / subtotal distal / proximal] con epiplón mayor y menor, fijado en formol. la pieza mide [longitud curvatura mayor] cm por la curvatura mayor y [longitud curvatura menor] cm por la menor. a la apertura gástrica por la curvatura mayor (respetando la lesión), en la región [antral / cuerpo / fúndica / cardial / incisura angularis], a [distancia_proximal] cm del margen esofágico/proximal y a [distancia_distal] cm del margen duodenal/distal, se aprecia una lesión tumoral [ulcerada e infiltrante (Borrmann III) / polipoide vegetante (Borrmann I) / úlcerocreciente delimitada (Borrmann II) / difusamente infiltrante (linitis plástica - Borrmann IV)] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor es blanquecino, nacarado y firme, con infiltración hasta [la submucosa / la muscular propia / el tejido subseroso / la serosa peritoneal]. en las cadenas ganglionares de curvatura mayor y menor se aíslan [número_ganglios] ganglios linfáticos de [menor] a [mayor] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, ME margen proximal/esofágico, MD margen distal/duodenal, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Stomach. AJCC Cancer Staging Manual, 8th Ed.</small>",
-        "micro": "los cortes histológicos de la pared gástrica confirman una neoplasia epitelial maligna clasificada según la OMS 5.ª edición como adenocarcinoma gástrico de tipo tubular [o papilar / mucinoso / pobremente cohesivo con células en anillo de sello / mixto] y según la clasificación de Laurén como tipo [intestinal / difuso / indeterminado]. las células neoplásicas muestran marcada atipia nuclear, pleomorfismo, hipercromasia y figuras mitóticas atípicas.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Stomach. AJCC Cancer Staging Manual, 8th Ed.</small>`,
+        "micro": `los cortes histológicos de la pared gástrica confirman una neoplasia epitelial maligna clasificada según la OMS 5.ª edición como adenocarcinoma gástrico de tipo tubular [o papilar / mucinoso / pobremente cohesivo con células en anillo de sello / mixto] y según la clasificación de Laurén como tipo [intestinal / difuso / indeterminado]. las células neoplásicas muestran marcada atipia nuclear, pleomorfismo, hipercromasia y figuras mitóticas atípicas.
 
 profundidad de invasión tumoral: [infiltra la lámina propia o submucosa (pT1) / muscular propia (pT2) / tejido conectivo subseroso sin comprometer la serosa visceral (pT3) / perfora la serosa visceral (peritoneo) (pT4a) / invade estructuras adyacentes (pT4b)].
 invasión linfovascular (lvi): [no identificada / presente].
@@ -2802,8 +2806,8 @@ márgenes quirúrgicos: margen de resección proximal [libre a [x] cm], margen d
 ganglios linfáticos: se identifican [n] ganglios linfáticos regionales, de los cuales [n_positivos] están comprometidos por metástasis. extensión extranodal (ene): [ausente / presente].
 estudios de biomarcadores (ihq / fish): HER2 [0 / 1+ (negativo) / 2+ (equívoco) / 3+ (positivo)], PD-L1 (CPS = [puntaje]), estado MMR [MSS/pMMR o MSI-H/dMMR].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / Japanese Gastric Cancer Association (JGCA).</small>",
-        "diag": "ESTÓMAGO ([LOCALIZACIÓN ANATÓMICA]), GASTRECTOMÍA [TOTAL / SUBTOTAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / Japanese Gastric Cancer Association (JGCA).</small>`,
+        "diag": `ESTÓMAGO ([LOCALIZACIÓN ANATÓMICA]), GASTRECTOMÍA [TOTAL / SUBTOTAL]:
 - ADENOCARCINOMA GÁSTRICO [TUBULAR / POBREMENTE COHESIVO - CÉLULAS EN ANILLO DE SELLO / MIXTO] (CLASIFICACIÓN DE LAURÉN: TIPO [INTESTINAL / DIFUSO]).
 - GRADO HISTOLÓGICO: [GRADO 1 (BIEN) / GRADO 2 (MODERADO) / GRADO 3 (POBREMENTE DIFERENCIADO)].
 - PROFUNDIDAD DE INVASIÓN: INFILTRA HASTA [SUBMUCOSA / MUSCULAR PROPIA / SUBSEROSA / PERITONEO VISCERAL (SEROSA)].
@@ -2840,16 +2844,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a / pT1b / pT2 / pT3 / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pN2 / pN3a / pN3b]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 3302,
         "categoryId": 3,
         "titulo": "CAP - ESTÓMAGO: ADENOCARCINOMA GÁSTRICO (GASTRECTOMÍA)",
-        "macro": "se recibe espécimen de gastrectomía [total / subtotal distal / proximal] con epiplón mayor y menor, fijado en formol. la pieza mide [longitud curvatura mayor] cm por la curvatura mayor y [longitud curvatura menor] cm por la menor. a la apertura gástrica por la curvatura mayor (respetando la lesión), en la región [antral / cuerpo / fúndica / cardial / incisura angularis], a [distancia_proximal] cm del margen esofágico/proximal y a [distancia_distal] cm del margen duodenal/distal, se aprecia una lesión tumoral [ulcerada e infiltrante (Borrmann III) / polipoide vegetante (Borrmann I) / úlcerocreciente delimitada (Borrmann II) / difusamente infiltrante (linitis plástica - Borrmann IV)] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor es blanquecino, nacarado y firme, con infiltración hasta [la submucosa / la muscular propia / el tejido subseroso / la serosa peritoneal]. en las cadenas ganglionares de curvatura mayor y menor se aíslan [número_ganglios] ganglios linfáticos de [menor] a [mayor] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, ME margen proximal/esofágico, MD margen distal/duodenal, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen de gastrectomía [total / subtotal distal / proximal] con epiplón mayor y menor, fijado en formol. la pieza mide [longitud curvatura mayor] cm por la curvatura mayor y [longitud curvatura menor] cm por la menor. a la apertura gástrica por la curvatura mayor (respetando la lesión), en la región [antral / cuerpo / fúndica / cardial / incisura angularis], a [distancia_proximal] cm del margen esofágico/proximal y a [distancia_distal] cm del margen duodenal/distal, se aprecia una lesión tumoral [ulcerada e infiltrante (Borrmann III) / polipoide vegetante (Borrmann I) / úlcerocreciente delimitada (Borrmann II) / difusamente infiltrante (linitis plástica - Borrmann IV)] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor es blanquecino, nacarado y firme, con infiltración hasta [la submucosa / la muscular propia / el tejido subseroso / la serosa peritoneal]. en las cadenas ganglionares de curvatura mayor y menor se aíslan [número_ganglios] ganglios linfáticos de [menor] a [mayor] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, ME margen proximal/esofágico, MD margen distal/duodenal, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Stomach. AJCC Cancer Staging Manual, 8th Ed.</small>",
-        "micro": "los cortes histológicos de la pared gástrica confirman una neoplasia epitelial maligna clasificada según la OMS 5.ª edición como adenocarcinoma gástrico de tipo tubular [o papilar / mucinoso / pobremente cohesivo con células en anillo de sello / mixto] y según la clasificación de Laurén como tipo [intestinal / difuso / indeterminado]. las células neoplásicas muestran marcada atipia nuclear, pleomorfismo, hipercromasia y figuras mitóticas atípicas.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Stomach. AJCC Cancer Staging Manual, 8th Ed.</small>`,
+        "micro": `los cortes histológicos de la pared gástrica confirman una neoplasia epitelial maligna clasificada según la OMS 5.ª edición como adenocarcinoma gástrico de tipo tubular [o papilar / mucinoso / pobremente cohesivo con células en anillo de sello / mixto] y según la clasificación de Laurén como tipo [intestinal / difuso / indeterminado]. las células neoplásicas muestran marcada atipia nuclear, pleomorfismo, hipercromasia y figuras mitóticas atípicas.
 
 profundidad de invasión tumoral: [infiltra la lámina propia o submucosa (pT1) / muscular propia (pT2) / tejido conectivo subseroso sin comprometer la serosa visceral (pT3) / perfora la serosa visceral (peritoneo) (pT4a) / invade estructuras adyacentes (pT4b)].
 invasión linfovascular (lvi): [no identificada / presente].
@@ -2858,8 +2862,8 @@ márgenes quirúrgicos: margen de resección proximal [libre a [x] cm], margen d
 ganglios linfáticos: se identifican [n] ganglios linfáticos regionales, de los cuales [n_positivos] están comprometidos por metástasis. extensión extranodal (ene): [ausente / presente].
 estudios de biomarcadores (ihq / fish): HER2 [0 / 1+ (negativo) / 2+ (equívoco) / 3+ (positivo)], PD-L1 (CPS = [puntaje]), estado MMR [MSS/pMMR o MSI-H/dMMR].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / Japanese Gastric Cancer Association (JGCA).</small>",
-        "diag": "ESTÓMAGO ([LOCALIZACIÓN ANATÓMICA]), GASTRECTOMÍA [TOTAL / SUBTOTAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / Japanese Gastric Cancer Association (JGCA).</small>`,
+        "diag": `ESTÓMAGO ([LOCALIZACIÓN ANATÓMICA]), GASTRECTOMÍA [TOTAL / SUBTOTAL]:
 - ADENOCARCINOMA GÁSTRICO [TUBULAR / POBREMENTE COHESIVO - CÉLULAS EN ANILLO DE SELLO / MIXTO] (CLASIFICACIÓN DE LAURÉN: TIPO [INTESTINAL / DIFUSO]).
 - GRADO HISTOLÓGICO: [GRADO 1 (BIEN) / GRADO 2 (MODERADO) / GRADO 3 (POBREMENTE DIFERENCIADO)].
 - PROFUNDIDAD DE INVASIÓN: INFILTRA HASTA [SUBMUCOSA / MUSCULAR PROPIA / SUBSEROSA / PERITONEO VISCERAL (SEROSA)].
@@ -2896,16 +2900,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a / pT1b / pT2 / pT3 / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pN2 / pN3a / pN3b]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 4302,
         "categoryId": 17,
         "titulo": "CAP - ESTÓMAGO: ADENOCARCINOMA GÁSTRICO (GASTRECTOMÍA)",
-        "macro": "se recibe espécimen de gastrectomía [total / subtotal distal / proximal] con epiplón mayor y menor, fijado en formol. la pieza mide [longitud curvatura mayor] cm por la curvatura mayor y [longitud curvatura menor] cm por la menor. a la apertura gástrica por la curvatura mayor (respetando la lesión), en la región [antral / cuerpo / fúndica / cardial / incisura angularis], a [distancia_proximal] cm del margen esofágico/proximal y a [distancia_distal] cm del margen duodenal/distal, se aprecia una lesión tumoral [ulcerada e infiltrante (Borrmann III) / polipoide vegetante (Borrmann I) / úlcerocreciente delimitada (Borrmann II) / difusamente infiltrante (linitis plástica - Borrmann IV)] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor es blanquecino, nacarado y firme, con infiltración hasta [la submucosa / la muscular propia / el tejido subseroso / la serosa peritoneal]. en las cadenas ganglionares de curvatura mayor y menor se aíslan [número_ganglios] ganglios linfáticos de [menor] a [mayor] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, ME margen proximal/esofágico, MD margen distal/duodenal, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen de gastrectomía [total / subtotal distal / proximal] con epiplón mayor y menor, fijado en formol. la pieza mide [longitud curvatura mayor] cm por la curvatura mayor y [longitud curvatura menor] cm por la menor. a la apertura gástrica por la curvatura mayor (respetando la lesión), en la región [antral / cuerpo / fúndica / cardial / incisura angularis], a [distancia_proximal] cm del margen esofágico/proximal y a [distancia_distal] cm del margen duodenal/distal, se aprecia una lesión tumoral [ulcerada e infiltrante (Borrmann III) / polipoide vegetante (Borrmann I) / úlcerocreciente delimitada (Borrmann II) / difusamente infiltrante (linitis plástica - Borrmann IV)] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor es blanquecino, nacarado y firme, con infiltración hasta [la submucosa / la muscular propia / el tejido subseroso / la serosa peritoneal]. en las cadenas ganglionares de curvatura mayor y menor se aíslan [número_ganglios] ganglios linfáticos de [menor] a [mayor] cm. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad, ME margen proximal/esofágico, MD margen distal/duodenal, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Stomach. AJCC Cancer Staging Manual, 8th Ed.</small>",
-        "micro": "los cortes histológicos de la pared gástrica confirman una neoplasia epitelial maligna clasificada según la OMS 5.ª edición como adenocarcinoma gástrico de tipo tubular [o papilar / mucinoso / pobremente cohesivo con células en anillo de sello / mixto] y según la clasificación de Laurén como tipo [intestinal / difuso / indeterminado]. las células neoplásicas muestran marcada atipia nuclear, pleomorfismo, hipercromasia y figuras mitóticas atípicas.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Stomach. AJCC Cancer Staging Manual, 8th Ed.</small>`,
+        "micro": `los cortes histológicos de la pared gástrica confirman una neoplasia epitelial maligna clasificada según la OMS 5.ª edición como adenocarcinoma gástrico de tipo tubular [o papilar / mucinoso / pobremente cohesivo con células en anillo de sello / mixto] y según la clasificación de Laurén como tipo [intestinal / difuso / indeterminado]. las células neoplásicas muestran marcada atipia nuclear, pleomorfismo, hipercromasia y figuras mitóticas atípicas.
 
 profundidad de invasión tumoral: [infiltra la lámina propia o submucosa (pT1) / muscular propia (pT2) / tejido conectivo subseroso sin comprometer la serosa visceral (pT3) / perfora la serosa visceral (peritoneo) (pT4a) / invade estructuras adyacentes (pT4b)].
 invasión linfovascular (lvi): [no identificada / presente].
@@ -2914,8 +2918,8 @@ márgenes quirúrgicos: margen de resección proximal [libre a [x] cm], margen d
 ganglios linfáticos: se identifican [n] ganglios linfáticos regionales, de los cuales [n_positivos] están comprometidos por metástasis. extensión extranodal (ene): [ausente / presente].
 estudios de biomarcadores (ihq / fish): HER2 [0 / 1+ (negativo) / 2+ (equívoco) / 3+ (positivo)], PD-L1 (CPS = [puntaje]), estado MMR [MSS/pMMR o MSI-H/dMMR].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / Japanese Gastric Cancer Association (JGCA).</small>",
-        "diag": "ESTÓMAGO ([LOCALIZACIÓN ANATÓMICA]), GASTRECTOMÍA [TOTAL / SUBTOTAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Digestive System Tumours (5th ed.). IARC; Lyon. / Japanese Gastric Cancer Association (JGCA).</small>`,
+        "diag": `ESTÓMAGO ([LOCALIZACIÓN ANATÓMICA]), GASTRECTOMÍA [TOTAL / SUBTOTAL]:
 - ADENOCARCINOMA GÁSTRICO [TUBULAR / POBREMENTE COHESIVO - CÉLULAS EN ANILLO DE SELLO / MIXTO] (CLASIFICACIÓN DE LAURÉN: TIPO [INTESTINAL / DIFUSO]).
 - GRADO HISTOLÓGICO: [GRADO 1 (BIEN) / GRADO 2 (MODERADO) / GRADO 3 (POBREMENTE DIFERENCIADO)].
 - PROFUNDIDAD DE INVASIÓN: INFILTRA HASTA [SUBMUCOSA / MUSCULAR PROPIA / SUBSEROSA / PERITONEO VISCERAL (SEROSA)].
@@ -2952,16 +2956,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a / pT1b / pT2 / pT3 / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pN2 / pN3a / pN3b]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 303,
         "categoryId": 1,
         "titulo": "CAP - GIST: TUMOR DEL ESTROMA GASTROINTESTINAL (RESECCIÓN)",
-        "macro": "se recibe espécimen quirúrgico correspondiente a resección de [estómago / duodeno / yeyuno / íleon / colon / recto / peritoneo] fijado en formol. la pieza incluye un segmento gastrointestinal de [longitud] x [diámetro] cm con una masa tumoral [submucosa / subserosa / transmural / exofítica / intramural] que mide [dimensión mayor] x [intermedia] x [menor] cm y pesa [peso] g. externamente la masa es [lobulada, con pseudocápsula fibrosa lisa e íntegra / con áreas de ruptura capsular]. al corte, la superficie tumoral es carnosa, arremolinada, de color blanco-rosado a pardo-amarillento, con áreas de [degeneración quística / necrosis tumoral hemorrágica del [x]% / sin necrosis]. el tumor dista a [distancia] mm del margen quirúrgico más cercano. se incluye según protocolo CAP / Lester en casetes [G1-Gn masa tumoral, M1-Mn márgenes de resección].
+        "macro": `se recibe espécimen quirúrgico correspondiente a resección de [estómago / duodeno / yeyuno / íleon / colon / recto / peritoneo] fijado en formol. la pieza incluye un segmento gastrointestinal de [longitud] x [diámetro] cm con una masa tumoral [submucosa / subserosa / transmural / exofítica / intramural] que mide [dimensión mayor] x [intermedia] x [menor] cm y pesa [peso] g. externamente la masa es [lobulada, con pseudocápsula fibrosa lisa e íntegra / con áreas de ruptura capsular]. al corte, la superficie tumoral es carnosa, arremolinada, de color blanco-rosado a pardo-amarillento, con áreas de [degeneración quística / necrosis tumoral hemorrágica del [x]% / sin necrosis]. el tumor dista a [distancia] mm del margen quirúrgico más cercano. se incluye según protocolo CAP / Lester en casetes [G1-Gn masa tumoral, M1-Mn márgenes de resección].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Gastrointestinal Stromal Tumors (GIST). AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman una neoplasia mesenquimal fusocelular / epitelioide de estirpe estromal gastrointestinal (GIST). el tumor está compuesto predominantemente por [células fusiformes con núcleos alargados y citoplasma eosinófilo fibrilar / células epitelioides con núcleos redondos y citoplasma amplio claro / patrón mixto]. se observa estroma mixoide / colagenizado con vasos sanguíneos de paredes delgadas.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Gastrointestinal Stromal Tumors (GIST). AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman una neoplasia mesenquimal fusocelular / epitelioide de estirpe estromal gastrointestinal (GIST). el tumor está compuesto predominantemente por [células fusiformes con núcleos alargados y citoplasma eosinófilo fibrilar / células epitelioides con núcleos redondos y citoplasma amplio claro / patrón mixto]. se observa estroma mixoide / colagenizado con vasos sanguíneos de paredes delgadas.
 
 conteo mitótico: se cuantifican [número_mitosis] mitosis en 5 mm² (equivalente a 50 campos de gran aumento de 40x de alta definición).
 necrosis tumoral: [ausente / presente en un [x]% de la masa].
@@ -2969,8 +2973,8 @@ ruptura tumoral quirúrgica / intraoperatoria: [no identificada / presente].
 márgenes quirúrgicos: margen de resección [libre a [x] mm / comprometido].
 inmunofenotipo diagnóstico (ihq): CD117 (c-kit) [positivo difuso e intenso citoplasmático/membrana], DOG1 [positivo difuso intenso], CD34 [positivo / negativo], SMA / Actina [negativo / focal positivo], Desmina [negativa], Proteína S100 [negativa], Ki-67 índice proliferativo [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Miettinen, M., & Lasota, J. (2006). Gastrointestinal stromal tumors: review on morphology, biology, and risk stratification. / CAP GIST Protocol 2024.</small>",
-        "diag": "TRACTO GASTROINTESTINAL ([ÓRGANO / LOCALIZACIÓN]), RESECCIÓN QUIRÚRGICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Miettinen, M., & Lasota, J. (2006). Gastrointestinal stromal tumors: review on morphology, biology, and risk stratification. / CAP GIST Protocol 2024.</small>`,
+        "diag": `TRACTO GASTROINTESTINAL ([ÓRGANO / LOCALIZACIÓN]), RESECCIÓN QUIRÚRGICA:
 - TUMOR DEL ESTROMA GASTROINTESTINAL (GIST), TIPO [FUSOCELULAR / EPITELIOIDE / MIXTO].
 - TAMAÑO TUMORAL MÁXIMO: [__] cm.
 - CONTEO MITÓTICO: [<= 5 mitosis en 5 mm² (bajo) / > 5 mitosis en 5 mm² (alto)].
@@ -3001,16 +3005,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1 (<=2cm) / pT2 (>2 a 5cm) / pT3 (>5 a 10cm) / pT4 (>10cm)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pNX]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 1303,
         "categoryId": 11,
         "titulo": "CAP - GIST: TUMOR DEL ESTROMA GASTROINTESTINAL (RESECCIÓN)",
-        "macro": "se recibe espécimen quirúrgico correspondiente a resección de [estómago / duodeno / yeyuno / íleon / colon / recto / peritoneo] fijado en formol. la pieza incluye un segmento gastrointestinal de [longitud] x [diámetro] cm con una masa tumoral [submucosa / subserosa / transmural / exofítica / intramural] que mide [dimensión mayor] x [intermedia] x [menor] cm y pesa [peso] g. externamente la masa es [lobulada, con pseudocápsula fibrosa lisa e íntegra / con áreas de ruptura capsular]. al corte, la superficie tumoral es carnosa, arremolinada, de color blanco-rosado a pardo-amarillento, con áreas de [degeneración quística / necrosis tumoral hemorrágica del [x]% / sin necrosis]. el tumor dista a [distancia] mm del margen quirúrgico más cercano. se incluye según protocolo CAP / Lester en casetes [G1-Gn masa tumoral, M1-Mn márgenes de resección].
+        "macro": `se recibe espécimen quirúrgico correspondiente a resección de [estómago / duodeno / yeyuno / íleon / colon / recto / peritoneo] fijado en formol. la pieza incluye un segmento gastrointestinal de [longitud] x [diámetro] cm con una masa tumoral [submucosa / subserosa / transmural / exofítica / intramural] que mide [dimensión mayor] x [intermedia] x [menor] cm y pesa [peso] g. externamente la masa es [lobulada, con pseudocápsula fibrosa lisa e íntegra / con áreas de ruptura capsular]. al corte, la superficie tumoral es carnosa, arremolinada, de color blanco-rosado a pardo-amarillento, con áreas de [degeneración quística / necrosis tumoral hemorrágica del [x]% / sin necrosis]. el tumor dista a [distancia] mm del margen quirúrgico más cercano. se incluye según protocolo CAP / Lester en casetes [G1-Gn masa tumoral, M1-Mn márgenes de resección].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Gastrointestinal Stromal Tumors (GIST). AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman una neoplasia mesenquimal fusocelular / epitelioide de estirpe estromal gastrointestinal (GIST). el tumor está compuesto predominantemente por [células fusiformes con núcleos alargados y citoplasma eosinófilo fibrilar / células epitelioides con núcleos redondos y citoplasma amplio claro / patrón mixto]. se observa estroma mixoide / colagenizado con vasos sanguíneos de paredes delgadas.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Gastrointestinal Stromal Tumors (GIST). AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman una neoplasia mesenquimal fusocelular / epitelioide de estirpe estromal gastrointestinal (GIST). el tumor está compuesto predominantemente por [células fusiformes con núcleos alargados y citoplasma eosinófilo fibrilar / células epitelioides con núcleos redondos y citoplasma amplio claro / patrón mixto]. se observa estroma mixoide / colagenizado con vasos sanguíneos de paredes delgadas.
 
 conteo mitótico: se cuantifican [número_mitosis] mitosis en 5 mm² (equivalente a 50 campos de gran aumento de 40x de alta definición).
 necrosis tumoral: [ausente / presente en un [x]% de la masa].
@@ -3018,8 +3022,8 @@ ruptura tumoral quirúrgica / intraoperatoria: [no identificada / presente].
 márgenes quirúrgicos: margen de resección [libre a [x] mm / comprometido].
 inmunofenotipo diagnóstico (ihq): CD117 (c-kit) [positivo difuso e intenso citoplasmático/membrana], DOG1 [positivo difuso intenso], CD34 [positivo / negativo], SMA / Actina [negativo / focal positivo], Desmina [negativa], Proteína S100 [negativa], Ki-67 índice proliferativo [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Miettinen, M., & Lasota, J. (2006). Gastrointestinal stromal tumors: review on morphology, biology, and risk stratification. / CAP GIST Protocol 2024.</small>",
-        "diag": "TRACTO GASTROINTESTINAL ([ÓRGANO / LOCALIZACIÓN]), RESECCIÓN QUIRÚRGICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Miettinen, M., & Lasota, J. (2006). Gastrointestinal stromal tumors: review on morphology, biology, and risk stratification. / CAP GIST Protocol 2024.</small>`,
+        "diag": `TRACTO GASTROINTESTINAL ([ÓRGANO / LOCALIZACIÓN]), RESECCIÓN QUIRÚRGICA:
 - TUMOR DEL ESTROMA GASTROINTESTINAL (GIST), TIPO [FUSOCELULAR / EPITELIOIDE / MIXTO].
 - TAMAÑO TUMORAL MÁXIMO: [__] cm.
 - CONTEO MITÓTICO: [<= 5 mitosis en 5 mm² (bajo) / > 5 mitosis en 5 mm² (alto)].
@@ -3050,16 +3054,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1 (<=2cm) / pT2 (>2 a 5cm) / pT3 (>5 a 10cm) / pT4 (>10cm)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pNX]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 2303,
         "categoryId": 10,
         "titulo": "CAP - GIST: TUMOR DEL ESTROMA GASTROINTESTINAL (RESECCIÓN)",
-        "macro": "se recibe espécimen quirúrgico correspondiente a resección de [estómago / duodeno / yeyuno / íleon / colon / recto / peritoneo] fijado en formol. la pieza incluye un segmento gastrointestinal de [longitud] x [diámetro] cm con una masa tumoral [submucosa / subserosa / transmural / exofítica / intramural] que mide [dimensión mayor] x [intermedia] x [menor] cm y pesa [peso] g. externamente la masa es [lobulada, con pseudocápsula fibrosa lisa e íntegra / con áreas de ruptura capsular]. al corte, la superficie tumoral es carnosa, arremolinada, de color blanco-rosado a pardo-amarillento, con áreas de [degeneración quística / necrosis tumoral hemorrágica del [x]% / sin necrosis]. el tumor dista a [distancia] mm del margen quirúrgico más cercano. se incluye según protocolo CAP / Lester en casetes [G1-Gn masa tumoral, M1-Mn márgenes de resección].
+        "macro": `se recibe espécimen quirúrgico correspondiente a resección de [estómago / duodeno / yeyuno / íleon / colon / recto / peritoneo] fijado en formol. la pieza incluye un segmento gastrointestinal de [longitud] x [diámetro] cm con una masa tumoral [submucosa / subserosa / transmural / exofítica / intramural] que mide [dimensión mayor] x [intermedia] x [menor] cm y pesa [peso] g. externamente la masa es [lobulada, con pseudocápsula fibrosa lisa e íntegra / con áreas de ruptura capsular]. al corte, la superficie tumoral es carnosa, arremolinada, de color blanco-rosado a pardo-amarillento, con áreas de [degeneración quística / necrosis tumoral hemorrágica del [x]% / sin necrosis]. el tumor dista a [distancia] mm del margen quirúrgico más cercano. se incluye según protocolo CAP / Lester en casetes [G1-Gn masa tumoral, M1-Mn márgenes de resección].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Gastrointestinal Stromal Tumors (GIST). AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman una neoplasia mesenquimal fusocelular / epitelioide de estirpe estromal gastrointestinal (GIST). el tumor está compuesto predominantemente por [células fusiformes con núcleos alargados y citoplasma eosinófilo fibrilar / células epitelioides con núcleos redondos y citoplasma amplio claro / patrón mixto]. se observa estroma mixoide / colagenizado con vasos sanguíneos de paredes delgadas.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Gastrointestinal Stromal Tumors (GIST). AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman una neoplasia mesenquimal fusocelular / epitelioide de estirpe estromal gastrointestinal (GIST). el tumor está compuesto predominantemente por [células fusiformes con núcleos alargados y citoplasma eosinófilo fibrilar / células epitelioides con núcleos redondos y citoplasma amplio claro / patrón mixto]. se observa estroma mixoide / colagenizado con vasos sanguíneos de paredes delgadas.
 
 conteo mitótico: se cuantifican [número_mitosis] mitosis en 5 mm² (equivalente a 50 campos de gran aumento de 40x de alta definición).
 necrosis tumoral: [ausente / presente en un [x]% de la masa].
@@ -3067,8 +3071,8 @@ ruptura tumoral quirúrgica / intraoperatoria: [no identificada / presente].
 márgenes quirúrgicos: margen de resección [libre a [x] mm / comprometido].
 inmunofenotipo diagnóstico (ihq): CD117 (c-kit) [positivo difuso e intenso citoplasmático/membrana], DOG1 [positivo difuso intenso], CD34 [positivo / negativo], SMA / Actina [negativo / focal positivo], Desmina [negativa], Proteína S100 [negativa], Ki-67 índice proliferativo [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Miettinen, M., & Lasota, J. (2006). Gastrointestinal stromal tumors: review on morphology, biology, and risk stratification. / CAP GIST Protocol 2024.</small>",
-        "diag": "TRACTO GASTROINTESTINAL ([ÓRGANO / LOCALIZACIÓN]), RESECCIÓN QUIRÚRGICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Miettinen, M., & Lasota, J. (2006). Gastrointestinal stromal tumors: review on morphology, biology, and risk stratification. / CAP GIST Protocol 2024.</small>`,
+        "diag": `TRACTO GASTROINTESTINAL ([ÓRGANO / LOCALIZACIÓN]), RESECCIÓN QUIRÚRGICA:
 - TUMOR DEL ESTROMA GASTROINTESTINAL (GIST), TIPO [FUSOCELULAR / EPITELIOIDE / MIXTO].
 - TAMAÑO TUMORAL MÁXIMO: [__] cm.
 - CONTEO MITÓTICO: [<= 5 mitosis en 5 mm² (bajo) / > 5 mitosis en 5 mm² (alto)].
@@ -3099,16 +3103,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1 (<=2cm) / pT2 (>2 a 5cm) / pT3 (>5 a 10cm) / pT4 (>10cm)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pNX]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 5303,
         "categoryId": 100,
         "titulo": "CAP - GIST: TUMOR DEL ESTROMA GASTROINTESTINAL (RESECCIÓN)",
-        "macro": "se recibe espécimen quirúrgico correspondiente a resección de [estómago / duodeno / yeyuno / íleon / colon / recto / peritoneo] fijado en formol. la pieza incluye un segmento gastrointestinal de [longitud] x [diámetro] cm con una masa tumoral [submucosa / subserosa / transmural / exofítica / intramural] que mide [dimensión mayor] x [intermedia] x [menor] cm y pesa [peso] g. externamente la masa es [lobulada, con pseudocápsula fibrosa lisa e íntegra / con áreas de ruptura capsular]. al corte, la superficie tumoral es carnosa, arremolinada, de color blanco-rosado a pardo-amarillento, con áreas de [degeneración quística / necrosis tumoral hemorrágica del [x]% / sin necrosis]. el tumor dista a [distancia] mm del margen quirúrgico más cercano. se incluye según protocolo CAP / Lester en casetes [G1-Gn masa tumoral, M1-Mn márgenes de resección].
+        "macro": `se recibe espécimen quirúrgico correspondiente a resección de [estómago / duodeno / yeyuno / íleon / colon / recto / peritoneo] fijado en formol. la pieza incluye un segmento gastrointestinal de [longitud] x [diámetro] cm con una masa tumoral [submucosa / subserosa / transmural / exofítica / intramural] que mide [dimensión mayor] x [intermedia] x [menor] cm y pesa [peso] g. externamente la masa es [lobulada, con pseudocápsula fibrosa lisa e íntegra / con áreas de ruptura capsular]. al corte, la superficie tumoral es carnosa, arremolinada, de color blanco-rosado a pardo-amarillento, con áreas de [degeneración quística / necrosis tumoral hemorrágica del [x]% / sin necrosis]. el tumor dista a [distancia] mm del margen quirúrgico más cercano. se incluye según protocolo CAP / Lester en casetes [G1-Gn masa tumoral, M1-Mn márgenes de resección].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Gastrointestinal Stromal Tumors (GIST). AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman una neoplasia mesenquimal fusocelular / epitelioide de estirpe estromal gastrointestinal (GIST). el tumor está compuesto predominantemente por [células fusiformes con núcleos alargados y citoplasma eosinófilo fibrilar / células epitelioides con núcleos redondos y citoplasma amplio claro / patrón mixto]. se observa estroma mixoide / colagenizado con vasos sanguíneos de paredes delgadas.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Gastrointestinal Stromal Tumors (GIST). AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman una neoplasia mesenquimal fusocelular / epitelioide de estirpe estromal gastrointestinal (GIST). el tumor está compuesto predominantemente por [células fusiformes con núcleos alargados y citoplasma eosinófilo fibrilar / células epitelioides con núcleos redondos y citoplasma amplio claro / patrón mixto]. se observa estroma mixoide / colagenizado con vasos sanguíneos de paredes delgadas.
 
 conteo mitótico: se cuantifican [número_mitosis] mitosis en 5 mm² (equivalente a 50 campos de gran aumento de 40x de alta definición).
 necrosis tumoral: [ausente / presente en un [x]% de la masa].
@@ -3116,8 +3120,8 @@ ruptura tumoral quirúrgica / intraoperatoria: [no identificada / presente].
 márgenes quirúrgicos: margen de resección [libre a [x] mm / comprometido].
 inmunofenotipo diagnóstico (ihq): CD117 (c-kit) [positivo difuso e intenso citoplasmático/membrana], DOG1 [positivo difuso intenso], CD34 [positivo / negativo], SMA / Actina [negativo / focal positivo], Desmina [negativa], Proteína S100 [negativa], Ki-67 índice proliferativo [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Miettinen, M., & Lasota, J. (2006). Gastrointestinal stromal tumors: review on morphology, biology, and risk stratification. / CAP GIST Protocol 2024.</small>",
-        "diag": "TRACTO GASTROINTESTINAL ([ÓRGANO / LOCALIZACIÓN]), RESECCIÓN QUIRÚRGICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Miettinen, M., & Lasota, J. (2006). Gastrointestinal stromal tumors: review on morphology, biology, and risk stratification. / CAP GIST Protocol 2024.</small>`,
+        "diag": `TRACTO GASTROINTESTINAL ([ÓRGANO / LOCALIZACIÓN]), RESECCIÓN QUIRÚRGICA:
 - TUMOR DEL ESTROMA GASTROINTESTINAL (GIST), TIPO [FUSOCELULAR / EPITELIOIDE / MIXTO].
 - TAMAÑO TUMORAL MÁXIMO: [__] cm.
 - CONTEO MITÓTICO: [<= 5 mitosis en 5 mm² (bajo) / > 5 mitosis en 5 mm² (alto)].
@@ -3148,16 +3152,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1 (<=2cm) / pT2 (>2 a 5cm) / pT3 (>5 a 10cm) / pT4 (>10cm)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pNX]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 6303,
         "categoryId": 101,
         "titulo": "CAP - GIST: TUMOR DEL ESTROMA GASTROINTESTINAL (RESECCIÓN)",
-        "macro": "se recibe espécimen quirúrgico correspondiente a resección de [estómago / duodeno / yeyuno / íleon / colon / recto / peritoneo] fijado en formol. la pieza incluye un segmento gastrointestinal de [longitud] x [diámetro] cm con una masa tumoral [submucosa / subserosa / transmural / exofítica / intramural] que mide [dimensión mayor] x [intermedia] x [menor] cm y pesa [peso] g. externamente la masa es [lobulada, con pseudocápsula fibrosa lisa e íntegra / con áreas de ruptura capsular]. al corte, la superficie tumoral es carnosa, arremolinada, de color blanco-rosado a pardo-amarillento, con áreas de [degeneración quística / necrosis tumoral hemorrágica del [x]% / sin necrosis]. el tumor dista a [distancia] mm del margen quirúrgico más cercano. se incluye según protocolo CAP / Lester en casetes [G1-Gn masa tumoral, M1-Mn márgenes de resección].
+        "macro": `se recibe espécimen quirúrgico correspondiente a resección de [estómago / duodeno / yeyuno / íleon / colon / recto / peritoneo] fijado en formol. la pieza incluye un segmento gastrointestinal de [longitud] x [diámetro] cm con una masa tumoral [submucosa / subserosa / transmural / exofítica / intramural] que mide [dimensión mayor] x [intermedia] x [menor] cm y pesa [peso] g. externamente la masa es [lobulada, con pseudocápsula fibrosa lisa e íntegra / con áreas de ruptura capsular]. al corte, la superficie tumoral es carnosa, arremolinada, de color blanco-rosado a pardo-amarillento, con áreas de [degeneración quística / necrosis tumoral hemorrágica del [x]% / sin necrosis]. el tumor dista a [distancia] mm del margen quirúrgico más cercano. se incluye según protocolo CAP / Lester en casetes [G1-Gn masa tumoral, M1-Mn márgenes de resección].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Gastrointestinal Stromal Tumors (GIST). AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman una neoplasia mesenquimal fusocelular / epitelioide de estirpe estromal gastrointestinal (GIST). el tumor está compuesto predominantemente por [células fusiformes con núcleos alargados y citoplasma eosinófilo fibrilar / células epitelioides con núcleos redondos y citoplasma amplio claro / patrón mixto]. se observa estroma mixoide / colagenizado con vasos sanguíneos de paredes delgadas.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Gastrointestinal Stromal Tumors (GIST). AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman una neoplasia mesenquimal fusocelular / epitelioide de estirpe estromal gastrointestinal (GIST). el tumor está compuesto predominantemente por [células fusiformes con núcleos alargados y citoplasma eosinófilo fibrilar / células epitelioides con núcleos redondos y citoplasma amplio claro / patrón mixto]. se observa estroma mixoide / colagenizado con vasos sanguíneos de paredes delgadas.
 
 conteo mitótico: se cuantifican [número_mitosis] mitosis en 5 mm² (equivalente a 50 campos de gran aumento de 40x de alta definición).
 necrosis tumoral: [ausente / presente en un [x]% de la masa].
@@ -3165,8 +3169,8 @@ ruptura tumoral quirúrgica / intraoperatoria: [no identificada / presente].
 márgenes quirúrgicos: margen de resección [libre a [x] mm / comprometido].
 inmunofenotipo diagnóstico (ihq): CD117 (c-kit) [positivo difuso e intenso citoplasmático/membrana], DOG1 [positivo difuso intenso], CD34 [positivo / negativo], SMA / Actina [negativo / focal positivo], Desmina [negativa], Proteína S100 [negativa], Ki-67 índice proliferativo [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Miettinen, M., & Lasota, J. (2006). Gastrointestinal stromal tumors: review on morphology, biology, and risk stratification. / CAP GIST Protocol 2024.</small>",
-        "diag": "TRACTO GASTROINTESTINAL ([ÓRGANO / LOCALIZACIÓN]), RESECCIÓN QUIRÚRGICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Miettinen, M., & Lasota, J. (2006). Gastrointestinal stromal tumors: review on morphology, biology, and risk stratification. / CAP GIST Protocol 2024.</small>`,
+        "diag": `TRACTO GASTROINTESTINAL ([ÓRGANO / LOCALIZACIÓN]), RESECCIÓN QUIRÚRGICA:
 - TUMOR DEL ESTROMA GASTROINTESTINAL (GIST), TIPO [FUSOCELULAR / EPITELIOIDE / MIXTO].
 - TAMAÑO TUMORAL MÁXIMO: [__] cm.
 - CONTEO MITÓTICO: [<= 5 mitosis en 5 mm² (bajo) / > 5 mitosis en 5 mm² (alto)].
@@ -3197,16 +3201,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1 (<=2cm) / pT2 (>2 a 5cm) / pT3 (>5 a 10cm) / pT4 (>10cm)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pNX]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 3303,
         "categoryId": 3,
         "titulo": "CAP - GIST: TUMOR DEL ESTROMA GASTROINTESTINAL (RESECCIÓN)",
-        "macro": "se recibe espécimen quirúrgico correspondiente a resección de [estómago / duodeno / yeyuno / íleon / colon / recto / peritoneo] fijado en formol. la pieza incluye un segmento gastrointestinal de [longitud] x [diámetro] cm con una masa tumoral [submucosa / subserosa / transmural / exofítica / intramural] que mide [dimensión mayor] x [intermedia] x [menor] cm y pesa [peso] g. externamente la masa es [lobulada, con pseudocápsula fibrosa lisa e íntegra / con áreas de ruptura capsular]. al corte, la superficie tumoral es carnosa, arremolinada, de color blanco-rosado a pardo-amarillento, con áreas de [degeneración quística / necrosis tumoral hemorrágica del [x]% / sin necrosis]. el tumor dista a [distancia] mm del margen quirúrgico más cercano. se incluye según protocolo CAP / Lester en casetes [G1-Gn masa tumoral, M1-Mn márgenes de resección].
+        "macro": `se recibe espécimen quirúrgico correspondiente a resección de [estómago / duodeno / yeyuno / íleon / colon / recto / peritoneo] fijado en formol. la pieza incluye un segmento gastrointestinal de [longitud] x [diámetro] cm con una masa tumoral [submucosa / subserosa / transmural / exofítica / intramural] que mide [dimensión mayor] x [intermedia] x [menor] cm y pesa [peso] g. externamente la masa es [lobulada, con pseudocápsula fibrosa lisa e íntegra / con áreas de ruptura capsular]. al corte, la superficie tumoral es carnosa, arremolinada, de color blanco-rosado a pardo-amarillento, con áreas de [degeneración quística / necrosis tumoral hemorrágica del [x]% / sin necrosis]. el tumor dista a [distancia] mm del margen quirúrgico más cercano. se incluye según protocolo CAP / Lester en casetes [G1-Gn masa tumoral, M1-Mn márgenes de resección].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Gastrointestinal Stromal Tumors (GIST). AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman una neoplasia mesenquimal fusocelular / epitelioide de estirpe estromal gastrointestinal (GIST). el tumor está compuesto predominantemente por [células fusiformes con núcleos alargados y citoplasma eosinófilo fibrilar / células epitelioides con núcleos redondos y citoplasma amplio claro / patrón mixto]. se observa estroma mixoide / colagenizado con vasos sanguíneos de paredes delgadas.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Gastrointestinal Stromal Tumors (GIST). AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman una neoplasia mesenquimal fusocelular / epitelioide de estirpe estromal gastrointestinal (GIST). el tumor está compuesto predominantemente por [células fusiformes con núcleos alargados y citoplasma eosinófilo fibrilar / células epitelioides con núcleos redondos y citoplasma amplio claro / patrón mixto]. se observa estroma mixoide / colagenizado con vasos sanguíneos de paredes delgadas.
 
 conteo mitótico: se cuantifican [número_mitosis] mitosis en 5 mm² (equivalente a 50 campos de gran aumento de 40x de alta definición).
 necrosis tumoral: [ausente / presente en un [x]% de la masa].
@@ -3214,8 +3218,8 @@ ruptura tumoral quirúrgica / intraoperatoria: [no identificada / presente].
 márgenes quirúrgicos: margen de resección [libre a [x] mm / comprometido].
 inmunofenotipo diagnóstico (ihq): CD117 (c-kit) [positivo difuso e intenso citoplasmático/membrana], DOG1 [positivo difuso intenso], CD34 [positivo / negativo], SMA / Actina [negativo / focal positivo], Desmina [negativa], Proteína S100 [negativa], Ki-67 índice proliferativo [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Miettinen, M., & Lasota, J. (2006). Gastrointestinal stromal tumors: review on morphology, biology, and risk stratification. / CAP GIST Protocol 2024.</small>",
-        "diag": "TRACTO GASTROINTESTINAL ([ÓRGANO / LOCALIZACIÓN]), RESECCIÓN QUIRÚRGICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Miettinen, M., & Lasota, J. (2006). Gastrointestinal stromal tumors: review on morphology, biology, and risk stratification. / CAP GIST Protocol 2024.</small>`,
+        "diag": `TRACTO GASTROINTESTINAL ([ÓRGANO / LOCALIZACIÓN]), RESECCIÓN QUIRÚRGICA:
 - TUMOR DEL ESTROMA GASTROINTESTINAL (GIST), TIPO [FUSOCELULAR / EPITELIOIDE / MIXTO].
 - TAMAÑO TUMORAL MÁXIMO: [__] cm.
 - CONTEO MITÓTICO: [<= 5 mitosis en 5 mm² (bajo) / > 5 mitosis en 5 mm² (alto)].
@@ -3246,16 +3250,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1 (<=2cm) / pT2 (>2 a 5cm) / pT3 (>5 a 10cm) / pT4 (>10cm)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pNX]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 4303,
         "categoryId": 17,
         "titulo": "CAP - GIST: TUMOR DEL ESTROMA GASTROINTESTINAL (RESECCIÓN)",
-        "macro": "se recibe espécimen quirúrgico correspondiente a resección de [estómago / duodeno / yeyuno / íleon / colon / recto / peritoneo] fijado en formol. la pieza incluye un segmento gastrointestinal de [longitud] x [diámetro] cm con una masa tumoral [submucosa / subserosa / transmural / exofítica / intramural] que mide [dimensión mayor] x [intermedia] x [menor] cm y pesa [peso] g. externamente la masa es [lobulada, con pseudocápsula fibrosa lisa e íntegra / con áreas de ruptura capsular]. al corte, la superficie tumoral es carnosa, arremolinada, de color blanco-rosado a pardo-amarillento, con áreas de [degeneración quística / necrosis tumoral hemorrágica del [x]% / sin necrosis]. el tumor dista a [distancia] mm del margen quirúrgico más cercano. se incluye según protocolo CAP / Lester en casetes [G1-Gn masa tumoral, M1-Mn márgenes de resección].
+        "macro": `se recibe espécimen quirúrgico correspondiente a resección de [estómago / duodeno / yeyuno / íleon / colon / recto / peritoneo] fijado en formol. la pieza incluye un segmento gastrointestinal de [longitud] x [diámetro] cm con una masa tumoral [submucosa / subserosa / transmural / exofítica / intramural] que mide [dimensión mayor] x [intermedia] x [menor] cm y pesa [peso] g. externamente la masa es [lobulada, con pseudocápsula fibrosa lisa e íntegra / con áreas de ruptura capsular]. al corte, la superficie tumoral es carnosa, arremolinada, de color blanco-rosado a pardo-amarillento, con áreas de [degeneración quística / necrosis tumoral hemorrágica del [x]% / sin necrosis]. el tumor dista a [distancia] mm del margen quirúrgico más cercano. se incluye según protocolo CAP / Lester en casetes [G1-Gn masa tumoral, M1-Mn márgenes de resección].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Gastrointestinal Stromal Tumors (GIST). AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman una neoplasia mesenquimal fusocelular / epitelioide de estirpe estromal gastrointestinal (GIST). el tumor está compuesto predominantemente por [células fusiformes con núcleos alargados y citoplasma eosinófilo fibrilar / células epitelioides con núcleos redondos y citoplasma amplio claro / patrón mixto]. se observa estroma mixoide / colagenizado con vasos sanguíneos de paredes delgadas.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Gastrointestinal Stromal Tumors (GIST). AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman una neoplasia mesenquimal fusocelular / epitelioide de estirpe estromal gastrointestinal (GIST). el tumor está compuesto predominantemente por [células fusiformes con núcleos alargados y citoplasma eosinófilo fibrilar / células epitelioides con núcleos redondos y citoplasma amplio claro / patrón mixto]. se observa estroma mixoide / colagenizado con vasos sanguíneos de paredes delgadas.
 
 conteo mitótico: se cuantifican [número_mitosis] mitosis en 5 mm² (equivalente a 50 campos de gran aumento de 40x de alta definición).
 necrosis tumoral: [ausente / presente en un [x]% de la masa].
@@ -3263,8 +3267,8 @@ ruptura tumoral quirúrgica / intraoperatoria: [no identificada / presente].
 márgenes quirúrgicos: margen de resección [libre a [x] mm / comprometido].
 inmunofenotipo diagnóstico (ihq): CD117 (c-kit) [positivo difuso e intenso citoplasmático/membrana], DOG1 [positivo difuso intenso], CD34 [positivo / negativo], SMA / Actina [negativo / focal positivo], Desmina [negativa], Proteína S100 [negativa], Ki-67 índice proliferativo [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Miettinen, M., & Lasota, J. (2006). Gastrointestinal stromal tumors: review on morphology, biology, and risk stratification. / CAP GIST Protocol 2024.</small>",
-        "diag": "TRACTO GASTROINTESTINAL ([ÓRGANO / LOCALIZACIÓN]), RESECCIÓN QUIRÚRGICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Miettinen, M., & Lasota, J. (2006). Gastrointestinal stromal tumors: review on morphology, biology, and risk stratification. / CAP GIST Protocol 2024.</small>`,
+        "diag": `TRACTO GASTROINTESTINAL ([ÓRGANO / LOCALIZACIÓN]), RESECCIÓN QUIRÚRGICA:
 - TUMOR DEL ESTROMA GASTROINTESTINAL (GIST), TIPO [FUSOCELULAR / EPITELIOIDE / MIXTO].
 - TAMAÑO TUMORAL MÁXIMO: [__] cm.
 - CONTEO MITÓTICO: [<= 5 mitosis en 5 mm² (bajo) / > 5 mitosis en 5 mm² (alto)].
@@ -3295,16 +3299,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1 (<=2cm) / pT2 (>2 a 5cm) / pT3 (>5 a 10cm) / pT4 (>10cm)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pNX]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 304,
         "categoryId": 1,
         "titulo": "CAP - PRÓSTATA: ADENOCARCINOMA PROSTÁTICO (PROSTATECTOMÍA RADICAL)",
-        "macro": "se recibe espécimen de prostatectomía radical fijado en formol, que incluye la glándula prostática y ambas vesículas seminales [así como linfadenectomía pélvica bilateral ilioobturatriz]. la próstata pesa [peso] g y mide [transverso] x [anteroposterior] x [craneocaudal] cm. la vesícula seminal derecha mide [dimensiones] cm y la izquierda mide [dimensiones] cm. se entintan las superficies de resección: margen prostático derecho en verde, margen prostático izquierdo en negro, margen apical en azul y base prostática/cuello vesical en rojo. se realizan cortes coronales seriados cada 3 a 4 mm desde el ápex hasta la base. al corte, se identifica un área tumoral [indurada / nodular / pardo-amarillenta / blanco-grisácea] que compromete predominantemente el lóbulo [derecho / izquierdo / bilateral], en la zona [periférica / de transición / anterior], que mide [dimensión máxima] cm. se procesa en su totalidad según protocolo CAP / Lester en casetes [APX1-APXn ápex, B1-Bn base/cuello, L1-Ln cortes coronales prostáticos seriados, VS1-VSn vesículas seminales, G1-Gn ganglios pélvicos].
+        "macro": `se recibe espécimen de prostatectomía radical fijado en formol, que incluye la glándula prostática y ambas vesículas seminales [así como linfadenectomía pélvica bilateral ilioobturatriz]. la próstata pesa [peso] g y mide [transverso] x [anteroposterior] x [craneocaudal] cm. la vesícula seminal derecha mide [dimensiones] cm y la izquierda mide [dimensiones] cm. se entintan las superficies de resección: margen prostático derecho en verde, margen prostático izquierdo en negro, margen apical en azul y base prostática/cuello vesical en rojo. se realizan cortes coronales seriados cada 3 a 4 mm desde el ápex hasta la base. al corte, se identifica un área tumoral [indurada / nodular / pardo-amarillenta / blanco-grisácea] que compromete predominantemente el lóbulo [derecho / izquierdo / bilateral], en la zona [periférica / de transición / anterior], que mide [dimensión máxima] cm. se procesa en su totalidad según protocolo CAP / Lester en casetes [APX1-APXn ápex, B1-Bn base/cuello, L1-Ln cortes coronales prostáticos seriados, VS1-VSn vesículas seminales, G1-Gn ganglios pélvicos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Radical Prostatectomy Specimens. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos seriados confirman adenocarcinoma acinar prostático invasor de tipo usual [o subtipo ductal / cribiforme / mucinoso / neuroendocrino de células pequeñas]. las glándulas neoplásicas muestran pérdida completa de la capa de células basales, núcleos agrandados con nucléolos prominentes e hipercromáticos.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Radical Prostatectomy Specimens. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos seriados confirman adenocarcinoma acinar prostático invasor de tipo usual [o subtipo ductal / cribiforme / mucinoso / neuroendocrino de células pequeñas]. las glándulas neoplásicas muestran pérdida completa de la capa de células basales, núcleos agrandados con nucléolos prominentes e hipercromáticos.
 
 grado histológico según gleason / isup (oms 5.ª edición):
 - patrón primario (predominante): [3 / 4 / 5]
@@ -3325,8 +3329,8 @@ extensión tumoral y compromiso anatómico:
 - márgenes quirúrgicos: [todos los márgenes libres (distancia mínima: [x] mm) / margen comprometido por carcinoma invasor en [localización], longitud del compromiso: [x] mm].
 - ganglios linfáticos pélvicos: [n] ganglios evaluados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Epstein, J. I., et al. (2016). The 2014 International Society of Urological Pathology (ISUP) Consensus Conference on Gleason Grading. / WHO 2022.</small>",
-        "diag": "PRÓSTATA Y VESÍCULAS SEMINALES, PROSTATECTOMÍA RADICAL:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Epstein, J. I., et al. (2016). The 2014 International Society of Urological Pathology (ISUP) Consensus Conference on Gleason Grading. / WHO 2022.</small>`,
+        "diag": `PRÓSTATA Y VESÍCULAS SEMINALES, PROSTATECTOMÍA RADICAL:
 - ADENOCARCINOMA ACINAR DE PRÓSTATA, BILATERAL [O UNILATERAL].
 - PUNTAJE DE GLEASON: [3+3=6 / 3+4=7 / 4+3=7 / 4+4=8 / 4+5=9 / 5+5=10].
 - GRUPO DE GRADO HISTOLÓGICO (ISUP / OMS 2022): GRUPO [1 / 2 / 3 / 4 / 5].
@@ -3372,16 +3376,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT2 (órgano-confinado) / pT3a (extensión extraprostática o cuello) / pT3b (invasión vesículas seminales) / pT4 (fijación a órganos adyacentes)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 1304,
         "categoryId": 11,
         "titulo": "CAP - PRÓSTATA: ADENOCARCINOMA PROSTÁTICO (PROSTATECTOMÍA RADICAL)",
-        "macro": "se recibe espécimen de prostatectomía radical fijado en formol, que incluye la glándula prostática y ambas vesículas seminales [así como linfadenectomía pélvica bilateral ilioobturatriz]. la próstata pesa [peso] g y mide [transverso] x [anteroposterior] x [craneocaudal] cm. la vesícula seminal derecha mide [dimensiones] cm y la izquierda mide [dimensiones] cm. se entintan las superficies de resección: margen prostático derecho en verde, margen prostático izquierdo en negro, margen apical en azul y base prostática/cuello vesical en rojo. se realizan cortes coronales seriados cada 3 a 4 mm desde el ápex hasta la base. al corte, se identifica un área tumoral [indurada / nodular / pardo-amarillenta / blanco-grisácea] que compromete predominantemente el lóbulo [derecho / izquierdo / bilateral], en la zona [periférica / de transición / anterior], que mide [dimensión máxima] cm. se procesa en su totalidad según protocolo CAP / Lester en casetes [APX1-APXn ápex, B1-Bn base/cuello, L1-Ln cortes coronales prostáticos seriados, VS1-VSn vesículas seminales, G1-Gn ganglios pélvicos].
+        "macro": `se recibe espécimen de prostatectomía radical fijado en formol, que incluye la glándula prostática y ambas vesículas seminales [así como linfadenectomía pélvica bilateral ilioobturatriz]. la próstata pesa [peso] g y mide [transverso] x [anteroposterior] x [craneocaudal] cm. la vesícula seminal derecha mide [dimensiones] cm y la izquierda mide [dimensiones] cm. se entintan las superficies de resección: margen prostático derecho en verde, margen prostático izquierdo en negro, margen apical en azul y base prostática/cuello vesical en rojo. se realizan cortes coronales seriados cada 3 a 4 mm desde el ápex hasta la base. al corte, se identifica un área tumoral [indurada / nodular / pardo-amarillenta / blanco-grisácea] que compromete predominantemente el lóbulo [derecho / izquierdo / bilateral], en la zona [periférica / de transición / anterior], que mide [dimensión máxima] cm. se procesa en su totalidad según protocolo CAP / Lester en casetes [APX1-APXn ápex, B1-Bn base/cuello, L1-Ln cortes coronales prostáticos seriados, VS1-VSn vesículas seminales, G1-Gn ganglios pélvicos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Radical Prostatectomy Specimens. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos seriados confirman adenocarcinoma acinar prostático invasor de tipo usual [o subtipo ductal / cribiforme / mucinoso / neuroendocrino de células pequeñas]. las glándulas neoplásicas muestran pérdida completa de la capa de células basales, núcleos agrandados con nucléolos prominentes e hipercromáticos.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Radical Prostatectomy Specimens. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos seriados confirman adenocarcinoma acinar prostático invasor de tipo usual [o subtipo ductal / cribiforme / mucinoso / neuroendocrino de células pequeñas]. las glándulas neoplásicas muestran pérdida completa de la capa de células basales, núcleos agrandados con nucléolos prominentes e hipercromáticos.
 
 grado histológico según gleason / isup (oms 5.ª edición):
 - patrón primario (predominante): [3 / 4 / 5]
@@ -3402,8 +3406,8 @@ extensión tumoral y compromiso anatómico:
 - márgenes quirúrgicos: [todos los márgenes libres (distancia mínima: [x] mm) / margen comprometido por carcinoma invasor en [localización], longitud del compromiso: [x] mm].
 - ganglios linfáticos pélvicos: [n] ganglios evaluados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Epstein, J. I., et al. (2016). The 2014 International Society of Urological Pathology (ISUP) Consensus Conference on Gleason Grading. / WHO 2022.</small>",
-        "diag": "PRÓSTATA Y VESÍCULAS SEMINALES, PROSTATECTOMÍA RADICAL:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Epstein, J. I., et al. (2016). The 2014 International Society of Urological Pathology (ISUP) Consensus Conference on Gleason Grading. / WHO 2022.</small>`,
+        "diag": `PRÓSTATA Y VESÍCULAS SEMINALES, PROSTATECTOMÍA RADICAL:
 - ADENOCARCINOMA ACINAR DE PRÓSTATA, BILATERAL [O UNILATERAL].
 - PUNTAJE DE GLEASON: [3+3=6 / 3+4=7 / 4+3=7 / 4+4=8 / 4+5=9 / 5+5=10].
 - GRUPO DE GRADO HISTOLÓGICO (ISUP / OMS 2022): GRUPO [1 / 2 / 3 / 4 / 5].
@@ -3449,16 +3453,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT2 (órgano-confinado) / pT3a (extensión extraprostática o cuello) / pT3b (invasión vesículas seminales) / pT4 (fijación a órganos adyacentes)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 2304,
         "categoryId": 10,
         "titulo": "CAP - PRÓSTATA: ADENOCARCINOMA PROSTÁTICO (PROSTATECTOMÍA RADICAL)",
-        "macro": "se recibe espécimen de prostatectomía radical fijado en formol, que incluye la glándula prostática y ambas vesículas seminales [así como linfadenectomía pélvica bilateral ilioobturatriz]. la próstata pesa [peso] g y mide [transverso] x [anteroposterior] x [craneocaudal] cm. la vesícula seminal derecha mide [dimensiones] cm y la izquierda mide [dimensiones] cm. se entintan las superficies de resección: margen prostático derecho en verde, margen prostático izquierdo en negro, margen apical en azul y base prostática/cuello vesical en rojo. se realizan cortes coronales seriados cada 3 a 4 mm desde el ápex hasta la base. al corte, se identifica un área tumoral [indurada / nodular / pardo-amarillenta / blanco-grisácea] que compromete predominantemente el lóbulo [derecho / izquierdo / bilateral], en la zona [periférica / de transición / anterior], que mide [dimensión máxima] cm. se procesa en su totalidad según protocolo CAP / Lester en casetes [APX1-APXn ápex, B1-Bn base/cuello, L1-Ln cortes coronales prostáticos seriados, VS1-VSn vesículas seminales, G1-Gn ganglios pélvicos].
+        "macro": `se recibe espécimen de prostatectomía radical fijado en formol, que incluye la glándula prostática y ambas vesículas seminales [así como linfadenectomía pélvica bilateral ilioobturatriz]. la próstata pesa [peso] g y mide [transverso] x [anteroposterior] x [craneocaudal] cm. la vesícula seminal derecha mide [dimensiones] cm y la izquierda mide [dimensiones] cm. se entintan las superficies de resección: margen prostático derecho en verde, margen prostático izquierdo en negro, margen apical en azul y base prostática/cuello vesical en rojo. se realizan cortes coronales seriados cada 3 a 4 mm desde el ápex hasta la base. al corte, se identifica un área tumoral [indurada / nodular / pardo-amarillenta / blanco-grisácea] que compromete predominantemente el lóbulo [derecho / izquierdo / bilateral], en la zona [periférica / de transición / anterior], que mide [dimensión máxima] cm. se procesa en su totalidad según protocolo CAP / Lester en casetes [APX1-APXn ápex, B1-Bn base/cuello, L1-Ln cortes coronales prostáticos seriados, VS1-VSn vesículas seminales, G1-Gn ganglios pélvicos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Radical Prostatectomy Specimens. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos seriados confirman adenocarcinoma acinar prostático invasor de tipo usual [o subtipo ductal / cribiforme / mucinoso / neuroendocrino de células pequeñas]. las glándulas neoplásicas muestran pérdida completa de la capa de células basales, núcleos agrandados con nucléolos prominentes e hipercromáticos.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Radical Prostatectomy Specimens. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos seriados confirman adenocarcinoma acinar prostático invasor de tipo usual [o subtipo ductal / cribiforme / mucinoso / neuroendocrino de células pequeñas]. las glándulas neoplásicas muestran pérdida completa de la capa de células basales, núcleos agrandados con nucléolos prominentes e hipercromáticos.
 
 grado histológico según gleason / isup (oms 5.ª edición):
 - patrón primario (predominante): [3 / 4 / 5]
@@ -3479,8 +3483,8 @@ extensión tumoral y compromiso anatómico:
 - márgenes quirúrgicos: [todos los márgenes libres (distancia mínima: [x] mm) / margen comprometido por carcinoma invasor en [localización], longitud del compromiso: [x] mm].
 - ganglios linfáticos pélvicos: [n] ganglios evaluados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Epstein, J. I., et al. (2016). The 2014 International Society of Urological Pathology (ISUP) Consensus Conference on Gleason Grading. / WHO 2022.</small>",
-        "diag": "PRÓSTATA Y VESÍCULAS SEMINALES, PROSTATECTOMÍA RADICAL:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Epstein, J. I., et al. (2016). The 2014 International Society of Urological Pathology (ISUP) Consensus Conference on Gleason Grading. / WHO 2022.</small>`,
+        "diag": `PRÓSTATA Y VESÍCULAS SEMINALES, PROSTATECTOMÍA RADICAL:
 - ADENOCARCINOMA ACINAR DE PRÓSTATA, BILATERAL [O UNILATERAL].
 - PUNTAJE DE GLEASON: [3+3=6 / 3+4=7 / 4+3=7 / 4+4=8 / 4+5=9 / 5+5=10].
 - GRUPO DE GRADO HISTOLÓGICO (ISUP / OMS 2022): GRUPO [1 / 2 / 3 / 4 / 5].
@@ -3526,16 +3530,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT2 (órgano-confinado) / pT3a (extensión extraprostática o cuello) / pT3b (invasión vesículas seminales) / pT4 (fijación a órganos adyacentes)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 5304,
         "categoryId": 100,
         "titulo": "CAP - PRÓSTATA: ADENOCARCINOMA PROSTÁTICO (PROSTATECTOMÍA RADICAL)",
-        "macro": "se recibe espécimen de prostatectomía radical fijado en formol, que incluye la glándula prostática y ambas vesículas seminales [así como linfadenectomía pélvica bilateral ilioobturatriz]. la próstata pesa [peso] g y mide [transverso] x [anteroposterior] x [craneocaudal] cm. la vesícula seminal derecha mide [dimensiones] cm y la izquierda mide [dimensiones] cm. se entintan las superficies de resección: margen prostático derecho en verde, margen prostático izquierdo en negro, margen apical en azul y base prostática/cuello vesical en rojo. se realizan cortes coronales seriados cada 3 a 4 mm desde el ápex hasta la base. al corte, se identifica un área tumoral [indurada / nodular / pardo-amarillenta / blanco-grisácea] que compromete predominantemente el lóbulo [derecho / izquierdo / bilateral], en la zona [periférica / de transición / anterior], que mide [dimensión máxima] cm. se procesa en su totalidad según protocolo CAP / Lester en casetes [APX1-APXn ápex, B1-Bn base/cuello, L1-Ln cortes coronales prostáticos seriados, VS1-VSn vesículas seminales, G1-Gn ganglios pélvicos].
+        "macro": `se recibe espécimen de prostatectomía radical fijado en formol, que incluye la glándula prostática y ambas vesículas seminales [así como linfadenectomía pélvica bilateral ilioobturatriz]. la próstata pesa [peso] g y mide [transverso] x [anteroposterior] x [craneocaudal] cm. la vesícula seminal derecha mide [dimensiones] cm y la izquierda mide [dimensiones] cm. se entintan las superficies de resección: margen prostático derecho en verde, margen prostático izquierdo en negro, margen apical en azul y base prostática/cuello vesical en rojo. se realizan cortes coronales seriados cada 3 a 4 mm desde el ápex hasta la base. al corte, se identifica un área tumoral [indurada / nodular / pardo-amarillenta / blanco-grisácea] que compromete predominantemente el lóbulo [derecho / izquierdo / bilateral], en la zona [periférica / de transición / anterior], que mide [dimensión máxima] cm. se procesa en su totalidad según protocolo CAP / Lester en casetes [APX1-APXn ápex, B1-Bn base/cuello, L1-Ln cortes coronales prostáticos seriados, VS1-VSn vesículas seminales, G1-Gn ganglios pélvicos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Radical Prostatectomy Specimens. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos seriados confirman adenocarcinoma acinar prostático invasor de tipo usual [o subtipo ductal / cribiforme / mucinoso / neuroendocrino de células pequeñas]. las glándulas neoplásicas muestran pérdida completa de la capa de células basales, núcleos agrandados con nucléolos prominentes e hipercromáticos.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Radical Prostatectomy Specimens. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos seriados confirman adenocarcinoma acinar prostático invasor de tipo usual [o subtipo ductal / cribiforme / mucinoso / neuroendocrino de células pequeñas]. las glándulas neoplásicas muestran pérdida completa de la capa de células basales, núcleos agrandados con nucléolos prominentes e hipercromáticos.
 
 grado histológico según gleason / isup (oms 5.ª edición):
 - patrón primario (predominante): [3 / 4 / 5]
@@ -3556,8 +3560,8 @@ extensión tumoral y compromiso anatómico:
 - márgenes quirúrgicos: [todos los márgenes libres (distancia mínima: [x] mm) / margen comprometido por carcinoma invasor en [localización], longitud del compromiso: [x] mm].
 - ganglios linfáticos pélvicos: [n] ganglios evaluados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Epstein, J. I., et al. (2016). The 2014 International Society of Urological Pathology (ISUP) Consensus Conference on Gleason Grading. / WHO 2022.</small>",
-        "diag": "PRÓSTATA Y VESÍCULAS SEMINALES, PROSTATECTOMÍA RADICAL:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Epstein, J. I., et al. (2016). The 2014 International Society of Urological Pathology (ISUP) Consensus Conference on Gleason Grading. / WHO 2022.</small>`,
+        "diag": `PRÓSTATA Y VESÍCULAS SEMINALES, PROSTATECTOMÍA RADICAL:
 - ADENOCARCINOMA ACINAR DE PRÓSTATA, BILATERAL [O UNILATERAL].
 - PUNTAJE DE GLEASON: [3+3=6 / 3+4=7 / 4+3=7 / 4+4=8 / 4+5=9 / 5+5=10].
 - GRUPO DE GRADO HISTOLÓGICO (ISUP / OMS 2022): GRUPO [1 / 2 / 3 / 4 / 5].
@@ -3603,16 +3607,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT2 (órgano-confinado) / pT3a (extensión extraprostática o cuello) / pT3b (invasión vesículas seminales) / pT4 (fijación a órganos adyacentes)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 6304,
         "categoryId": 101,
         "titulo": "CAP - PRÓSTATA: ADENOCARCINOMA PROSTÁTICO (PROSTATECTOMÍA RADICAL)",
-        "macro": "se recibe espécimen de prostatectomía radical fijado en formol, que incluye la glándula prostática y ambas vesículas seminales [así como linfadenectomía pélvica bilateral ilioobturatriz]. la próstata pesa [peso] g y mide [transverso] x [anteroposterior] x [craneocaudal] cm. la vesícula seminal derecha mide [dimensiones] cm y la izquierda mide [dimensiones] cm. se entintan las superficies de resección: margen prostático derecho en verde, margen prostático izquierdo en negro, margen apical en azul y base prostática/cuello vesical en rojo. se realizan cortes coronales seriados cada 3 a 4 mm desde el ápex hasta la base. al corte, se identifica un área tumoral [indurada / nodular / pardo-amarillenta / blanco-grisácea] que compromete predominantemente el lóbulo [derecho / izquierdo / bilateral], en la zona [periférica / de transición / anterior], que mide [dimensión máxima] cm. se procesa en su totalidad según protocolo CAP / Lester en casetes [APX1-APXn ápex, B1-Bn base/cuello, L1-Ln cortes coronales prostáticos seriados, VS1-VSn vesículas seminales, G1-Gn ganglios pélvicos].
+        "macro": `se recibe espécimen de prostatectomía radical fijado en formol, que incluye la glándula prostática y ambas vesículas seminales [así como linfadenectomía pélvica bilateral ilioobturatriz]. la próstata pesa [peso] g y mide [transverso] x [anteroposterior] x [craneocaudal] cm. la vesícula seminal derecha mide [dimensiones] cm y la izquierda mide [dimensiones] cm. se entintan las superficies de resección: margen prostático derecho en verde, margen prostático izquierdo en negro, margen apical en azul y base prostática/cuello vesical en rojo. se realizan cortes coronales seriados cada 3 a 4 mm desde el ápex hasta la base. al corte, se identifica un área tumoral [indurada / nodular / pardo-amarillenta / blanco-grisácea] que compromete predominantemente el lóbulo [derecho / izquierdo / bilateral], en la zona [periférica / de transición / anterior], que mide [dimensión máxima] cm. se procesa en su totalidad según protocolo CAP / Lester en casetes [APX1-APXn ápex, B1-Bn base/cuello, L1-Ln cortes coronales prostáticos seriados, VS1-VSn vesículas seminales, G1-Gn ganglios pélvicos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Radical Prostatectomy Specimens. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos seriados confirman adenocarcinoma acinar prostático invasor de tipo usual [o subtipo ductal / cribiforme / mucinoso / neuroendocrino de células pequeñas]. las glándulas neoplásicas muestran pérdida completa de la capa de células basales, núcleos agrandados con nucléolos prominentes e hipercromáticos.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Radical Prostatectomy Specimens. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos seriados confirman adenocarcinoma acinar prostático invasor de tipo usual [o subtipo ductal / cribiforme / mucinoso / neuroendocrino de células pequeñas]. las glándulas neoplásicas muestran pérdida completa de la capa de células basales, núcleos agrandados con nucléolos prominentes e hipercromáticos.
 
 grado histológico según gleason / isup (oms 5.ª edición):
 - patrón primario (predominante): [3 / 4 / 5]
@@ -3633,8 +3637,8 @@ extensión tumoral y compromiso anatómico:
 - márgenes quirúrgicos: [todos los márgenes libres (distancia mínima: [x] mm) / margen comprometido por carcinoma invasor en [localización], longitud del compromiso: [x] mm].
 - ganglios linfáticos pélvicos: [n] ganglios evaluados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Epstein, J. I., et al. (2016). The 2014 International Society of Urological Pathology (ISUP) Consensus Conference on Gleason Grading. / WHO 2022.</small>",
-        "diag": "PRÓSTATA Y VESÍCULAS SEMINALES, PROSTATECTOMÍA RADICAL:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Epstein, J. I., et al. (2016). The 2014 International Society of Urological Pathology (ISUP) Consensus Conference on Gleason Grading. / WHO 2022.</small>`,
+        "diag": `PRÓSTATA Y VESÍCULAS SEMINALES, PROSTATECTOMÍA RADICAL:
 - ADENOCARCINOMA ACINAR DE PRÓSTATA, BILATERAL [O UNILATERAL].
 - PUNTAJE DE GLEASON: [3+3=6 / 3+4=7 / 4+3=7 / 4+4=8 / 4+5=9 / 5+5=10].
 - GRUPO DE GRADO HISTOLÓGICO (ISUP / OMS 2022): GRUPO [1 / 2 / 3 / 4 / 5].
@@ -3680,16 +3684,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT2 (órgano-confinado) / pT3a (extensión extraprostática o cuello) / pT3b (invasión vesículas seminales) / pT4 (fijación a órganos adyacentes)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 3304,
         "categoryId": 9,
         "titulo": "CAP - PRÓSTATA: ADENOCARCINOMA PROSTÁTICO (PROSTATECTOMÍA RADICAL)",
-        "macro": "se recibe espécimen de prostatectomía radical fijado en formol, que incluye la glándula prostática y ambas vesículas seminales [así como linfadenectomía pélvica bilateral ilioobturatriz]. la próstata pesa [peso] g y mide [transverso] x [anteroposterior] x [craneocaudal] cm. la vesícula seminal derecha mide [dimensiones] cm y la izquierda mide [dimensiones] cm. se entintan las superficies de resección: margen prostático derecho en verde, margen prostático izquierdo en negro, margen apical en azul y base prostática/cuello vesical en rojo. se realizan cortes coronales seriados cada 3 a 4 mm desde el ápex hasta la base. al corte, se identifica un área tumoral [indurada / nodular / pardo-amarillenta / blanco-grisácea] que compromete predominantemente el lóbulo [derecho / izquierdo / bilateral], en la zona [periférica / de transición / anterior], que mide [dimensión máxima] cm. se procesa en su totalidad según protocolo CAP / Lester en casetes [APX1-APXn ápex, B1-Bn base/cuello, L1-Ln cortes coronales prostáticos seriados, VS1-VSn vesículas seminales, G1-Gn ganglios pélvicos].
+        "macro": `se recibe espécimen de prostatectomía radical fijado en formol, que incluye la glándula prostática y ambas vesículas seminales [así como linfadenectomía pélvica bilateral ilioobturatriz]. la próstata pesa [peso] g y mide [transverso] x [anteroposterior] x [craneocaudal] cm. la vesícula seminal derecha mide [dimensiones] cm y la izquierda mide [dimensiones] cm. se entintan las superficies de resección: margen prostático derecho en verde, margen prostático izquierdo en negro, margen apical en azul y base prostática/cuello vesical en rojo. se realizan cortes coronales seriados cada 3 a 4 mm desde el ápex hasta la base. al corte, se identifica un área tumoral [indurada / nodular / pardo-amarillenta / blanco-grisácea] que compromete predominantemente el lóbulo [derecho / izquierdo / bilateral], en la zona [periférica / de transición / anterior], que mide [dimensión máxima] cm. se procesa en su totalidad según protocolo CAP / Lester en casetes [APX1-APXn ápex, B1-Bn base/cuello, L1-Ln cortes coronales prostáticos seriados, VS1-VSn vesículas seminales, G1-Gn ganglios pélvicos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Radical Prostatectomy Specimens. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos seriados confirman adenocarcinoma acinar prostático invasor de tipo usual [o subtipo ductal / cribiforme / mucinoso / neuroendocrino de células pequeñas]. las glándulas neoplásicas muestran pérdida completa de la capa de células basales, núcleos agrandados con nucléolos prominentes e hipercromáticos.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Radical Prostatectomy Specimens. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos seriados confirman adenocarcinoma acinar prostático invasor de tipo usual [o subtipo ductal / cribiforme / mucinoso / neuroendocrino de células pequeñas]. las glándulas neoplásicas muestran pérdida completa de la capa de células basales, núcleos agrandados con nucléolos prominentes e hipercromáticos.
 
 grado histológico según gleason / isup (oms 5.ª edición):
 - patrón primario (predominante): [3 / 4 / 5]
@@ -3710,8 +3714,8 @@ extensión tumoral y compromiso anatómico:
 - márgenes quirúrgicos: [todos los márgenes libres (distancia mínima: [x] mm) / margen comprometido por carcinoma invasor en [localización], longitud del compromiso: [x] mm].
 - ganglios linfáticos pélvicos: [n] ganglios evaluados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Epstein, J. I., et al. (2016). The 2014 International Society of Urological Pathology (ISUP) Consensus Conference on Gleason Grading. / WHO 2022.</small>",
-        "diag": "PRÓSTATA Y VESÍCULAS SEMINALES, PROSTATECTOMÍA RADICAL:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Epstein, J. I., et al. (2016). The 2014 International Society of Urological Pathology (ISUP) Consensus Conference on Gleason Grading. / WHO 2022.</small>`,
+        "diag": `PRÓSTATA Y VESÍCULAS SEMINALES, PROSTATECTOMÍA RADICAL:
 - ADENOCARCINOMA ACINAR DE PRÓSTATA, BILATERAL [O UNILATERAL].
 - PUNTAJE DE GLEASON: [3+3=6 / 3+4=7 / 4+3=7 / 4+4=8 / 4+5=9 / 5+5=10].
 - GRUPO DE GRADO HISTOLÓGICO (ISUP / OMS 2022): GRUPO [1 / 2 / 3 / 4 / 5].
@@ -3757,16 +3761,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT2 (órgano-confinado) / pT3a (extensión extraprostática o cuello) / pT3b (invasión vesículas seminales) / pT4 (fijación a órganos adyacentes)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 4304,
         "categoryId": 25,
         "titulo": "CAP - PRÓSTATA: ADENOCARCINOMA PROSTÁTICO (PROSTATECTOMÍA RADICAL)",
-        "macro": "se recibe espécimen de prostatectomía radical fijado en formol, que incluye la glándula prostática y ambas vesículas seminales [así como linfadenectomía pélvica bilateral ilioobturatriz]. la próstata pesa [peso] g y mide [transverso] x [anteroposterior] x [craneocaudal] cm. la vesícula seminal derecha mide [dimensiones] cm y la izquierda mide [dimensiones] cm. se entintan las superficies de resección: margen prostático derecho en verde, margen prostático izquierdo en negro, margen apical en azul y base prostática/cuello vesical en rojo. se realizan cortes coronales seriados cada 3 a 4 mm desde el ápex hasta la base. al corte, se identifica un área tumoral [indurada / nodular / pardo-amarillenta / blanco-grisácea] que compromete predominantemente el lóbulo [derecho / izquierdo / bilateral], en la zona [periférica / de transición / anterior], que mide [dimensión máxima] cm. se procesa en su totalidad según protocolo CAP / Lester en casetes [APX1-APXn ápex, B1-Bn base/cuello, L1-Ln cortes coronales prostáticos seriados, VS1-VSn vesículas seminales, G1-Gn ganglios pélvicos].
+        "macro": `se recibe espécimen de prostatectomía radical fijado en formol, que incluye la glándula prostática y ambas vesículas seminales [así como linfadenectomía pélvica bilateral ilioobturatriz]. la próstata pesa [peso] g y mide [transverso] x [anteroposterior] x [craneocaudal] cm. la vesícula seminal derecha mide [dimensiones] cm y la izquierda mide [dimensiones] cm. se entintan las superficies de resección: margen prostático derecho en verde, margen prostático izquierdo en negro, margen apical en azul y base prostática/cuello vesical en rojo. se realizan cortes coronales seriados cada 3 a 4 mm desde el ápex hasta la base. al corte, se identifica un área tumoral [indurada / nodular / pardo-amarillenta / blanco-grisácea] que compromete predominantemente el lóbulo [derecho / izquierdo / bilateral], en la zona [periférica / de transición / anterior], que mide [dimensión máxima] cm. se procesa en su totalidad según protocolo CAP / Lester en casetes [APX1-APXn ápex, B1-Bn base/cuello, L1-Ln cortes coronales prostáticos seriados, VS1-VSn vesículas seminales, G1-Gn ganglios pélvicos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Radical Prostatectomy Specimens. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos seriados confirman adenocarcinoma acinar prostático invasor de tipo usual [o subtipo ductal / cribiforme / mucinoso / neuroendocrino de células pequeñas]. las glándulas neoplásicas muestran pérdida completa de la capa de células basales, núcleos agrandados con nucléolos prominentes e hipercromáticos.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Radical Prostatectomy Specimens. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos seriados confirman adenocarcinoma acinar prostático invasor de tipo usual [o subtipo ductal / cribiforme / mucinoso / neuroendocrino de células pequeñas]. las glándulas neoplásicas muestran pérdida completa de la capa de células basales, núcleos agrandados con nucléolos prominentes e hipercromáticos.
 
 grado histológico según gleason / isup (oms 5.ª edición):
 - patrón primario (predominante): [3 / 4 / 5]
@@ -3787,8 +3791,8 @@ extensión tumoral y compromiso anatómico:
 - márgenes quirúrgicos: [todos los márgenes libres (distancia mínima: [x] mm) / margen comprometido por carcinoma invasor en [localización], longitud del compromiso: [x] mm].
 - ganglios linfáticos pélvicos: [n] ganglios evaluados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Epstein, J. I., et al. (2016). The 2014 International Society of Urological Pathology (ISUP) Consensus Conference on Gleason Grading. / WHO 2022.</small>",
-        "diag": "PRÓSTATA Y VESÍCULAS SEMINALES, PROSTATECTOMÍA RADICAL:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Epstein, J. I., et al. (2016). The 2014 International Society of Urological Pathology (ISUP) Consensus Conference on Gleason Grading. / WHO 2022.</small>`,
+        "diag": `PRÓSTATA Y VESÍCULAS SEMINALES, PROSTATECTOMÍA RADICAL:
 - ADENOCARCINOMA ACINAR DE PRÓSTATA, BILATERAL [O UNILATERAL].
 - PUNTAJE DE GLEASON: [3+3=6 / 3+4=7 / 4+3=7 / 4+4=8 / 4+5=9 / 5+5=10].
 - GRUPO DE GRADO HISTOLÓGICO (ISUP / OMS 2022): GRUPO [1 / 2 / 3 / 4 / 5].
@@ -3834,16 +3838,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT2 (órgano-confinado) / pT3a (extensión extraprostática o cuello) / pT3b (invasión vesículas seminales) / pT4 (fijación a órganos adyacentes)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 305,
         "categoryId": 1,
         "titulo": "CAP - RIÑÓN: CARCINOMA DE CÉLULAS RENALES (NEFRECTOMÍA)",
-        "macro": "se recibe espécimen de nefrectomía [radical / parcial / simple] [derecha / izquierda] fijado en formol, que incluye riñón de [longitud] x [ancho] x [espesor] cm, con grasa perirrenal de [grosor] cm, segmento ureteral de [longitud] cm y vasos del hilio renal. al corte sagital bivalvo, en el polo [superior / medio / inferior], se identifica una masa tumoral [bien circunscrita / lobulada / infiltrante] que mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie de corte es [amarillo-dorada / abigarrada con focos de hemorragia y necrosis del [x]% / marrón caoba / blanquecina quística]. macroscópicamente la masa [está confinada a la corteza renal / infiltra la grasa del seno renal / compromete la grasa perirrenal de Gerota / invade la vena renal o sus ramas segmentarias / invade el sistema pielocalicial]. se aíslan [n] ganglios hiliares. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con cápsula/seno, VR vena renal, MU margen ureteral, MP margen parenquimatoso o grasa de Gerota, N1-Nn ganglios].
+        "macro": `se recibe espécimen de nefrectomía [radical / parcial / simple] [derecha / izquierda] fijado en formol, que incluye riñón de [longitud] x [ancho] x [espesor] cm, con grasa perirrenal de [grosor] cm, segmento ureteral de [longitud] cm y vasos del hilio renal. al corte sagital bivalvo, en el polo [superior / medio / inferior], se identifica una masa tumoral [bien circunscrita / lobulada / infiltrante] que mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie de corte es [amarillo-dorada / abigarrada con focos de hemorragia y necrosis del [x]% / marrón caoba / blanquecina quística]. macroscópicamente la masa [está confinada a la corteza renal / infiltra la grasa del seno renal / compromete la grasa perirrenal de Gerota / invade la vena renal o sus ramas segmentarias / invade el sistema pielocalicial]. se aíslan [n] ganglios hiliares. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con cápsula/seno, VR vena renal, MU margen ureteral, MP margen parenquimatoso o grasa de Gerota, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Invasive Carcinoma of Renal Tubular Origin. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman un carcinoma de células renales (CCR) clasificado según la OMS 5.ª edición como subtipo [células claras / papilar tipo 1 / papilar tipo 2 / cromófobo / oncocítico / no clasificado]. las células muestran citoplasma amplio ópticamente claro / eosinófilo, con membranas celulares prominentes y redes capilares delgadas intraseptales.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Invasive Carcinoma of Renal Tubular Origin. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman un carcinoma de células renales (CCR) clasificado según la OMS 5.ª edición como subtipo [células claras / papilar tipo 1 / papilar tipo 2 / cromófobo / oncocítico / no clasificado]. las células muestran citoplasma amplio ópticamente claro / eosinófilo, con membranas celulares prominentes y redes capilares delgadas intraseptales.
 
 grado nuclear según oms / isup (fuhrman modificado):
 - grado [1 (nucléolos inconspicuos a 400x) / 2 (nucléolos visibles a 400x) / 3 (nucléolos prominentes a 100x) / 4 (pleomorfismo extremo, células gigantes o diferenciación sarcomatoide/rabdoide)].
@@ -3860,8 +3864,8 @@ extensión tumoral e invasión vascular:
 - márgenes quirúrgicos: margen parenquimatoso renal [libre a [x] mm], margen vascular [libre], margen ureteral [libre], margen de la fascia de Gerota [libre].
 - ganglios linfáticos regionales: [n] evaluados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / ISUP Grading for RCC.</small>",
-        "diag": "RIÑÓN ([DERECHO / IZQUIERDO]), NEFRECTOMÍA [RADICAL / PARCIAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / ISUP Grading for RCC.</small>`,
+        "diag": `RIÑÓN ([DERECHO / IZQUIERDO]), NEFRECTOMÍA [RADICAL / PARCIAL]:
 - CARCINOMA DE CÉLULAS RENALES DE TIPO [CÉLULAS CLARAS / PAPILAR / CROMÓFOBO].
 - GRADO NUCLEAR DE LA OMS / ISUP: GRADO [1 / 2 / 3 / 4].
 - DIFERENCIACIÓN SARCOMATOIDE / RABDOIDE: [AUSENTE / PRESENTE EN UN [x]%].
@@ -3902,16 +3906,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a (<=4cm) / pT1b (>4 a <=7cm) / pT2a (>7 a <=10cm) / pT2b (>10cm) / pT3a (seno renal/grasa perirrenal/vena renal) / pT3b / pT4 (más allá de fascia de Gerota)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pNX]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 1305,
         "categoryId": 11,
         "titulo": "CAP - RIÑÓN: CARCINOMA DE CÉLULAS RENALES (NEFRECTOMÍA)",
-        "macro": "se recibe espécimen de nefrectomía [radical / parcial / simple] [derecha / izquierda] fijado en formol, que incluye riñón de [longitud] x [ancho] x [espesor] cm, con grasa perirrenal de [grosor] cm, segmento ureteral de [longitud] cm y vasos del hilio renal. al corte sagital bivalvo, en el polo [superior / medio / inferior], se identifica una masa tumoral [bien circunscrita / lobulada / infiltrante] que mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie de corte es [amarillo-dorada / abigarrada con focos de hemorragia y necrosis del [x]% / marrón caoba / blanquecina quística]. macroscópicamente la masa [está confinada a la corteza renal / infiltra la grasa del seno renal / compromete la grasa perirrenal de Gerota / invade la vena renal o sus ramas segmentarias / invade el sistema pielocalicial]. se aíslan [n] ganglios hiliares. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con cápsula/seno, VR vena renal, MU margen ureteral, MP margen parenquimatoso o grasa de Gerota, N1-Nn ganglios].
+        "macro": `se recibe espécimen de nefrectomía [radical / parcial / simple] [derecha / izquierda] fijado en formol, que incluye riñón de [longitud] x [ancho] x [espesor] cm, con grasa perirrenal de [grosor] cm, segmento ureteral de [longitud] cm y vasos del hilio renal. al corte sagital bivalvo, en el polo [superior / medio / inferior], se identifica una masa tumoral [bien circunscrita / lobulada / infiltrante] que mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie de corte es [amarillo-dorada / abigarrada con focos de hemorragia y necrosis del [x]% / marrón caoba / blanquecina quística]. macroscópicamente la masa [está confinada a la corteza renal / infiltra la grasa del seno renal / compromete la grasa perirrenal de Gerota / invade la vena renal o sus ramas segmentarias / invade el sistema pielocalicial]. se aíslan [n] ganglios hiliares. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con cápsula/seno, VR vena renal, MU margen ureteral, MP margen parenquimatoso o grasa de Gerota, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Invasive Carcinoma of Renal Tubular Origin. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman un carcinoma de células renales (CCR) clasificado según la OMS 5.ª edición como subtipo [células claras / papilar tipo 1 / papilar tipo 2 / cromófobo / oncocítico / no clasificado]. las células muestran citoplasma amplio ópticamente claro / eosinófilo, con membranas celulares prominentes y redes capilares delgadas intraseptales.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Invasive Carcinoma of Renal Tubular Origin. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman un carcinoma de células renales (CCR) clasificado según la OMS 5.ª edición como subtipo [células claras / papilar tipo 1 / papilar tipo 2 / cromófobo / oncocítico / no clasificado]. las células muestran citoplasma amplio ópticamente claro / eosinófilo, con membranas celulares prominentes y redes capilares delgadas intraseptales.
 
 grado nuclear según oms / isup (fuhrman modificado):
 - grado [1 (nucléolos inconspicuos a 400x) / 2 (nucléolos visibles a 400x) / 3 (nucléolos prominentes a 100x) / 4 (pleomorfismo extremo, células gigantes o diferenciación sarcomatoide/rabdoide)].
@@ -3928,8 +3932,8 @@ extensión tumoral e invasión vascular:
 - márgenes quirúrgicos: margen parenquimatoso renal [libre a [x] mm], margen vascular [libre], margen ureteral [libre], margen de la fascia de Gerota [libre].
 - ganglios linfáticos regionales: [n] evaluados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / ISUP Grading for RCC.</small>",
-        "diag": "RIÑÓN ([DERECHO / IZQUIERDO]), NEFRECTOMÍA [RADICAL / PARCIAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / ISUP Grading for RCC.</small>`,
+        "diag": `RIÑÓN ([DERECHO / IZQUIERDO]), NEFRECTOMÍA [RADICAL / PARCIAL]:
 - CARCINOMA DE CÉLULAS RENALES DE TIPO [CÉLULAS CLARAS / PAPILAR / CROMÓFOBO].
 - GRADO NUCLEAR DE LA OMS / ISUP: GRADO [1 / 2 / 3 / 4].
 - DIFERENCIACIÓN SARCOMATOIDE / RABDOIDE: [AUSENTE / PRESENTE EN UN [x]%].
@@ -3970,16 +3974,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a (<=4cm) / pT1b (>4 a <=7cm) / pT2a (>7 a <=10cm) / pT2b (>10cm) / pT3a (seno renal/grasa perirrenal/vena renal) / pT3b / pT4 (más allá de fascia de Gerota)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pNX]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 2305,
         "categoryId": 10,
         "titulo": "CAP - RIÑÓN: CARCINOMA DE CÉLULAS RENALES (NEFRECTOMÍA)",
-        "macro": "se recibe espécimen de nefrectomía [radical / parcial / simple] [derecha / izquierda] fijado en formol, que incluye riñón de [longitud] x [ancho] x [espesor] cm, con grasa perirrenal de [grosor] cm, segmento ureteral de [longitud] cm y vasos del hilio renal. al corte sagital bivalvo, en el polo [superior / medio / inferior], se identifica una masa tumoral [bien circunscrita / lobulada / infiltrante] que mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie de corte es [amarillo-dorada / abigarrada con focos de hemorragia y necrosis del [x]% / marrón caoba / blanquecina quística]. macroscópicamente la masa [está confinada a la corteza renal / infiltra la grasa del seno renal / compromete la grasa perirrenal de Gerota / invade la vena renal o sus ramas segmentarias / invade el sistema pielocalicial]. se aíslan [n] ganglios hiliares. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con cápsula/seno, VR vena renal, MU margen ureteral, MP margen parenquimatoso o grasa de Gerota, N1-Nn ganglios].
+        "macro": `se recibe espécimen de nefrectomía [radical / parcial / simple] [derecha / izquierda] fijado en formol, que incluye riñón de [longitud] x [ancho] x [espesor] cm, con grasa perirrenal de [grosor] cm, segmento ureteral de [longitud] cm y vasos del hilio renal. al corte sagital bivalvo, en el polo [superior / medio / inferior], se identifica una masa tumoral [bien circunscrita / lobulada / infiltrante] que mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie de corte es [amarillo-dorada / abigarrada con focos de hemorragia y necrosis del [x]% / marrón caoba / blanquecina quística]. macroscópicamente la masa [está confinada a la corteza renal / infiltra la grasa del seno renal / compromete la grasa perirrenal de Gerota / invade la vena renal o sus ramas segmentarias / invade el sistema pielocalicial]. se aíslan [n] ganglios hiliares. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con cápsula/seno, VR vena renal, MU margen ureteral, MP margen parenquimatoso o grasa de Gerota, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Invasive Carcinoma of Renal Tubular Origin. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman un carcinoma de células renales (CCR) clasificado según la OMS 5.ª edición como subtipo [células claras / papilar tipo 1 / papilar tipo 2 / cromófobo / oncocítico / no clasificado]. las células muestran citoplasma amplio ópticamente claro / eosinófilo, con membranas celulares prominentes y redes capilares delgadas intraseptales.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Invasive Carcinoma of Renal Tubular Origin. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman un carcinoma de células renales (CCR) clasificado según la OMS 5.ª edición como subtipo [células claras / papilar tipo 1 / papilar tipo 2 / cromófobo / oncocítico / no clasificado]. las células muestran citoplasma amplio ópticamente claro / eosinófilo, con membranas celulares prominentes y redes capilares delgadas intraseptales.
 
 grado nuclear según oms / isup (fuhrman modificado):
 - grado [1 (nucléolos inconspicuos a 400x) / 2 (nucléolos visibles a 400x) / 3 (nucléolos prominentes a 100x) / 4 (pleomorfismo extremo, células gigantes o diferenciación sarcomatoide/rabdoide)].
@@ -3996,8 +4000,8 @@ extensión tumoral e invasión vascular:
 - márgenes quirúrgicos: margen parenquimatoso renal [libre a [x] mm], margen vascular [libre], margen ureteral [libre], margen de la fascia de Gerota [libre].
 - ganglios linfáticos regionales: [n] evaluados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / ISUP Grading for RCC.</small>",
-        "diag": "RIÑÓN ([DERECHO / IZQUIERDO]), NEFRECTOMÍA [RADICAL / PARCIAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / ISUP Grading for RCC.</small>`,
+        "diag": `RIÑÓN ([DERECHO / IZQUIERDO]), NEFRECTOMÍA [RADICAL / PARCIAL]:
 - CARCINOMA DE CÉLULAS RENALES DE TIPO [CÉLULAS CLARAS / PAPILAR / CROMÓFOBO].
 - GRADO NUCLEAR DE LA OMS / ISUP: GRADO [1 / 2 / 3 / 4].
 - DIFERENCIACIÓN SARCOMATOIDE / RABDOIDE: [AUSENTE / PRESENTE EN UN [x]%].
@@ -4038,16 +4042,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a (<=4cm) / pT1b (>4 a <=7cm) / pT2a (>7 a <=10cm) / pT2b (>10cm) / pT3a (seno renal/grasa perirrenal/vena renal) / pT3b / pT4 (más allá de fascia de Gerota)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pNX]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 5305,
         "categoryId": 100,
         "titulo": "CAP - RIÑÓN: CARCINOMA DE CÉLULAS RENALES (NEFRECTOMÍA)",
-        "macro": "se recibe espécimen de nefrectomía [radical / parcial / simple] [derecha / izquierda] fijado en formol, que incluye riñón de [longitud] x [ancho] x [espesor] cm, con grasa perirrenal de [grosor] cm, segmento ureteral de [longitud] cm y vasos del hilio renal. al corte sagital bivalvo, en el polo [superior / medio / inferior], se identifica una masa tumoral [bien circunscrita / lobulada / infiltrante] que mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie de corte es [amarillo-dorada / abigarrada con focos de hemorragia y necrosis del [x]% / marrón caoba / blanquecina quística]. macroscópicamente la masa [está confinada a la corteza renal / infiltra la grasa del seno renal / compromete la grasa perirrenal de Gerota / invade la vena renal o sus ramas segmentarias / invade el sistema pielocalicial]. se aíslan [n] ganglios hiliares. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con cápsula/seno, VR vena renal, MU margen ureteral, MP margen parenquimatoso o grasa de Gerota, N1-Nn ganglios].
+        "macro": `se recibe espécimen de nefrectomía [radical / parcial / simple] [derecha / izquierda] fijado en formol, que incluye riñón de [longitud] x [ancho] x [espesor] cm, con grasa perirrenal de [grosor] cm, segmento ureteral de [longitud] cm y vasos del hilio renal. al corte sagital bivalvo, en el polo [superior / medio / inferior], se identifica una masa tumoral [bien circunscrita / lobulada / infiltrante] que mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie de corte es [amarillo-dorada / abigarrada con focos de hemorragia y necrosis del [x]% / marrón caoba / blanquecina quística]. macroscópicamente la masa [está confinada a la corteza renal / infiltra la grasa del seno renal / compromete la grasa perirrenal de Gerota / invade la vena renal o sus ramas segmentarias / invade el sistema pielocalicial]. se aíslan [n] ganglios hiliares. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con cápsula/seno, VR vena renal, MU margen ureteral, MP margen parenquimatoso o grasa de Gerota, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Invasive Carcinoma of Renal Tubular Origin. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman un carcinoma de células renales (CCR) clasificado según la OMS 5.ª edición como subtipo [células claras / papilar tipo 1 / papilar tipo 2 / cromófobo / oncocítico / no clasificado]. las células muestran citoplasma amplio ópticamente claro / eosinófilo, con membranas celulares prominentes y redes capilares delgadas intraseptales.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Invasive Carcinoma of Renal Tubular Origin. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman un carcinoma de células renales (CCR) clasificado según la OMS 5.ª edición como subtipo [células claras / papilar tipo 1 / papilar tipo 2 / cromófobo / oncocítico / no clasificado]. las células muestran citoplasma amplio ópticamente claro / eosinófilo, con membranas celulares prominentes y redes capilares delgadas intraseptales.
 
 grado nuclear según oms / isup (fuhrman modificado):
 - grado [1 (nucléolos inconspicuos a 400x) / 2 (nucléolos visibles a 400x) / 3 (nucléolos prominentes a 100x) / 4 (pleomorfismo extremo, células gigantes o diferenciación sarcomatoide/rabdoide)].
@@ -4064,8 +4068,8 @@ extensión tumoral e invasión vascular:
 - márgenes quirúrgicos: margen parenquimatoso renal [libre a [x] mm], margen vascular [libre], margen ureteral [libre], margen de la fascia de Gerota [libre].
 - ganglios linfáticos regionales: [n] evaluados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / ISUP Grading for RCC.</small>",
-        "diag": "RIÑÓN ([DERECHO / IZQUIERDO]), NEFRECTOMÍA [RADICAL / PARCIAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / ISUP Grading for RCC.</small>`,
+        "diag": `RIÑÓN ([DERECHO / IZQUIERDO]), NEFRECTOMÍA [RADICAL / PARCIAL]:
 - CARCINOMA DE CÉLULAS RENALES DE TIPO [CÉLULAS CLARAS / PAPILAR / CROMÓFOBO].
 - GRADO NUCLEAR DE LA OMS / ISUP: GRADO [1 / 2 / 3 / 4].
 - DIFERENCIACIÓN SARCOMATOIDE / RABDOIDE: [AUSENTE / PRESENTE EN UN [x]%].
@@ -4106,16 +4110,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a (<=4cm) / pT1b (>4 a <=7cm) / pT2a (>7 a <=10cm) / pT2b (>10cm) / pT3a (seno renal/grasa perirrenal/vena renal) / pT3b / pT4 (más allá de fascia de Gerota)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pNX]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 6305,
         "categoryId": 101,
         "titulo": "CAP - RIÑÓN: CARCINOMA DE CÉLULAS RENALES (NEFRECTOMÍA)",
-        "macro": "se recibe espécimen de nefrectomía [radical / parcial / simple] [derecha / izquierda] fijado en formol, que incluye riñón de [longitud] x [ancho] x [espesor] cm, con grasa perirrenal de [grosor] cm, segmento ureteral de [longitud] cm y vasos del hilio renal. al corte sagital bivalvo, en el polo [superior / medio / inferior], se identifica una masa tumoral [bien circunscrita / lobulada / infiltrante] que mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie de corte es [amarillo-dorada / abigarrada con focos de hemorragia y necrosis del [x]% / marrón caoba / blanquecina quística]. macroscópicamente la masa [está confinada a la corteza renal / infiltra la grasa del seno renal / compromete la grasa perirrenal de Gerota / invade la vena renal o sus ramas segmentarias / invade el sistema pielocalicial]. se aíslan [n] ganglios hiliares. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con cápsula/seno, VR vena renal, MU margen ureteral, MP margen parenquimatoso o grasa de Gerota, N1-Nn ganglios].
+        "macro": `se recibe espécimen de nefrectomía [radical / parcial / simple] [derecha / izquierda] fijado en formol, que incluye riñón de [longitud] x [ancho] x [espesor] cm, con grasa perirrenal de [grosor] cm, segmento ureteral de [longitud] cm y vasos del hilio renal. al corte sagital bivalvo, en el polo [superior / medio / inferior], se identifica una masa tumoral [bien circunscrita / lobulada / infiltrante] que mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie de corte es [amarillo-dorada / abigarrada con focos de hemorragia y necrosis del [x]% / marrón caoba / blanquecina quística]. macroscópicamente la masa [está confinada a la corteza renal / infiltra la grasa del seno renal / compromete la grasa perirrenal de Gerota / invade la vena renal o sus ramas segmentarias / invade el sistema pielocalicial]. se aíslan [n] ganglios hiliares. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con cápsula/seno, VR vena renal, MU margen ureteral, MP margen parenquimatoso o grasa de Gerota, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Invasive Carcinoma of Renal Tubular Origin. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman un carcinoma de células renales (CCR) clasificado según la OMS 5.ª edición como subtipo [células claras / papilar tipo 1 / papilar tipo 2 / cromófobo / oncocítico / no clasificado]. las células muestran citoplasma amplio ópticamente claro / eosinófilo, con membranas celulares prominentes y redes capilares delgadas intraseptales.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Invasive Carcinoma of Renal Tubular Origin. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman un carcinoma de células renales (CCR) clasificado según la OMS 5.ª edición como subtipo [células claras / papilar tipo 1 / papilar tipo 2 / cromófobo / oncocítico / no clasificado]. las células muestran citoplasma amplio ópticamente claro / eosinófilo, con membranas celulares prominentes y redes capilares delgadas intraseptales.
 
 grado nuclear según oms / isup (fuhrman modificado):
 - grado [1 (nucléolos inconspicuos a 400x) / 2 (nucléolos visibles a 400x) / 3 (nucléolos prominentes a 100x) / 4 (pleomorfismo extremo, células gigantes o diferenciación sarcomatoide/rabdoide)].
@@ -4132,8 +4136,8 @@ extensión tumoral e invasión vascular:
 - márgenes quirúrgicos: margen parenquimatoso renal [libre a [x] mm], margen vascular [libre], margen ureteral [libre], margen de la fascia de Gerota [libre].
 - ganglios linfáticos regionales: [n] evaluados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / ISUP Grading for RCC.</small>",
-        "diag": "RIÑÓN ([DERECHO / IZQUIERDO]), NEFRECTOMÍA [RADICAL / PARCIAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / ISUP Grading for RCC.</small>`,
+        "diag": `RIÑÓN ([DERECHO / IZQUIERDO]), NEFRECTOMÍA [RADICAL / PARCIAL]:
 - CARCINOMA DE CÉLULAS RENALES DE TIPO [CÉLULAS CLARAS / PAPILAR / CROMÓFOBO].
 - GRADO NUCLEAR DE LA OMS / ISUP: GRADO [1 / 2 / 3 / 4].
 - DIFERENCIACIÓN SARCOMATOIDE / RABDOIDE: [AUSENTE / PRESENTE EN UN [x]%].
@@ -4174,16 +4178,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a (<=4cm) / pT1b (>4 a <=7cm) / pT2a (>7 a <=10cm) / pT2b (>10cm) / pT3a (seno renal/grasa perirrenal/vena renal) / pT3b / pT4 (más allá de fascia de Gerota)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pNX]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 3305,
         "categoryId": 9,
         "titulo": "CAP - RIÑÓN: CARCINOMA DE CÉLULAS RENALES (NEFRECTOMÍA)",
-        "macro": "se recibe espécimen de nefrectomía [radical / parcial / simple] [derecha / izquierda] fijado en formol, que incluye riñón de [longitud] x [ancho] x [espesor] cm, con grasa perirrenal de [grosor] cm, segmento ureteral de [longitud] cm y vasos del hilio renal. al corte sagital bivalvo, en el polo [superior / medio / inferior], se identifica una masa tumoral [bien circunscrita / lobulada / infiltrante] que mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie de corte es [amarillo-dorada / abigarrada con focos de hemorragia y necrosis del [x]% / marrón caoba / blanquecina quística]. macroscópicamente la masa [está confinada a la corteza renal / infiltra la grasa del seno renal / compromete la grasa perirrenal de Gerota / invade la vena renal o sus ramas segmentarias / invade el sistema pielocalicial]. se aíslan [n] ganglios hiliares. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con cápsula/seno, VR vena renal, MU margen ureteral, MP margen parenquimatoso o grasa de Gerota, N1-Nn ganglios].
+        "macro": `se recibe espécimen de nefrectomía [radical / parcial / simple] [derecha / izquierda] fijado en formol, que incluye riñón de [longitud] x [ancho] x [espesor] cm, con grasa perirrenal de [grosor] cm, segmento ureteral de [longitud] cm y vasos del hilio renal. al corte sagital bivalvo, en el polo [superior / medio / inferior], se identifica una masa tumoral [bien circunscrita / lobulada / infiltrante] que mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie de corte es [amarillo-dorada / abigarrada con focos de hemorragia y necrosis del [x]% / marrón caoba / blanquecina quística]. macroscópicamente la masa [está confinada a la corteza renal / infiltra la grasa del seno renal / compromete la grasa perirrenal de Gerota / invade la vena renal o sus ramas segmentarias / invade el sistema pielocalicial]. se aíslan [n] ganglios hiliares. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con cápsula/seno, VR vena renal, MU margen ureteral, MP margen parenquimatoso o grasa de Gerota, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Invasive Carcinoma of Renal Tubular Origin. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman un carcinoma de células renales (CCR) clasificado según la OMS 5.ª edición como subtipo [células claras / papilar tipo 1 / papilar tipo 2 / cromófobo / oncocítico / no clasificado]. las células muestran citoplasma amplio ópticamente claro / eosinófilo, con membranas celulares prominentes y redes capilares delgadas intraseptales.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Invasive Carcinoma of Renal Tubular Origin. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman un carcinoma de células renales (CCR) clasificado según la OMS 5.ª edición como subtipo [células claras / papilar tipo 1 / papilar tipo 2 / cromófobo / oncocítico / no clasificado]. las células muestran citoplasma amplio ópticamente claro / eosinófilo, con membranas celulares prominentes y redes capilares delgadas intraseptales.
 
 grado nuclear según oms / isup (fuhrman modificado):
 - grado [1 (nucléolos inconspicuos a 400x) / 2 (nucléolos visibles a 400x) / 3 (nucléolos prominentes a 100x) / 4 (pleomorfismo extremo, células gigantes o diferenciación sarcomatoide/rabdoide)].
@@ -4200,8 +4204,8 @@ extensión tumoral e invasión vascular:
 - márgenes quirúrgicos: margen parenquimatoso renal [libre a [x] mm], margen vascular [libre], margen ureteral [libre], margen de la fascia de Gerota [libre].
 - ganglios linfáticos regionales: [n] evaluados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / ISUP Grading for RCC.</small>",
-        "diag": "RIÑÓN ([DERECHO / IZQUIERDO]), NEFRECTOMÍA [RADICAL / PARCIAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / ISUP Grading for RCC.</small>`,
+        "diag": `RIÑÓN ([DERECHO / IZQUIERDO]), NEFRECTOMÍA [RADICAL / PARCIAL]:
 - CARCINOMA DE CÉLULAS RENALES DE TIPO [CÉLULAS CLARAS / PAPILAR / CROMÓFOBO].
 - GRADO NUCLEAR DE LA OMS / ISUP: GRADO [1 / 2 / 3 / 4].
 - DIFERENCIACIÓN SARCOMATOIDE / RABDOIDE: [AUSENTE / PRESENTE EN UN [x]%].
@@ -4242,16 +4246,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a (<=4cm) / pT1b (>4 a <=7cm) / pT2a (>7 a <=10cm) / pT2b (>10cm) / pT3a (seno renal/grasa perirrenal/vena renal) / pT3b / pT4 (más allá de fascia de Gerota)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pNX]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 4305,
         "categoryId": 25,
         "titulo": "CAP - RIÑÓN: CARCINOMA DE CÉLULAS RENALES (NEFRECTOMÍA)",
-        "macro": "se recibe espécimen de nefrectomía [radical / parcial / simple] [derecha / izquierda] fijado en formol, que incluye riñón de [longitud] x [ancho] x [espesor] cm, con grasa perirrenal de [grosor] cm, segmento ureteral de [longitud] cm y vasos del hilio renal. al corte sagital bivalvo, en el polo [superior / medio / inferior], se identifica una masa tumoral [bien circunscrita / lobulada / infiltrante] que mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie de corte es [amarillo-dorada / abigarrada con focos de hemorragia y necrosis del [x]% / marrón caoba / blanquecina quística]. macroscópicamente la masa [está confinada a la corteza renal / infiltra la grasa del seno renal / compromete la grasa perirrenal de Gerota / invade la vena renal o sus ramas segmentarias / invade el sistema pielocalicial]. se aíslan [n] ganglios hiliares. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con cápsula/seno, VR vena renal, MU margen ureteral, MP margen parenquimatoso o grasa de Gerota, N1-Nn ganglios].
+        "macro": `se recibe espécimen de nefrectomía [radical / parcial / simple] [derecha / izquierda] fijado en formol, que incluye riñón de [longitud] x [ancho] x [espesor] cm, con grasa perirrenal de [grosor] cm, segmento ureteral de [longitud] cm y vasos del hilio renal. al corte sagital bivalvo, en el polo [superior / medio / inferior], se identifica una masa tumoral [bien circunscrita / lobulada / infiltrante] que mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie de corte es [amarillo-dorada / abigarrada con focos de hemorragia y necrosis del [x]% / marrón caoba / blanquecina quística]. macroscópicamente la masa [está confinada a la corteza renal / infiltra la grasa del seno renal / compromete la grasa perirrenal de Gerota / invade la vena renal o sus ramas segmentarias / invade el sistema pielocalicial]. se aíslan [n] ganglios hiliares. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con cápsula/seno, VR vena renal, MU margen ureteral, MP margen parenquimatoso o grasa de Gerota, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Invasive Carcinoma of Renal Tubular Origin. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman un carcinoma de células renales (CCR) clasificado según la OMS 5.ª edición como subtipo [células claras / papilar tipo 1 / papilar tipo 2 / cromófobo / oncocítico / no clasificado]. las células muestran citoplasma amplio ópticamente claro / eosinófilo, con membranas celulares prominentes y redes capilares delgadas intraseptales.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Invasive Carcinoma of Renal Tubular Origin. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman un carcinoma de células renales (CCR) clasificado según la OMS 5.ª edición como subtipo [células claras / papilar tipo 1 / papilar tipo 2 / cromófobo / oncocítico / no clasificado]. las células muestran citoplasma amplio ópticamente claro / eosinófilo, con membranas celulares prominentes y redes capilares delgadas intraseptales.
 
 grado nuclear según oms / isup (fuhrman modificado):
 - grado [1 (nucléolos inconspicuos a 400x) / 2 (nucléolos visibles a 400x) / 3 (nucléolos prominentes a 100x) / 4 (pleomorfismo extremo, células gigantes o diferenciación sarcomatoide/rabdoide)].
@@ -4268,8 +4272,8 @@ extensión tumoral e invasión vascular:
 - márgenes quirúrgicos: margen parenquimatoso renal [libre a [x] mm], margen vascular [libre], margen ureteral [libre], margen de la fascia de Gerota [libre].
 - ganglios linfáticos regionales: [n] evaluados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / ISUP Grading for RCC.</small>",
-        "diag": "RIÑÓN ([DERECHO / IZQUIERDO]), NEFRECTOMÍA [RADICAL / PARCIAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / ISUP Grading for RCC.</small>`,
+        "diag": `RIÑÓN ([DERECHO / IZQUIERDO]), NEFRECTOMÍA [RADICAL / PARCIAL]:
 - CARCINOMA DE CÉLULAS RENALES DE TIPO [CÉLULAS CLARAS / PAPILAR / CROMÓFOBO].
 - GRADO NUCLEAR DE LA OMS / ISUP: GRADO [1 / 2 / 3 / 4].
 - DIFERENCIACIÓN SARCOMATOIDE / RABDOIDE: [AUSENTE / PRESENTE EN UN [x]%].
@@ -4310,16 +4314,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a (<=4cm) / pT1b (>4 a <=7cm) / pT2a (>7 a <=10cm) / pT2b (>10cm) / pT3a (seno renal/grasa perirrenal/vena renal) / pT3b / pT4 (más allá de fascia de Gerota)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pNX]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 306,
         "categoryId": 1,
         "titulo": "CAP - VEJIGA: CARCINOMA UROTELIAL INVASOR (CISTECTOMÍA / RTU)",
-        "macro": "se recibe espécimen de [cistectomía radical con próstata/vesículas seminales o útero/anexos / resección transuretral de vejiga (RTU-V)]. la vejiga mide [dimensiones] cm. a la apertura anterior, en la pared [posterior / lateral derecha / lateral izquierda / trígono / cúpula / cuello], se observa una lesión tumoral [papilar exofítica / nodular sólida ulcerada / infiltrante plana] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor infiltra la pared vesical alcanzando [la lámina propia / la muscular propia profunda / la grasa perivesical adventicia / la serosa peritoneal / la próstata o útero]. en el tejido perivesical se aíslan [n] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de pared, MU1 margen ureteral derecho, MU2 margen ureteral izquierdo, MUR margen uretral, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen de [cistectomía radical con próstata/vesículas seminales o útero/anexos / resección transuretral de vejiga (RTU-V)]. la vejiga mide [dimensiones] cm. a la apertura anterior, en la pared [posterior / lateral derecha / lateral izquierda / trígono / cúpula / cuello], se observa una lesión tumoral [papilar exofítica / nodular sólida ulcerada / infiltrante plana] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor infiltra la pared vesical alcanzando [la lámina propia / la muscular propia profunda / la grasa perivesical adventicia / la serosa peritoneal / la próstata o útero]. en el tejido perivesical se aíslan [n] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de pared, MU1 margen ureteral derecho, MU2 margen ureteral izquierdo, MUR margen uretral, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Urinary Bladder. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman carcinoma urotelial invasor [o no invasor], clasificado según la OMS 5.ª edición como carcinoma urotelial [de alto grado / de bajo grado] con [o sin] diferenciación divergente [escamosa / glandular / micropapilar / sarcomatoide / plasmocitoide / neuroendocrina]. las células exhiben pleomorfismo nuclear marcado, cromatina densa grumosa, mitosis numerosas con formas atípicas y desorganización arquitectural completa.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Urinary Bladder. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman carcinoma urotelial invasor [o no invasor], clasificado según la OMS 5.ª edición como carcinoma urotelial [de alto grado / de bajo grado] con [o sin] diferenciación divergente [escamosa / glandular / micropapilar / sarcomatoide / plasmocitoide / neuroendocrina]. las células exhiben pleomorfismo nuclear marcado, cromatina densa grumosa, mitosis numerosas con formas atípicas y desorganización arquitectural completa.
 
 profundidad de invasión tumoral:
 - carcinoma urotelial no invasor: [papilar (pTa) / carcinoma in situ plano (pTis)].
@@ -4333,8 +4337,8 @@ carcinoma urotelial in situ (cis) concomitante en mucosa plana: [ausente / prese
 márgenes quirúrgicos: márgenes ureterales derecho e izquierdo [libres], margen uretral [libre], margen de tejido blando perivesical [libre a [x] mm].
 ganglios linfáticos pélvicos: [n] examinados, [n_positivos] con metástasis. extensión extranodal (ene): [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / CAP Urinary Bladder Protocol 2024.</small>",
-        "diag": "VEJIGA URINARIA ([LOCALIZACIÓN]), [CISTECTOMÍA RADICAL / RESECCIÓN TRANSURETRAL (RTU-V)]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / CAP Urinary Bladder Protocol 2024.</small>`,
+        "diag": `VEJIGA URINARIA ([LOCALIZACIÓN]), [CISTECTOMÍA RADICAL / RESECCIÓN TRANSURETRAL (RTU-V)]:
 - CARCINOMA UROTELIAL INVASOR DE [ALTO / BAJO] GRADO (CLASIFICACIÓN OMS 2022).
 - DIFERENCIACIÓN HISTOLÓGICA DIVERGENTE: [NO IDENTIFICADA / ESCAMOSA / GLANDULAR / MICROPAPILAR].
 - PROFUNDIDAD DE INVASIÓN: INFILTRA [LÁMINA PROPIA / MUSCULAR PROPIA (DETRUSOR) / GRASA PERIVESICAL].
@@ -4379,16 +4383,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pTa / pTis / pT1 / pT2a / pT2b / pT3a / pT3b / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pN2 / pN3]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 1306,
         "categoryId": 11,
         "titulo": "CAP - VEJIGA: CARCINOMA UROTELIAL INVASOR (CISTECTOMÍA / RTU)",
-        "macro": "se recibe espécimen de [cistectomía radical con próstata/vesículas seminales o útero/anexos / resección transuretral de vejiga (RTU-V)]. la vejiga mide [dimensiones] cm. a la apertura anterior, en la pared [posterior / lateral derecha / lateral izquierda / trígono / cúpula / cuello], se observa una lesión tumoral [papilar exofítica / nodular sólida ulcerada / infiltrante plana] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor infiltra la pared vesical alcanzando [la lámina propia / la muscular propia profunda / la grasa perivesical adventicia / la serosa peritoneal / la próstata o útero]. en el tejido perivesical se aíslan [n] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de pared, MU1 margen ureteral derecho, MU2 margen ureteral izquierdo, MUR margen uretral, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen de [cistectomía radical con próstata/vesículas seminales o útero/anexos / resección transuretral de vejiga (RTU-V)]. la vejiga mide [dimensiones] cm. a la apertura anterior, en la pared [posterior / lateral derecha / lateral izquierda / trígono / cúpula / cuello], se observa una lesión tumoral [papilar exofítica / nodular sólida ulcerada / infiltrante plana] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor infiltra la pared vesical alcanzando [la lámina propia / la muscular propia profunda / la grasa perivesical adventicia / la serosa peritoneal / la próstata o útero]. en el tejido perivesical se aíslan [n] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de pared, MU1 margen ureteral derecho, MU2 margen ureteral izquierdo, MUR margen uretral, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Urinary Bladder. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman carcinoma urotelial invasor [o no invasor], clasificado según la OMS 5.ª edición como carcinoma urotelial [de alto grado / de bajo grado] con [o sin] diferenciación divergente [escamosa / glandular / micropapilar / sarcomatoide / plasmocitoide / neuroendocrina]. las células exhiben pleomorfismo nuclear marcado, cromatina densa grumosa, mitosis numerosas con formas atípicas y desorganización arquitectural completa.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Urinary Bladder. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman carcinoma urotelial invasor [o no invasor], clasificado según la OMS 5.ª edición como carcinoma urotelial [de alto grado / de bajo grado] con [o sin] diferenciación divergente [escamosa / glandular / micropapilar / sarcomatoide / plasmocitoide / neuroendocrina]. las células exhiben pleomorfismo nuclear marcado, cromatina densa grumosa, mitosis numerosas con formas atípicas y desorganización arquitectural completa.
 
 profundidad de invasión tumoral:
 - carcinoma urotelial no invasor: [papilar (pTa) / carcinoma in situ plano (pTis)].
@@ -4402,8 +4406,8 @@ carcinoma urotelial in situ (cis) concomitante en mucosa plana: [ausente / prese
 márgenes quirúrgicos: márgenes ureterales derecho e izquierdo [libres], margen uretral [libre], margen de tejido blando perivesical [libre a [x] mm].
 ganglios linfáticos pélvicos: [n] examinados, [n_positivos] con metástasis. extensión extranodal (ene): [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / CAP Urinary Bladder Protocol 2024.</small>",
-        "diag": "VEJIGA URINARIA ([LOCALIZACIÓN]), [CISTECTOMÍA RADICAL / RESECCIÓN TRANSURETRAL (RTU-V)]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / CAP Urinary Bladder Protocol 2024.</small>`,
+        "diag": `VEJIGA URINARIA ([LOCALIZACIÓN]), [CISTECTOMÍA RADICAL / RESECCIÓN TRANSURETRAL (RTU-V)]:
 - CARCINOMA UROTELIAL INVASOR DE [ALTO / BAJO] GRADO (CLASIFICACIÓN OMS 2022).
 - DIFERENCIACIÓN HISTOLÓGICA DIVERGENTE: [NO IDENTIFICADA / ESCAMOSA / GLANDULAR / MICROPAPILAR].
 - PROFUNDIDAD DE INVASIÓN: INFILTRA [LÁMINA PROPIA / MUSCULAR PROPIA (DETRUSOR) / GRASA PERIVESICAL].
@@ -4448,16 +4452,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pTa / pTis / pT1 / pT2a / pT2b / pT3a / pT3b / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pN2 / pN3]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 2306,
         "categoryId": 10,
         "titulo": "CAP - VEJIGA: CARCINOMA UROTELIAL INVASOR (CISTECTOMÍA / RTU)",
-        "macro": "se recibe espécimen de [cistectomía radical con próstata/vesículas seminales o útero/anexos / resección transuretral de vejiga (RTU-V)]. la vejiga mide [dimensiones] cm. a la apertura anterior, en la pared [posterior / lateral derecha / lateral izquierda / trígono / cúpula / cuello], se observa una lesión tumoral [papilar exofítica / nodular sólida ulcerada / infiltrante plana] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor infiltra la pared vesical alcanzando [la lámina propia / la muscular propia profunda / la grasa perivesical adventicia / la serosa peritoneal / la próstata o útero]. en el tejido perivesical se aíslan [n] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de pared, MU1 margen ureteral derecho, MU2 margen ureteral izquierdo, MUR margen uretral, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen de [cistectomía radical con próstata/vesículas seminales o útero/anexos / resección transuretral de vejiga (RTU-V)]. la vejiga mide [dimensiones] cm. a la apertura anterior, en la pared [posterior / lateral derecha / lateral izquierda / trígono / cúpula / cuello], se observa una lesión tumoral [papilar exofítica / nodular sólida ulcerada / infiltrante plana] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor infiltra la pared vesical alcanzando [la lámina propia / la muscular propia profunda / la grasa perivesical adventicia / la serosa peritoneal / la próstata o útero]. en el tejido perivesical se aíslan [n] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de pared, MU1 margen ureteral derecho, MU2 margen ureteral izquierdo, MUR margen uretral, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Urinary Bladder. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman carcinoma urotelial invasor [o no invasor], clasificado según la OMS 5.ª edición como carcinoma urotelial [de alto grado / de bajo grado] con [o sin] diferenciación divergente [escamosa / glandular / micropapilar / sarcomatoide / plasmocitoide / neuroendocrina]. las células exhiben pleomorfismo nuclear marcado, cromatina densa grumosa, mitosis numerosas con formas atípicas y desorganización arquitectural completa.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Urinary Bladder. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman carcinoma urotelial invasor [o no invasor], clasificado según la OMS 5.ª edición como carcinoma urotelial [de alto grado / de bajo grado] con [o sin] diferenciación divergente [escamosa / glandular / micropapilar / sarcomatoide / plasmocitoide / neuroendocrina]. las células exhiben pleomorfismo nuclear marcado, cromatina densa grumosa, mitosis numerosas con formas atípicas y desorganización arquitectural completa.
 
 profundidad de invasión tumoral:
 - carcinoma urotelial no invasor: [papilar (pTa) / carcinoma in situ plano (pTis)].
@@ -4471,8 +4475,8 @@ carcinoma urotelial in situ (cis) concomitante en mucosa plana: [ausente / prese
 márgenes quirúrgicos: márgenes ureterales derecho e izquierdo [libres], margen uretral [libre], margen de tejido blando perivesical [libre a [x] mm].
 ganglios linfáticos pélvicos: [n] examinados, [n_positivos] con metástasis. extensión extranodal (ene): [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / CAP Urinary Bladder Protocol 2024.</small>",
-        "diag": "VEJIGA URINARIA ([LOCALIZACIÓN]), [CISTECTOMÍA RADICAL / RESECCIÓN TRANSURETRAL (RTU-V)]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / CAP Urinary Bladder Protocol 2024.</small>`,
+        "diag": `VEJIGA URINARIA ([LOCALIZACIÓN]), [CISTECTOMÍA RADICAL / RESECCIÓN TRANSURETRAL (RTU-V)]:
 - CARCINOMA UROTELIAL INVASOR DE [ALTO / BAJO] GRADO (CLASIFICACIÓN OMS 2022).
 - DIFERENCIACIÓN HISTOLÓGICA DIVERGENTE: [NO IDENTIFICADA / ESCAMOSA / GLANDULAR / MICROPAPILAR].
 - PROFUNDIDAD DE INVASIÓN: INFILTRA [LÁMINA PROPIA / MUSCULAR PROPIA (DETRUSOR) / GRASA PERIVESICAL].
@@ -4517,16 +4521,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pTa / pTis / pT1 / pT2a / pT2b / pT3a / pT3b / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pN2 / pN3]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 5306,
         "categoryId": 100,
         "titulo": "CAP - VEJIGA: CARCINOMA UROTELIAL INVASOR (CISTECTOMÍA / RTU)",
-        "macro": "se recibe espécimen de [cistectomía radical con próstata/vesículas seminales o útero/anexos / resección transuretral de vejiga (RTU-V)]. la vejiga mide [dimensiones] cm. a la apertura anterior, en la pared [posterior / lateral derecha / lateral izquierda / trígono / cúpula / cuello], se observa una lesión tumoral [papilar exofítica / nodular sólida ulcerada / infiltrante plana] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor infiltra la pared vesical alcanzando [la lámina propia / la muscular propia profunda / la grasa perivesical adventicia / la serosa peritoneal / la próstata o útero]. en el tejido perivesical se aíslan [n] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de pared, MU1 margen ureteral derecho, MU2 margen ureteral izquierdo, MUR margen uretral, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen de [cistectomía radical con próstata/vesículas seminales o útero/anexos / resección transuretral de vejiga (RTU-V)]. la vejiga mide [dimensiones] cm. a la apertura anterior, en la pared [posterior / lateral derecha / lateral izquierda / trígono / cúpula / cuello], se observa una lesión tumoral [papilar exofítica / nodular sólida ulcerada / infiltrante plana] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor infiltra la pared vesical alcanzando [la lámina propia / la muscular propia profunda / la grasa perivesical adventicia / la serosa peritoneal / la próstata o útero]. en el tejido perivesical se aíslan [n] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de pared, MU1 margen ureteral derecho, MU2 margen ureteral izquierdo, MUR margen uretral, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Urinary Bladder. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman carcinoma urotelial invasor [o no invasor], clasificado según la OMS 5.ª edición como carcinoma urotelial [de alto grado / de bajo grado] con [o sin] diferenciación divergente [escamosa / glandular / micropapilar / sarcomatoide / plasmocitoide / neuroendocrina]. las células exhiben pleomorfismo nuclear marcado, cromatina densa grumosa, mitosis numerosas con formas atípicas y desorganización arquitectural completa.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Urinary Bladder. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman carcinoma urotelial invasor [o no invasor], clasificado según la OMS 5.ª edición como carcinoma urotelial [de alto grado / de bajo grado] con [o sin] diferenciación divergente [escamosa / glandular / micropapilar / sarcomatoide / plasmocitoide / neuroendocrina]. las células exhiben pleomorfismo nuclear marcado, cromatina densa grumosa, mitosis numerosas con formas atípicas y desorganización arquitectural completa.
 
 profundidad de invasión tumoral:
 - carcinoma urotelial no invasor: [papilar (pTa) / carcinoma in situ plano (pTis)].
@@ -4540,8 +4544,8 @@ carcinoma urotelial in situ (cis) concomitante en mucosa plana: [ausente / prese
 márgenes quirúrgicos: márgenes ureterales derecho e izquierdo [libres], margen uretral [libre], margen de tejido blando perivesical [libre a [x] mm].
 ganglios linfáticos pélvicos: [n] examinados, [n_positivos] con metástasis. extensión extranodal (ene): [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / CAP Urinary Bladder Protocol 2024.</small>",
-        "diag": "VEJIGA URINARIA ([LOCALIZACIÓN]), [CISTECTOMÍA RADICAL / RESECCIÓN TRANSURETRAL (RTU-V)]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / CAP Urinary Bladder Protocol 2024.</small>`,
+        "diag": `VEJIGA URINARIA ([LOCALIZACIÓN]), [CISTECTOMÍA RADICAL / RESECCIÓN TRANSURETRAL (RTU-V)]:
 - CARCINOMA UROTELIAL INVASOR DE [ALTO / BAJO] GRADO (CLASIFICACIÓN OMS 2022).
 - DIFERENCIACIÓN HISTOLÓGICA DIVERGENTE: [NO IDENTIFICADA / ESCAMOSA / GLANDULAR / MICROPAPILAR].
 - PROFUNDIDAD DE INVASIÓN: INFILTRA [LÁMINA PROPIA / MUSCULAR PROPIA (DETRUSOR) / GRASA PERIVESICAL].
@@ -4586,16 +4590,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pTa / pTis / pT1 / pT2a / pT2b / pT3a / pT3b / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pN2 / pN3]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 6306,
         "categoryId": 101,
         "titulo": "CAP - VEJIGA: CARCINOMA UROTELIAL INVASOR (CISTECTOMÍA / RTU)",
-        "macro": "se recibe espécimen de [cistectomía radical con próstata/vesículas seminales o útero/anexos / resección transuretral de vejiga (RTU-V)]. la vejiga mide [dimensiones] cm. a la apertura anterior, en la pared [posterior / lateral derecha / lateral izquierda / trígono / cúpula / cuello], se observa una lesión tumoral [papilar exofítica / nodular sólida ulcerada / infiltrante plana] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor infiltra la pared vesical alcanzando [la lámina propia / la muscular propia profunda / la grasa perivesical adventicia / la serosa peritoneal / la próstata o útero]. en el tejido perivesical se aíslan [n] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de pared, MU1 margen ureteral derecho, MU2 margen ureteral izquierdo, MUR margen uretral, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen de [cistectomía radical con próstata/vesículas seminales o útero/anexos / resección transuretral de vejiga (RTU-V)]. la vejiga mide [dimensiones] cm. a la apertura anterior, en la pared [posterior / lateral derecha / lateral izquierda / trígono / cúpula / cuello], se observa una lesión tumoral [papilar exofítica / nodular sólida ulcerada / infiltrante plana] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor infiltra la pared vesical alcanzando [la lámina propia / la muscular propia profunda / la grasa perivesical adventicia / la serosa peritoneal / la próstata o útero]. en el tejido perivesical se aíslan [n] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de pared, MU1 margen ureteral derecho, MU2 margen ureteral izquierdo, MUR margen uretral, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Urinary Bladder. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman carcinoma urotelial invasor [o no invasor], clasificado según la OMS 5.ª edición como carcinoma urotelial [de alto grado / de bajo grado] con [o sin] diferenciación divergente [escamosa / glandular / micropapilar / sarcomatoide / plasmocitoide / neuroendocrina]. las células exhiben pleomorfismo nuclear marcado, cromatina densa grumosa, mitosis numerosas con formas atípicas y desorganización arquitectural completa.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Urinary Bladder. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman carcinoma urotelial invasor [o no invasor], clasificado según la OMS 5.ª edición como carcinoma urotelial [de alto grado / de bajo grado] con [o sin] diferenciación divergente [escamosa / glandular / micropapilar / sarcomatoide / plasmocitoide / neuroendocrina]. las células exhiben pleomorfismo nuclear marcado, cromatina densa grumosa, mitosis numerosas con formas atípicas y desorganización arquitectural completa.
 
 profundidad de invasión tumoral:
 - carcinoma urotelial no invasor: [papilar (pTa) / carcinoma in situ plano (pTis)].
@@ -4609,8 +4613,8 @@ carcinoma urotelial in situ (cis) concomitante en mucosa plana: [ausente / prese
 márgenes quirúrgicos: márgenes ureterales derecho e izquierdo [libres], margen uretral [libre], margen de tejido blando perivesical [libre a [x] mm].
 ganglios linfáticos pélvicos: [n] examinados, [n_positivos] con metástasis. extensión extranodal (ene): [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / CAP Urinary Bladder Protocol 2024.</small>",
-        "diag": "VEJIGA URINARIA ([LOCALIZACIÓN]), [CISTECTOMÍA RADICAL / RESECCIÓN TRANSURETRAL (RTU-V)]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / CAP Urinary Bladder Protocol 2024.</small>`,
+        "diag": `VEJIGA URINARIA ([LOCALIZACIÓN]), [CISTECTOMÍA RADICAL / RESECCIÓN TRANSURETRAL (RTU-V)]:
 - CARCINOMA UROTELIAL INVASOR DE [ALTO / BAJO] GRADO (CLASIFICACIÓN OMS 2022).
 - DIFERENCIACIÓN HISTOLÓGICA DIVERGENTE: [NO IDENTIFICADA / ESCAMOSA / GLANDULAR / MICROPAPILAR].
 - PROFUNDIDAD DE INVASIÓN: INFILTRA [LÁMINA PROPIA / MUSCULAR PROPIA (DETRUSOR) / GRASA PERIVESICAL].
@@ -4655,16 +4659,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pTa / pTis / pT1 / pT2a / pT2b / pT3a / pT3b / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pN2 / pN3]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 3306,
         "categoryId": 9,
         "titulo": "CAP - VEJIGA: CARCINOMA UROTELIAL INVASOR (CISTECTOMÍA / RTU)",
-        "macro": "se recibe espécimen de [cistectomía radical con próstata/vesículas seminales o útero/anexos / resección transuretral de vejiga (RTU-V)]. la vejiga mide [dimensiones] cm. a la apertura anterior, en la pared [posterior / lateral derecha / lateral izquierda / trígono / cúpula / cuello], se observa una lesión tumoral [papilar exofítica / nodular sólida ulcerada / infiltrante plana] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor infiltra la pared vesical alcanzando [la lámina propia / la muscular propia profunda / la grasa perivesical adventicia / la serosa peritoneal / la próstata o útero]. en el tejido perivesical se aíslan [n] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de pared, MU1 margen ureteral derecho, MU2 margen ureteral izquierdo, MUR margen uretral, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen de [cistectomía radical con próstata/vesículas seminales o útero/anexos / resección transuretral de vejiga (RTU-V)]. la vejiga mide [dimensiones] cm. a la apertura anterior, en la pared [posterior / lateral derecha / lateral izquierda / trígono / cúpula / cuello], se observa una lesión tumoral [papilar exofítica / nodular sólida ulcerada / infiltrante plana] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor infiltra la pared vesical alcanzando [la lámina propia / la muscular propia profunda / la grasa perivesical adventicia / la serosa peritoneal / la próstata o útero]. en el tejido perivesical se aíslan [n] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de pared, MU1 margen ureteral derecho, MU2 margen ureteral izquierdo, MUR margen uretral, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Urinary Bladder. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman carcinoma urotelial invasor [o no invasor], clasificado según la OMS 5.ª edición como carcinoma urotelial [de alto grado / de bajo grado] con [o sin] diferenciación divergente [escamosa / glandular / micropapilar / sarcomatoide / plasmocitoide / neuroendocrina]. las células exhiben pleomorfismo nuclear marcado, cromatina densa grumosa, mitosis numerosas con formas atípicas y desorganización arquitectural completa.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Urinary Bladder. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman carcinoma urotelial invasor [o no invasor], clasificado según la OMS 5.ª edición como carcinoma urotelial [de alto grado / de bajo grado] con [o sin] diferenciación divergente [escamosa / glandular / micropapilar / sarcomatoide / plasmocitoide / neuroendocrina]. las células exhiben pleomorfismo nuclear marcado, cromatina densa grumosa, mitosis numerosas con formas atípicas y desorganización arquitectural completa.
 
 profundidad de invasión tumoral:
 - carcinoma urotelial no invasor: [papilar (pTa) / carcinoma in situ plano (pTis)].
@@ -4678,8 +4682,8 @@ carcinoma urotelial in situ (cis) concomitante en mucosa plana: [ausente / prese
 márgenes quirúrgicos: márgenes ureterales derecho e izquierdo [libres], margen uretral [libre], margen de tejido blando perivesical [libre a [x] mm].
 ganglios linfáticos pélvicos: [n] examinados, [n_positivos] con metástasis. extensión extranodal (ene): [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / CAP Urinary Bladder Protocol 2024.</small>",
-        "diag": "VEJIGA URINARIA ([LOCALIZACIÓN]), [CISTECTOMÍA RADICAL / RESECCIÓN TRANSURETRAL (RTU-V)]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / CAP Urinary Bladder Protocol 2024.</small>`,
+        "diag": `VEJIGA URINARIA ([LOCALIZACIÓN]), [CISTECTOMÍA RADICAL / RESECCIÓN TRANSURETRAL (RTU-V)]:
 - CARCINOMA UROTELIAL INVASOR DE [ALTO / BAJO] GRADO (CLASIFICACIÓN OMS 2022).
 - DIFERENCIACIÓN HISTOLÓGICA DIVERGENTE: [NO IDENTIFICADA / ESCAMOSA / GLANDULAR / MICROPAPILAR].
 - PROFUNDIDAD DE INVASIÓN: INFILTRA [LÁMINA PROPIA / MUSCULAR PROPIA (DETRUSOR) / GRASA PERIVESICAL].
@@ -4724,16 +4728,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pTa / pTis / pT1 / pT2a / pT2b / pT3a / pT3b / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pN2 / pN3]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 4306,
         "categoryId": 25,
         "titulo": "CAP - VEJIGA: CARCINOMA UROTELIAL INVASOR (CISTECTOMÍA / RTU)",
-        "macro": "se recibe espécimen de [cistectomía radical con próstata/vesículas seminales o útero/anexos / resección transuretral de vejiga (RTU-V)]. la vejiga mide [dimensiones] cm. a la apertura anterior, en la pared [posterior / lateral derecha / lateral izquierda / trígono / cúpula / cuello], se observa una lesión tumoral [papilar exofítica / nodular sólida ulcerada / infiltrante plana] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor infiltra la pared vesical alcanzando [la lámina propia / la muscular propia profunda / la grasa perivesical adventicia / la serosa peritoneal / la próstata o útero]. en el tejido perivesical se aíslan [n] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de pared, MU1 margen ureteral derecho, MU2 margen ureteral izquierdo, MUR margen uretral, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen de [cistectomía radical con próstata/vesículas seminales o útero/anexos / resección transuretral de vejiga (RTU-V)]. la vejiga mide [dimensiones] cm. a la apertura anterior, en la pared [posterior / lateral derecha / lateral izquierda / trígono / cúpula / cuello], se observa una lesión tumoral [papilar exofítica / nodular sólida ulcerada / infiltrante plana] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, el tumor infiltra la pared vesical alcanzando [la lámina propia / la muscular propia profunda / la grasa perivesical adventicia / la serosa peritoneal / la próstata o útero]. en el tejido perivesical se aíslan [n] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de pared, MU1 margen ureteral derecho, MU2 margen ureteral izquierdo, MUR margen uretral, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Urinary Bladder. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman carcinoma urotelial invasor [o no invasor], clasificado según la OMS 5.ª edición como carcinoma urotelial [de alto grado / de bajo grado] con [o sin] diferenciación divergente [escamosa / glandular / micropapilar / sarcomatoide / plasmocitoide / neuroendocrina]. las células exhiben pleomorfismo nuclear marcado, cromatina densa grumosa, mitosis numerosas con formas atípicas y desorganización arquitectural completa.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Urinary Bladder. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman carcinoma urotelial invasor [o no invasor], clasificado según la OMS 5.ª edición como carcinoma urotelial [de alto grado / de bajo grado] con [o sin] diferenciación divergente [escamosa / glandular / micropapilar / sarcomatoide / plasmocitoide / neuroendocrina]. las células exhiben pleomorfismo nuclear marcado, cromatina densa grumosa, mitosis numerosas con formas atípicas y desorganización arquitectural completa.
 
 profundidad de invasión tumoral:
 - carcinoma urotelial no invasor: [papilar (pTa) / carcinoma in situ plano (pTis)].
@@ -4747,8 +4751,8 @@ carcinoma urotelial in situ (cis) concomitante en mucosa plana: [ausente / prese
 márgenes quirúrgicos: márgenes ureterales derecho e izquierdo [libres], margen uretral [libre], margen de tejido blando perivesical [libre a [x] mm].
 ganglios linfáticos pélvicos: [n] examinados, [n_positivos] con metástasis. extensión extranodal (ene): [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / CAP Urinary Bladder Protocol 2024.</small>",
-        "diag": "VEJIGA URINARIA ([LOCALIZACIÓN]), [CISTECTOMÍA RADICAL / RESECCIÓN TRANSURETRAL (RTU-V)]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Urinary and Male Genital Tumours (5th ed.). IARC; Lyon. / CAP Urinary Bladder Protocol 2024.</small>`,
+        "diag": `VEJIGA URINARIA ([LOCALIZACIÓN]), [CISTECTOMÍA RADICAL / RESECCIÓN TRANSURETRAL (RTU-V)]:
 - CARCINOMA UROTELIAL INVASOR DE [ALTO / BAJO] GRADO (CLASIFICACIÓN OMS 2022).
 - DIFERENCIACIÓN HISTOLÓGICA DIVERGENTE: [NO IDENTIFICADA / ESCAMOSA / GLANDULAR / MICROPAPILAR].
 - PROFUNDIDAD DE INVASIÓN: INFILTRA [LÁMINA PROPIA / MUSCULAR PROPIA (DETRUSOR) / GRASA PERIVESICAL].
@@ -4793,16 +4797,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pTa / pTis / pT1 / pT2a / pT2b / pT3a / pT3b / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 / pN2 / pN3]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 307,
         "categoryId": 1,
         "titulo": "CAP - MAMA: CARCINOMA DUCTAL / LOBULILLAR INVASOR (MASTECTOMÍA / TUMORECTOMÍA)",
-        "macro": "se recibe espécimen de [mastectomía radical modificada / mastectomía simple / tumorectomía - cuadrantectomía guiada por arpón / marcaje], [derecha / izquierda], debidamente orientada (superior, inferior, lateral, medial, anterior, profunda). la pieza pesa [peso] g y mide [transverso] x [craneocaudal] x [anteroposterior] cm. se incluye [o no] losange de piel de [dimensiones] cm con complejo aréola-pezón que mide [dimensiones] cm. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo/fascial (naranja). a los cortes seriados cada 3 a 5 mm en el cuadrante [superoexterno / inferoexterno / superointerno / inferointerno / retroareolar], se identifica una masa tumoral [estrellada, espiculada, dura, blanco-grisácea con estrías amarillo-calcáreas / nodular bien delimitada] que mide [dimensión mayor] x [intermedia] x [menor] cm. la distancia de la masa a los márgenes quirúrgicos es: anterior a [da] mm, profundo a [dp] mm, superior a [ds] mm, inferior a [di] mm, lateral a [dl] mm y medial a [dm] mm. se aíslan en el contenido axilar [n] ganglios linfáticos [o se remiten ganglios centinela en frascos separados]. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con márgenes, CAP complejo aréola-pezón, M_sup, M_inf, M_lat, M_med, M_prof, GC1-GCn ganglios centinela / axilares].
+        "macro": `se recibe espécimen de [mastectomía radical modificada / mastectomía simple / tumorectomía - cuadrantectomía guiada por arpón / marcaje], [derecha / izquierda], debidamente orientada (superior, inferior, lateral, medial, anterior, profunda). la pieza pesa [peso] g y mide [transverso] x [craneocaudal] x [anteroposterior] cm. se incluye [o no] losange de piel de [dimensiones] cm con complejo aréola-pezón que mide [dimensiones] cm. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo/fascial (naranja). a los cortes seriados cada 3 a 5 mm en el cuadrante [superoexterno / inferoexterno / superointerno / inferointerno / retroareolar], se identifica una masa tumoral [estrellada, espiculada, dura, blanco-grisácea con estrías amarillo-calcáreas / nodular bien delimitada] que mide [dimensión mayor] x [intermedia] x [menor] cm. la distancia de la masa a los márgenes quirúrgicos es: anterior a [da] mm, profundo a [dp] mm, superior a [ds] mm, inferior a [di] mm, lateral a [dl] mm y medial a [dm] mm. se aíslan en el contenido axilar [n] ganglios linfáticos [o se remiten ganglios centinela en frascos separados]. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con márgenes, CAP complejo aréola-pezón, M_sup, M_inf, M_lat, M_med, M_prof, GC1-GCn ganglios centinela / axilares].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Invasive Carcinoma of the Breast. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la glándula mamaria clasificada según la OMS 5.ª edición como carcinoma invasor de tipo no especial (NST / conductal invasor usual) [o carcinoma lobulillar invasor / tubular / cribiforme / mucinoso / medular / micropapilar].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Invasive Carcinoma of the Breast. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la glándula mamaria clasificada según la OMS 5.ª edición como carcinoma invasor de tipo no especial (NST / conductal invasor usual) [o carcinoma lobulillar invasor / tubular / cribiforme / mucinoso / medular / micropapilar].
 
 grado histológico de nottingham (sistema de bloom-richardson modificado por elston-ellis):
 - formación de túbulos glandulares: [1 punto (>75% de túbulos) / 2 puntos (10-75%) / 3 puntos (<10%)].
@@ -4830,8 +4834,8 @@ estatus de biomarcadores (ihq / fish - asco/cap guidelines):
 - índice de proliferación celular ki-67: [[x]% de positividad nuclear].
 - subtipo intrínseco / molecular surrogado: [Luminal A / Luminal B (HER2 negativo) / Luminal B (HER2 positivo) / HER2 enriquecido / Triple Negativo (Basal-like)].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Breast Tumours (5th ed.). IARC; Lyon. / ASCO/CAP Biomarkers Guidelines.</small>",
-        "diag": "MAMA ([DERECHA / IZQUIERDA]), [MASTECTOMÍA RADICAL MODIFICADA / TUMORECTOMÍA]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Breast Tumours (5th ed.). IARC; Lyon. / ASCO/CAP Biomarkers Guidelines.</small>`,
+        "diag": `MAMA ([DERECHA / IZQUIERDA]), [MASTECTOMÍA RADICAL MODIFICADA / TUMORECTOMÍA]:
 - CARCINOMA INVASOR DE MAMA DE TIPO NO ESPECIAL (NST / DUCTAL) [O LOBULILLAR INVASOR].
 - GRADO HISTOLÓGICO DE NOTTINGHAM: GRADO [1 / 2 / 3] (PUNTAJE: [__]/9: TÚBULOS [__], PLEOMORFISMO [__], MITOSIS [__]).
 - TAMAÑO TUMORAL DEL COMPONENTE INVASOR: [__] cm.
@@ -4880,16 +4884,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a / pT1b / pT1c / pT2 / pT3 / pT4a / pT4b / pT4d (inflamatorio)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1mi / pN1a / pN2a / pN3a]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 1307,
         "categoryId": 11,
         "titulo": "CAP - MAMA: CARCINOMA DUCTAL / LOBULILLAR INVASOR (MASTECTOMÍA / TUMORECTOMÍA)",
-        "macro": "se recibe espécimen de [mastectomía radical modificada / mastectomía simple / tumorectomía - cuadrantectomía guiada por arpón / marcaje], [derecha / izquierda], debidamente orientada (superior, inferior, lateral, medial, anterior, profunda). la pieza pesa [peso] g y mide [transverso] x [craneocaudal] x [anteroposterior] cm. se incluye [o no] losange de piel de [dimensiones] cm con complejo aréola-pezón que mide [dimensiones] cm. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo/fascial (naranja). a los cortes seriados cada 3 a 5 mm en el cuadrante [superoexterno / inferoexterno / superointerno / inferointerno / retroareolar], se identifica una masa tumoral [estrellada, espiculada, dura, blanco-grisácea con estrías amarillo-calcáreas / nodular bien delimitada] que mide [dimensión mayor] x [intermedia] x [menor] cm. la distancia de la masa a los márgenes quirúrgicos es: anterior a [da] mm, profundo a [dp] mm, superior a [ds] mm, inferior a [di] mm, lateral a [dl] mm y medial a [dm] mm. se aíslan en el contenido axilar [n] ganglios linfáticos [o se remiten ganglios centinela en frascos separados]. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con márgenes, CAP complejo aréola-pezón, M_sup, M_inf, M_lat, M_med, M_prof, GC1-GCn ganglios centinela / axilares].
+        "macro": `se recibe espécimen de [mastectomía radical modificada / mastectomía simple / tumorectomía - cuadrantectomía guiada por arpón / marcaje], [derecha / izquierda], debidamente orientada (superior, inferior, lateral, medial, anterior, profunda). la pieza pesa [peso] g y mide [transverso] x [craneocaudal] x [anteroposterior] cm. se incluye [o no] losange de piel de [dimensiones] cm con complejo aréola-pezón que mide [dimensiones] cm. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo/fascial (naranja). a los cortes seriados cada 3 a 5 mm en el cuadrante [superoexterno / inferoexterno / superointerno / inferointerno / retroareolar], se identifica una masa tumoral [estrellada, espiculada, dura, blanco-grisácea con estrías amarillo-calcáreas / nodular bien delimitada] que mide [dimensión mayor] x [intermedia] x [menor] cm. la distancia de la masa a los márgenes quirúrgicos es: anterior a [da] mm, profundo a [dp] mm, superior a [ds] mm, inferior a [di] mm, lateral a [dl] mm y medial a [dm] mm. se aíslan en el contenido axilar [n] ganglios linfáticos [o se remiten ganglios centinela en frascos separados]. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con márgenes, CAP complejo aréola-pezón, M_sup, M_inf, M_lat, M_med, M_prof, GC1-GCn ganglios centinela / axilares].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Invasive Carcinoma of the Breast. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la glándula mamaria clasificada según la OMS 5.ª edición como carcinoma invasor de tipo no especial (NST / conductal invasor usual) [o carcinoma lobulillar invasor / tubular / cribiforme / mucinoso / medular / micropapilar].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Invasive Carcinoma of the Breast. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la glándula mamaria clasificada según la OMS 5.ª edición como carcinoma invasor de tipo no especial (NST / conductal invasor usual) [o carcinoma lobulillar invasor / tubular / cribiforme / mucinoso / medular / micropapilar].
 
 grado histológico de nottingham (sistema de bloom-richardson modificado por elston-ellis):
 - formación de túbulos glandulares: [1 punto (>75% de túbulos) / 2 puntos (10-75%) / 3 puntos (<10%)].
@@ -4917,8 +4921,8 @@ estatus de biomarcadores (ihq / fish - asco/cap guidelines):
 - índice de proliferación celular ki-67: [[x]% de positividad nuclear].
 - subtipo intrínseco / molecular surrogado: [Luminal A / Luminal B (HER2 negativo) / Luminal B (HER2 positivo) / HER2 enriquecido / Triple Negativo (Basal-like)].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Breast Tumours (5th ed.). IARC; Lyon. / ASCO/CAP Biomarkers Guidelines.</small>",
-        "diag": "MAMA ([DERECHA / IZQUIERDA]), [MASTECTOMÍA RADICAL MODIFICADA / TUMORECTOMÍA]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Breast Tumours (5th ed.). IARC; Lyon. / ASCO/CAP Biomarkers Guidelines.</small>`,
+        "diag": `MAMA ([DERECHA / IZQUIERDA]), [MASTECTOMÍA RADICAL MODIFICADA / TUMORECTOMÍA]:
 - CARCINOMA INVASOR DE MAMA DE TIPO NO ESPECIAL (NST / DUCTAL) [O LOBULILLAR INVASOR].
 - GRADO HISTOLÓGICO DE NOTTINGHAM: GRADO [1 / 2 / 3] (PUNTAJE: [__]/9: TÚBULOS [__], PLEOMORFISMO [__], MITOSIS [__]).
 - TAMAÑO TUMORAL DEL COMPONENTE INVASOR: [__] cm.
@@ -4967,16 +4971,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a / pT1b / pT1c / pT2 / pT3 / pT4a / pT4b / pT4d (inflamatorio)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1mi / pN1a / pN2a / pN3a]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 2307,
         "categoryId": 10,
         "titulo": "CAP - MAMA: CARCINOMA DUCTAL / LOBULILLAR INVASOR (MASTECTOMÍA / TUMORECTOMÍA)",
-        "macro": "se recibe espécimen de [mastectomía radical modificada / mastectomía simple / tumorectomía - cuadrantectomía guiada por arpón / marcaje], [derecha / izquierda], debidamente orientada (superior, inferior, lateral, medial, anterior, profunda). la pieza pesa [peso] g y mide [transverso] x [craneocaudal] x [anteroposterior] cm. se incluye [o no] losange de piel de [dimensiones] cm con complejo aréola-pezón que mide [dimensiones] cm. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo/fascial (naranja). a los cortes seriados cada 3 a 5 mm en el cuadrante [superoexterno / inferoexterno / superointerno / inferointerno / retroareolar], se identifica una masa tumoral [estrellada, espiculada, dura, blanco-grisácea con estrías amarillo-calcáreas / nodular bien delimitada] que mide [dimensión mayor] x [intermedia] x [menor] cm. la distancia de la masa a los márgenes quirúrgicos es: anterior a [da] mm, profundo a [dp] mm, superior a [ds] mm, inferior a [di] mm, lateral a [dl] mm y medial a [dm] mm. se aíslan en el contenido axilar [n] ganglios linfáticos [o se remiten ganglios centinela en frascos separados]. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con márgenes, CAP complejo aréola-pezón, M_sup, M_inf, M_lat, M_med, M_prof, GC1-GCn ganglios centinela / axilares].
+        "macro": `se recibe espécimen de [mastectomía radical modificada / mastectomía simple / tumorectomía - cuadrantectomía guiada por arpón / marcaje], [derecha / izquierda], debidamente orientada (superior, inferior, lateral, medial, anterior, profunda). la pieza pesa [peso] g y mide [transverso] x [craneocaudal] x [anteroposterior] cm. se incluye [o no] losange de piel de [dimensiones] cm con complejo aréola-pezón que mide [dimensiones] cm. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo/fascial (naranja). a los cortes seriados cada 3 a 5 mm en el cuadrante [superoexterno / inferoexterno / superointerno / inferointerno / retroareolar], se identifica una masa tumoral [estrellada, espiculada, dura, blanco-grisácea con estrías amarillo-calcáreas / nodular bien delimitada] que mide [dimensión mayor] x [intermedia] x [menor] cm. la distancia de la masa a los márgenes quirúrgicos es: anterior a [da] mm, profundo a [dp] mm, superior a [ds] mm, inferior a [di] mm, lateral a [dl] mm y medial a [dm] mm. se aíslan en el contenido axilar [n] ganglios linfáticos [o se remiten ganglios centinela en frascos separados]. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con márgenes, CAP complejo aréola-pezón, M_sup, M_inf, M_lat, M_med, M_prof, GC1-GCn ganglios centinela / axilares].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Invasive Carcinoma of the Breast. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la glándula mamaria clasificada según la OMS 5.ª edición como carcinoma invasor de tipo no especial (NST / conductal invasor usual) [o carcinoma lobulillar invasor / tubular / cribiforme / mucinoso / medular / micropapilar].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Invasive Carcinoma of the Breast. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la glándula mamaria clasificada según la OMS 5.ª edición como carcinoma invasor de tipo no especial (NST / conductal invasor usual) [o carcinoma lobulillar invasor / tubular / cribiforme / mucinoso / medular / micropapilar].
 
 grado histológico de nottingham (sistema de bloom-richardson modificado por elston-ellis):
 - formación de túbulos glandulares: [1 punto (>75% de túbulos) / 2 puntos (10-75%) / 3 puntos (<10%)].
@@ -5004,8 +5008,8 @@ estatus de biomarcadores (ihq / fish - asco/cap guidelines):
 - índice de proliferación celular ki-67: [[x]% de positividad nuclear].
 - subtipo intrínseco / molecular surrogado: [Luminal A / Luminal B (HER2 negativo) / Luminal B (HER2 positivo) / HER2 enriquecido / Triple Negativo (Basal-like)].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Breast Tumours (5th ed.). IARC; Lyon. / ASCO/CAP Biomarkers Guidelines.</small>",
-        "diag": "MAMA ([DERECHA / IZQUIERDA]), [MASTECTOMÍA RADICAL MODIFICADA / TUMORECTOMÍA]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Breast Tumours (5th ed.). IARC; Lyon. / ASCO/CAP Biomarkers Guidelines.</small>`,
+        "diag": `MAMA ([DERECHA / IZQUIERDA]), [MASTECTOMÍA RADICAL MODIFICADA / TUMORECTOMÍA]:
 - CARCINOMA INVASOR DE MAMA DE TIPO NO ESPECIAL (NST / DUCTAL) [O LOBULILLAR INVASOR].
 - GRADO HISTOLÓGICO DE NOTTINGHAM: GRADO [1 / 2 / 3] (PUNTAJE: [__]/9: TÚBULOS [__], PLEOMORFISMO [__], MITOSIS [__]).
 - TAMAÑO TUMORAL DEL COMPONENTE INVASOR: [__] cm.
@@ -5054,16 +5058,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a / pT1b / pT1c / pT2 / pT3 / pT4a / pT4b / pT4d (inflamatorio)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1mi / pN1a / pN2a / pN3a]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 5307,
         "categoryId": 100,
         "titulo": "CAP - MAMA: CARCINOMA DUCTAL / LOBULILLAR INVASOR (MASTECTOMÍA / TUMORECTOMÍA)",
-        "macro": "se recibe espécimen de [mastectomía radical modificada / mastectomía simple / tumorectomía - cuadrantectomía guiada por arpón / marcaje], [derecha / izquierda], debidamente orientada (superior, inferior, lateral, medial, anterior, profunda). la pieza pesa [peso] g y mide [transverso] x [craneocaudal] x [anteroposterior] cm. se incluye [o no] losange de piel de [dimensiones] cm con complejo aréola-pezón que mide [dimensiones] cm. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo/fascial (naranja). a los cortes seriados cada 3 a 5 mm en el cuadrante [superoexterno / inferoexterno / superointerno / inferointerno / retroareolar], se identifica una masa tumoral [estrellada, espiculada, dura, blanco-grisácea con estrías amarillo-calcáreas / nodular bien delimitada] que mide [dimensión mayor] x [intermedia] x [menor] cm. la distancia de la masa a los márgenes quirúrgicos es: anterior a [da] mm, profundo a [dp] mm, superior a [ds] mm, inferior a [di] mm, lateral a [dl] mm y medial a [dm] mm. se aíslan en el contenido axilar [n] ganglios linfáticos [o se remiten ganglios centinela en frascos separados]. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con márgenes, CAP complejo aréola-pezón, M_sup, M_inf, M_lat, M_med, M_prof, GC1-GCn ganglios centinela / axilares].
+        "macro": `se recibe espécimen de [mastectomía radical modificada / mastectomía simple / tumorectomía - cuadrantectomía guiada por arpón / marcaje], [derecha / izquierda], debidamente orientada (superior, inferior, lateral, medial, anterior, profunda). la pieza pesa [peso] g y mide [transverso] x [craneocaudal] x [anteroposterior] cm. se incluye [o no] losange de piel de [dimensiones] cm con complejo aréola-pezón que mide [dimensiones] cm. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo/fascial (naranja). a los cortes seriados cada 3 a 5 mm en el cuadrante [superoexterno / inferoexterno / superointerno / inferointerno / retroareolar], se identifica una masa tumoral [estrellada, espiculada, dura, blanco-grisácea con estrías amarillo-calcáreas / nodular bien delimitada] que mide [dimensión mayor] x [intermedia] x [menor] cm. la distancia de la masa a los márgenes quirúrgicos es: anterior a [da] mm, profundo a [dp] mm, superior a [ds] mm, inferior a [di] mm, lateral a [dl] mm y medial a [dm] mm. se aíslan en el contenido axilar [n] ganglios linfáticos [o se remiten ganglios centinela en frascos separados]. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con márgenes, CAP complejo aréola-pezón, M_sup, M_inf, M_lat, M_med, M_prof, GC1-GCn ganglios centinela / axilares].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Invasive Carcinoma of the Breast. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la glándula mamaria clasificada según la OMS 5.ª edición como carcinoma invasor de tipo no especial (NST / conductal invasor usual) [o carcinoma lobulillar invasor / tubular / cribiforme / mucinoso / medular / micropapilar].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Invasive Carcinoma of the Breast. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la glándula mamaria clasificada según la OMS 5.ª edición como carcinoma invasor de tipo no especial (NST / conductal invasor usual) [o carcinoma lobulillar invasor / tubular / cribiforme / mucinoso / medular / micropapilar].
 
 grado histológico de nottingham (sistema de bloom-richardson modificado por elston-ellis):
 - formación de túbulos glandulares: [1 punto (>75% de túbulos) / 2 puntos (10-75%) / 3 puntos (<10%)].
@@ -5091,8 +5095,8 @@ estatus de biomarcadores (ihq / fish - asco/cap guidelines):
 - índice de proliferación celular ki-67: [[x]% de positividad nuclear].
 - subtipo intrínseco / molecular surrogado: [Luminal A / Luminal B (HER2 negativo) / Luminal B (HER2 positivo) / HER2 enriquecido / Triple Negativo (Basal-like)].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Breast Tumours (5th ed.). IARC; Lyon. / ASCO/CAP Biomarkers Guidelines.</small>",
-        "diag": "MAMA ([DERECHA / IZQUIERDA]), [MASTECTOMÍA RADICAL MODIFICADA / TUMORECTOMÍA]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Breast Tumours (5th ed.). IARC; Lyon. / ASCO/CAP Biomarkers Guidelines.</small>`,
+        "diag": `MAMA ([DERECHA / IZQUIERDA]), [MASTECTOMÍA RADICAL MODIFICADA / TUMORECTOMÍA]:
 - CARCINOMA INVASOR DE MAMA DE TIPO NO ESPECIAL (NST / DUCTAL) [O LOBULILLAR INVASOR].
 - GRADO HISTOLÓGICO DE NOTTINGHAM: GRADO [1 / 2 / 3] (PUNTAJE: [__]/9: TÚBULOS [__], PLEOMORFISMO [__], MITOSIS [__]).
 - TAMAÑO TUMORAL DEL COMPONENTE INVASOR: [__] cm.
@@ -5141,16 +5145,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a / pT1b / pT1c / pT2 / pT3 / pT4a / pT4b / pT4d (inflamatorio)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1mi / pN1a / pN2a / pN3a]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 6307,
         "categoryId": 101,
         "titulo": "CAP - MAMA: CARCINOMA DUCTAL / LOBULILLAR INVASOR (MASTECTOMÍA / TUMORECTOMÍA)",
-        "macro": "se recibe espécimen de [mastectomía radical modificada / mastectomía simple / tumorectomía - cuadrantectomía guiada por arpón / marcaje], [derecha / izquierda], debidamente orientada (superior, inferior, lateral, medial, anterior, profunda). la pieza pesa [peso] g y mide [transverso] x [craneocaudal] x [anteroposterior] cm. se incluye [o no] losange de piel de [dimensiones] cm con complejo aréola-pezón que mide [dimensiones] cm. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo/fascial (naranja). a los cortes seriados cada 3 a 5 mm en el cuadrante [superoexterno / inferoexterno / superointerno / inferointerno / retroareolar], se identifica una masa tumoral [estrellada, espiculada, dura, blanco-grisácea con estrías amarillo-calcáreas / nodular bien delimitada] que mide [dimensión mayor] x [intermedia] x [menor] cm. la distancia de la masa a los márgenes quirúrgicos es: anterior a [da] mm, profundo a [dp] mm, superior a [ds] mm, inferior a [di] mm, lateral a [dl] mm y medial a [dm] mm. se aíslan en el contenido axilar [n] ganglios linfáticos [o se remiten ganglios centinela en frascos separados]. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con márgenes, CAP complejo aréola-pezón, M_sup, M_inf, M_lat, M_med, M_prof, GC1-GCn ganglios centinela / axilares].
+        "macro": `se recibe espécimen de [mastectomía radical modificada / mastectomía simple / tumorectomía - cuadrantectomía guiada por arpón / marcaje], [derecha / izquierda], debidamente orientada (superior, inferior, lateral, medial, anterior, profunda). la pieza pesa [peso] g y mide [transverso] x [craneocaudal] x [anteroposterior] cm. se incluye [o no] losange de piel de [dimensiones] cm con complejo aréola-pezón que mide [dimensiones] cm. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo/fascial (naranja). a los cortes seriados cada 3 a 5 mm en el cuadrante [superoexterno / inferoexterno / superointerno / inferointerno / retroareolar], se identifica una masa tumoral [estrellada, espiculada, dura, blanco-grisácea con estrías amarillo-calcáreas / nodular bien delimitada] que mide [dimensión mayor] x [intermedia] x [menor] cm. la distancia de la masa a los márgenes quirúrgicos es: anterior a [da] mm, profundo a [dp] mm, superior a [ds] mm, inferior a [di] mm, lateral a [dl] mm y medial a [dm] mm. se aíslan en el contenido axilar [n] ganglios linfáticos [o se remiten ganglios centinela en frascos separados]. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con márgenes, CAP complejo aréola-pezón, M_sup, M_inf, M_lat, M_med, M_prof, GC1-GCn ganglios centinela / axilares].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Invasive Carcinoma of the Breast. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la glándula mamaria clasificada según la OMS 5.ª edición como carcinoma invasor de tipo no especial (NST / conductal invasor usual) [o carcinoma lobulillar invasor / tubular / cribiforme / mucinoso / medular / micropapilar].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Invasive Carcinoma of the Breast. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la glándula mamaria clasificada según la OMS 5.ª edición como carcinoma invasor de tipo no especial (NST / conductal invasor usual) [o carcinoma lobulillar invasor / tubular / cribiforme / mucinoso / medular / micropapilar].
 
 grado histológico de nottingham (sistema de bloom-richardson modificado por elston-ellis):
 - formación de túbulos glandulares: [1 punto (>75% de túbulos) / 2 puntos (10-75%) / 3 puntos (<10%)].
@@ -5178,8 +5182,8 @@ estatus de biomarcadores (ihq / fish - asco/cap guidelines):
 - índice de proliferación celular ki-67: [[x]% de positividad nuclear].
 - subtipo intrínseco / molecular surrogado: [Luminal A / Luminal B (HER2 negativo) / Luminal B (HER2 positivo) / HER2 enriquecido / Triple Negativo (Basal-like)].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Breast Tumours (5th ed.). IARC; Lyon. / ASCO/CAP Biomarkers Guidelines.</small>",
-        "diag": "MAMA ([DERECHA / IZQUIERDA]), [MASTECTOMÍA RADICAL MODIFICADA / TUMORECTOMÍA]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Breast Tumours (5th ed.). IARC; Lyon. / ASCO/CAP Biomarkers Guidelines.</small>`,
+        "diag": `MAMA ([DERECHA / IZQUIERDA]), [MASTECTOMÍA RADICAL MODIFICADA / TUMORECTOMÍA]:
 - CARCINOMA INVASOR DE MAMA DE TIPO NO ESPECIAL (NST / DUCTAL) [O LOBULILLAR INVASOR].
 - GRADO HISTOLÓGICO DE NOTTINGHAM: GRADO [1 / 2 / 3] (PUNTAJE: [__]/9: TÚBULOS [__], PLEOMORFISMO [__], MITOSIS [__]).
 - TAMAÑO TUMORAL DEL COMPONENTE INVASOR: [__] cm.
@@ -5228,16 +5232,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a / pT1b / pT1c / pT2 / pT3 / pT4a / pT4b / pT4d (inflamatorio)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1mi / pN1a / pN2a / pN3a]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 3307,
         "categoryId": 5,
         "titulo": "CAP - MAMA: CARCINOMA DUCTAL / LOBULILLAR INVASOR (MASTECTOMÍA / TUMORECTOMÍA)",
-        "macro": "se recibe espécimen de [mastectomía radical modificada / mastectomía simple / tumorectomía - cuadrantectomía guiada por arpón / marcaje], [derecha / izquierda], debidamente orientada (superior, inferior, lateral, medial, anterior, profunda). la pieza pesa [peso] g y mide [transverso] x [craneocaudal] x [anteroposterior] cm. se incluye [o no] losange de piel de [dimensiones] cm con complejo aréola-pezón que mide [dimensiones] cm. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo/fascial (naranja). a los cortes seriados cada 3 a 5 mm en el cuadrante [superoexterno / inferoexterno / superointerno / inferointerno / retroareolar], se identifica una masa tumoral [estrellada, espiculada, dura, blanco-grisácea con estrías amarillo-calcáreas / nodular bien delimitada] que mide [dimensión mayor] x [intermedia] x [menor] cm. la distancia de la masa a los márgenes quirúrgicos es: anterior a [da] mm, profundo a [dp] mm, superior a [ds] mm, inferior a [di] mm, lateral a [dl] mm y medial a [dm] mm. se aíslan en el contenido axilar [n] ganglios linfáticos [o se remiten ganglios centinela en frascos separados]. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con márgenes, CAP complejo aréola-pezón, M_sup, M_inf, M_lat, M_med, M_prof, GC1-GCn ganglios centinela / axilares].
+        "macro": `se recibe espécimen de [mastectomía radical modificada / mastectomía simple / tumorectomía - cuadrantectomía guiada por arpón / marcaje], [derecha / izquierda], debidamente orientada (superior, inferior, lateral, medial, anterior, profunda). la pieza pesa [peso] g y mide [transverso] x [craneocaudal] x [anteroposterior] cm. se incluye [o no] losange de piel de [dimensiones] cm con complejo aréola-pezón que mide [dimensiones] cm. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo/fascial (naranja). a los cortes seriados cada 3 a 5 mm en el cuadrante [superoexterno / inferoexterno / superointerno / inferointerno / retroareolar], se identifica una masa tumoral [estrellada, espiculada, dura, blanco-grisácea con estrías amarillo-calcáreas / nodular bien delimitada] que mide [dimensión mayor] x [intermedia] x [menor] cm. la distancia de la masa a los márgenes quirúrgicos es: anterior a [da] mm, profundo a [dp] mm, superior a [ds] mm, inferior a [di] mm, lateral a [dl] mm y medial a [dm] mm. se aíslan en el contenido axilar [n] ganglios linfáticos [o se remiten ganglios centinela en frascos separados]. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con márgenes, CAP complejo aréola-pezón, M_sup, M_inf, M_lat, M_med, M_prof, GC1-GCn ganglios centinela / axilares].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Invasive Carcinoma of the Breast. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la glándula mamaria clasificada según la OMS 5.ª edición como carcinoma invasor de tipo no especial (NST / conductal invasor usual) [o carcinoma lobulillar invasor / tubular / cribiforme / mucinoso / medular / micropapilar].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Invasive Carcinoma of the Breast. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la glándula mamaria clasificada según la OMS 5.ª edición como carcinoma invasor de tipo no especial (NST / conductal invasor usual) [o carcinoma lobulillar invasor / tubular / cribiforme / mucinoso / medular / micropapilar].
 
 grado histológico de nottingham (sistema de bloom-richardson modificado por elston-ellis):
 - formación de túbulos glandulares: [1 punto (>75% de túbulos) / 2 puntos (10-75%) / 3 puntos (<10%)].
@@ -5265,8 +5269,8 @@ estatus de biomarcadores (ihq / fish - asco/cap guidelines):
 - índice de proliferación celular ki-67: [[x]% de positividad nuclear].
 - subtipo intrínseco / molecular surrogado: [Luminal A / Luminal B (HER2 negativo) / Luminal B (HER2 positivo) / HER2 enriquecido / Triple Negativo (Basal-like)].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Breast Tumours (5th ed.). IARC; Lyon. / ASCO/CAP Biomarkers Guidelines.</small>",
-        "diag": "MAMA ([DERECHA / IZQUIERDA]), [MASTECTOMÍA RADICAL MODIFICADA / TUMORECTOMÍA]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Breast Tumours (5th ed.). IARC; Lyon. / ASCO/CAP Biomarkers Guidelines.</small>`,
+        "diag": `MAMA ([DERECHA / IZQUIERDA]), [MASTECTOMÍA RADICAL MODIFICADA / TUMORECTOMÍA]:
 - CARCINOMA INVASOR DE MAMA DE TIPO NO ESPECIAL (NST / DUCTAL) [O LOBULILLAR INVASOR].
 - GRADO HISTOLÓGICO DE NOTTINGHAM: GRADO [1 / 2 / 3] (PUNTAJE: [__]/9: TÚBULOS [__], PLEOMORFISMO [__], MITOSIS [__]).
 - TAMAÑO TUMORAL DEL COMPONENTE INVASOR: [__] cm.
@@ -5315,16 +5319,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a / pT1b / pT1c / pT2 / pT3 / pT4a / pT4b / pT4d (inflamatorio)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1mi / pN1a / pN2a / pN3a]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 4307,
         "categoryId": 20,
         "titulo": "CAP - MAMA: CARCINOMA DUCTAL / LOBULILLAR INVASOR (MASTECTOMÍA / TUMORECTOMÍA)",
-        "macro": "se recibe espécimen de [mastectomía radical modificada / mastectomía simple / tumorectomía - cuadrantectomía guiada por arpón / marcaje], [derecha / izquierda], debidamente orientada (superior, inferior, lateral, medial, anterior, profunda). la pieza pesa [peso] g y mide [transverso] x [craneocaudal] x [anteroposterior] cm. se incluye [o no] losange de piel de [dimensiones] cm con complejo aréola-pezón que mide [dimensiones] cm. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo/fascial (naranja). a los cortes seriados cada 3 a 5 mm en el cuadrante [superoexterno / inferoexterno / superointerno / inferointerno / retroareolar], se identifica una masa tumoral [estrellada, espiculada, dura, blanco-grisácea con estrías amarillo-calcáreas / nodular bien delimitada] que mide [dimensión mayor] x [intermedia] x [menor] cm. la distancia de la masa a los márgenes quirúrgicos es: anterior a [da] mm, profundo a [dp] mm, superior a [ds] mm, inferior a [di] mm, lateral a [dl] mm y medial a [dm] mm. se aíslan en el contenido axilar [n] ganglios linfáticos [o se remiten ganglios centinela en frascos separados]. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con márgenes, CAP complejo aréola-pezón, M_sup, M_inf, M_lat, M_med, M_prof, GC1-GCn ganglios centinela / axilares].
+        "macro": `se recibe espécimen de [mastectomía radical modificada / mastectomía simple / tumorectomía - cuadrantectomía guiada por arpón / marcaje], [derecha / izquierda], debidamente orientada (superior, inferior, lateral, medial, anterior, profunda). la pieza pesa [peso] g y mide [transverso] x [craneocaudal] x [anteroposterior] cm. se incluye [o no] losange de piel de [dimensiones] cm con complejo aréola-pezón que mide [dimensiones] cm. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo/fascial (naranja). a los cortes seriados cada 3 a 5 mm en el cuadrante [superoexterno / inferoexterno / superointerno / inferointerno / retroareolar], se identifica una masa tumoral [estrellada, espiculada, dura, blanco-grisácea con estrías amarillo-calcáreas / nodular bien delimitada] que mide [dimensión mayor] x [intermedia] x [menor] cm. la distancia de la masa a los márgenes quirúrgicos es: anterior a [da] mm, profundo a [dp] mm, superior a [ds] mm, inferior a [di] mm, lateral a [dl] mm y medial a [dm] mm. se aíslan en el contenido axilar [n] ganglios linfáticos [o se remiten ganglios centinela en frascos separados]. se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y relación con márgenes, CAP complejo aréola-pezón, M_sup, M_inf, M_lat, M_med, M_prof, GC1-GCn ganglios centinela / axilares].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Invasive Carcinoma of the Breast. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la glándula mamaria clasificada según la OMS 5.ª edición como carcinoma invasor de tipo no especial (NST / conductal invasor usual) [o carcinoma lobulillar invasor / tubular / cribiforme / mucinoso / medular / micropapilar].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Resection Specimens From Patients With Invasive Carcinoma of the Breast. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la glándula mamaria clasificada según la OMS 5.ª edición como carcinoma invasor de tipo no especial (NST / conductal invasor usual) [o carcinoma lobulillar invasor / tubular / cribiforme / mucinoso / medular / micropapilar].
 
 grado histológico de nottingham (sistema de bloom-richardson modificado por elston-ellis):
 - formación de túbulos glandulares: [1 punto (>75% de túbulos) / 2 puntos (10-75%) / 3 puntos (<10%)].
@@ -5352,8 +5356,8 @@ estatus de biomarcadores (ihq / fish - asco/cap guidelines):
 - índice de proliferación celular ki-67: [[x]% de positividad nuclear].
 - subtipo intrínseco / molecular surrogado: [Luminal A / Luminal B (HER2 negativo) / Luminal B (HER2 positivo) / HER2 enriquecido / Triple Negativo (Basal-like)].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Breast Tumours (5th ed.). IARC; Lyon. / ASCO/CAP Biomarkers Guidelines.</small>",
-        "diag": "MAMA ([DERECHA / IZQUIERDA]), [MASTECTOMÍA RADICAL MODIFICADA / TUMORECTOMÍA]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2019). Breast Tumours (5th ed.). IARC; Lyon. / ASCO/CAP Biomarkers Guidelines.</small>`,
+        "diag": `MAMA ([DERECHA / IZQUIERDA]), [MASTECTOMÍA RADICAL MODIFICADA / TUMORECTOMÍA]:
 - CARCINOMA INVASOR DE MAMA DE TIPO NO ESPECIAL (NST / DUCTAL) [O LOBULILLAR INVASOR].
 - GRADO HISTOLÓGICO DE NOTTINGHAM: GRADO [1 / 2 / 3] (PUNTAJE: [__]/9: TÚBULOS [__], PLEOMORFISMO [__], MITOSIS [__]).
 - TAMAÑO TUMORAL DEL COMPONENTE INVASOR: [__] cm.
@@ -5402,16 +5406,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a / pT1b / pT1c / pT2 / pT3 / pT4a / pT4b / pT4d (inflamatorio)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1mi / pN1a / pN2a / pN3a]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 308,
         "categoryId": 1,
         "titulo": "CAP - MAMA: CARCINOMA DUCTAL IN SITU (CDIS / DCIS)",
-        "macro": "se recibe espécimen de escisión mamaria guiada por arpón / marcaje radiológico / tumorectomía de mama [derecha / izquierda] orientada con hilos de sutura. la pieza mide [transverso] x [craneocaudal] x [anteroposterior] cm y pesa [peso] g. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo (naranja). a los cortes seriados cada 2 a 3 mm, se identifica un área [fibrosa blanquecina / granular con microcalcificaciones puntiformes / mal delimitada] de [dimensión máxima] cm de extensión. la distancia a los márgenes quirúrgicos más cercanos es: anterior [x] mm, profundo [x] mm, superior [x] mm, inferior [x] mm, medial [x] mm y lateral [x] mm. se incluye la totalidad del tejido con calcificaciones y márgenes según protocolo CAP / Lester en casetes [B1-Bn].
+        "macro": `se recibe espécimen de escisión mamaria guiada por arpón / marcaje radiológico / tumorectomía de mama [derecha / izquierda] orientada con hilos de sutura. la pieza mide [transverso] x [craneocaudal] x [anteroposterior] cm y pesa [peso] g. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo (naranja). a los cortes seriados cada 2 a 3 mm, se identifica un área [fibrosa blanquecina / granular con microcalcificaciones puntiformes / mal delimitada] de [dimensión máxima] cm de extensión. la distancia a los márgenes quirúrgicos más cercanos es: anterior [x] mm, profundo [x] mm, superior [x] mm, inferior [x] mm, medial [x] mm y lateral [x] mm. se incluye la totalidad del tejido con calcificaciones y márgenes según protocolo CAP / Lester en casetes [B1-Bn].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Ductal Carcinoma In Situ (DCIS) of the Breast.</small>",
-        "micro": "los cortes histológicos seriados confirman la presencia de una proliferación neoplásica epitelial maligna intraductal confinada a las unidades ducto-lobulillares terminales, sin sobrepasar la membrana basal, clasificada como carcinoma ductal in situ (CDIS / DCIS).
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Ductal Carcinoma In Situ (DCIS) of the Breast.</small>`,
+        "micro": `los cortes histológicos seriados confirman la presencia de una proliferación neoplásica epitelial maligna intraductal confinada a las unidades ducto-lobulillares terminales, sin sobrepasar la membrana basal, clasificada como carcinoma ductal in situ (CDIS / DCIS).
 
 patrón arquitectural predominante: [cribiforme / sólido / micropapilar / papilar / comedónico].
 grado nuclear: [alto grado (núcleos marcadamente pleomórficos, vesiculosos, con nucléolos prominentes y frecuentes mitosis) / grado intermedio / bajo grado (núcleos monomórficos, pequeños, redondeados)].
@@ -5422,8 +5426,8 @@ márgenes quirúrgicos (criterios sso/astro de 2 mm para cdis): [todos los márg
 receptores de estrógeno (er por ihq): [positivo ([x]% de células tumorales, intensidad fuerte) / negativo].
 receptores de progesterona (pr por ihq): [positivo ([x]%) / negativo].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Morrow, M., et al. (2016). Society of Surgical Oncology–American Society for Radiation Oncology Consensus Guideline on Margins for DCIS. / CAP 2024.</small>",
-        "diag": "MAMA ([DERECHA / IZQUIERDA]), ESCISIÓN QUIRÚRGICA / TUMORECTOMÍA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Morrow, M., et al. (2016). Society of Surgical Oncology–American Society for Radiation Oncology Consensus Guideline on Margins for DCIS. / CAP 2024.</small>`,
+        "diag": `MAMA ([DERECHA / IZQUIERDA]), ESCISIÓN QUIRÚRGICA / TUMORECTOMÍA:
 - CARCINOMA DUCTAL IN SITU (CDIS / DCIS) DE [ALTO / INTERMEDIO / BAJO] GRADO NUCLEAR.
 - PATRÓN ARQUITECTURAL: [CRIBIFORME / SÓLIDO / MICROPAPILAR / COMEDÓNICO].
 - NECROSIS TIPO COMEDÓN: [PRESENTE / AUSENTE].
@@ -5456,16 +5460,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
 - Categoría pTNM (AJCC 8.ª Edición):
   * Tumor primario: pTis (DCIS)
   * Ganglios linfáticos regionales: [pNX / pN0 (si se realizó biopsia de ganglio centinela)]
-========================================================"
+========================================================`
     },
     {
         "id": 1308,
         "categoryId": 11,
         "titulo": "CAP - MAMA: CARCINOMA DUCTAL IN SITU (CDIS / DCIS)",
-        "macro": "se recibe espécimen de escisión mamaria guiada por arpón / marcaje radiológico / tumorectomía de mama [derecha / izquierda] orientada con hilos de sutura. la pieza mide [transverso] x [craneocaudal] x [anteroposterior] cm y pesa [peso] g. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo (naranja). a los cortes seriados cada 2 a 3 mm, se identifica un área [fibrosa blanquecina / granular con microcalcificaciones puntiformes / mal delimitada] de [dimensión máxima] cm de extensión. la distancia a los márgenes quirúrgicos más cercanos es: anterior [x] mm, profundo [x] mm, superior [x] mm, inferior [x] mm, medial [x] mm y lateral [x] mm. se incluye la totalidad del tejido con calcificaciones y márgenes según protocolo CAP / Lester en casetes [B1-Bn].
+        "macro": `se recibe espécimen de escisión mamaria guiada por arpón / marcaje radiológico / tumorectomía de mama [derecha / izquierda] orientada con hilos de sutura. la pieza mide [transverso] x [craneocaudal] x [anteroposterior] cm y pesa [peso] g. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo (naranja). a los cortes seriados cada 2 a 3 mm, se identifica un área [fibrosa blanquecina / granular con microcalcificaciones puntiformes / mal delimitada] de [dimensión máxima] cm de extensión. la distancia a los márgenes quirúrgicos más cercanos es: anterior [x] mm, profundo [x] mm, superior [x] mm, inferior [x] mm, medial [x] mm y lateral [x] mm. se incluye la totalidad del tejido con calcificaciones y márgenes según protocolo CAP / Lester en casetes [B1-Bn].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Ductal Carcinoma In Situ (DCIS) of the Breast.</small>",
-        "micro": "los cortes histológicos seriados confirman la presencia de una proliferación neoplásica epitelial maligna intraductal confinada a las unidades ducto-lobulillares terminales, sin sobrepasar la membrana basal, clasificada como carcinoma ductal in situ (CDIS / DCIS).
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Ductal Carcinoma In Situ (DCIS) of the Breast.</small>`,
+        "micro": `los cortes histológicos seriados confirman la presencia de una proliferación neoplásica epitelial maligna intraductal confinada a las unidades ducto-lobulillares terminales, sin sobrepasar la membrana basal, clasificada como carcinoma ductal in situ (CDIS / DCIS).
 
 patrón arquitectural predominante: [cribiforme / sólido / micropapilar / papilar / comedónico].
 grado nuclear: [alto grado (núcleos marcadamente pleomórficos, vesiculosos, con nucléolos prominentes y frecuentes mitosis) / grado intermedio / bajo grado (núcleos monomórficos, pequeños, redondeados)].
@@ -5476,8 +5480,8 @@ márgenes quirúrgicos (criterios sso/astro de 2 mm para cdis): [todos los márg
 receptores de estrógeno (er por ihq): [positivo ([x]% de células tumorales, intensidad fuerte) / negativo].
 receptores de progesterona (pr por ihq): [positivo ([x]%) / negativo].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Morrow, M., et al. (2016). Society of Surgical Oncology–American Society for Radiation Oncology Consensus Guideline on Margins for DCIS. / CAP 2024.</small>",
-        "diag": "MAMA ([DERECHA / IZQUIERDA]), ESCISIÓN QUIRÚRGICA / TUMORECTOMÍA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Morrow, M., et al. (2016). Society of Surgical Oncology–American Society for Radiation Oncology Consensus Guideline on Margins for DCIS. / CAP 2024.</small>`,
+        "diag": `MAMA ([DERECHA / IZQUIERDA]), ESCISIÓN QUIRÚRGICA / TUMORECTOMÍA:
 - CARCINOMA DUCTAL IN SITU (CDIS / DCIS) DE [ALTO / INTERMEDIO / BAJO] GRADO NUCLEAR.
 - PATRÓN ARQUITECTURAL: [CRIBIFORME / SÓLIDO / MICROPAPILAR / COMEDÓNICO].
 - NECROSIS TIPO COMEDÓN: [PRESENTE / AUSENTE].
@@ -5510,16 +5514,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
 - Categoría pTNM (AJCC 8.ª Edición):
   * Tumor primario: pTis (DCIS)
   * Ganglios linfáticos regionales: [pNX / pN0 (si se realizó biopsia de ganglio centinela)]
-========================================================"
+========================================================`
     },
     {
         "id": 2308,
         "categoryId": 10,
         "titulo": "CAP - MAMA: CARCINOMA DUCTAL IN SITU (CDIS / DCIS)",
-        "macro": "se recibe espécimen de escisión mamaria guiada por arpón / marcaje radiológico / tumorectomía de mama [derecha / izquierda] orientada con hilos de sutura. la pieza mide [transverso] x [craneocaudal] x [anteroposterior] cm y pesa [peso] g. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo (naranja). a los cortes seriados cada 2 a 3 mm, se identifica un área [fibrosa blanquecina / granular con microcalcificaciones puntiformes / mal delimitada] de [dimensión máxima] cm de extensión. la distancia a los márgenes quirúrgicos más cercanos es: anterior [x] mm, profundo [x] mm, superior [x] mm, inferior [x] mm, medial [x] mm y lateral [x] mm. se incluye la totalidad del tejido con calcificaciones y márgenes según protocolo CAP / Lester en casetes [B1-Bn].
+        "macro": `se recibe espécimen de escisión mamaria guiada por arpón / marcaje radiológico / tumorectomía de mama [derecha / izquierda] orientada con hilos de sutura. la pieza mide [transverso] x [craneocaudal] x [anteroposterior] cm y pesa [peso] g. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo (naranja). a los cortes seriados cada 2 a 3 mm, se identifica un área [fibrosa blanquecina / granular con microcalcificaciones puntiformes / mal delimitada] de [dimensión máxima] cm de extensión. la distancia a los márgenes quirúrgicos más cercanos es: anterior [x] mm, profundo [x] mm, superior [x] mm, inferior [x] mm, medial [x] mm y lateral [x] mm. se incluye la totalidad del tejido con calcificaciones y márgenes según protocolo CAP / Lester en casetes [B1-Bn].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Ductal Carcinoma In Situ (DCIS) of the Breast.</small>",
-        "micro": "los cortes histológicos seriados confirman la presencia de una proliferación neoplásica epitelial maligna intraductal confinada a las unidades ducto-lobulillares terminales, sin sobrepasar la membrana basal, clasificada como carcinoma ductal in situ (CDIS / DCIS).
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Ductal Carcinoma In Situ (DCIS) of the Breast.</small>`,
+        "micro": `los cortes histológicos seriados confirman la presencia de una proliferación neoplásica epitelial maligna intraductal confinada a las unidades ducto-lobulillares terminales, sin sobrepasar la membrana basal, clasificada como carcinoma ductal in situ (CDIS / DCIS).
 
 patrón arquitectural predominante: [cribiforme / sólido / micropapilar / papilar / comedónico].
 grado nuclear: [alto grado (núcleos marcadamente pleomórficos, vesiculosos, con nucléolos prominentes y frecuentes mitosis) / grado intermedio / bajo grado (núcleos monomórficos, pequeños, redondeados)].
@@ -5530,8 +5534,8 @@ márgenes quirúrgicos (criterios sso/astro de 2 mm para cdis): [todos los márg
 receptores de estrógeno (er por ihq): [positivo ([x]% de células tumorales, intensidad fuerte) / negativo].
 receptores de progesterona (pr por ihq): [positivo ([x]%) / negativo].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Morrow, M., et al. (2016). Society of Surgical Oncology–American Society for Radiation Oncology Consensus Guideline on Margins for DCIS. / CAP 2024.</small>",
-        "diag": "MAMA ([DERECHA / IZQUIERDA]), ESCISIÓN QUIRÚRGICA / TUMORECTOMÍA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Morrow, M., et al. (2016). Society of Surgical Oncology–American Society for Radiation Oncology Consensus Guideline on Margins for DCIS. / CAP 2024.</small>`,
+        "diag": `MAMA ([DERECHA / IZQUIERDA]), ESCISIÓN QUIRÚRGICA / TUMORECTOMÍA:
 - CARCINOMA DUCTAL IN SITU (CDIS / DCIS) DE [ALTO / INTERMEDIO / BAJO] GRADO NUCLEAR.
 - PATRÓN ARQUITECTURAL: [CRIBIFORME / SÓLIDO / MICROPAPILAR / COMEDÓNICO].
 - NECROSIS TIPO COMEDÓN: [PRESENTE / AUSENTE].
@@ -5564,16 +5568,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
 - Categoría pTNM (AJCC 8.ª Edición):
   * Tumor primario: pTis (DCIS)
   * Ganglios linfáticos regionales: [pNX / pN0 (si se realizó biopsia de ganglio centinela)]
-========================================================"
+========================================================`
     },
     {
         "id": 5308,
         "categoryId": 100,
         "titulo": "CAP - MAMA: CARCINOMA DUCTAL IN SITU (CDIS / DCIS)",
-        "macro": "se recibe espécimen de escisión mamaria guiada por arpón / marcaje radiológico / tumorectomía de mama [derecha / izquierda] orientada con hilos de sutura. la pieza mide [transverso] x [craneocaudal] x [anteroposterior] cm y pesa [peso] g. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo (naranja). a los cortes seriados cada 2 a 3 mm, se identifica un área [fibrosa blanquecina / granular con microcalcificaciones puntiformes / mal delimitada] de [dimensión máxima] cm de extensión. la distancia a los márgenes quirúrgicos más cercanos es: anterior [x] mm, profundo [x] mm, superior [x] mm, inferior [x] mm, medial [x] mm y lateral [x] mm. se incluye la totalidad del tejido con calcificaciones y márgenes según protocolo CAP / Lester en casetes [B1-Bn].
+        "macro": `se recibe espécimen de escisión mamaria guiada por arpón / marcaje radiológico / tumorectomía de mama [derecha / izquierda] orientada con hilos de sutura. la pieza mide [transverso] x [craneocaudal] x [anteroposterior] cm y pesa [peso] g. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo (naranja). a los cortes seriados cada 2 a 3 mm, se identifica un área [fibrosa blanquecina / granular con microcalcificaciones puntiformes / mal delimitada] de [dimensión máxima] cm de extensión. la distancia a los márgenes quirúrgicos más cercanos es: anterior [x] mm, profundo [x] mm, superior [x] mm, inferior [x] mm, medial [x] mm y lateral [x] mm. se incluye la totalidad del tejido con calcificaciones y márgenes según protocolo CAP / Lester en casetes [B1-Bn].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Ductal Carcinoma In Situ (DCIS) of the Breast.</small>",
-        "micro": "los cortes histológicos seriados confirman la presencia de una proliferación neoplásica epitelial maligna intraductal confinada a las unidades ducto-lobulillares terminales, sin sobrepasar la membrana basal, clasificada como carcinoma ductal in situ (CDIS / DCIS).
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Ductal Carcinoma In Situ (DCIS) of the Breast.</small>`,
+        "micro": `los cortes histológicos seriados confirman la presencia de una proliferación neoplásica epitelial maligna intraductal confinada a las unidades ducto-lobulillares terminales, sin sobrepasar la membrana basal, clasificada como carcinoma ductal in situ (CDIS / DCIS).
 
 patrón arquitectural predominante: [cribiforme / sólido / micropapilar / papilar / comedónico].
 grado nuclear: [alto grado (núcleos marcadamente pleomórficos, vesiculosos, con nucléolos prominentes y frecuentes mitosis) / grado intermedio / bajo grado (núcleos monomórficos, pequeños, redondeados)].
@@ -5584,8 +5588,8 @@ márgenes quirúrgicos (criterios sso/astro de 2 mm para cdis): [todos los márg
 receptores de estrógeno (er por ihq): [positivo ([x]% de células tumorales, intensidad fuerte) / negativo].
 receptores de progesterona (pr por ihq): [positivo ([x]%) / negativo].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Morrow, M., et al. (2016). Society of Surgical Oncology–American Society for Radiation Oncology Consensus Guideline on Margins for DCIS. / CAP 2024.</small>",
-        "diag": "MAMA ([DERECHA / IZQUIERDA]), ESCISIÓN QUIRÚRGICA / TUMORECTOMÍA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Morrow, M., et al. (2016). Society of Surgical Oncology–American Society for Radiation Oncology Consensus Guideline on Margins for DCIS. / CAP 2024.</small>`,
+        "diag": `MAMA ([DERECHA / IZQUIERDA]), ESCISIÓN QUIRÚRGICA / TUMORECTOMÍA:
 - CARCINOMA DUCTAL IN SITU (CDIS / DCIS) DE [ALTO / INTERMEDIO / BAJO] GRADO NUCLEAR.
 - PATRÓN ARQUITECTURAL: [CRIBIFORME / SÓLIDO / MICROPAPILAR / COMEDÓNICO].
 - NECROSIS TIPO COMEDÓN: [PRESENTE / AUSENTE].
@@ -5618,16 +5622,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
 - Categoría pTNM (AJCC 8.ª Edición):
   * Tumor primario: pTis (DCIS)
   * Ganglios linfáticos regionales: [pNX / pN0 (si se realizó biopsia de ganglio centinela)]
-========================================================"
+========================================================`
     },
     {
         "id": 6308,
         "categoryId": 101,
         "titulo": "CAP - MAMA: CARCINOMA DUCTAL IN SITU (CDIS / DCIS)",
-        "macro": "se recibe espécimen de escisión mamaria guiada por arpón / marcaje radiológico / tumorectomía de mama [derecha / izquierda] orientada con hilos de sutura. la pieza mide [transverso] x [craneocaudal] x [anteroposterior] cm y pesa [peso] g. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo (naranja). a los cortes seriados cada 2 a 3 mm, se identifica un área [fibrosa blanquecina / granular con microcalcificaciones puntiformes / mal delimitada] de [dimensión máxima] cm de extensión. la distancia a los márgenes quirúrgicos más cercanos es: anterior [x] mm, profundo [x] mm, superior [x] mm, inferior [x] mm, medial [x] mm y lateral [x] mm. se incluye la totalidad del tejido con calcificaciones y márgenes según protocolo CAP / Lester en casetes [B1-Bn].
+        "macro": `se recibe espécimen de escisión mamaria guiada por arpón / marcaje radiológico / tumorectomía de mama [derecha / izquierda] orientada con hilos de sutura. la pieza mide [transverso] x [craneocaudal] x [anteroposterior] cm y pesa [peso] g. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo (naranja). a los cortes seriados cada 2 a 3 mm, se identifica un área [fibrosa blanquecina / granular con microcalcificaciones puntiformes / mal delimitada] de [dimensión máxima] cm de extensión. la distancia a los márgenes quirúrgicos más cercanos es: anterior [x] mm, profundo [x] mm, superior [x] mm, inferior [x] mm, medial [x] mm y lateral [x] mm. se incluye la totalidad del tejido con calcificaciones y márgenes según protocolo CAP / Lester en casetes [B1-Bn].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Ductal Carcinoma In Situ (DCIS) of the Breast.</small>",
-        "micro": "los cortes histológicos seriados confirman la presencia de una proliferación neoplásica epitelial maligna intraductal confinada a las unidades ducto-lobulillares terminales, sin sobrepasar la membrana basal, clasificada como carcinoma ductal in situ (CDIS / DCIS).
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Ductal Carcinoma In Situ (DCIS) of the Breast.</small>`,
+        "micro": `los cortes histológicos seriados confirman la presencia de una proliferación neoplásica epitelial maligna intraductal confinada a las unidades ducto-lobulillares terminales, sin sobrepasar la membrana basal, clasificada como carcinoma ductal in situ (CDIS / DCIS).
 
 patrón arquitectural predominante: [cribiforme / sólido / micropapilar / papilar / comedónico].
 grado nuclear: [alto grado (núcleos marcadamente pleomórficos, vesiculosos, con nucléolos prominentes y frecuentes mitosis) / grado intermedio / bajo grado (núcleos monomórficos, pequeños, redondeados)].
@@ -5638,8 +5642,8 @@ márgenes quirúrgicos (criterios sso/astro de 2 mm para cdis): [todos los márg
 receptores de estrógeno (er por ihq): [positivo ([x]% de células tumorales, intensidad fuerte) / negativo].
 receptores de progesterona (pr por ihq): [positivo ([x]%) / negativo].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Morrow, M., et al. (2016). Society of Surgical Oncology–American Society for Radiation Oncology Consensus Guideline on Margins for DCIS. / CAP 2024.</small>",
-        "diag": "MAMA ([DERECHA / IZQUIERDA]), ESCISIÓN QUIRÚRGICA / TUMORECTOMÍA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Morrow, M., et al. (2016). Society of Surgical Oncology–American Society for Radiation Oncology Consensus Guideline on Margins for DCIS. / CAP 2024.</small>`,
+        "diag": `MAMA ([DERECHA / IZQUIERDA]), ESCISIÓN QUIRÚRGICA / TUMORECTOMÍA:
 - CARCINOMA DUCTAL IN SITU (CDIS / DCIS) DE [ALTO / INTERMEDIO / BAJO] GRADO NUCLEAR.
 - PATRÓN ARQUITECTURAL: [CRIBIFORME / SÓLIDO / MICROPAPILAR / COMEDÓNICO].
 - NECROSIS TIPO COMEDÓN: [PRESENTE / AUSENTE].
@@ -5672,16 +5676,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
 - Categoría pTNM (AJCC 8.ª Edición):
   * Tumor primario: pTis (DCIS)
   * Ganglios linfáticos regionales: [pNX / pN0 (si se realizó biopsia de ganglio centinela)]
-========================================================"
+========================================================`
     },
     {
         "id": 3308,
         "categoryId": 5,
         "titulo": "CAP - MAMA: CARCINOMA DUCTAL IN SITU (CDIS / DCIS)",
-        "macro": "se recibe espécimen de escisión mamaria guiada por arpón / marcaje radiológico / tumorectomía de mama [derecha / izquierda] orientada con hilos de sutura. la pieza mide [transverso] x [craneocaudal] x [anteroposterior] cm y pesa [peso] g. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo (naranja). a los cortes seriados cada 2 a 3 mm, se identifica un área [fibrosa blanquecina / granular con microcalcificaciones puntiformes / mal delimitada] de [dimensión máxima] cm de extensión. la distancia a los márgenes quirúrgicos más cercanos es: anterior [x] mm, profundo [x] mm, superior [x] mm, inferior [x] mm, medial [x] mm y lateral [x] mm. se incluye la totalidad del tejido con calcificaciones y márgenes según protocolo CAP / Lester en casetes [B1-Bn].
+        "macro": `se recibe espécimen de escisión mamaria guiada por arpón / marcaje radiológico / tumorectomía de mama [derecha / izquierda] orientada con hilos de sutura. la pieza mide [transverso] x [craneocaudal] x [anteroposterior] cm y pesa [peso] g. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo (naranja). a los cortes seriados cada 2 a 3 mm, se identifica un área [fibrosa blanquecina / granular con microcalcificaciones puntiformes / mal delimitada] de [dimensión máxima] cm de extensión. la distancia a los márgenes quirúrgicos más cercanos es: anterior [x] mm, profundo [x] mm, superior [x] mm, inferior [x] mm, medial [x] mm y lateral [x] mm. se incluye la totalidad del tejido con calcificaciones y márgenes según protocolo CAP / Lester en casetes [B1-Bn].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Ductal Carcinoma In Situ (DCIS) of the Breast.</small>",
-        "micro": "los cortes histológicos seriados confirman la presencia de una proliferación neoplásica epitelial maligna intraductal confinada a las unidades ducto-lobulillares terminales, sin sobrepasar la membrana basal, clasificada como carcinoma ductal in situ (CDIS / DCIS).
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Ductal Carcinoma In Situ (DCIS) of the Breast.</small>`,
+        "micro": `los cortes histológicos seriados confirman la presencia de una proliferación neoplásica epitelial maligna intraductal confinada a las unidades ducto-lobulillares terminales, sin sobrepasar la membrana basal, clasificada como carcinoma ductal in situ (CDIS / DCIS).
 
 patrón arquitectural predominante: [cribiforme / sólido / micropapilar / papilar / comedónico].
 grado nuclear: [alto grado (núcleos marcadamente pleomórficos, vesiculosos, con nucléolos prominentes y frecuentes mitosis) / grado intermedio / bajo grado (núcleos monomórficos, pequeños, redondeados)].
@@ -5692,8 +5696,8 @@ márgenes quirúrgicos (criterios sso/astro de 2 mm para cdis): [todos los márg
 receptores de estrógeno (er por ihq): [positivo ([x]% de células tumorales, intensidad fuerte) / negativo].
 receptores de progesterona (pr por ihq): [positivo ([x]%) / negativo].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Morrow, M., et al. (2016). Society of Surgical Oncology–American Society for Radiation Oncology Consensus Guideline on Margins for DCIS. / CAP 2024.</small>",
-        "diag": "MAMA ([DERECHA / IZQUIERDA]), ESCISIÓN QUIRÚRGICA / TUMORECTOMÍA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Morrow, M., et al. (2016). Society of Surgical Oncology–American Society for Radiation Oncology Consensus Guideline on Margins for DCIS. / CAP 2024.</small>`,
+        "diag": `MAMA ([DERECHA / IZQUIERDA]), ESCISIÓN QUIRÚRGICA / TUMORECTOMÍA:
 - CARCINOMA DUCTAL IN SITU (CDIS / DCIS) DE [ALTO / INTERMEDIO / BAJO] GRADO NUCLEAR.
 - PATRÓN ARQUITECTURAL: [CRIBIFORME / SÓLIDO / MICROPAPILAR / COMEDÓNICO].
 - NECROSIS TIPO COMEDÓN: [PRESENTE / AUSENTE].
@@ -5726,16 +5730,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
 - Categoría pTNM (AJCC 8.ª Edición):
   * Tumor primario: pTis (DCIS)
   * Ganglios linfáticos regionales: [pNX / pN0 (si se realizó biopsia de ganglio centinela)]
-========================================================"
+========================================================`
     },
     {
         "id": 4308,
         "categoryId": 20,
         "titulo": "CAP - MAMA: CARCINOMA DUCTAL IN SITU (CDIS / DCIS)",
-        "macro": "se recibe espécimen de escisión mamaria guiada por arpón / marcaje radiológico / tumorectomía de mama [derecha / izquierda] orientada con hilos de sutura. la pieza mide [transverso] x [craneocaudal] x [anteroposterior] cm y pesa [peso] g. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo (naranja). a los cortes seriados cada 2 a 3 mm, se identifica un área [fibrosa blanquecina / granular con microcalcificaciones puntiformes / mal delimitada] de [dimensión máxima] cm de extensión. la distancia a los márgenes quirúrgicos más cercanos es: anterior [x] mm, profundo [x] mm, superior [x] mm, inferior [x] mm, medial [x] mm y lateral [x] mm. se incluye la totalidad del tejido con calcificaciones y márgenes según protocolo CAP / Lester en casetes [B1-Bn].
+        "macro": `se recibe espécimen de escisión mamaria guiada por arpón / marcaje radiológico / tumorectomía de mama [derecha / izquierda] orientada con hilos de sutura. la pieza mide [transverso] x [craneocaudal] x [anteroposterior] cm y pesa [peso] g. los márgenes quirúrgicos son entintados en seis colores: superior (azul), inferior (verde), lateral (amarillo), medial (rojo), anterior (negro) y profundo (naranja). a los cortes seriados cada 2 a 3 mm, se identifica un área [fibrosa blanquecina / granular con microcalcificaciones puntiformes / mal delimitada] de [dimensión máxima] cm de extensión. la distancia a los márgenes quirúrgicos más cercanos es: anterior [x] mm, profundo [x] mm, superior [x] mm, inferior [x] mm, medial [x] mm y lateral [x] mm. se incluye la totalidad del tejido con calcificaciones y márgenes según protocolo CAP / Lester en casetes [B1-Bn].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Ductal Carcinoma In Situ (DCIS) of the Breast.</small>",
-        "micro": "los cortes histológicos seriados confirman la presencia de una proliferación neoplásica epitelial maligna intraductal confinada a las unidades ducto-lobulillares terminales, sin sobrepasar la membrana basal, clasificada como carcinoma ductal in situ (CDIS / DCIS).
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Ductal Carcinoma In Situ (DCIS) of the Breast.</small>`,
+        "micro": `los cortes histológicos seriados confirman la presencia de una proliferación neoplásica epitelial maligna intraductal confinada a las unidades ducto-lobulillares terminales, sin sobrepasar la membrana basal, clasificada como carcinoma ductal in situ (CDIS / DCIS).
 
 patrón arquitectural predominante: [cribiforme / sólido / micropapilar / papilar / comedónico].
 grado nuclear: [alto grado (núcleos marcadamente pleomórficos, vesiculosos, con nucléolos prominentes y frecuentes mitosis) / grado intermedio / bajo grado (núcleos monomórficos, pequeños, redondeados)].
@@ -5746,8 +5750,8 @@ márgenes quirúrgicos (criterios sso/astro de 2 mm para cdis): [todos los márg
 receptores de estrógeno (er por ihq): [positivo ([x]% de células tumorales, intensidad fuerte) / negativo].
 receptores de progesterona (pr por ihq): [positivo ([x]%) / negativo].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Morrow, M., et al. (2016). Society of Surgical Oncology–American Society for Radiation Oncology Consensus Guideline on Margins for DCIS. / CAP 2024.</small>",
-        "diag": "MAMA ([DERECHA / IZQUIERDA]), ESCISIÓN QUIRÚRGICA / TUMORECTOMÍA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Morrow, M., et al. (2016). Society of Surgical Oncology–American Society for Radiation Oncology Consensus Guideline on Margins for DCIS. / CAP 2024.</small>`,
+        "diag": `MAMA ([DERECHA / IZQUIERDA]), ESCISIÓN QUIRÚRGICA / TUMORECTOMÍA:
 - CARCINOMA DUCTAL IN SITU (CDIS / DCIS) DE [ALTO / INTERMEDIO / BAJO] GRADO NUCLEAR.
 - PATRÓN ARQUITECTURAL: [CRIBIFORME / SÓLIDO / MICROPAPILAR / COMEDÓNICO].
 - NECROSIS TIPO COMEDÓN: [PRESENTE / AUSENTE].
@@ -5780,16 +5784,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
 - Categoría pTNM (AJCC 8.ª Edición):
   * Tumor primario: pTis (DCIS)
   * Ganglios linfáticos regionales: [pNX / pN0 (si se realizó biopsia de ganglio centinela)]
-========================================================"
+========================================================`
     },
     {
         "id": 309,
         "categoryId": 1,
         "titulo": "CAP - CÉRVIX: CARCINOMA EPIDERMOIDE / ADENOCARCINOMA (HISTERECTOMÍA RADICAL / CONO)",
-        "macro": "se recibe espécimen quirúrgico correspondiente a [histerectomía radical tipo Wertheim-Meigs con manguito vaginal y parametrios / traquelectomía radical / conización cervical LEEP o cono frío] fijado en formol. el útero mide [longitud] x [ancho] x [espesor] cm; el cérvix uterino mide [diámetro] cm con un manguito vaginal de [longitud] cm y parametrio derecho de [dimensiones] cm e izquierdo de [dimensiones] cm. a la apertura longitudinal del canal endocervical a la hora 12, se identifica una lesión tumoral [exofítica vegetante / ulcerada e infiltrante / endofítica en barril] que mide [dimensión horizontal máxima] cm x [dimensión intermedia] cm. al corte, el tumor infiltra el estroma cervical hasta una profundidad macroscópica de [profundidad] mm. el espesor total de la pared cervical en el sitio del tumor es de [espesor_cervix] mm. se aíslan en las cadenas ganglionares pélvicas [n] ganglios linfáticos. se procesa en su totalidad según las horas del reloj y protocolo CAP / Lester en casetes [CX1-CX12 cortes cervicales radiales, PMD parametrio derecho, PMI parametrio izquierdo, MV manguito vaginal, N1-Nn ganglios].
+        "macro": `se recibe espécimen quirúrgico correspondiente a [histerectomía radical tipo Wertheim-Meigs con manguito vaginal y parametrios / traquelectomía radical / conización cervical LEEP o cono frío] fijado en formol. el útero mide [longitud] x [ancho] x [espesor] cm; el cérvix uterino mide [diámetro] cm con un manguito vaginal de [longitud] cm y parametrio derecho de [dimensiones] cm e izquierdo de [dimensiones] cm. a la apertura longitudinal del canal endocervical a la hora 12, se identifica una lesión tumoral [exofítica vegetante / ulcerada e infiltrante / endofítica en barril] que mide [dimensión horizontal máxima] cm x [dimensión intermedia] cm. al corte, el tumor infiltra el estroma cervical hasta una profundidad macroscópica de [profundidad] mm. el espesor total de la pared cervical en el sitio del tumor es de [espesor_cervix] mm. se aíslan en las cadenas ganglionares pélvicas [n] ganglios linfáticos. se procesa en su totalidad según las horas del reloj y protocolo CAP / Lester en casetes [CX1-CX12 cortes cervicales radiales, PMD parametrio derecho, PMI parametrio izquierdo, MV manguito vaginal, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Cervix. AJCC 8th/9th Ed. & FIGO 2018.</small>",
-        "micro": "los cortes histológicos confirman una neoplasia epitelial maligna invasora de cuello uterino clasificada según la OMS 5.ª edición como [carcinoma de células escamosas invasor queratinizante / no queratinizante asociado a VPH / adenocarcinoma endocervical usual asociado a VPH / adenocarcinoma mucinoso / carcinoma neuroendocrino de células pequeñas].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Cervix. AJCC 8th/9th Ed. & FIGO 2018.</small>`,
+        "micro": `los cortes histológicos confirman una neoplasia epitelial maligna invasora de cuello uterino clasificada según la OMS 5.ª edición como [carcinoma de células escamosas invasor queratinizante / no queratinizante asociado a VPH / adenocarcinoma endocervical usual asociado a VPH / adenocarcinoma mucinoso / carcinoma neuroendocrino de células pequeñas].
 
 parámetros de invasión estromal (criterios cap / figo 2018):
 - profundidad máxima de invasión estromal: [[x] mm (medida desde la base del epitelio de origen)].
@@ -5803,8 +5807,8 @@ parámetros de invasión estromal (criterios cap / figo 2018):
 - ganglios linfáticos pélvicos: [n] evaluados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 - inmunofenotipo: p16 (positividad en bloque difusa nuclear y citoplasmática - asociado a VPH) / Ki-67 [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2018 Cervical Cancer Staging.</small>",
-        "diag": "CÉRVIX UTERINO, [HISTERECTOMÍA RADICAL CON PARAMETRIOS / CONIZACIÓN CERVICAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2018 Cervical Cancer Staging.</small>`,
+        "diag": `CÉRVIX UTERINO, [HISTERECTOMÍA RADICAL CON PARAMETRIOS / CONIZACIÓN CERVICAL]:
 - CARCINOMA DE CÉLULAS ESCAMOSAS INVASOR [O ADENOCARCINOMA ENDOCERVICAL DE TIPO USUAL], ASOCIADO A VPH (p16 POSITIVO EN BLOQUE).
 - GRADO DE DIFERENCIACIÓN HISTOLÓGICA: [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO.
 - PROFUNDIDAD MÁXIMA DE INVASIÓN ESTROMAL: [__] mm (INFILTRACIÓN DE [TERCIO INTERNO / MEDIO / EXTERNO] DE LA PARED CERVICAL).
@@ -5839,16 +5843,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Estadio FIGO 2018: [Estadio IA1 / IA2 / IB1 (<=2cm) / IB2 (>2 a 4cm) / IB3 (>4cm) / IIA1 / IIB / IIIC1p]
   * Categoría pT: [pT1a1 / pT1a2 / pT1b1 / pT1b2 / pT1b3 / pT2a / pT2b / pT3]
   * Categoría pN: [pN0 / pN1 / pNX]
-========================================================"
+========================================================`
     },
     {
         "id": 1309,
         "categoryId": 11,
         "titulo": "CAP - CÉRVIX: CARCINOMA EPIDERMOIDE / ADENOCARCINOMA (HISTERECTOMÍA RADICAL / CONO)",
-        "macro": "se recibe espécimen quirúrgico correspondiente a [histerectomía radical tipo Wertheim-Meigs con manguito vaginal y parametrios / traquelectomía radical / conización cervical LEEP o cono frío] fijado en formol. el útero mide [longitud] x [ancho] x [espesor] cm; el cérvix uterino mide [diámetro] cm con un manguito vaginal de [longitud] cm y parametrio derecho de [dimensiones] cm e izquierdo de [dimensiones] cm. a la apertura longitudinal del canal endocervical a la hora 12, se identifica una lesión tumoral [exofítica vegetante / ulcerada e infiltrante / endofítica en barril] que mide [dimensión horizontal máxima] cm x [dimensión intermedia] cm. al corte, el tumor infiltra el estroma cervical hasta una profundidad macroscópica de [profundidad] mm. el espesor total de la pared cervical en el sitio del tumor es de [espesor_cervix] mm. se aíslan en las cadenas ganglionares pélvicas [n] ganglios linfáticos. se procesa en su totalidad según las horas del reloj y protocolo CAP / Lester en casetes [CX1-CX12 cortes cervicales radiales, PMD parametrio derecho, PMI parametrio izquierdo, MV manguito vaginal, N1-Nn ganglios].
+        "macro": `se recibe espécimen quirúrgico correspondiente a [histerectomía radical tipo Wertheim-Meigs con manguito vaginal y parametrios / traquelectomía radical / conización cervical LEEP o cono frío] fijado en formol. el útero mide [longitud] x [ancho] x [espesor] cm; el cérvix uterino mide [diámetro] cm con un manguito vaginal de [longitud] cm y parametrio derecho de [dimensiones] cm e izquierdo de [dimensiones] cm. a la apertura longitudinal del canal endocervical a la hora 12, se identifica una lesión tumoral [exofítica vegetante / ulcerada e infiltrante / endofítica en barril] que mide [dimensión horizontal máxima] cm x [dimensión intermedia] cm. al corte, el tumor infiltra el estroma cervical hasta una profundidad macroscópica de [profundidad] mm. el espesor total de la pared cervical en el sitio del tumor es de [espesor_cervix] mm. se aíslan en las cadenas ganglionares pélvicas [n] ganglios linfáticos. se procesa en su totalidad según las horas del reloj y protocolo CAP / Lester en casetes [CX1-CX12 cortes cervicales radiales, PMD parametrio derecho, PMI parametrio izquierdo, MV manguito vaginal, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Cervix. AJCC 8th/9th Ed. & FIGO 2018.</small>",
-        "micro": "los cortes histológicos confirman una neoplasia epitelial maligna invasora de cuello uterino clasificada según la OMS 5.ª edición como [carcinoma de células escamosas invasor queratinizante / no queratinizante asociado a VPH / adenocarcinoma endocervical usual asociado a VPH / adenocarcinoma mucinoso / carcinoma neuroendocrino de células pequeñas].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Cervix. AJCC 8th/9th Ed. & FIGO 2018.</small>`,
+        "micro": `los cortes histológicos confirman una neoplasia epitelial maligna invasora de cuello uterino clasificada según la OMS 5.ª edición como [carcinoma de células escamosas invasor queratinizante / no queratinizante asociado a VPH / adenocarcinoma endocervical usual asociado a VPH / adenocarcinoma mucinoso / carcinoma neuroendocrino de células pequeñas].
 
 parámetros de invasión estromal (criterios cap / figo 2018):
 - profundidad máxima de invasión estromal: [[x] mm (medida desde la base del epitelio de origen)].
@@ -5862,8 +5866,8 @@ parámetros de invasión estromal (criterios cap / figo 2018):
 - ganglios linfáticos pélvicos: [n] evaluados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 - inmunofenotipo: p16 (positividad en bloque difusa nuclear y citoplasmática - asociado a VPH) / Ki-67 [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2018 Cervical Cancer Staging.</small>",
-        "diag": "CÉRVIX UTERINO, [HISTERECTOMÍA RADICAL CON PARAMETRIOS / CONIZACIÓN CERVICAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2018 Cervical Cancer Staging.</small>`,
+        "diag": `CÉRVIX UTERINO, [HISTERECTOMÍA RADICAL CON PARAMETRIOS / CONIZACIÓN CERVICAL]:
 - CARCINOMA DE CÉLULAS ESCAMOSAS INVASOR [O ADENOCARCINOMA ENDOCERVICAL DE TIPO USUAL], ASOCIADO A VPH (p16 POSITIVO EN BLOQUE).
 - GRADO DE DIFERENCIACIÓN HISTOLÓGICA: [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO.
 - PROFUNDIDAD MÁXIMA DE INVASIÓN ESTROMAL: [__] mm (INFILTRACIÓN DE [TERCIO INTERNO / MEDIO / EXTERNO] DE LA PARED CERVICAL).
@@ -5898,16 +5902,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Estadio FIGO 2018: [Estadio IA1 / IA2 / IB1 (<=2cm) / IB2 (>2 a 4cm) / IB3 (>4cm) / IIA1 / IIB / IIIC1p]
   * Categoría pT: [pT1a1 / pT1a2 / pT1b1 / pT1b2 / pT1b3 / pT2a / pT2b / pT3]
   * Categoría pN: [pN0 / pN1 / pNX]
-========================================================"
+========================================================`
     },
     {
         "id": 2309,
         "categoryId": 10,
         "titulo": "CAP - CÉRVIX: CARCINOMA EPIDERMOIDE / ADENOCARCINOMA (HISTERECTOMÍA RADICAL / CONO)",
-        "macro": "se recibe espécimen quirúrgico correspondiente a [histerectomía radical tipo Wertheim-Meigs con manguito vaginal y parametrios / traquelectomía radical / conización cervical LEEP o cono frío] fijado en formol. el útero mide [longitud] x [ancho] x [espesor] cm; el cérvix uterino mide [diámetro] cm con un manguito vaginal de [longitud] cm y parametrio derecho de [dimensiones] cm e izquierdo de [dimensiones] cm. a la apertura longitudinal del canal endocervical a la hora 12, se identifica una lesión tumoral [exofítica vegetante / ulcerada e infiltrante / endofítica en barril] que mide [dimensión horizontal máxima] cm x [dimensión intermedia] cm. al corte, el tumor infiltra el estroma cervical hasta una profundidad macroscópica de [profundidad] mm. el espesor total de la pared cervical en el sitio del tumor es de [espesor_cervix] mm. se aíslan en las cadenas ganglionares pélvicas [n] ganglios linfáticos. se procesa en su totalidad según las horas del reloj y protocolo CAP / Lester en casetes [CX1-CX12 cortes cervicales radiales, PMD parametrio derecho, PMI parametrio izquierdo, MV manguito vaginal, N1-Nn ganglios].
+        "macro": `se recibe espécimen quirúrgico correspondiente a [histerectomía radical tipo Wertheim-Meigs con manguito vaginal y parametrios / traquelectomía radical / conización cervical LEEP o cono frío] fijado en formol. el útero mide [longitud] x [ancho] x [espesor] cm; el cérvix uterino mide [diámetro] cm con un manguito vaginal de [longitud] cm y parametrio derecho de [dimensiones] cm e izquierdo de [dimensiones] cm. a la apertura longitudinal del canal endocervical a la hora 12, se identifica una lesión tumoral [exofítica vegetante / ulcerada e infiltrante / endofítica en barril] que mide [dimensión horizontal máxima] cm x [dimensión intermedia] cm. al corte, el tumor infiltra el estroma cervical hasta una profundidad macroscópica de [profundidad] mm. el espesor total de la pared cervical en el sitio del tumor es de [espesor_cervix] mm. se aíslan en las cadenas ganglionares pélvicas [n] ganglios linfáticos. se procesa en su totalidad según las horas del reloj y protocolo CAP / Lester en casetes [CX1-CX12 cortes cervicales radiales, PMD parametrio derecho, PMI parametrio izquierdo, MV manguito vaginal, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Cervix. AJCC 8th/9th Ed. & FIGO 2018.</small>",
-        "micro": "los cortes histológicos confirman una neoplasia epitelial maligna invasora de cuello uterino clasificada según la OMS 5.ª edición como [carcinoma de células escamosas invasor queratinizante / no queratinizante asociado a VPH / adenocarcinoma endocervical usual asociado a VPH / adenocarcinoma mucinoso / carcinoma neuroendocrino de células pequeñas].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Cervix. AJCC 8th/9th Ed. & FIGO 2018.</small>`,
+        "micro": `los cortes histológicos confirman una neoplasia epitelial maligna invasora de cuello uterino clasificada según la OMS 5.ª edición como [carcinoma de células escamosas invasor queratinizante / no queratinizante asociado a VPH / adenocarcinoma endocervical usual asociado a VPH / adenocarcinoma mucinoso / carcinoma neuroendocrino de células pequeñas].
 
 parámetros de invasión estromal (criterios cap / figo 2018):
 - profundidad máxima de invasión estromal: [[x] mm (medida desde la base del epitelio de origen)].
@@ -5921,8 +5925,8 @@ parámetros de invasión estromal (criterios cap / figo 2018):
 - ganglios linfáticos pélvicos: [n] evaluados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 - inmunofenotipo: p16 (positividad en bloque difusa nuclear y citoplasmática - asociado a VPH) / Ki-67 [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2018 Cervical Cancer Staging.</small>",
-        "diag": "CÉRVIX UTERINO, [HISTERECTOMÍA RADICAL CON PARAMETRIOS / CONIZACIÓN CERVICAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2018 Cervical Cancer Staging.</small>`,
+        "diag": `CÉRVIX UTERINO, [HISTERECTOMÍA RADICAL CON PARAMETRIOS / CONIZACIÓN CERVICAL]:
 - CARCINOMA DE CÉLULAS ESCAMOSAS INVASOR [O ADENOCARCINOMA ENDOCERVICAL DE TIPO USUAL], ASOCIADO A VPH (p16 POSITIVO EN BLOQUE).
 - GRADO DE DIFERENCIACIÓN HISTOLÓGICA: [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO.
 - PROFUNDIDAD MÁXIMA DE INVASIÓN ESTROMAL: [__] mm (INFILTRACIÓN DE [TERCIO INTERNO / MEDIO / EXTERNO] DE LA PARED CERVICAL).
@@ -5957,16 +5961,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Estadio FIGO 2018: [Estadio IA1 / IA2 / IB1 (<=2cm) / IB2 (>2 a 4cm) / IB3 (>4cm) / IIA1 / IIB / IIIC1p]
   * Categoría pT: [pT1a1 / pT1a2 / pT1b1 / pT1b2 / pT1b3 / pT2a / pT2b / pT3]
   * Categoría pN: [pN0 / pN1 / pNX]
-========================================================"
+========================================================`
     },
     {
         "id": 5309,
         "categoryId": 100,
         "titulo": "CAP - CÉRVIX: CARCINOMA EPIDERMOIDE / ADENOCARCINOMA (HISTERECTOMÍA RADICAL / CONO)",
-        "macro": "se recibe espécimen quirúrgico correspondiente a [histerectomía radical tipo Wertheim-Meigs con manguito vaginal y parametrios / traquelectomía radical / conización cervical LEEP o cono frío] fijado en formol. el útero mide [longitud] x [ancho] x [espesor] cm; el cérvix uterino mide [diámetro] cm con un manguito vaginal de [longitud] cm y parametrio derecho de [dimensiones] cm e izquierdo de [dimensiones] cm. a la apertura longitudinal del canal endocervical a la hora 12, se identifica una lesión tumoral [exofítica vegetante / ulcerada e infiltrante / endofítica en barril] que mide [dimensión horizontal máxima] cm x [dimensión intermedia] cm. al corte, el tumor infiltra el estroma cervical hasta una profundidad macroscópica de [profundidad] mm. el espesor total de la pared cervical en el sitio del tumor es de [espesor_cervix] mm. se aíslan en las cadenas ganglionares pélvicas [n] ganglios linfáticos. se procesa en su totalidad según las horas del reloj y protocolo CAP / Lester en casetes [CX1-CX12 cortes cervicales radiales, PMD parametrio derecho, PMI parametrio izquierdo, MV manguito vaginal, N1-Nn ganglios].
+        "macro": `se recibe espécimen quirúrgico correspondiente a [histerectomía radical tipo Wertheim-Meigs con manguito vaginal y parametrios / traquelectomía radical / conización cervical LEEP o cono frío] fijado en formol. el útero mide [longitud] x [ancho] x [espesor] cm; el cérvix uterino mide [diámetro] cm con un manguito vaginal de [longitud] cm y parametrio derecho de [dimensiones] cm e izquierdo de [dimensiones] cm. a la apertura longitudinal del canal endocervical a la hora 12, se identifica una lesión tumoral [exofítica vegetante / ulcerada e infiltrante / endofítica en barril] que mide [dimensión horizontal máxima] cm x [dimensión intermedia] cm. al corte, el tumor infiltra el estroma cervical hasta una profundidad macroscópica de [profundidad] mm. el espesor total de la pared cervical en el sitio del tumor es de [espesor_cervix] mm. se aíslan en las cadenas ganglionares pélvicas [n] ganglios linfáticos. se procesa en su totalidad según las horas del reloj y protocolo CAP / Lester en casetes [CX1-CX12 cortes cervicales radiales, PMD parametrio derecho, PMI parametrio izquierdo, MV manguito vaginal, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Cervix. AJCC 8th/9th Ed. & FIGO 2018.</small>",
-        "micro": "los cortes histológicos confirman una neoplasia epitelial maligna invasora de cuello uterino clasificada según la OMS 5.ª edición como [carcinoma de células escamosas invasor queratinizante / no queratinizante asociado a VPH / adenocarcinoma endocervical usual asociado a VPH / adenocarcinoma mucinoso / carcinoma neuroendocrino de células pequeñas].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Cervix. AJCC 8th/9th Ed. & FIGO 2018.</small>`,
+        "micro": `los cortes histológicos confirman una neoplasia epitelial maligna invasora de cuello uterino clasificada según la OMS 5.ª edición como [carcinoma de células escamosas invasor queratinizante / no queratinizante asociado a VPH / adenocarcinoma endocervical usual asociado a VPH / adenocarcinoma mucinoso / carcinoma neuroendocrino de células pequeñas].
 
 parámetros de invasión estromal (criterios cap / figo 2018):
 - profundidad máxima de invasión estromal: [[x] mm (medida desde la base del epitelio de origen)].
@@ -5980,8 +5984,8 @@ parámetros de invasión estromal (criterios cap / figo 2018):
 - ganglios linfáticos pélvicos: [n] evaluados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 - inmunofenotipo: p16 (positividad en bloque difusa nuclear y citoplasmática - asociado a VPH) / Ki-67 [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2018 Cervical Cancer Staging.</small>",
-        "diag": "CÉRVIX UTERINO, [HISTERECTOMÍA RADICAL CON PARAMETRIOS / CONIZACIÓN CERVICAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2018 Cervical Cancer Staging.</small>`,
+        "diag": `CÉRVIX UTERINO, [HISTERECTOMÍA RADICAL CON PARAMETRIOS / CONIZACIÓN CERVICAL]:
 - CARCINOMA DE CÉLULAS ESCAMOSAS INVASOR [O ADENOCARCINOMA ENDOCERVICAL DE TIPO USUAL], ASOCIADO A VPH (p16 POSITIVO EN BLOQUE).
 - GRADO DE DIFERENCIACIÓN HISTOLÓGICA: [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO.
 - PROFUNDIDAD MÁXIMA DE INVASIÓN ESTROMAL: [__] mm (INFILTRACIÓN DE [TERCIO INTERNO / MEDIO / EXTERNO] DE LA PARED CERVICAL).
@@ -6016,16 +6020,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Estadio FIGO 2018: [Estadio IA1 / IA2 / IB1 (<=2cm) / IB2 (>2 a 4cm) / IB3 (>4cm) / IIA1 / IIB / IIIC1p]
   * Categoría pT: [pT1a1 / pT1a2 / pT1b1 / pT1b2 / pT1b3 / pT2a / pT2b / pT3]
   * Categoría pN: [pN0 / pN1 / pNX]
-========================================================"
+========================================================`
     },
     {
         "id": 6309,
         "categoryId": 101,
         "titulo": "CAP - CÉRVIX: CARCINOMA EPIDERMOIDE / ADENOCARCINOMA (HISTERECTOMÍA RADICAL / CONO)",
-        "macro": "se recibe espécimen quirúrgico correspondiente a [histerectomía radical tipo Wertheim-Meigs con manguito vaginal y parametrios / traquelectomía radical / conización cervical LEEP o cono frío] fijado en formol. el útero mide [longitud] x [ancho] x [espesor] cm; el cérvix uterino mide [diámetro] cm con un manguito vaginal de [longitud] cm y parametrio derecho de [dimensiones] cm e izquierdo de [dimensiones] cm. a la apertura longitudinal del canal endocervical a la hora 12, se identifica una lesión tumoral [exofítica vegetante / ulcerada e infiltrante / endofítica en barril] que mide [dimensión horizontal máxima] cm x [dimensión intermedia] cm. al corte, el tumor infiltra el estroma cervical hasta una profundidad macroscópica de [profundidad] mm. el espesor total de la pared cervical en el sitio del tumor es de [espesor_cervix] mm. se aíslan en las cadenas ganglionares pélvicas [n] ganglios linfáticos. se procesa en su totalidad según las horas del reloj y protocolo CAP / Lester en casetes [CX1-CX12 cortes cervicales radiales, PMD parametrio derecho, PMI parametrio izquierdo, MV manguito vaginal, N1-Nn ganglios].
+        "macro": `se recibe espécimen quirúrgico correspondiente a [histerectomía radical tipo Wertheim-Meigs con manguito vaginal y parametrios / traquelectomía radical / conización cervical LEEP o cono frío] fijado en formol. el útero mide [longitud] x [ancho] x [espesor] cm; el cérvix uterino mide [diámetro] cm con un manguito vaginal de [longitud] cm y parametrio derecho de [dimensiones] cm e izquierdo de [dimensiones] cm. a la apertura longitudinal del canal endocervical a la hora 12, se identifica una lesión tumoral [exofítica vegetante / ulcerada e infiltrante / endofítica en barril] que mide [dimensión horizontal máxima] cm x [dimensión intermedia] cm. al corte, el tumor infiltra el estroma cervical hasta una profundidad macroscópica de [profundidad] mm. el espesor total de la pared cervical en el sitio del tumor es de [espesor_cervix] mm. se aíslan en las cadenas ganglionares pélvicas [n] ganglios linfáticos. se procesa en su totalidad según las horas del reloj y protocolo CAP / Lester en casetes [CX1-CX12 cortes cervicales radiales, PMD parametrio derecho, PMI parametrio izquierdo, MV manguito vaginal, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Cervix. AJCC 8th/9th Ed. & FIGO 2018.</small>",
-        "micro": "los cortes histológicos confirman una neoplasia epitelial maligna invasora de cuello uterino clasificada según la OMS 5.ª edición como [carcinoma de células escamosas invasor queratinizante / no queratinizante asociado a VPH / adenocarcinoma endocervical usual asociado a VPH / adenocarcinoma mucinoso / carcinoma neuroendocrino de células pequeñas].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Cervix. AJCC 8th/9th Ed. & FIGO 2018.</small>`,
+        "micro": `los cortes histológicos confirman una neoplasia epitelial maligna invasora de cuello uterino clasificada según la OMS 5.ª edición como [carcinoma de células escamosas invasor queratinizante / no queratinizante asociado a VPH / adenocarcinoma endocervical usual asociado a VPH / adenocarcinoma mucinoso / carcinoma neuroendocrino de células pequeñas].
 
 parámetros de invasión estromal (criterios cap / figo 2018):
 - profundidad máxima de invasión estromal: [[x] mm (medida desde la base del epitelio de origen)].
@@ -6039,8 +6043,8 @@ parámetros de invasión estromal (criterios cap / figo 2018):
 - ganglios linfáticos pélvicos: [n] evaluados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 - inmunofenotipo: p16 (positividad en bloque difusa nuclear y citoplasmática - asociado a VPH) / Ki-67 [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2018 Cervical Cancer Staging.</small>",
-        "diag": "CÉRVIX UTERINO, [HISTERECTOMÍA RADICAL CON PARAMETRIOS / CONIZACIÓN CERVICAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2018 Cervical Cancer Staging.</small>`,
+        "diag": `CÉRVIX UTERINO, [HISTERECTOMÍA RADICAL CON PARAMETRIOS / CONIZACIÓN CERVICAL]:
 - CARCINOMA DE CÉLULAS ESCAMOSAS INVASOR [O ADENOCARCINOMA ENDOCERVICAL DE TIPO USUAL], ASOCIADO A VPH (p16 POSITIVO EN BLOQUE).
 - GRADO DE DIFERENCIACIÓN HISTOLÓGICA: [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO.
 - PROFUNDIDAD MÁXIMA DE INVASIÓN ESTROMAL: [__] mm (INFILTRACIÓN DE [TERCIO INTERNO / MEDIO / EXTERNO] DE LA PARED CERVICAL).
@@ -6075,16 +6079,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Estadio FIGO 2018: [Estadio IA1 / IA2 / IB1 (<=2cm) / IB2 (>2 a 4cm) / IB3 (>4cm) / IIA1 / IIB / IIIC1p]
   * Categoría pT: [pT1a1 / pT1a2 / pT1b1 / pT1b2 / pT1b3 / pT2a / pT2b / pT3]
   * Categoría pN: [pN0 / pN1 / pNX]
-========================================================"
+========================================================`
     },
     {
         "id": 3309,
         "categoryId": 4,
         "titulo": "CAP - CÉRVIX: CARCINOMA EPIDERMOIDE / ADENOCARCINOMA (HISTERECTOMÍA RADICAL / CONO)",
-        "macro": "se recibe espécimen quirúrgico correspondiente a [histerectomía radical tipo Wertheim-Meigs con manguito vaginal y parametrios / traquelectomía radical / conización cervical LEEP o cono frío] fijado en formol. el útero mide [longitud] x [ancho] x [espesor] cm; el cérvix uterino mide [diámetro] cm con un manguito vaginal de [longitud] cm y parametrio derecho de [dimensiones] cm e izquierdo de [dimensiones] cm. a la apertura longitudinal del canal endocervical a la hora 12, se identifica una lesión tumoral [exofítica vegetante / ulcerada e infiltrante / endofítica en barril] que mide [dimensión horizontal máxima] cm x [dimensión intermedia] cm. al corte, el tumor infiltra el estroma cervical hasta una profundidad macroscópica de [profundidad] mm. el espesor total de la pared cervical en el sitio del tumor es de [espesor_cervix] mm. se aíslan en las cadenas ganglionares pélvicas [n] ganglios linfáticos. se procesa en su totalidad según las horas del reloj y protocolo CAP / Lester en casetes [CX1-CX12 cortes cervicales radiales, PMD parametrio derecho, PMI parametrio izquierdo, MV manguito vaginal, N1-Nn ganglios].
+        "macro": `se recibe espécimen quirúrgico correspondiente a [histerectomía radical tipo Wertheim-Meigs con manguito vaginal y parametrios / traquelectomía radical / conización cervical LEEP o cono frío] fijado en formol. el útero mide [longitud] x [ancho] x [espesor] cm; el cérvix uterino mide [diámetro] cm con un manguito vaginal de [longitud] cm y parametrio derecho de [dimensiones] cm e izquierdo de [dimensiones] cm. a la apertura longitudinal del canal endocervical a la hora 12, se identifica una lesión tumoral [exofítica vegetante / ulcerada e infiltrante / endofítica en barril] que mide [dimensión horizontal máxima] cm x [dimensión intermedia] cm. al corte, el tumor infiltra el estroma cervical hasta una profundidad macroscópica de [profundidad] mm. el espesor total de la pared cervical en el sitio del tumor es de [espesor_cervix] mm. se aíslan en las cadenas ganglionares pélvicas [n] ganglios linfáticos. se procesa en su totalidad según las horas del reloj y protocolo CAP / Lester en casetes [CX1-CX12 cortes cervicales radiales, PMD parametrio derecho, PMI parametrio izquierdo, MV manguito vaginal, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Cervix. AJCC 8th/9th Ed. & FIGO 2018.</small>",
-        "micro": "los cortes histológicos confirman una neoplasia epitelial maligna invasora de cuello uterino clasificada según la OMS 5.ª edición como [carcinoma de células escamosas invasor queratinizante / no queratinizante asociado a VPH / adenocarcinoma endocervical usual asociado a VPH / adenocarcinoma mucinoso / carcinoma neuroendocrino de células pequeñas].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Cervix. AJCC 8th/9th Ed. & FIGO 2018.</small>`,
+        "micro": `los cortes histológicos confirman una neoplasia epitelial maligna invasora de cuello uterino clasificada según la OMS 5.ª edición como [carcinoma de células escamosas invasor queratinizante / no queratinizante asociado a VPH / adenocarcinoma endocervical usual asociado a VPH / adenocarcinoma mucinoso / carcinoma neuroendocrino de células pequeñas].
 
 parámetros de invasión estromal (criterios cap / figo 2018):
 - profundidad máxima de invasión estromal: [[x] mm (medida desde la base del epitelio de origen)].
@@ -6098,8 +6102,8 @@ parámetros de invasión estromal (criterios cap / figo 2018):
 - ganglios linfáticos pélvicos: [n] evaluados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 - inmunofenotipo: p16 (positividad en bloque difusa nuclear y citoplasmática - asociado a VPH) / Ki-67 [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2018 Cervical Cancer Staging.</small>",
-        "diag": "CÉRVIX UTERINO, [HISTERECTOMÍA RADICAL CON PARAMETRIOS / CONIZACIÓN CERVICAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2018 Cervical Cancer Staging.</small>`,
+        "diag": `CÉRVIX UTERINO, [HISTERECTOMÍA RADICAL CON PARAMETRIOS / CONIZACIÓN CERVICAL]:
 - CARCINOMA DE CÉLULAS ESCAMOSAS INVASOR [O ADENOCARCINOMA ENDOCERVICAL DE TIPO USUAL], ASOCIADO A VPH (p16 POSITIVO EN BLOQUE).
 - GRADO DE DIFERENCIACIÓN HISTOLÓGICA: [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO.
 - PROFUNDIDAD MÁXIMA DE INVASIÓN ESTROMAL: [__] mm (INFILTRACIÓN DE [TERCIO INTERNO / MEDIO / EXTERNO] DE LA PARED CERVICAL).
@@ -6134,16 +6138,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Estadio FIGO 2018: [Estadio IA1 / IA2 / IB1 (<=2cm) / IB2 (>2 a 4cm) / IB3 (>4cm) / IIA1 / IIB / IIIC1p]
   * Categoría pT: [pT1a1 / pT1a2 / pT1b1 / pT1b2 / pT1b3 / pT2a / pT2b / pT3]
   * Categoría pN: [pN0 / pN1 / pNX]
-========================================================"
+========================================================`
     },
     {
         "id": 4309,
         "categoryId": 18,
         "titulo": "CAP - CÉRVIX: CARCINOMA EPIDERMOIDE / ADENOCARCINOMA (HISTERECTOMÍA RADICAL / CONO)",
-        "macro": "se recibe espécimen quirúrgico correspondiente a [histerectomía radical tipo Wertheim-Meigs con manguito vaginal y parametrios / traquelectomía radical / conización cervical LEEP o cono frío] fijado en formol. el útero mide [longitud] x [ancho] x [espesor] cm; el cérvix uterino mide [diámetro] cm con un manguito vaginal de [longitud] cm y parametrio derecho de [dimensiones] cm e izquierdo de [dimensiones] cm. a la apertura longitudinal del canal endocervical a la hora 12, se identifica una lesión tumoral [exofítica vegetante / ulcerada e infiltrante / endofítica en barril] que mide [dimensión horizontal máxima] cm x [dimensión intermedia] cm. al corte, el tumor infiltra el estroma cervical hasta una profundidad macroscópica de [profundidad] mm. el espesor total de la pared cervical en el sitio del tumor es de [espesor_cervix] mm. se aíslan en las cadenas ganglionares pélvicas [n] ganglios linfáticos. se procesa en su totalidad según las horas del reloj y protocolo CAP / Lester en casetes [CX1-CX12 cortes cervicales radiales, PMD parametrio derecho, PMI parametrio izquierdo, MV manguito vaginal, N1-Nn ganglios].
+        "macro": `se recibe espécimen quirúrgico correspondiente a [histerectomía radical tipo Wertheim-Meigs con manguito vaginal y parametrios / traquelectomía radical / conización cervical LEEP o cono frío] fijado en formol. el útero mide [longitud] x [ancho] x [espesor] cm; el cérvix uterino mide [diámetro] cm con un manguito vaginal de [longitud] cm y parametrio derecho de [dimensiones] cm e izquierdo de [dimensiones] cm. a la apertura longitudinal del canal endocervical a la hora 12, se identifica una lesión tumoral [exofítica vegetante / ulcerada e infiltrante / endofítica en barril] que mide [dimensión horizontal máxima] cm x [dimensión intermedia] cm. al corte, el tumor infiltra el estroma cervical hasta una profundidad macroscópica de [profundidad] mm. el espesor total de la pared cervical en el sitio del tumor es de [espesor_cervix] mm. se aíslan en las cadenas ganglionares pélvicas [n] ganglios linfáticos. se procesa en su totalidad según las horas del reloj y protocolo CAP / Lester en casetes [CX1-CX12 cortes cervicales radiales, PMD parametrio derecho, PMI parametrio izquierdo, MV manguito vaginal, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Cervix. AJCC 8th/9th Ed. & FIGO 2018.</small>",
-        "micro": "los cortes histológicos confirman una neoplasia epitelial maligna invasora de cuello uterino clasificada según la OMS 5.ª edición como [carcinoma de células escamosas invasor queratinizante / no queratinizante asociado a VPH / adenocarcinoma endocervical usual asociado a VPH / adenocarcinoma mucinoso / carcinoma neuroendocrino de células pequeñas].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Cervix. AJCC 8th/9th Ed. & FIGO 2018.</small>`,
+        "micro": `los cortes histológicos confirman una neoplasia epitelial maligna invasora de cuello uterino clasificada según la OMS 5.ª edición como [carcinoma de células escamosas invasor queratinizante / no queratinizante asociado a VPH / adenocarcinoma endocervical usual asociado a VPH / adenocarcinoma mucinoso / carcinoma neuroendocrino de células pequeñas].
 
 parámetros de invasión estromal (criterios cap / figo 2018):
 - profundidad máxima de invasión estromal: [[x] mm (medida desde la base del epitelio de origen)].
@@ -6157,8 +6161,8 @@ parámetros de invasión estromal (criterios cap / figo 2018):
 - ganglios linfáticos pélvicos: [n] evaluados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 - inmunofenotipo: p16 (positividad en bloque difusa nuclear y citoplasmática - asociado a VPH) / Ki-67 [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2018 Cervical Cancer Staging.</small>",
-        "diag": "CÉRVIX UTERINO, [HISTERECTOMÍA RADICAL CON PARAMETRIOS / CONIZACIÓN CERVICAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2018 Cervical Cancer Staging.</small>`,
+        "diag": `CÉRVIX UTERINO, [HISTERECTOMÍA RADICAL CON PARAMETRIOS / CONIZACIÓN CERVICAL]:
 - CARCINOMA DE CÉLULAS ESCAMOSAS INVASOR [O ADENOCARCINOMA ENDOCERVICAL DE TIPO USUAL], ASOCIADO A VPH (p16 POSITIVO EN BLOQUE).
 - GRADO DE DIFERENCIACIÓN HISTOLÓGICA: [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO.
 - PROFUNDIDAD MÁXIMA DE INVASIÓN ESTROMAL: [__] mm (INFILTRACIÓN DE [TERCIO INTERNO / MEDIO / EXTERNO] DE LA PARED CERVICAL).
@@ -6193,16 +6197,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Estadio FIGO 2018: [Estadio IA1 / IA2 / IB1 (<=2cm) / IB2 (>2 a 4cm) / IB3 (>4cm) / IIA1 / IIB / IIIC1p]
   * Categoría pT: [pT1a1 / pT1a2 / pT1b1 / pT1b2 / pT1b3 / pT2a / pT2b / pT3]
   * Categoría pN: [pN0 / pN1 / pNX]
-========================================================"
+========================================================`
     },
     {
         "id": 310,
         "categoryId": 1,
         "titulo": "CAP - ENDOMETRIO: ADENOCARCINOMA ENDOMETRIOIDE / SEROSO (HISTERECTOMÍA)",
-        "macro": "se recibe espécimen de histerectomía total con doble anexectomía (salpingo-ooforectomía bilateral) fijado en formol. la pieza uterina pesa [peso] g y mide [longitud cuerpo] x [ancho fúndico] x [espesor anteroposterior] cm. el ovario derecho mide [dimensiones] cm y el izquierdo mide [dimensiones] cm. a la apertura coronal del útero, la cavidad endometrial se encuentra ocupada por una masa tumoral [polipoide / exofítica / friable / difusa] de aspecto blanco-amarillento con áreas de necrosis y hemorragia, que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte miometrial, el tumor invade el miometrio hasta una profundidad de [profundidad_invasion] mm; el espesor miometrial total en dicho nivel es de [espesor_total_miometrio] mm (porcentaje de invasión: [x]%). macroscópicamente la masa [respeta el estroma cervical / compromete el canal endocervical]. los anexos son macroscópicamente [sin lesiones tumorales / con compromiso ovárico de [x] cm]. se aíslan [n] ganglios pélvicos/aórticos. se procesa según protocolo CAP / Lester en casetes [EM1-EMn tumor y miometrio de máxima invasión, CX cérvix e istmo, OD/TD ovario y trompa derecha, OI/TI ovario y trompa izquierda, N1-Nn ganglios].
+        "macro": `se recibe espécimen de histerectomía total con doble anexectomía (salpingo-ooforectomía bilateral) fijado en formol. la pieza uterina pesa [peso] g y mide [longitud cuerpo] x [ancho fúndico] x [espesor anteroposterior] cm. el ovario derecho mide [dimensiones] cm y el izquierdo mide [dimensiones] cm. a la apertura coronal del útero, la cavidad endometrial se encuentra ocupada por una masa tumoral [polipoide / exofítica / friable / difusa] de aspecto blanco-amarillento con áreas de necrosis y hemorragia, que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte miometrial, el tumor invade el miometrio hasta una profundidad de [profundidad_invasion] mm; el espesor miometrial total en dicho nivel es de [espesor_total_miometrio] mm (porcentaje de invasión: [x]%). macroscópicamente la masa [respeta el estroma cervical / compromete el canal endocervical]. los anexos son macroscópicamente [sin lesiones tumorales / con compromiso ovárico de [x] cm]. se aíslan [n] ganglios pélvicos/aórticos. se procesa según protocolo CAP / Lester en casetes [EM1-EMn tumor y miometrio de máxima invasión, CX cérvix e istmo, OD/TD ovario y trompa derecha, OI/TI ovario y trompa izquierda, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Endometrium. FIGO 2023 & AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman un adenocarcinoma de endometrio clasificado según la OMS 5.ª edición y FIGO como adenocarcinoma endometrioide de endometrio [o carcinoma seroso / de células claras / carcinosarcoma (tumor mülleriano mixto maligno) / desdiferenciado].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Endometrium. FIGO 2023 & AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman un adenocarcinoma de endometrio clasificado según la OMS 5.ª edición y FIGO como adenocarcinoma endometrioide de endometrio [o carcinoma seroso / de células claras / carcinosarcoma (tumor mülleriano mixto maligno) / desdiferenciado].
 
 grado histológico figo (para tipo endometrioide):
 - grado 1: formación de patrón sólido no glandular <= 5%.
@@ -6218,8 +6222,8 @@ profundidad de invasión miometrial y compromiso de estructuras:
 - ganglios linfáticos pélvicos / paraaórticos: [n] examinados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 - perfil molecular promsis / quién (ihq): proteínas reparadoras de ADN [MLH1, PMS2, MSH2, MSH6 conservadas (MSS) / dMMR (MSI)], p53 [expresión tipo silvestre (normal) / mutado (nulo o sobreexpresión >80%)].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2023 Endometrial Cancer Staging.</small>",
-        "diag": "ÚTERO Y ANEXOS BILATERALES, HISTERECTOMÍA TOTAL CON SALPINGO-OOFORECTOMÍA BILATERAL:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2023 Endometrial Cancer Staging.</small>`,
+        "diag": `ÚTERO Y ANEXOS BILATERALES, HISTERECTOMÍA TOTAL CON SALPINGO-OOFORECTOMÍA BILATERAL:
 - ADENOCARCINOMA ENDOMETRIOIDE DE ENDOMETRIO, GRADO FIGO [1 / 2 / 3] (OMS 2020).
 - PROFUNDIDAD DE INVASIÓN MIOMETRIAL: INFILTRA [< 50% (MITAD INTERNA) / >= 50% (MITAD EXTERNA)] DEL ESPESOR MIOMETRIAL ([__] mm DE UN ESPESOR TOTAL DE [__] mm).
 - COMPROMISO DE ESTROMA CERVICAL: [NO IDENTIFICADO / PRESENTE].
@@ -6256,16 +6260,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Estadio FIGO 2023: [IA1 / IA2 / IA3 / IB / IIA / IIB / IIIA1 / IIIC1p / IIIC2p]
   * Categoría pT: [pT1a / pT1b / pT2 / pT3a / pT3b / pT3c]
   * Categoría pN: [pN0 / pN1mi / pN1a / pN2]
-========================================================"
+========================================================`
     },
     {
         "id": 1310,
         "categoryId": 11,
         "titulo": "CAP - ENDOMETRIO: ADENOCARCINOMA ENDOMETRIOIDE / SEROSO (HISTERECTOMÍA)",
-        "macro": "se recibe espécimen de histerectomía total con doble anexectomía (salpingo-ooforectomía bilateral) fijado en formol. la pieza uterina pesa [peso] g y mide [longitud cuerpo] x [ancho fúndico] x [espesor anteroposterior] cm. el ovario derecho mide [dimensiones] cm y el izquierdo mide [dimensiones] cm. a la apertura coronal del útero, la cavidad endometrial se encuentra ocupada por una masa tumoral [polipoide / exofítica / friable / difusa] de aspecto blanco-amarillento con áreas de necrosis y hemorragia, que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte miometrial, el tumor invade el miometrio hasta una profundidad de [profundidad_invasion] mm; el espesor miometrial total en dicho nivel es de [espesor_total_miometrio] mm (porcentaje de invasión: [x]%). macroscópicamente la masa [respeta el estroma cervical / compromete el canal endocervical]. los anexos son macroscópicamente [sin lesiones tumorales / con compromiso ovárico de [x] cm]. se aíslan [n] ganglios pélvicos/aórticos. se procesa según protocolo CAP / Lester en casetes [EM1-EMn tumor y miometrio de máxima invasión, CX cérvix e istmo, OD/TD ovario y trompa derecha, OI/TI ovario y trompa izquierda, N1-Nn ganglios].
+        "macro": `se recibe espécimen de histerectomía total con doble anexectomía (salpingo-ooforectomía bilateral) fijado en formol. la pieza uterina pesa [peso] g y mide [longitud cuerpo] x [ancho fúndico] x [espesor anteroposterior] cm. el ovario derecho mide [dimensiones] cm y el izquierdo mide [dimensiones] cm. a la apertura coronal del útero, la cavidad endometrial se encuentra ocupada por una masa tumoral [polipoide / exofítica / friable / difusa] de aspecto blanco-amarillento con áreas de necrosis y hemorragia, que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte miometrial, el tumor invade el miometrio hasta una profundidad de [profundidad_invasion] mm; el espesor miometrial total en dicho nivel es de [espesor_total_miometrio] mm (porcentaje de invasión: [x]%). macroscópicamente la masa [respeta el estroma cervical / compromete el canal endocervical]. los anexos son macroscópicamente [sin lesiones tumorales / con compromiso ovárico de [x] cm]. se aíslan [n] ganglios pélvicos/aórticos. se procesa según protocolo CAP / Lester en casetes [EM1-EMn tumor y miometrio de máxima invasión, CX cérvix e istmo, OD/TD ovario y trompa derecha, OI/TI ovario y trompa izquierda, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Endometrium. FIGO 2023 & AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman un adenocarcinoma de endometrio clasificado según la OMS 5.ª edición y FIGO como adenocarcinoma endometrioide de endometrio [o carcinoma seroso / de células claras / carcinosarcoma (tumor mülleriano mixto maligno) / desdiferenciado].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Endometrium. FIGO 2023 & AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman un adenocarcinoma de endometrio clasificado según la OMS 5.ª edición y FIGO como adenocarcinoma endometrioide de endometrio [o carcinoma seroso / de células claras / carcinosarcoma (tumor mülleriano mixto maligno) / desdiferenciado].
 
 grado histológico figo (para tipo endometrioide):
 - grado 1: formación de patrón sólido no glandular <= 5%.
@@ -6281,8 +6285,8 @@ profundidad de invasión miometrial y compromiso de estructuras:
 - ganglios linfáticos pélvicos / paraaórticos: [n] examinados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 - perfil molecular promsis / quién (ihq): proteínas reparadoras de ADN [MLH1, PMS2, MSH2, MSH6 conservadas (MSS) / dMMR (MSI)], p53 [expresión tipo silvestre (normal) / mutado (nulo o sobreexpresión >80%)].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2023 Endometrial Cancer Staging.</small>",
-        "diag": "ÚTERO Y ANEXOS BILATERALES, HISTERECTOMÍA TOTAL CON SALPINGO-OOFORECTOMÍA BILATERAL:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2023 Endometrial Cancer Staging.</small>`,
+        "diag": `ÚTERO Y ANEXOS BILATERALES, HISTERECTOMÍA TOTAL CON SALPINGO-OOFORECTOMÍA BILATERAL:
 - ADENOCARCINOMA ENDOMETRIOIDE DE ENDOMETRIO, GRADO FIGO [1 / 2 / 3] (OMS 2020).
 - PROFUNDIDAD DE INVASIÓN MIOMETRIAL: INFILTRA [< 50% (MITAD INTERNA) / >= 50% (MITAD EXTERNA)] DEL ESPESOR MIOMETRIAL ([__] mm DE UN ESPESOR TOTAL DE [__] mm).
 - COMPROMISO DE ESTROMA CERVICAL: [NO IDENTIFICADO / PRESENTE].
@@ -6319,16 +6323,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Estadio FIGO 2023: [IA1 / IA2 / IA3 / IB / IIA / IIB / IIIA1 / IIIC1p / IIIC2p]
   * Categoría pT: [pT1a / pT1b / pT2 / pT3a / pT3b / pT3c]
   * Categoría pN: [pN0 / pN1mi / pN1a / pN2]
-========================================================"
+========================================================`
     },
     {
         "id": 2310,
         "categoryId": 10,
         "titulo": "CAP - ENDOMETRIO: ADENOCARCINOMA ENDOMETRIOIDE / SEROSO (HISTERECTOMÍA)",
-        "macro": "se recibe espécimen de histerectomía total con doble anexectomía (salpingo-ooforectomía bilateral) fijado en formol. la pieza uterina pesa [peso] g y mide [longitud cuerpo] x [ancho fúndico] x [espesor anteroposterior] cm. el ovario derecho mide [dimensiones] cm y el izquierdo mide [dimensiones] cm. a la apertura coronal del útero, la cavidad endometrial se encuentra ocupada por una masa tumoral [polipoide / exofítica / friable / difusa] de aspecto blanco-amarillento con áreas de necrosis y hemorragia, que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte miometrial, el tumor invade el miometrio hasta una profundidad de [profundidad_invasion] mm; el espesor miometrial total en dicho nivel es de [espesor_total_miometrio] mm (porcentaje de invasión: [x]%). macroscópicamente la masa [respeta el estroma cervical / compromete el canal endocervical]. los anexos son macroscópicamente [sin lesiones tumorales / con compromiso ovárico de [x] cm]. se aíslan [n] ganglios pélvicos/aórticos. se procesa según protocolo CAP / Lester en casetes [EM1-EMn tumor y miometrio de máxima invasión, CX cérvix e istmo, OD/TD ovario y trompa derecha, OI/TI ovario y trompa izquierda, N1-Nn ganglios].
+        "macro": `se recibe espécimen de histerectomía total con doble anexectomía (salpingo-ooforectomía bilateral) fijado en formol. la pieza uterina pesa [peso] g y mide [longitud cuerpo] x [ancho fúndico] x [espesor anteroposterior] cm. el ovario derecho mide [dimensiones] cm y el izquierdo mide [dimensiones] cm. a la apertura coronal del útero, la cavidad endometrial se encuentra ocupada por una masa tumoral [polipoide / exofítica / friable / difusa] de aspecto blanco-amarillento con áreas de necrosis y hemorragia, que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte miometrial, el tumor invade el miometrio hasta una profundidad de [profundidad_invasion] mm; el espesor miometrial total en dicho nivel es de [espesor_total_miometrio] mm (porcentaje de invasión: [x]%). macroscópicamente la masa [respeta el estroma cervical / compromete el canal endocervical]. los anexos son macroscópicamente [sin lesiones tumorales / con compromiso ovárico de [x] cm]. se aíslan [n] ganglios pélvicos/aórticos. se procesa según protocolo CAP / Lester en casetes [EM1-EMn tumor y miometrio de máxima invasión, CX cérvix e istmo, OD/TD ovario y trompa derecha, OI/TI ovario y trompa izquierda, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Endometrium. FIGO 2023 & AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman un adenocarcinoma de endometrio clasificado según la OMS 5.ª edición y FIGO como adenocarcinoma endometrioide de endometrio [o carcinoma seroso / de células claras / carcinosarcoma (tumor mülleriano mixto maligno) / desdiferenciado].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Endometrium. FIGO 2023 & AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman un adenocarcinoma de endometrio clasificado según la OMS 5.ª edición y FIGO como adenocarcinoma endometrioide de endometrio [o carcinoma seroso / de células claras / carcinosarcoma (tumor mülleriano mixto maligno) / desdiferenciado].
 
 grado histológico figo (para tipo endometrioide):
 - grado 1: formación de patrón sólido no glandular <= 5%.
@@ -6344,8 +6348,8 @@ profundidad de invasión miometrial y compromiso de estructuras:
 - ganglios linfáticos pélvicos / paraaórticos: [n] examinados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 - perfil molecular promsis / quién (ihq): proteínas reparadoras de ADN [MLH1, PMS2, MSH2, MSH6 conservadas (MSS) / dMMR (MSI)], p53 [expresión tipo silvestre (normal) / mutado (nulo o sobreexpresión >80%)].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2023 Endometrial Cancer Staging.</small>",
-        "diag": "ÚTERO Y ANEXOS BILATERALES, HISTERECTOMÍA TOTAL CON SALPINGO-OOFORECTOMÍA BILATERAL:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2023 Endometrial Cancer Staging.</small>`,
+        "diag": `ÚTERO Y ANEXOS BILATERALES, HISTERECTOMÍA TOTAL CON SALPINGO-OOFORECTOMÍA BILATERAL:
 - ADENOCARCINOMA ENDOMETRIOIDE DE ENDOMETRIO, GRADO FIGO [1 / 2 / 3] (OMS 2020).
 - PROFUNDIDAD DE INVASIÓN MIOMETRIAL: INFILTRA [< 50% (MITAD INTERNA) / >= 50% (MITAD EXTERNA)] DEL ESPESOR MIOMETRIAL ([__] mm DE UN ESPESOR TOTAL DE [__] mm).
 - COMPROMISO DE ESTROMA CERVICAL: [NO IDENTIFICADO / PRESENTE].
@@ -6382,16 +6386,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Estadio FIGO 2023: [IA1 / IA2 / IA3 / IB / IIA / IIB / IIIA1 / IIIC1p / IIIC2p]
   * Categoría pT: [pT1a / pT1b / pT2 / pT3a / pT3b / pT3c]
   * Categoría pN: [pN0 / pN1mi / pN1a / pN2]
-========================================================"
+========================================================`
     },
     {
         "id": 5310,
         "categoryId": 100,
         "titulo": "CAP - ENDOMETRIO: ADENOCARCINOMA ENDOMETRIOIDE / SEROSO (HISTERECTOMÍA)",
-        "macro": "se recibe espécimen de histerectomía total con doble anexectomía (salpingo-ooforectomía bilateral) fijado en formol. la pieza uterina pesa [peso] g y mide [longitud cuerpo] x [ancho fúndico] x [espesor anteroposterior] cm. el ovario derecho mide [dimensiones] cm y el izquierdo mide [dimensiones] cm. a la apertura coronal del útero, la cavidad endometrial se encuentra ocupada por una masa tumoral [polipoide / exofítica / friable / difusa] de aspecto blanco-amarillento con áreas de necrosis y hemorragia, que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte miometrial, el tumor invade el miometrio hasta una profundidad de [profundidad_invasion] mm; el espesor miometrial total en dicho nivel es de [espesor_total_miometrio] mm (porcentaje de invasión: [x]%). macroscópicamente la masa [respeta el estroma cervical / compromete el canal endocervical]. los anexos son macroscópicamente [sin lesiones tumorales / con compromiso ovárico de [x] cm]. se aíslan [n] ganglios pélvicos/aórticos. se procesa según protocolo CAP / Lester en casetes [EM1-EMn tumor y miometrio de máxima invasión, CX cérvix e istmo, OD/TD ovario y trompa derecha, OI/TI ovario y trompa izquierda, N1-Nn ganglios].
+        "macro": `se recibe espécimen de histerectomía total con doble anexectomía (salpingo-ooforectomía bilateral) fijado en formol. la pieza uterina pesa [peso] g y mide [longitud cuerpo] x [ancho fúndico] x [espesor anteroposterior] cm. el ovario derecho mide [dimensiones] cm y el izquierdo mide [dimensiones] cm. a la apertura coronal del útero, la cavidad endometrial se encuentra ocupada por una masa tumoral [polipoide / exofítica / friable / difusa] de aspecto blanco-amarillento con áreas de necrosis y hemorragia, que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte miometrial, el tumor invade el miometrio hasta una profundidad de [profundidad_invasion] mm; el espesor miometrial total en dicho nivel es de [espesor_total_miometrio] mm (porcentaje de invasión: [x]%). macroscópicamente la masa [respeta el estroma cervical / compromete el canal endocervical]. los anexos son macroscópicamente [sin lesiones tumorales / con compromiso ovárico de [x] cm]. se aíslan [n] ganglios pélvicos/aórticos. se procesa según protocolo CAP / Lester en casetes [EM1-EMn tumor y miometrio de máxima invasión, CX cérvix e istmo, OD/TD ovario y trompa derecha, OI/TI ovario y trompa izquierda, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Endometrium. FIGO 2023 & AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman un adenocarcinoma de endometrio clasificado según la OMS 5.ª edición y FIGO como adenocarcinoma endometrioide de endometrio [o carcinoma seroso / de células claras / carcinosarcoma (tumor mülleriano mixto maligno) / desdiferenciado].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Endometrium. FIGO 2023 & AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman un adenocarcinoma de endometrio clasificado según la OMS 5.ª edición y FIGO como adenocarcinoma endometrioide de endometrio [o carcinoma seroso / de células claras / carcinosarcoma (tumor mülleriano mixto maligno) / desdiferenciado].
 
 grado histológico figo (para tipo endometrioide):
 - grado 1: formación de patrón sólido no glandular <= 5%.
@@ -6407,8 +6411,8 @@ profundidad de invasión miometrial y compromiso de estructuras:
 - ganglios linfáticos pélvicos / paraaórticos: [n] examinados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 - perfil molecular promsis / quién (ihq): proteínas reparadoras de ADN [MLH1, PMS2, MSH2, MSH6 conservadas (MSS) / dMMR (MSI)], p53 [expresión tipo silvestre (normal) / mutado (nulo o sobreexpresión >80%)].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2023 Endometrial Cancer Staging.</small>",
-        "diag": "ÚTERO Y ANEXOS BILATERALES, HISTERECTOMÍA TOTAL CON SALPINGO-OOFORECTOMÍA BILATERAL:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2023 Endometrial Cancer Staging.</small>`,
+        "diag": `ÚTERO Y ANEXOS BILATERALES, HISTERECTOMÍA TOTAL CON SALPINGO-OOFORECTOMÍA BILATERAL:
 - ADENOCARCINOMA ENDOMETRIOIDE DE ENDOMETRIO, GRADO FIGO [1 / 2 / 3] (OMS 2020).
 - PROFUNDIDAD DE INVASIÓN MIOMETRIAL: INFILTRA [< 50% (MITAD INTERNA) / >= 50% (MITAD EXTERNA)] DEL ESPESOR MIOMETRIAL ([__] mm DE UN ESPESOR TOTAL DE [__] mm).
 - COMPROMISO DE ESTROMA CERVICAL: [NO IDENTIFICADO / PRESENTE].
@@ -6445,16 +6449,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Estadio FIGO 2023: [IA1 / IA2 / IA3 / IB / IIA / IIB / IIIA1 / IIIC1p / IIIC2p]
   * Categoría pT: [pT1a / pT1b / pT2 / pT3a / pT3b / pT3c]
   * Categoría pN: [pN0 / pN1mi / pN1a / pN2]
-========================================================"
+========================================================`
     },
     {
         "id": 6310,
         "categoryId": 101,
         "titulo": "CAP - ENDOMETRIO: ADENOCARCINOMA ENDOMETRIOIDE / SEROSO (HISTERECTOMÍA)",
-        "macro": "se recibe espécimen de histerectomía total con doble anexectomía (salpingo-ooforectomía bilateral) fijado en formol. la pieza uterina pesa [peso] g y mide [longitud cuerpo] x [ancho fúndico] x [espesor anteroposterior] cm. el ovario derecho mide [dimensiones] cm y el izquierdo mide [dimensiones] cm. a la apertura coronal del útero, la cavidad endometrial se encuentra ocupada por una masa tumoral [polipoide / exofítica / friable / difusa] de aspecto blanco-amarillento con áreas de necrosis y hemorragia, que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte miometrial, el tumor invade el miometrio hasta una profundidad de [profundidad_invasion] mm; el espesor miometrial total en dicho nivel es de [espesor_total_miometrio] mm (porcentaje de invasión: [x]%). macroscópicamente la masa [respeta el estroma cervical / compromete el canal endocervical]. los anexos son macroscópicamente [sin lesiones tumorales / con compromiso ovárico de [x] cm]. se aíslan [n] ganglios pélvicos/aórticos. se procesa según protocolo CAP / Lester en casetes [EM1-EMn tumor y miometrio de máxima invasión, CX cérvix e istmo, OD/TD ovario y trompa derecha, OI/TI ovario y trompa izquierda, N1-Nn ganglios].
+        "macro": `se recibe espécimen de histerectomía total con doble anexectomía (salpingo-ooforectomía bilateral) fijado en formol. la pieza uterina pesa [peso] g y mide [longitud cuerpo] x [ancho fúndico] x [espesor anteroposterior] cm. el ovario derecho mide [dimensiones] cm y el izquierdo mide [dimensiones] cm. a la apertura coronal del útero, la cavidad endometrial se encuentra ocupada por una masa tumoral [polipoide / exofítica / friable / difusa] de aspecto blanco-amarillento con áreas de necrosis y hemorragia, que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte miometrial, el tumor invade el miometrio hasta una profundidad de [profundidad_invasion] mm; el espesor miometrial total en dicho nivel es de [espesor_total_miometrio] mm (porcentaje de invasión: [x]%). macroscópicamente la masa [respeta el estroma cervical / compromete el canal endocervical]. los anexos son macroscópicamente [sin lesiones tumorales / con compromiso ovárico de [x] cm]. se aíslan [n] ganglios pélvicos/aórticos. se procesa según protocolo CAP / Lester en casetes [EM1-EMn tumor y miometrio de máxima invasión, CX cérvix e istmo, OD/TD ovario y trompa derecha, OI/TI ovario y trompa izquierda, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Endometrium. FIGO 2023 & AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman un adenocarcinoma de endometrio clasificado según la OMS 5.ª edición y FIGO como adenocarcinoma endometrioide de endometrio [o carcinoma seroso / de células claras / carcinosarcoma (tumor mülleriano mixto maligno) / desdiferenciado].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Endometrium. FIGO 2023 & AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman un adenocarcinoma de endometrio clasificado según la OMS 5.ª edición y FIGO como adenocarcinoma endometrioide de endometrio [o carcinoma seroso / de células claras / carcinosarcoma (tumor mülleriano mixto maligno) / desdiferenciado].
 
 grado histológico figo (para tipo endometrioide):
 - grado 1: formación de patrón sólido no glandular <= 5%.
@@ -6470,8 +6474,8 @@ profundidad de invasión miometrial y compromiso de estructuras:
 - ganglios linfáticos pélvicos / paraaórticos: [n] examinados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 - perfil molecular promsis / quién (ihq): proteínas reparadoras de ADN [MLH1, PMS2, MSH2, MSH6 conservadas (MSS) / dMMR (MSI)], p53 [expresión tipo silvestre (normal) / mutado (nulo o sobreexpresión >80%)].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2023 Endometrial Cancer Staging.</small>",
-        "diag": "ÚTERO Y ANEXOS BILATERALES, HISTERECTOMÍA TOTAL CON SALPINGO-OOFORECTOMÍA BILATERAL:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2023 Endometrial Cancer Staging.</small>`,
+        "diag": `ÚTERO Y ANEXOS BILATERALES, HISTERECTOMÍA TOTAL CON SALPINGO-OOFORECTOMÍA BILATERAL:
 - ADENOCARCINOMA ENDOMETRIOIDE DE ENDOMETRIO, GRADO FIGO [1 / 2 / 3] (OMS 2020).
 - PROFUNDIDAD DE INVASIÓN MIOMETRIAL: INFILTRA [< 50% (MITAD INTERNA) / >= 50% (MITAD EXTERNA)] DEL ESPESOR MIOMETRIAL ([__] mm DE UN ESPESOR TOTAL DE [__] mm).
 - COMPROMISO DE ESTROMA CERVICAL: [NO IDENTIFICADO / PRESENTE].
@@ -6508,16 +6512,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Estadio FIGO 2023: [IA1 / IA2 / IA3 / IB / IIA / IIB / IIIA1 / IIIC1p / IIIC2p]
   * Categoría pT: [pT1a / pT1b / pT2 / pT3a / pT3b / pT3c]
   * Categoría pN: [pN0 / pN1mi / pN1a / pN2]
-========================================================"
+========================================================`
     },
     {
         "id": 3310,
         "categoryId": 4,
         "titulo": "CAP - ENDOMETRIO: ADENOCARCINOMA ENDOMETRIOIDE / SEROSO (HISTERECTOMÍA)",
-        "macro": "se recibe espécimen de histerectomía total con doble anexectomía (salpingo-ooforectomía bilateral) fijado en formol. la pieza uterina pesa [peso] g y mide [longitud cuerpo] x [ancho fúndico] x [espesor anteroposterior] cm. el ovario derecho mide [dimensiones] cm y el izquierdo mide [dimensiones] cm. a la apertura coronal del útero, la cavidad endometrial se encuentra ocupada por una masa tumoral [polipoide / exofítica / friable / difusa] de aspecto blanco-amarillento con áreas de necrosis y hemorragia, que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte miometrial, el tumor invade el miometrio hasta una profundidad de [profundidad_invasion] mm; el espesor miometrial total en dicho nivel es de [espesor_total_miometrio] mm (porcentaje de invasión: [x]%). macroscópicamente la masa [respeta el estroma cervical / compromete el canal endocervical]. los anexos son macroscópicamente [sin lesiones tumorales / con compromiso ovárico de [x] cm]. se aíslan [n] ganglios pélvicos/aórticos. se procesa según protocolo CAP / Lester en casetes [EM1-EMn tumor y miometrio de máxima invasión, CX cérvix e istmo, OD/TD ovario y trompa derecha, OI/TI ovario y trompa izquierda, N1-Nn ganglios].
+        "macro": `se recibe espécimen de histerectomía total con doble anexectomía (salpingo-ooforectomía bilateral) fijado en formol. la pieza uterina pesa [peso] g y mide [longitud cuerpo] x [ancho fúndico] x [espesor anteroposterior] cm. el ovario derecho mide [dimensiones] cm y el izquierdo mide [dimensiones] cm. a la apertura coronal del útero, la cavidad endometrial se encuentra ocupada por una masa tumoral [polipoide / exofítica / friable / difusa] de aspecto blanco-amarillento con áreas de necrosis y hemorragia, que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte miometrial, el tumor invade el miometrio hasta una profundidad de [profundidad_invasion] mm; el espesor miometrial total en dicho nivel es de [espesor_total_miometrio] mm (porcentaje de invasión: [x]%). macroscópicamente la masa [respeta el estroma cervical / compromete el canal endocervical]. los anexos son macroscópicamente [sin lesiones tumorales / con compromiso ovárico de [x] cm]. se aíslan [n] ganglios pélvicos/aórticos. se procesa según protocolo CAP / Lester en casetes [EM1-EMn tumor y miometrio de máxima invasión, CX cérvix e istmo, OD/TD ovario y trompa derecha, OI/TI ovario y trompa izquierda, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Endometrium. FIGO 2023 & AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman un adenocarcinoma de endometrio clasificado según la OMS 5.ª edición y FIGO como adenocarcinoma endometrioide de endometrio [o carcinoma seroso / de células claras / carcinosarcoma (tumor mülleriano mixto maligno) / desdiferenciado].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Endometrium. FIGO 2023 & AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman un adenocarcinoma de endometrio clasificado según la OMS 5.ª edición y FIGO como adenocarcinoma endometrioide de endometrio [o carcinoma seroso / de células claras / carcinosarcoma (tumor mülleriano mixto maligno) / desdiferenciado].
 
 grado histológico figo (para tipo endometrioide):
 - grado 1: formación de patrón sólido no glandular <= 5%.
@@ -6533,8 +6537,8 @@ profundidad de invasión miometrial y compromiso de estructuras:
 - ganglios linfáticos pélvicos / paraaórticos: [n] examinados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 - perfil molecular promsis / quién (ihq): proteínas reparadoras de ADN [MLH1, PMS2, MSH2, MSH6 conservadas (MSS) / dMMR (MSI)], p53 [expresión tipo silvestre (normal) / mutado (nulo o sobreexpresión >80%)].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2023 Endometrial Cancer Staging.</small>",
-        "diag": "ÚTERO Y ANEXOS BILATERALES, HISTERECTOMÍA TOTAL CON SALPINGO-OOFORECTOMÍA BILATERAL:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2023 Endometrial Cancer Staging.</small>`,
+        "diag": `ÚTERO Y ANEXOS BILATERALES, HISTERECTOMÍA TOTAL CON SALPINGO-OOFORECTOMÍA BILATERAL:
 - ADENOCARCINOMA ENDOMETRIOIDE DE ENDOMETRIO, GRADO FIGO [1 / 2 / 3] (OMS 2020).
 - PROFUNDIDAD DE INVASIÓN MIOMETRIAL: INFILTRA [< 50% (MITAD INTERNA) / >= 50% (MITAD EXTERNA)] DEL ESPESOR MIOMETRIAL ([__] mm DE UN ESPESOR TOTAL DE [__] mm).
 - COMPROMISO DE ESTROMA CERVICAL: [NO IDENTIFICADO / PRESENTE].
@@ -6571,16 +6575,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Estadio FIGO 2023: [IA1 / IA2 / IA3 / IB / IIA / IIB / IIIA1 / IIIC1p / IIIC2p]
   * Categoría pT: [pT1a / pT1b / pT2 / pT3a / pT3b / pT3c]
   * Categoría pN: [pN0 / pN1mi / pN1a / pN2]
-========================================================"
+========================================================`
     },
     {
         "id": 4310,
         "categoryId": 18,
         "titulo": "CAP - ENDOMETRIO: ADENOCARCINOMA ENDOMETRIOIDE / SEROSO (HISTERECTOMÍA)",
-        "macro": "se recibe espécimen de histerectomía total con doble anexectomía (salpingo-ooforectomía bilateral) fijado en formol. la pieza uterina pesa [peso] g y mide [longitud cuerpo] x [ancho fúndico] x [espesor anteroposterior] cm. el ovario derecho mide [dimensiones] cm y el izquierdo mide [dimensiones] cm. a la apertura coronal del útero, la cavidad endometrial se encuentra ocupada por una masa tumoral [polipoide / exofítica / friable / difusa] de aspecto blanco-amarillento con áreas de necrosis y hemorragia, que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte miometrial, el tumor invade el miometrio hasta una profundidad de [profundidad_invasion] mm; el espesor miometrial total en dicho nivel es de [espesor_total_miometrio] mm (porcentaje de invasión: [x]%). macroscópicamente la masa [respeta el estroma cervical / compromete el canal endocervical]. los anexos son macroscópicamente [sin lesiones tumorales / con compromiso ovárico de [x] cm]. se aíslan [n] ganglios pélvicos/aórticos. se procesa según protocolo CAP / Lester en casetes [EM1-EMn tumor y miometrio de máxima invasión, CX cérvix e istmo, OD/TD ovario y trompa derecha, OI/TI ovario y trompa izquierda, N1-Nn ganglios].
+        "macro": `se recibe espécimen de histerectomía total con doble anexectomía (salpingo-ooforectomía bilateral) fijado en formol. la pieza uterina pesa [peso] g y mide [longitud cuerpo] x [ancho fúndico] x [espesor anteroposterior] cm. el ovario derecho mide [dimensiones] cm y el izquierdo mide [dimensiones] cm. a la apertura coronal del útero, la cavidad endometrial se encuentra ocupada por una masa tumoral [polipoide / exofítica / friable / difusa] de aspecto blanco-amarillento con áreas de necrosis y hemorragia, que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte miometrial, el tumor invade el miometrio hasta una profundidad de [profundidad_invasion] mm; el espesor miometrial total en dicho nivel es de [espesor_total_miometrio] mm (porcentaje de invasión: [x]%). macroscópicamente la masa [respeta el estroma cervical / compromete el canal endocervical]. los anexos son macroscópicamente [sin lesiones tumorales / con compromiso ovárico de [x] cm]. se aíslan [n] ganglios pélvicos/aórticos. se procesa según protocolo CAP / Lester en casetes [EM1-EMn tumor y miometrio de máxima invasión, CX cérvix e istmo, OD/TD ovario y trompa derecha, OI/TI ovario y trompa izquierda, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Endometrium. FIGO 2023 & AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman un adenocarcinoma de endometrio clasificado según la OMS 5.ª edición y FIGO como adenocarcinoma endometrioide de endometrio [o carcinoma seroso / de células claras / carcinosarcoma (tumor mülleriano mixto maligno) / desdiferenciado].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Endometrium. FIGO 2023 & AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman un adenocarcinoma de endometrio clasificado según la OMS 5.ª edición y FIGO como adenocarcinoma endometrioide de endometrio [o carcinoma seroso / de células claras / carcinosarcoma (tumor mülleriano mixto maligno) / desdiferenciado].
 
 grado histológico figo (para tipo endometrioide):
 - grado 1: formación de patrón sólido no glandular <= 5%.
@@ -6596,8 +6600,8 @@ profundidad de invasión miometrial y compromiso de estructuras:
 - ganglios linfáticos pélvicos / paraaórticos: [n] examinados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 - perfil molecular promsis / quién (ihq): proteínas reparadoras de ADN [MLH1, PMS2, MSH2, MSH6 conservadas (MSS) / dMMR (MSI)], p53 [expresión tipo silvestre (normal) / mutado (nulo o sobreexpresión >80%)].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2023 Endometrial Cancer Staging.</small>",
-        "diag": "ÚTERO Y ANEXOS BILATERALES, HISTERECTOMÍA TOTAL CON SALPINGO-OOFORECTOMÍA BILATERAL:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / FIGO 2023 Endometrial Cancer Staging.</small>`,
+        "diag": `ÚTERO Y ANEXOS BILATERALES, HISTERECTOMÍA TOTAL CON SALPINGO-OOFORECTOMÍA BILATERAL:
 - ADENOCARCINOMA ENDOMETRIOIDE DE ENDOMETRIO, GRADO FIGO [1 / 2 / 3] (OMS 2020).
 - PROFUNDIDAD DE INVASIÓN MIOMETRIAL: INFILTRA [< 50% (MITAD INTERNA) / >= 50% (MITAD EXTERNA)] DEL ESPESOR MIOMETRIAL ([__] mm DE UN ESPESOR TOTAL DE [__] mm).
 - COMPROMISO DE ESTROMA CERVICAL: [NO IDENTIFICADO / PRESENTE].
@@ -6634,16 +6638,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Estadio FIGO 2023: [IA1 / IA2 / IA3 / IB / IIA / IIB / IIIA1 / IIIC1p / IIIC2p]
   * Categoría pT: [pT1a / pT1b / pT2 / pT3a / pT3b / pT3c]
   * Categoría pN: [pN0 / pN1mi / pN1a / pN2]
-========================================================"
+========================================================`
     },
     {
         "id": 311,
         "categoryId": 1,
         "titulo": "CAP - OVARIO: CARCINOMA SEROSO DE ALTO GRADO / NEOPLASIAS EPITELIALES",
-        "macro": "se recibe espécimen de estadificación ovárica que incluye: histerectomía total con doble anexectomía, omentectomía y biopsias peritoneales. la masa ovárica principal [derecha / izquierda] pesa [peso] g y mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie externa es [lisa e íntegra / rota con excrecencias papilares exofíticas]. al corte, la masa es sólido-quística con líquido [seroso / hemorrágico] y abundantes papilas friables blanco-amarillentas con áreas de necrosis de [dimensiones_tumor] cm. la trompa ipsilateral mide [dimensiones] cm. el epiplón mayor mide [dimensiones] cm con [múltiples nódulos metastásicos en forma de torta omental (omental cake) de [diámetro] cm / libre de implantes macroscópicos]. se procesa según protocolo CAP / Lester / SEE-FIM en casetes [OV1-OVn masa ovárica y cápsula, TF1-TFn fimbria y trompa completa, OM1-OMn epiplón mayor, N1-Nn ganglios].
+        "macro": `se recibe espécimen de estadificación ovárica que incluye: histerectomía total con doble anexectomía, omentectomía y biopsias peritoneales. la masa ovárica principal [derecha / izquierda] pesa [peso] g y mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie externa es [lisa e íntegra / rota con excrecencias papilares exofíticas]. al corte, la masa es sólido-quística con líquido [seroso / hemorrágico] y abundantes papilas friables blanco-amarillentas con áreas de necrosis de [dimensiones_tumor] cm. la trompa ipsilateral mide [dimensiones] cm. el epiplón mayor mide [dimensiones] cm con [múltiples nódulos metastásicos en forma de torta omental (omental cake) de [diámetro] cm / libre de implantes macroscópicos]. se procesa según protocolo CAP / Lester / SEE-FIM en casetes [OV1-OVn masa ovárica y cápsula, TF1-TFn fimbria y trompa completa, OM1-OMn epiplón mayor, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Ovary, Fallopian Tube, and Primary Peritoneum. FIGO 2018/2023 & AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como carcinoma seroso de alto grado (HGSC) de ovario / trompa de Falopio [o carcinoma endometrioide / de células claras / mucinoso / seroso de bajo grado]. las células exhiben atipia nuclear extrema, pleomorfismo, macronucléolos prominentes, abundantes figuras mitóticas atípicas (> 12 mitosis por 10 CGA) y necrosis tumoral.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Ovary, Fallopian Tube, and Primary Peritoneum. FIGO 2018/2023 & AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como carcinoma seroso de alto grado (HGSC) de ovario / trompa de Falopio [o carcinoma endometrioide / de células claras / mucinoso / seroso de bajo grado]. las células exhiben atipia nuclear extrema, pleomorfismo, macronucléolos prominentes, abundantes figuras mitóticas atípicas (> 12 mitosis por 10 CGA) y necrosis tumoral.
 
 criterios de origen y compromiso anatómico:
 - origen primario propuesto: [fimbria tubárica (STIC - carcinoma intraepitelial tubárico seroso presente) / corteza ovárica / indeterminado].
@@ -6655,8 +6659,8 @@ criterios de origen y compromiso anatómico:
 - ganglios linfáticos pélvicos y paraaórticos: [n] examinados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 - perfil de inmunohistoquímica: WT1 (positivo nuclear intenso difuso), p53 (patrón mutado aberrante: sobreexpresión difusa >90% o silenciamiento nulo completo 0%), p16 (bloque positivo), Ki-67 [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / Kurman, R. J., & Shih, I. M. (Pathogenesis of ovarian cancer).</small>",
-        "diag": "OVARIO, TROMPAS DE FALOPIO, ÚTERO Y EPIPLÓN, CIRUGÍA DE ESTADIFICACIÓN OVÁRICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / Kurman, R. J., & Shih, I. M. (Pathogenesis of ovarian cancer).</small>`,
+        "diag": `OVARIO, TROMPAS DE FALOPIO, ÚTERO Y EPIPLÓN, CIRUGÍA DE ESTADIFICACIÓN OVÁRICA:
 - CARCINOMA SEROSO DE ALTO GRADO (HGSC) DE OVARIO / TROMPA DE FALOPIO (OMS 2020).
 - SITIO PRIMARIO: [PROBABLE FIMBRIA TUBÁRICA (STIC PRESENTE) / OVARIO].
 - CÁPSULA OVÁRICA: [ÍNTEGRA / ROTA CON EXTENSIÓN TUMORAL A LA SUPERFICIE EXTERNA].
@@ -6693,16 +6697,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Estadio FIGO: [IA / IB / IC1 / IC2 / IC3 / IIA / IIB / IIIA1 / IIIA2 / IIIB / IIIC / IVB]
   * Categoría pT: [pT1a / pT1b / pT1c1 / pT1c2 / pT1c3 / pT2a / pT2b / pT3a / pT3b / pT3c]
   * Categoría pN: [pN0 / pN1a / pN1b]
-========================================================"
+========================================================`
     },
     {
         "id": 1311,
         "categoryId": 11,
         "titulo": "CAP - OVARIO: CARCINOMA SEROSO DE ALTO GRADO / NEOPLASIAS EPITELIALES",
-        "macro": "se recibe espécimen de estadificación ovárica que incluye: histerectomía total con doble anexectomía, omentectomía y biopsias peritoneales. la masa ovárica principal [derecha / izquierda] pesa [peso] g y mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie externa es [lisa e íntegra / rota con excrecencias papilares exofíticas]. al corte, la masa es sólido-quística con líquido [seroso / hemorrágico] y abundantes papilas friables blanco-amarillentas con áreas de necrosis de [dimensiones_tumor] cm. la trompa ipsilateral mide [dimensiones] cm. el epiplón mayor mide [dimensiones] cm con [múltiples nódulos metastásicos en forma de torta omental (omental cake) de [diámetro] cm / libre de implantes macroscópicos]. se procesa según protocolo CAP / Lester / SEE-FIM en casetes [OV1-OVn masa ovárica y cápsula, TF1-TFn fimbria y trompa completa, OM1-OMn epiplón mayor, N1-Nn ganglios].
+        "macro": `se recibe espécimen de estadificación ovárica que incluye: histerectomía total con doble anexectomía, omentectomía y biopsias peritoneales. la masa ovárica principal [derecha / izquierda] pesa [peso] g y mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie externa es [lisa e íntegra / rota con excrecencias papilares exofíticas]. al corte, la masa es sólido-quística con líquido [seroso / hemorrágico] y abundantes papilas friables blanco-amarillentas con áreas de necrosis de [dimensiones_tumor] cm. la trompa ipsilateral mide [dimensiones] cm. el epiplón mayor mide [dimensiones] cm con [múltiples nódulos metastásicos en forma de torta omental (omental cake) de [diámetro] cm / libre de implantes macroscópicos]. se procesa según protocolo CAP / Lester / SEE-FIM en casetes [OV1-OVn masa ovárica y cápsula, TF1-TFn fimbria y trompa completa, OM1-OMn epiplón mayor, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Ovary, Fallopian Tube, and Primary Peritoneum. FIGO 2018/2023 & AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como carcinoma seroso de alto grado (HGSC) de ovario / trompa de Falopio [o carcinoma endometrioide / de células claras / mucinoso / seroso de bajo grado]. las células exhiben atipia nuclear extrema, pleomorfismo, macronucléolos prominentes, abundantes figuras mitóticas atípicas (> 12 mitosis por 10 CGA) y necrosis tumoral.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Ovary, Fallopian Tube, and Primary Peritoneum. FIGO 2018/2023 & AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como carcinoma seroso de alto grado (HGSC) de ovario / trompa de Falopio [o carcinoma endometrioide / de células claras / mucinoso / seroso de bajo grado]. las células exhiben atipia nuclear extrema, pleomorfismo, macronucléolos prominentes, abundantes figuras mitóticas atípicas (> 12 mitosis por 10 CGA) y necrosis tumoral.
 
 criterios de origen y compromiso anatómico:
 - origen primario propuesto: [fimbria tubárica (STIC - carcinoma intraepitelial tubárico seroso presente) / corteza ovárica / indeterminado].
@@ -6714,8 +6718,8 @@ criterios de origen y compromiso anatómico:
 - ganglios linfáticos pélvicos y paraaórticos: [n] examinados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 - perfil de inmunohistoquímica: WT1 (positivo nuclear intenso difuso), p53 (patrón mutado aberrante: sobreexpresión difusa >90% o silenciamiento nulo completo 0%), p16 (bloque positivo), Ki-67 [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / Kurman, R. J., & Shih, I. M. (Pathogenesis of ovarian cancer).</small>",
-        "diag": "OVARIO, TROMPAS DE FALOPIO, ÚTERO Y EPIPLÓN, CIRUGÍA DE ESTADIFICACIÓN OVÁRICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / Kurman, R. J., & Shih, I. M. (Pathogenesis of ovarian cancer).</small>`,
+        "diag": `OVARIO, TROMPAS DE FALOPIO, ÚTERO Y EPIPLÓN, CIRUGÍA DE ESTADIFICACIÓN OVÁRICA:
 - CARCINOMA SEROSO DE ALTO GRADO (HGSC) DE OVARIO / TROMPA DE FALOPIO (OMS 2020).
 - SITIO PRIMARIO: [PROBABLE FIMBRIA TUBÁRICA (STIC PRESENTE) / OVARIO].
 - CÁPSULA OVÁRICA: [ÍNTEGRA / ROTA CON EXTENSIÓN TUMORAL A LA SUPERFICIE EXTERNA].
@@ -6752,16 +6756,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Estadio FIGO: [IA / IB / IC1 / IC2 / IC3 / IIA / IIB / IIIA1 / IIIA2 / IIIB / IIIC / IVB]
   * Categoría pT: [pT1a / pT1b / pT1c1 / pT1c2 / pT1c3 / pT2a / pT2b / pT3a / pT3b / pT3c]
   * Categoría pN: [pN0 / pN1a / pN1b]
-========================================================"
+========================================================`
     },
     {
         "id": 2311,
         "categoryId": 10,
         "titulo": "CAP - OVARIO: CARCINOMA SEROSO DE ALTO GRADO / NEOPLASIAS EPITELIALES",
-        "macro": "se recibe espécimen de estadificación ovárica que incluye: histerectomía total con doble anexectomía, omentectomía y biopsias peritoneales. la masa ovárica principal [derecha / izquierda] pesa [peso] g y mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie externa es [lisa e íntegra / rota con excrecencias papilares exofíticas]. al corte, la masa es sólido-quística con líquido [seroso / hemorrágico] y abundantes papilas friables blanco-amarillentas con áreas de necrosis de [dimensiones_tumor] cm. la trompa ipsilateral mide [dimensiones] cm. el epiplón mayor mide [dimensiones] cm con [múltiples nódulos metastásicos en forma de torta omental (omental cake) de [diámetro] cm / libre de implantes macroscópicos]. se procesa según protocolo CAP / Lester / SEE-FIM en casetes [OV1-OVn masa ovárica y cápsula, TF1-TFn fimbria y trompa completa, OM1-OMn epiplón mayor, N1-Nn ganglios].
+        "macro": `se recibe espécimen de estadificación ovárica que incluye: histerectomía total con doble anexectomía, omentectomía y biopsias peritoneales. la masa ovárica principal [derecha / izquierda] pesa [peso] g y mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie externa es [lisa e íntegra / rota con excrecencias papilares exofíticas]. al corte, la masa es sólido-quística con líquido [seroso / hemorrágico] y abundantes papilas friables blanco-amarillentas con áreas de necrosis de [dimensiones_tumor] cm. la trompa ipsilateral mide [dimensiones] cm. el epiplón mayor mide [dimensiones] cm con [múltiples nódulos metastásicos en forma de torta omental (omental cake) de [diámetro] cm / libre de implantes macroscópicos]. se procesa según protocolo CAP / Lester / SEE-FIM en casetes [OV1-OVn masa ovárica y cápsula, TF1-TFn fimbria y trompa completa, OM1-OMn epiplón mayor, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Ovary, Fallopian Tube, and Primary Peritoneum. FIGO 2018/2023 & AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como carcinoma seroso de alto grado (HGSC) de ovario / trompa de Falopio [o carcinoma endometrioide / de células claras / mucinoso / seroso de bajo grado]. las células exhiben atipia nuclear extrema, pleomorfismo, macronucléolos prominentes, abundantes figuras mitóticas atípicas (> 12 mitosis por 10 CGA) y necrosis tumoral.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Ovary, Fallopian Tube, and Primary Peritoneum. FIGO 2018/2023 & AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como carcinoma seroso de alto grado (HGSC) de ovario / trompa de Falopio [o carcinoma endometrioide / de células claras / mucinoso / seroso de bajo grado]. las células exhiben atipia nuclear extrema, pleomorfismo, macronucléolos prominentes, abundantes figuras mitóticas atípicas (> 12 mitosis por 10 CGA) y necrosis tumoral.
 
 criterios de origen y compromiso anatómico:
 - origen primario propuesto: [fimbria tubárica (STIC - carcinoma intraepitelial tubárico seroso presente) / corteza ovárica / indeterminado].
@@ -6773,8 +6777,8 @@ criterios de origen y compromiso anatómico:
 - ganglios linfáticos pélvicos y paraaórticos: [n] examinados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 - perfil de inmunohistoquímica: WT1 (positivo nuclear intenso difuso), p53 (patrón mutado aberrante: sobreexpresión difusa >90% o silenciamiento nulo completo 0%), p16 (bloque positivo), Ki-67 [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / Kurman, R. J., & Shih, I. M. (Pathogenesis of ovarian cancer).</small>",
-        "diag": "OVARIO, TROMPAS DE FALOPIO, ÚTERO Y EPIPLÓN, CIRUGÍA DE ESTADIFICACIÓN OVÁRICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / Kurman, R. J., & Shih, I. M. (Pathogenesis of ovarian cancer).</small>`,
+        "diag": `OVARIO, TROMPAS DE FALOPIO, ÚTERO Y EPIPLÓN, CIRUGÍA DE ESTADIFICACIÓN OVÁRICA:
 - CARCINOMA SEROSO DE ALTO GRADO (HGSC) DE OVARIO / TROMPA DE FALOPIO (OMS 2020).
 - SITIO PRIMARIO: [PROBABLE FIMBRIA TUBÁRICA (STIC PRESENTE) / OVARIO].
 - CÁPSULA OVÁRICA: [ÍNTEGRA / ROTA CON EXTENSIÓN TUMORAL A LA SUPERFICIE EXTERNA].
@@ -6811,16 +6815,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Estadio FIGO: [IA / IB / IC1 / IC2 / IC3 / IIA / IIB / IIIA1 / IIIA2 / IIIB / IIIC / IVB]
   * Categoría pT: [pT1a / pT1b / pT1c1 / pT1c2 / pT1c3 / pT2a / pT2b / pT3a / pT3b / pT3c]
   * Categoría pN: [pN0 / pN1a / pN1b]
-========================================================"
+========================================================`
     },
     {
         "id": 5311,
         "categoryId": 100,
         "titulo": "CAP - OVARIO: CARCINOMA SEROSO DE ALTO GRADO / NEOPLASIAS EPITELIALES",
-        "macro": "se recibe espécimen de estadificación ovárica que incluye: histerectomía total con doble anexectomía, omentectomía y biopsias peritoneales. la masa ovárica principal [derecha / izquierda] pesa [peso] g y mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie externa es [lisa e íntegra / rota con excrecencias papilares exofíticas]. al corte, la masa es sólido-quística con líquido [seroso / hemorrágico] y abundantes papilas friables blanco-amarillentas con áreas de necrosis de [dimensiones_tumor] cm. la trompa ipsilateral mide [dimensiones] cm. el epiplón mayor mide [dimensiones] cm con [múltiples nódulos metastásicos en forma de torta omental (omental cake) de [diámetro] cm / libre de implantes macroscópicos]. se procesa según protocolo CAP / Lester / SEE-FIM en casetes [OV1-OVn masa ovárica y cápsula, TF1-TFn fimbria y trompa completa, OM1-OMn epiplón mayor, N1-Nn ganglios].
+        "macro": `se recibe espécimen de estadificación ovárica que incluye: histerectomía total con doble anexectomía, omentectomía y biopsias peritoneales. la masa ovárica principal [derecha / izquierda] pesa [peso] g y mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie externa es [lisa e íntegra / rota con excrecencias papilares exofíticas]. al corte, la masa es sólido-quística con líquido [seroso / hemorrágico] y abundantes papilas friables blanco-amarillentas con áreas de necrosis de [dimensiones_tumor] cm. la trompa ipsilateral mide [dimensiones] cm. el epiplón mayor mide [dimensiones] cm con [múltiples nódulos metastásicos en forma de torta omental (omental cake) de [diámetro] cm / libre de implantes macroscópicos]. se procesa según protocolo CAP / Lester / SEE-FIM en casetes [OV1-OVn masa ovárica y cápsula, TF1-TFn fimbria y trompa completa, OM1-OMn epiplón mayor, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Ovary, Fallopian Tube, and Primary Peritoneum. FIGO 2018/2023 & AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como carcinoma seroso de alto grado (HGSC) de ovario / trompa de Falopio [o carcinoma endometrioide / de células claras / mucinoso / seroso de bajo grado]. las células exhiben atipia nuclear extrema, pleomorfismo, macronucléolos prominentes, abundantes figuras mitóticas atípicas (> 12 mitosis por 10 CGA) y necrosis tumoral.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Ovary, Fallopian Tube, and Primary Peritoneum. FIGO 2018/2023 & AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como carcinoma seroso de alto grado (HGSC) de ovario / trompa de Falopio [o carcinoma endometrioide / de células claras / mucinoso / seroso de bajo grado]. las células exhiben atipia nuclear extrema, pleomorfismo, macronucléolos prominentes, abundantes figuras mitóticas atípicas (> 12 mitosis por 10 CGA) y necrosis tumoral.
 
 criterios de origen y compromiso anatómico:
 - origen primario propuesto: [fimbria tubárica (STIC - carcinoma intraepitelial tubárico seroso presente) / corteza ovárica / indeterminado].
@@ -6832,8 +6836,8 @@ criterios de origen y compromiso anatómico:
 - ganglios linfáticos pélvicos y paraaórticos: [n] examinados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 - perfil de inmunohistoquímica: WT1 (positivo nuclear intenso difuso), p53 (patrón mutado aberrante: sobreexpresión difusa >90% o silenciamiento nulo completo 0%), p16 (bloque positivo), Ki-67 [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / Kurman, R. J., & Shih, I. M. (Pathogenesis of ovarian cancer).</small>",
-        "diag": "OVARIO, TROMPAS DE FALOPIO, ÚTERO Y EPIPLÓN, CIRUGÍA DE ESTADIFICACIÓN OVÁRICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / Kurman, R. J., & Shih, I. M. (Pathogenesis of ovarian cancer).</small>`,
+        "diag": `OVARIO, TROMPAS DE FALOPIO, ÚTERO Y EPIPLÓN, CIRUGÍA DE ESTADIFICACIÓN OVÁRICA:
 - CARCINOMA SEROSO DE ALTO GRADO (HGSC) DE OVARIO / TROMPA DE FALOPIO (OMS 2020).
 - SITIO PRIMARIO: [PROBABLE FIMBRIA TUBÁRICA (STIC PRESENTE) / OVARIO].
 - CÁPSULA OVÁRICA: [ÍNTEGRA / ROTA CON EXTENSIÓN TUMORAL A LA SUPERFICIE EXTERNA].
@@ -6870,16 +6874,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Estadio FIGO: [IA / IB / IC1 / IC2 / IC3 / IIA / IIB / IIIA1 / IIIA2 / IIIB / IIIC / IVB]
   * Categoría pT: [pT1a / pT1b / pT1c1 / pT1c2 / pT1c3 / pT2a / pT2b / pT3a / pT3b / pT3c]
   * Categoría pN: [pN0 / pN1a / pN1b]
-========================================================"
+========================================================`
     },
     {
         "id": 6311,
         "categoryId": 101,
         "titulo": "CAP - OVARIO: CARCINOMA SEROSO DE ALTO GRADO / NEOPLASIAS EPITELIALES",
-        "macro": "se recibe espécimen de estadificación ovárica que incluye: histerectomía total con doble anexectomía, omentectomía y biopsias peritoneales. la masa ovárica principal [derecha / izquierda] pesa [peso] g y mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie externa es [lisa e íntegra / rota con excrecencias papilares exofíticas]. al corte, la masa es sólido-quística con líquido [seroso / hemorrágico] y abundantes papilas friables blanco-amarillentas con áreas de necrosis de [dimensiones_tumor] cm. la trompa ipsilateral mide [dimensiones] cm. el epiplón mayor mide [dimensiones] cm con [múltiples nódulos metastásicos en forma de torta omental (omental cake) de [diámetro] cm / libre de implantes macroscópicos]. se procesa según protocolo CAP / Lester / SEE-FIM en casetes [OV1-OVn masa ovárica y cápsula, TF1-TFn fimbria y trompa completa, OM1-OMn epiplón mayor, N1-Nn ganglios].
+        "macro": `se recibe espécimen de estadificación ovárica que incluye: histerectomía total con doble anexectomía, omentectomía y biopsias peritoneales. la masa ovárica principal [derecha / izquierda] pesa [peso] g y mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie externa es [lisa e íntegra / rota con excrecencias papilares exofíticas]. al corte, la masa es sólido-quística con líquido [seroso / hemorrágico] y abundantes papilas friables blanco-amarillentas con áreas de necrosis de [dimensiones_tumor] cm. la trompa ipsilateral mide [dimensiones] cm. el epiplón mayor mide [dimensiones] cm con [múltiples nódulos metastásicos en forma de torta omental (omental cake) de [diámetro] cm / libre de implantes macroscópicos]. se procesa según protocolo CAP / Lester / SEE-FIM en casetes [OV1-OVn masa ovárica y cápsula, TF1-TFn fimbria y trompa completa, OM1-OMn epiplón mayor, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Ovary, Fallopian Tube, and Primary Peritoneum. FIGO 2018/2023 & AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como carcinoma seroso de alto grado (HGSC) de ovario / trompa de Falopio [o carcinoma endometrioide / de células claras / mucinoso / seroso de bajo grado]. las células exhiben atipia nuclear extrema, pleomorfismo, macronucléolos prominentes, abundantes figuras mitóticas atípicas (> 12 mitosis por 10 CGA) y necrosis tumoral.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Ovary, Fallopian Tube, and Primary Peritoneum. FIGO 2018/2023 & AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como carcinoma seroso de alto grado (HGSC) de ovario / trompa de Falopio [o carcinoma endometrioide / de células claras / mucinoso / seroso de bajo grado]. las células exhiben atipia nuclear extrema, pleomorfismo, macronucléolos prominentes, abundantes figuras mitóticas atípicas (> 12 mitosis por 10 CGA) y necrosis tumoral.
 
 criterios de origen y compromiso anatómico:
 - origen primario propuesto: [fimbria tubárica (STIC - carcinoma intraepitelial tubárico seroso presente) / corteza ovárica / indeterminado].
@@ -6891,8 +6895,8 @@ criterios de origen y compromiso anatómico:
 - ganglios linfáticos pélvicos y paraaórticos: [n] examinados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 - perfil de inmunohistoquímica: WT1 (positivo nuclear intenso difuso), p53 (patrón mutado aberrante: sobreexpresión difusa >90% o silenciamiento nulo completo 0%), p16 (bloque positivo), Ki-67 [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / Kurman, R. J., & Shih, I. M. (Pathogenesis of ovarian cancer).</small>",
-        "diag": "OVARIO, TROMPAS DE FALOPIO, ÚTERO Y EPIPLÓN, CIRUGÍA DE ESTADIFICACIÓN OVÁRICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / Kurman, R. J., & Shih, I. M. (Pathogenesis of ovarian cancer).</small>`,
+        "diag": `OVARIO, TROMPAS DE FALOPIO, ÚTERO Y EPIPLÓN, CIRUGÍA DE ESTADIFICACIÓN OVÁRICA:
 - CARCINOMA SEROSO DE ALTO GRADO (HGSC) DE OVARIO / TROMPA DE FALOPIO (OMS 2020).
 - SITIO PRIMARIO: [PROBABLE FIMBRIA TUBÁRICA (STIC PRESENTE) / OVARIO].
 - CÁPSULA OVÁRICA: [ÍNTEGRA / ROTA CON EXTENSIÓN TUMORAL A LA SUPERFICIE EXTERNA].
@@ -6929,16 +6933,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Estadio FIGO: [IA / IB / IC1 / IC2 / IC3 / IIA / IIB / IIIA1 / IIIA2 / IIIB / IIIC / IVB]
   * Categoría pT: [pT1a / pT1b / pT1c1 / pT1c2 / pT1c3 / pT2a / pT2b / pT3a / pT3b / pT3c]
   * Categoría pN: [pN0 / pN1a / pN1b]
-========================================================"
+========================================================`
     },
     {
         "id": 3311,
         "categoryId": 4,
         "titulo": "CAP - OVARIO: CARCINOMA SEROSO DE ALTO GRADO / NEOPLASIAS EPITELIALES",
-        "macro": "se recibe espécimen de estadificación ovárica que incluye: histerectomía total con doble anexectomía, omentectomía y biopsias peritoneales. la masa ovárica principal [derecha / izquierda] pesa [peso] g y mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie externa es [lisa e íntegra / rota con excrecencias papilares exofíticas]. al corte, la masa es sólido-quística con líquido [seroso / hemorrágico] y abundantes papilas friables blanco-amarillentas con áreas de necrosis de [dimensiones_tumor] cm. la trompa ipsilateral mide [dimensiones] cm. el epiplón mayor mide [dimensiones] cm con [múltiples nódulos metastásicos en forma de torta omental (omental cake) de [diámetro] cm / libre de implantes macroscópicos]. se procesa según protocolo CAP / Lester / SEE-FIM en casetes [OV1-OVn masa ovárica y cápsula, TF1-TFn fimbria y trompa completa, OM1-OMn epiplón mayor, N1-Nn ganglios].
+        "macro": `se recibe espécimen de estadificación ovárica que incluye: histerectomía total con doble anexectomía, omentectomía y biopsias peritoneales. la masa ovárica principal [derecha / izquierda] pesa [peso] g y mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie externa es [lisa e íntegra / rota con excrecencias papilares exofíticas]. al corte, la masa es sólido-quística con líquido [seroso / hemorrágico] y abundantes papilas friables blanco-amarillentas con áreas de necrosis de [dimensiones_tumor] cm. la trompa ipsilateral mide [dimensiones] cm. el epiplón mayor mide [dimensiones] cm con [múltiples nódulos metastásicos en forma de torta omental (omental cake) de [diámetro] cm / libre de implantes macroscópicos]. se procesa según protocolo CAP / Lester / SEE-FIM en casetes [OV1-OVn masa ovárica y cápsula, TF1-TFn fimbria y trompa completa, OM1-OMn epiplón mayor, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Ovary, Fallopian Tube, and Primary Peritoneum. FIGO 2018/2023 & AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como carcinoma seroso de alto grado (HGSC) de ovario / trompa de Falopio [o carcinoma endometrioide / de células claras / mucinoso / seroso de bajo grado]. las células exhiben atipia nuclear extrema, pleomorfismo, macronucléolos prominentes, abundantes figuras mitóticas atípicas (> 12 mitosis por 10 CGA) y necrosis tumoral.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Ovary, Fallopian Tube, and Primary Peritoneum. FIGO 2018/2023 & AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como carcinoma seroso de alto grado (HGSC) de ovario / trompa de Falopio [o carcinoma endometrioide / de células claras / mucinoso / seroso de bajo grado]. las células exhiben atipia nuclear extrema, pleomorfismo, macronucléolos prominentes, abundantes figuras mitóticas atípicas (> 12 mitosis por 10 CGA) y necrosis tumoral.
 
 criterios de origen y compromiso anatómico:
 - origen primario propuesto: [fimbria tubárica (STIC - carcinoma intraepitelial tubárico seroso presente) / corteza ovárica / indeterminado].
@@ -6950,8 +6954,8 @@ criterios de origen y compromiso anatómico:
 - ganglios linfáticos pélvicos y paraaórticos: [n] examinados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 - perfil de inmunohistoquímica: WT1 (positivo nuclear intenso difuso), p53 (patrón mutado aberrante: sobreexpresión difusa >90% o silenciamiento nulo completo 0%), p16 (bloque positivo), Ki-67 [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / Kurman, R. J., & Shih, I. M. (Pathogenesis of ovarian cancer).</small>",
-        "diag": "OVARIO, TROMPAS DE FALOPIO, ÚTERO Y EPIPLÓN, CIRUGÍA DE ESTADIFICACIÓN OVÁRICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / Kurman, R. J., & Shih, I. M. (Pathogenesis of ovarian cancer).</small>`,
+        "diag": `OVARIO, TROMPAS DE FALOPIO, ÚTERO Y EPIPLÓN, CIRUGÍA DE ESTADIFICACIÓN OVÁRICA:
 - CARCINOMA SEROSO DE ALTO GRADO (HGSC) DE OVARIO / TROMPA DE FALOPIO (OMS 2020).
 - SITIO PRIMARIO: [PROBABLE FIMBRIA TUBÁRICA (STIC PRESENTE) / OVARIO].
 - CÁPSULA OVÁRICA: [ÍNTEGRA / ROTA CON EXTENSIÓN TUMORAL A LA SUPERFICIE EXTERNA].
@@ -6988,16 +6992,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Estadio FIGO: [IA / IB / IC1 / IC2 / IC3 / IIA / IIB / IIIA1 / IIIA2 / IIIB / IIIC / IVB]
   * Categoría pT: [pT1a / pT1b / pT1c1 / pT1c2 / pT1c3 / pT2a / pT2b / pT3a / pT3b / pT3c]
   * Categoría pN: [pN0 / pN1a / pN1b]
-========================================================"
+========================================================`
     },
     {
         "id": 4311,
         "categoryId": 18,
         "titulo": "CAP - OVARIO: CARCINOMA SEROSO DE ALTO GRADO / NEOPLASIAS EPITELIALES",
-        "macro": "se recibe espécimen de estadificación ovárica que incluye: histerectomía total con doble anexectomía, omentectomía y biopsias peritoneales. la masa ovárica principal [derecha / izquierda] pesa [peso] g y mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie externa es [lisa e íntegra / rota con excrecencias papilares exofíticas]. al corte, la masa es sólido-quística con líquido [seroso / hemorrágico] y abundantes papilas friables blanco-amarillentas con áreas de necrosis de [dimensiones_tumor] cm. la trompa ipsilateral mide [dimensiones] cm. el epiplón mayor mide [dimensiones] cm con [múltiples nódulos metastásicos en forma de torta omental (omental cake) de [diámetro] cm / libre de implantes macroscópicos]. se procesa según protocolo CAP / Lester / SEE-FIM en casetes [OV1-OVn masa ovárica y cápsula, TF1-TFn fimbria y trompa completa, OM1-OMn epiplón mayor, N1-Nn ganglios].
+        "macro": `se recibe espécimen de estadificación ovárica que incluye: histerectomía total con doble anexectomía, omentectomía y biopsias peritoneales. la masa ovárica principal [derecha / izquierda] pesa [peso] g y mide [dimensión mayor] x [intermedia] x [menor] cm. la superficie externa es [lisa e íntegra / rota con excrecencias papilares exofíticas]. al corte, la masa es sólido-quística con líquido [seroso / hemorrágico] y abundantes papilas friables blanco-amarillentas con áreas de necrosis de [dimensiones_tumor] cm. la trompa ipsilateral mide [dimensiones] cm. el epiplón mayor mide [dimensiones] cm con [múltiples nódulos metastásicos en forma de torta omental (omental cake) de [diámetro] cm / libre de implantes macroscópicos]. se procesa según protocolo CAP / Lester / SEE-FIM en casetes [OV1-OVn masa ovárica y cápsula, TF1-TFn fimbria y trompa completa, OM1-OMn epiplón mayor, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Ovary, Fallopian Tube, and Primary Peritoneum. FIGO 2018/2023 & AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como carcinoma seroso de alto grado (HGSC) de ovario / trompa de Falopio [o carcinoma endometrioide / de células claras / mucinoso / seroso de bajo grado]. las células exhiben atipia nuclear extrema, pleomorfismo, macronucléolos prominentes, abundantes figuras mitóticas atípicas (> 12 mitosis por 10 CGA) y necrosis tumoral.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Ovary, Fallopian Tube, and Primary Peritoneum. FIGO 2018/2023 & AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman una neoplasia epitelial maligna invasora clasificada según la OMS 5.ª edición como carcinoma seroso de alto grado (HGSC) de ovario / trompa de Falopio [o carcinoma endometrioide / de células claras / mucinoso / seroso de bajo grado]. las células exhiben atipia nuclear extrema, pleomorfismo, macronucléolos prominentes, abundantes figuras mitóticas atípicas (> 12 mitosis por 10 CGA) y necrosis tumoral.
 
 criterios de origen y compromiso anatómico:
 - origen primario propuesto: [fimbria tubárica (STIC - carcinoma intraepitelial tubárico seroso presente) / corteza ovárica / indeterminado].
@@ -7009,8 +7013,8 @@ criterios de origen y compromiso anatómico:
 - ganglios linfáticos pélvicos y paraaórticos: [n] examinados, [n_positivos] con metástasis. extensión extranodal: [ausente / presente].
 - perfil de inmunohistoquímica: WT1 (positivo nuclear intenso difuso), p53 (patrón mutado aberrante: sobreexpresión difusa >90% o silenciamiento nulo completo 0%), p16 (bloque positivo), Ki-67 [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / Kurman, R. J., & Shih, I. M. (Pathogenesis of ovarian cancer).</small>",
-        "diag": "OVARIO, TROMPAS DE FALOPIO, ÚTERO Y EPIPLÓN, CIRUGÍA DE ESTADIFICACIÓN OVÁRICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2020). Female Genital Tumours (5th ed.). IARC; Lyon. / Kurman, R. J., & Shih, I. M. (Pathogenesis of ovarian cancer).</small>`,
+        "diag": `OVARIO, TROMPAS DE FALOPIO, ÚTERO Y EPIPLÓN, CIRUGÍA DE ESTADIFICACIÓN OVÁRICA:
 - CARCINOMA SEROSO DE ALTO GRADO (HGSC) DE OVARIO / TROMPA DE FALOPIO (OMS 2020).
 - SITIO PRIMARIO: [PROBABLE FIMBRIA TUBÁRICA (STIC PRESENTE) / OVARIO].
 - CÁPSULA OVÁRICA: [ÍNTEGRA / ROTA CON EXTENSIÓN TUMORAL A LA SUPERFICIE EXTERNA].
@@ -7047,16 +7051,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Estadio FIGO: [IA / IB / IC1 / IC2 / IC3 / IIA / IIB / IIIA1 / IIIA2 / IIIB / IIIC / IVB]
   * Categoría pT: [pT1a / pT1b / pT1c1 / pT1c2 / pT1c3 / pT2a / pT2b / pT3a / pT3b / pT3c]
   * Categoría pN: [pN0 / pN1a / pN1b]
-========================================================"
+========================================================`
     },
     {
         "id": 312,
         "categoryId": 1,
         "titulo": "CAP - TIROIDES: CARCINOMA PAPILAR / FOLICULAR (TIROIDECTOMÍA)",
-        "macro": "se recibe espécimen de tiroidectomía [total / hemitiroidectomía derecha / izquierda] fijado en formol, que pesa [peso] g. el lóbulo derecho mide [dimensiones] cm, el lóbulo izquierdo mide [dimensiones] cm y el istmo mide [dimensiones] cm. la superficie externa es lisa, recubierta por cápsula tiroidea delgada entintada en negro. a los cortes seriados cada 2 a 3 mm, en el lóbulo [derecho / izquierdo / istmo], se identifica un nódulo tumoral [blanco-grisáceo, firme, no encapsulado con bordes infiltrantes / bien delimitado, encapsulado, pardo-rosado / con degeneración quística y calcificaciones arenosas] que mide [dimensión mayor] x [intermedia] x [menor] cm. la lesión dista a [distancia] mm de la cápsula tiroidea posterior/quirúrgica. en el tejido peritiroideo y compartimento central se aíslan [n] ganglios linfáticos. se procesa según protocolo CAP / Lester en casetes [T1-Tn nódulo tumoral y relación con cápsula, LD lóbulo derecho, LI lóbulo izquierdo, IST istmo, N1-Nn ganglios].
+        "macro": `se recibe espécimen de tiroidectomía [total / hemitiroidectomía derecha / izquierda] fijado en formol, que pesa [peso] g. el lóbulo derecho mide [dimensiones] cm, el lóbulo izquierdo mide [dimensiones] cm y el istmo mide [dimensiones] cm. la superficie externa es lisa, recubierta por cápsula tiroidea delgada entintada en negro. a los cortes seriados cada 2 a 3 mm, en el lóbulo [derecho / izquierdo / istmo], se identifica un nódulo tumoral [blanco-grisáceo, firme, no encapsulado con bordes infiltrantes / bien delimitado, encapsulado, pardo-rosado / con degeneración quística y calcificaciones arenosas] que mide [dimensión mayor] x [intermedia] x [menor] cm. la lesión dista a [distancia] mm de la cápsula tiroidea posterior/quirúrgica. en el tejido peritiroideo y compartimento central se aíslan [n] ganglios linfáticos. se procesa según protocolo CAP / Lester en casetes [T1-Tn nódulo tumoral y relación con cápsula, LD lóbulo derecho, LI lóbulo izquierdo, IST istmo, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Thyroid Gland. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman un carcinoma de tiroides de estirpe folicular clasificado según la OMS 5.ª edición como [carcinoma papilar de tiroides (variante clásica / variante folicular infiltrante / variante de células altas / variante esclerosante difusa / sólido-trabecular) / carcinoma folicular mínimamente invasor / carcinoma de células de Hürthle (oncocítico) / carcinoma medular de tiroides].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Thyroid Gland. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman un carcinoma de tiroides de estirpe folicular clasificado según la OMS 5.ª edición como [carcinoma papilar de tiroides (variante clásica / variante folicular infiltrante / variante de células altas / variante esclerosante difusa / sólido-trabecular) / carcinoma folicular mínimamente invasor / carcinoma de células de Hürthle (oncocítico) / carcinoma medular de tiroides].
 
 rasgos nucleares patognomónicos del carcinoma papilar:
 - núcleos agrandados y superpuestos con aclaramiento de la cromatina ('ojos de Anita la huerfanita' / Orphan Annie eyes).
@@ -7070,8 +7074,8 @@ extensión tumoral e invasión vascular:
 - márgenes de resección: [margen quirúrgico libre (distancia mínima: [x] mm) / comprometido por tumor].
 - ganglios linfáticos del compartimento central (nivel VI) / lateral: [n] examinados, [n_positivos] con metástasis. tamaño del mayor foco: [x] mm. extensión extranodal (ene): [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Endocrine and Neuroendocrine Tumours (5th ed.). IARC; Lyon. / ATA Guidelines 2024.</small>",
-        "diag": "TIROIDES, TIROIDECTOMÍA [TOTAL / PARCIAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Endocrine and Neuroendocrine Tumours (5th ed.). IARC; Lyon. / ATA Guidelines 2024.</small>`,
+        "diag": `TIROIDES, TIROIDECTOMÍA [TOTAL / PARCIAL]:
 - CARCINOMA PAPILAR DE TIROIDES, VARIANTE [CLÁSICA / FOLICULAR INFILTRANTE / CÉLULAS ALTAS / ENCAPSULADA].
 - TAMAÑO TUMORAL MÁXIMO: [__] cm (MULTIFOCALIDAD: [UNIFOCAL / MULTIFOCAL EN [n] FOCOS]).
 - EXTENSIÓN EXTRATIROIDEA: [NO IDENTIFICADA / EXTENSIÓN MICROSCÓPICA AL TEJIDO ADIPOSO PERITIROIDEO / MACROSCÓPICA].
@@ -7108,16 +7112,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a (<=1cm) / pT1b (>1 a <=2cm) / pT2 (>2 a <=4cm) / pT3a (>4cm confinado) / pT3b (invasión músculos pretiroideos) / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1a (compartimento central) / pN1b (lateral/mediastínico)]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 1312,
         "categoryId": 11,
         "titulo": "CAP - TIROIDES: CARCINOMA PAPILAR / FOLICULAR (TIROIDECTOMÍA)",
-        "macro": "se recibe espécimen de tiroidectomía [total / hemitiroidectomía derecha / izquierda] fijado en formol, que pesa [peso] g. el lóbulo derecho mide [dimensiones] cm, el lóbulo izquierdo mide [dimensiones] cm y el istmo mide [dimensiones] cm. la superficie externa es lisa, recubierta por cápsula tiroidea delgada entintada en negro. a los cortes seriados cada 2 a 3 mm, en el lóbulo [derecho / izquierdo / istmo], se identifica un nódulo tumoral [blanco-grisáceo, firme, no encapsulado con bordes infiltrantes / bien delimitado, encapsulado, pardo-rosado / con degeneración quística y calcificaciones arenosas] que mide [dimensión mayor] x [intermedia] x [menor] cm. la lesión dista a [distancia] mm de la cápsula tiroidea posterior/quirúrgica. en el tejido peritiroideo y compartimento central se aíslan [n] ganglios linfáticos. se procesa según protocolo CAP / Lester en casetes [T1-Tn nódulo tumoral y relación con cápsula, LD lóbulo derecho, LI lóbulo izquierdo, IST istmo, N1-Nn ganglios].
+        "macro": `se recibe espécimen de tiroidectomía [total / hemitiroidectomía derecha / izquierda] fijado en formol, que pesa [peso] g. el lóbulo derecho mide [dimensiones] cm, el lóbulo izquierdo mide [dimensiones] cm y el istmo mide [dimensiones] cm. la superficie externa es lisa, recubierta por cápsula tiroidea delgada entintada en negro. a los cortes seriados cada 2 a 3 mm, en el lóbulo [derecho / izquierdo / istmo], se identifica un nódulo tumoral [blanco-grisáceo, firme, no encapsulado con bordes infiltrantes / bien delimitado, encapsulado, pardo-rosado / con degeneración quística y calcificaciones arenosas] que mide [dimensión mayor] x [intermedia] x [menor] cm. la lesión dista a [distancia] mm de la cápsula tiroidea posterior/quirúrgica. en el tejido peritiroideo y compartimento central se aíslan [n] ganglios linfáticos. se procesa según protocolo CAP / Lester en casetes [T1-Tn nódulo tumoral y relación con cápsula, LD lóbulo derecho, LI lóbulo izquierdo, IST istmo, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Thyroid Gland. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman un carcinoma de tiroides de estirpe folicular clasificado según la OMS 5.ª edición como [carcinoma papilar de tiroides (variante clásica / variante folicular infiltrante / variante de células altas / variante esclerosante difusa / sólido-trabecular) / carcinoma folicular mínimamente invasor / carcinoma de células de Hürthle (oncocítico) / carcinoma medular de tiroides].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Thyroid Gland. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman un carcinoma de tiroides de estirpe folicular clasificado según la OMS 5.ª edición como [carcinoma papilar de tiroides (variante clásica / variante folicular infiltrante / variante de células altas / variante esclerosante difusa / sólido-trabecular) / carcinoma folicular mínimamente invasor / carcinoma de células de Hürthle (oncocítico) / carcinoma medular de tiroides].
 
 rasgos nucleares patognomónicos del carcinoma papilar:
 - núcleos agrandados y superpuestos con aclaramiento de la cromatina ('ojos de Anita la huerfanita' / Orphan Annie eyes).
@@ -7131,8 +7135,8 @@ extensión tumoral e invasión vascular:
 - márgenes de resección: [margen quirúrgico libre (distancia mínima: [x] mm) / comprometido por tumor].
 - ganglios linfáticos del compartimento central (nivel VI) / lateral: [n] examinados, [n_positivos] con metástasis. tamaño del mayor foco: [x] mm. extensión extranodal (ene): [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Endocrine and Neuroendocrine Tumours (5th ed.). IARC; Lyon. / ATA Guidelines 2024.</small>",
-        "diag": "TIROIDES, TIROIDECTOMÍA [TOTAL / PARCIAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Endocrine and Neuroendocrine Tumours (5th ed.). IARC; Lyon. / ATA Guidelines 2024.</small>`,
+        "diag": `TIROIDES, TIROIDECTOMÍA [TOTAL / PARCIAL]:
 - CARCINOMA PAPILAR DE TIROIDES, VARIANTE [CLÁSICA / FOLICULAR INFILTRANTE / CÉLULAS ALTAS / ENCAPSULADA].
 - TAMAÑO TUMORAL MÁXIMO: [__] cm (MULTIFOCALIDAD: [UNIFOCAL / MULTIFOCAL EN [n] FOCOS]).
 - EXTENSIÓN EXTRATIROIDEA: [NO IDENTIFICADA / EXTENSIÓN MICROSCÓPICA AL TEJIDO ADIPOSO PERITIROIDEO / MACROSCÓPICA].
@@ -7169,16 +7173,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a (<=1cm) / pT1b (>1 a <=2cm) / pT2 (>2 a <=4cm) / pT3a (>4cm confinado) / pT3b (invasión músculos pretiroideos) / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1a (compartimento central) / pN1b (lateral/mediastínico)]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 2312,
         "categoryId": 10,
         "titulo": "CAP - TIROIDES: CARCINOMA PAPILAR / FOLICULAR (TIROIDECTOMÍA)",
-        "macro": "se recibe espécimen de tiroidectomía [total / hemitiroidectomía derecha / izquierda] fijado en formol, que pesa [peso] g. el lóbulo derecho mide [dimensiones] cm, el lóbulo izquierdo mide [dimensiones] cm y el istmo mide [dimensiones] cm. la superficie externa es lisa, recubierta por cápsula tiroidea delgada entintada en negro. a los cortes seriados cada 2 a 3 mm, en el lóbulo [derecho / izquierdo / istmo], se identifica un nódulo tumoral [blanco-grisáceo, firme, no encapsulado con bordes infiltrantes / bien delimitado, encapsulado, pardo-rosado / con degeneración quística y calcificaciones arenosas] que mide [dimensión mayor] x [intermedia] x [menor] cm. la lesión dista a [distancia] mm de la cápsula tiroidea posterior/quirúrgica. en el tejido peritiroideo y compartimento central se aíslan [n] ganglios linfáticos. se procesa según protocolo CAP / Lester en casetes [T1-Tn nódulo tumoral y relación con cápsula, LD lóbulo derecho, LI lóbulo izquierdo, IST istmo, N1-Nn ganglios].
+        "macro": `se recibe espécimen de tiroidectomía [total / hemitiroidectomía derecha / izquierda] fijado en formol, que pesa [peso] g. el lóbulo derecho mide [dimensiones] cm, el lóbulo izquierdo mide [dimensiones] cm y el istmo mide [dimensiones] cm. la superficie externa es lisa, recubierta por cápsula tiroidea delgada entintada en negro. a los cortes seriados cada 2 a 3 mm, en el lóbulo [derecho / izquierdo / istmo], se identifica un nódulo tumoral [blanco-grisáceo, firme, no encapsulado con bordes infiltrantes / bien delimitado, encapsulado, pardo-rosado / con degeneración quística y calcificaciones arenosas] que mide [dimensión mayor] x [intermedia] x [menor] cm. la lesión dista a [distancia] mm de la cápsula tiroidea posterior/quirúrgica. en el tejido peritiroideo y compartimento central se aíslan [n] ganglios linfáticos. se procesa según protocolo CAP / Lester en casetes [T1-Tn nódulo tumoral y relación con cápsula, LD lóbulo derecho, LI lóbulo izquierdo, IST istmo, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Thyroid Gland. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman un carcinoma de tiroides de estirpe folicular clasificado según la OMS 5.ª edición como [carcinoma papilar de tiroides (variante clásica / variante folicular infiltrante / variante de células altas / variante esclerosante difusa / sólido-trabecular) / carcinoma folicular mínimamente invasor / carcinoma de células de Hürthle (oncocítico) / carcinoma medular de tiroides].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Thyroid Gland. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman un carcinoma de tiroides de estirpe folicular clasificado según la OMS 5.ª edición como [carcinoma papilar de tiroides (variante clásica / variante folicular infiltrante / variante de células altas / variante esclerosante difusa / sólido-trabecular) / carcinoma folicular mínimamente invasor / carcinoma de células de Hürthle (oncocítico) / carcinoma medular de tiroides].
 
 rasgos nucleares patognomónicos del carcinoma papilar:
 - núcleos agrandados y superpuestos con aclaramiento de la cromatina ('ojos de Anita la huerfanita' / Orphan Annie eyes).
@@ -7192,8 +7196,8 @@ extensión tumoral e invasión vascular:
 - márgenes de resección: [margen quirúrgico libre (distancia mínima: [x] mm) / comprometido por tumor].
 - ganglios linfáticos del compartimento central (nivel VI) / lateral: [n] examinados, [n_positivos] con metástasis. tamaño del mayor foco: [x] mm. extensión extranodal (ene): [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Endocrine and Neuroendocrine Tumours (5th ed.). IARC; Lyon. / ATA Guidelines 2024.</small>",
-        "diag": "TIROIDES, TIROIDECTOMÍA [TOTAL / PARCIAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Endocrine and Neuroendocrine Tumours (5th ed.). IARC; Lyon. / ATA Guidelines 2024.</small>`,
+        "diag": `TIROIDES, TIROIDECTOMÍA [TOTAL / PARCIAL]:
 - CARCINOMA PAPILAR DE TIROIDES, VARIANTE [CLÁSICA / FOLICULAR INFILTRANTE / CÉLULAS ALTAS / ENCAPSULADA].
 - TAMAÑO TUMORAL MÁXIMO: [__] cm (MULTIFOCALIDAD: [UNIFOCAL / MULTIFOCAL EN [n] FOCOS]).
 - EXTENSIÓN EXTRATIROIDEA: [NO IDENTIFICADA / EXTENSIÓN MICROSCÓPICA AL TEJIDO ADIPOSO PERITIROIDEO / MACROSCÓPICA].
@@ -7230,16 +7234,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a (<=1cm) / pT1b (>1 a <=2cm) / pT2 (>2 a <=4cm) / pT3a (>4cm confinado) / pT3b (invasión músculos pretiroideos) / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1a (compartimento central) / pN1b (lateral/mediastínico)]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 5312,
         "categoryId": 100,
         "titulo": "CAP - TIROIDES: CARCINOMA PAPILAR / FOLICULAR (TIROIDECTOMÍA)",
-        "macro": "se recibe espécimen de tiroidectomía [total / hemitiroidectomía derecha / izquierda] fijado en formol, que pesa [peso] g. el lóbulo derecho mide [dimensiones] cm, el lóbulo izquierdo mide [dimensiones] cm y el istmo mide [dimensiones] cm. la superficie externa es lisa, recubierta por cápsula tiroidea delgada entintada en negro. a los cortes seriados cada 2 a 3 mm, en el lóbulo [derecho / izquierdo / istmo], se identifica un nódulo tumoral [blanco-grisáceo, firme, no encapsulado con bordes infiltrantes / bien delimitado, encapsulado, pardo-rosado / con degeneración quística y calcificaciones arenosas] que mide [dimensión mayor] x [intermedia] x [menor] cm. la lesión dista a [distancia] mm de la cápsula tiroidea posterior/quirúrgica. en el tejido peritiroideo y compartimento central se aíslan [n] ganglios linfáticos. se procesa según protocolo CAP / Lester en casetes [T1-Tn nódulo tumoral y relación con cápsula, LD lóbulo derecho, LI lóbulo izquierdo, IST istmo, N1-Nn ganglios].
+        "macro": `se recibe espécimen de tiroidectomía [total / hemitiroidectomía derecha / izquierda] fijado en formol, que pesa [peso] g. el lóbulo derecho mide [dimensiones] cm, el lóbulo izquierdo mide [dimensiones] cm y el istmo mide [dimensiones] cm. la superficie externa es lisa, recubierta por cápsula tiroidea delgada entintada en negro. a los cortes seriados cada 2 a 3 mm, en el lóbulo [derecho / izquierdo / istmo], se identifica un nódulo tumoral [blanco-grisáceo, firme, no encapsulado con bordes infiltrantes / bien delimitado, encapsulado, pardo-rosado / con degeneración quística y calcificaciones arenosas] que mide [dimensión mayor] x [intermedia] x [menor] cm. la lesión dista a [distancia] mm de la cápsula tiroidea posterior/quirúrgica. en el tejido peritiroideo y compartimento central se aíslan [n] ganglios linfáticos. se procesa según protocolo CAP / Lester en casetes [T1-Tn nódulo tumoral y relación con cápsula, LD lóbulo derecho, LI lóbulo izquierdo, IST istmo, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Thyroid Gland. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman un carcinoma de tiroides de estirpe folicular clasificado según la OMS 5.ª edición como [carcinoma papilar de tiroides (variante clásica / variante folicular infiltrante / variante de células altas / variante esclerosante difusa / sólido-trabecular) / carcinoma folicular mínimamente invasor / carcinoma de células de Hürthle (oncocítico) / carcinoma medular de tiroides].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Thyroid Gland. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman un carcinoma de tiroides de estirpe folicular clasificado según la OMS 5.ª edición como [carcinoma papilar de tiroides (variante clásica / variante folicular infiltrante / variante de células altas / variante esclerosante difusa / sólido-trabecular) / carcinoma folicular mínimamente invasor / carcinoma de células de Hürthle (oncocítico) / carcinoma medular de tiroides].
 
 rasgos nucleares patognomónicos del carcinoma papilar:
 - núcleos agrandados y superpuestos con aclaramiento de la cromatina ('ojos de Anita la huerfanita' / Orphan Annie eyes).
@@ -7253,8 +7257,8 @@ extensión tumoral e invasión vascular:
 - márgenes de resección: [margen quirúrgico libre (distancia mínima: [x] mm) / comprometido por tumor].
 - ganglios linfáticos del compartimento central (nivel VI) / lateral: [n] examinados, [n_positivos] con metástasis. tamaño del mayor foco: [x] mm. extensión extranodal (ene): [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Endocrine and Neuroendocrine Tumours (5th ed.). IARC; Lyon. / ATA Guidelines 2024.</small>",
-        "diag": "TIROIDES, TIROIDECTOMÍA [TOTAL / PARCIAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Endocrine and Neuroendocrine Tumours (5th ed.). IARC; Lyon. / ATA Guidelines 2024.</small>`,
+        "diag": `TIROIDES, TIROIDECTOMÍA [TOTAL / PARCIAL]:
 - CARCINOMA PAPILAR DE TIROIDES, VARIANTE [CLÁSICA / FOLICULAR INFILTRANTE / CÉLULAS ALTAS / ENCAPSULADA].
 - TAMAÑO TUMORAL MÁXIMO: [__] cm (MULTIFOCALIDAD: [UNIFOCAL / MULTIFOCAL EN [n] FOCOS]).
 - EXTENSIÓN EXTRATIROIDEA: [NO IDENTIFICADA / EXTENSIÓN MICROSCÓPICA AL TEJIDO ADIPOSO PERITIROIDEO / MACROSCÓPICA].
@@ -7291,16 +7295,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a (<=1cm) / pT1b (>1 a <=2cm) / pT2 (>2 a <=4cm) / pT3a (>4cm confinado) / pT3b (invasión músculos pretiroideos) / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1a (compartimento central) / pN1b (lateral/mediastínico)]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 6312,
         "categoryId": 101,
         "titulo": "CAP - TIROIDES: CARCINOMA PAPILAR / FOLICULAR (TIROIDECTOMÍA)",
-        "macro": "se recibe espécimen de tiroidectomía [total / hemitiroidectomía derecha / izquierda] fijado en formol, que pesa [peso] g. el lóbulo derecho mide [dimensiones] cm, el lóbulo izquierdo mide [dimensiones] cm y el istmo mide [dimensiones] cm. la superficie externa es lisa, recubierta por cápsula tiroidea delgada entintada en negro. a los cortes seriados cada 2 a 3 mm, en el lóbulo [derecho / izquierdo / istmo], se identifica un nódulo tumoral [blanco-grisáceo, firme, no encapsulado con bordes infiltrantes / bien delimitado, encapsulado, pardo-rosado / con degeneración quística y calcificaciones arenosas] que mide [dimensión mayor] x [intermedia] x [menor] cm. la lesión dista a [distancia] mm de la cápsula tiroidea posterior/quirúrgica. en el tejido peritiroideo y compartimento central se aíslan [n] ganglios linfáticos. se procesa según protocolo CAP / Lester en casetes [T1-Tn nódulo tumoral y relación con cápsula, LD lóbulo derecho, LI lóbulo izquierdo, IST istmo, N1-Nn ganglios].
+        "macro": `se recibe espécimen de tiroidectomía [total / hemitiroidectomía derecha / izquierda] fijado en formol, que pesa [peso] g. el lóbulo derecho mide [dimensiones] cm, el lóbulo izquierdo mide [dimensiones] cm y el istmo mide [dimensiones] cm. la superficie externa es lisa, recubierta por cápsula tiroidea delgada entintada en negro. a los cortes seriados cada 2 a 3 mm, en el lóbulo [derecho / izquierdo / istmo], se identifica un nódulo tumoral [blanco-grisáceo, firme, no encapsulado con bordes infiltrantes / bien delimitado, encapsulado, pardo-rosado / con degeneración quística y calcificaciones arenosas] que mide [dimensión mayor] x [intermedia] x [menor] cm. la lesión dista a [distancia] mm de la cápsula tiroidea posterior/quirúrgica. en el tejido peritiroideo y compartimento central se aíslan [n] ganglios linfáticos. se procesa según protocolo CAP / Lester en casetes [T1-Tn nódulo tumoral y relación con cápsula, LD lóbulo derecho, LI lóbulo izquierdo, IST istmo, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Thyroid Gland. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman un carcinoma de tiroides de estirpe folicular clasificado según la OMS 5.ª edición como [carcinoma papilar de tiroides (variante clásica / variante folicular infiltrante / variante de células altas / variante esclerosante difusa / sólido-trabecular) / carcinoma folicular mínimamente invasor / carcinoma de células de Hürthle (oncocítico) / carcinoma medular de tiroides].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Thyroid Gland. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman un carcinoma de tiroides de estirpe folicular clasificado según la OMS 5.ª edición como [carcinoma papilar de tiroides (variante clásica / variante folicular infiltrante / variante de células altas / variante esclerosante difusa / sólido-trabecular) / carcinoma folicular mínimamente invasor / carcinoma de células de Hürthle (oncocítico) / carcinoma medular de tiroides].
 
 rasgos nucleares patognomónicos del carcinoma papilar:
 - núcleos agrandados y superpuestos con aclaramiento de la cromatina ('ojos de Anita la huerfanita' / Orphan Annie eyes).
@@ -7314,8 +7318,8 @@ extensión tumoral e invasión vascular:
 - márgenes de resección: [margen quirúrgico libre (distancia mínima: [x] mm) / comprometido por tumor].
 - ganglios linfáticos del compartimento central (nivel VI) / lateral: [n] examinados, [n_positivos] con metástasis. tamaño del mayor foco: [x] mm. extensión extranodal (ene): [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Endocrine and Neuroendocrine Tumours (5th ed.). IARC; Lyon. / ATA Guidelines 2024.</small>",
-        "diag": "TIROIDES, TIROIDECTOMÍA [TOTAL / PARCIAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Endocrine and Neuroendocrine Tumours (5th ed.). IARC; Lyon. / ATA Guidelines 2024.</small>`,
+        "diag": `TIROIDES, TIROIDECTOMÍA [TOTAL / PARCIAL]:
 - CARCINOMA PAPILAR DE TIROIDES, VARIANTE [CLÁSICA / FOLICULAR INFILTRANTE / CÉLULAS ALTAS / ENCAPSULADA].
 - TAMAÑO TUMORAL MÁXIMO: [__] cm (MULTIFOCALIDAD: [UNIFOCAL / MULTIFOCAL EN [n] FOCOS]).
 - EXTENSIÓN EXTRATIROIDEA: [NO IDENTIFICADA / EXTENSIÓN MICROSCÓPICA AL TEJIDO ADIPOSO PERITIROIDEO / MACROSCÓPICA].
@@ -7352,16 +7356,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a (<=1cm) / pT1b (>1 a <=2cm) / pT2 (>2 a <=4cm) / pT3a (>4cm confinado) / pT3b (invasión músculos pretiroideos) / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1a (compartimento central) / pN1b (lateral/mediastínico)]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 3312,
         "categoryId": 32,
         "titulo": "CAP - TIROIDES: CARCINOMA PAPILAR / FOLICULAR (TIROIDECTOMÍA)",
-        "macro": "se recibe espécimen de tiroidectomía [total / hemitiroidectomía derecha / izquierda] fijado en formol, que pesa [peso] g. el lóbulo derecho mide [dimensiones] cm, el lóbulo izquierdo mide [dimensiones] cm y el istmo mide [dimensiones] cm. la superficie externa es lisa, recubierta por cápsula tiroidea delgada entintada en negro. a los cortes seriados cada 2 a 3 mm, en el lóbulo [derecho / izquierdo / istmo], se identifica un nódulo tumoral [blanco-grisáceo, firme, no encapsulado con bordes infiltrantes / bien delimitado, encapsulado, pardo-rosado / con degeneración quística y calcificaciones arenosas] que mide [dimensión mayor] x [intermedia] x [menor] cm. la lesión dista a [distancia] mm de la cápsula tiroidea posterior/quirúrgica. en el tejido peritiroideo y compartimento central se aíslan [n] ganglios linfáticos. se procesa según protocolo CAP / Lester en casetes [T1-Tn nódulo tumoral y relación con cápsula, LD lóbulo derecho, LI lóbulo izquierdo, IST istmo, N1-Nn ganglios].
+        "macro": `se recibe espécimen de tiroidectomía [total / hemitiroidectomía derecha / izquierda] fijado en formol, que pesa [peso] g. el lóbulo derecho mide [dimensiones] cm, el lóbulo izquierdo mide [dimensiones] cm y el istmo mide [dimensiones] cm. la superficie externa es lisa, recubierta por cápsula tiroidea delgada entintada en negro. a los cortes seriados cada 2 a 3 mm, en el lóbulo [derecho / izquierdo / istmo], se identifica un nódulo tumoral [blanco-grisáceo, firme, no encapsulado con bordes infiltrantes / bien delimitado, encapsulado, pardo-rosado / con degeneración quística y calcificaciones arenosas] que mide [dimensión mayor] x [intermedia] x [menor] cm. la lesión dista a [distancia] mm de la cápsula tiroidea posterior/quirúrgica. en el tejido peritiroideo y compartimento central se aíslan [n] ganglios linfáticos. se procesa según protocolo CAP / Lester en casetes [T1-Tn nódulo tumoral y relación con cápsula, LD lóbulo derecho, LI lóbulo izquierdo, IST istmo, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Thyroid Gland. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman un carcinoma de tiroides de estirpe folicular clasificado según la OMS 5.ª edición como [carcinoma papilar de tiroides (variante clásica / variante folicular infiltrante / variante de células altas / variante esclerosante difusa / sólido-trabecular) / carcinoma folicular mínimamente invasor / carcinoma de células de Hürthle (oncocítico) / carcinoma medular de tiroides].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Thyroid Gland. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman un carcinoma de tiroides de estirpe folicular clasificado según la OMS 5.ª edición como [carcinoma papilar de tiroides (variante clásica / variante folicular infiltrante / variante de células altas / variante esclerosante difusa / sólido-trabecular) / carcinoma folicular mínimamente invasor / carcinoma de células de Hürthle (oncocítico) / carcinoma medular de tiroides].
 
 rasgos nucleares patognomónicos del carcinoma papilar:
 - núcleos agrandados y superpuestos con aclaramiento de la cromatina ('ojos de Anita la huerfanita' / Orphan Annie eyes).
@@ -7375,8 +7379,8 @@ extensión tumoral e invasión vascular:
 - márgenes de resección: [margen quirúrgico libre (distancia mínima: [x] mm) / comprometido por tumor].
 - ganglios linfáticos del compartimento central (nivel VI) / lateral: [n] examinados, [n_positivos] con metástasis. tamaño del mayor foco: [x] mm. extensión extranodal (ene): [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Endocrine and Neuroendocrine Tumours (5th ed.). IARC; Lyon. / ATA Guidelines 2024.</small>",
-        "diag": "TIROIDES, TIROIDECTOMÍA [TOTAL / PARCIAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Endocrine and Neuroendocrine Tumours (5th ed.). IARC; Lyon. / ATA Guidelines 2024.</small>`,
+        "diag": `TIROIDES, TIROIDECTOMÍA [TOTAL / PARCIAL]:
 - CARCINOMA PAPILAR DE TIROIDES, VARIANTE [CLÁSICA / FOLICULAR INFILTRANTE / CÉLULAS ALTAS / ENCAPSULADA].
 - TAMAÑO TUMORAL MÁXIMO: [__] cm (MULTIFOCALIDAD: [UNIFOCAL / MULTIFOCAL EN [n] FOCOS]).
 - EXTENSIÓN EXTRATIROIDEA: [NO IDENTIFICADA / EXTENSIÓN MICROSCÓPICA AL TEJIDO ADIPOSO PERITIROIDEO / MACROSCÓPICA].
@@ -7413,16 +7417,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a (<=1cm) / pT1b (>1 a <=2cm) / pT2 (>2 a <=4cm) / pT3a (>4cm confinado) / pT3b (invasión músculos pretiroideos) / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1a (compartimento central) / pN1b (lateral/mediastínico)]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 4312,
         "categoryId": 14,
         "titulo": "CAP - TIROIDES: CARCINOMA PAPILAR / FOLICULAR (TIROIDECTOMÍA)",
-        "macro": "se recibe espécimen de tiroidectomía [total / hemitiroidectomía derecha / izquierda] fijado en formol, que pesa [peso] g. el lóbulo derecho mide [dimensiones] cm, el lóbulo izquierdo mide [dimensiones] cm y el istmo mide [dimensiones] cm. la superficie externa es lisa, recubierta por cápsula tiroidea delgada entintada en negro. a los cortes seriados cada 2 a 3 mm, en el lóbulo [derecho / izquierdo / istmo], se identifica un nódulo tumoral [blanco-grisáceo, firme, no encapsulado con bordes infiltrantes / bien delimitado, encapsulado, pardo-rosado / con degeneración quística y calcificaciones arenosas] que mide [dimensión mayor] x [intermedia] x [menor] cm. la lesión dista a [distancia] mm de la cápsula tiroidea posterior/quirúrgica. en el tejido peritiroideo y compartimento central se aíslan [n] ganglios linfáticos. se procesa según protocolo CAP / Lester en casetes [T1-Tn nódulo tumoral y relación con cápsula, LD lóbulo derecho, LI lóbulo izquierdo, IST istmo, N1-Nn ganglios].
+        "macro": `se recibe espécimen de tiroidectomía [total / hemitiroidectomía derecha / izquierda] fijado en formol, que pesa [peso] g. el lóbulo derecho mide [dimensiones] cm, el lóbulo izquierdo mide [dimensiones] cm y el istmo mide [dimensiones] cm. la superficie externa es lisa, recubierta por cápsula tiroidea delgada entintada en negro. a los cortes seriados cada 2 a 3 mm, en el lóbulo [derecho / izquierdo / istmo], se identifica un nódulo tumoral [blanco-grisáceo, firme, no encapsulado con bordes infiltrantes / bien delimitado, encapsulado, pardo-rosado / con degeneración quística y calcificaciones arenosas] que mide [dimensión mayor] x [intermedia] x [menor] cm. la lesión dista a [distancia] mm de la cápsula tiroidea posterior/quirúrgica. en el tejido peritiroideo y compartimento central se aíslan [n] ganglios linfáticos. se procesa según protocolo CAP / Lester en casetes [T1-Tn nódulo tumoral y relación con cápsula, LD lóbulo derecho, LI lóbulo izquierdo, IST istmo, N1-Nn ganglios].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Thyroid Gland. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman un carcinoma de tiroides de estirpe folicular clasificado según la OMS 5.ª edición como [carcinoma papilar de tiroides (variante clásica / variante folicular infiltrante / variante de células altas / variante esclerosante difusa / sólido-trabecular) / carcinoma folicular mínimamente invasor / carcinoma de células de Hürthle (oncocítico) / carcinoma medular de tiroides].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Thyroid Gland. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman un carcinoma de tiroides de estirpe folicular clasificado según la OMS 5.ª edición como [carcinoma papilar de tiroides (variante clásica / variante folicular infiltrante / variante de células altas / variante esclerosante difusa / sólido-trabecular) / carcinoma folicular mínimamente invasor / carcinoma de células de Hürthle (oncocítico) / carcinoma medular de tiroides].
 
 rasgos nucleares patognomónicos del carcinoma papilar:
 - núcleos agrandados y superpuestos con aclaramiento de la cromatina ('ojos de Anita la huerfanita' / Orphan Annie eyes).
@@ -7436,8 +7440,8 @@ extensión tumoral e invasión vascular:
 - márgenes de resección: [margen quirúrgico libre (distancia mínima: [x] mm) / comprometido por tumor].
 - ganglios linfáticos del compartimento central (nivel VI) / lateral: [n] examinados, [n_positivos] con metástasis. tamaño del mayor foco: [x] mm. extensión extranodal (ene): [ausente / presente].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Endocrine and Neuroendocrine Tumours (5th ed.). IARC; Lyon. / ATA Guidelines 2024.</small>",
-        "diag": "TIROIDES, TIROIDECTOMÍA [TOTAL / PARCIAL]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Endocrine and Neuroendocrine Tumours (5th ed.). IARC; Lyon. / ATA Guidelines 2024.</small>`,
+        "diag": `TIROIDES, TIROIDECTOMÍA [TOTAL / PARCIAL]:
 - CARCINOMA PAPILAR DE TIROIDES, VARIANTE [CLÁSICA / FOLICULAR INFILTRANTE / CÉLULAS ALTAS / ENCAPSULADA].
 - TAMAÑO TUMORAL MÁXIMO: [__] cm (MULTIFOCALIDAD: [UNIFOCAL / MULTIFOCAL EN [n] FOCOS]).
 - EXTENSIÓN EXTRATIROIDEA: [NO IDENTIFICADA / EXTENSIÓN MICROSCÓPICA AL TEJIDO ADIPOSO PERITIROIDEO / MACROSCÓPICA].
@@ -7474,16 +7478,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a (<=1cm) / pT1b (>1 a <=2cm) / pT2 (>2 a <=4cm) / pT3a (>4cm confinado) / pT3b (invasión músculos pretiroideos) / pT4a / pT4b]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1a (compartimento central) / pN1b (lateral/mediastínico)]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 313,
         "categoryId": 1,
         "titulo": "CAP - PULMÓN: CARCINOMA NO CÉLULAS PEQUEÑAS (LOBECTOMÍA / RESECCIÓN)",
-        "macro": "se recibe espécimen quirúrgico de [lobectomía pulmonar superior/inferior / neumonectomía / resección en cuña o segmentectomía] [derecha / izquierda] fijado en formol. el lóbulo pulmonar mide [dimensiones] cm. la pleura visceral está entintada en negro. a los cortes seriados del parénquima pulmonar a través de la vía aérea, en el segmento [especificar segmento], a [distancia] cm del margen bronquial y a [distancia] cm del margen vascular, se identifica una masa tumoral [espiculada, antracótica, firme, blanco-grisácea / nodular con cavitación central] que mide [dimensión mayor] x [intermedia] x [menor] cm. la masa dista a [distancia] mm de la pleura visceral [y produce retracción pleural macroscópica]. el parénquima no tumoral muestra [enfisema / antracosis]. se aíslan [n] ganglios linfáticos peribronquiales, hiliares (estación 10) y mediastínicos (estaciones remitidas por separado). se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y relación pleural, MB margen bronquial, MV margen vascular, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen quirúrgico de [lobectomía pulmonar superior/inferior / neumonectomía / resección en cuña o segmentectomía] [derecha / izquierda] fijado en formol. el lóbulo pulmonar mide [dimensiones] cm. la pleura visceral está entintada en negro. a los cortes seriados del parénquima pulmonar a través de la vía aérea, en el segmento [especificar segmento], a [distancia] cm del margen bronquial y a [distancia] cm del margen vascular, se identifica una masa tumoral [espiculada, antracótica, firme, blanco-grisácea / nodular con cavitación central] que mide [dimensión mayor] x [intermedia] x [menor] cm. la masa dista a [distancia] mm de la pleura visceral [y produce retracción pleural macroscópica]. el parénquima no tumoral muestra [enfisema / antracosis]. se aíslan [n] ganglios linfáticos peribronquiales, hiliares (estación 10) y mediastínicos (estaciones remitidas por separado). se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y relación pleural, MB margen bronquial, MV margen vascular, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Lung. AJCC 8th/9th Ed.</small>",
-        "micro": "los cortes histológicos confirman carcinoma pulmonar no células pequeñas clasificado según la OMS 5.ª edición y la IASLC como [adenocarcinoma invasor de pulmón / carcinoma epidermoide (escamoso) queratinizante o no queratinizante / carcinoma de células grandes / carcinoma sarcomatoide / carcinoma neuroendocrino de células grandes].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Lung. AJCC 8th/9th Ed.</small>`,
+        "micro": `los cortes histológicos confirman carcinoma pulmonar no células pequeñas clasificado según la OMS 5.ª edición y la IASLC como [adenocarcinoma invasor de pulmón / carcinoma epidermoide (escamoso) queratinizante o no queratinizante / carcinoma de células grandes / carcinoma sarcomatoide / carcinoma neuroendocrino de células grandes].
 
 patrones histológicos en adenocarcinoma pulmonar (cuantificación en incrementos de 5% según iaslc/oms):
 - patrón acinar: [[x]%]
@@ -7502,8 +7506,8 @@ invasión pleural y estructuras anatómicas:
 - ganglios linfáticos intrapulmonares, hiliares y mediastínicos: [n] examinados, [n_positivos] con metástasis. extensión extranodal (ene): [ausente / presente].
 - perfil de biomarcadores (ihq / biología molecular): TTF-1 [positivo nuclear intenso / negativo], p40 [negativo / positivo difuso en carcinoma escamoso], PD-L1 (TPS = [porcentaje]%), EGFR / ALK / ROS1 / BRAF / KRAS [pendiente / determinado].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2021). Thoracic Tumours (5th ed.). IARC; Lyon. / IASLC Grading System for Lung Adenocarcinoma.</small>",
-        "diag": "PULMÓN ([LÓBULO PULMONAR ESPECIFICADO]), LOBECTOMÍA [DERECHA / IZQUIERDA]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2021). Thoracic Tumours (5th ed.). IARC; Lyon. / IASLC Grading System for Lung Adenocarcinoma.</small>`,
+        "diag": `PULMÓN ([LÓBULO PULMONAR ESPECIFICADO]), LOBECTOMÍA [DERECHA / IZQUIERDA]:
 - ADENOCARCINOMA PULMONAR INVASOR, PATRÓN PREDOMINANTE [ACINAR / PAPILAR / SÓLIDO / MICROPAPILAR] (GRADO HISTOLÓGICO IASLC/OMS [1 / 2 / 3]).
 - PROPAGACIÓN A TRAVÉS DE ESPACIOS AÉREOS (STAS): [NO IDENTIFICADA / PRESENTE].
 - TAMAÑO DEL COMPONENTE TUMORAL INVASOR: [__] cm.
@@ -7547,16 +7551,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a (<=1cm) / pT1b (>1 a <=2cm) / pT1c (>2 a <=3cm) / pT2a (>3 a <=4cm) / pT2b (>4 a <=5cm) / pT3 (>5 a <=7cm) / pT4 (>7cm o invade mediastino/corazón)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 (ganglios ipsilaterales N1) / pN2 (mediastínicos ipsilaterales)]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 1313,
         "categoryId": 11,
         "titulo": "CAP - PULMÓN: CARCINOMA NO CÉLULAS PEQUEÑAS (LOBECTOMÍA / RESECCIÓN)",
-        "macro": "se recibe espécimen quirúrgico de [lobectomía pulmonar superior/inferior / neumonectomía / resección en cuña o segmentectomía] [derecha / izquierda] fijado en formol. el lóbulo pulmonar mide [dimensiones] cm. la pleura visceral está entintada en negro. a los cortes seriados del parénquima pulmonar a través de la vía aérea, en el segmento [especificar segmento], a [distancia] cm del margen bronquial y a [distancia] cm del margen vascular, se identifica una masa tumoral [espiculada, antracótica, firme, blanco-grisácea / nodular con cavitación central] que mide [dimensión mayor] x [intermedia] x [menor] cm. la masa dista a [distancia] mm de la pleura visceral [y produce retracción pleural macroscópica]. el parénquima no tumoral muestra [enfisema / antracosis]. se aíslan [n] ganglios linfáticos peribronquiales, hiliares (estación 10) y mediastínicos (estaciones remitidas por separado). se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y relación pleural, MB margen bronquial, MV margen vascular, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen quirúrgico de [lobectomía pulmonar superior/inferior / neumonectomía / resección en cuña o segmentectomía] [derecha / izquierda] fijado en formol. el lóbulo pulmonar mide [dimensiones] cm. la pleura visceral está entintada en negro. a los cortes seriados del parénquima pulmonar a través de la vía aérea, en el segmento [especificar segmento], a [distancia] cm del margen bronquial y a [distancia] cm del margen vascular, se identifica una masa tumoral [espiculada, antracótica, firme, blanco-grisácea / nodular con cavitación central] que mide [dimensión mayor] x [intermedia] x [menor] cm. la masa dista a [distancia] mm de la pleura visceral [y produce retracción pleural macroscópica]. el parénquima no tumoral muestra [enfisema / antracosis]. se aíslan [n] ganglios linfáticos peribronquiales, hiliares (estación 10) y mediastínicos (estaciones remitidas por separado). se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y relación pleural, MB margen bronquial, MV margen vascular, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Lung. AJCC 8th/9th Ed.</small>",
-        "micro": "los cortes histológicos confirman carcinoma pulmonar no células pequeñas clasificado según la OMS 5.ª edición y la IASLC como [adenocarcinoma invasor de pulmón / carcinoma epidermoide (escamoso) queratinizante o no queratinizante / carcinoma de células grandes / carcinoma sarcomatoide / carcinoma neuroendocrino de células grandes].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Lung. AJCC 8th/9th Ed.</small>`,
+        "micro": `los cortes histológicos confirman carcinoma pulmonar no células pequeñas clasificado según la OMS 5.ª edición y la IASLC como [adenocarcinoma invasor de pulmón / carcinoma epidermoide (escamoso) queratinizante o no queratinizante / carcinoma de células grandes / carcinoma sarcomatoide / carcinoma neuroendocrino de células grandes].
 
 patrones histológicos en adenocarcinoma pulmonar (cuantificación en incrementos de 5% según iaslc/oms):
 - patrón acinar: [[x]%]
@@ -7575,8 +7579,8 @@ invasión pleural y estructuras anatómicas:
 - ganglios linfáticos intrapulmonares, hiliares y mediastínicos: [n] examinados, [n_positivos] con metástasis. extensión extranodal (ene): [ausente / presente].
 - perfil de biomarcadores (ihq / biología molecular): TTF-1 [positivo nuclear intenso / negativo], p40 [negativo / positivo difuso en carcinoma escamoso], PD-L1 (TPS = [porcentaje]%), EGFR / ALK / ROS1 / BRAF / KRAS [pendiente / determinado].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2021). Thoracic Tumours (5th ed.). IARC; Lyon. / IASLC Grading System for Lung Adenocarcinoma.</small>",
-        "diag": "PULMÓN ([LÓBULO PULMONAR ESPECIFICADO]), LOBECTOMÍA [DERECHA / IZQUIERDA]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2021). Thoracic Tumours (5th ed.). IARC; Lyon. / IASLC Grading System for Lung Adenocarcinoma.</small>`,
+        "diag": `PULMÓN ([LÓBULO PULMONAR ESPECIFICADO]), LOBECTOMÍA [DERECHA / IZQUIERDA]:
 - ADENOCARCINOMA PULMONAR INVASOR, PATRÓN PREDOMINANTE [ACINAR / PAPILAR / SÓLIDO / MICROPAPILAR] (GRADO HISTOLÓGICO IASLC/OMS [1 / 2 / 3]).
 - PROPAGACIÓN A TRAVÉS DE ESPACIOS AÉREOS (STAS): [NO IDENTIFICADA / PRESENTE].
 - TAMAÑO DEL COMPONENTE TUMORAL INVASOR: [__] cm.
@@ -7620,16 +7624,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a (<=1cm) / pT1b (>1 a <=2cm) / pT1c (>2 a <=3cm) / pT2a (>3 a <=4cm) / pT2b (>4 a <=5cm) / pT3 (>5 a <=7cm) / pT4 (>7cm o invade mediastino/corazón)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 (ganglios ipsilaterales N1) / pN2 (mediastínicos ipsilaterales)]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 2313,
         "categoryId": 10,
         "titulo": "CAP - PULMÓN: CARCINOMA NO CÉLULAS PEQUEÑAS (LOBECTOMÍA / RESECCIÓN)",
-        "macro": "se recibe espécimen quirúrgico de [lobectomía pulmonar superior/inferior / neumonectomía / resección en cuña o segmentectomía] [derecha / izquierda] fijado en formol. el lóbulo pulmonar mide [dimensiones] cm. la pleura visceral está entintada en negro. a los cortes seriados del parénquima pulmonar a través de la vía aérea, en el segmento [especificar segmento], a [distancia] cm del margen bronquial y a [distancia] cm del margen vascular, se identifica una masa tumoral [espiculada, antracótica, firme, blanco-grisácea / nodular con cavitación central] que mide [dimensión mayor] x [intermedia] x [menor] cm. la masa dista a [distancia] mm de la pleura visceral [y produce retracción pleural macroscópica]. el parénquima no tumoral muestra [enfisema / antracosis]. se aíslan [n] ganglios linfáticos peribronquiales, hiliares (estación 10) y mediastínicos (estaciones remitidas por separado). se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y relación pleural, MB margen bronquial, MV margen vascular, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen quirúrgico de [lobectomía pulmonar superior/inferior / neumonectomía / resección en cuña o segmentectomía] [derecha / izquierda] fijado en formol. el lóbulo pulmonar mide [dimensiones] cm. la pleura visceral está entintada en negro. a los cortes seriados del parénquima pulmonar a través de la vía aérea, en el segmento [especificar segmento], a [distancia] cm del margen bronquial y a [distancia] cm del margen vascular, se identifica una masa tumoral [espiculada, antracótica, firme, blanco-grisácea / nodular con cavitación central] que mide [dimensión mayor] x [intermedia] x [menor] cm. la masa dista a [distancia] mm de la pleura visceral [y produce retracción pleural macroscópica]. el parénquima no tumoral muestra [enfisema / antracosis]. se aíslan [n] ganglios linfáticos peribronquiales, hiliares (estación 10) y mediastínicos (estaciones remitidas por separado). se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y relación pleural, MB margen bronquial, MV margen vascular, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Lung. AJCC 8th/9th Ed.</small>",
-        "micro": "los cortes histológicos confirman carcinoma pulmonar no células pequeñas clasificado según la OMS 5.ª edición y la IASLC como [adenocarcinoma invasor de pulmón / carcinoma epidermoide (escamoso) queratinizante o no queratinizante / carcinoma de células grandes / carcinoma sarcomatoide / carcinoma neuroendocrino de células grandes].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Lung. AJCC 8th/9th Ed.</small>`,
+        "micro": `los cortes histológicos confirman carcinoma pulmonar no células pequeñas clasificado según la OMS 5.ª edición y la IASLC como [adenocarcinoma invasor de pulmón / carcinoma epidermoide (escamoso) queratinizante o no queratinizante / carcinoma de células grandes / carcinoma sarcomatoide / carcinoma neuroendocrino de células grandes].
 
 patrones histológicos en adenocarcinoma pulmonar (cuantificación en incrementos de 5% según iaslc/oms):
 - patrón acinar: [[x]%]
@@ -7648,8 +7652,8 @@ invasión pleural y estructuras anatómicas:
 - ganglios linfáticos intrapulmonares, hiliares y mediastínicos: [n] examinados, [n_positivos] con metástasis. extensión extranodal (ene): [ausente / presente].
 - perfil de biomarcadores (ihq / biología molecular): TTF-1 [positivo nuclear intenso / negativo], p40 [negativo / positivo difuso en carcinoma escamoso], PD-L1 (TPS = [porcentaje]%), EGFR / ALK / ROS1 / BRAF / KRAS [pendiente / determinado].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2021). Thoracic Tumours (5th ed.). IARC; Lyon. / IASLC Grading System for Lung Adenocarcinoma.</small>",
-        "diag": "PULMÓN ([LÓBULO PULMONAR ESPECIFICADO]), LOBECTOMÍA [DERECHA / IZQUIERDA]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2021). Thoracic Tumours (5th ed.). IARC; Lyon. / IASLC Grading System for Lung Adenocarcinoma.</small>`,
+        "diag": `PULMÓN ([LÓBULO PULMONAR ESPECIFICADO]), LOBECTOMÍA [DERECHA / IZQUIERDA]:
 - ADENOCARCINOMA PULMONAR INVASOR, PATRÓN PREDOMINANTE [ACINAR / PAPILAR / SÓLIDO / MICROPAPILAR] (GRADO HISTOLÓGICO IASLC/OMS [1 / 2 / 3]).
 - PROPAGACIÓN A TRAVÉS DE ESPACIOS AÉREOS (STAS): [NO IDENTIFICADA / PRESENTE].
 - TAMAÑO DEL COMPONENTE TUMORAL INVASOR: [__] cm.
@@ -7693,16 +7697,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a (<=1cm) / pT1b (>1 a <=2cm) / pT1c (>2 a <=3cm) / pT2a (>3 a <=4cm) / pT2b (>4 a <=5cm) / pT3 (>5 a <=7cm) / pT4 (>7cm o invade mediastino/corazón)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 (ganglios ipsilaterales N1) / pN2 (mediastínicos ipsilaterales)]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 5313,
         "categoryId": 100,
         "titulo": "CAP - PULMÓN: CARCINOMA NO CÉLULAS PEQUEÑAS (LOBECTOMÍA / RESECCIÓN)",
-        "macro": "se recibe espécimen quirúrgico de [lobectomía pulmonar superior/inferior / neumonectomía / resección en cuña o segmentectomía] [derecha / izquierda] fijado en formol. el lóbulo pulmonar mide [dimensiones] cm. la pleura visceral está entintada en negro. a los cortes seriados del parénquima pulmonar a través de la vía aérea, en el segmento [especificar segmento], a [distancia] cm del margen bronquial y a [distancia] cm del margen vascular, se identifica una masa tumoral [espiculada, antracótica, firme, blanco-grisácea / nodular con cavitación central] que mide [dimensión mayor] x [intermedia] x [menor] cm. la masa dista a [distancia] mm de la pleura visceral [y produce retracción pleural macroscópica]. el parénquima no tumoral muestra [enfisema / antracosis]. se aíslan [n] ganglios linfáticos peribronquiales, hiliares (estación 10) y mediastínicos (estaciones remitidas por separado). se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y relación pleural, MB margen bronquial, MV margen vascular, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen quirúrgico de [lobectomía pulmonar superior/inferior / neumonectomía / resección en cuña o segmentectomía] [derecha / izquierda] fijado en formol. el lóbulo pulmonar mide [dimensiones] cm. la pleura visceral está entintada en negro. a los cortes seriados del parénquima pulmonar a través de la vía aérea, en el segmento [especificar segmento], a [distancia] cm del margen bronquial y a [distancia] cm del margen vascular, se identifica una masa tumoral [espiculada, antracótica, firme, blanco-grisácea / nodular con cavitación central] que mide [dimensión mayor] x [intermedia] x [menor] cm. la masa dista a [distancia] mm de la pleura visceral [y produce retracción pleural macroscópica]. el parénquima no tumoral muestra [enfisema / antracosis]. se aíslan [n] ganglios linfáticos peribronquiales, hiliares (estación 10) y mediastínicos (estaciones remitidas por separado). se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y relación pleural, MB margen bronquial, MV margen vascular, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Lung. AJCC 8th/9th Ed.</small>",
-        "micro": "los cortes histológicos confirman carcinoma pulmonar no células pequeñas clasificado según la OMS 5.ª edición y la IASLC como [adenocarcinoma invasor de pulmón / carcinoma epidermoide (escamoso) queratinizante o no queratinizante / carcinoma de células grandes / carcinoma sarcomatoide / carcinoma neuroendocrino de células grandes].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Lung. AJCC 8th/9th Ed.</small>`,
+        "micro": `los cortes histológicos confirman carcinoma pulmonar no células pequeñas clasificado según la OMS 5.ª edición y la IASLC como [adenocarcinoma invasor de pulmón / carcinoma epidermoide (escamoso) queratinizante o no queratinizante / carcinoma de células grandes / carcinoma sarcomatoide / carcinoma neuroendocrino de células grandes].
 
 patrones histológicos en adenocarcinoma pulmonar (cuantificación en incrementos de 5% según iaslc/oms):
 - patrón acinar: [[x]%]
@@ -7721,8 +7725,8 @@ invasión pleural y estructuras anatómicas:
 - ganglios linfáticos intrapulmonares, hiliares y mediastínicos: [n] examinados, [n_positivos] con metástasis. extensión extranodal (ene): [ausente / presente].
 - perfil de biomarcadores (ihq / biología molecular): TTF-1 [positivo nuclear intenso / negativo], p40 [negativo / positivo difuso en carcinoma escamoso], PD-L1 (TPS = [porcentaje]%), EGFR / ALK / ROS1 / BRAF / KRAS [pendiente / determinado].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2021). Thoracic Tumours (5th ed.). IARC; Lyon. / IASLC Grading System for Lung Adenocarcinoma.</small>",
-        "diag": "PULMÓN ([LÓBULO PULMONAR ESPECIFICADO]), LOBECTOMÍA [DERECHA / IZQUIERDA]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2021). Thoracic Tumours (5th ed.). IARC; Lyon. / IASLC Grading System for Lung Adenocarcinoma.</small>`,
+        "diag": `PULMÓN ([LÓBULO PULMONAR ESPECIFICADO]), LOBECTOMÍA [DERECHA / IZQUIERDA]:
 - ADENOCARCINOMA PULMONAR INVASOR, PATRÓN PREDOMINANTE [ACINAR / PAPILAR / SÓLIDO / MICROPAPILAR] (GRADO HISTOLÓGICO IASLC/OMS [1 / 2 / 3]).
 - PROPAGACIÓN A TRAVÉS DE ESPACIOS AÉREOS (STAS): [NO IDENTIFICADA / PRESENTE].
 - TAMAÑO DEL COMPONENTE TUMORAL INVASOR: [__] cm.
@@ -7766,16 +7770,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a (<=1cm) / pT1b (>1 a <=2cm) / pT1c (>2 a <=3cm) / pT2a (>3 a <=4cm) / pT2b (>4 a <=5cm) / pT3 (>5 a <=7cm) / pT4 (>7cm o invade mediastino/corazón)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 (ganglios ipsilaterales N1) / pN2 (mediastínicos ipsilaterales)]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 6313,
         "categoryId": 101,
         "titulo": "CAP - PULMÓN: CARCINOMA NO CÉLULAS PEQUEÑAS (LOBECTOMÍA / RESECCIÓN)",
-        "macro": "se recibe espécimen quirúrgico de [lobectomía pulmonar superior/inferior / neumonectomía / resección en cuña o segmentectomía] [derecha / izquierda] fijado en formol. el lóbulo pulmonar mide [dimensiones] cm. la pleura visceral está entintada en negro. a los cortes seriados del parénquima pulmonar a través de la vía aérea, en el segmento [especificar segmento], a [distancia] cm del margen bronquial y a [distancia] cm del margen vascular, se identifica una masa tumoral [espiculada, antracótica, firme, blanco-grisácea / nodular con cavitación central] que mide [dimensión mayor] x [intermedia] x [menor] cm. la masa dista a [distancia] mm de la pleura visceral [y produce retracción pleural macroscópica]. el parénquima no tumoral muestra [enfisema / antracosis]. se aíslan [n] ganglios linfáticos peribronquiales, hiliares (estación 10) y mediastínicos (estaciones remitidas por separado). se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y relación pleural, MB margen bronquial, MV margen vascular, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen quirúrgico de [lobectomía pulmonar superior/inferior / neumonectomía / resección en cuña o segmentectomía] [derecha / izquierda] fijado en formol. el lóbulo pulmonar mide [dimensiones] cm. la pleura visceral está entintada en negro. a los cortes seriados del parénquima pulmonar a través de la vía aérea, en el segmento [especificar segmento], a [distancia] cm del margen bronquial y a [distancia] cm del margen vascular, se identifica una masa tumoral [espiculada, antracótica, firme, blanco-grisácea / nodular con cavitación central] que mide [dimensión mayor] x [intermedia] x [menor] cm. la masa dista a [distancia] mm de la pleura visceral [y produce retracción pleural macroscópica]. el parénquima no tumoral muestra [enfisema / antracosis]. se aíslan [n] ganglios linfáticos peribronquiales, hiliares (estación 10) y mediastínicos (estaciones remitidas por separado). se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y relación pleural, MB margen bronquial, MV margen vascular, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Lung. AJCC 8th/9th Ed.</small>",
-        "micro": "los cortes histológicos confirman carcinoma pulmonar no células pequeñas clasificado según la OMS 5.ª edición y la IASLC como [adenocarcinoma invasor de pulmón / carcinoma epidermoide (escamoso) queratinizante o no queratinizante / carcinoma de células grandes / carcinoma sarcomatoide / carcinoma neuroendocrino de células grandes].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Lung. AJCC 8th/9th Ed.</small>`,
+        "micro": `los cortes histológicos confirman carcinoma pulmonar no células pequeñas clasificado según la OMS 5.ª edición y la IASLC como [adenocarcinoma invasor de pulmón / carcinoma epidermoide (escamoso) queratinizante o no queratinizante / carcinoma de células grandes / carcinoma sarcomatoide / carcinoma neuroendocrino de células grandes].
 
 patrones histológicos en adenocarcinoma pulmonar (cuantificación en incrementos de 5% según iaslc/oms):
 - patrón acinar: [[x]%]
@@ -7794,8 +7798,8 @@ invasión pleural y estructuras anatómicas:
 - ganglios linfáticos intrapulmonares, hiliares y mediastínicos: [n] examinados, [n_positivos] con metástasis. extensión extranodal (ene): [ausente / presente].
 - perfil de biomarcadores (ihq / biología molecular): TTF-1 [positivo nuclear intenso / negativo], p40 [negativo / positivo difuso en carcinoma escamoso], PD-L1 (TPS = [porcentaje]%), EGFR / ALK / ROS1 / BRAF / KRAS [pendiente / determinado].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2021). Thoracic Tumours (5th ed.). IARC; Lyon. / IASLC Grading System for Lung Adenocarcinoma.</small>",
-        "diag": "PULMÓN ([LÓBULO PULMONAR ESPECIFICADO]), LOBECTOMÍA [DERECHA / IZQUIERDA]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2021). Thoracic Tumours (5th ed.). IARC; Lyon. / IASLC Grading System for Lung Adenocarcinoma.</small>`,
+        "diag": `PULMÓN ([LÓBULO PULMONAR ESPECIFICADO]), LOBECTOMÍA [DERECHA / IZQUIERDA]:
 - ADENOCARCINOMA PULMONAR INVASOR, PATRÓN PREDOMINANTE [ACINAR / PAPILAR / SÓLIDO / MICROPAPILAR] (GRADO HISTOLÓGICO IASLC/OMS [1 / 2 / 3]).
 - PROPAGACIÓN A TRAVÉS DE ESPACIOS AÉREOS (STAS): [NO IDENTIFICADA / PRESENTE].
 - TAMAÑO DEL COMPONENTE TUMORAL INVASOR: [__] cm.
@@ -7839,16 +7843,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a (<=1cm) / pT1b (>1 a <=2cm) / pT1c (>2 a <=3cm) / pT2a (>3 a <=4cm) / pT2b (>4 a <=5cm) / pT3 (>5 a <=7cm) / pT4 (>7cm o invade mediastino/corazón)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 (ganglios ipsilaterales N1) / pN2 (mediastínicos ipsilaterales)]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 3313,
         "categoryId": 6,
         "titulo": "CAP - PULMÓN: CARCINOMA NO CÉLULAS PEQUEÑAS (LOBECTOMÍA / RESECCIÓN)",
-        "macro": "se recibe espécimen quirúrgico de [lobectomía pulmonar superior/inferior / neumonectomía / resección en cuña o segmentectomía] [derecha / izquierda] fijado en formol. el lóbulo pulmonar mide [dimensiones] cm. la pleura visceral está entintada en negro. a los cortes seriados del parénquima pulmonar a través de la vía aérea, en el segmento [especificar segmento], a [distancia] cm del margen bronquial y a [distancia] cm del margen vascular, se identifica una masa tumoral [espiculada, antracótica, firme, blanco-grisácea / nodular con cavitación central] que mide [dimensión mayor] x [intermedia] x [menor] cm. la masa dista a [distancia] mm de la pleura visceral [y produce retracción pleural macroscópica]. el parénquima no tumoral muestra [enfisema / antracosis]. se aíslan [n] ganglios linfáticos peribronquiales, hiliares (estación 10) y mediastínicos (estaciones remitidas por separado). se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y relación pleural, MB margen bronquial, MV margen vascular, N1-Nn ganglios linfáticos].
+        "macro": `se recibe espécimen quirúrgico de [lobectomía pulmonar superior/inferior / neumonectomía / resección en cuña o segmentectomía] [derecha / izquierda] fijado en formol. el lóbulo pulmonar mide [dimensiones] cm. la pleura visceral está entintada en negro. a los cortes seriados del parénquima pulmonar a través de la vía aérea, en el segmento [especificar segmento], a [distancia] cm del margen bronquial y a [distancia] cm del margen vascular, se identifica una masa tumoral [espiculada, antracótica, firme, blanco-grisácea / nodular con cavitación central] que mide [dimensión mayor] x [intermedia] x [menor] cm. la masa dista a [distancia] mm de la pleura visceral [y produce retracción pleural macroscópica]. el parénquima no tumoral muestra [enfisema / antracosis]. se aíslan [n] ganglios linfáticos peribronquiales, hiliares (estación 10) y mediastínicos (estaciones remitidas por separado). se procesa según protocolo CAP / Lester en casetes [T1-Tn tumor y relación pleural, MB margen bronquial, MV margen vascular, N1-Nn ganglios linfáticos].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Lung. AJCC 8th/9th Ed.</small>",
-        "micro": "los cortes histológicos confirman carcinoma pulmonar no células pequeñas clasificado según la OMS 5.ª edición y la IASLC como [adenocarcinoma invasor de pulmón / carcinoma epidermoide (escamoso) queratinizante o no queratinizante / carcinoma de células grandes / carcinoma sarcomatoide / carcinoma neuroendocrino de células grandes].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinoma of the Lung. AJCC 8th/9th Ed.</small>`,
+        "micro": `los cortes histológicos confirman carcinoma pulmonar no células pequeñas clasificado según la OMS 5.ª edición y la IASLC como [adenocarcinoma invasor de pulmón / carcinoma epidermoide (escamoso) queratinizante o no queratinizante / carcinoma de células grandes / carcinoma sarcomatoide / carcinoma neuroendocrino de células grandes].
 
 patrones histológicos en adenocarcinoma pulmonar (cuantificación en incrementos de 5% según iaslc/oms):
 - patrón acinar: [[x]%]
@@ -7867,8 +7871,8 @@ invasión pleural y estructuras anatómicas:
 - ganglios linfáticos intrapulmonares, hiliares y mediastínicos: [n] examinados, [n_positivos] con metástasis. extensión extranodal (ene): [ausente / presente].
 - perfil de biomarcadores (ihq / biología molecular): TTF-1 [positivo nuclear intenso / negativo], p40 [negativo / positivo difuso en carcinoma escamoso], PD-L1 (TPS = [porcentaje]%), EGFR / ALK / ROS1 / BRAF / KRAS [pendiente / determinado].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2021). Thoracic Tumours (5th ed.). IARC; Lyon. / IASLC Grading System for Lung Adenocarcinoma.</small>",
-        "diag": "PULMÓN ([LÓBULO PULMONAR ESPECIFICADO]), LOBECTOMÍA [DERECHA / IZQUIERDA]:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2021). Thoracic Tumours (5th ed.). IARC; Lyon. / IASLC Grading System for Lung Adenocarcinoma.</small>`,
+        "diag": `PULMÓN ([LÓBULO PULMONAR ESPECIFICADO]), LOBECTOMÍA [DERECHA / IZQUIERDA]:
 - ADENOCARCINOMA PULMONAR INVASOR, PATRÓN PREDOMINANTE [ACINAR / PAPILAR / SÓLIDO / MICROPAPILAR] (GRADO HISTOLÓGICO IASLC/OMS [1 / 2 / 3]).
 - PROPAGACIÓN A TRAVÉS DE ESPACIOS AÉREOS (STAS): [NO IDENTIFICADA / PRESENTE].
 - TAMAÑO DEL COMPONENTE TUMORAL INVASOR: [__] cm.
@@ -7912,16 +7916,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
   * Tumor primario (pT): [pT1a (<=1cm) / pT1b (>1 a <=2cm) / pT1c (>2 a <=3cm) / pT2a (>3 a <=4cm) / pT2b (>4 a <=5cm) / pT3 (>5 a <=7cm) / pT4 (>7cm o invade mediastino/corazón)]
   * Ganglios linfáticos regionales (pN): [pN0 / pN1 (ganglios ipsilaterales N1) / pN2 (mediastínicos ipsilaterales)]
   * Metástasis a distancia (pM): [pM0 / pM1 / No aplicable]
-========================================================"
+========================================================`
     },
     {
         "id": 314,
         "categoryId": 1,
         "titulo": "CAP - PIEL: MELANOMA CUTÁNEO INVASOR (ESCISIÓN AMPLIA)",
-        "macro": "se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol debidamente orientado (vértices superior e inferior, bordes medial y lateral). la muestra mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie epidérmica se observa una lesión pigmentada [asimétrica, con bordes irregulares escotados y policromía pardo-oscura, negra y azulada / nodular cupuliforme ulcerada] que mide [diámetro mayor] x [menor] mm. la lesión dista a [distancia] mm del margen lateral más cercano y a [distancia] mm del margen profundo. se entintan los márgenes quirúrgicos periféricos y profundos. se procesa en cortes seriados transversales cada 2 mm según protocolo CAP / Lester en casetes [M1-Mn].
+        "macro": `se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol debidamente orientado (vértices superior e inferior, bordes medial y lateral). la muestra mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie epidérmica se observa una lesión pigmentada [asimétrica, con bordes irregulares escotados y policromía pardo-oscura, negra y azulada / nodular cupuliforme ulcerada] que mide [diámetro mayor] x [menor] mm. la lesión dista a [distancia] mm del margen lateral más cercano y a [distancia] mm del margen profundo. se entintan los márgenes quirúrgicos periféricos y profundos. se procesa en cortes seriados transversales cada 2 mm según protocolo CAP / Lester en casetes [M1-Mn].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Melanoma of the Skin. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia melanocítica maligna invasora clasificada según la OMS 5.ª edición como melanoma cutáneo invasor [subtipo extensión superficial / nodular / léntigo maligno melanoma / acral lentiginoso / desmoplásico].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Melanoma of the Skin. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia melanocítica maligna invasora clasificada según la OMS 5.ª edición como melanoma cutáneo invasor [subtipo extensión superficial / nodular / léntigo maligno melanoma / acral lentiginoso / desmoplásico].
 
 parámetros histopatológicos pronósticos críticos (criterios ajcc 8.ª edición / cap):
 - espesor tumoral máximo de breslow: [[x.xx] mm (medido desde el estrato granuloso hasta la célula tumoral invasora más profunda)].
@@ -7937,8 +7941,8 @@ parámetros histopatológicos pronósticos críticos (criterios ajcc 8.ª edici�
 - márgenes quirúrgicos: margen periférico más cercano [libre a [x] mm en borde [especificar]], margen profundo [libre a [x] mm].
 - perfil inmunohistoquímico: Melan-A / MART-1, HMB-45, SOX-10 (positivos intensos en células tumorales), Ki-67 [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2018). Skin Tumours (4th/5th ed.). IARC; Lyon. / AJCC 8th Edition Melanoma Staging.</small>",
-        "diag": "PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2018). Skin Tumours (4th/5th ed.). IARC; Lyon. / AJCC 8th Edition Melanoma Staging.</small>`,
+        "diag": `PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
 - MELANOMA CUTÁNEO INVASOR, SUBTIPO [EXTENSIÓN SUPERFICIAL / NODULAR / LÉNTIGO MALIGNO / ACRAL LENTIGINOSO].
 - ESPESOR TUMORAL MÁXIMO DE BRESLOW: [__] mm.
 - ULCERACIÓN EPIDÉRMICA: [AUSENTE / PRESENTE].
@@ -7977,16 +7981,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
     - pT3a: > 2.0 a 4.0 mm sin ulceración | pT3b: > 2.0 a 4.0 mm con ulceración
     - pT4a: > 4.0 mm sin ulceración | pT4b: > 4.0 mm con ulceración
   * Ganglios linfáticos regionales (pN): [pNX / pN0 / pN1a / pN1b / pN1c / pN2]
-========================================================"
+========================================================`
     },
     {
         "id": 1314,
         "categoryId": 11,
         "titulo": "CAP - PIEL: MELANOMA CUTÁNEO INVASOR (ESCISIÓN AMPLIA)",
-        "macro": "se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol debidamente orientado (vértices superior e inferior, bordes medial y lateral). la muestra mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie epidérmica se observa una lesión pigmentada [asimétrica, con bordes irregulares escotados y policromía pardo-oscura, negra y azulada / nodular cupuliforme ulcerada] que mide [diámetro mayor] x [menor] mm. la lesión dista a [distancia] mm del margen lateral más cercano y a [distancia] mm del margen profundo. se entintan los márgenes quirúrgicos periféricos y profundos. se procesa en cortes seriados transversales cada 2 mm según protocolo CAP / Lester en casetes [M1-Mn].
+        "macro": `se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol debidamente orientado (vértices superior e inferior, bordes medial y lateral). la muestra mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie epidérmica se observa una lesión pigmentada [asimétrica, con bordes irregulares escotados y policromía pardo-oscura, negra y azulada / nodular cupuliforme ulcerada] que mide [diámetro mayor] x [menor] mm. la lesión dista a [distancia] mm del margen lateral más cercano y a [distancia] mm del margen profundo. se entintan los márgenes quirúrgicos periféricos y profundos. se procesa en cortes seriados transversales cada 2 mm según protocolo CAP / Lester en casetes [M1-Mn].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Melanoma of the Skin. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia melanocítica maligna invasora clasificada según la OMS 5.ª edición como melanoma cutáneo invasor [subtipo extensión superficial / nodular / léntigo maligno melanoma / acral lentiginoso / desmoplásico].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Melanoma of the Skin. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia melanocítica maligna invasora clasificada según la OMS 5.ª edición como melanoma cutáneo invasor [subtipo extensión superficial / nodular / léntigo maligno melanoma / acral lentiginoso / desmoplásico].
 
 parámetros histopatológicos pronósticos críticos (criterios ajcc 8.ª edición / cap):
 - espesor tumoral máximo de breslow: [[x.xx] mm (medido desde el estrato granuloso hasta la célula tumoral invasora más profunda)].
@@ -8002,8 +8006,8 @@ parámetros histopatológicos pronósticos críticos (criterios ajcc 8.ª edici�
 - márgenes quirúrgicos: margen periférico más cercano [libre a [x] mm en borde [especificar]], margen profundo [libre a [x] mm].
 - perfil inmunohistoquímico: Melan-A / MART-1, HMB-45, SOX-10 (positivos intensos en células tumorales), Ki-67 [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2018). Skin Tumours (4th/5th ed.). IARC; Lyon. / AJCC 8th Edition Melanoma Staging.</small>",
-        "diag": "PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2018). Skin Tumours (4th/5th ed.). IARC; Lyon. / AJCC 8th Edition Melanoma Staging.</small>`,
+        "diag": `PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
 - MELANOMA CUTÁNEO INVASOR, SUBTIPO [EXTENSIÓN SUPERFICIAL / NODULAR / LÉNTIGO MALIGNO / ACRAL LENTIGINOSO].
 - ESPESOR TUMORAL MÁXIMO DE BRESLOW: [__] mm.
 - ULCERACIÓN EPIDÉRMICA: [AUSENTE / PRESENTE].
@@ -8042,16 +8046,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
     - pT3a: > 2.0 a 4.0 mm sin ulceración | pT3b: > 2.0 a 4.0 mm con ulceración
     - pT4a: > 4.0 mm sin ulceración | pT4b: > 4.0 mm con ulceración
   * Ganglios linfáticos regionales (pN): [pNX / pN0 / pN1a / pN1b / pN1c / pN2]
-========================================================"
+========================================================`
     },
     {
         "id": 2314,
         "categoryId": 10,
         "titulo": "CAP - PIEL: MELANOMA CUTÁNEO INVASOR (ESCISIÓN AMPLIA)",
-        "macro": "se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol debidamente orientado (vértices superior e inferior, bordes medial y lateral). la muestra mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie epidérmica se observa una lesión pigmentada [asimétrica, con bordes irregulares escotados y policromía pardo-oscura, negra y azulada / nodular cupuliforme ulcerada] que mide [diámetro mayor] x [menor] mm. la lesión dista a [distancia] mm del margen lateral más cercano y a [distancia] mm del margen profundo. se entintan los márgenes quirúrgicos periféricos y profundos. se procesa en cortes seriados transversales cada 2 mm según protocolo CAP / Lester en casetes [M1-Mn].
+        "macro": `se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol debidamente orientado (vértices superior e inferior, bordes medial y lateral). la muestra mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie epidérmica se observa una lesión pigmentada [asimétrica, con bordes irregulares escotados y policromía pardo-oscura, negra y azulada / nodular cupuliforme ulcerada] que mide [diámetro mayor] x [menor] mm. la lesión dista a [distancia] mm del margen lateral más cercano y a [distancia] mm del margen profundo. se entintan los márgenes quirúrgicos periféricos y profundos. se procesa en cortes seriados transversales cada 2 mm según protocolo CAP / Lester en casetes [M1-Mn].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Melanoma of the Skin. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia melanocítica maligna invasora clasificada según la OMS 5.ª edición como melanoma cutáneo invasor [subtipo extensión superficial / nodular / léntigo maligno melanoma / acral lentiginoso / desmoplásico].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Melanoma of the Skin. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia melanocítica maligna invasora clasificada según la OMS 5.ª edición como melanoma cutáneo invasor [subtipo extensión superficial / nodular / léntigo maligno melanoma / acral lentiginoso / desmoplásico].
 
 parámetros histopatológicos pronósticos críticos (criterios ajcc 8.ª edición / cap):
 - espesor tumoral máximo de breslow: [[x.xx] mm (medido desde el estrato granuloso hasta la célula tumoral invasora más profunda)].
@@ -8067,8 +8071,8 @@ parámetros histopatológicos pronósticos críticos (criterios ajcc 8.ª edici�
 - márgenes quirúrgicos: margen periférico más cercano [libre a [x] mm en borde [especificar]], margen profundo [libre a [x] mm].
 - perfil inmunohistoquímico: Melan-A / MART-1, HMB-45, SOX-10 (positivos intensos en células tumorales), Ki-67 [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2018). Skin Tumours (4th/5th ed.). IARC; Lyon. / AJCC 8th Edition Melanoma Staging.</small>",
-        "diag": "PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2018). Skin Tumours (4th/5th ed.). IARC; Lyon. / AJCC 8th Edition Melanoma Staging.</small>`,
+        "diag": `PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
 - MELANOMA CUTÁNEO INVASOR, SUBTIPO [EXTENSIÓN SUPERFICIAL / NODULAR / LÉNTIGO MALIGNO / ACRAL LENTIGINOSO].
 - ESPESOR TUMORAL MÁXIMO DE BRESLOW: [__] mm.
 - ULCERACIÓN EPIDÉRMICA: [AUSENTE / PRESENTE].
@@ -8107,16 +8111,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
     - pT3a: > 2.0 a 4.0 mm sin ulceración | pT3b: > 2.0 a 4.0 mm con ulceración
     - pT4a: > 4.0 mm sin ulceración | pT4b: > 4.0 mm con ulceración
   * Ganglios linfáticos regionales (pN): [pNX / pN0 / pN1a / pN1b / pN1c / pN2]
-========================================================"
+========================================================`
     },
     {
         "id": 5314,
         "categoryId": 100,
         "titulo": "CAP - PIEL: MELANOMA CUTÁNEO INVASOR (ESCISIÓN AMPLIA)",
-        "macro": "se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol debidamente orientado (vértices superior e inferior, bordes medial y lateral). la muestra mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie epidérmica se observa una lesión pigmentada [asimétrica, con bordes irregulares escotados y policromía pardo-oscura, negra y azulada / nodular cupuliforme ulcerada] que mide [diámetro mayor] x [menor] mm. la lesión dista a [distancia] mm del margen lateral más cercano y a [distancia] mm del margen profundo. se entintan los márgenes quirúrgicos periféricos y profundos. se procesa en cortes seriados transversales cada 2 mm según protocolo CAP / Lester en casetes [M1-Mn].
+        "macro": `se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol debidamente orientado (vértices superior e inferior, bordes medial y lateral). la muestra mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie epidérmica se observa una lesión pigmentada [asimétrica, con bordes irregulares escotados y policromía pardo-oscura, negra y azulada / nodular cupuliforme ulcerada] que mide [diámetro mayor] x [menor] mm. la lesión dista a [distancia] mm del margen lateral más cercano y a [distancia] mm del margen profundo. se entintan los márgenes quirúrgicos periféricos y profundos. se procesa en cortes seriados transversales cada 2 mm según protocolo CAP / Lester en casetes [M1-Mn].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Melanoma of the Skin. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia melanocítica maligna invasora clasificada según la OMS 5.ª edición como melanoma cutáneo invasor [subtipo extensión superficial / nodular / léntigo maligno melanoma / acral lentiginoso / desmoplásico].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Melanoma of the Skin. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia melanocítica maligna invasora clasificada según la OMS 5.ª edición como melanoma cutáneo invasor [subtipo extensión superficial / nodular / léntigo maligno melanoma / acral lentiginoso / desmoplásico].
 
 parámetros histopatológicos pronósticos críticos (criterios ajcc 8.ª edición / cap):
 - espesor tumoral máximo de breslow: [[x.xx] mm (medido desde el estrato granuloso hasta la célula tumoral invasora más profunda)].
@@ -8132,8 +8136,8 @@ parámetros histopatológicos pronósticos críticos (criterios ajcc 8.ª edici�
 - márgenes quirúrgicos: margen periférico más cercano [libre a [x] mm en borde [especificar]], margen profundo [libre a [x] mm].
 - perfil inmunohistoquímico: Melan-A / MART-1, HMB-45, SOX-10 (positivos intensos en células tumorales), Ki-67 [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2018). Skin Tumours (4th/5th ed.). IARC; Lyon. / AJCC 8th Edition Melanoma Staging.</small>",
-        "diag": "PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2018). Skin Tumours (4th/5th ed.). IARC; Lyon. / AJCC 8th Edition Melanoma Staging.</small>`,
+        "diag": `PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
 - MELANOMA CUTÁNEO INVASOR, SUBTIPO [EXTENSIÓN SUPERFICIAL / NODULAR / LÉNTIGO MALIGNO / ACRAL LENTIGINOSO].
 - ESPESOR TUMORAL MÁXIMO DE BRESLOW: [__] mm.
 - ULCERACIÓN EPIDÉRMICA: [AUSENTE / PRESENTE].
@@ -8172,16 +8176,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
     - pT3a: > 2.0 a 4.0 mm sin ulceración | pT3b: > 2.0 a 4.0 mm con ulceración
     - pT4a: > 4.0 mm sin ulceración | pT4b: > 4.0 mm con ulceración
   * Ganglios linfáticos regionales (pN): [pNX / pN0 / pN1a / pN1b / pN1c / pN2]
-========================================================"
+========================================================`
     },
     {
         "id": 6314,
         "categoryId": 101,
         "titulo": "CAP - PIEL: MELANOMA CUTÁNEO INVASOR (ESCISIÓN AMPLIA)",
-        "macro": "se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol debidamente orientado (vértices superior e inferior, bordes medial y lateral). la muestra mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie epidérmica se observa una lesión pigmentada [asimétrica, con bordes irregulares escotados y policromía pardo-oscura, negra y azulada / nodular cupuliforme ulcerada] que mide [diámetro mayor] x [menor] mm. la lesión dista a [distancia] mm del margen lateral más cercano y a [distancia] mm del margen profundo. se entintan los márgenes quirúrgicos periféricos y profundos. se procesa en cortes seriados transversales cada 2 mm según protocolo CAP / Lester en casetes [M1-Mn].
+        "macro": `se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol debidamente orientado (vértices superior e inferior, bordes medial y lateral). la muestra mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie epidérmica se observa una lesión pigmentada [asimétrica, con bordes irregulares escotados y policromía pardo-oscura, negra y azulada / nodular cupuliforme ulcerada] que mide [diámetro mayor] x [menor] mm. la lesión dista a [distancia] mm del margen lateral más cercano y a [distancia] mm del margen profundo. se entintan los márgenes quirúrgicos periféricos y profundos. se procesa en cortes seriados transversales cada 2 mm según protocolo CAP / Lester en casetes [M1-Mn].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Melanoma of the Skin. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia melanocítica maligna invasora clasificada según la OMS 5.ª edición como melanoma cutáneo invasor [subtipo extensión superficial / nodular / léntigo maligno melanoma / acral lentiginoso / desmoplásico].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Melanoma of the Skin. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia melanocítica maligna invasora clasificada según la OMS 5.ª edición como melanoma cutáneo invasor [subtipo extensión superficial / nodular / léntigo maligno melanoma / acral lentiginoso / desmoplásico].
 
 parámetros histopatológicos pronósticos críticos (criterios ajcc 8.ª edición / cap):
 - espesor tumoral máximo de breslow: [[x.xx] mm (medido desde el estrato granuloso hasta la célula tumoral invasora más profunda)].
@@ -8197,8 +8201,8 @@ parámetros histopatológicos pronósticos críticos (criterios ajcc 8.ª edici�
 - márgenes quirúrgicos: margen periférico más cercano [libre a [x] mm en borde [especificar]], margen profundo [libre a [x] mm].
 - perfil inmunohistoquímico: Melan-A / MART-1, HMB-45, SOX-10 (positivos intensos en células tumorales), Ki-67 [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2018). Skin Tumours (4th/5th ed.). IARC; Lyon. / AJCC 8th Edition Melanoma Staging.</small>",
-        "diag": "PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2018). Skin Tumours (4th/5th ed.). IARC; Lyon. / AJCC 8th Edition Melanoma Staging.</small>`,
+        "diag": `PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
 - MELANOMA CUTÁNEO INVASOR, SUBTIPO [EXTENSIÓN SUPERFICIAL / NODULAR / LÉNTIGO MALIGNO / ACRAL LENTIGINOSO].
 - ESPESOR TUMORAL MÁXIMO DE BRESLOW: [__] mm.
 - ULCERACIÓN EPIDÉRMICA: [AUSENTE / PRESENTE].
@@ -8237,16 +8241,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
     - pT3a: > 2.0 a 4.0 mm sin ulceración | pT3b: > 2.0 a 4.0 mm con ulceración
     - pT4a: > 4.0 mm sin ulceración | pT4b: > 4.0 mm con ulceración
   * Ganglios linfáticos regionales (pN): [pNX / pN0 / pN1a / pN1b / pN1c / pN2]
-========================================================"
+========================================================`
     },
     {
         "id": 3314,
         "categoryId": 2,
         "titulo": "CAP - PIEL: MELANOMA CUTÁNEO INVASOR (ESCISIÓN AMPLIA)",
-        "macro": "se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol debidamente orientado (vértices superior e inferior, bordes medial y lateral). la muestra mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie epidérmica se observa una lesión pigmentada [asimétrica, con bordes irregulares escotados y policromía pardo-oscura, negra y azulada / nodular cupuliforme ulcerada] que mide [diámetro mayor] x [menor] mm. la lesión dista a [distancia] mm del margen lateral más cercano y a [distancia] mm del margen profundo. se entintan los márgenes quirúrgicos periféricos y profundos. se procesa en cortes seriados transversales cada 2 mm según protocolo CAP / Lester en casetes [M1-Mn].
+        "macro": `se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol debidamente orientado (vértices superior e inferior, bordes medial y lateral). la muestra mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie epidérmica se observa una lesión pigmentada [asimétrica, con bordes irregulares escotados y policromía pardo-oscura, negra y azulada / nodular cupuliforme ulcerada] que mide [diámetro mayor] x [menor] mm. la lesión dista a [distancia] mm del margen lateral más cercano y a [distancia] mm del margen profundo. se entintan los márgenes quirúrgicos periféricos y profundos. se procesa en cortes seriados transversales cada 2 mm según protocolo CAP / Lester en casetes [M1-Mn].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Melanoma of the Skin. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia melanocítica maligna invasora clasificada según la OMS 5.ª edición como melanoma cutáneo invasor [subtipo extensión superficial / nodular / léntigo maligno melanoma / acral lentiginoso / desmoplásico].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Melanoma of the Skin. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia melanocítica maligna invasora clasificada según la OMS 5.ª edición como melanoma cutáneo invasor [subtipo extensión superficial / nodular / léntigo maligno melanoma / acral lentiginoso / desmoplásico].
 
 parámetros histopatológicos pronósticos críticos (criterios ajcc 8.ª edición / cap):
 - espesor tumoral máximo de breslow: [[x.xx] mm (medido desde el estrato granuloso hasta la célula tumoral invasora más profunda)].
@@ -8262,8 +8266,8 @@ parámetros histopatológicos pronósticos críticos (criterios ajcc 8.ª edici�
 - márgenes quirúrgicos: margen periférico más cercano [libre a [x] mm en borde [especificar]], margen profundo [libre a [x] mm].
 - perfil inmunohistoquímico: Melan-A / MART-1, HMB-45, SOX-10 (positivos intensos en células tumorales), Ki-67 [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2018). Skin Tumours (4th/5th ed.). IARC; Lyon. / AJCC 8th Edition Melanoma Staging.</small>",
-        "diag": "PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2018). Skin Tumours (4th/5th ed.). IARC; Lyon. / AJCC 8th Edition Melanoma Staging.</small>`,
+        "diag": `PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
 - MELANOMA CUTÁNEO INVASOR, SUBTIPO [EXTENSIÓN SUPERFICIAL / NODULAR / LÉNTIGO MALIGNO / ACRAL LENTIGINOSO].
 - ESPESOR TUMORAL MÁXIMO DE BRESLOW: [__] mm.
 - ULCERACIÓN EPIDÉRMICA: [AUSENTE / PRESENTE].
@@ -8302,16 +8306,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
     - pT3a: > 2.0 a 4.0 mm sin ulceración | pT3b: > 2.0 a 4.0 mm con ulceración
     - pT4a: > 4.0 mm sin ulceración | pT4b: > 4.0 mm con ulceración
   * Ganglios linfáticos regionales (pN): [pNX / pN0 / pN1a / pN1b / pN1c / pN2]
-========================================================"
+========================================================`
     },
     {
         "id": 4314,
         "categoryId": 16,
         "titulo": "CAP - PIEL: MELANOMA CUTÁNEO INVASOR (ESCISIÓN AMPLIA)",
-        "macro": "se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol debidamente orientado (vértices superior e inferior, bordes medial y lateral). la muestra mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie epidérmica se observa una lesión pigmentada [asimétrica, con bordes irregulares escotados y policromía pardo-oscura, negra y azulada / nodular cupuliforme ulcerada] que mide [diámetro mayor] x [menor] mm. la lesión dista a [distancia] mm del margen lateral más cercano y a [distancia] mm del margen profundo. se entintan los márgenes quirúrgicos periféricos y profundos. se procesa en cortes seriados transversales cada 2 mm según protocolo CAP / Lester en casetes [M1-Mn].
+        "macro": `se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol debidamente orientado (vértices superior e inferior, bordes medial y lateral). la muestra mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie epidérmica se observa una lesión pigmentada [asimétrica, con bordes irregulares escotados y policromía pardo-oscura, negra y azulada / nodular cupuliforme ulcerada] que mide [diámetro mayor] x [menor] mm. la lesión dista a [distancia] mm del margen lateral más cercano y a [distancia] mm del margen profundo. se entintan los márgenes quirúrgicos periféricos y profundos. se procesa en cortes seriados transversales cada 2 mm según protocolo CAP / Lester en casetes [M1-Mn].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Melanoma of the Skin. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia melanocítica maligna invasora clasificada según la OMS 5.ª edición como melanoma cutáneo invasor [subtipo extensión superficial / nodular / léntigo maligno melanoma / acral lentiginoso / desmoplásico].
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Melanoma of the Skin. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia melanocítica maligna invasora clasificada según la OMS 5.ª edición como melanoma cutáneo invasor [subtipo extensión superficial / nodular / léntigo maligno melanoma / acral lentiginoso / desmoplásico].
 
 parámetros histopatológicos pronósticos críticos (criterios ajcc 8.ª edición / cap):
 - espesor tumoral máximo de breslow: [[x.xx] mm (medido desde el estrato granuloso hasta la célula tumoral invasora más profunda)].
@@ -8327,8 +8331,8 @@ parámetros histopatológicos pronósticos críticos (criterios ajcc 8.ª edici�
 - márgenes quirúrgicos: margen periférico más cercano [libre a [x] mm en borde [especificar]], margen profundo [libre a [x] mm].
 - perfil inmunohistoquímico: Melan-A / MART-1, HMB-45, SOX-10 (positivos intensos en células tumorales), Ki-67 [[x]%].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2018). Skin Tumours (4th/5th ed.). IARC; Lyon. / AJCC 8th Edition Melanoma Staging.</small>",
-        "diag": "PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2018). Skin Tumours (4th/5th ed.). IARC; Lyon. / AJCC 8th Edition Melanoma Staging.</small>`,
+        "diag": `PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
 - MELANOMA CUTÁNEO INVASOR, SUBTIPO [EXTENSIÓN SUPERFICIAL / NODULAR / LÉNTIGO MALIGNO / ACRAL LENTIGINOSO].
 - ESPESOR TUMORAL MÁXIMO DE BRESLOW: [__] mm.
 - ULCERACIÓN EPIDÉRMICA: [AUSENTE / PRESENTE].
@@ -8367,16 +8371,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
     - pT3a: > 2.0 a 4.0 mm sin ulceración | pT3b: > 2.0 a 4.0 mm con ulceración
     - pT4a: > 4.0 mm sin ulceración | pT4b: > 4.0 mm con ulceración
   * Ganglios linfáticos regionales (pN): [pNX / pN0 / pN1a / pN1b / pN1c / pN2]
-========================================================"
+========================================================`
     },
     {
         "id": 315,
         "categoryId": 1,
         "titulo": "CAP - PIEL: CARCINOMA EPIDERMOIDE CUTÁNEO DE ALTO RIESGO",
-        "macro": "se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol, que mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie cutánea se observa una lesión [exofítica queratósica / ulcerada de bordes elevados e indurados / nodular infiltrante] de color blanco-rosado a amarillento, que mide [diámetro mayor] x [menor] mm. la distancia de la lesión a los márgenes quirúrgicos es: margen periférico más cercano a [distancia] mm y margen profundo a [distancia] mm. se entintan los bordes quirúrgicos. se procesa en cortes transversales seriados según protocolo CAP / Lester en casetes [C1-Cn].
+        "macro": `se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol, que mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie cutánea se observa una lesión [exofítica queratósica / ulcerada de bordes elevados e indurados / nodular infiltrante] de color blanco-rosado a amarillento, que mide [diámetro mayor] x [menor] mm. la distancia de la lesión a los márgenes quirúrgicos es: margen periférico más cercano a [distancia] mm y margen profundo a [distancia] mm. se entintan los bordes quirúrgicos. se procesa en cortes transversales seriados según protocolo CAP / Lester en casetes [C1-Cn].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Cutaneous Squamous Cell Carcinoma (cSCC). AJCC 8th Ed. & Brigham and Women's Hospital (BWH) Staging.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la epidermis clasificada según la OMS 5.ª edición como carcinoma epidermoide cutáneo (carcinoma de células escamosas - cSCC) invasor [variante convencional queratinizante / acantolítica / fusocelular / verrucosa / adenoescamosa]. las células tumorales muestran núcleos pleomórficos hipercrómicos, perlas de queratina (queratinización individual y en masa), puentes intercelulares prominentes y figuras mitóticas atípicas.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Cutaneous Squamous Cell Carcinoma (cSCC). AJCC 8th Ed. & Brigham and Women's Hospital (BWH) Staging.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la epidermis clasificada según la OMS 5.ª edición como carcinoma epidermoide cutáneo (carcinoma de células escamosas - cSCC) invasor [variante convencional queratinizante / acantolítica / fusocelular / verrucosa / adenoescamosa]. las células tumorales muestran núcleos pleomórficos hipercrómicos, perlas de queratina (queratinización individual y en masa), puentes intercelulares prominentes y figuras mitóticas atípicas.
 
 factores histopatológicos de alto riesgo (criterios ajcc 8.ª edición / nccn / bwh):
 - espesor tumoral / profundidad de invasión de breslow: [[x] mm (medido desde el estrato granuloso hasta la base tumoral)].
@@ -8387,8 +8391,8 @@ factores histopatológicos de alto riesgo (criterios ajcc 8.ª edición / nccn /
 - diferenciación histológica de alto riesgo: [variante acantolítica / fusocelular / desmoplásica].
 - márgenes de resección quirúrgica: margen periférico [libre a [x] mm], margen profundo [libre a [x] mm].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Karia, P. S., et al. (2014). Brigham and Women's Hospital (BWH) cutaneous squamous cell carcinoma staging system. / CAP cSCC Protocol 2024.</small>",
-        "diag": "PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Karia, P. S., et al. (2014). Brigham and Women's Hospital (BWH) cutaneous squamous cell carcinoma staging system. / CAP cSCC Protocol 2024.</small>`,
+        "diag": `PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
 - CARCINOMA EPIDERMOIDE (DE CÉLULAS ESCAMOSAS) CUTÁNEO INVASOR, [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO.
 - ESPESOR TUMORAL DE BRESLOW: [__] mm (NIVEL DE CLARK [IV / V]).
 - PROFUNDIDAD DE INVASIÓN: [DERMIS RETICULAR / TEJIDO CELULAR SUBCUTÁNEO / FASCIA].
@@ -8421,16 +8425,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
 - Categoría pTNM (AJCC 8.ª Edición - Cabeza y Cuello vs No Cabeza y Cuello):
   * Tumor primario (pT): [pT1 (<=2cm) / pT2 (>2 a 4cm) / pT3 (>4cm o PNI>=0.1mm o invasión profunda >6mm o invasión ósea menor)]
   * Ganglios linfáticos regionales (pN): [pNX / pN0 / pN1 / pN2]
-========================================================"
+========================================================`
     },
     {
         "id": 1315,
         "categoryId": 11,
         "titulo": "CAP - PIEL: CARCINOMA EPIDERMOIDE CUTÁNEO DE ALTO RIESGO",
-        "macro": "se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol, que mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie cutánea se observa una lesión [exofítica queratósica / ulcerada de bordes elevados e indurados / nodular infiltrante] de color blanco-rosado a amarillento, que mide [diámetro mayor] x [menor] mm. la distancia de la lesión a los márgenes quirúrgicos es: margen periférico más cercano a [distancia] mm y margen profundo a [distancia] mm. se entintan los bordes quirúrgicos. se procesa en cortes transversales seriados según protocolo CAP / Lester en casetes [C1-Cn].
+        "macro": `se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol, que mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie cutánea se observa una lesión [exofítica queratósica / ulcerada de bordes elevados e indurados / nodular infiltrante] de color blanco-rosado a amarillento, que mide [diámetro mayor] x [menor] mm. la distancia de la lesión a los márgenes quirúrgicos es: margen periférico más cercano a [distancia] mm y margen profundo a [distancia] mm. se entintan los bordes quirúrgicos. se procesa en cortes transversales seriados según protocolo CAP / Lester en casetes [C1-Cn].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Cutaneous Squamous Cell Carcinoma (cSCC). AJCC 8th Ed. & Brigham and Women's Hospital (BWH) Staging.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la epidermis clasificada según la OMS 5.ª edición como carcinoma epidermoide cutáneo (carcinoma de células escamosas - cSCC) invasor [variante convencional queratinizante / acantolítica / fusocelular / verrucosa / adenoescamosa]. las células tumorales muestran núcleos pleomórficos hipercrómicos, perlas de queratina (queratinización individual y en masa), puentes intercelulares prominentes y figuras mitóticas atípicas.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Cutaneous Squamous Cell Carcinoma (cSCC). AJCC 8th Ed. & Brigham and Women's Hospital (BWH) Staging.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la epidermis clasificada según la OMS 5.ª edición como carcinoma epidermoide cutáneo (carcinoma de células escamosas - cSCC) invasor [variante convencional queratinizante / acantolítica / fusocelular / verrucosa / adenoescamosa]. las células tumorales muestran núcleos pleomórficos hipercrómicos, perlas de queratina (queratinización individual y en masa), puentes intercelulares prominentes y figuras mitóticas atípicas.
 
 factores histopatológicos de alto riesgo (criterios ajcc 8.ª edición / nccn / bwh):
 - espesor tumoral / profundidad de invasión de breslow: [[x] mm (medido desde el estrato granuloso hasta la base tumoral)].
@@ -8441,8 +8445,8 @@ factores histopatológicos de alto riesgo (criterios ajcc 8.ª edición / nccn /
 - diferenciación histológica de alto riesgo: [variante acantolítica / fusocelular / desmoplásica].
 - márgenes de resección quirúrgica: margen periférico [libre a [x] mm], margen profundo [libre a [x] mm].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Karia, P. S., et al. (2014). Brigham and Women's Hospital (BWH) cutaneous squamous cell carcinoma staging system. / CAP cSCC Protocol 2024.</small>",
-        "diag": "PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Karia, P. S., et al. (2014). Brigham and Women's Hospital (BWH) cutaneous squamous cell carcinoma staging system. / CAP cSCC Protocol 2024.</small>`,
+        "diag": `PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
 - CARCINOMA EPIDERMOIDE (DE CÉLULAS ESCAMOSAS) CUTÁNEO INVASOR, [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO.
 - ESPESOR TUMORAL DE BRESLOW: [__] mm (NIVEL DE CLARK [IV / V]).
 - PROFUNDIDAD DE INVASIÓN: [DERMIS RETICULAR / TEJIDO CELULAR SUBCUTÁNEO / FASCIA].
@@ -8475,16 +8479,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
 - Categoría pTNM (AJCC 8.ª Edición - Cabeza y Cuello vs No Cabeza y Cuello):
   * Tumor primario (pT): [pT1 (<=2cm) / pT2 (>2 a 4cm) / pT3 (>4cm o PNI>=0.1mm o invasión profunda >6mm o invasión ósea menor)]
   * Ganglios linfáticos regionales (pN): [pNX / pN0 / pN1 / pN2]
-========================================================"
+========================================================`
     },
     {
         "id": 2315,
         "categoryId": 10,
         "titulo": "CAP - PIEL: CARCINOMA EPIDERMOIDE CUTÁNEO DE ALTO RIESGO",
-        "macro": "se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol, que mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie cutánea se observa una lesión [exofítica queratósica / ulcerada de bordes elevados e indurados / nodular infiltrante] de color blanco-rosado a amarillento, que mide [diámetro mayor] x [menor] mm. la distancia de la lesión a los márgenes quirúrgicos es: margen periférico más cercano a [distancia] mm y margen profundo a [distancia] mm. se entintan los bordes quirúrgicos. se procesa en cortes transversales seriados según protocolo CAP / Lester en casetes [C1-Cn].
+        "macro": `se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol, que mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie cutánea se observa una lesión [exofítica queratósica / ulcerada de bordes elevados e indurados / nodular infiltrante] de color blanco-rosado a amarillento, que mide [diámetro mayor] x [menor] mm. la distancia de la lesión a los márgenes quirúrgicos es: margen periférico más cercano a [distancia] mm y margen profundo a [distancia] mm. se entintan los bordes quirúrgicos. se procesa en cortes transversales seriados según protocolo CAP / Lester en casetes [C1-Cn].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Cutaneous Squamous Cell Carcinoma (cSCC). AJCC 8th Ed. & Brigham and Women's Hospital (BWH) Staging.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la epidermis clasificada según la OMS 5.ª edición como carcinoma epidermoide cutáneo (carcinoma de células escamosas - cSCC) invasor [variante convencional queratinizante / acantolítica / fusocelular / verrucosa / adenoescamosa]. las células tumorales muestran núcleos pleomórficos hipercrómicos, perlas de queratina (queratinización individual y en masa), puentes intercelulares prominentes y figuras mitóticas atípicas.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Cutaneous Squamous Cell Carcinoma (cSCC). AJCC 8th Ed. & Brigham and Women's Hospital (BWH) Staging.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la epidermis clasificada según la OMS 5.ª edición como carcinoma epidermoide cutáneo (carcinoma de células escamosas - cSCC) invasor [variante convencional queratinizante / acantolítica / fusocelular / verrucosa / adenoescamosa]. las células tumorales muestran núcleos pleomórficos hipercrómicos, perlas de queratina (queratinización individual y en masa), puentes intercelulares prominentes y figuras mitóticas atípicas.
 
 factores histopatológicos de alto riesgo (criterios ajcc 8.ª edición / nccn / bwh):
 - espesor tumoral / profundidad de invasión de breslow: [[x] mm (medido desde el estrato granuloso hasta la base tumoral)].
@@ -8495,8 +8499,8 @@ factores histopatológicos de alto riesgo (criterios ajcc 8.ª edición / nccn /
 - diferenciación histológica de alto riesgo: [variante acantolítica / fusocelular / desmoplásica].
 - márgenes de resección quirúrgica: margen periférico [libre a [x] mm], margen profundo [libre a [x] mm].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Karia, P. S., et al. (2014). Brigham and Women's Hospital (BWH) cutaneous squamous cell carcinoma staging system. / CAP cSCC Protocol 2024.</small>",
-        "diag": "PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Karia, P. S., et al. (2014). Brigham and Women's Hospital (BWH) cutaneous squamous cell carcinoma staging system. / CAP cSCC Protocol 2024.</small>`,
+        "diag": `PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
 - CARCINOMA EPIDERMOIDE (DE CÉLULAS ESCAMOSAS) CUTÁNEO INVASOR, [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO.
 - ESPESOR TUMORAL DE BRESLOW: [__] mm (NIVEL DE CLARK [IV / V]).
 - PROFUNDIDAD DE INVASIÓN: [DERMIS RETICULAR / TEJIDO CELULAR SUBCUTÁNEO / FASCIA].
@@ -8529,16 +8533,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
 - Categoría pTNM (AJCC 8.ª Edición - Cabeza y Cuello vs No Cabeza y Cuello):
   * Tumor primario (pT): [pT1 (<=2cm) / pT2 (>2 a 4cm) / pT3 (>4cm o PNI>=0.1mm o invasión profunda >6mm o invasión ósea menor)]
   * Ganglios linfáticos regionales (pN): [pNX / pN0 / pN1 / pN2]
-========================================================"
+========================================================`
     },
     {
         "id": 5315,
         "categoryId": 100,
         "titulo": "CAP - PIEL: CARCINOMA EPIDERMOIDE CUTÁNEO DE ALTO RIESGO",
-        "macro": "se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol, que mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie cutánea se observa una lesión [exofítica queratósica / ulcerada de bordes elevados e indurados / nodular infiltrante] de color blanco-rosado a amarillento, que mide [diámetro mayor] x [menor] mm. la distancia de la lesión a los márgenes quirúrgicos es: margen periférico más cercano a [distancia] mm y margen profundo a [distancia] mm. se entintan los bordes quirúrgicos. se procesa en cortes transversales seriados según protocolo CAP / Lester en casetes [C1-Cn].
+        "macro": `se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol, que mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie cutánea se observa una lesión [exofítica queratósica / ulcerada de bordes elevados e indurados / nodular infiltrante] de color blanco-rosado a amarillento, que mide [diámetro mayor] x [menor] mm. la distancia de la lesión a los márgenes quirúrgicos es: margen periférico más cercano a [distancia] mm y margen profundo a [distancia] mm. se entintan los bordes quirúrgicos. se procesa en cortes transversales seriados según protocolo CAP / Lester en casetes [C1-Cn].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Cutaneous Squamous Cell Carcinoma (cSCC). AJCC 8th Ed. & Brigham and Women's Hospital (BWH) Staging.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la epidermis clasificada según la OMS 5.ª edición como carcinoma epidermoide cutáneo (carcinoma de células escamosas - cSCC) invasor [variante convencional queratinizante / acantolítica / fusocelular / verrucosa / adenoescamosa]. las células tumorales muestran núcleos pleomórficos hipercrómicos, perlas de queratina (queratinización individual y en masa), puentes intercelulares prominentes y figuras mitóticas atípicas.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Cutaneous Squamous Cell Carcinoma (cSCC). AJCC 8th Ed. & Brigham and Women's Hospital (BWH) Staging.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la epidermis clasificada según la OMS 5.ª edición como carcinoma epidermoide cutáneo (carcinoma de células escamosas - cSCC) invasor [variante convencional queratinizante / acantolítica / fusocelular / verrucosa / adenoescamosa]. las células tumorales muestran núcleos pleomórficos hipercrómicos, perlas de queratina (queratinización individual y en masa), puentes intercelulares prominentes y figuras mitóticas atípicas.
 
 factores histopatológicos de alto riesgo (criterios ajcc 8.ª edición / nccn / bwh):
 - espesor tumoral / profundidad de invasión de breslow: [[x] mm (medido desde el estrato granuloso hasta la base tumoral)].
@@ -8549,8 +8553,8 @@ factores histopatológicos de alto riesgo (criterios ajcc 8.ª edición / nccn /
 - diferenciación histológica de alto riesgo: [variante acantolítica / fusocelular / desmoplásica].
 - márgenes de resección quirúrgica: margen periférico [libre a [x] mm], margen profundo [libre a [x] mm].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Karia, P. S., et al. (2014). Brigham and Women's Hospital (BWH) cutaneous squamous cell carcinoma staging system. / CAP cSCC Protocol 2024.</small>",
-        "diag": "PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Karia, P. S., et al. (2014). Brigham and Women's Hospital (BWH) cutaneous squamous cell carcinoma staging system. / CAP cSCC Protocol 2024.</small>`,
+        "diag": `PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
 - CARCINOMA EPIDERMOIDE (DE CÉLULAS ESCAMOSAS) CUTÁNEO INVASOR, [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO.
 - ESPESOR TUMORAL DE BRESLOW: [__] mm (NIVEL DE CLARK [IV / V]).
 - PROFUNDIDAD DE INVASIÓN: [DERMIS RETICULAR / TEJIDO CELULAR SUBCUTÁNEO / FASCIA].
@@ -8583,16 +8587,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
 - Categoría pTNM (AJCC 8.ª Edición - Cabeza y Cuello vs No Cabeza y Cuello):
   * Tumor primario (pT): [pT1 (<=2cm) / pT2 (>2 a 4cm) / pT3 (>4cm o PNI>=0.1mm o invasión profunda >6mm o invasión ósea menor)]
   * Ganglios linfáticos regionales (pN): [pNX / pN0 / pN1 / pN2]
-========================================================"
+========================================================`
     },
     {
         "id": 6315,
         "categoryId": 101,
         "titulo": "CAP - PIEL: CARCINOMA EPIDERMOIDE CUTÁNEO DE ALTO RIESGO",
-        "macro": "se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol, que mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie cutánea se observa una lesión [exofítica queratósica / ulcerada de bordes elevados e indurados / nodular infiltrante] de color blanco-rosado a amarillento, que mide [diámetro mayor] x [menor] mm. la distancia de la lesión a los márgenes quirúrgicos es: margen periférico más cercano a [distancia] mm y margen profundo a [distancia] mm. se entintan los bordes quirúrgicos. se procesa en cortes transversales seriados según protocolo CAP / Lester en casetes [C1-Cn].
+        "macro": `se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol, que mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie cutánea se observa una lesión [exofítica queratósica / ulcerada de bordes elevados e indurados / nodular infiltrante] de color blanco-rosado a amarillento, que mide [diámetro mayor] x [menor] mm. la distancia de la lesión a los márgenes quirúrgicos es: margen periférico más cercano a [distancia] mm y margen profundo a [distancia] mm. se entintan los bordes quirúrgicos. se procesa en cortes transversales seriados según protocolo CAP / Lester en casetes [C1-Cn].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Cutaneous Squamous Cell Carcinoma (cSCC). AJCC 8th Ed. & Brigham and Women's Hospital (BWH) Staging.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la epidermis clasificada según la OMS 5.ª edición como carcinoma epidermoide cutáneo (carcinoma de células escamosas - cSCC) invasor [variante convencional queratinizante / acantolítica / fusocelular / verrucosa / adenoescamosa]. las células tumorales muestran núcleos pleomórficos hipercrómicos, perlas de queratina (queratinización individual y en masa), puentes intercelulares prominentes y figuras mitóticas atípicas.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Cutaneous Squamous Cell Carcinoma (cSCC). AJCC 8th Ed. & Brigham and Women's Hospital (BWH) Staging.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la epidermis clasificada según la OMS 5.ª edición como carcinoma epidermoide cutáneo (carcinoma de células escamosas - cSCC) invasor [variante convencional queratinizante / acantolítica / fusocelular / verrucosa / adenoescamosa]. las células tumorales muestran núcleos pleomórficos hipercrómicos, perlas de queratina (queratinización individual y en masa), puentes intercelulares prominentes y figuras mitóticas atípicas.
 
 factores histopatológicos de alto riesgo (criterios ajcc 8.ª edición / nccn / bwh):
 - espesor tumoral / profundidad de invasión de breslow: [[x] mm (medido desde el estrato granuloso hasta la base tumoral)].
@@ -8603,8 +8607,8 @@ factores histopatológicos de alto riesgo (criterios ajcc 8.ª edición / nccn /
 - diferenciación histológica de alto riesgo: [variante acantolítica / fusocelular / desmoplásica].
 - márgenes de resección quirúrgica: margen periférico [libre a [x] mm], margen profundo [libre a [x] mm].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Karia, P. S., et al. (2014). Brigham and Women's Hospital (BWH) cutaneous squamous cell carcinoma staging system. / CAP cSCC Protocol 2024.</small>",
-        "diag": "PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Karia, P. S., et al. (2014). Brigham and Women's Hospital (BWH) cutaneous squamous cell carcinoma staging system. / CAP cSCC Protocol 2024.</small>`,
+        "diag": `PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
 - CARCINOMA EPIDERMOIDE (DE CÉLULAS ESCAMOSAS) CUTÁNEO INVASOR, [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO.
 - ESPESOR TUMORAL DE BRESLOW: [__] mm (NIVEL DE CLARK [IV / V]).
 - PROFUNDIDAD DE INVASIÓN: [DERMIS RETICULAR / TEJIDO CELULAR SUBCUTÁNEO / FASCIA].
@@ -8637,16 +8641,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
 - Categoría pTNM (AJCC 8.ª Edición - Cabeza y Cuello vs No Cabeza y Cuello):
   * Tumor primario (pT): [pT1 (<=2cm) / pT2 (>2 a 4cm) / pT3 (>4cm o PNI>=0.1mm o invasión profunda >6mm o invasión ósea menor)]
   * Ganglios linfáticos regionales (pN): [pNX / pN0 / pN1 / pN2]
-========================================================"
+========================================================`
     },
     {
         "id": 3315,
         "categoryId": 2,
         "titulo": "CAP - PIEL: CARCINOMA EPIDERMOIDE CUTÁNEO DE ALTO RIESGO",
-        "macro": "se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol, que mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie cutánea se observa una lesión [exofítica queratósica / ulcerada de bordes elevados e indurados / nodular infiltrante] de color blanco-rosado a amarillento, que mide [diámetro mayor] x [menor] mm. la distancia de la lesión a los márgenes quirúrgicos es: margen periférico más cercano a [distancia] mm y margen profundo a [distancia] mm. se entintan los bordes quirúrgicos. se procesa en cortes transversales seriados según protocolo CAP / Lester en casetes [C1-Cn].
+        "macro": `se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol, que mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie cutánea se observa una lesión [exofítica queratósica / ulcerada de bordes elevados e indurados / nodular infiltrante] de color blanco-rosado a amarillento, que mide [diámetro mayor] x [menor] mm. la distancia de la lesión a los márgenes quirúrgicos es: margen periférico más cercano a [distancia] mm y margen profundo a [distancia] mm. se entintan los bordes quirúrgicos. se procesa en cortes transversales seriados según protocolo CAP / Lester en casetes [C1-Cn].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Cutaneous Squamous Cell Carcinoma (cSCC). AJCC 8th Ed. & Brigham and Women's Hospital (BWH) Staging.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la epidermis clasificada según la OMS 5.ª edición como carcinoma epidermoide cutáneo (carcinoma de células escamosas - cSCC) invasor [variante convencional queratinizante / acantolítica / fusocelular / verrucosa / adenoescamosa]. las células tumorales muestran núcleos pleomórficos hipercrómicos, perlas de queratina (queratinización individual y en masa), puentes intercelulares prominentes y figuras mitóticas atípicas.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Cutaneous Squamous Cell Carcinoma (cSCC). AJCC 8th Ed. & Brigham and Women's Hospital (BWH) Staging.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la epidermis clasificada según la OMS 5.ª edición como carcinoma epidermoide cutáneo (carcinoma de células escamosas - cSCC) invasor [variante convencional queratinizante / acantolítica / fusocelular / verrucosa / adenoescamosa]. las células tumorales muestran núcleos pleomórficos hipercrómicos, perlas de queratina (queratinización individual y en masa), puentes intercelulares prominentes y figuras mitóticas atípicas.
 
 factores histopatológicos de alto riesgo (criterios ajcc 8.ª edición / nccn / bwh):
 - espesor tumoral / profundidad de invasión de breslow: [[x] mm (medido desde el estrato granuloso hasta la base tumoral)].
@@ -8657,8 +8661,8 @@ factores histopatológicos de alto riesgo (criterios ajcc 8.ª edición / nccn /
 - diferenciación histológica de alto riesgo: [variante acantolítica / fusocelular / desmoplásica].
 - márgenes de resección quirúrgica: margen periférico [libre a [x] mm], margen profundo [libre a [x] mm].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Karia, P. S., et al. (2014). Brigham and Women's Hospital (BWH) cutaneous squamous cell carcinoma staging system. / CAP cSCC Protocol 2024.</small>",
-        "diag": "PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Karia, P. S., et al. (2014). Brigham and Women's Hospital (BWH) cutaneous squamous cell carcinoma staging system. / CAP cSCC Protocol 2024.</small>`,
+        "diag": `PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
 - CARCINOMA EPIDERMOIDE (DE CÉLULAS ESCAMOSAS) CUTÁNEO INVASOR, [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO.
 - ESPESOR TUMORAL DE BRESLOW: [__] mm (NIVEL DE CLARK [IV / V]).
 - PROFUNDIDAD DE INVASIÓN: [DERMIS RETICULAR / TEJIDO CELULAR SUBCUTÁNEO / FASCIA].
@@ -8691,16 +8695,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
 - Categoría pTNM (AJCC 8.ª Edición - Cabeza y Cuello vs No Cabeza y Cuello):
   * Tumor primario (pT): [pT1 (<=2cm) / pT2 (>2 a 4cm) / pT3 (>4cm o PNI>=0.1mm o invasión profunda >6mm o invasión ósea menor)]
   * Ganglios linfáticos regionales (pN): [pNX / pN0 / pN1 / pN2]
-========================================================"
+========================================================`
     },
     {
         "id": 4315,
         "categoryId": 16,
         "titulo": "CAP - PIEL: CARCINOMA EPIDERMOIDE CUTÁNEO DE ALTO RIESGO",
-        "macro": "se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol, que mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie cutánea se observa una lesión [exofítica queratósica / ulcerada de bordes elevados e indurados / nodular infiltrante] de color blanco-rosado a amarillento, que mide [diámetro mayor] x [menor] mm. la distancia de la lesión a los márgenes quirúrgicos es: margen periférico más cercano a [distancia] mm y margen profundo a [distancia] mm. se entintan los bordes quirúrgicos. se procesa en cortes transversales seriados según protocolo CAP / Lester en casetes [C1-Cn].
+        "macro": `se recibe losange / elipse de piel y tejido celular subcutáneo fijado en formol, que mide [longitud] x [ancho] cm con una profundidad de [espesor] cm. en la superficie cutánea se observa una lesión [exofítica queratósica / ulcerada de bordes elevados e indurados / nodular infiltrante] de color blanco-rosado a amarillento, que mide [diámetro mayor] x [menor] mm. la distancia de la lesión a los márgenes quirúrgicos es: margen periférico más cercano a [distancia] mm y margen profundo a [distancia] mm. se entintan los bordes quirúrgicos. se procesa en cortes transversales seriados según protocolo CAP / Lester en casetes [C1-Cn].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Cutaneous Squamous Cell Carcinoma (cSCC). AJCC 8th Ed. & Brigham and Women's Hospital (BWH) Staging.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la epidermis clasificada según la OMS 5.ª edición como carcinoma epidermoide cutáneo (carcinoma de células escamosas - cSCC) invasor [variante convencional queratinizante / acantolítica / fusocelular / verrucosa / adenoescamosa]. las células tumorales muestran núcleos pleomórficos hipercrómicos, perlas de queratina (queratinización individual y en masa), puentes intercelulares prominentes y figuras mitóticas atípicas.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Cutaneous Squamous Cell Carcinoma (cSCC). AJCC 8th Ed. & Brigham and Women's Hospital (BWH) Staging.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la epidermis clasificada según la OMS 5.ª edición como carcinoma epidermoide cutáneo (carcinoma de células escamosas - cSCC) invasor [variante convencional queratinizante / acantolítica / fusocelular / verrucosa / adenoescamosa]. las células tumorales muestran núcleos pleomórficos hipercrómicos, perlas de queratina (queratinización individual y en masa), puentes intercelulares prominentes y figuras mitóticas atípicas.
 
 factores histopatológicos de alto riesgo (criterios ajcc 8.ª edición / nccn / bwh):
 - espesor tumoral / profundidad de invasión de breslow: [[x] mm (medido desde el estrato granuloso hasta la base tumoral)].
@@ -8711,8 +8715,8 @@ factores histopatológicos de alto riesgo (criterios ajcc 8.ª edición / nccn /
 - diferenciación histológica de alto riesgo: [variante acantolítica / fusocelular / desmoplásica].
 - márgenes de resección quirúrgica: margen periférico [libre a [x] mm], margen profundo [libre a [x] mm].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Karia, P. S., et al. (2014). Brigham and Women's Hospital (BWH) cutaneous squamous cell carcinoma staging system. / CAP cSCC Protocol 2024.</small>",
-        "diag": "PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
+<small style=\"font-size: 0.72rem; color: #64748b;\">Karia, P. S., et al. (2014). Brigham and Women's Hospital (BWH) cutaneous squamous cell carcinoma staging system. / CAP cSCC Protocol 2024.</small>`,
+        "diag": `PIEL ([LOCALIZACIÓN ANATÓMICA]), ESCISIÓN QUIRÚRGICA:
 - CARCINOMA EPIDERMOIDE (DE CÉLULAS ESCAMOSAS) CUTÁNEO INVASOR, [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO.
 - ESPESOR TUMORAL DE BRESLOW: [__] mm (NIVEL DE CLARK [IV / V]).
 - PROFUNDIDAD DE INVASIÓN: [DERMIS RETICULAR / TEJIDO CELULAR SUBCUTÁNEO / FASCIA].
@@ -8745,16 +8749,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
 - Categoría pTNM (AJCC 8.ª Edición - Cabeza y Cuello vs No Cabeza y Cuello):
   * Tumor primario (pT): [pT1 (<=2cm) / pT2 (>2 a 4cm) / pT3 (>4cm o PNI>=0.1mm o invasión profunda >6mm o invasión ósea menor)]
   * Ganglios linfáticos regionales (pN): [pNX / pN0 / pN1 / pN2]
-========================================================"
+========================================================`
     },
     {
         "id": 316,
         "categoryId": 1,
         "titulo": "CAP - CABEZA Y CUELLO: CARCINOMA ESCAMOSO DE CAVIDAD ORAL / LARINGE",
-        "macro": "se recibe espécimen de resección quirúrgica correspondiente a [glosectomía parcial/total / mandibulectomía con piso de boca / maxilectomía / laringectomía total o supraglótica] fijado en formol, con vaciamiento ganglionar cervical radical modificado / selectivo [derecho / izquierdo]. la pieza de resección mide [dimensiones] cm. a la inspección de la mucosa [lingual / piso de boca / trígono retromolar / laringe], se aprecia una lesión tumoral [ulcerada e infiltrante de bordes evertidos indurados / exofítica vegetante] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, la masa invade en profundidad el parénquima muscular subyacente hasta una profundidad macroscópica de [profundidad] mm. los márgenes periféricos mucosos y profundos son entintados en diferentes colores. en el vaciamiento cervical se disecan y separan por niveles ganglionares (I, II, III, IV, V) [número_ganglios] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de invasión DOI, MM márgenes mucosos, MP márgenes profundos, G_I a G_V ganglios cervicales por nivel].
+        "macro": `se recibe espécimen de resección quirúrgica correspondiente a [glosectomía parcial/total / mandibulectomía con piso de boca / maxilectomía / laringectomía total o supraglótica] fijado en formol, con vaciamiento ganglionar cervical radical modificado / selectivo [derecho / izquierdo]. la pieza de resección mide [dimensiones] cm. a la inspección de la mucosa [lingual / piso de boca / trígono retromolar / laringe], se aprecia una lesión tumoral [ulcerada e infiltrante de bordes evertidos indurados / exofítica vegetante] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, la masa invade en profundidad el parénquima muscular subyacente hasta una profundidad macroscópica de [profundidad] mm. los márgenes periféricos mucosos y profundos son entintados en diferentes colores. en el vaciamiento cervical se disecan y separan por niveles ganglionares (I, II, III, IV, V) [número_ganglios] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de invasión DOI, MM márgenes mucosos, MP márgenes profundos, G_I a G_V ganglios cervicales por nivel].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinomas of the Oral Cavity and Larynx. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la mucosa oral/laríngea clasificada según la OMS 5.ª edición como carcinoma de células escamosas (epidermoide) invasor [variante queratinizante usual / no queratinizante / basaloide / verrucosa / fusocelular]. las células exhiben pleomorfismo nuclear marcado, atipia citológica severa, formación de nidos infiltrantes con perlas córneas de queratinización y mitosis atípicas abundantes.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinomas of the Oral Cavity and Larynx. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la mucosa oral/laríngea clasificada según la OMS 5.ª edición como carcinoma de células escamosas (epidermoide) invasor [variante queratinizante usual / no queratinizante / basaloide / verrucosa / fusocelular]. las células exhiben pleomorfismo nuclear marcado, atipia citológica severa, formación de nidos infiltrantes con perlas córneas de queratinización y mitosis atípicas abundantes.
 
 parámetros pronósticos histopatológicos estandarizados (ajcc 8.ª edición / cap):
 - profundidad de invasión estromal (doi - depth of invasion): [[x] mm (medido desde el nivel de la membrana basal de la mucosa adyacente sana hasta el punto más profundo de invasión tumoral; esencial para la categoría pT en cavidad oral)].
@@ -8767,8 +8771,8 @@ parámetros pronósticos histopatológicos estandarizados (ajcc 8.ª edición / 
 - ganglios linfáticos cervicales: se examinan [n] ganglios de los niveles [I al V], de los cuales [n_positivos] albergan metástasis. extensión extranodal (ene - factor pronóstico de mayor impacto): [ausente / presente clínica o microscópica con extensión de [x] mm más allá de la cápsula ganglionar].
 - estado de asociación a vph (ihq p16): [positivo en bloque (>70% nuclear y citoplasmático) / negativo].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Head and Neck Tumours (5th ed.). IARC; Lyon. / AJCC 8th Edition Oral Cavity Staging.</small>",
-        "diag": "CAVIDAD ORAL / LARINGE ([LOCALIZACIÓN ANATÓMICA]), RESECCIÓN QUIRÚRGICA CON DISECCIÓN CERVICAL:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Head and Neck Tumours (5th ed.). IARC; Lyon. / AJCC 8th Edition Oral Cavity Staging.</small>`,
+        "diag": `CAVIDAD ORAL / LARINGE ([LOCALIZACIÓN ANATÓMICA]), RESECCIÓN QUIRÚRGICA CON DISECCIÓN CERVICAL:
 - CARCINOMA DE CÉLULAS ESCAMOSAS (EPIDERMOIDE) INVASOR, [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO (GRADO [1 / 2 / 3] OMS).
 - PROFUNDIDAD DE INVASIÓN (DOI): [__] mm (PARÁMETRO DETERMINANTE pT AJCC 8.ª ED.).
 - PATRÓN DE INVASIÓN EN EL FRENTE TUMORAL (WPOI): [PATRÓN 1-3 / PATRÓN 4 / PATRÓN 5 (DISPERSIÓN SATÉLITE >= 1 mm)].
@@ -8818,16 +8822,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
     - pN2b: Múltiples ganglios ipsilaterales <= 6 cm sin ENE
     - pN2c: Ganglios bilaterales o contralaterales <= 6 cm sin ENE
     - pN3b: Cualquier ganglio con Extensión Extranodal (ENE) clínica o microscópica
-========================================================"
+========================================================`
     },
     {
         "id": 1316,
         "categoryId": 11,
         "titulo": "CAP - CABEZA Y CUELLO: CARCINOMA ESCAMOSO DE CAVIDAD ORAL / LARINGE",
-        "macro": "se recibe espécimen de resección quirúrgica correspondiente a [glosectomía parcial/total / mandibulectomía con piso de boca / maxilectomía / laringectomía total o supraglótica] fijado en formol, con vaciamiento ganglionar cervical radical modificado / selectivo [derecho / izquierdo]. la pieza de resección mide [dimensiones] cm. a la inspección de la mucosa [lingual / piso de boca / trígono retromolar / laringe], se aprecia una lesión tumoral [ulcerada e infiltrante de bordes evertidos indurados / exofítica vegetante] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, la masa invade en profundidad el parénquima muscular subyacente hasta una profundidad macroscópica de [profundidad] mm. los márgenes periféricos mucosos y profundos son entintados en diferentes colores. en el vaciamiento cervical se disecan y separan por niveles ganglionares (I, II, III, IV, V) [número_ganglios] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de invasión DOI, MM márgenes mucosos, MP márgenes profundos, G_I a G_V ganglios cervicales por nivel].
+        "macro": `se recibe espécimen de resección quirúrgica correspondiente a [glosectomía parcial/total / mandibulectomía con piso de boca / maxilectomía / laringectomía total o supraglótica] fijado en formol, con vaciamiento ganglionar cervical radical modificado / selectivo [derecho / izquierdo]. la pieza de resección mide [dimensiones] cm. a la inspección de la mucosa [lingual / piso de boca / trígono retromolar / laringe], se aprecia una lesión tumoral [ulcerada e infiltrante de bordes evertidos indurados / exofítica vegetante] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, la masa invade en profundidad el parénquima muscular subyacente hasta una profundidad macroscópica de [profundidad] mm. los márgenes periféricos mucosos y profundos son entintados en diferentes colores. en el vaciamiento cervical se disecan y separan por niveles ganglionares (I, II, III, IV, V) [número_ganglios] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de invasión DOI, MM márgenes mucosos, MP márgenes profundos, G_I a G_V ganglios cervicales por nivel].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinomas of the Oral Cavity and Larynx. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la mucosa oral/laríngea clasificada según la OMS 5.ª edición como carcinoma de células escamosas (epidermoide) invasor [variante queratinizante usual / no queratinizante / basaloide / verrucosa / fusocelular]. las células exhiben pleomorfismo nuclear marcado, atipia citológica severa, formación de nidos infiltrantes con perlas córneas de queratinización y mitosis atípicas abundantes.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinomas of the Oral Cavity and Larynx. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la mucosa oral/laríngea clasificada según la OMS 5.ª edición como carcinoma de células escamosas (epidermoide) invasor [variante queratinizante usual / no queratinizante / basaloide / verrucosa / fusocelular]. las células exhiben pleomorfismo nuclear marcado, atipia citológica severa, formación de nidos infiltrantes con perlas córneas de queratinización y mitosis atípicas abundantes.
 
 parámetros pronósticos histopatológicos estandarizados (ajcc 8.ª edición / cap):
 - profundidad de invasión estromal (doi - depth of invasion): [[x] mm (medido desde el nivel de la membrana basal de la mucosa adyacente sana hasta el punto más profundo de invasión tumoral; esencial para la categoría pT en cavidad oral)].
@@ -8840,8 +8844,8 @@ parámetros pronósticos histopatológicos estandarizados (ajcc 8.ª edición / 
 - ganglios linfáticos cervicales: se examinan [n] ganglios de los niveles [I al V], de los cuales [n_positivos] albergan metástasis. extensión extranodal (ene - factor pronóstico de mayor impacto): [ausente / presente clínica o microscópica con extensión de [x] mm más allá de la cápsula ganglionar].
 - estado de asociación a vph (ihq p16): [positivo en bloque (>70% nuclear y citoplasmático) / negativo].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Head and Neck Tumours (5th ed.). IARC; Lyon. / AJCC 8th Edition Oral Cavity Staging.</small>",
-        "diag": "CAVIDAD ORAL / LARINGE ([LOCALIZACIÓN ANATÓMICA]), RESECCIÓN QUIRÚRGICA CON DISECCIÓN CERVICAL:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Head and Neck Tumours (5th ed.). IARC; Lyon. / AJCC 8th Edition Oral Cavity Staging.</small>`,
+        "diag": `CAVIDAD ORAL / LARINGE ([LOCALIZACIÓN ANATÓMICA]), RESECCIÓN QUIRÚRGICA CON DISECCIÓN CERVICAL:
 - CARCINOMA DE CÉLULAS ESCAMOSAS (EPIDERMOIDE) INVASOR, [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO (GRADO [1 / 2 / 3] OMS).
 - PROFUNDIDAD DE INVASIÓN (DOI): [__] mm (PARÁMETRO DETERMINANTE pT AJCC 8.ª ED.).
 - PATRÓN DE INVASIÓN EN EL FRENTE TUMORAL (WPOI): [PATRÓN 1-3 / PATRÓN 4 / PATRÓN 5 (DISPERSIÓN SATÉLITE >= 1 mm)].
@@ -8891,16 +8895,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
     - pN2b: Múltiples ganglios ipsilaterales <= 6 cm sin ENE
     - pN2c: Ganglios bilaterales o contralaterales <= 6 cm sin ENE
     - pN3b: Cualquier ganglio con Extensión Extranodal (ENE) clínica o microscópica
-========================================================"
+========================================================`
     },
     {
         "id": 2316,
         "categoryId": 10,
         "titulo": "CAP - CABEZA Y CUELLO: CARCINOMA ESCAMOSO DE CAVIDAD ORAL / LARINGE",
-        "macro": "se recibe espécimen de resección quirúrgica correspondiente a [glosectomía parcial/total / mandibulectomía con piso de boca / maxilectomía / laringectomía total o supraglótica] fijado en formol, con vaciamiento ganglionar cervical radical modificado / selectivo [derecho / izquierdo]. la pieza de resección mide [dimensiones] cm. a la inspección de la mucosa [lingual / piso de boca / trígono retromolar / laringe], se aprecia una lesión tumoral [ulcerada e infiltrante de bordes evertidos indurados / exofítica vegetante] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, la masa invade en profundidad el parénquima muscular subyacente hasta una profundidad macroscópica de [profundidad] mm. los márgenes periféricos mucosos y profundos son entintados en diferentes colores. en el vaciamiento cervical se disecan y separan por niveles ganglionares (I, II, III, IV, V) [número_ganglios] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de invasión DOI, MM márgenes mucosos, MP márgenes profundos, G_I a G_V ganglios cervicales por nivel].
+        "macro": `se recibe espécimen de resección quirúrgica correspondiente a [glosectomía parcial/total / mandibulectomía con piso de boca / maxilectomía / laringectomía total o supraglótica] fijado en formol, con vaciamiento ganglionar cervical radical modificado / selectivo [derecho / izquierdo]. la pieza de resección mide [dimensiones] cm. a la inspección de la mucosa [lingual / piso de boca / trígono retromolar / laringe], se aprecia una lesión tumoral [ulcerada e infiltrante de bordes evertidos indurados / exofítica vegetante] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, la masa invade en profundidad el parénquima muscular subyacente hasta una profundidad macroscópica de [profundidad] mm. los márgenes periféricos mucosos y profundos son entintados en diferentes colores. en el vaciamiento cervical se disecan y separan por niveles ganglionares (I, II, III, IV, V) [número_ganglios] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de invasión DOI, MM márgenes mucosos, MP márgenes profundos, G_I a G_V ganglios cervicales por nivel].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinomas of the Oral Cavity and Larynx. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la mucosa oral/laríngea clasificada según la OMS 5.ª edición como carcinoma de células escamosas (epidermoide) invasor [variante queratinizante usual / no queratinizante / basaloide / verrucosa / fusocelular]. las células exhiben pleomorfismo nuclear marcado, atipia citológica severa, formación de nidos infiltrantes con perlas córneas de queratinización y mitosis atípicas abundantes.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinomas of the Oral Cavity and Larynx. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la mucosa oral/laríngea clasificada según la OMS 5.ª edición como carcinoma de células escamosas (epidermoide) invasor [variante queratinizante usual / no queratinizante / basaloide / verrucosa / fusocelular]. las células exhiben pleomorfismo nuclear marcado, atipia citológica severa, formación de nidos infiltrantes con perlas córneas de queratinización y mitosis atípicas abundantes.
 
 parámetros pronósticos histopatológicos estandarizados (ajcc 8.ª edición / cap):
 - profundidad de invasión estromal (doi - depth of invasion): [[x] mm (medido desde el nivel de la membrana basal de la mucosa adyacente sana hasta el punto más profundo de invasión tumoral; esencial para la categoría pT en cavidad oral)].
@@ -8913,8 +8917,8 @@ parámetros pronósticos histopatológicos estandarizados (ajcc 8.ª edición / 
 - ganglios linfáticos cervicales: se examinan [n] ganglios de los niveles [I al V], de los cuales [n_positivos] albergan metástasis. extensión extranodal (ene - factor pronóstico de mayor impacto): [ausente / presente clínica o microscópica con extensión de [x] mm más allá de la cápsula ganglionar].
 - estado de asociación a vph (ihq p16): [positivo en bloque (>70% nuclear y citoplasmático) / negativo].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Head and Neck Tumours (5th ed.). IARC; Lyon. / AJCC 8th Edition Oral Cavity Staging.</small>",
-        "diag": "CAVIDAD ORAL / LARINGE ([LOCALIZACIÓN ANATÓMICA]), RESECCIÓN QUIRÚRGICA CON DISECCIÓN CERVICAL:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Head and Neck Tumours (5th ed.). IARC; Lyon. / AJCC 8th Edition Oral Cavity Staging.</small>`,
+        "diag": `CAVIDAD ORAL / LARINGE ([LOCALIZACIÓN ANATÓMICA]), RESECCIÓN QUIRÚRGICA CON DISECCIÓN CERVICAL:
 - CARCINOMA DE CÉLULAS ESCAMOSAS (EPIDERMOIDE) INVASOR, [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO (GRADO [1 / 2 / 3] OMS).
 - PROFUNDIDAD DE INVASIÓN (DOI): [__] mm (PARÁMETRO DETERMINANTE pT AJCC 8.ª ED.).
 - PATRÓN DE INVASIÓN EN EL FRENTE TUMORAL (WPOI): [PATRÓN 1-3 / PATRÓN 4 / PATRÓN 5 (DISPERSIÓN SATÉLITE >= 1 mm)].
@@ -8964,16 +8968,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
     - pN2b: Múltiples ganglios ipsilaterales <= 6 cm sin ENE
     - pN2c: Ganglios bilaterales o contralaterales <= 6 cm sin ENE
     - pN3b: Cualquier ganglio con Extensión Extranodal (ENE) clínica o microscópica
-========================================================"
+========================================================`
     },
     {
         "id": 5316,
         "categoryId": 100,
         "titulo": "CAP - CABEZA Y CUELLO: CARCINOMA ESCAMOSO DE CAVIDAD ORAL / LARINGE",
-        "macro": "se recibe espécimen de resección quirúrgica correspondiente a [glosectomía parcial/total / mandibulectomía con piso de boca / maxilectomía / laringectomía total o supraglótica] fijado en formol, con vaciamiento ganglionar cervical radical modificado / selectivo [derecho / izquierdo]. la pieza de resección mide [dimensiones] cm. a la inspección de la mucosa [lingual / piso de boca / trígono retromolar / laringe], se aprecia una lesión tumoral [ulcerada e infiltrante de bordes evertidos indurados / exofítica vegetante] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, la masa invade en profundidad el parénquima muscular subyacente hasta una profundidad macroscópica de [profundidad] mm. los márgenes periféricos mucosos y profundos son entintados en diferentes colores. en el vaciamiento cervical se disecan y separan por niveles ganglionares (I, II, III, IV, V) [número_ganglios] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de invasión DOI, MM márgenes mucosos, MP márgenes profundos, G_I a G_V ganglios cervicales por nivel].
+        "macro": `se recibe espécimen de resección quirúrgica correspondiente a [glosectomía parcial/total / mandibulectomía con piso de boca / maxilectomía / laringectomía total o supraglótica] fijado en formol, con vaciamiento ganglionar cervical radical modificado / selectivo [derecho / izquierdo]. la pieza de resección mide [dimensiones] cm. a la inspección de la mucosa [lingual / piso de boca / trígono retromolar / laringe], se aprecia una lesión tumoral [ulcerada e infiltrante de bordes evertidos indurados / exofítica vegetante] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, la masa invade en profundidad el parénquima muscular subyacente hasta una profundidad macroscópica de [profundidad] mm. los márgenes periféricos mucosos y profundos son entintados en diferentes colores. en el vaciamiento cervical se disecan y separan por niveles ganglionares (I, II, III, IV, V) [número_ganglios] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de invasión DOI, MM márgenes mucosos, MP márgenes profundos, G_I a G_V ganglios cervicales por nivel].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinomas of the Oral Cavity and Larynx. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la mucosa oral/laríngea clasificada según la OMS 5.ª edición como carcinoma de células escamosas (epidermoide) invasor [variante queratinizante usual / no queratinizante / basaloide / verrucosa / fusocelular]. las células exhiben pleomorfismo nuclear marcado, atipia citológica severa, formación de nidos infiltrantes con perlas córneas de queratinización y mitosis atípicas abundantes.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinomas of the Oral Cavity and Larynx. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la mucosa oral/laríngea clasificada según la OMS 5.ª edición como carcinoma de células escamosas (epidermoide) invasor [variante queratinizante usual / no queratinizante / basaloide / verrucosa / fusocelular]. las células exhiben pleomorfismo nuclear marcado, atipia citológica severa, formación de nidos infiltrantes con perlas córneas de queratinización y mitosis atípicas abundantes.
 
 parámetros pronósticos histopatológicos estandarizados (ajcc 8.ª edición / cap):
 - profundidad de invasión estromal (doi - depth of invasion): [[x] mm (medido desde el nivel de la membrana basal de la mucosa adyacente sana hasta el punto más profundo de invasión tumoral; esencial para la categoría pT en cavidad oral)].
@@ -8986,8 +8990,8 @@ parámetros pronósticos histopatológicos estandarizados (ajcc 8.ª edición / 
 - ganglios linfáticos cervicales: se examinan [n] ganglios de los niveles [I al V], de los cuales [n_positivos] albergan metástasis. extensión extranodal (ene - factor pronóstico de mayor impacto): [ausente / presente clínica o microscópica con extensión de [x] mm más allá de la cápsula ganglionar].
 - estado de asociación a vph (ihq p16): [positivo en bloque (>70% nuclear y citoplasmático) / negativo].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Head and Neck Tumours (5th ed.). IARC; Lyon. / AJCC 8th Edition Oral Cavity Staging.</small>",
-        "diag": "CAVIDAD ORAL / LARINGE ([LOCALIZACIÓN ANATÓMICA]), RESECCIÓN QUIRÚRGICA CON DISECCIÓN CERVICAL:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Head and Neck Tumours (5th ed.). IARC; Lyon. / AJCC 8th Edition Oral Cavity Staging.</small>`,
+        "diag": `CAVIDAD ORAL / LARINGE ([LOCALIZACIÓN ANATÓMICA]), RESECCIÓN QUIRÚRGICA CON DISECCIÓN CERVICAL:
 - CARCINOMA DE CÉLULAS ESCAMOSAS (EPIDERMOIDE) INVASOR, [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO (GRADO [1 / 2 / 3] OMS).
 - PROFUNDIDAD DE INVASIÓN (DOI): [__] mm (PARÁMETRO DETERMINANTE pT AJCC 8.ª ED.).
 - PATRÓN DE INVASIÓN EN EL FRENTE TUMORAL (WPOI): [PATRÓN 1-3 / PATRÓN 4 / PATRÓN 5 (DISPERSIÓN SATÉLITE >= 1 mm)].
@@ -9037,16 +9041,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
     - pN2b: Múltiples ganglios ipsilaterales <= 6 cm sin ENE
     - pN2c: Ganglios bilaterales o contralaterales <= 6 cm sin ENE
     - pN3b: Cualquier ganglio con Extensión Extranodal (ENE) clínica o microscópica
-========================================================"
+========================================================`
     },
     {
         "id": 6316,
         "categoryId": 101,
         "titulo": "CAP - CABEZA Y CUELLO: CARCINOMA ESCAMOSO DE CAVIDAD ORAL / LARINGE",
-        "macro": "se recibe espécimen de resección quirúrgica correspondiente a [glosectomía parcial/total / mandibulectomía con piso de boca / maxilectomía / laringectomía total o supraglótica] fijado en formol, con vaciamiento ganglionar cervical radical modificado / selectivo [derecho / izquierdo]. la pieza de resección mide [dimensiones] cm. a la inspección de la mucosa [lingual / piso de boca / trígono retromolar / laringe], se aprecia una lesión tumoral [ulcerada e infiltrante de bordes evertidos indurados / exofítica vegetante] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, la masa invade en profundidad el parénquima muscular subyacente hasta una profundidad macroscópica de [profundidad] mm. los márgenes periféricos mucosos y profundos son entintados en diferentes colores. en el vaciamiento cervical se disecan y separan por niveles ganglionares (I, II, III, IV, V) [número_ganglios] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de invasión DOI, MM márgenes mucosos, MP márgenes profundos, G_I a G_V ganglios cervicales por nivel].
+        "macro": `se recibe espécimen de resección quirúrgica correspondiente a [glosectomía parcial/total / mandibulectomía con piso de boca / maxilectomía / laringectomía total o supraglótica] fijado en formol, con vaciamiento ganglionar cervical radical modificado / selectivo [derecho / izquierdo]. la pieza de resección mide [dimensiones] cm. a la inspección de la mucosa [lingual / piso de boca / trígono retromolar / laringe], se aprecia una lesión tumoral [ulcerada e infiltrante de bordes evertidos indurados / exofítica vegetante] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, la masa invade en profundidad el parénquima muscular subyacente hasta una profundidad macroscópica de [profundidad] mm. los márgenes periféricos mucosos y profundos son entintados en diferentes colores. en el vaciamiento cervical se disecan y separan por niveles ganglionares (I, II, III, IV, V) [número_ganglios] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de invasión DOI, MM márgenes mucosos, MP márgenes profundos, G_I a G_V ganglios cervicales por nivel].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinomas of the Oral Cavity and Larynx. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la mucosa oral/laríngea clasificada según la OMS 5.ª edición como carcinoma de células escamosas (epidermoide) invasor [variante queratinizante usual / no queratinizante / basaloide / verrucosa / fusocelular]. las células exhiben pleomorfismo nuclear marcado, atipia citológica severa, formación de nidos infiltrantes con perlas córneas de queratinización y mitosis atípicas abundantes.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinomas of the Oral Cavity and Larynx. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la mucosa oral/laríngea clasificada según la OMS 5.ª edición como carcinoma de células escamosas (epidermoide) invasor [variante queratinizante usual / no queratinizante / basaloide / verrucosa / fusocelular]. las células exhiben pleomorfismo nuclear marcado, atipia citológica severa, formación de nidos infiltrantes con perlas córneas de queratinización y mitosis atípicas abundantes.
 
 parámetros pronósticos histopatológicos estandarizados (ajcc 8.ª edición / cap):
 - profundidad de invasión estromal (doi - depth of invasion): [[x] mm (medido desde el nivel de la membrana basal de la mucosa adyacente sana hasta el punto más profundo de invasión tumoral; esencial para la categoría pT en cavidad oral)].
@@ -9059,8 +9063,8 @@ parámetros pronósticos histopatológicos estandarizados (ajcc 8.ª edición / 
 - ganglios linfáticos cervicales: se examinan [n] ganglios de los niveles [I al V], de los cuales [n_positivos] albergan metástasis. extensión extranodal (ene - factor pronóstico de mayor impacto): [ausente / presente clínica o microscópica con extensión de [x] mm más allá de la cápsula ganglionar].
 - estado de asociación a vph (ihq p16): [positivo en bloque (>70% nuclear y citoplasmático) / negativo].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Head and Neck Tumours (5th ed.). IARC; Lyon. / AJCC 8th Edition Oral Cavity Staging.</small>",
-        "diag": "CAVIDAD ORAL / LARINGE ([LOCALIZACIÓN ANATÓMICA]), RESECCIÓN QUIRÚRGICA CON DISECCIÓN CERVICAL:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Head and Neck Tumours (5th ed.). IARC; Lyon. / AJCC 8th Edition Oral Cavity Staging.</small>`,
+        "diag": `CAVIDAD ORAL / LARINGE ([LOCALIZACIÓN ANATÓMICA]), RESECCIÓN QUIRÚRGICA CON DISECCIÓN CERVICAL:
 - CARCINOMA DE CÉLULAS ESCAMOSAS (EPIDERMOIDE) INVASOR, [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO (GRADO [1 / 2 / 3] OMS).
 - PROFUNDIDAD DE INVASIÓN (DOI): [__] mm (PARÁMETRO DETERMINANTE pT AJCC 8.ª ED.).
 - PATRÓN DE INVASIÓN EN EL FRENTE TUMORAL (WPOI): [PATRÓN 1-3 / PATRÓN 4 / PATRÓN 5 (DISPERSIÓN SATÉLITE >= 1 mm)].
@@ -9110,16 +9114,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
     - pN2b: Múltiples ganglios ipsilaterales <= 6 cm sin ENE
     - pN2c: Ganglios bilaterales o contralaterales <= 6 cm sin ENE
     - pN3b: Cualquier ganglio con Extensión Extranodal (ENE) clínica o microscópica
-========================================================"
+========================================================`
     },
     {
         "id": 3316,
         "categoryId": 32,
         "titulo": "CAP - CABEZA Y CUELLO: CARCINOMA ESCAMOSO DE CAVIDAD ORAL / LARINGE",
-        "macro": "se recibe espécimen de resección quirúrgica correspondiente a [glosectomía parcial/total / mandibulectomía con piso de boca / maxilectomía / laringectomía total o supraglótica] fijado en formol, con vaciamiento ganglionar cervical radical modificado / selectivo [derecho / izquierdo]. la pieza de resección mide [dimensiones] cm. a la inspección de la mucosa [lingual / piso de boca / trígono retromolar / laringe], se aprecia una lesión tumoral [ulcerada e infiltrante de bordes evertidos indurados / exofítica vegetante] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, la masa invade en profundidad el parénquima muscular subyacente hasta una profundidad macroscópica de [profundidad] mm. los márgenes periféricos mucosos y profundos son entintados en diferentes colores. en el vaciamiento cervical se disecan y separan por niveles ganglionares (I, II, III, IV, V) [número_ganglios] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de invasión DOI, MM márgenes mucosos, MP márgenes profundos, G_I a G_V ganglios cervicales por nivel].
+        "macro": `se recibe espécimen de resección quirúrgica correspondiente a [glosectomía parcial/total / mandibulectomía con piso de boca / maxilectomía / laringectomía total o supraglótica] fijado en formol, con vaciamiento ganglionar cervical radical modificado / selectivo [derecho / izquierdo]. la pieza de resección mide [dimensiones] cm. a la inspección de la mucosa [lingual / piso de boca / trígono retromolar / laringe], se aprecia una lesión tumoral [ulcerada e infiltrante de bordes evertidos indurados / exofítica vegetante] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, la masa invade en profundidad el parénquima muscular subyacente hasta una profundidad macroscópica de [profundidad] mm. los márgenes periféricos mucosos y profundos son entintados en diferentes colores. en el vaciamiento cervical se disecan y separan por niveles ganglionares (I, II, III, IV, V) [número_ganglios] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de invasión DOI, MM márgenes mucosos, MP márgenes profundos, G_I a G_V ganglios cervicales por nivel].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinomas of the Oral Cavity and Larynx. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la mucosa oral/laríngea clasificada según la OMS 5.ª edición como carcinoma de células escamosas (epidermoide) invasor [variante queratinizante usual / no queratinizante / basaloide / verrucosa / fusocelular]. las células exhiben pleomorfismo nuclear marcado, atipia citológica severa, formación de nidos infiltrantes con perlas córneas de queratinización y mitosis atípicas abundantes.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinomas of the Oral Cavity and Larynx. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la mucosa oral/laríngea clasificada según la OMS 5.ª edición como carcinoma de células escamosas (epidermoide) invasor [variante queratinizante usual / no queratinizante / basaloide / verrucosa / fusocelular]. las células exhiben pleomorfismo nuclear marcado, atipia citológica severa, formación de nidos infiltrantes con perlas córneas de queratinización y mitosis atípicas abundantes.
 
 parámetros pronósticos histopatológicos estandarizados (ajcc 8.ª edición / cap):
 - profundidad de invasión estromal (doi - depth of invasion): [[x] mm (medido desde el nivel de la membrana basal de la mucosa adyacente sana hasta el punto más profundo de invasión tumoral; esencial para la categoría pT en cavidad oral)].
@@ -9132,8 +9136,8 @@ parámetros pronósticos histopatológicos estandarizados (ajcc 8.ª edición / 
 - ganglios linfáticos cervicales: se examinan [n] ganglios de los niveles [I al V], de los cuales [n_positivos] albergan metástasis. extensión extranodal (ene - factor pronóstico de mayor impacto): [ausente / presente clínica o microscópica con extensión de [x] mm más allá de la cápsula ganglionar].
 - estado de asociación a vph (ihq p16): [positivo en bloque (>70% nuclear y citoplasmático) / negativo].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Head and Neck Tumours (5th ed.). IARC; Lyon. / AJCC 8th Edition Oral Cavity Staging.</small>",
-        "diag": "CAVIDAD ORAL / LARINGE ([LOCALIZACIÓN ANATÓMICA]), RESECCIÓN QUIRÚRGICA CON DISECCIÓN CERVICAL:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Head and Neck Tumours (5th ed.). IARC; Lyon. / AJCC 8th Edition Oral Cavity Staging.</small>`,
+        "diag": `CAVIDAD ORAL / LARINGE ([LOCALIZACIÓN ANATÓMICA]), RESECCIÓN QUIRÚRGICA CON DISECCIÓN CERVICAL:
 - CARCINOMA DE CÉLULAS ESCAMOSAS (EPIDERMOIDE) INVASOR, [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO (GRADO [1 / 2 / 3] OMS).
 - PROFUNDIDAD DE INVASIÓN (DOI): [__] mm (PARÁMETRO DETERMINANTE pT AJCC 8.ª ED.).
 - PATRÓN DE INVASIÓN EN EL FRENTE TUMORAL (WPOI): [PATRÓN 1-3 / PATRÓN 4 / PATRÓN 5 (DISPERSIÓN SATÉLITE >= 1 mm)].
@@ -9183,16 +9187,16 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
     - pN2b: Múltiples ganglios ipsilaterales <= 6 cm sin ENE
     - pN2c: Ganglios bilaterales o contralaterales <= 6 cm sin ENE
     - pN3b: Cualquier ganglio con Extensión Extranodal (ENE) clínica o microscópica
-========================================================"
+========================================================`
     },
     {
         "id": 4316,
         "categoryId": 14,
         "titulo": "CAP - CABEZA Y CUELLO: CARCINOMA ESCAMOSO DE CAVIDAD ORAL / LARINGE",
-        "macro": "se recibe espécimen de resección quirúrgica correspondiente a [glosectomía parcial/total / mandibulectomía con piso de boca / maxilectomía / laringectomía total o supraglótica] fijado en formol, con vaciamiento ganglionar cervical radical modificado / selectivo [derecho / izquierdo]. la pieza de resección mide [dimensiones] cm. a la inspección de la mucosa [lingual / piso de boca / trígono retromolar / laringe], se aprecia una lesión tumoral [ulcerada e infiltrante de bordes evertidos indurados / exofítica vegetante] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, la masa invade en profundidad el parénquima muscular subyacente hasta una profundidad macroscópica de [profundidad] mm. los márgenes periféricos mucosos y profundos son entintados en diferentes colores. en el vaciamiento cervical se disecan y separan por niveles ganglionares (I, II, III, IV, V) [número_ganglios] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de invasión DOI, MM márgenes mucosos, MP márgenes profundos, G_I a G_V ganglios cervicales por nivel].
+        "macro": `se recibe espécimen de resección quirúrgica correspondiente a [glosectomía parcial/total / mandibulectomía con piso de boca / maxilectomía / laringectomía total o supraglótica] fijado en formol, con vaciamiento ganglionar cervical radical modificado / selectivo [derecho / izquierdo]. la pieza de resección mide [dimensiones] cm. a la inspección de la mucosa [lingual / piso de boca / trígono retromolar / laringe], se aprecia una lesión tumoral [ulcerada e infiltrante de bordes evertidos indurados / exofítica vegetante] que mide [dimensión mayor] x [intermedia] x [menor] cm. al corte, la masa invade en profundidad el parénquima muscular subyacente hasta una profundidad macroscópica de [profundidad] mm. los márgenes periféricos mucosos y profundos son entintados en diferentes colores. en el vaciamiento cervical se disecan y separan por niveles ganglionares (I, II, III, IV, V) [número_ganglios] ganglios linfáticos. se incluye según protocolo CAP / Lester en casetes [T1-Tn tumor y profundidad máxima de invasión DOI, MM márgenes mucosos, MP márgenes profundos, G_I a G_V ganglios cervicales por nivel].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinomas of the Oral Cavity and Larynx. AJCC 8th Ed.</small>",
-        "micro": "los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la mucosa oral/laríngea clasificada según la OMS 5.ª edición como carcinoma de células escamosas (epidermoide) invasor [variante queratinizante usual / no queratinizante / basaloide / verrucosa / fusocelular]. las células exhiben pleomorfismo nuclear marcado, atipia citológica severa, formación de nidos infiltrantes con perlas córneas de queratinización y mitosis atípicas abundantes.
+<small style=\"font-size: 0.72rem; color: #64748b;\">College of American Pathologists (CAP, 2024). Protocol for Examination of Specimens From Patients With Carcinomas of the Oral Cavity and Larynx. AJCC 8th Ed.</small>`,
+        "micro": `los cortes histológicos confirman la presencia de una neoplasia epitelial maligna invasora de la mucosa oral/laríngea clasificada según la OMS 5.ª edición como carcinoma de células escamosas (epidermoide) invasor [variante queratinizante usual / no queratinizante / basaloide / verrucosa / fusocelular]. las células exhiben pleomorfismo nuclear marcado, atipia citológica severa, formación de nidos infiltrantes con perlas córneas de queratinización y mitosis atípicas abundantes.
 
 parámetros pronósticos histopatológicos estandarizados (ajcc 8.ª edición / cap):
 - profundidad de invasión estromal (doi - depth of invasion): [[x] mm (medido desde el nivel de la membrana basal de la mucosa adyacente sana hasta el punto más profundo de invasión tumoral; esencial para la categoría pT en cavidad oral)].
@@ -9205,8 +9209,8 @@ parámetros pronósticos histopatológicos estandarizados (ajcc 8.ª edición / 
 - ganglios linfáticos cervicales: se examinan [n] ganglios de los niveles [I al V], de los cuales [n_positivos] albergan metástasis. extensión extranodal (ene - factor pronóstico de mayor impacto): [ausente / presente clínica o microscópica con extensión de [x] mm más allá de la cápsula ganglionar].
 - estado de asociación a vph (ihq p16): [positivo en bloque (>70% nuclear y citoplasmático) / negativo].
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Head and Neck Tumours (5th ed.). IARC; Lyon. / AJCC 8th Edition Oral Cavity Staging.</small>",
-        "diag": "CAVIDAD ORAL / LARINGE ([LOCALIZACIÓN ANATÓMICA]), RESECCIÓN QUIRÚRGICA CON DISECCIÓN CERVICAL:
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours Editorial Board (2022). Head and Neck Tumours (5th ed.). IARC; Lyon. / AJCC 8th Edition Oral Cavity Staging.</small>`,
+        "diag": `CAVIDAD ORAL / LARINGE ([LOCALIZACIÓN ANATÓMICA]), RESECCIÓN QUIRÚRGICA CON DISECCIÓN CERVICAL:
 - CARCINOMA DE CÉLULAS ESCAMOSAS (EPIDERMOIDE) INVASOR, [BIEN / MODERADAMENTE / POBREMENTE] DIFERENCIADO (GRADO [1 / 2 / 3] OMS).
 - PROFUNDIDAD DE INVASIÓN (DOI): [__] mm (PARÁMETRO DETERMINANTE pT AJCC 8.ª ED.).
 - PATRÓN DE INVASIÓN EN EL FRENTE TUMORAL (WPOI): [PATRÓN 1-3 / PATRÓN 4 / PATRÓN 5 (DISPERSIÓN SATÉLITE >= 1 mm)].
@@ -9256,94 +9260,94 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
     - pN2b: Múltiples ganglios ipsilaterales <= 6 cm sin ENE
     - pN2c: Ganglios bilaterales o contralaterales <= 6 cm sin ENE
     - pN3b: Cualquier ganglio con Extensión Extranodal (ENE) clínica o microscópica
-========================================================"
+========================================================`
     },
     {
         "id": 1018,
         "categoryId": 25,
         "titulo": "MORCELADO DE PRÓSTATA (VARIANTE 1: HIPERPLASIA NODULAR MIXTA TÍPICA)",
-        "macro": "Se reciben múltiples fragmentos tisulares alargados e irregulares (virutas de morcelado prostático láser HoLEP / ThuLEP o resección transuretral), de superficie lobulada, coloración pardo-blanquecina a pardo-amarillenta y consistencia elástica firme con sectores esponjosos, que en conjunto miden [dimensiones] cm y registran un peso neto de [peso] g. Al corte, los fragmentos muestran microquistes con contenido coloide translúcido y nódulos estromales blanquecinos bien delimitados. No se observan áreas friables, necróticas ni nódulos amarillentos xantomatosos. Se incluye muestreo representativo en [n] casete(s).
+        "macro": `Se reciben múltiples fragmentos tisulares alargados e irregulares (virutas de morcelado prostático láser HoLEP / ThuLEP o resección transuretral), de superficie lobulada, coloración pardo-blanquecina a pardo-amarillenta y consistencia elástica firme con sectores esponjosos, que en conjunto miden [dimensiones] cm y registran un peso neto de [peso] g. Al corte, los fragmentos muestran microquistes con contenido coloide translúcido y nódulos estromales blanquecinos bien delimitados. No se observan áreas friables, necróticas ni nódulos amarillentos xantomatosos. Se incluye muestreo representativo en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Lester, S. C. (2010). Manual of Surgical Pathology (3rd ed.). Elsevier / Saunders. / WHO Classification of Tumours of the Urinary System and Male Genital Organs (5th ed., 2022).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Lester, S. C. (2010). Manual of Surgical Pathology (3rd ed.). Elsevier / Saunders. / WHO Classification of Tumours of the Urinary System and Male Genital Organs (5th ed., 2022).</small>`,
         "micro": "Los cortes histológicos coloreados con H&E revelan parénquima prostático correspondiente a la zona de transición con hiperplasia nodular benigna clásica de patrón mixto (adenomatoso y fibromuscular equilibrado). Las unidades glandulares muestran luces acinares de calibre variable, con pliegues papilares intraluminares revestidos por una doble capa epitelial íntegra y bien diferenciada: capa interna de células secretoras cilíndricas de citoplasma claro o finamente granular sin atipia ni macronucléolos prominentes, y capa externa continua de células basales mioepiteliales paralelas a la membrana basal. Se aprecian abundantes cuerpos amiláceos intraluminares basófilos y acidófilos laminares. El estroma interacinar demuestra proliferación ordenada de fascículos de músculo liso y fibroblastos maduros sin hipercromatismo ni actividad mitótica. No se observan atipias nucleares, cribas atípicas, proliferación microacinar carente de capa basal (ASAP), neoplasia intraepitelial prostática de alto grado (HGPIN) ni adenocarcinoma acinar invasor.",
-        "diag": "TEJIDO PROSTÁTICO (PRODUCTO DE MORCELADO / ENUCLEACIÓN):
+        "diag": `TEJIDO PROSTÁTICO (PRODUCTO DE MORCELADO / ENUCLEACIÓN):
 - HIPERPLASIA NODULAR PROSTÁTICA BENIGNA (PATRÓN MIXTO ADENOMATOSO Y FIBROMUSCULAR EQUILIBRADO).
 - ECTASIA DUCTO-ACINAR CON CUERPOS AMILÁCEOS INTRALUMINARES MÚLTIPLES.
 - NEGATIVO PARA PROCESO INFLAMATORIO AGUDO O CRÓNICO SIGNIFICATIVO.
 - NEGATIVO PARA PROLIFERACIÓN ACINAR ATÍPICA (ASAP) O NEOPLASIA INTRAEPITELIAL PROSTÁTICA DE ALTO GRADO (HGPIN).
-- NEGATIVO PARA NEOPLASIA MALIGNA (ADENOCARCINOMA PROSTÁTICO INVASOR) EN EL MATERIAL EXAMINADO (ISUP / OMS 2022)."
+- NEGATIVO PARA NEOPLASIA MALIGNA (ADENOCARCINOMA PROSTÁTICO INVASOR) EN EL MATERIAL EXAMINADO (ISUP / OMS 2022).`
     },
     {
         "id": 1019,
         "categoryId": 25,
         "titulo": "MORCELADO DE PRÓSTATA (VARIANTE 2: HIPERPLASIA CON PROSTATITIS CRÓNICA ACTIVA)",
-        "macro": "Se reciben abundantes fragmentos y tiras tisulares irregulares de tejido prostático procedentes de morcelado quirúrgico, de color pardo-rojizo a pardo-amarillento oscuro con áreas congestivas focales, de consistencia predominantemente elástica y consistencia blanda en zonas hiperémicas, con dimensiones agrupadas de [dimensiones] cm y peso acumulado de [peso] g. La superficie de corte exhibe sectores rojizos congestivos con discreta exudación translúcida. No se delimitan cavidades abscedadas francas ni nódulos indurados pétreos. Se incluye muestra representativa tisular en [n] casete(s).
+        "macro": `Se reciben abundantes fragmentos y tiras tisulares irregulares de tejido prostático procedentes de morcelado quirúrgico, de color pardo-rojizo a pardo-amarillento oscuro con áreas congestivas focales, de consistencia predominantemente elástica y consistencia blanda en zonas hiperémicas, con dimensiones agrupadas de [dimensiones] cm y peso acumulado de [peso] g. La superficie de corte exhibe sectores rojizos congestivos con discreta exudación translúcida. No se delimitan cavidades abscedadas francas ni nódulos indurados pétreos. Se incluye muestra representativa tisular en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Epstein, J. I. (2020). Biopsy Interpretation of the Prostate. Wolters Kluwer. / WHO Classification of Tumours (5th ed., 2022).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Epstein, J. I. (2020). Biopsy Interpretation of the Prostate. Wolters Kluwer. / WHO Classification of Tumours (5th ed., 2022).</small>`,
         "micro": "El examen histopatológico muestra parénquima prostático con arquitectura distorsionada por hiperplasia nodular acinar y estromal asociada a un conspicuo proceso inflamatorio crónico linfo-histiocitario y plasmocitario de distribución difusa e intersticial periacinar, con formación de agregados linfoides foliculares reactivos estromales. Se evidencia migración leucocitaria neutrofílica focal a través del epitelio secretor acinar con degeneración epitelial reactiva, vacuolización citoplasmática, cariomegalia reactiva uniforme con nucléolos pequeños centrales sin hipercromatismo patológico y conservación demostrable de la hilera basal continua. Las luces acinares alojan detritos celulares, neutrófilos atrapados y macrófagos espumosos (microabscesos intraluminares en fase de reabsorción). El estroma circundante presenta proliferación fibroblástica reparativa, edema intersticial y marcada congestión vascular capilar. Se descarta vasculitis necrotizante, granulomas tuberculoides o caseosis. No se identifican criterios morfológicos de malignidad, ASAP, HGPIN ni adenocarcinoma.",
-        "diag": "TEJIDO PROSTÁTICO MORCELADO (PRODUCTO DE ENUCLEACIÓN / MORCELACIÓN):
+        "diag": `TEJIDO PROSTÁTICO MORCELADO (PRODUCTO DE ENUCLEACIÓN / MORCELACIÓN):
 - HIPERPLASIA NODULAR PROSTÁTICA BENIGNA (ADENOMATOSA Y ESTROMAL).
 - PROSTATITIS CRÓNICA ACTIVA MODERADA A SEVERA, CON INFILTRADO LINFOPLASMOCITARIO ESTROMAL, AGREGADOS LINFOIDES REACTIVOS Y MICROABSCESOS INTRALUMINARES FOCALES.
 - ATIPIA EPITELIAL REACTIVA / REPARATIVA ASOCIADA AL FOCO INFLAMATORIO, CON ESTRATO DE CÉLULAS BASALES ÍNTEGRO.
-- NEGATIVO PARA NEOPLASIA INTRAEPITELIAL PROSTÁTICA DE ALTO GRADO (HGPIN) O ADENOCARCINOMA PROSTÁTICO INVASOR (ISUP / OMS 2022)."
+- NEGATIVO PARA NEOPLASIA INTRAEPITELIAL PROSTÁTICA DE ALTO GRADO (HGPIN) O ADENOCARCINOMA PROSTÁTICO INVASOR (ISUP / OMS 2022).`
     },
     {
         "id": 1020,
         "categoryId": 25,
         "titulo": "MORCELADO DE PRÓSTATA (VARIANTE 3: HIPERPLASIA CON ATROFIA ACINAR Y CUERPOS AMILÁCEOS)",
-        "macro": "Se recepciona espécimen de morcelación prostática constituido por múltiples fragmentos y virutas aplanadas de tonalidad pardo-grisácea pálida y amarillenta, consistencia elástica firme con resistencia crujiente focal al corte y tacto calcáreo discreto, que en volumen agrupado miden [dimensiones] cm y presentan un peso de [peso] g. En la superficie de sección se identifican microscópicas concreciones parduscas litiásicas arenosas de cuerpos amiláceos condensados. Se incluye muestreo representativo en [n] casete(s).
+        "macro": `Se recepciona espécimen de morcelación prostática constituido por múltiples fragmentos y virutas aplanadas de tonalidad pardo-grisácea pálida y amarillenta, consistencia elástica firme con resistencia crujiente focal al corte y tacto calcáreo discreto, que en volumen agrupado miden [dimensiones] cm y presentan un peso de [peso] g. En la superficie de sección se identifican microscópicas concreciones parduscas litiásicas arenosas de cuerpos amiláceos condensados. Se incluye muestreo representativo en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Humphrey, P. A. (2016). Prostate Pathology. ASCP Press. / WHO Classification of Tumours (5th ed., 2022).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Humphrey, P. A. (2016). Prostate Pathology. ASCP Press. / WHO Classification of Tumours (5th ed., 2022).</small>`,
         "micro": "Las secciones histológicas muestran parénquima prostático con hiperplasia nodular glandular sobre la que asienta un patrón prominente y difuso de atrofia acinar prostática (atrofia simple y esclerosante). Las glándulas atróficas se aprecian disminuidas de calibre o irregularmente distendidas, revestidas por un epitelio cúbico bajo o aplanado con escaso citoplasma basófilo y núcleos regulares sin cromatina granular tosca ni mitosis, con hilera de células basales continuas intactas. Las luces acinares se encuentran profusamente ocupadas por voluminosos cuerpos amiláceos concéntricos calcificados (calciesferitas / litiasis prostática intraluminal distrófica). El estroma fibroso interglandular demuestra esclerosis colágena hialinizada con pérdida del componente muscular liso y fibrosis periacinar circundante sin desmoplasia tumoral. Se reconoce un leve infiltrado inflamatorio mononuclear pericalcificación. No se aprecia proliferación microacinar atípica (ASAP), atipia cribiforme, HGPIN ni evidencia de neoplasia invasora.",
-        "diag": "MATERIAL DE MORCELADO PROSTÁTICO:
+        "diag": `MATERIAL DE MORCELADO PROSTÁTICO:
 - HIPERPLASIA NODULAR PROSTÁTICA BENIGNA ASOCIADA A ATROFIA ACINAR DIFUSA (TIPOS SIMPLE Y ESCLEROSANTE).
 - CUERPOS AMILÁCEOS ABUNDANTES Y CALCIFICACIONES DISTRÓFICAS INTRALUMINARES Y ESTROMALES (LITIASIS PROSTÁTICA CONCRÉCICA).
 - ESCLEROSIS Y FIBROSIS COLÁGENA INTERACINAR BENIGNA.
-- NEGATIVO PARA ATIPIA CITOLÓGICA, NEOPLASIA INTRAEPITELIAL DE ALTO GRADO (HGPIN) O ADENOCARCINOMA PROSTÁTICO INVASOR (ISUP / OMS 2022)."
+- NEGATIVO PARA ATIPIA CITOLÓGICA, NEOPLASIA INTRAEPITELIAL DE ALTO GRADO (HGPIN) O ADENOCARCINOMA PROSTÁTICO INVASOR (ISUP / OMS 2022).`
     },
     {
         "id": 1021,
         "categoryId": 25,
         "titulo": "MORCELADO DE PRÓSTATA (VARIANTE 4: HIPERPLASIA CON INFARTO Y METAPLASIA ESCAMOSA)",
-        "macro": "Se recibe producto de morcelado prostático conformado por numerosos fragmentos tisulares alargados de aspecto heterogéneo, coloración pardo-clara con focos bien delimitados rojo-parduscos y amarillo-opacos de aspecto friable y consistencia discretamente reblandecida que alternan con áreas elásticas habituales. El espécimen mide en conjunto [dimensiones] cm y registra un peso de [peso] g. Las zonas opacas sugieren cambios isquémicos focales. Se realiza muestreo tisular exhaustivo incluyendo la totalidad de las áreas de aspecto friable en [n] casete(s).
+        "macro": `Se recibe producto de morcelado prostático conformado por numerosos fragmentos tisulares alargados de aspecto heterogéneo, coloración pardo-clara con focos bien delimitados rojo-parduscos y amarillo-opacos de aspecto friable y consistencia discretamente reblandecida que alternan con áreas elásticas habituales. El espécimen mide en conjunto [dimensiones] cm y registra un peso de [peso] g. Las zonas opacas sugieren cambios isquémicos focales. Se realiza muestreo tisular exhaustivo incluyendo la totalidad de las áreas de aspecto friable en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Epstein, J. I., & Netto, G. J. (2014). Biopsy Interpretation of the Prostate. / WHO Classification of Tumours (5th ed., 2022).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Epstein, J. I., & Netto, G. J. (2014). Biopsy Interpretation of the Prostate. / WHO Classification of Tumours (5th ed., 2022).</small>`,
         "micro": "El estudio microscópico revela tejido prostático con hiperplasia nodular acinar y estromal en cuyo seno se identifican extensos focos de infarto prostático isquémico coagulativo en diferentes estadios de organización evolutiva. Se observan áreas centrales de necrosis de coagulación de glándulas y estroma (sombras fantasmales tisulares) rodeadas por una corona periférica de histiocitos espumosos, siderófagos y capilares de neoformación fibroblástica reactiva. En la periferia inmediata del infarto destaca una exuberante proliferación de células epiteliales con metaplasia escamosa madura e inmadura reactiva que reviste y oblitera luces acinares remanentes; las células escamosas exhiben bordes poligonales netos, puentes intercelulares visibles, citoplasma acidófilo amplio y núcleos ovoides regulares sin pleomorfismo, sin mitosis atípicas ni queratinización atípica desordenada. No hay infiltración estromal invasiva por nidos córneos. La inmunomorfología demuestra preservación de la membrana basal y marcaje p63 difuso en los nidos escamosos. No se identifica carcinoma epidermoide ni adenocarcinoma prostático.",
-        "diag": "FRAGMENTOS PROCEDENTES DE MORCELACIÓN PROSTÁTICA:
+        "diag": `FRAGMENTOS PROCEDENTES DE MORCELACIÓN PROSTÁTICA:
 - HIPERPLASIA NODULAR PROSTÁTICA BENIGNA.
 - INFARTO PROSTÁTICO ISQUÉMICO FOCAL RECIENTE Y ANTIGUO EN ORGANIZACIÓN.
 - METAPLASIA ESCAMOSA EPITELIAL EXTENSA BENIGNA (REACTIVA / REPARATIVA PERI-INFARTO).
 - REACCIÓN HISTIOCITARIA XANTOMATOSA Y FIBROSIS CICATRIZAL PERIFÉRICA.
-- NEGATIVO PARA NEOPLASIA INTRAEPITELIAL PROSTÁTICA DE ALTO GRADO (HGPIN), CARCINOMA ESCAMOSO O ADENOCARCINOMA PROSTÁTICO (ISUP / OMS 2022)."
+- NEGATIVO PARA NEOPLASIA INTRAEPITELIAL PROSTÁTICA DE ALTO GRADO (HGPIN), CARCINOMA ESCAMOSO O ADENOCARCINOMA PROSTÁTICO (ISUP / OMS 2022).`
     },
     {
         "id": 1022,
         "categoryId": 25,
         "titulo": "MORCELADO DE PRÓSTATA (VARIANTE 5: HIPERPLASIA ADENOMATOSA FLORIDA Y DILATACIÓN DUCTAL)",
-        "macro": "Se reciben múltiples fragmentos tisulares obtenidos por morcelación prostática endoscópica, de superficie granular fina a multinodular esponjosa, coloración pardo-amarillenta pálida y consistencia elástica blanda. Al corte seriado se aprecia marcada multiplicidad de cavidades microquísticas y ectasias ductales con salida de secreción mucoide y coloide clara. Las dimensiones agrupadas son de [dimensiones] cm y el peso neto asciende a [peso] g. No se reconocen induraciones sospechosas ni áreas de hemorragia focal. Se incluye muestra representativa en [n] casete(s).
+        "macro": `Se reciben múltiples fragmentos tisulares obtenidos por morcelación prostática endoscópica, de superficie granular fina a multinodular esponjosa, coloración pardo-amarillenta pálida y consistencia elástica blanda. Al corte seriado se aprecia marcada multiplicidad de cavidades microquísticas y ectasias ductales con salida de secreción mucoide y coloide clara. Las dimensiones agrupadas son de [dimensiones] cm y el peso neto asciende a [peso] g. No se reconocen induraciones sospechosas ni áreas de hemorragia focal. Se incluye muestra representativa en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">Lester, S. C. (2010). Manual of Surgical Pathology (3rd ed.). / WHO Classification of Tumours (5th ed., 2022).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">Lester, S. C. (2010). Manual of Surgical Pathology (3rd ed.). / WHO Classification of Tumours (5th ed., 2022).</small>`,
         "micro": "El examen histopatológico demuestra hiperplasia prostática benigna con marcada preponderancia del componente adenomatoso glandular florido (proliferación microacinar y macroacinar densamente empaquetada). Los acinos se encuentran notablemente hiperplásicos, con marcada dilatación ducto-acinar quística y proyecciones papilares intraluminares de ejes conectivo-vasculares delgados revestidos por células secretoras cilíndricas mucosas altas con polaridad nuclear conservada, núcleos basales uniformes de cromatina laxa y ausencia de nucléolos patológicos destacados. Se comprueba un estrato celular basal continuo y bien definido que rodea circunferencialmente cada una de las estructuras glandulares. El estroma interacinar se encuentra comprimido y reducido a delgadas bandas fibromusculares no desmoplásicas. Las luces glandulares contienen líquido coloide acidófilo proteináceo y corpora amilácea esferoidales. No se detectan glándulas cribiformes atípicas fusionadas, invasión perineural, ASAP, HGPIN ni evidencia de adenocarcinoma acinar invasor.",
-        "diag": "TEJIDO PROSTÁTICO MORCELADO (PRODUCTO DE ENUCLEACIÓN):
+        "diag": `TEJIDO PROSTÁTICO MORCELADO (PRODUCTO DE ENUCLEACIÓN):
 - HIPERPLASIA NODULAR PROSTÁTICA BENIGNA DE PREDOMINIO ADENOMATOSO GLANDULAR FLORIDO.
 - ECTASIA Y DILATACIÓN DUCTO-ACINAR MICROQUÍSTICA CON PROYECCIONES PAPILARES INTRALUMINARES BENIGNAS.
 - ESTROMA FIBROMUSCULAR COMPRIMIDO NO ATÍPICO.
 - NEGATIVO PARA NEOPLASIA INTRAEPITELIAL PROSTÁTICA DE ALTO GRADO (HGPIN) O PROLIFERACIÓN ACINAR ATÍPICA (ASAP).
-- NEGATIVO PARA NEOPLASIA MALIGNA (ADENOCARCINOMA PROSTÁTICO INVASOR) (ISUP / OMS 2022)."
+- NEGATIVO PARA NEOPLASIA MALIGNA (ADENOCARCINOMA PROSTÁTICO INVASOR) (ISUP / OMS 2022).`
     },
     {
         "id": 1023,
         "categoryId": 25,
         "titulo": "MORCELADO DE PRÓSTATA (VARIANTE 6: HIPERPLASIA BENIGNA ESTROMAL PREDOMINANTE)",
-        "macro": "Se recepciona producto de morcelado de tejido prostático integrado por múltiples virutas y nódulos elásticos de superficie lisa o abollonada, consistencia elástica carnosa homogénea y firme al corte, tonalidad pardo-grisácea a blanquecina nacarada uniforme, que en conjunto miden [dimensiones] cm y alcanzan un peso total de [peso] g. La superficie seccionada es compacta, fasciculada y arremolinada, sin cavidades quísticas prominentes ni calcificaciones. Se procesa muestreo histológico representativo en [n] casete(s).
+        "macro": `Se recepciona producto de morcelado de tejido prostático integrado por múltiples virutas y nódulos elásticos de superficie lisa o abollonada, consistencia elástica carnosa homogénea y firme al corte, tonalidad pardo-grisácea a blanquecina nacarada uniforme, que en conjunto miden [dimensiones] cm y alcanzan un peso total de [peso] g. La superficie seccionada es compacta, fasciculada y arremolinada, sin cavidades quísticas prominentes ni calcificaciones. Se procesa muestreo histológico representativo en [n] casete(s).
 
-<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours of the Urinary System and Male Genital Organs (5th ed., 2022). / CAP Consensus Guidelines for Prostate Specimen Reporting (2023).</small>",
+<small style=\"font-size: 0.72rem; color: #64748b;\">WHO Classification of Tumours of the Urinary System and Male Genital Organs (5th ed., 2022). / CAP Consensus Guidelines for Prostate Specimen Reporting (2023).</small>`,
         "micro": "Los cortes histológicos teñidos con H&E revelan parénquima prostático con marcada alteración arquitectural por predominio masivo de nódulos mesenquimales estromales benignos (nódulos de leiomioma / adenoleiomioma prostático). El tejido está compuesto por una densa proliferación de fascículos entrelazados y haces concéntricos de células musculares lisas fusiformes y miofibroblastos maduros, con citoplasmas eosinófilos elongados y núcleos ovoides de extremos romos en forma de cigarro, cromatina uniforme, sin pleomorfismo, sin atipia nuclear ni figuras mitóticas atípicas. El componente glandular epitelial es sumamente escaso y disperso, observándose únicamente glándulas atróficas aisladas comprimidas por las masas estromales mesenquimales, conservando su hilera de células basales continuas. No se detectan áreas mixoides acelulares expansivas, células gigantes multinucleadas atípicas ni necrosis. Se descarta tumor estromal de potencial maligno incierto (STUMP) y sarcoma prostático. No hay evidencia de adenocarcinoma.",
-        "diag": "PRODUCTO DE MORCELACIÓN PROSTÁTICA:
+        "diag": `PRODUCTO DE MORCELACIÓN PROSTÁTICA:
 - HIPERPLASIA NODULAR BENIGNA ESTROMAL Y FIBROMUSCULAR PREDOMINANTE (PATRÓN MESENQUIMAL PURO / ADENOLEIOMIOMA PROSTÁTICO BENIGNO).
 - COMPONENTE GLANDULAR ESCASO COMPRIMIDO SIN ATIPIA CITOLÓGICA.
 - NEGATIVO PARA TUMOR ESTROMAL PROSTÁTICO DE POTENCIAL MALIGNO INCIERTO (STUMP) O PROCESO SARCOMATOSO.
-- NEGATIVO PARA NEOPLASIA MALIGNA EPITELIAL (ADENOCARCINOMA PROSTÁTICO INVASOR) (ISUP / OMS 2022)."
+- NEGATIVO PARA NEOPLASIA MALIGNA EPITELIAL (ADENOCARCINOMA PROSTÁTICO INVASOR) (ISUP / OMS 2022).`
     },
     {
         "id": 6317,
@@ -9363,6 +9367,11 @@ RESUMEN SINÓPTICO ONCOLÓGICO CAP (COLLEGE OF AMERICAN PATHOLOGISTS):
     }
 ];
 
+
+
 if (typeof window !== 'undefined') {
+
     window.defaultTemplates = defaultTemplates;
+
 }
+

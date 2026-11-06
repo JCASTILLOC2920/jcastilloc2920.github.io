@@ -1,3 +1,4 @@
+
 import { cleanCodeFunc, correctPapanicolaouSpelling, cleanTextContentLocal, formatDoctorName, escapeHtml, sanitizeDateForPg, normalizeSexo } from './utils.js';
 import { safeDeepClone, safeMonotonicMerge } from './sovereign_integrity_guard.js';
 export { safeDeepClone, safeMonotonicMerge };
@@ -37,10 +38,12 @@ if (typeof window !== 'undefined') {
     window.patientMap = patientMap;
 }
 
-// Auto-actualización inmediata y soberana de localStorage e IndexedDB si contienen menos de 1,222 registros o datos corruptos
+// Auto-actualización inmediata y soberana de localStorage e IndexedDB a los 1,252 registros reconciliados + RENIEC
 (function autoActualizarLocalStorageSoberano() {
     if (typeof window === 'undefined' || typeof localStorage === 'undefined') return;
     try {
+        const CURRENT_SSOT_VER = '20261106_v1252_ssot_tabs_macro_383';
+        const savedVer = localStorage.getItem('jcpathlab_ssot_version');
         const raw = localStorage.getItem('patientDatabaseLocal') || localStorage.getItem('patientDatabase') || localStorage.getItem('pacientesDB');
         let parsedCount = 0;
         let hasGhostData = false;
@@ -51,18 +54,20 @@ if (typeof window !== 'undefined') {
                 hasGhostData = parsed.some(p => {
                     if (!p) return false;
                     const nom = String(p.paciente || '').toUpperCase();
-                    const cod = String(p.codAtencion || p.cod_atencion || '').toUpperCase();
-                    return nom.includes('SIN NOMBRE') || /26Q-18\d{3}/.test(cod);
+                    const cod = String(p.codAtencion || p.cod_atencion || p.codigo || '').toUpperCase();
+                    const doc = String(p.med_solicitante || p.medSolicitante || p.doctor || '').toUpperCase();
+                    return nom.includes('SIN NOMBRE') || /26Q-18\d{3}/.test(cod) || (['26Q-300', '26Q-301', '26Q-259'].includes(cod) && doc.includes('CASTILLO'));
                 });
             } catch(e) {}
         }
         const master = getRealSupabasePatients();
-        const targetCount = Math.max(1222, master.length);
-        if ((parsedCount < targetCount || hasGhostData) && master.length >= 1222) {
-            console.log(`[Auto-Heal LocalStorage] Purgando almacenamiento local obsoleto o contaminado (${parsedCount} registros, hasGhostData=${hasGhostData}). Auto-actualizando inmediatamente a ${master.length} pacientes SSOT de Docker n8n...`);
+        const targetCount = Math.max(1252, master.length);
+        if ((savedVer !== CURRENT_SSOT_VER || parsedCount < targetCount || hasGhostData) && master.length >= 1250) {
+            console.log(`[Auto-Heal LocalStorage] Sincronizando almacenamiento local (${parsedCount} -> ${master.length} pacientes SSOT v1252 + RENIEC)...`);
             safeSetLocalStorage('patientDatabaseLocal', JSON.stringify(master));
             try { localStorage.setItem('patientDatabase', JSON.stringify(master)); } catch(e) {}
             try { localStorage.setItem('pacientesDB', JSON.stringify(master)); } catch(e) {}
+            try { localStorage.setItem('jcpathlab_ssot_version', CURRENT_SSOT_VER); } catch(e) {}
         }
     } catch (e) {
         console.warn('[Auto-Heal LocalStorage] Error en verificación preventiva:', e);
@@ -1694,7 +1699,7 @@ var RESTORED_PATIENT_RECORDS = {
 
 export function initLocalDatabases(force = false) {
     const masterList = getRealSupabasePatients();
-    const minRequired = (masterList && masterList.length >= 1222) ? masterList.length : 1222;
+    const minRequired = (masterList && masterList.length >= 1252) ? masterList.length : 1252;
     if (_dbInitialized && !force && patientDatabase.length >= minRequired) return;
     _dbInitialized = true;
 
@@ -1719,16 +1724,51 @@ export function initLocalDatabases(force = false) {
     }
 
     // RUTINA SOBERANA DE AUTO-ACTUALIZACIÓN: Si masterList tiene más registros que localStorage o registros nuevos, sincronizar incondicionalmente
-    if (masterList.length > 0 && (parsed.length < masterList.length || !parsed.some(p => (p.codAtencion || p.cod_atencion) === '26Q-390'))) {
+    if (masterList.length > 0 && (parsed.length < masterList.length || !parsed.some(p => (p.codAtencion || p.cod_atencion || p.codigo) === '26Q-377') || !parsed.some(p => (p.codAtencion || p.cod_atencion || p.codigo) === '26Q-373'))) {
         console.log(`[Auto-Update LocalStorage] Sincronizando catálogo con ${masterList.length} registros maestros...`);
         const mapLocal = new Map();
-        parsed.forEach(p => { if (p && (p.codAtencion || p.cod_atencion)) mapLocal.set(cleanCodeFunc(p.codAtencion || p.cod_atencion), p); });
+        parsed.forEach(p => {
+            // SANEAMIENTO SUPREMO INVIOLABLE (JC PATH LAB): DR. CASTILLO ES EL PATÓLOGO, NUNCA EL SOLICITANTE
+            const codeUpper = String(p.codAtencion || p.cod_atencion || '').toUpperCase().replace(/[-_\s]/g, '');
+            const medNorm = (p.medSolicitante || p.med_solicitante || p.doctor || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+            if (medNorm.includes('castillo cuenca') || medNorm.includes('josehpi castillo') || medNorm.includes('josehp christopher castillo') || p.medSolicitante === 'DR. JOSÉ CASTILLO' || p.med_solicitante === 'DR. JOSÉ CASTILLO') {
+                if (codeUpper.includes('26Q300') || codeUpper.includes('26Q301') || codeUpper.includes('26Q259') || (p.clinica && p.clinica.toUpperCase().includes('CARRION'))) {
+                    p.medSolicitante = 'DR. JORGE ALBERTO MUÑANTE ARZAPALO';
+                    p.med_solicitante = 'DR. JORGE ALBERTO MUÑANTE ARZAPALO';
+                    p.doctor = 'DR. JORGE ALBERTO MUÑANTE ARZAPALO';
+                    p.clinica = 'CLÍNICA CARRIÓN';
+                    p.sede = 'CLÍNICA CARRIÓN';
+                    p.procedencia = 'CLÍNICA CARRIÓN';
+                } else {
+                    p.medSolicitante = 'PARTICULAR / SIN ESPECIFICAR';
+                    p.med_solicitante = 'PARTICULAR / SIN ESPECIFICAR';
+                    p.doctor = 'PARTICULAR / SIN ESPECIFICAR';
+                    if (!p.clinica || ['sin clinica', 'sin clínica', 'sin clinica definida', 'sin clínica definida'].includes(String(p.clinica).toLowerCase())) {
+                        p.clinica = 'PARTICULAR';
+                        p.sede = 'PARTICULAR';
+                        p.procedencia = 'PARTICULAR';
+                    }
+                }
+                databaseWasCleaned = true;
+            }
+ if (p && (p.codAtencion || p.cod_atencion)) mapLocal.set(cleanCodeFunc(p.codAtencion || p.cod_atencion), p); });
         masterList.forEach(m => {
             if (m && (m.codAtencion || m.cod_atencion)) {
                 const k = cleanCodeFunc(m.codAtencion || m.cod_atencion);
                 if (!mapLocal.has(k)) {
                     parsed.push(JSON.parse(JSON.stringify(m)));
                     mapLocal.set(k, m);
+                } else {
+                    // Si masterList tiene el médico correcto (Muñante), actualizar el objeto local
+                    const existingLocal = mapLocal.get(k);
+                    if (existingLocal && m.med_solicitante && m.med_solicitante !== existingLocal.med_solicitante) {
+                        existingLocal.med_solicitante = m.med_solicitante;
+                        existingLocal.medSolicitante = m.med_solicitante;
+                        existingLocal.doctor = m.med_solicitante;
+                        existingLocal.clinica = m.clinica || existingLocal.clinica;
+                        existingLocal.sede = m.clinica || existingLocal.sede;
+                        existingLocal.procedencia = m.clinica || existingLocal.procedencia;
+                    }
                 }
             }
         });
@@ -4645,7 +4685,7 @@ export async function syncPatientsFromSupabase(limit = null) {
             
             // 1. Identificar y PRESERVAR todos los pacientes locales creados en el sistema
             const unsyncedPatients = patientDatabase.filter(local => {
-                const isMatch = parsedPatients.some(db => cleanCodeFunc(db.codAtencion) === cleanCodeFunc(local.codAtencion));
+                const isMatch = parsedPatients.some(db => cleanCodeFunc(db.codAtencion || db.cod_atencion || db.codigo) === cleanCodeFunc(local.codAtencion || local.cod_atencion || local.codigo));
                 if (isMatch) return false;
                 console.log(`[Sync Engine] Preservando paciente local creado: ${local.codAtencion}`);
                 return true;
@@ -4701,8 +4741,8 @@ export async function syncPatientsFromSupabase(limit = null) {
                     }
                 });
             } else {
-                // Sincronización completa: Re-poblar todo el array solo si mergedPatients contiene datos válidos
-                if (Array.isArray(mergedPatients) && mergedPatients.length >= 1190) {
+                // Sincronización completa ZERO-LOSS: Jamás vaciar patientDatabase si tiene los 1,252 registros soberanos
+                if (Array.isArray(mergedPatients) && mergedPatients.length >= patientDatabase.length && mergedPatients.length >= 1252) {
                     patientDatabase.length = 0;
                     mergedPatients.forEach(p => patientDatabase.push(p));
                 } else if (Array.isArray(mergedPatients) && mergedPatients.length > 0) {
