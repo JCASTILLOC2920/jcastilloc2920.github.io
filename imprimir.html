@@ -328,7 +328,7 @@
             justify-content: center;
         }
         .pv-sheet {
-            background-color: #ffffff !important;
+            background-color: transparent !important;
             opacity: 1 !important;
             -webkit-backdrop-filter: none !important;
             backdrop-filter: none !important;
@@ -388,7 +388,7 @@
             width: 100% !important;
             max-width: 100% !important;
             height: auto !important;
-            object-fit: contain !important;
+            object-fit: cover !important;
             display: block !important;
             margin: 0 auto !important;
             box-sizing: border-box !important;
@@ -530,9 +530,9 @@
             gap: 20px;
         }
         .report-images.two-images .report-img-wrapper {
-            width: 166px;
-            height: 166px;
-            max-height: 171px;
+            width: 191px;
+            height: 191px;
+            max-height: 196px;
             aspect-ratio: 1 / 1;
             border: 2px solid #0f766e;
             border-radius: 8px;
@@ -540,7 +540,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #ffffff;
+            background-color: transparent;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             box-sizing: border-box;
         }
@@ -548,8 +548,8 @@
             justify-content: center;
         }
         .report-images.one-image .report-img-wrapper {
-            width: 204px;
-            height: 204px;
+            width: 235px;
+            height: 235px;
             aspect-ratio: 1 / 1;
             border: 2px solid #0f766e;
             border-radius: 8px;
@@ -557,7 +557,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #ffffff;
+            background-color: transparent;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             box-sizing: border-box;
             margin: 0 auto;
@@ -565,8 +565,8 @@
         .report-img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            background-color: #ffffff;
+            object-fit: cover;
+            background-color: transparent;
             object-position: center;
         }
 
@@ -587,13 +587,13 @@
             margin-bottom: 4px !important;
         }
         body.compact-report .report-images.two-images .report-img-wrapper {
-            width: 142px !important;
-            height: 142px !important;
+            width: 163px !important;
+            height: 163px !important;
             aspect-ratio: 1 / 1 !important;
         }
         body.compact-report .report-images.one-image .report-img-wrapper {
-            height: 147px !important;
-            width: 147px !important;
+            height: 169px !important;
+            width: 169px !important;
             aspect-ratio: 1 / 1 !important;
         }
         body.compact-report .meta-table-wrapper {
@@ -628,13 +628,13 @@
             margin-bottom: 8px !important;
         }
         body.multipage-report .report-images.two-images .report-img-wrapper {
-            width: 185px !important;
-            height: 185px !important;
+            width: 213px !important;
+            height: 213px !important;
             aspect-ratio: 1 / 1 !important;
         }
         body.multipage-report .report-images.one-image .report-img-wrapper {
-            height: 223px !important;
-            width: 223px !important;
+            height: 256px !important;
+            width: 256px !important;
             aspect-ratio: 1 / 1 !important;
         }
         body.multipage-report .meta-cell {
@@ -660,13 +660,13 @@
             margin-bottom: 6px !important;
         }
         body.compact-multipage-report .report-images.two-images .report-img-wrapper {
-            width: 155px !important;
-            height: 155px !important;
+            width: 178px !important;
+            height: 178px !important;
             aspect-ratio: 1 / 1 !important;
         }
         body.compact-multipage-report .report-images.one-image .report-img-wrapper {
-            width: 190px !important;
-            height: 190px !important;
+            width: 218px !important;
+            height: 218px !important;
             aspect-ratio: 1 / 1 !important;
             margin: 0 auto !important;
         }
@@ -907,7 +907,7 @@
             }
             html, body, #pagesContainer {
                 background: #ffffff !important;
-                background-color: #ffffff !important;
+                background-color: transparent !important;
                 margin: 0 !important;
                 padding: 0 !important;
                 width: 210mm !important;
@@ -947,7 +947,7 @@
                 max-width: 100% !important;
             }
             .header-img {
-                object-fit: contain !important;
+                object-fit: cover !important;
                 display: block !important;
             }
             .meta-table-wrapper {
@@ -1229,9 +1229,9 @@
                 wrappers.forEach(wrapper => {
                     const img = wrapper.querySelector('.report-img');
                     if (isSingle) {
-                        wrapper.style.setProperty('width', '204px', 'important');
-                        wrapper.style.setProperty('height', '204px', 'important');
-                        wrapper.style.setProperty('max-height', '204px', 'important');
+                        wrapper.style.setProperty('width', '235px', 'important');
+                        wrapper.style.setProperty('height', '235px', 'important');
+                        wrapper.style.setProperty('max-height', '235px', 'important');
                         wrapper.style.setProperty('aspect-ratio', '1 / 1', 'important');
                         wrapper.style.setProperty('margin', '0 auto', 'important');
                         if (img) {
@@ -1241,9 +1241,9 @@
                             img.style.setProperty('background-color', '#ffffff', 'important');
                         }
                     } else {
-                        wrapper.style.setProperty('width', '166px', 'important');
-                        wrapper.style.setProperty('height', '166px', 'important');
-                        wrapper.style.setProperty('max-height', '171px', 'important');
+                        wrapper.style.setProperty('width', '191px', 'important');
+                        wrapper.style.setProperty('height', '191px', 'important');
+                        wrapper.style.setProperty('max-height', '196px', 'important');
                         wrapper.style.setProperty('aspect-ratio', '1 / 1', 'important');
                         if (img) {
                             img.style.setProperty('height', '100%', 'important');
