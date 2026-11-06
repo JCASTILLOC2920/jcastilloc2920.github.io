@@ -353,7 +353,10 @@
           <li>Haz clic en <strong>"Guardar Expediente"</strong>. El sistema le asignará su código correlativo de inmediato.</li>
         </ol>
         <div class="cortana-card-actions">
-          <button type="button" class="cortana-act-btn view" onclick="window.openModal ? window.openModal('patientRegistrationModal') : (document.getElementById('patientRegistrationModal') ? document.getElementById('patientRegistrationModal').classList.add('active') : null)">
+                      <button type="button" class="cortana-act-btn" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color:#fff; font-weight:700;" onclick="window.closeCortanaPanel(); if(window.openReportEditor){ window.openReportEditor('26Q-383'); setTimeout(() => window.inyectarYGuardar26Q383Oficial && window.inyectarYGuardar26Q383Oficial(true), 350); }">
+              <i class="fa-solid fa-file-circle-check"></i> Cargar PDF y Guardar
+            </button>
+            <button type="button" class="cortana-act-btn view" onclick="window.openModal ? window.openModal('patientRegistrationModal') : (document.getElementById('patientRegistrationModal') ? document.getElementById('patientRegistrationModal').classList.add('active') : null)">
             <i class="fa-solid fa-user-plus"></i> Abrir Formulario de Registro
           </button>
         </div>
@@ -368,7 +371,10 @@
           <li><strong>Boleta / Constancia:</strong> Usa el botón superior <strong>"Reporte de Boletas"</strong> o pulsa "Imprimir Boleta" en la tarjeta de cualquier paciente.</li>
         </ul>
         <div class="cortana-card-actions">
-          <button type="button" class="cortana-act-btn view" onclick="window.switchSidebarView ? window.switchSidebarView('boletas') : null">
+                      <button type="button" class="cortana-act-btn" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color:#fff; font-weight:700;" onclick="window.closeCortanaPanel(); if(window.openReportEditor){ window.openReportEditor('26Q-383'); setTimeout(() => window.inyectarYGuardar26Q383Oficial && window.inyectarYGuardar26Q383Oficial(true), 350); }">
+              <i class="fa-solid fa-file-circle-check"></i> Cargar PDF y Guardar
+            </button>
+            <button type="button" class="cortana-act-btn view" onclick="window.switchSidebarView ? window.switchSidebarView('boletas') : null">
             <i class="fa-solid fa-file-invoice-dollar"></i> Ir a Reporte de Boletas
           </button>
         </div>
@@ -449,6 +455,9 @@
             📅 Ingreso: ${escapeHtml(rec)} | Estado: <strong>${esListo ? 'LISTO' : 'EN PROCESO'}</strong>
           </div>
           <div class="cortana-card-actions">
+                        <button type="button" class="cortana-act-btn" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color:#fff; font-weight:700;" onclick="window.closeCortanaPanel(); if(window.openReportEditor){ window.openReportEditor('26Q-383'); setTimeout(() => window.inyectarYGuardar26Q383Oficial && window.inyectarYGuardar26Q383Oficial(true), 350); }">
+              <i class="fa-solid fa-file-circle-check"></i> Cargar PDF y Guardar
+            </button>
             <button type="button" class="cortana-act-btn view" onclick="window.handleAction ? window.handleAction('editar', '${safeCod}') : null">
               <i class="fa-solid fa-file-pen"></i> Ver / Editar
             </button>
