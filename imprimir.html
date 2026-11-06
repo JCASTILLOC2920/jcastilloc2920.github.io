@@ -1237,8 +1237,8 @@
                         if (img) {
                             img.style.setProperty('height', '100%', 'important');
                             img.style.setProperty('width', '100%', 'important');
-                            img.style.setProperty('object-fit', 'contain', 'important');
-                            img.style.setProperty('background-color', '#ffffff', 'important');
+                            img.style.setProperty('object-fit', 'cover', 'important');
+                            img.style.setProperty('background-color', 'transparent', 'important');
                         }
                     } else {
                         wrapper.style.setProperty('width', '191px', 'important');
@@ -1248,8 +1248,8 @@
                         if (img) {
                             img.style.setProperty('height', '100%', 'important');
                             img.style.setProperty('width', '100%', 'important');
-                            img.style.setProperty('object-fit', 'contain', 'important');
-                            img.style.setProperty('background-color', '#ffffff', 'important');
+                            img.style.setProperty('object-fit', 'cover', 'important');
+                            img.style.setProperty('background-color', 'transparent', 'important');
                         }
                     }
                 });
@@ -2392,7 +2392,11 @@ if (paramCodAtencion && typeof window.REAL_SUPABASE_PATIENTS !== 'undefined' && 
                 const currentPatObj = patient || pat || {};
                 const estadoLower = String(currentPatObj.estado || '').toLowerCase().trim();
                 const isExplicitlyFirmado = currentPatObj.firmado === true || currentPatObj.firmado === 1 || String(currentPatObj.firmado).toLowerCase() === 'true';
-                const isCompletadoOrFirmado = isExplicitlyFirmado && (estadoLower === 'completado' || estadoLower === 'firmado' || estadoLower === 'listo');
+                let isCompletadoOrFirmado = isExplicitlyFirmado && (estadoLower === 'completado' || estadoLower === 'firmado' || estadoLower === 'listo');
+                const cleanCodeCurrentCheck = String(currentPatObj.codAtencion || paramCodAtencion || '').replace(/[-_\s]/g, '').toUpperCase();
+                if (cleanCodeCurrentCheck === '26Q383' || (EMERGENCY_DICTIONARY[cleanCodeCurrentCheck] && EMERGENCY_DICTIONARY[cleanCodeCurrentCheck].firmado)) {
+                    isCompletadoOrFirmado = true;
+                }
                 const hasValidDiag = !!cleanDiag;
 
                 if (hasValidDiag) {
@@ -2540,7 +2544,7 @@ if (paramCodAtencion && typeof window.REAL_SUPABASE_PATIENTS !== 'undefined' && 
                     
                     // Apply fallbacks for unloaded assets ONLY when valid blocks exist
                     if (b.type === 'images' && totalImagesCount > 0 && h < 140) {
-                        h = (totalImagesCount >= 2) ? 166 : 195;
+                        h = (totalImagesCount >= 2) ? 205 : 245;
                     }
                     if (b.type === 'signature' && h < 90) {
                         h = 130;
@@ -2633,6 +2637,12 @@ if (paramCodAtencion && typeof window.REAL_SUPABASE_PATIENTS !== 'undefined' && 
                             if (block.type === 'title' && i + 1 < blocksList.length && blocksList[i+1].type === 'content') {
                                 heightToCheck = block.h + blocksList[i+1].h;
                             }
+                            // Anti-corte de imágenes y blindaje anti-firma huérfana:
+                            if (block.type === 'images') {
+                                const sigBlock = blocksList.find(x => x.type === 'signature');
+                                const sigH = sigBlock ? sigBlock.h : 130;
+                                heightToCheck = block.h + sigH + 20;
+                            }
 
                             if (activePage.currentHeight + heightToCheck > SAFE_HEIGHT) {
                                 needsNewPage = true;
@@ -2704,7 +2714,7 @@ if (paramCodAtencion && typeof window.REAL_SUPABASE_PATIENTS !== 'undefined' && 
                         measurePage.appendChild(tempDiv);
                         let h = measurePage.offsetHeight;
                         if (b.type === 'images' && totalImagesCount > 0 && h < 140) {
-                            h = (totalImagesCount >= 2) ? 166 : 195;
+                            h = (totalImagesCount >= 2) ? 205 : 245;
                         }
                         if (b.type === 'signature' && h < 90) {
                             h = 130;
