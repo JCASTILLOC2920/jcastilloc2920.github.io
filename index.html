@@ -1139,7 +1139,7 @@
 
 
     <!-- ========================================================================= -->
-    <!-- 8.5. GALERÍA DE INSTALACIONES REALES & EQUIPAMIENTO IN-HOUSE (TOUR VIRTUAL) -->
+    <!-- 8.5. GALERÍA DE INSTALACIONES REALES & EQUIPAMIENTO IN-HOUSE (5 MASTER)   -->
     <!-- ========================================================================= -->
     <section id="instalaciones" class="py-20 bg-slate-900/60 border-t border-slate-800 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1149,126 +1149,85 @@
                 </span>
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Instalaciones Reales & Equipamiento In-House</h2>
                 <p class="text-slate-400 text-sm mt-3 leading-relaxed">
-                    Recorre nuestra estación de macroscopía, mesas de tallado quirúrgico, microscopía óptica Olympus y estaciones diagnósticas duales. Soberanía técnica total bajo normativa MINSA.
+                    Fotografía pericial de nuestra sede central: mesa de tallado macroscópico, microscopía óptica Olympus, estaciones diagnósticas duales y sala de lectura clínica.
                 </p>
                 <div class="flex justify-center gap-2 mt-6 flex-wrap">
-                    <button type="button" onclick="filterGallery('todas')" class="gallery-tab-btn active px-4 py-1.5 rounded-lg text-xs font-bold transition-all bg-cyanCobalt text-white shadow-md">Todas (8)</button>
-                    <button type="button" onclick="filterGallery('macro')" class="gallery-tab-btn px-4 py-1.5 rounded-lg text-xs font-bold transition-all bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700">Área Macroscopía (4)</button>
-                    <button type="button" onclick="filterGallery('micro')" class="gallery-tab-btn px-4 py-1.5 rounded-lg text-xs font-bold transition-all bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700">Área Microscopía & Digital (4)</button>
+                    <button type="button" onclick="filterGallery('todas')" class="gallery-tab-btn active px-4 py-1.5 rounded-lg text-xs font-bold transition-all bg-cyanCobalt text-white shadow-md">Todas las Instalaciones (5)</button>
+                    <button type="button" onclick="filterGallery('macro')" class="gallery-tab-btn px-4 py-1.5 rounded-lg text-xs font-bold transition-all bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700">Macroscopía (1)</button>
+                    <button type="button" onclick="filterGallery('micro')" class="gallery-tab-btn px-4 py-1.5 rounded-lg text-xs font-bold transition-all bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700">Microscopía & Patología Digital (3)</button>
+                    <button type="button" onclick="filterGallery('oficina')" class="gallery-tab-btn px-4 py-1.5 rounded-lg text-xs font-bold transition-all bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700">Dirección Médica (1)</button>
                 </div>
             </div>
 
-            <!-- Grid de Tarjetas de Galería -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Grid de 5 Tarjetas Master de Estudio -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 
-                <!-- 1. Estación de Macroscopía -->
+                <!-- 1. FOTO 1: Mesa de Tallado Quirúrgico -->
                 <div class="gallery-card macro glass-panel rounded-2xl overflow-hidden border border-slate-800 hover:border-cyanCobalt/50 transition-all duration-300 hover:-translate-y-1 group">
-                    <div class="relative h-48 overflow-hidden bg-slate-950">
+                    <div class="relative h-56 overflow-hidden bg-slate-950">
                         <img src="assets/fotos_hd/area_de_macroscopia.jpg" onerror="this.src='AREA DE MACROSCOPIA.jpg'" alt="Estación de Macroscopía Quirúrgica" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/90 text-slate-950 shadow">Macroscopía</span>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded text-[11px] font-extrabold bg-amber-500 text-slate-950 shadow-md">01 · Macroscopía</span>
                     </div>
-                    <div class="p-4 space-y-1.5">
-                        <h4 class="text-sm font-bold text-white group-hover:text-cyan-400 transition-colors">Mesa de Tallado Quirúrgico</h4>
-                        <p class="text-[11px] text-slate-400 leading-relaxed">
-                            Mesa de tallado con tabla de corte, cuchillos quirúrgicos, balanza digital, bandejas de acero inoxidable y campana de extracción.
+                    <div class="p-5 space-y-2">
+                        <h4 class="text-base font-bold text-white group-hover:text-cyan-400 transition-colors">Mesa de Tallado Quirúrgico</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Estación completa de procesamiento con tabla de corte, cuchillos quirúrgicos, balanza digital de precisión, bandejas de acero quirúrgico y campana de extracción de vapores.
                         </p>
                     </div>
                 </div>
 
-                <!-- 2. Tallado Secuencial Caso 24Q-887 -->
-                <div class="gallery-card macro glass-panel rounded-2xl overflow-hidden border border-slate-800 hover:border-cyanCobalt/50 transition-all duration-300 hover:-translate-y-1 group">
-                    <div class="relative h-48 overflow-hidden bg-slate-950">
-                        <img src="assets/fotos_hd/laboratorio_macroscopia_2.jpg" onerror="this.src='MACRO2.jpg'" alt="Tallado Quirúrgico Caso 24Q-887" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/90 text-slate-950 shadow">Márgenes</span>
-                    </div>
-                    <div class="p-4 space-y-1.5">
-                        <h4 class="text-sm font-bold text-white group-hover:text-cyan-400 transition-colors">Marcaje y Trazabilidad (24Q-887)</h4>
-                        <p class="text-[11px] text-slate-400 leading-relaxed">
-                            Sección secuencial sobre tapete milimetrado Cbit con tinción de bordes para evaluación de márgenes quirúrgicos oncológicos.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- 3. Apertura de Espécimen Caso 24Q-892 -->
-                <div class="gallery-card macro glass-panel rounded-2xl overflow-hidden border border-slate-800 hover:border-cyanCobalt/50 transition-all duration-300 hover:-translate-y-1 group">
-                    <div class="relative h-48 overflow-hidden bg-slate-950">
-                        <img src="assets/fotos_hd/laboratorio_macroscopia_1.jpg" onerror="this.src='MACRO1.jpg'" alt="Apertura y Muestreo 24Q-892" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/90 text-slate-950 shadow">Disección</span>
-                    </div>
-                    <div class="p-4 space-y-1.5">
-                        <h4 class="text-sm font-bold text-white group-hover:text-cyan-400 transition-colors">Muestreo Tisular (24Q-892)</h4>
-                        <p class="text-[11px] text-slate-400 leading-relaxed">
-                            Apertura y selección minuciosa de fragmentos representativos previo a la inclusión en casetes histológicos.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- 4. Macroscopía Estandarizada Caso 26Q-383 -->
-                <div class="gallery-card macro glass-panel rounded-2xl overflow-hidden border border-slate-800 hover:border-cyanCobalt/50 transition-all duration-300 hover:-translate-y-1 group">
-                    <div class="relative h-48 overflow-hidden bg-slate-950">
-                        <img src="assets/fotos_hd/macro_caso_26q383.jpg" onerror="this.src='assets/macro/macro_26Q-383_20261102_225603.jpg'" alt="Foto Macroscópica con Regla Artesco Caso 26Q-383" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/90 text-slate-950 shadow">Escala Real</span>
-                    </div>
-                    <div class="p-4 space-y-1.5">
-                        <h4 class="text-sm font-bold text-white group-hover:text-cyan-400 transition-colors">Registro con Escala (26Q-383)</h4>
-                        <p class="text-[11px] text-slate-400 leading-relaxed">
-                            Control milimétrico con regla Artesco y membrete formal incorporado en el reporte digital del paciente.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- 5. Microscopio Óptico Olympus Trinocular -->
+                <!-- 2. FOTO 5: Microscopio Olympus Trinocular Retocado -->
                 <div class="gallery-card micro glass-panel rounded-2xl overflow-hidden border border-slate-800 hover:border-cyanCobalt/50 transition-all duration-300 hover:-translate-y-1 group">
-                    <div class="relative h-48 overflow-hidden bg-slate-950">
+                    <div class="relative h-56 overflow-hidden bg-slate-950">
                         <img src="assets/fotos_hd/microscopio.jpg" onerror="this.src='MICROSCOPIO.jpg'" alt="Microscopio Óptico Olympus Trinocular" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-400 text-slate-950 shadow">Microscopía</span>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded text-[11px] font-extrabold bg-cyan-400 text-slate-950 shadow-md">02 · Óptica Olympus</span>
                     </div>
-                    <div class="p-4 space-y-1.5">
-                        <h4 class="text-sm font-bold text-white group-hover:text-cyan-400 transition-colors">Microscopio Olympus Trinocular</h4>
-                        <p class="text-[11px] text-slate-400 leading-relaxed">
-                            Óptica Plan Achromat de investigación con cámara digital Kepler/Moticam acoplada para digitalización histológica en vivo.
+                    <div class="p-5 space-y-2">
+                        <h4 class="text-base font-bold text-white group-hover:text-cyan-400 transition-colors">Microscopio Olympus Trinocular</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Óptica Plan Achromat de investigación con torreta pentarradial y cámara digital Kepler/Moticam conectada por interfaz USB para digitalización histológica de alta resolución.
                         </p>
                     </div>
                 </div>
 
-                <!-- 6. Estación Diagnóstica Dual-Screen -->
+                <!-- 3. FOTO 6: Patología Digital en Pantallas Duales -->
                 <div class="gallery-card micro glass-panel rounded-2xl overflow-hidden border border-slate-800 hover:border-cyanCobalt/50 transition-all duration-300 hover:-translate-y-1 group">
-                    <div class="relative h-48 overflow-hidden bg-slate-950">
+                    <div class="relative h-56 overflow-hidden bg-slate-950">
                         <img src="assets/fotos_hd/analisis_digital_patologia.jpg" onerror="this.src='diagnosticodebiopsias.png'" alt="Estación de Patología Digital Dual-Screen" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-400 text-slate-950 shadow">Dual-Screen</span>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded text-[11px] font-extrabold bg-cyan-400 text-slate-950 shadow-md">03 · Estación Dual</span>
                     </div>
-                    <div class="p-4 space-y-1.5">
-                        <h4 class="text-sm font-bold text-white group-hover:text-cyan-400 transition-colors">Patología Digital en Pantallas Duales</h4>
-                        <p class="text-[11px] text-slate-400 leading-relaxed">
-                            Correlación visual instantánea: corte microscópico a gran aumento junto a la cabina de redacción del informe.
+                    <div class="p-5 space-y-2">
+                        <h4 class="text-base font-bold text-white group-hover:text-cyan-400 transition-colors">Patología Digital en Pantallas Duales</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Correlación diagnóstica simultánea: monitor panorámico para visualización de biopsias en alta resolución y monitor secundario para redacción del informe clínico.
                         </p>
                     </div>
                 </div>
 
-                <!-- 7. Sala de Lectura Clínica Ultra HD -->
+                <!-- 4. FOTO 7: Sala de Lectura y Proyección WSI -->
                 <div class="gallery-card micro glass-panel rounded-2xl overflow-hidden border border-slate-800 hover:border-cyanCobalt/50 transition-all duration-300 hover:-translate-y-1 group">
-                    <div class="relative h-48 overflow-hidden bg-slate-950">
+                    <div class="relative h-56 overflow-hidden bg-slate-950">
                         <img src="bg-slide-2.webp" onerror="this.src='bg-slide-2.png'" alt="Sala de Lectura y Proyección WSI" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-400 text-slate-950 shadow">Sala Lectura</span>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded text-[11px] font-extrabold bg-purple-400 text-slate-950 shadow-md">04 · Sala de Lectura</span>
                     </div>
-                    <div class="p-4 space-y-1.5">
-                        <h4 class="text-sm font-bold text-white group-hover:text-cyan-400 transition-colors">Proyección Diagnóstica en Vivo</h4>
-                        <p class="text-[11px] text-slate-400 leading-relaxed">
-                            Pantalla mural de alta fidelidad para interconsultas médicas y discusión microscópica de casos oncológicos.
+                    <div class="p-5 space-y-2">
+                        <h4 class="text-base font-bold text-white group-hover:text-cyan-400 transition-colors">Proyección Diagnóstica en Vivo</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Pantalla mural de alta fidelidad y microscopio multi-cabezal para discusión anatomoclínica, docencia médica y consenso en biopsias oncológicas complejas.
                         </p>
                     </div>
                 </div>
 
-                <!-- 8. Despacho Médico y Archivo Histológico -->
-                <div class="gallery-card micro glass-panel rounded-2xl overflow-hidden border border-slate-800 hover:border-cyanCobalt/50 transition-all duration-300 hover:-translate-y-1 group">
-                    <div class="relative h-48 overflow-hidden bg-slate-950">
+                <!-- 5. FOTO 8: Despacho Médico y Archivo Histológico -->
+                <div class="gallery-card oficina glass-panel rounded-2xl overflow-hidden border border-slate-800 hover:border-cyanCobalt/50 transition-all duration-300 hover:-translate-y-1 group">
+                    <div class="relative h-56 overflow-hidden bg-slate-950">
                         <img src="assets/fotos_hd/oficina2.jpg" onerror="this.src='OFICINA2.jpg'" alt="Despacho Médico y Archivo Histológico" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded text-[10px] font-bold bg-purple-400 text-slate-950 shadow">Archivo</span>
+                        <span class="absolute top-3 left-3 px-2.5 py-1 rounded text-[11px] font-extrabold bg-emerald-400 text-slate-950 shadow-md">05 · Despacho Médico</span>
                     </div>
-                    <div class="p-4 space-y-1.5">
-                        <h4 class="text-sm font-bold text-white group-hover:text-cyan-400 transition-colors">Oficina Médica & Custodia</h4>
-                        <p class="text-[11px] text-slate-400 leading-relaxed">
-                            Emisión formal con firma pericial, sellado de seguridad y archivo seguro de tacos de parafina y laminillas.
+                    <div class="p-5 space-y-2">
+                        <h4 class="text-base font-bold text-white group-hover:text-cyan-400 transition-colors">Oficina Médica & Custodia</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Módulo de dirección pericial, emisión de informes oficiales firmados con código QR y archivo inmutable de bloques de parafina y laminillas histológicas.
                         </p>
                     </div>
                 </div>
@@ -1285,8 +1244,10 @@
             b.classList.remove('active', 'bg-cyanCobalt', 'text-white');
             b.classList.add('bg-slate-800', 'text-slate-300');
         });
-        event.target.classList.add('active', 'bg-cyanCobalt', 'text-white');
-        event.target.classList.remove('bg-slate-800', 'text-slate-300');
+        if (event && event.target) {
+            event.target.classList.add('active', 'bg-cyanCobalt', 'text-white');
+            event.target.classList.remove('bg-slate-800', 'text-slate-300');
+        }
 
         cards.forEach(card => {
             if (type === 'todas') {
