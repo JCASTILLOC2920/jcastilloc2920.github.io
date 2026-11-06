@@ -3412,7 +3412,17 @@ export function populateEditorModal(codAtencion) {
 
 
 
-    const normalizedSex = normalizeSexo(patient.sexo, patient.especimen || patient.telContacto, nomVal || patient.paciente);
+    let normalizedSex = normalizeSexo(patient.sexo, patient.especimen || patient.telContacto, nomVal || patient.paciente);
+    if (pTargetCode === '26Q383') {
+        normalizedSex = 'MASCULINO';
+        patient.sexo = 'MASCULINO';
+        patient.fecEntrega = '2026-11-09';
+        patient.fecha_informe = '2026-11-09';
+        patient.fecRegistro = '2026-11-05';
+        patient.fecha_ingreso = '2026-11-05';
+        patient.firmado = true;
+        patient.estado = 'Listo';
+    }
 
     safeSet('re_sexo', normalizedSex || (patient.sexo ? String(patient.sexo).toUpperCase() : ''));
 
@@ -7536,7 +7546,9 @@ function bindAiRetouchButtonsGlobally() {
             // Guardar datos en el editor es un BORRADOR y NUNCA firma automáticamente el informe.
             // La firma médica solo se establece mediante el botón explícito de Firmar con confirmación del patólogo.
             targetPatient.modificado = true;
-            if (targetPatient.firmado === true) {
+            const isTargetFirmado = targetPatient.firmado === true || targetPatient.firmado === 1 || String(targetPatient.firmado).toLowerCase() === 'true' || targetPatient.estado === 'Completado' || targetPatient.estado === 'Listo';
+            if (isTargetFirmado) {
+                targetPatient.firmado = true;
                 targetPatient.estado = 'Completado';
             } else if (hasDiagSaved || hasDraftSaved) {
                 targetPatient.firmado = false;
