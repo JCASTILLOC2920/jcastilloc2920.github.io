@@ -20,3 +20,9 @@ mobile_report_reader.css
 pacientes_maestro_backup_soberano.json
 *.bak*
 *.log
+
+# Proteccion Boveda Groq
+groq_vault_local.key.js
+*.key.js
+*vault*.js
+*.bak*

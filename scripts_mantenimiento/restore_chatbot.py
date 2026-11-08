@@ -13,7 +13,7 @@ gemini_logic = r"""
 // ============================================
 
 // API KEY proporcionada por el usuario
-const GEMINI_API_KEY = "AIzaSyDHCunorqlW9aXjMYIrMsGK6KsxEm1GC7o"; 
+const GEMINI_API_KEY = "MIGRADO_A_DOCKER_N8N_BACKEND"; 
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 
 // --- ESTADO DEL CHAT ---

@@ -1,0 +1,1211 @@
+/* ============================================================
+   JC PATH LAB — MASTER VISUAL SYSTEM (ANATOMÍA PATOLÓGICA)
+   Estética: Cyber-Clinical Glassmorphism & Tinciones Celulares H&E
+   Hematoxilina (#c084fc) · Eosina (#f43f5e) · Láser Confocal (#00f2fe)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap');
+
+:root {
+  --jc-bg: #050811 !important;
+  --jc-panel: rgba(13, 19, 36, 0.82) !important;
+  --jc-panel-elevated: rgba(18, 26, 48, 0.88) !important;
+  --jc-line: rgba(148, 163, 214, 0.12) !important;
+  --jc-line-strong: rgba(0, 242, 254, 0.28) !important;
+
+  --jc-hem: #c084fc !important;       /* Tinción Hematoxilina */
+  --jc-eos: #f43f5e !important;       /* Tinción Eosina */
+  --jc-cyan: #00f2fe !important;      /* Láser Microscopio Confocal */
+  --jc-mint: #10b981 !important;      /* Diagnóstico Emitido */
+  --jc-amber: #f59e0b !important;     /* Biopsia en Lectura */
+
+  --jc-text: #f8fafc !important;
+  --jc-text-dim: #94a3b8 !important;
+  --jc-text-mute: #64748b !important;
+
+  --jc-font: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+  --jc-mono: 'JetBrains Mono', monospace !important;
+}
+
+/* 1. FONDO: DEEP SPACE MEDICAL + HALOS H&E + MALLA CONFOCAL */
+html, body {
+  background-color: var(--jc-bg) !important;
+  background-image:
+    radial-gradient(1100px 720px at 10% 0%, rgba(192, 132, 252, 0.12), transparent 55%),
+    radial-gradient(1000px 700px at 90% 15%, rgba(244, 63, 94, 0.10), transparent 55%),
+    radial-gradient(900px 900px at 85% 95%, rgba(0, 242, 254, 0.08), transparent 60%),
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px) !important;
+  background-size: 100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px !important;
+  background-attachment: fixed !important;
+  color: var(--jc-text) !important;
+  font-family: var(--jc-font) !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+/* 2. SIDEBAR GLASSMORPHISM DE ALTA FIDELIDAD PATOLÓGICA */
+html body div#appContainer aside#appSidebar.sidebar,
+html body div#appContainer .sidebar,
+html body aside.sidebar {
+  background: var(--jc-panel) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  border-right: 1px solid var(--jc-line) !important;
+  box-shadow: 10px 0 40px rgba(0, 0, 0, 0.65) !important;
+}
+
+/* Logo con Micro-Tinción Celular */
+html body .logo-circle,
+html body .logo-container {
+  border-radius: 12px !important;
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.2), rgba(192, 132, 252, 0.25)) !important;
+  border: 1px solid rgba(0, 242, 254, 0.4) !important;
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.25) !important;
+}
+
+html body .logo-text {
+  font-family: var(--jc-font) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em !important;
+  color: #ffffff !important;
+}
+
+html body .logo-subtitle {
+  color: var(--jc-cyan) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+}
+
+/* Botones de Navegación del Menú Lateral */
+html body .nav-item-btn {
+  font-family: var(--jc-font) !important;
+  border-radius: 10px !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  color: var(--jc-text-dim) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  border: 1px solid transparent !important;
+  padding: 10px 14px !important;
+}
+
+html body .nav-item-btn:hover {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  transform: translateX(4px) !important;
+  box-shadow: 0 0 16px rgba(0, 242, 254, 0.16) !important;
+}
+
+html body .nav-item-btn.active {
+  background: linear-gradient(90deg, rgba(0, 242, 254, 0.16), transparent) !important;
+  border-left: 3px solid var(--jc-cyan) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  box-shadow: inset 6px 0 14px rgba(0, 242, 254, 0.22) !important;
+}
+
+/* 3. HEADER SUPERIOR DE CONTROL CLÍNICO */
+html body div#appContainer header.dashboard-header,
+html body header.dashboard-header {
+  background: rgba(13, 19, 36, 0.7) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border-bottom: 1px solid var(--jc-line) !important;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.45) !important;
+}
+
+html body .welcome-text strong {
+  color: #ffffff !important;
+  text-shadow: 0 0 14px rgba(0, 242, 254, 0.35) !important;
+  font-weight: 800 !important;
+}
+
+/* Botones Rápidos del Header */
+html body .header-utility-btn,
+html body .groq-ai-btn {
+  border-radius: 10px !important;
+  font-family: var(--jc-font) !important;
+  font-weight: 700 !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+html body .header-utility-btn:hover,
+html body .groq-ai-btn:hover {
+  transform: translateY(-1.5px) !important;
+  box-shadow: 0 6px 20px rgba(0, 242, 254, 0.3) !important;
+}
+
+/* Badge Conectado / Sincronizado */
+html body .connection-status.online {
+  background: rgba(16, 185, 129, 0.14) !important;
+  border: 1px solid rgba(16, 185, 129, 0.38) !important;
+  color: var(--jc-mint) !important;
+  border-radius: 8px !important;
+  font-weight: 800 !important;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.25) !important;
+}
+
+/* 4. PESTAÑAS DE SERVICIOS (HE vs CITOLOGÍA) */
+html body .services-tabs .tab-btn {
+  font-family: var(--jc-font) !important;
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+  padding: 10px 18px !important;
+  border: 1px solid var(--jc-line) !important;
+  background: rgba(14, 21, 38, 0.6) !important;
+  color: var(--jc-text-dim) !important;
+  transition: all 0.2s ease !important;
+}
+
+html body .services-tabs .tab-btn:hover {
+  border-color: var(--jc-cyan) !important;
+  color: #ffffff !important;
+}
+
+html body .services-tabs .tab-btn.active[data-service="Q"] {
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.18), rgba(192, 132, 252, 0.22)) !important;
+  border-color: var(--jc-cyan) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 18px rgba(0, 242, 254, 0.3) !important;
+}
+
+html body .services-tabs .tab-btn.active[data-service="C"] {
+  background: linear-gradient(135deg, rgba(244, 63, 94, 0.2), rgba(192, 132, 252, 0.25)) !important;
+  border-color: var(--jc-eos) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 18px rgba(244, 63, 94, 0.3) !important;
+}
+
+/* 5. TABLA HISTOPATOLÓGICA DE ALTA RESOLUCIÓN */
+html body div#appContainer section.table-container,
+html body section.table-container,
+html body .table-responsive-wrapper {
+  background: var(--jc-panel-elevated) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  border: 1px solid var(--jc-line) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 25px 50px -15px rgba(0, 0, 0, 0.8) !important;
+  overflow: hidden !important;
+}
+
+html body table#reportTable.report-table thead th,
+html body .report-table thead th,
+html body table thead th {
+  background: rgba(5, 8, 17, 0.85) !important;
+  color: #ffffff !important;
+  font-family: var(--jc-font) !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  font-size: 0.72rem !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7) !important;
+  opacity: 1 !important;
+  border-bottom: 1px solid var(--jc-line) !important;
+  padding: 16px 18px !important;
+}
+
+html body table#reportTable.report-table tbody td,
+html body .report-table tbody td,
+html body table tbody td {
+  font-family: var(--jc-font) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.035) !important;
+  padding: 15px 18px !important;
+  color: #cbd5e1 !important;
+  transition: background 0.15s ease, color 0.15s ease !important;
+}
+
+html body table#reportTable.report-table tbody tr:hover td,
+html body .report-table tbody tr:hover td {
+  background: rgba(0, 242, 254, 0.045) !important;
+  color: #ffffff !important;
+}
+
+/* Código Histopatológico (26Q-344) Estilo Casete de Biopsia */
+html body table#reportTable.report-table tbody td:nth-child(2),
+html body [data-codigo],
+html body .code-badge,
+html body .sample-code {
+  font-family: var(--jc-mono) !important;
+  font-weight: 700 !important;
+  color: var(--jc-cyan) !important;
+  background: rgba(0, 242, 254, 0.09) !important;
+  border: 1px solid rgba(0, 242, 254, 0.28) !important;
+  padding: 4px 10px !important;
+  border-radius: 8px !important;
+  display: inline-block !important;
+}
+
+/* Badges de Estado Clínico Redondeados (Pills) */
+html body .badge-status,
+html body .status-pill,
+html body .status-badge {
+  border-radius: 999px !important;
+  font-family: var(--jc-font) !important;
+  font-weight: 800 !important;
+  font-size: 0.72rem !important;
+  padding: 4px 12px !important;
+  letter-spacing: 0.02em !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+html body .badge-status.listo,
+html body .status-ready {
+  background: rgba(16, 185, 129, 0.15) !important;
+  border: 1px solid rgba(16, 185, 129, 0.4) !important;
+  color: #34d399 !important;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.25) !important;
+}
+
+html body .badge-status.pendiente,
+html body .status-pending {
+  background: rgba(245, 158, 11, 0.15) !important;
+  border: 1px solid rgba(245, 158, 11, 0.4) !important;
+  color: #fbbf24 !important;
+}
+
+/* 6. BUSCADOR SUPERIOR CLÍNICO */
+html body input#mobileQuickSearchInput,
+html body .search-input,
+html body .filter-input {
+  background: rgba(13, 19, 36, 0.88) !important;
+  border: 1px solid var(--jc-line) !important;
+  border-radius: 12px !important;
+  color: #ffffff !important;
+  font-family: var(--jc-font) !important;
+  transition: all 0.25s ease !important;
+}
+
+html body input#mobileQuickSearchInput:focus,
+html body .filter-input:focus {
+  border-color: var(--jc-cyan) !important;
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.3) !important;
+}
+
+/* 7. TARJETAS MÓVILES DE PACIENTES */
+html body .mobile-patient-card {
+  background: var(--jc-panel-elevated) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid var(--jc-line) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+  padding: 16px !important;
+  margin-bottom: 14px !important;
+  transition: transform 0.2s ease, border-color 0.2s ease !important;
+}
+
+html body .mobile-patient-card:active {
+  transform: scale(0.985) !important;
+}
+
+/* 8. SECCIONES SECUNDARIAS (PLANTILLAS, USUARIOS, DOCTORES, CONTADURÍA, BOLETAS) */
+html body .dashboard-section,
+html body #view-templates,
+html body #view-users,
+html body #view-doctors,
+html body #view-contaduria,
+html body #view-boletas {
+  background: var(--jc-panel) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid var(--jc-line) !important;
+  border-radius: 20px !important;
+  padding: 24px !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6) !important;
+  color: var(--jc-text) !important;
+}
+
+/* Tarjetas KPI de Contaduría y Estadísticas */
+html body .kpi-card,
+html body .stat-card,
+html body .contaduria-summary-card {
+  background: linear-gradient(135deg, rgba(18, 26, 48, 0.9), rgba(13, 19, 36, 0.95)) !important;
+  border: 1px solid var(--jc-line) !important;
+  border-radius: 16px !important;
+  padding: 20px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+  transition: all 0.25s ease !important;
+}
+
+html body .kpi-card:hover,
+html body .stat-card:hover {
+  border-color: var(--jc-cyan) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 35px rgba(0, 242, 254, 0.18) !important;
+}
+
+/* 9. MODALES CLÍNICOS CYBER-MEDIC (REGISTRO, EDITOR, CÁMARA OCR, CAP) */
+html body .modal-content,
+html body .report-editor-container,
+html body #patientRegistrationModal .modal-dialog,
+html body #patientRegistrationModal .modal-content,
+html body .modal-box {
+  background: rgba(10, 16, 32, 0.96) !important;
+  backdrop-filter: blur(32px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(200%) !important;
+  border: 1px solid rgba(0, 242, 254, 0.25) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85), 0 0 30px rgba(0, 242, 254, 0.12) !important;
+  color: #f8fafc !important;
+}
+
+html body .modal-header,
+html body .report-editor-header {
+  border-bottom: 1px solid var(--jc-line) !important;
+  background: rgba(5, 8, 17, 0.65) !important;
+  padding: 16px 22px !important;
+}
+
+html body .modal-header h3,
+html body .modal-header h4,
+html body .modal-header h5 {
+  color: #ffffff !important;
+  font-family: var(--jc-font) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.02em !important;
+  text-shadow: 0 0 12px rgba(0, 242, 254, 0.3) !important;
+}
+
+/* Campos de Formulario en Modales Generales */
+html body .modal-content input,
+html body .modal-content select,
+html body .modal-content textarea {
+  background: rgba(14, 21, 38, 0.85) !important;
+  border: 1px solid var(--jc-line) !important;
+  border-radius: 8px !important;
+  color: #f8fafc !important;
+  font-family: var(--jc-font) !important;
+  padding: 8px 12px !important;
+  transition: all 0.2s ease !important;
+}
+
+html body .modal-content input:focus,
+html body .modal-content select:focus,
+html body .modal-content textarea:focus {
+  border-color: var(--jc-cyan) !important;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.25) !important;
+  outline: none !important;
+}
+
+/* 10. ADAPTACIÓN RESPONSIVA Y VERSIÓN MOBILE-FIRST */
+@media (max-width: 768px) {
+  /* Sidebar compacto en móvil */
+  html body aside#appSidebar.sidebar,
+  html body .sidebar {
+    position: fixed !important;
+    left: -280px !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    z-index: 10000 !important;
+    transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+  html body .sidebar.open,
+  html body .sidebar.active {
+    left: 0 !important;
+  }
+
+  /* Padding inferior para la barra de navegación del celular */
+  html body #mainContent,
+  html body .main-content {
+    padding-bottom: 84px !important;
+  }
+
+  /* Botones táctiles ampliados a mínimo 44px */
+  html body button,
+  html body .btn,
+  html body .action-btn,
+  html body .tab-btn,
+  html body .editor-btn-footer,
+  html body .btn-mobile-action {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    touch-action: manipulation !important;
+  }
+
+  /* Barra inferior de acciones elástica en editor móvil */
+  html body #reportEditorModalOverlay .report-editor-footer,
+  #reportEditorModalOverlay .report-editor-footer {
+    height: auto !important;
+    min-height: 56px !important;
+    max-height: none !important;
+    overflow: visible !important;
+    flex-wrap: wrap !important;
+    padding: 8px 12px max(8px, env(safe-area-inset-bottom, 8px)) 12px !important;
+    gap: 8px !important;
+  }
+  html body #reportEditorModalOverlay .report-editor-footer .footer-right,
+  #reportEditorModalOverlay .report-editor-footer .footer-right {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)) !important;
+    gap: 8px !important;
+  }
+
+  /* Tabla con scroll suave y vista híbrida */
+  html body .table-responsive-wrapper {
+    border-radius: 14px !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5) !important;
+  }
+
+  /* Barra de Navegación Móvil Inferior Táctil (Dock) */
+  .mobile-bottom-dock {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 64px !important;
+    background: rgba(10, 16, 32, 0.94) !important;
+    backdrop-filter: blur(24px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+    border-top: 1px solid rgba(0, 242, 254, 0.2) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-around !important;
+    z-index: 9999 !important;
+    padding: 0 10px !important;
+  }
+
+  .mobile-dock-btn {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: transparent !important;
+    border: none !important;
+    color: #94a3b8 !important;
+    font-size: 0.72rem !important;
+    font-weight: 600 !important;
+    gap: 4px !important;
+    cursor: pointer !important;
+    flex: 1 !important;
+    height: 100% !important;
+    touch-action: manipulation !important;
+  }
+
+  .mobile-dock-btn i {
+    font-size: 1.25rem !important;
+    transition: transform 0.2s ease !important;
+  }
+
+  .mobile-dock-btn.active,
+  .mobile-dock-btn:active {
+    color: var(--jc-cyan) !important;
+  }
+
+  .mobile-dock-btn:active i {
+    transform: scale(1.15) !important;
+  }
+}
+
+/* 11. BANNER NATIVO DE INSTALACIÓN EN ANDROID / PWA */
+.pwa-android-install-banner {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.18), rgba(0, 242, 254, 0.15)) !important;
+  border: 1px solid rgba(16, 185, 129, 0.4) !important;
+  border-radius: 14px !important;
+  padding: 12px 18px !important;
+  margin: 12px 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35) !important;
+}
+
+.pwa-android-install-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 10px !important;
+  padding: 8px 16px !important;
+  font-weight: 800 !important;
+  font-size: 0.8rem !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4) !important;
+  touch-action: manipulation !important;
+}
+
+/* ==========================================================================
+   12. ATMÓSFERA MODERNISTA FUTURISTA — HUD DE COMANDO CLÍNICO JC PATH LAB
+   Dirección de Arte: Cyber-Medical Holográfica, Fósforo Neón y Malla Láser
+   ========================================================================== */
+
+/* Animación de Pulso Láser y Telemetría */
+@keyframes jc-beacon-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(0, 242, 254, 0.6), 0 0 12px rgba(0, 242, 254, 0.4);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 6px rgba(0, 242, 254, 0), 0 0 20px rgba(0, 242, 254, 0.8);
+  }
+}
+
+@keyframes jc-scanline {
+  0% { transform: translateY(-100%); opacity: 0; }
+  50% { opacity: 0.8; }
+  100% { transform: translateY(1000%); opacity: 0; }
+}
+
+@keyframes jc-plasma-glow {
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(192, 132, 252, 0.4)); }
+  50% { filter: drop-shadow(0 0 16px rgba(0, 242, 254, 0.6)); }
+}
+
+/* Línea de estado HUD con Beacon Neón */
+.hud-telemetry-pill,
+.connection-status {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 6px 14px !important;
+  background: rgba(5, 11, 26, 0.85) !important;
+  border: 1px solid rgba(0, 242, 254, 0.35) !important;
+  border-radius: 999px !important;
+  font-family: var(--jc-mono) !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  color: var(--jc-cyan) !important;
+  box-shadow: 0 0 16px rgba(0, 242, 254, 0.15) !important;
+}
+
+.connection-status::before {
+  content: "" !important;
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50% !important;
+  background: var(--jc-cyan) !important;
+  animation: jc-beacon-pulse 2s infinite ease-in-out !important;
+}
+
+/* Barra de Búsqueda IA Futurista HUD */
+.ai-smart-search-box,
+#aiSmartSearchRow {
+  background: rgba(7, 13, 28, 0.88) !important;
+  backdrop-filter: blur(28px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
+  border: 1px solid rgba(0, 242, 254, 0.3) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(0, 242, 254, 0.08) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.ai-smart-search-box:focus-within,
+#aiSmartSearchRow:focus-within {
+  border-color: var(--jc-cyan) !important;
+  box-shadow: 0 12px 40px rgba(0, 242, 254, 0.25), inset 0 0 20px rgba(0, 242, 254, 0.15) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Chips Tácticos Futuristas */
+.ai-chip-btn {
+  background: rgba(14, 23, 44, 0.75) !important;
+  border: 1px solid rgba(148, 163, 214, 0.18) !important;
+  border-radius: 999px !important;
+  color: #94a3b8 !important;
+  font-family: var(--jc-font) !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  padding: 5px 12px !important;
+  transition: all 0.2s ease !important;
+}
+
+.ai-chip-btn:hover {
+  background: rgba(0, 242, 254, 0.12) !important;
+  border-color: var(--jc-cyan) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 14px rgba(0, 242, 254, 0.3) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Casete Histopatológico de Alta Precisión (Microchip) */
+[data-codigo],
+.code-badge,
+.sample-code,
+table#reportTable.report-table tbody td:nth-child(2) {
+  position: relative !important;
+  font-family: var(--jc-mono) !important;
+  font-weight: 800 !important;
+  color: #00f2fe !important;
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.12), rgba(192, 132, 252, 0.1)) !important;
+  border: 1px solid rgba(0, 242, 254, 0.35) !important;
+  padding: 5px 12px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 0 12px rgba(0, 242, 254, 0.18) !important;
+  letter-spacing: 0.04em !important;
+}
+
+/* Filas de Tabla con Resplandor Holográfico al Pasar el Cursor */
+table#reportTable.report-table tbody tr {
+  transition: all 0.18s ease !important;
+}
+
+table#reportTable.report-table tbody tr:hover {
+  background: linear-gradient(90deg, rgba(0, 242, 254, 0.08) 0%, rgba(192, 132, 252, 0.06) 100%) !important;
+  box-shadow: inset 4px 0 0 var(--jc-cyan), 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+table#reportTable.report-table tbody tr:hover td {
+  color: #ffffff !important;
+}
+
+/* Retícula Holográfica para Visor de Cámara Dual OCR */
+#modalDualOcrCamera .modal-dialog,
+#modalDualOcrCamera .camera-ocr-wrapper {
+  position: relative !important;
+  border: 1.5px solid rgba(0, 242, 254, 0.45) !important;
+  box-shadow: 0 0 40px rgba(0, 242, 254, 0.25), 0 25px 60px rgba(0, 0, 0, 0.9) !important;
+}
+
+#modalDualOcrCamera .camera-ocr-wrapper::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: 0 !important;
+  height: 3px !important;
+  background: linear-gradient(90deg, transparent, var(--jc-cyan), transparent) !important;
+  box-shadow: 0 0 15px var(--jc-cyan) !important;
+  animation: jc-scanline 3.5s infinite linear !important;
+  pointer-events: none !important;
+}
+
+/* Botones con Micro-Interacciones Futuristas */
+.btn-primary,
+.action-btn-primary,
+.btn-guardar-estricto,
+#btnProcesarOcrAuto {
+  background: linear-gradient(135deg, #0284c7 0%, #00f2fe 100%) !important;
+  color: #030712 !important;
+  font-family: var(--jc-font) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.02em !important;
+  border: none !important;
+  border-radius: 10px !important;
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.4) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn-primary:hover,
+.action-btn-primary:hover,
+#btnProcesarOcrAuto:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 28px rgba(0, 242, 254, 0.6) !important;
+}
+
+.btn-primary:active,
+#btnProcesarOcrAuto:active {
+  transform: scale(0.97) !important;
+}
+
+/* ==========================================================================
+   CABINA CERO-SCROLL: SOVEREIGN CLINICAL GLASS / CLEAN ENTERPRISE BIOTECH
+   Estilo de Grado Quirúrgico JC PATH LAB - Cero Fatiga Visual (60 FPS GPU)
+   ========================================================================== */
+
+/* 1. FONDO DE CABINA Y CONTENEDOR PRINCIPAL (#reportEditorModalOverlay) */
+#reportEditorModalOverlay.report-editor-overlay,
+html body #reportEditorModalOverlay {
+    background: rgba(4, 7, 15, 0.90) !important;
+    backdrop-filter: blur(28px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+}
+
+#reportEditorModalOverlay .report-editor-container,
+html body #reportEditorModalOverlay .report-editor-container {
+    background: #0a1122 !important;
+    background-image: 
+        radial-gradient(circle at 12% 0%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 88% 100%, rgba(99, 102, 241, 0.06) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.03) 0%, transparent 50%) !important;
+    border: 1px solid rgba(56, 189, 248, 0.2) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    color: #f8fafc !important;
+    overflow: hidden !important;
+}
+
+/* Micro-reflejo especular superior en la cabina */
+#reportEditorModalOverlay .report-editor-container::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 1px !important;
+    background: linear-gradient(90deg, transparent 0%, rgba(56, 189, 248, 0.6) 25%, rgba(56, 189, 248, 0.6) 75%, transparent 100%) !important;
+    pointer-events: none !important;
+    z-index: 1060 !important;
+}
+
+/* Botón de cierre de cabina con acabado clínico */
+#reportEditorModalOverlay .close-btn {
+    position: absolute !important;
+    top: 10px !important;
+    right: 14px !important;
+    z-index: 1070 !important;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 50% !important;
+    background: rgba(15, 23, 42, 0.6) !important;
+    border: 1px solid rgba(148, 163, 214, 0.2) !important;
+    color: #94a3b8 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.3rem !important;
+    cursor: pointer !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+#reportEditorModalOverlay .close-btn:hover {
+    color: #f43f5e !important;
+    border-color: rgba(244, 63, 94, 0.4) !important;
+    background: rgba(244, 63, 94, 0.15) !important;
+    transform: rotate(90deg) scale(1.05) !important;
+}
+
+/* Paneles del lado izquierdo y contenedor de paciente */
+#reportEditorModalOverlay .editor-panel,
+#reportEditorModalOverlay .patient-info-panel,
+#reportEditorModalOverlay .editor-accordion-panel,
+#reportEditorModalOverlay .editor-box-card {
+    background: rgba(13, 22, 42, 0.75) !important;
+    border: 1px solid rgba(56, 189, 248, 0.16) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+}
+
+#reportEditorModalOverlay .panel-header,
+#reportEditorModalOverlay .patient-panel-header,
+#reportEditorModalOverlay .editor-box-header {
+    background: linear-gradient(90deg, rgba(14, 25, 48, 0.95) 0%, rgba(10, 17, 34, 0.95) 100%) !important;
+    border-bottom: 1px solid rgba(56, 189, 248, 0.18) !important;
+    color: #38bdf8 !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.03em !important;
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.25) !important;
+}
+
+/* 2. INPUTS Y SELECTORES (FONDO #060b16, BORDES rgba(148, 163, 214, 0.15), FOCO CON GLOW CIAN #38bdf8) */
+#reportEditorModalOverlay input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+#reportEditorModalOverlay select,
+#reportEditorModalOverlay textarea,
+#reportEditorModalOverlay .editor-input,
+#reportEditorModalOverlay .editor-select,
+#reportEditorModalOverlay .editor-textarea,
+#reportEditorModalOverlay .cockpit-select,
+#reportEditorModalOverlay .cockpit-textarea,
+html body #reportEditorModalOverlay .report-editor-container input,
+html body #reportEditorModalOverlay .report-editor-container select,
+html body #reportEditorModalOverlay .report-editor-container textarea {
+    background-color: #060b16 !important;
+    border: 1px solid rgba(148, 163, 214, 0.15) !important;
+    border-radius: 6px !important;
+    color: #f8fafc !important;
+    box-sizing: border-box !important;
+    font-family: var(--jc-font, 'Plus Jakarta Sans', system-ui, sans-serif) !important;
+    transition: border-color 0.15s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.15s cubic-bezier(0.16, 1, 0.3, 1), 
+                background-color 0.15s ease !important;
+}
+
+#reportEditorModalOverlay input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):focus,
+#reportEditorModalOverlay select:focus,
+#reportEditorModalOverlay textarea:focus,
+#reportEditorModalOverlay .editor-input:focus,
+#reportEditorModalOverlay .editor-select:focus,
+#reportEditorModalOverlay .editor-textarea:focus,
+#reportEditorModalOverlay .cockpit-select:focus,
+#reportEditorModalOverlay .cockpit-textarea:focus,
+html body #reportEditorModalOverlay .report-editor-container input:focus,
+html body #reportEditorModalOverlay .report-editor-container select:focus,
+html body #reportEditorModalOverlay .report-editor-container textarea:focus {
+    border-color: #38bdf8 !important;
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.25), 0 0 16px rgba(56, 189, 248, 0.4) !important;
+    outline: none !important;
+    background-color: #050914 !important;
+}
+
+/* Campos de solo lectura o calculados */
+#reportEditorModalOverlay input.readonly-field,
+#reportEditorModalOverlay input[readonly] {
+    background-color: rgba(6, 11, 22, 0.65) !important;
+    border-color: rgba(148, 163, 214, 0.08) !important;
+    color: #94a3b8 !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+}
+
+#reportEditorModalOverlay input::placeholder,
+#reportEditorModalOverlay textarea::placeholder {
+    color: rgba(148, 163, 214, 0.4) !important;
+}
+
+#reportEditorModalOverlay select option {
+    background-color: #060b16 !important;
+    color: #f8fafc !important;
+}
+
+/* 3. BARRA INFERIOR DE ACCIONES (.report-editor-footer) */
+#reportEditorModalOverlay .report-editor-footer,
+html body #reportEditorModalOverlay .report-editor-footer {
+    background: linear-gradient(180deg, #0a1122 0%, #060b16 100%) !important;
+    border-top: 1px solid rgba(56, 189, 248, 0.2) !important;
+    box-shadow: 0 -4px 25px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+    padding: 10px 18px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-shrink: 0 !important;
+    min-height: 52px !important;
+    box-sizing: border-box !important;
+    z-index: 1050 !important;
+}
+
+/* 4. BOTONES MECÁNICOS 3D CON RELIEVE FÍSICO, LUZ SUPERIOR INSET Y RESPUESTA HÁPTICA A 60 FPS */
+#reportEditorModalOverlay .report-editor-footer .editor-btn-footer,
+html body #reportEditorModalOverlay .report-editor-footer .editor-btn-footer {
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    padding: 9px 20px !important;
+    border-radius: 8px !important;
+    font-family: var(--jc-font, 'Plus Jakarta Sans', system-ui, sans-serif) !important;
+    font-weight: 700 !important;
+    font-size: 0.85rem !important;
+    letter-spacing: 0.02em !important;
+    cursor: pointer !important;
+    border: 1px solid transparent !important;
+    user-select: none !important;
+    transform: translateZ(0) !important;
+    will-change: transform, box-shadow !important;
+    box-sizing: border-box !important;
+    transition: transform 0.06s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.06s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.15s ease !important;
+}
+
+/* Botón 3D: GUARDAR (#re_btnGuardar / btn-success) */
+#reportEditorModalOverlay #re_btnGuardar,
+#reportEditorModalOverlay .editor-btn-footer.btn-success {
+    background: linear-gradient(180deg, #10b981 0%, #059669 100%) !important;
+    color: #ffffff !important;
+    border: 1px solid #34d399 !important;
+    border-bottom: 2px solid #047857 !important;
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 4px 0 #047857,
+        0 6px 14px rgba(16, 185, 129, 0.4),
+        0 2px 4px rgba(0, 0, 0, 0.5) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4) !important;
+}
+
+#reportEditorModalOverlay #re_btnGuardar:hover,
+#reportEditorModalOverlay .editor-btn-footer.btn-success:hover {
+    filter: brightness(1.1) !important;
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        0 4px 0 #047857,
+        0 8px 18px rgba(16, 185, 129, 0.55),
+        0 3px 6px rgba(0, 0, 0, 0.5) !important;
+}
+
+#reportEditorModalOverlay #re_btnGuardar:active,
+#reportEditorModalOverlay .editor-btn-footer.btn-success:active {
+    transform: translateY(3px) translateZ(0) !important;
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 1px 0 #047857,
+        0 2px 6px rgba(16, 185, 129, 0.3) !important;
+}
+
+/* Botón 3D: VISTA PREVIA (#re_btnPreview) */
+#reportEditorModalOverlay #re_btnPreview {
+    background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%) !important;
+    color: #ffffff !important;
+    border: 1px solid #38bdf8 !important;
+    border-bottom: 2px solid #075985 !important;
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 4px 0 #075985,
+        0 6px 14px rgba(2, 132, 199, 0.4),
+        0 2px 4px rgba(0, 0, 0, 0.5) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4) !important;
+}
+
+#reportEditorModalOverlay #re_btnPreview:hover {
+    filter: brightness(1.1) !important;
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        0 4px 0 #075985,
+        0 8px 18px rgba(2, 132, 199, 0.55),
+        0 3px 6px rgba(0, 0, 0, 0.5) !important;
+}
+
+#reportEditorModalOverlay #re_btnPreview:active {
+    transform: translateY(3px) translateZ(0) !important;
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 1px 0 #075985,
+        0 2px 6px rgba(2, 132, 199, 0.3) !important;
+}
+
+/* Botón 3D: FIRMA / FIRMAR (#re_btnFirma, #re_btnFirmar) */
+#reportEditorModalOverlay #re_btnFirma,
+#reportEditorModalOverlay #re_btnFirmar {
+    background: linear-gradient(180deg, #6366f1 0%, #4f46e5 100%) !important;
+    color: #ffffff !important;
+    border: 1px solid #818cf8 !important;
+    border-bottom: 2px solid #3730a3 !important;
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 4px 0 #3730a3,
+        0 6px 14px rgba(99, 102, 241, 0.4),
+        0 2px 4px rgba(0, 0, 0, 0.5) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4) !important;
+}
+
+#reportEditorModalOverlay #re_btnFirma:hover,
+#reportEditorModalOverlay #re_btnFirmar:hover {
+    filter: brightness(1.1) !important;
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        0 4px 0 #3730a3,
+        0 8px 18px rgba(99, 102, 241, 0.55),
+        0 3px 6px rgba(0, 0, 0, 0.5) !important;
+}
+
+#reportEditorModalOverlay #re_btnFirma:active,
+#reportEditorModalOverlay #re_btnFirmar:active {
+    transform: translateY(3px) translateZ(0) !important;
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 1px 0 #3730a3,
+        0 2px 6px rgba(99, 102, 241, 0.3) !important;
+}
+
+/* Botón 3D: SALIR (#re_btnSalir / btn-muted) */
+#reportEditorModalOverlay #re_btnSalir,
+#reportEditorModalOverlay .editor-btn-footer.btn-muted {
+    background: linear-gradient(180deg, #334155 0%, #1e293b 100%) !important;
+    color: #cbd5e1 !important;
+    border: 1px solid #475569 !important;
+    border-bottom: 2px solid #0f172a !important;
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 4px 0 #0f172a,
+        0 5px 12px rgba(0, 0, 0, 0.5) !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) !important;
+}
+
+#reportEditorModalOverlay #re_btnSalir:hover,
+#reportEditorModalOverlay .editor-btn-footer.btn-muted:hover {
+    background: linear-gradient(180deg, #3f4e66 0%, #253347 100%) !important;
+    color: #ffffff !important;
+    border-color: #64748b !important;
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 4px 0 #0f172a,
+        0 8px 16px rgba(0, 0, 0, 0.65) !important;
+}
+
+#reportEditorModalOverlay #re_btnSalir:active,
+#reportEditorModalOverlay .editor-btn-footer.btn-muted:active {
+    transform: translateY(3px) translateZ(0) !important;
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        0 1px 0 #0f172a,
+        0 2px 4px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Botones de acción complementarios en la cabina */
+#reportEditorModalOverlay .editor-btn-action {
+    background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(56, 189, 248, 0.4) !important;
+    border-radius: 6px !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+    cursor: pointer !important;
+    transition: transform 0.08s ease, filter 0.15s ease !important;
+}
+
+#reportEditorModalOverlay .editor-btn-action:hover {
+    filter: brightness(1.15) !important;
+}
+
+#reportEditorModalOverlay .editor-btn-action:active {
+    transform: translateY(1px) scale(0.96) !important;
+}
+
+
+
+
+
+/* ==============================================================================
+   JC PATH LAB SOBERANO — MOTOR DE DISEÑO DE ÉLITE (LINEAR / ACETERNITY / BENTO)
+   Integrado por CODESTRAL & QWEN CODER según directiva soberana.
+   CERO ALTERACIÓN DE FUNCIONALIDAD — 100% PRESERVACIÓN DE IDs, CLASES Y EVENTOS.
+   ============================================================================== */
+
+/* 1. PALETA DE ALTO CONTRASTE Y GLASSMORPHISM MULTICAPA */
+:root {
+  --sovereign-bg-deep: #07090e;
+  --sovereign-card-glass: rgba(13, 17, 26, 0.78);
+  --sovereign-card-hover: rgba(18, 24, 38, 0.92);
+  --sovereign-border-subtle: rgba(255, 255, 255, 0.08);
+  --sovereign-border-luminous: rgba(0, 242, 254, 0.40);
+  --sovereign-neon-cyan: #00f2fe;
+  --sovereign-neon-purple: #7928ca;
+  --sovereign-neon-emerald: #10b981;
+  --sovereign-neon-amber: #f59e0b;
+}
+
+/* 2. BENTO CARDS CON DESENFOQUE CINEMATOGRÁFICO Y BORDES ULTRAFINOS */
+.card, .panel, .editor-panel, .cockpit-card, .patient-card, .table-container, .modal-content {
+  background: var(--sovereign-card-glass) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+  border: 1px solid var(--sovereign-border-subtle) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45) !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.card:hover, .cockpit-card:hover, .patient-card:hover {
+  border-color: rgba(0, 242, 254, 0.25) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 242, 254, 0.08) !important;
+}
+
+/* 3. BOTONES DE ACCIÓN RÁPIDA ESTILO LINEAR CON MICRO-BRILLO */
+.btn-primary, .pill-sky, .pill-emerald, .tb-action-pill {
+  position: relative !important;
+  overflow: hidden !important;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+  border-radius: 8px !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.pill-sky, .tb-action-pill.pill-sky {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.25) 0%, rgba(2, 132, 199, 0.45) 100%) !important;
+  border: 1px solid rgba(14, 165, 233, 0.5) !important;
+  color: #38bdf8 !important;
+  box-shadow: 0 2px 10px rgba(14, 165, 233, 0.2) !important;
+}
+
+.pill-sky:hover, .tb-action-pill.pill-sky:hover {
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.45) 0%, rgba(2, 132, 199, 0.75) 100%) !important;
+  border-color: #38bdf8 !important;
+  box-shadow: 0 4px 18px rgba(14, 165, 233, 0.45) !important;
+  transform: translateY(-1px) !important;
+}
+
+.pill-emerald, .tb-action-pill.pill-emerald {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.25) 0%, rgba(5, 150, 105, 0.45) 100%) !important;
+  border: 1px solid rgba(16, 185, 129, 0.5) !important;
+  color: #34d399 !important;
+  box-shadow: 0 2px 10px rgba(16, 185, 129, 0.2) !important;
+}
+
+.pill-emerald:hover, .tb-action-pill.pill-emerald:hover {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.45) 0%, rgba(5, 150, 105, 0.75) 100%) !important;
+  border-color: #34d399 !important;
+  box-shadow: 0 4px 18px rgba(16, 185, 129, 0.45) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* 4. SELECTORES DE PLANTILLAS HUD CON BORDE NEÓN */
+select.cockpit-select, select.editor-select, select.form-control {
+  background-color: rgba(10, 14, 23, 0.92) !important;
+  border: 1px solid rgba(148, 163, 214, 0.22) !important;
+  border-radius: 8px !important;
+  color: #f8fafc !important;
+  padding: 6px 12px !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+}
+
+select.cockpit-select:focus, select.editor-select:focus, select.form-control:focus {
+  border-color: var(--sovereign-neon-cyan) !important;
+  box-shadow: 0 0 0 2px rgba(0, 242, 254, 0.25), 0 0 15px rgba(0, 242, 254, 0.15) !important;
+  outline: none !important;
+}
+
+/* 5. TABLAS CLÍNICAS Y REGISTROS CON BORDES DE CRISTAL */
+table, .table {
+  border-collapse: separate !important;
+  border-spacing: 0 4px !important;
+}
+
+tr {
+  transition: background-color 0.15s ease !important;
+}
+
+tbody tr:hover {
+  background-color: rgba(0, 242, 254, 0.05) !important;
+}
+
+th {
+  background-color: rgba(15, 23, 42, 0.85) !important;
+  color: #94a3b8 !important;
+  font-size: 0.78rem !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  border-bottom: 1px solid rgba(148, 163, 214, 0.18) !important;
+}
+
+/* 6. SCROLLBARS ULTRAFINOS MINIMALISTAS */
+::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(7, 9, 14, 0.6) !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 214, 0.25) !important;
+  border-radius: 4px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 242, 254, 0.5) !important;
+}
+
+/* ==========================================================================
+   REMEDIACIÓN SOBERANA DE ESPÉCIMEN / MUESTRA (CERO TRUNCAMIENTO BRUSCO)
+   ========================================================================== */
+.report-table td.col-specimen,
+.report-table td:nth-child(6),
+.col-specimen {
+    min-width: 145px !important;
+    width: 20% !important;
+    padding: 6px 10px !important;
+    line-height: 1.35 !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+}
+
+.specimen-cell-text {
+    font-size: 0.76rem !important;
+    line-height: 1.35 !important;
+    color: #e2e8f0 !important;
+    display: block !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    text-overflow: clip !important;
+}

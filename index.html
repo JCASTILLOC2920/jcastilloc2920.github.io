@@ -52,7 +52,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="sovereign_pathology_elite.css">
+    <link rel="stylesheet" href="sovereign_pathology_elite.css?v=20261108_elite_soberano">
 
     <!-- Schema.org JSON-LD para MedicalBusiness & PathologyLab (E-E-A-T Google) -->
     <script type="application/ld+json">
@@ -523,6 +523,9 @@
                         </button>
                         <button type="button" onclick="loadWsiCase('renal')" id="btnCaseRenal" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all flex items-center gap-1.5">
                             <i class="fa-solid fa-kidneys"></i> <span>Renal (ccRCC Células Claras)</span>
+                        </button>
+                        <button type="button" onclick="loadWsiCase('sample40x')" id="btnCase40x" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all flex items-center gap-1.5">
+                            <i class="fa-solid fa-microscope text-cyan-400"></i> <span>Muestra Maestra 40x Real</span>
                         </button>
                     </div>
 
@@ -1550,6 +1553,19 @@
                 ncRatio: "45% (Elevado)",
                 baseCells: 1890
             },
+            sample40x: {
+                title: "Dermatopatología & Lesiones Melanocíticas (Biopsia de Piel WSI 40x Real)",
+                idBadge: "CASO: 26Q-DERM-40X",
+                slideImg: "wsi_sample_40x.webp",
+                diagnosis: "Proliferación melanocítica dérmica e intraepidérmica con preservación arquitectural. Ausencia de atipia citológica severa o invasión vascular/perineural. Tinción Hematoxilina & Eosina (H&E) escaneada en resolución gigapixel nativa (0.25 µm/px).",
+                annotations: [
+                    { top: "35%", left: "40%", width: "20%", height: "22%", class: "ai-box-green", label: "Nidos melanocíticos dérmicos típicos - 98.7%" },
+                    { top: "55%", left: "60%", width: "16%", height: "18%", class: "ai-box-amber", label: "Unión dermoepidérmica regular - 97.2%" },
+                    { top: "25%", left: "28%", width: "14%", height: "15%", class: "ai-box-purple", label: "Matriz colágena dérmica conservada - 99.0%" }
+                ],
+                ncRatio: "22% (Normal/Típico)",
+                baseCells: 2150
+            },
             renal: {
                 title: "Nefrectomía Parcial: Carcinoma Renal de Células Claras",
                 idBadge: "CASO: 26Q-REN-190",
@@ -1602,7 +1618,13 @@
             document.getElementById('btnCaseGastrica').className = caseKey === 'gastrica'
                 ? 'px-3 py-1.5 rounded-lg text-xs font-bold bg-cyanCobalt text-white shadow-md transition-all flex items-center gap-1.5'
                 : 'px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all flex items-center gap-1.5';
-            document.getElementById('btnCaseRenal').className = caseKey === 'renal'
+            const btn40x = document.getElementById('btnCase40x');
+            if (btn40x) {
+                btn40x.className = caseKey === 'sample40x'
+                    ? 'px-3 py-1.5 rounded-lg text-xs font-bold bg-cyanCobalt text-white shadow-md transition-all flex items-center gap-1.5'
+                    : 'px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all flex items-center gap-1.5';
+            }
+            document.getElementById('btnCaseRenal').className = caseKey === 'renal' 
                 ? 'px-3 py-1.5 rounded-lg text-xs font-bold bg-cyanCobalt text-white shadow-md transition-all flex items-center gap-1.5'
                 : 'px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 transition-all flex items-center gap-1.5';
 
