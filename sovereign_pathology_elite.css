@@ -1,0 +1,315 @@
+/* ==========================================================================
+   JC PATH LAB - SISTEMA DE DISEÑO SOBERANO DE ALTO NIVEL (ELITE MEDICAL HUD)
+   Arquitectura: CODESTRAL | Implementación: QWEN CODER | Mando: Dr. José Castillo
+   Inspiración: Linear App, Aceternity UI, Magic UI & Leica Digital Pathology HUD
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Escala de Superficies Soberanas (Dark Obsidian) */
+  --sovereign-bg: #07090e;
+  --sovereign-canvas: #090c14;
+  --sovereign-surface-1: #0e1320;
+  --sovereign-surface-2: #141b2d;
+  --sovereign-surface-3: #1a233a;
+  --sovereign-surface-glass: rgba(14, 19, 32, 0.78);
+  
+  /* Bordes de Precisión con Micro-Reflejos */
+  --sovereign-border: rgba(255, 255, 255, 0.08);
+  --sovereign-border-bright: rgba(255, 255, 255, 0.16);
+  --sovereign-border-cyan: rgba(0, 242, 254, 0.4);
+  --sovereign-border-emerald: rgba(0, 230, 118, 0.4);
+  
+  /* Acentos Médicos y Quirúrgicos */
+  --accent-cyan: #00f2fe;
+  --accent-cyan-glow: rgba(0, 242, 254, 0.28);
+  --accent-blue: #38bdf8;
+  --accent-emerald: #00e676;
+  --accent-emerald-glow: rgba(0, 230, 118, 0.25);
+  --accent-violet: #7928ca;
+  --accent-he-pink: #f43f5e;
+  --accent-amber: #f59e0b;
+  
+  /* Textos y Jerarquía */
+  --text-pure: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  
+  /* Micro-Interacciones & Curvas Bézier Snappy */
+  --ease-snappy: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 1. LIENZO Y FONDO GLOBAL CON MALLA RADIAL Y TEXTURA MICRO-GRID */
+body {
+  background-color: var(--sovereign-bg) !important;
+  color: var(--text-pure);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  background-image: 
+    radial-gradient(circle at 15% 10%, rgba(121, 40, 202, 0.07) 0%, transparent 40%),
+    radial-gradient(circle at 85% 25%, rgba(0, 242, 254, 0.06) 0%, transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(0, 230, 118, 0.04) 0%, transparent 50%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+/* 2. GLASSMORPHISM CLÍNICO DE ELEVACIÓN SUPERIOR */
+.glass-panel {
+  background: var(--sovereign-surface-glass) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+  border: 1px solid var(--sovereign-border) !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08), 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-card {
+  background: rgba(18, 25, 41, 0.72) !important;
+  backdrop-filter: blur(14px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(160%) !important;
+  border: 1px solid var(--sovereign-border) !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.06), 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+  transition: all 0.28s var(--ease-snappy);
+}
+
+.glass-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--sovereign-border-cyan) !important;
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.12),
+    0 16px 35px -8px rgba(0, 242, 254, 0.18),
+    0 0 20px rgba(0, 242, 254, 0.1);
+}
+
+/* 3. BOTONES DE ÉLITE SOBERANOS (ESTILO LINEAR / MAGIC UI) */
+.btn-soberano-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #00f2fe 0%, #38bdf8 50%, #0284c7 100%) !important;
+  color: #040812 !important;
+  font-weight: 700 !important;
+  font-size: 0.875rem;
+  letter-spacing: -0.01em;
+  padding: 10px 22px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 24px var(--accent-cyan-glow), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transition: all 0.22s var(--ease-snappy);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-soberano-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 35px rgba(0, 242, 254, 0.45), inset 0 1px 0 #ffffff;
+  color: #000000 !important;
+}
+
+.btn-soberano-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-soberano-emerald {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #00e676 0%, #10b981 100%) !important;
+  color: #031209 !important;
+  font-weight: 700 !important;
+  font-size: 0.875rem;
+  padding: 10px 22px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 24px var(--accent-emerald-glow), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transition: all 0.22s var(--ease-snappy);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-soberano-emerald:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 35px rgba(0, 230, 118, 0.45);
+}
+
+.btn-soberano-glass {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.04) !important;
+  backdrop-filter: blur(10px);
+  color: var(--text-pure) !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1px solid var(--sovereign-border);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: all 0.22s var(--ease-snappy);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-soberano-glass:hover {
+  background: rgba(255, 255, 255, 0.09) !important;
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* 4. INSIGNIAS NEÓN Y PULSADORES LIVE (STATUS PILLS) */
+.badge-neon {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.725rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badge-neon-emerald {
+  background: rgba(0, 230, 118, 0.1);
+  color: #00e676;
+  border: 1px solid rgba(0, 230, 118, 0.35);
+  box-shadow: 0 0 12px rgba(0, 230, 118, 0.2);
+}
+
+.badge-neon-cyan {
+  background: rgba(0, 242, 254, 0.1);
+  color: #00f2fe;
+  border: 1px solid rgba(0, 242, 254, 0.35);
+  box-shadow: 0 0 12px rgba(0, 242, 254, 0.2);
+}
+
+.badge-neon-purple {
+  background: rgba(121, 40, 202, 0.15);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  box-shadow: 0 0 12px rgba(121, 40, 202, 0.2);
+}
+
+.pulse-beacon {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: currentColor;
+  box-shadow: 0 0 0 0 currentColor;
+  animation: beacon-pulse 1.8s infinite;
+}
+
+@keyframes beacon-pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 7px rgba(0, 230, 118, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 230, 118, 0); }
+}
+
+/* 5. VISOR DIGITAL PATHOLOGY WSI 40X - HUD FRAME TIEMPO REAL */
+.medical-hud-frame {
+  position: relative;
+  border: 1px solid rgba(0, 242, 254, 0.35) !important;
+  border-radius: 16px;
+  background: #04060a !important;
+  box-shadow: 
+    0 0 30px rgba(0, 242, 254, 0.12),
+    inset 0 0 20px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+}
+
+/* Soportes y esquineros ópticos HUD */
+.medical-hud-frame::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 14px;
+  height: 14px;
+  border-top: 2px solid var(--accent-cyan);
+  border-left: 2px solid var(--accent-cyan);
+  pointer-events: none;
+  z-index: 20;
+}
+
+.medical-hud-frame::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 14px;
+  height: 14px;
+  border-bottom: 2px solid var(--accent-cyan);
+  border-right: 2px solid var(--accent-cyan);
+  pointer-events: none;
+  z-index: 20;
+}
+
+.hud-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: rgba(10, 15, 26, 0.85);
+  border-bottom: 1px solid var(--sovereign-border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+}
+
+/* 6. BENTO GRID MODERNO CON EFECTO DE LUZ ORGÁNICA */
+.bento-highlight {
+  position: relative;
+  overflow: hidden;
+}
+
+.bento-highlight::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 242, 254, 0.5), transparent);
+}
+
+/* 7. TIPOGRAFÍA Y GRADIENTES DE TÍTULO */
+.gradient-headline {
+  background: linear-gradient(135deg, #ffffff 30%, #94a3b8 70%, #00f2fe 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.03em;
+}
+
+.gradient-accent-text {
+  background: linear-gradient(135deg, #00f2fe 0%, #38bdf8 50%, #818cf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 8. SCROLLBAR DE ALTA FIDELIDAD */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--sovereign-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-cyan);
+  box-shadow: 0 0 10px var(--accent-cyan);
+}
