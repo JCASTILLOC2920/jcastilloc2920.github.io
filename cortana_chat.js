@@ -685,7 +685,57 @@
     agregarBurbujaBot(`<p>${saludo}</p>`, saludo);
   }
 
-  function enviarMensajeUsuario() {
+  async function consultarWebhookN8n(mensaje) {
+    const hosts = [];
+    if (typeof window !== 'undefined' && window.location && window.location.hostname && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      hosts.push('http://' + window.location.hostname + ':5678/webhook/chat-cortana');
+    }
+    hosts.push('http://localhost:5678/webhook/chat-cortana');
+    hosts.push('http://192.168.100.250:5678/webhook/chat-cortana');
+
+    const endpoints = Array.from(new Set(hosts));
+
+    for (const url of endpoints) {
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 4500);
+
+        const resp = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            mensaje: mensaje,
+            query: mensaje,
+            message: mensaje,
+            doctor: videoState.interlocutorName || 'Dr. Especialista',
+            medico: videoState.interlocutorName || 'Dr. Especialista',
+            canal: 'WEB_CORTANA_CHAT'
+          }),
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+
+        if (resp.ok) {
+          const data = await resp.json();
+          if (data && data.respuesta && data.respuesta.trim().length > 0) {
+            let formattedHtml = escapeHtml(data.respuesta)
+              .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+              .replace(/\n\n/g, '<br><br>')
+              .replace(/\n/g, '<br>');
+            return {
+              html: '<p style="line-height:1.45; margin:0;">' + formattedHtml + '</p>',
+              spoken: data.respuesta.replace(/\*\*/g, '').replace(/<[^>]*>/g, ' ').replace(/\n/g, ' ')
+            };
+          }
+        }
+      } catch (e) {
+        // Fallback al siguiente endpoint o resolver local
+      }
+    }
+    return null;
+  }
+
+  async function enviarMensajeUsuario() {
     const input = document.getElementById('cortanaPanelInput');
     if (!input) return;
     const text = input.value.trim();
@@ -694,19 +744,31 @@
     agregarBurbujaUsuario(text);
     input.value = '';
 
-    // 1. Activar fase de TIPEO HUMANO (Cortana mira su teclado y teclea durante ~1.15s)
-    const typingDelay = 1050 + Math.floor(Math.random() * 380);
-    videoState.typingUntil = performance.now() + typingDelay;
+    // 1. Activar fase de TIPEO HUMANO
     const typingBar = document.getElementById('cortanaTypingIndicator');
     const typingText = document.getElementById('cortanaTypingText');
     if (typingText) typingText.textContent = obtenerFraseTipeoHumana();
     if (typingBar) typingBar.style.display = 'flex';
+    videoState.typingUntil = performance.now() + 4500;
 
-    setTimeout(() => {
-      if (typingBar) typingBar.style.display = 'none';
-      const respObj = resolverConsultaHumana(text);
-      agregarBurbujaBot(respObj.html, respObj.spoken);
-    }, typingDelay);
+    let respObj = null;
+    try {
+      const minDelayPromise = new Promise(res => setTimeout(res, 800));
+      const [n8nResult] = await Promise.all([
+        consultarWebhookN8n(text),
+        minDelayPromise
+      ]);
+      respObj = n8nResult;
+    } catch (err) {
+      console.warn('[Cortana Chat] Webhook n8n no disponible, aplicando respaldo soberano:', err);
+    }
+
+    if (!respObj) {
+      respObj = resolverConsultaHumana(text);
+    }
+
+    if (typingBar) typingBar.style.display = 'none';
+    agregarBurbujaBot(respObj.html, respObj.spoken);
   }
 
   function agregarBurbujaUsuario(text) {
