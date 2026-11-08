@@ -314,7 +314,7 @@ async function handleUserMessage() {
 }
 
 // --- GEMINI API CONFIGURATION ---
-const API_KEY = "AIzaSyD1UhBYJ-L_rcM2hK-CKJmi57Lb6wGqyz8";
+const API_KEY = "MIGRADO_A_DOCKER_N8N_BACKEND";
 const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
 
 const SYSTEM_PROMPT = `Actúa como el Agente Principal de JC PATH LAB.

@@ -763,6 +763,8 @@
       console.warn('[Cortana Chat] Webhook n8n no disponible, aplicando respaldo soberano:', err);
     }
 
+    // Fallback Groq migrado a Docker n8n backend seguro
+
     if (!respObj) {
       respObj = resolverConsultaHumana(text);
     }
@@ -1015,6 +1017,109 @@
     }
 
     // F. Respuesta conversacional cálida con variaciones humanas
+    
+    // --- PROTOCOLOS CLINICOS OFICIALES JC PATH LAB (100% OFFLINE RESILIENTE) ---
+    // 1. Toma de muestras y fijación con formol
+    if (qLower.includes('formol') || qLower.includes('fijar') || qLower.includes('fijacion') || qLower.includes('conservar') || (qLower.includes('muestra') && (qLower.includes('como') || qLower.includes('preparar') || qLower.includes('enviar') || qLower.includes('liquido')))) {
+      const spoken = "Para conservar una biopsia correctamente, la regla de oro es Formol al 10% neutro tamponado en proporción de una parte de tejido por diez partes de formol. El frasco debe ser hermético de boca ancha y estar bien rotulado con el nombre y DNI del paciente.";
+      return {
+        html: `
+          <p><strong>🔬 Protocolo Oficial de Fijación de Biopsias:</strong></p>
+          <div class="cortana-patient-card ready" style="margin: 8px 0; font-size: 0.84rem;">
+            <p style="margin: 3px 0;"><strong>1. Fijador Estándar:</strong> Formol buffer neutro al <strong>10%</strong> (pH 7.0 - 7.2). Nunca usar alcohol, suero ni agua para piezas quirúrgicas histológicas.</p>
+            <p style="margin: 3px 0;"><strong>2. Proporción Volumétrica:</strong> <strong>1:10</strong> (1 volumen de tejido por 10 volúmenes de fijador). La muestra debe flotar libremente sin comprimirse.</p>
+            <p style="margin: 3px 0;"><strong>3. Recipiente:</strong> Frasco plástico hermético de boca ancha debidamente rotulado con: <em>Nombre completo, DNI, Fecha y Tipo de Muestra / Órgano</em>.</p>
+          </div>
+          <div class="cortana-card-actions" style="margin-top:6px;">
+            <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20necesito%20coordinar%20el%20envio%20de%20una%20biopsia" target="_blank" class="cortana-act-btn filter" style="text-decoration:none;">
+              <i class="fa-brands fa-whatsapp"></i> Coordinar Envío por WhatsApp
+            </a>
+          </div>
+        `,
+        spoken
+      };
+    }
+
+    // 2. Citología, Papanicolaou y PAAF
+    if (qLower.includes('papanicolau') || qLower.includes('papanicolaou') || qLower.includes('pap') || qLower.includes('citologia') || qLower.includes('paaf') || qLower.includes('frotis') || qLower.includes('fijar citologia')) {
+      const spoken = "Para citologías y frotis de Papanicolaou, la fijación debe ser inmediata en alcohol al 96% o cito-spray en menos de 10 segundos para evitar artefacto por desecación al aire.";
+      return {
+        html: `
+          <p><strong>🧪 Protocolo de Citología y Papanicolaou:</strong></p>
+          <div class="cortana-patient-card ready" style="margin: 8px 0; font-size: 0.84rem;">
+            <p style="margin: 3px 0;"><strong>1. Fijación Inmediata:</strong> Sumergir en alcohol al <strong>96%</strong> o aplicar cito-spray a 20 cm en <strong>menos de 10 segundos</strong> tras la toma. No permitir secado al aire.</p>
+            <p style="margin: 3px 0;"><strong>2. Identificación de Lámina:</strong> Rotular en el extremo esmerilado con lápiz de grafito o marcador indeleble resistente a solventes.</p>
+            <p style="margin: 3px 0;"><strong>3. Tiempo de Resultado:</strong> Entrega garantizada en <strong>24 a 48 horas</strong> con clasificación Bethesda 2020.</p>
+          </div>
+        `,
+        spoken
+      };
+    }
+
+    // 3. Inmunohistoquímica (IHQ) y bloques de parafina
+    if (qLower.includes('ihq') || qLower.includes('inmuno') || qLower.includes('inmunohistoquimica') || qLower.includes('bloque') || qLower.includes('parafina') || qLower.includes('marcador')) {
+      const spoken = "Para paneles de inmunohistoquímica, se requiere el bloque de parafina del centro de procedencia acompañado de su lámina H y E de referencia. Contamos con más de 150 anticuerpos en stock local con entrega en 48 a 72 horas.";
+      return {
+        html: `
+          <p><strong>🧬 Servicio de Inmunohistoquímica de Alta Complejidad:</strong></p>
+          <div class="cortana-patient-card ready" style="margin: 8px 0; font-size: 0.84rem;">
+            <p style="margin: 3px 0;"><strong>Requisitos:</strong> Bloque de parafina representativo con suficiente celularidad tumoral + Lámina H&E original de biopsia.</p>
+            <p style="margin: 3px 0;"><strong>Capacidad:</strong> <strong>150+ anticuerpos</strong> en stock local (Dabbs / ImmunoQuery) con tecnología automatizada de recuperación antigénica.</p>
+            <p style="margin: 3px 0;"><strong>Tiempo de Entrega:</strong> <strong>48 a 72 horas hábiles</strong>.</p>
+          </div>
+          <div class="cortana-card-actions" style="margin-top:6px;">
+            <a href="creador-paneles-ihq.html" class="cortana-act-btn filter" style="text-decoration:none;">
+              <i class="fa-solid fa-dna"></i> Abrir Simulador de Paneles IHQ
+            </a>
+          </div>
+        `,
+        spoken
+      };
+    }
+
+    // 4. Tiempos de entrega y tarifas
+    if (qLower.includes('tiempo') || qLower.includes('cuanto demora') || qLower.includes('cuando esta') || qLower.includes('demora') || qLower.includes('precio') || qLower.includes('costo') || qLower.includes('tarifa')) {
+      const spoken = "Nuestros tiempos oficiales de entrega son de 24 a 48 horas para biopsias rutinarias y endoscópicas, 48 a 72 horas para inmunohistoquímica y 72 a 96 horas para piezas quirúrgicas oncológicas complejas.";
+      return {
+        html: `
+          <p><strong>⏱️ Tiempos de Entrega & Tarifario Institucional:</strong></p>
+          <div class="cortana-patient-card ready" style="margin: 8px 0; font-size: 0.84rem;">
+            <p style="margin: 3px 0;">• <strong>Biopsias Endoscópicas / Piel:</strong> 24 a 48 horas hábiles.</p>
+            <p style="margin: 3px 0;">• <strong>Citología / Papanicolaou:</strong> 24 a 48 horas hábiles.</p>
+            <p style="margin: 3px 0;">• <strong>Inmunohistoquímica (IHQ):</strong> 48 a 72 horas hábiles.</p>
+            <p style="margin: 3px 0;">• <strong>Piezas Quirúrgicas Oncológicas:</strong> 72 a 96 horas hábiles (incluye inclusión múltiple y márgenes).</p>
+          </div>
+          <div class="cortana-card-actions" style="margin-top:6px;">
+            <a href="precios.html" class="cortana-act-btn view" style="text-decoration:none;">
+              <i class="fa-solid fa-list-check"></i> Ver Lista de Precios
+            </a>
+          </div>
+        `,
+        spoken
+      };
+    }
+
+    // 5. Horarios, sedes y contacto WhatsApp
+    if (qLower.includes('horario') || qLower.includes('atencion') || qLower.includes('donde estan') || qLower.includes('direccion') || qLower.includes('ubicacion') || qLower.includes('sede') || qLower.includes('telefono') || qLower.includes('whatsapp') || qLower.includes('contacto')) {
+      const spoken = "Atendemos de Lunes a Sábado de 8 de la mañana a 7 de la noche. Nuestra sede central está en Lima con recepción y cobertura a nivel nacional. Puede comunicarse directamente al WhatsApp oficial 986 396 733 o al 924 196 281.";
+      return {
+        html: `
+          <p><strong>📍 Sedes & Horario de Atención:</strong></p>
+          <div class="cortana-patient-card ready" style="margin: 8px 0; font-size: 0.84rem;">
+            <p style="margin: 3px 0;"><strong>Horario:</strong> Lunes a Sábado: <strong>8:00 AM – 7:00 PM</strong>.</p>
+            <p style="margin: 3px 0;"><strong>Recepción:</strong> Lima Norte / Cobertura nacional mediante envíos seguros por Olva Courier, Shalom o motorizado clínico.</p>
+            <p style="margin: 3px 0;"><strong>Teléfonos:</strong> <strong>+51 986 396 733</strong> / <strong>+51 924 196 281</strong>.</p>
+          </div>
+          <div class="cortana-card-actions" style="margin-top:6px;">
+            <a href="https://wa.me/51986396733" target="_blank" class="cortana-act-btn filter" style="text-decoration:none;">
+              <i class="fa-brands fa-whatsapp"></i> Hablar por WhatsApp
+            </a>
+          </div>
+        `,
+        spoken
+      };
+    }
+
     const respuestasHumanas = [
       `¡Hola! 😊 Disculpa, no alcancé a encontrar ese nombre exacto aquí en mi pantalla. ¿Me confirmas con quién tengo el gusto y el <strong>apellido del paciente</strong> o su <strong>código</strong> (ej. <em>26Q-377</em>)?`,
       `Cuéntame con confianza 😊 ¿Con quién me comunico y de qué clínica nos escribes? Pásame el apellido del paciente o su DNI y te lo busco ahorita mismo.`,
