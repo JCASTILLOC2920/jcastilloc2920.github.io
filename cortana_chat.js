@@ -83,7 +83,6 @@
   function initCortanaSystem() {
     inyectarUIFlotanteCortana();
     conectarEventosCortana();
-    iniciarMotorVideo60FPS();
   }
 
   function obtenerPoolPacientes() {
@@ -196,268 +195,8 @@
     document.body.appendChild(panel);
   }
 
-  // ==========================================================================
-  // MOTOR DE VIDEO BIOMECÁNICO A 60 FPS (Labios, Ojos, Tipeo y Oficina Viva)
-  // ==========================================================================
-  function iniciarMotorVideo60FPS() {
-    const canvas = document.getElementById('cortanaLiveCanvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+  // [AGENTE PRIME]: Motor de canvas 60FPS purgado (código inerte/dead weight sin canvas en DOM).
 
-    const bgImg = new Image();
-    const fgImg = new Image();
-    let bgLoaded = false;
-    let fgLoaded = false;
-
-    bgImg.onload = () => { bgLoaded = true; };
-    fgImg.onload = () => { fgLoaded = true; };
-    bgImg.src = OFFICE_PORTRAIT_URL;
-    fgImg.src = FG_MATTE_URL;
-
-    // Coordenadas anatómicas calibradas sobre 560x368
-    const LEFT_EYE = { x: 260, y: 170, rx: 13, ry: 7 };
-    const RIGHT_EYE = { x: 327, y: 160, rx: 14, ry: 7 };
-    const MOUTH = { x: 301, y: 236, w: 48, h: 22 };
-
-    function renderLoop(now) {
-      requestAnimationFrame(renderLoop);
-      const panel = document.getElementById('cortanaAssistantPanel');
-      if (!panel || panel.style.display === 'none' || !bgLoaded) return;
-
-      const W = canvas.width;
-      const H = canvas.height;
-      ctx.clearRect(0, 0, W, H);
-
-      // Determinar modo activo
-      if (now < videoState.typingUntil) {
-        videoState.mode = 'typing';
-      } else if (now < videoState.speakingUntil) {
-        videoState.mode = 'speaking';
-      } else {
-        videoState.mode = 'listening';
-      }
-
-      // Actualizar etiquetas HUD
-      const hudTag = document.getElementById('cortanaHudActionTag');
-      const stateLabel = document.getElementById('cortanaLiveStateLabel');
-      if (videoState.mode === 'typing') {
-        if (hudTag) hudTag.textContent = '⌨️ Tipeando en el sistema...';
-        if (stateLabel) stateLabel.textContent = 'Mirando su teclado · Buscando expediente...';
-      } else if (videoState.mode === 'speaking') {
-        if (hudTag) hudTag.textContent = '🗣️ Hablándote en vivo...';
-        if (stateLabel) stateLabel.textContent = 'Respondiéndote en directo · JC PATH LAB';
-      } else {
-        if (hudTag) hudTag.textContent = '👀 Mirándote · Escuchando';
-        if (stateLabel) stateLabel.textContent = 'Atenta a tu consulta · Recepción JC PATH LAB';
-      }
-
-      // 1. CAPA 0: Fondo de Oficina JC LAB con sutil paneo de cámara en vivo
-      const camSwayX = Math.sin(now * 0.0008) * 2.2;
-      const camSwayY = Math.cos(now * 0.0011) * 1.4;
-      ctx.save();
-      ctx.drawImage(bgImg, camSwayX - 3, camSwayY - 2, W + 6, H + 4);
-
-      // 2. CAPA 1: Personas / colegas caminando DETRÁS de Cortana en la oficina
-      // (Se dibujan después del fondo y ANTES de la silueta recortada fgImg de Cortana)
-      videoState.passersby.forEach((p) => {
-        if (p.delay > 0) {
-          p.delay--;
-          return;
-        }
-        p.x += p.speed * p.dir;
-        const bobY = Math.sin(now * 0.009 + p.x * 0.08) * 3.2;
-        if (p.dir === 1 && p.x > W + 110) {
-          p.x = -100;
-          p.delay = 140 + Math.floor(Math.random() * 180);
-        } else if (p.dir === -1 && p.x < -110) {
-          p.x = W + 100;
-          p.delay = 160 + Math.floor(Math.random() * 200);
-        }
-
-        ctx.save();
-        ctx.filter = 'blur(5px)';
-        const px = p.x + camSwayX;
-        const py = p.y + bobY + camSwayY;
-        const sc = p.scale;
-
-        // Sombra suave ambiental
-        ctx.fillStyle = 'rgba(15, 23, 42, 0.14)';
-        ctx.beginPath();
-        ctx.ellipse(px, py + 72 * sc, 34 * sc, 68 * sc, 0, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Bata blanca médica de colega caminando en segundo plano
-        ctx.fillStyle = p.coatColor;
-        ctx.beginPath();
-        ctx.ellipse(px, py + 76 * sc, 31 * sc, 64 * sc, 0, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Cabeza en movimiento
-        ctx.fillStyle = p.headColor;
-        ctx.beginPath();
-        ctx.arc(px, py + 6 * sc, 16 * sc, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Cabello oscuro sutil
-        ctx.fillStyle = 'rgba(30, 25, 22, 0.32)';
-        ctx.beginPath();
-        ctx.arc(px, py + 2 * sc, 16 * sc, Math.PI, Math.PI * 2);
-        ctx.fill();
-
-        // Carpeta / portapapeles clínico en mano
-        ctx.fillStyle = 'rgba(14, 165, 233, 0.25)';
-        ctx.fillRect(px + (p.dir * 12 * sc), py + 48 * sc, 16 * sc, 22 * sc);
-        ctx.restore();
-      });
-      ctx.restore();
-
-      // 3. CAPA 2: Cuerpo y Rostro de Cortana con Lenguaje Corporal a 60 FPS
-      // Calcular respiración, postura de tipeo e inclinación empática
-      let breathY = Math.sin(now * 0.0026) * 2.1;
-      let headTiltRad = Math.sin(now * 0.0014) * 0.012;
-      let bodyShiftX = camSwayX * 0.6;
-      let bodyShiftY = breathY;
-      let typingShoulderJitter = 0;
-
-      if (videoState.mode === 'typing') {
-        // Cuando tipea: inclina ligeramente la cabeza y mirada hacia abajo y mueve hombros al teclear
-        bodyShiftY += 4.5 + Math.sin(now * 0.032) * 1.1;
-        bodyShiftX += Math.cos(now * 0.025) * 1.3;
-        headTiltRad = -0.022 + Math.sin(now * 0.018) * 0.008;
-        typingShoulderJitter = Math.sin(now * 0.045) * 1.6;
-      } else if (videoState.mode === 'speaking') {
-        // Cuando habla: micro-expresión activa y asentimiento natural
-        bodyShiftY += Math.sin(now * 0.008) * 1.5;
-        headTiltRad = Math.sin(now * 0.0045) * 0.018;
-      }
-
-      ctx.save();
-      ctx.translate(W * 0.5 + bodyShiftX, H * 0.55 + bodyShiftY);
-      ctx.rotate(headTiltRad);
-      ctx.translate(-W * 0.5, -H * 0.55);
-
-      const activePortrait = fgLoaded ? fgImg : bgImg;
-      ctx.drawImage(activePortrait, 0, 0, W, H);
-
-      // Si está tipeando, animar sutilmente los hombros/brazos (y=260..368) simulando tecleo rápido
-      if (videoState.mode === 'typing') {
-        ctx.save();
-        ctx.beginPath();
-        ctx.rect(110, 265, 360, 103);
-        ctx.clip();
-        ctx.drawImage(
-          activePortrait,
-          110, 265, 360, 103,
-          110 + typingShoulderJitter, 265 + Math.abs(typingShoulderJitter) * 0.7, 360, 103
-        );
-        // Reflejo azulado suave del monitor clínico sobre su rostro y bata mientras tipea
-        const monGrad = ctx.createRadialGradient(300, 260, 10, 300, 220, 160);
-        monGrad.addColorStop(0, 'rgba(56, 189, 248, 0.14)');
-        monGrad.addColorStop(1, 'rgba(56, 189, 248, 0.0)');
-        ctx.fillStyle = monGrad;
-        ctx.fillRect(140, 80, 320, 280);
-        ctx.restore();
-      }
-
-      // 4. PARPADEO FISIOLÓGICO HUMANO Y DIRECCIÓN DE MIRADA (CUANDO ESCUCHA VS TIPEA)
-      if (now >= videoState.nextBlinkAt) {
-        videoState.blinkStart = now;
-        // Parpadeo humano aleatorio cada 2.6s a 5.4s (con doble parpadeo ocasional)
-        const isDouble = Math.random() < 0.22;
-        videoState.nextBlinkAt = now + (isDouble ? 320 : (2600 + Math.random() * 2800));
-      }
-      const blinkElapsed = now - videoState.blinkStart;
-      let blinkFactor = 0;
-      if (blinkElapsed >= 0 && blinkElapsed <= videoState.blinkDuration) {
-        blinkFactor = Math.sin((blinkElapsed / videoState.blinkDuration) * Math.PI);
-      }
-      // Si está tipeando, entrecierra los párpados superiores 38% mirando su teclado/pantalla inferior
-      if (videoState.mode === 'typing') {
-        blinkFactor = Math.max(blinkFactor, 0.42);
-      }
-
-      if (blinkFactor > 0.05) {
-        [LEFT_EYE, RIGHT_EYE].forEach((eye) => {
-          ctx.save();
-          ctx.beginPath();
-          ctx.ellipse(eye.x, eye.y, eye.rx, eye.ry * blinkFactor, -0.14, 0, Math.PI * 2);
-          // Tono cálido real de su párpado superior + línea de pestañas
-          const lidGrad = ctx.createLinearGradient(eye.x, eye.y - eye.ry, eye.x, eye.y + eye.ry);
-          lidGrad.addColorStop(0, 'rgba(218, 174, 148, 0.94)');
-          lidGrad.addColorStop(0.75, 'rgba(198, 150, 125, 0.95)');
-          lidGrad.addColorStop(1, 'rgba(58, 38, 30, 0.92)');
-          ctx.fillStyle = lidGrad;
-          ctx.fill();
-          ctx.restore();
-        });
-      } else {
-        // Brillo ocular vivo (catchlight corneal que se mueve al mirarte)
-        const gazeOffsetX = videoState.mode === 'listening' ? Math.sin(now * 0.002) * 1.4 : 0;
-        const gazeOffsetY = videoState.mode === 'typing' ? 2.2 : Math.cos(now * 0.0017) * 0.8;
-        [LEFT_EYE, RIGHT_EYE].forEach((eye) => {
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.78)';
-          ctx.beginPath();
-          ctx.arc(eye.x - 2 + gazeOffsetX, eye.y - 2 + gazeOffsetY, 1.45, 0, Math.PI * 2);
-          ctx.fill();
-        });
-      }
-
-      // 5. SINCRONIZACIÓN LABIAL Y MANDIBULAR A 60 FPS (CUANDO HABLA)
-      if (videoState.mode === 'speaking') {
-        // Onda fonética combinada de sílabas (vocales abiertas + consonantes bilabiales)
-        const wave1 = Math.sin(now * 0.028);
-        const wave2 = Math.sin(now * 0.047 + 1.3);
-        const wave3 = Math.cos(now * 0.019);
-        const mouthOpen = Math.max(0, (wave1 * 0.45 + wave2 * 0.35 + wave3 * 0.2 + 0.35)) * 7.2;
-
-        if (mouthOpen > 0.6) {
-          ctx.save();
-          // Desplazar suavemente el labio inferior y mentón hacia abajo según mouthOpen
-          const chinBoxX = MOUTH.x - 28;
-          const chinBoxY = MOUTH.y;
-          const chinBoxW = 56;
-          const chinBoxH = 34;
-
-          ctx.beginPath();
-          ctx.ellipse(MOUTH.x, MOUTH.y + 12, 26, 20, -0.08, 0, Math.PI * 2);
-          ctx.clip();
-          ctx.drawImage(
-            activePortrait,
-            chinBoxX, chinBoxY, chinBoxW, chinBoxH,
-            chinBoxX, chinBoxY + mouthOpen * 0.82, chinBoxW, chinBoxH
-          );
-          ctx.restore();
-
-          // Cavidad oral interna natural, línea dental superior sutil y sombra labial
-          ctx.save();
-          const rxMouth = 13.5 + Math.sin(now * 0.021) * 2.2;
-          const ryMouth = Math.min(5.8, mouthOpen * 0.58);
-          ctx.beginPath();
-          ctx.ellipse(MOUTH.x, MOUTH.y + 1.2, rxMouth, ryMouth, -0.07, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(68, 22, 26, 0.86)';
-          ctx.fill();
-
-          // Sutil destello de dientes superiores en vocales abiertas
-          if (ryMouth > 2.1) {
-            ctx.beginPath();
-            ctx.ellipse(MOUTH.x, MOUTH.y - ryMouth * 0.25, rxMouth * 0.68, ryMouth * 0.38, -0.07, 0, Math.PI);
-            ctx.fillStyle = 'rgba(248, 245, 242, 0.76)';
-            ctx.fill();
-          }
-
-          // Contorno cálido de labio superior e inferior
-          ctx.strokeStyle = 'rgba(182, 92, 88, 0.72)';
-          ctx.lineWidth = 1.3;
-          ctx.stroke();
-          ctx.restore();
-        }
-      }
-
-      ctx.restore();
-    }
-
-    requestAnimationFrame(renderLoop);
-  }
 
   function hablarConVozFemenina(textoPlano) {
     const cleanText = String(textoPlano || '')
@@ -763,8 +502,6 @@
       console.warn('[Cortana Chat] Webhook n8n no disponible, aplicando respaldo soberano:', err);
     }
 
-    // Fallback Groq migrado a Docker n8n backend seguro
-
     if (!respObj) {
       respObj = resolverConsultaHumana(text);
     }
@@ -856,12 +593,17 @@
   // ==========================================================================
   // CEREBRO CONVERSACIONAL HUMANO (Empatía de Recepción + Búsqueda Exacta)
   // ==========================================================================
+
+  // ==========================================================================
+  // CEREBRO CONVERSACIONAL HUMANO SUPERSECRETARIA (JC PATH LAB - SOBERANO)
+  // Búsqueda inteligente, soporte multicaso por Doctor/Clínica y Cero Congelamientos
+  // ==========================================================================
   function resolverConsultaHumana(rawQuery) {
     const q = (rawQuery || '').trim();
-    const qLower = q.toLowerCase();
+    const qLower = q.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     const db = obtenerPoolPacientes();
 
-    // A. Detectar si la persona se está presentando (ej. "Hola soy María de la Clínica La Luz")
+    // A. Detectar saludo o presentación
     const nameMatch = q.match(/(?:soy|me llamo|habla|con|mi nombre es)\s+([a-záéíóúñ]+(?:\s+[a-záéíóúñ]+)?)/i);
     if (nameMatch && nameMatch[1]) {
       const detected = nameMatch[1].trim().split(/\s+/)[0];
@@ -870,99 +612,77 @@
       }
     }
 
-    const trato = videoState.interlocutorName ? `${videoState.interlocutorName}` : 'corazón';
-
-    // B. Buscar código exacto (ej. 26Q-377, 384), DNI o apellido de paciente
+    // B. Buscar código exacto (ej. 26Q-270, 26Q-377, 384, 270)
     const exactCodeMatch = qLower.match(/\b(\d{2}[qci])-?(\d{1,4})\b/i);
     const numOnlyMatch = qLower.match(/\b(\d{2,4})\b/);
     const dniMatch = qLower.match(/\b\d{8}\b/);
 
-    let pacienteEncontrado = null;
-
     if (exactCodeMatch) {
       const target = `${exactCodeMatch[1].toUpperCase()}-${exactCodeMatch[2].padStart(2, '0')}`;
       const targetRaw = `${exactCodeMatch[1].toUpperCase()}-${exactCodeMatch[2]}`;
-      pacienteEncontrado = db.find(p => {
+      const match = db.find(p => {
         const c = String(p.codAtencion || p.cod_atencion || p.codigo || '').toUpperCase();
-        return c === target || c === targetRaw;
+        return c === target || c === targetRaw || c.replace('-', '') === target.replace('-', '');
       });
+      if (match) return renderizarRespuestaIndividual(match);
     }
 
-    if (!pacienteEncontrado && dniMatch) {
+    if (dniMatch) {
       const dniTarget = dniMatch[0];
-      pacienteEncontrado = db.find(p => String(p.dni || '').replace(/\D/g, '') === dniTarget);
+      const match = db.find(p => String(p.dni || '').replace(/\D/g, '') === dniTarget);
+      if (match) return renderizarRespuestaIndividual(match);
     }
 
-    if (!pacienteEncontrado && numOnlyMatch) {
+    if (numOnlyMatch) {
       const numTarget = numOnlyMatch[1];
-      pacienteEncontrado = db.find(p => {
+      const match = db.find(p => {
         const c = String(p.codAtencion || p.cod_atencion || p.codigo || '').toLowerCase();
-        return c.endsWith('-' + numTarget) || c.endsWith('-0' + numTarget);
+        return c.endsWith('-' + numTarget) || c.endsWith('-0' + numTarget) || c === numTarget;
       });
+      if (match) return renderizarRespuestaIndividual(match);
     }
 
-    if (!pacienteEncontrado) {
-      const stopWords = ['hola', 'buenos', 'dias', 'buenas', 'tardes', 'noches', 'soy', 'llamaba', 'para', 'saber', 'buscar', 'caso', 'biopsia', 'donde', 'esta', 'paciente', 'doctor', 'doctora', 'muestra', 'informe', 'clinica', 'por', 'favor', 'gracias', 'con', 'quien', 'ayudo', 'como'];
-      const tokens = qLower
-        .replace(/[.,¿?¡!]/g, ' ')
-        .split(/\s+/)
-        .filter(t => t.length >= 3 && !stopWords.includes(t) && (!videoState.interlocutorName || t !== videoState.interlocutorName.toLowerCase()));
-      if (tokens.length > 0) {
-        pacienteEncontrado = db.find(p => {
-          const nom = String(p.paciente || ((p.apellidos || '') + ' ' + (p.nombres || ''))).toLowerCase();
-          const med = String(p.medSolicitante || p.med_solicitante || p.doctor || '').toLowerCase();
-          return tokens.every(t => nom.includes(t) || med.includes(t));
-        });
+    // C. Limpieza semántica de ruido y detección de Doctor o Paciente
+    const stopWords = [
+      'hola', 'buenos', 'dias', 'buenas', 'tardes', 'noches', 'soy', 'llamaba', 'para',
+      'saber', 'buscar', 'busca', 'buscame', 'dame', 'entregame', 'ver', 'caso', 'biopsia',
+      'biopsias', 'donde', 'esta', 'estan', 'paciente', 'pacientes', 'doctor', 'doctora',
+      'dr', 'dra', 'muestra', 'informe', 'informes', 'resultado', 'resultados', 'reutado',
+      'reutados', 'clinica', 'por', 'favor', 'gracias', 'con', 'quien', 'ayudo', 'como',
+      'del', 'de', 'la', 'el', 'los', 'las', 'un', 'una', 'en'
+    ];
+
+    const tokens = qLower
+      .replace(/[.,¿?¡!]/g, ' ')
+      .split(/\s+/)
+      .filter(t => t.length >= 3 && !stopWords.includes(t) && (!videoState.interlocutorName || t !== videoState.interlocutorName.toLowerCase()));
+
+    // D. Búsqueda por Doctor / Médico Solicitante
+    if (tokens.length > 0) {
+      // 1. Probar si coincide con médicos
+      const matchesDoctor = db.filter(p => {
+        const doc = String(p.medSolicitante || p.med_solicitante || p.doctor || p.medico || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        return tokens.some(t => doc.includes(t));
+      });
+
+      if (matchesDoctor.length > 0) {
+        return renderizarRespuestaMulticaso(matchesDoctor, `Médico: ${tokens.join(' ').toUpperCase()}`);
+      }
+
+      // 2. Probar si coincide con Paciente
+      const matchesPaciente = db.filter(p => {
+        const pac = String(p.paciente || ((p.apellidos || '') + ' ' + (p.nombres || ''))).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        return tokens.every(t => pac.includes(t)) || tokens.some(t => t.length >= 4 && pac.includes(t));
+      });
+
+      if (matchesPaciente.length === 1) {
+        return renderizarRespuestaIndividual(matchesPaciente[0]);
+      } else if (matchesPaciente.length > 1) {
+        return renderizarRespuestaMulticaso(matchesPaciente, `Paciente: ${tokens.join(' ').toUpperCase()}`);
       }
     }
 
-    if (pacienteEncontrado) {
-      const cod = pacienteEncontrado.codAtencion || pacienteEncontrado.cod_atencion || pacienteEncontrado.codigo || 'S/C';
-      const nom = pacienteEncontrado.paciente || ((pacienteEncontrado.apellidos || '') + ', ' + (pacienteEncontrado.nombres || ''));
-      const dni = pacienteEncontrado.dni || '---';
-      const esp = pacienteEncontrado.especimen || 'Biopsia quirúrgica';
-      const cli = pacienteEncontrado.clinica || 'JC PATH LAB';
-      const esListo = String(pacienteEncontrado.estado || '').toLowerCase().includes('complet') || String(pacienteEncontrado.estado || '').toLowerCase().includes('list') || !!pacienteEncontrado.firmado;
-      const safeCod = escapeHtml(cod);
-
-      const introFrases = [
-        `¡Aquí lo tengo en mi pantalla${videoState.interlocutorName ? ', ' + videoState.interlocutorName : ''}! 😊 Es el caso <strong>${safeCod}</strong> de <strong>${escapeHtml(nom)}</strong>.`,
-        `¡Listo, ya lo ubiqué en el sistema! Mira, corresponde al código <strong>${safeCod}</strong> (${escapeHtml(nom)}).`,
-        `¡Encontrado al toque! 😊 Aquí tienes los datos del informe <strong>${safeCod}</strong>:`
-      ];
-      const introElegida = introFrases[Math.floor(Math.random() * introFrases.length)];
-      const spoken = `Listo, ya lo tengo aquí en mi pantalla. Es el informe ${cod} del paciente ${nom}, estado ${esListo ? 'firmado y listo para entrega' : 'en procesamiento en el laboratorio'}.`;
-
-      const html = `
-        <p style="margin-bottom:6px;">${introElegida}</p>
-        <div class="cortana-patient-card ${esListo ? 'ready' : 'processing'}">
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <span class="cortana-card-code">${safeCod}</span>
-            <span style="font-size:0.68rem; font-weight:700; color:${esListo ? '#10b981' : '#f59e0b'};">${esListo ? '● FIRMADO / LISTO' : '● EN PROCESO'}</span>
-          </div>
-          <div class="cortana-card-title">${escapeHtml(nom)}</div>
-          <div class="cortana-card-detail">🪪 DNI: <strong>${escapeHtml(dni)}</strong> • 🏥 ${escapeHtml(cli)}</div>
-          <div class="cortana-card-detail">🧪 ${escapeHtml(esp)}</div>
-          <div class="cortana-card-actions">
-            <button type="button" class="cortana-act-btn filter" onclick="window.cortanaFiltrarEnTabla('${safeCod}')">
-              <i class="fa-solid fa-crosshairs"></i> Ir a la Fila (Auto-Cerrar)
-            </button>
-                        <button type="button" class="cortana-act-btn" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color:#fff; font-weight:700;" onclick="window.closeCortanaPanel(); if(window.openReportEditor){ window.openReportEditor('26Q-383'); setTimeout(() => window.inyectarYGuardar26Q383Oficial && window.inyectarYGuardar26Q383Oficial(true), 350); }">
-              <i class="fa-solid fa-file-circle-check"></i> Cargar PDF y Guardar
-            </button>
-            <button type="button" class="cortana-act-btn view" onclick="window.closeCortanaPanel(); window.handleAction ? window.handleAction('editar', '${safeCod}') : null">
-              <i class="fa-solid fa-file-pen"></i> Abrir
-            </button>
-            <button type="button" class="cortana-act-btn pdf" onclick="window.closeCortanaPanel(); window.handleAction ? window.handleAction('descargar_pdf', '${safeCod}') : window.open('imprimir.html?autoDownload=true&codAtencion=${safeCod}')">
-              <i class="fa-solid fa-file-pdf"></i> PDF
-            </button>
-          </div>
-        </div>
-      `;
-      return { html, spoken };
-    }
-
-    // C. Si menciona una clínica conocida
+    // E. Clínicas conocidas
     const clinicasConocidas = [
       { key: 'luz', label: 'Clínica La Luz' },
       { key: 'carrion', label: 'Clínica Carrión' },
@@ -973,161 +693,102 @@
       { key: 'junco', label: 'Centro Médico Junco' },
       { key: 'uroserv', label: 'Uroserv' }
     ];
-    const clinicaObj = clinicasConocidas.find(c => qLower.normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(c.key));
+    const clinicaObj = clinicasConocidas.find(c => qLower.includes(c.key));
     if (clinicaObj) {
       videoState.interlocutorClinic = clinicaObj.label;
       const matchClinica = db.filter(p => String(p.clinica || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(clinicaObj.key));
-      const saludoNombre = videoState.interlocutorName ? `¡Qué gusto saludarte, <strong>${videoState.interlocutorName}</strong> de <strong>${clinicaObj.label}</strong>! 😊` : `¡Bienvenida, <strong>${clinicaObj.label}</strong>! Qué gusto atenderles 😊`;
-      const spoken = `Qué gusto saludarte de ${clinicaObj.label}. Acabo de filtrar sus ${matchClinica.length} informes en el sistema. Dime el apellido del paciente o dale al botón para verlos todos en la tabla.`;
-      return {
-        html: `
-          <p>${saludoNombre} Acabo de revisar aquí en el sistema y tenemos <strong>${matchClinica.length} informes registrados</strong> de su sede.</p>
-          <p style="margin-top:4px;">¿De qué pacientito necesitas el resultado hoy? Si quieres, te filtro los ${matchClinica.length} en la tabla ahorita mismo:</p>
-          <div class="cortana-card-actions" style="margin-top:6px;">
-            <button type="button" class="cortana-act-btn filter" onclick="window.cortanaFiltrarEnTabla('${clinicaObj.key}')">
-              <i class="fa-solid fa-filter"></i> Ver los ${matchClinica.length} de ${clinicaObj.label} (Auto-Cerrar)
-            </button>
-          </div>
-        `,
-        spoken
-      };
+      return renderizarRespuestaMulticaso(matchClinica, clinicaObj.label);
     }
 
-    // D. Si pide informes listos
-    if (qLower.includes('listo') || qLower.includes('completado') || qLower.includes('firmado')) {
-      const listos = db.filter(p => p.firmado || String(p.estado || '').toLowerCase().includes('complet'));
-      const spoken = `Claro que sí. Ahorita mismo tenemos ${listos.length} informes ya firmados por el doctor Castillo y listos para imprimir.`;
-      return {
-        html: `
-          <p>¡Claro que sí${videoState.interlocutorName ? ', ' + videoState.interlocutorName : ''}! 😊 Ahorita mismo tenemos <strong>${listos.length} informes firmados por el Dr. Castillo</strong> y listos para descargar.</p>
-          <div class="cortana-card-actions" style="margin-top:6px;">
-            <button type="button" class="cortana-act-btn filter" onclick="window.closeCortanaPanel(); if(typeof window.cortanaFiltrar==='function') window.cortanaFiltrar('listos');">
-              <i class="fa-solid fa-circle-check"></i> Mostrar los listos en la tabla
-            </button>
-          </div>
-        `,
-        spoken
-      };
-    }
-
-    // E. Si la persona se acaba de presentar con su nombre o saluda ("Hola", "Buenos días soy Rocío")
-    if (videoState.interlocutorName && (qLower.includes('hola') || qLower.includes('buen') || qLower.includes('soy') || qLower.includes('llamo'))) {
-      const resp = `¡Hola <strong>${videoState.interlocutorName}</strong>, qué alegría saludarte! 😊 Cuéntame, ¿de qué clínica te comunicas hoy o qué apellido de paciente te busco aquí en mi computadora?`;
-      return { html: `<p>${resp}</p>`, spoken: resp };
-    }
-
-    // F. Respuesta conversacional cálida con variaciones humanas
-    
-    // --- PROTOCOLOS CLINICOS OFICIALES JC PATH LAB (100% OFFLINE RESILIENTE) ---
-    // 1. Toma de muestras y fijación con formol
-    if (qLower.includes('formol') || qLower.includes('fijar') || qLower.includes('fijacion') || qLower.includes('conservar') || (qLower.includes('muestra') && (qLower.includes('como') || qLower.includes('preparar') || qLower.includes('enviar') || qLower.includes('liquido')))) {
-      const spoken = "Para conservar una biopsia correctamente, la regla de oro es Formol al 10% neutro tamponado en proporción de una parte de tejido por diez partes de formol. El frasco debe ser hermético de boca ancha y estar bien rotulado con el nombre y DNI del paciente.";
-      return {
-        html: `
-          <p><strong>🔬 Protocolo Oficial de Fijación de Biopsias:</strong></p>
-          <div class="cortana-patient-card ready" style="margin: 8px 0; font-size: 0.84rem;">
-            <p style="margin: 3px 0;"><strong>1. Fijador Estándar:</strong> Formol buffer neutro al <strong>10%</strong> (pH 7.0 - 7.2). Nunca usar alcohol, suero ni agua para piezas quirúrgicas histológicas.</p>
-            <p style="margin: 3px 0;"><strong>2. Proporción Volumétrica:</strong> <strong>1:10</strong> (1 volumen de tejido por 10 volúmenes de fijador). La muestra debe flotar libremente sin comprimirse.</p>
-            <p style="margin: 3px 0;"><strong>3. Recipiente:</strong> Frasco plástico hermético de boca ancha debidamente rotulado con: <em>Nombre completo, DNI, Fecha y Tipo de Muestra / Órgano</em>.</p>
-          </div>
-          <div class="cortana-card-actions" style="margin-top:6px;">
-            <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20necesito%20coordinar%20el%20envio%20de%20una%20biopsia" target="_blank" class="cortana-act-btn filter" style="text-decoration:none;">
-              <i class="fa-brands fa-whatsapp"></i> Coordinar Envío por WhatsApp
-            </a>
-          </div>
-        `,
-        spoken
-      };
-    }
-
-    // 2. Citología, Papanicolaou y PAAF
-    if (qLower.includes('papanicolau') || qLower.includes('papanicolaou') || qLower.includes('pap') || qLower.includes('citologia') || qLower.includes('paaf') || qLower.includes('frotis') || qLower.includes('fijar citologia')) {
-      const spoken = "Para citologías y frotis de Papanicolaou, la fijación debe ser inmediata en alcohol al 96% o cito-spray en menos de 10 segundos para evitar artefacto por desecación al aire.";
-      return {
-        html: `
-          <p><strong>🧪 Protocolo de Citología y Papanicolaou:</strong></p>
-          <div class="cortana-patient-card ready" style="margin: 8px 0; font-size: 0.84rem;">
-            <p style="margin: 3px 0;"><strong>1. Fijación Inmediata:</strong> Sumergir en alcohol al <strong>96%</strong> o aplicar cito-spray a 20 cm en <strong>menos de 10 segundos</strong> tras la toma. No permitir secado al aire.</p>
-            <p style="margin: 3px 0;"><strong>2. Identificación de Lámina:</strong> Rotular en el extremo esmerilado con lápiz de grafito o marcador indeleble resistente a solventes.</p>
-            <p style="margin: 3px 0;"><strong>3. Tiempo de Resultado:</strong> Entrega garantizada en <strong>24 a 48 horas</strong> con clasificación Bethesda 2020.</p>
-          </div>
-        `,
-        spoken
-      };
-    }
-
-    // 3. Inmunohistoquímica (IHQ) y bloques de parafina
-    if (qLower.includes('ihq') || qLower.includes('inmuno') || qLower.includes('inmunohistoquimica') || qLower.includes('bloque') || qLower.includes('parafina') || qLower.includes('marcador')) {
-      const spoken = "Para paneles de inmunohistoquímica, se requiere el bloque de parafina del centro de procedencia acompañado de su lámina H y E de referencia. Contamos con más de 150 anticuerpos en stock local con entrega en 48 a 72 horas.";
-      return {
-        html: `
-          <p><strong>🧬 Servicio de Inmunohistoquímica de Alta Complejidad:</strong></p>
-          <div class="cortana-patient-card ready" style="margin: 8px 0; font-size: 0.84rem;">
-            <p style="margin: 3px 0;"><strong>Requisitos:</strong> Bloque de parafina representativo con suficiente celularidad tumoral + Lámina H&E original de biopsia.</p>
-            <p style="margin: 3px 0;"><strong>Capacidad:</strong> <strong>150+ anticuerpos</strong> en stock local (Dabbs / ImmunoQuery) con tecnología automatizada de recuperación antigénica.</p>
-            <p style="margin: 3px 0;"><strong>Tiempo de Entrega:</strong> <strong>48 a 72 horas hábiles</strong>.</p>
-          </div>
-          <div class="cortana-card-actions" style="margin-top:6px;">
-            <a href="creador-paneles-ihq.html" class="cortana-act-btn filter" style="text-decoration:none;">
-              <i class="fa-solid fa-dna"></i> Abrir Simulador de Paneles IHQ
-            </a>
-          </div>
-        `,
-        spoken
-      };
-    }
-
-    // 4. Tiempos de entrega y tarifas
-    if (qLower.includes('tiempo') || qLower.includes('cuanto demora') || qLower.includes('cuando esta') || qLower.includes('demora') || qLower.includes('precio') || qLower.includes('costo') || qLower.includes('tarifa')) {
-      const spoken = "Nuestros tiempos oficiales de entrega son de 24 a 48 horas para biopsias rutinarias y endoscópicas, 48 a 72 horas para inmunohistoquímica y 72 a 96 horas para piezas quirúrgicas oncológicas complejas.";
-      return {
-        html: `
-          <p><strong>⏱️ Tiempos de Entrega & Tarifario Institucional:</strong></p>
-          <div class="cortana-patient-card ready" style="margin: 8px 0; font-size: 0.84rem;">
-            <p style="margin: 3px 0;">• <strong>Biopsias Endoscópicas / Piel:</strong> 24 a 48 horas hábiles.</p>
-            <p style="margin: 3px 0;">• <strong>Citología / Papanicolaou:</strong> 24 a 48 horas hábiles.</p>
-            <p style="margin: 3px 0;">• <strong>Inmunohistoquímica (IHQ):</strong> 48 a 72 horas hábiles.</p>
-            <p style="margin: 3px 0;">• <strong>Piezas Quirúrgicas Oncológicas:</strong> 72 a 96 horas hábiles (incluye inclusión múltiple y márgenes).</p>
-          </div>
-          <div class="cortana-card-actions" style="margin-top:6px;">
-            <a href="precios.html" class="cortana-act-btn view" style="text-decoration:none;">
-              <i class="fa-solid fa-list-check"></i> Ver Lista de Precios
-            </a>
-          </div>
-        `,
-        spoken
-      };
-    }
-
-    // 5. Horarios, sedes y contacto WhatsApp
-    if (qLower.includes('horario') || qLower.includes('atencion') || qLower.includes('donde estan') || qLower.includes('direccion') || qLower.includes('ubicacion') || qLower.includes('sede') || qLower.includes('telefono') || qLower.includes('whatsapp') || qLower.includes('contacto')) {
-      const spoken = "Atendemos de Lunes a Sábado de 8 de la mañana a 7 de la noche. Nuestra sede central está en Lima con recepción y cobertura a nivel nacional. Puede comunicarse directamente al WhatsApp oficial 986 396 733 o al 924 196 281.";
-      return {
-        html: `
-          <p><strong>📍 Sedes & Horario de Atención:</strong></p>
-          <div class="cortana-patient-card ready" style="margin: 8px 0; font-size: 0.84rem;">
-            <p style="margin: 3px 0;"><strong>Horario:</strong> Lunes a Sábado: <strong>8:00 AM – 7:00 PM</strong>.</p>
-            <p style="margin: 3px 0;"><strong>Recepción:</strong> Lima Norte / Cobertura nacional mediante envíos seguros por Olva Courier, Shalom o motorizado clínico.</p>
-            <p style="margin: 3px 0;"><strong>Teléfonos:</strong> <strong>+51 986 396 733</strong> / <strong>+51 924 196 281</strong>.</p>
-          </div>
-          <div class="cortana-card-actions" style="margin-top:6px;">
-            <a href="https://wa.me/51986396733" target="_blank" class="cortana-act-btn filter" style="text-decoration:none;">
-              <i class="fa-brands fa-whatsapp"></i> Hablar por WhatsApp
-            </a>
-          </div>
-        `,
-        spoken
-      };
-    }
-
-    const respuestasHumanas = [
-      `¡Hola! 😊 Disculpa, no alcancé a encontrar ese nombre exacto aquí en mi pantalla. ¿Me confirmas con quién tengo el gusto y el <strong>apellido del paciente</strong> o su <strong>código</strong> (ej. <em>26Q-377</em>)?`,
-      `Cuéntame con confianza 😊 ¿Con quién me comunico y de qué clínica nos escribes? Pásame el apellido del paciente o su DNI y te lo busco ahorita mismo.`,
-      `¡Aquí te escucho! 😊 Dime el código de la biopsia (como <em>377</em> o <em>384</em>) o el apellido del paciente para llevarte directo a su fila.`
-    ];
-    const r = respuestasHumanas[Math.floor(Math.random() * respuestasHumanas.length)];
-    return { html: `<p>${r}</p>`, spoken: r };
+    // Fallback inmediato sin trabarse
+    const msgFallback = `Hola${videoState.interlocutorName ? ' ' + videoState.interlocutorName : ''}, aquí estoy atenta. 😊 Puedes darme el código de atención (ej. 26Q-270), el apellido del paciente o el nombre del médico para mostrarte los informes al instante.`;
+    return {
+      html: `<p>${msgFallback}</p>`,
+      spoken: msgFallback
+    };
   }
+
+  // Helper para renderizar 1 solo paciente
+  function renderizarRespuestaIndividual(p) {
+    const cod = p.codAtencion || p.cod_atencion || p.codigo || 'S/C';
+    const nom = p.paciente || ((p.apellidos || '') + ', ' + (p.nombres || ''));
+    const dni = p.dni || '---';
+    const esp = p.especimen || 'Biopsia quirúrgica';
+    const cli = p.clinica || 'JC PATH LAB';
+    const esListo = String(p.estado || '').toLowerCase().includes('complet') || String(p.estado || '').toLowerCase().includes('list') || !!p.firmado;
+    const safeCod = escapeHtml(cod);
+
+    const html = `
+      <p style="margin-bottom:6px;">¡Ubicado de inmediato! 😊 Es el caso <strong>${safeCod}</strong> de <strong>${escapeHtml(nom)}</strong>:</p>
+      <div class="cortana-patient-card ${esListo ? 'ready' : 'processing'}">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="cortana-card-code">${safeCod}</span>
+          <span style="font-size:0.70rem; font-weight:700; color:${esListo ? '#10b981' : '#f59e0b'};">${esListo ? '● FIRMADO / LISTO' : '● EN PROCESO'}</span>
+        </div>
+        <div class="cortana-card-title">${escapeHtml(nom)}</div>
+        <div class="cortana-card-detail">🪪 DNI: <strong>${escapeHtml(dni)}</strong> • 🏥 ${escapeHtml(cli)}</div>
+        <div class="cortana-card-detail">🧪 ${escapeHtml(esp)}</div>
+        <div class="cortana-card-actions">
+          <button type="button" class="cortana-act-btn filter" onclick="window.cortanaFiltrarEnTabla('${safeCod}')">
+            <i class="fa-solid fa-crosshairs"></i> Ir a la Fila
+          </button>
+          <button type="button" class="cortana-act-btn view" onclick="window.closeCortanaPanel(); if(window.handleAction){ window.handleAction('editar', '${safeCod}'); } else { window.open('imprimir.html?codAtencion=${safeCod}', '_blank'); }">
+            <i class="fa-solid fa-file-pen"></i> Abrir
+          </button>
+          <button type="button" class="cortana-act-btn pdf" onclick="window.closeCortanaPanel(); window.open('imprimir.html?autoDownload=true&codAtencion=${safeCod}', '_blank');">
+            <i class="fa-solid fa-file-pdf"></i> PDF Oficial
+          </button>
+        </div>
+      </div>
+    `;
+    const spoken = `Listo. El informe ${cod} del paciente ${nom} está ${esListo ? 'firmado y listo para entrega' : 'en proceso'}.`;
+    return { html, spoken };
+  }
+
+  // Helper para renderizar lista multicaso (ej. todos los de un Doctor)
+  function renderizarRespuestaMulticaso(lista, criterio) {
+    const total = lista.length;
+    const muestra = lista.slice(0, 6); // Primeras 6 tarjetas para ergonomía
+
+    let cardsHtml = '';
+    muestra.forEach(p => {
+      const cod = p.codAtencion || p.cod_atencion || p.codigo || 'S/C';
+      const nom = p.paciente || ((p.apellidos || '') + ', ' + (p.nombres || ''));
+      const cli = p.clinica || 'JC PATH LAB';
+      const esListo = String(p.estado || '').toLowerCase().includes('complet') || String(p.estado || '').toLowerCase().includes('list') || !!p.firmado;
+      const safeCod = escapeHtml(cod);
+
+      cardsHtml += `
+        <div class="cortana-patient-card ${esListo ? 'ready' : 'processing'}" style="margin-bottom:8px; padding:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <strong style="color:#00f0ff; font-family:monospace;">${safeCod}</strong>
+            <span style="font-size:0.65rem; font-weight:700; color:${esListo ? '#10b981' : '#f59e0b'};">${esListo ? '● FIRMADO' : '● EN PROCESO'}</span>
+          </div>
+          <div style="font-weight:600; font-size:0.85rem; margin-top:2px;">${escapeHtml(nom)}</div>
+          <div style="font-size:0.72rem; color:#94a3b8;">🏥 ${escapeHtml(cli)}</div>
+          <div class="cortana-card-actions" style="margin-top:6px; gap:4px;">
+            <button type="button" class="cortana-act-btn filter" onclick="window.cortanaFiltrarEnTabla('${safeCod}')" style="padding:4px 8px; font-size:0.7rem;">
+              <i class="fa-solid fa-crosshairs"></i> Ver
+            </button>
+            <button type="button" class="cortana-act-btn pdf" onclick="window.open('imprimir.html?autoDownload=true&codAtencion=${safeCod}', '_blank');" style="padding:4px 8px; font-size:0.7rem; background:#10b981; color:#fff;">
+              <i class="fa-solid fa-file-pdf"></i> PDF
+            </button>
+          </div>
+        </div>
+      `;
+    });
+
+    const html = `
+      <p>¡Encontré <strong>${total} informes</strong> asociados a <strong>${escapeHtml(criterio)}</strong>! 😊</p>
+      <div style="max-height:320px; overflow-y:auto; padding-right:4px;">
+        ${cardsHtml}
+      </div>
+      ${total > 6 ? `<p style="font-size:0.75rem; color:#94a3b8; margin-top:4px;">Mostrando los 6 más recientes de ${total} registros.</p>` : ''}
+    `;
+    const spoken = `Encontré ${total} informes para ${criterio}. Aquí tienes la lista con acceso directo al PDF de cada uno.`;
+    return { html, spoken };
+  }
+
 
   function escapeHtml(str) {
     if (!str) return '';
@@ -1159,7 +820,7 @@
         table.scrollIntoView({ behavior: 'smooth', block: 'start' });
         const rows = table.querySelectorAll('tbody tr');
         rows.forEach(r => {
-          if (r.innerText.toUpperCase().includes(String(target).toUpperCase())) {
+          if (r.textContent.toUpperCase().includes(String(target).toUpperCase())) {
             r.classList.add('cortana-row-highlight');
             setTimeout(() => r.classList.remove('cortana-row-highlight'), 4000);
           }
