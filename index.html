@@ -2165,7 +2165,24 @@
             appendMessage('user', mensajeUsuario);
             const idWait = 'wait_' + Date.now();
             appendMessage('bot', '<span id="' + idWait + '" class="italic text-slate-400"><i class="fa-solid fa-spinner fa-spin"></i> Cortana está escribiendo...</span>');
-            
+
+            // Optimización de Funcionamiento: En GitHub Pages HTTPS público, transferir directamente a WhatsApp sin errores de red
+            const esHttpsProduccion = window.location.protocol === 'https:' && N8N_WEBHOOK_URL.startsWith('http://127.0.0.1');
+            if (esHttpsProduccion) {
+                setTimeout(() => {
+                    const waitEl = document.getElementById(idWait);
+                    if (waitEl && waitEl.parentNode) waitEl.parentNode.remove();
+                    appendMessage('bot', `
+                        <strong>Atención Médica Directa:</strong><br>
+                        Para una respuesta inmediata sobre su orden, cotización o consulta con el <strong>Dr. Joseph Castillo</strong>, le atendemos directamente por WhatsApp:<br>
+                        <a href="https://wa.me/51986396733?text=${encodeURIComponent('Hola Dr. Castillo, tengo la siguiente consulta desde la web: ' + mensajeUsuario)}" target="_blank" class="inline-flex items-center gap-2 mt-2 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition-colors shadow-md">
+                            <i class="fa-brands fa-whatsapp text-sm"></i> Chatear con Dr. Castillo
+                        </a>
+                    `);
+                }, 450);
+                return;
+            }
+
             try {
                 const res = await fetch(N8N_WEBHOOK_URL, {
                     method: 'POST',

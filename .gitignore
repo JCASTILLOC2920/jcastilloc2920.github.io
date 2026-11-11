@@ -26,3 +26,6 @@ groq_vault_local.key.js
 *.key.js
 *vault*.js
 *.bak*
+
+CAMBIO_PENDIENTE.json
+REPORTE_ESTUDIO_WEB.md
