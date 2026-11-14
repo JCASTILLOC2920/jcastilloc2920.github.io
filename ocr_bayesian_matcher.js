@@ -241,7 +241,7 @@
                             setFieldClean('apellidos', data.apellidos);
                             if (data.edad) setFieldClean('m_edad', data.edad);
                             if (data.sexo) setFieldClean('m_sexo', data.sexo);
-                            if (data.telefono) setFieldClean('m_telContacto', data.telefono);
+                            if (data.telefono) { setFieldClean('m_telefono', data.telefono); setFieldClean('re_telefono', data.telefono); }
 
                             if (typeof window.showToast === 'function') {
                                 const msgExtra = data.veredicto_cotejo && data.veredicto_cotejo.includes('RESCATADO')

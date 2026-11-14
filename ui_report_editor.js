@@ -1,12 +1,12 @@
 
 // =========================================================================
-// MOTOR DE OCR Y COTEJO RENIEC EN VIVO PARA SOLICITUD DE INFORME EN REDACCIÓN
+// MOTOR VLM Y OCR INTELIGENTE CON COTEJO RENIEC PARA SOLICITUD DE INFORME
 // =========================================================================
 window.procesarSolicitudEnEditorConOcrYReniec = async function(base64Data) {
     if (!base64Data) return;
     
     if (typeof showToast === 'function') {
-        showToast("🔍 OCR Inteligente: Extrayendo datos de la solicitud médica...", "info", 3000);
+        showToast("🧠 Motor VLM / OCR: Extrayendo datos de la solicitud médica...", "info", 3500);
     }
     
     try {
@@ -14,8 +14,44 @@ window.procesarSolicitudEnEditorConOcrYReniec = async function(base64Data) {
         if (window.dualOcrInstance && typeof window.dualOcrInstance.processOrder === 'function') {
             ocrResult = await window.dualOcrInstance.processOrder(base64Data, 'auto');
         }
+
+        // 1. Enriquecimiento paralelo mediante CORTANA Super-Cerebro Multimodal (Puerto 8010)
+        let vlmResult = null;
+        try {
+            if (window.vlmEngine && typeof window.vlmEngine.analyze === 'function') {
+                vlmResult = await window.vlmEngine.analyze(base64Data, 'order');
+            } else {
+                const host = window.location.hostname || '127.0.0.1';
+                const cortanaEndpoints = [
+                    `http://${host}:8010/api/cortana/analizar-orden-imagen`,
+                    `http://127.0.0.1:8010/api/cortana/analizar-orden-imagen`,
+                    `http://${host}:8010/webhook/analizar-orden-imagen`,
+                    `http://127.0.0.1:8010/webhook/analizar-orden-imagen`
+                ];
+                for (const ep of cortanaEndpoints) {
+                    try {
+                        const res = await fetch(ep, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ imagen_base64: base64Data }),
+                            signal: AbortSignal.timeout(12000)
+                        });
+                        if (res.ok) {
+                            const j = await res.json();
+                            vlmResult = j.datos || j;
+                            break;
+                        }
+                    } catch (eEp) {}
+                }
+            }
+        } catch(eVlm) {
+            console.warn('[CORTANA Multimodal Extract Warning]', eVlm);
+        }
         
         let dniOcr = ocrResult ? (ocrResult.dni || '') : '';
+        if ((!dniOcr || dniOcr.length !== 8) && vlmResult && vlmResult.dni) {
+            dniOcr = String(vlmResult.dni).replace(/\D/g, '').substring(0, 8);
+        }
         dniOcr = String(dniOcr).replace(/\D/g, '').substring(0, 8);
         
         if (!dniOcr || dniOcr.length !== 8) {
@@ -32,19 +68,24 @@ window.procesarSolicitudEnEditorConOcrYReniec = async function(base64Data) {
                 showToast(`🏛️ RENIEC en Vivo: Cotejando DNI ${dniOcr}...`, "info", 2500);
             }
             if (window.OCRBayesianMatcher && typeof window.OCRBayesianMatcher.cotejarDniConReniecEnVivo === 'function') {
-                reniecData = await window.OCRBayesianMatcher.cotejarDniConReniecEnVivo(dniOcr, (ocrResult && ocrResult.paciente) || '', false);
+                reniecData = await window.OCRBayesianMatcher.cotejarDniConReniecEnVivo(dniOcr, (ocrResult && ocrResult.paciente) || (vlmResult && vlmResult.paciente) || '', false);
             }
         }
         
         const updateField = (id, newVal, force = false) => {
-            const el = document.getElementById(id);
-            if (!el || !newVal) return;
-            const currentVal = (el.value || '').trim();
-            if (force || !currentVal || currentVal.length < 3 || currentVal.includes('---')) {
-                el.value = newVal;
-                el.dispatchEvent(new Event('input', { bubbles: true }));
-                el.dispatchEvent(new Event('change', { bubbles: true }));
-            }
+            const ids = [id];
+            if (id.startsWith('re_')) ids.push('m_' + id.substring(3));
+            if (id.startsWith('m_')) ids.push('re_' + id.substring(2));
+            ids.forEach(targetId => {
+                const el = document.getElementById(targetId);
+                if (!el || !newVal) return;
+                const currentVal = (el.value || '').trim();
+                if (force || !currentVal || currentVal.length < 3 || currentVal.includes('---')) {
+                    el.value = newVal;
+                    el.dispatchEvent(new Event('input', { bubbles: true }));
+                    el.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+            });
         };
 
         if (dniOcr) updateField('re_dni', dniOcr, true);
@@ -59,35 +100,113 @@ window.procesarSolicitudEnEditorConOcrYReniec = async function(base64Data) {
             if (typeof showToast === 'function') {
                 showToast(`✅ RENIEC Oficial: ${reniecData.apellidos}, ${reniecData.nombres} (DNI ${dniOcr}) verificado para firma legal.`, "success", 5000);
             }
-        } else if (ocrResult) {
-            if (ocrResult.paciente) {
-                const parts = ocrResult.paciente.split(',');
+        } else if (ocrResult || vlmResult) {
+            const pacStr = (ocrResult && ocrResult.paciente) || (vlmResult && (vlmResult.paciente || (vlmResult.apellidos ? `${vlmResult.apellidos}, ${vlmResult.nombres}` : '')));
+            if (pacStr) {
+                const parts = pacStr.split(',');
                 if (parts.length >= 2) {
                     updateField('re_apePaciente', parts[0].trim().toUpperCase(), false);
                     updateField('re_nomPaciente', parts.slice(1).join(' ').trim().toUpperCase(), false);
+                } else if (vlmResult && vlmResult.nombres && vlmResult.apellidos) {
+                    updateField('re_apePaciente', String(vlmResult.apellidos).trim().toUpperCase(), false);
+                    updateField('re_nomPaciente', String(vlmResult.nombres).trim().toUpperCase(), false);
                 }
-                updateField('re_paciente', ocrResult.paciente.toUpperCase(), false);
+                updateField('re_paciente', pacStr.toUpperCase(), false);
             }
-            if (ocrResult.edad) updateField('re_edad', ocrResult.edad, false);
-            if (ocrResult.sexo) updateField('re_sexo', ocrResult.sexo, false);
-            if (ocrResult.medico) {
-                updateField('re_medSolicitante', ocrResult.medico, false);
-                updateField('re_doctor', ocrResult.medico, false);
+            const edadVal = (ocrResult && ocrResult.edad) || (vlmResult && vlmResult.edad);
+            if (edadVal) updateField('re_edad', edadVal, false);
+            const sexoVal = (ocrResult && ocrResult.sexo) || (vlmResult && vlmResult.sexo);
+            if (sexoVal) updateField('re_sexo', sexoVal, false);
+            const medVal = (ocrResult && ocrResult.medico) || (vlmResult && vlmResult.medico);
+            if (medVal) {
+                updateField('re_medSolicitante', medVal, false);
+                updateField('re_doctor', medVal, false);
             }
-            if (ocrResult.clinica) updateField('re_clinica', ocrResult.clinica, false);
+            const clinicaVal = (ocrResult && ocrResult.clinica) || (vlmResult && vlmResult.clinica);
+            if (clinicaVal) updateField('re_clinica', clinicaVal, false);
+            const espVal = (ocrResult && ocrResult.especimen) || (vlmResult && (vlmResult.especimen || vlmResult.muestra));
+            if (espVal) {
+                updateField('re_telContacto', espVal, false);
+                updateField('re_organoMuestra', espVal, false);
+            }
             
             if (typeof showToast === 'function') {
-                showToast(`✅ Datos de solicitud leídos con OCR y volcados al informe.`, "success", 4000);
+                showToast(`✅ Datos de la solicitud leídos con VLM / OCR Inteligente.`, "success", 4000);
             }
         }
     } catch (err) {
-        console.warn('[OCR/RENIEC Solicitud Editor] Error al procesar:', err);
+        console.warn('[VLM/OCR Solicitud Editor] Error al procesar:', err);
     }
 };
 
-import { safeDeepClone, safeMonotonicMerge, patientDatabase, doctorsDatabase, triggerAutomaticBackup, categoriesDatabase, defaultCategories, templatesDatabase, addTemplateToDatabase, mapPatientToDb, savePatient, deletePatient, cleanTextContentLocal, sortPatientArray, normalizeSexo, getPatientFromIndexedDB, getSurgicalCaseFromLRU, fetchFullPatientDetails } from './db_service.js?v=20261105_v674';
+// =========================================================================
+// REDACCIÓN MACROSCÓPICA AUTOMÁTICA CON MOTOR VLM LOCAL DE VISIÓN
+// =========================================================================
+window.redactarMacroConVlm = async function() {
+    const imgSrc = resolveEditorImage('img01') || (window.currentEditingPatient && window.currentEditingPatient.img01);
+    if (!imgSrc || !isValidImageSrc(imgSrc)) {
+        if (typeof showToast === 'function') {
+            showToast("⚠️ Cague o seleccione una foto de la pieza quirúrgica (Imagen 01) antes de ejecutar el redactor VLM.", "warning", 4000);
+        }
+        return;
+    }
 
-import { renderTable, applyFilters } from './ui_tables.js?v=20261105_v674';
+    if (typeof showToast === 'function') {
+        showToast("🧠 Motor VLM Local: Analizando pieza quirúrgica y redactando macroscopía...", "info", 5000);
+    }
+
+    try {
+        let resultText = null;
+        if (window.vlmEngine && typeof window.vlmEngine.analyze === 'function') {
+            const vlmRes = await window.vlmEngine.analyze(imgSrc, 'macroscopy');
+            resultText = typeof vlmRes === 'string' ? vlmRes : (vlmRes && (vlmRes.macroDesc || vlmRes.description || vlmRes.text));
+        } else {
+            const host = window.location.hostname || '127.0.0.1';
+            const res = await fetch(`http://${host}:8085/api/vlm/analyze`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ image: imgSrc, type: 'macroscopy' }),
+                signal: AbortSignal.timeout(15000)
+            });
+            if (res.ok) {
+                const data = await res.json();
+                resultText = typeof data === 'string' ? data : (data.macroDesc || data.description || data.text || data.result);
+            }
+        }
+
+        if (resultText && resultText.trim()) {
+            let clean = cleanLatexToPlainText(fixMedicalCapitalization(resultText.trim()));
+            const formattedHtml = clean.replace(/\n/g, '<br>');
+
+            const macroEl = document.getElementById('re_macroDesc');
+            const macroElFull = document.getElementById('re_macroDesc_full');
+            if (macroEl) {
+                macroEl.innerHTML = formattedHtml;
+                macroEl.dispatchEvent(new Event('input', { bubbles: true }));
+            }
+            if (macroElFull) {
+                macroElFull.innerHTML = formattedHtml;
+                macroElFull.dispatchEvent(new Event('input', { bubbles: true }));
+            }
+
+            if (typeof triggerDebouncedDraftSave === 'function') triggerDebouncedDraftSave();
+            if (typeof showToast === 'function') {
+                showToast("✨ Macroscopía redactada e inyectada con éxito por VLM Local.", "success", 4000);
+            }
+        } else {
+            throw new Error("Respuesta de VLM vacía o servicio no disponible.");
+        }
+    } catch (err) {
+        console.warn('[VLM Macro Redaction Error]', err);
+        if (typeof showToast === 'function') {
+            showToast("⚠️ No se pudo redactar la macroscopía con VLM. Verifique que el servidor VLM local esté activo.", "error", 4000);
+        }
+    }
+};
+
+import { safeDeepClone, safeMonotonicMerge, patientDatabase, doctorsDatabase, triggerAutomaticBackup, categoriesDatabase, defaultCategories, templatesDatabase, addTemplateToDatabase, mapPatientToDb, savePatient, deletePatient, cleanTextContentLocal, sortPatientArray, normalizeSexo, getPatientFromIndexedDB, getSurgicalCaseFromLRU, fetchFullPatientDetails } from './db_service.js?v=20261108_v1252_fase4';
+
+import { renderTable, applyFilters } from './ui_tables.js?v=20261108_v1252_fase4';
 
 import { populateModalDoctorsSelect } from './ui_admin.js?v=20261105_v674';
 
@@ -97,7 +216,7 @@ import { synopticSchemas, compileSynopticReport, compileLongReport, compileSepar
 
 import { extract24FramesFromVideo, Macro360Viewer } from './macro_viewer_360.js?v=20261105_v674';
 
-import { gynMacroWizardConfig, renderMacroWizardModal } from './js/macro_wizard.js?v=20261105_v674';
+const gynMacroWizardConfig = window.gynMacroWizardConfig || {}; const renderMacroWizardModal = window.renderMacroWizardModal || function(t, cb){ cb(''); };
 
 
 
@@ -227,11 +346,11 @@ export function resolveEditorImage(key, existingFallback = '') {
 
         try {
 
-            const canvas = activeCropper.getCroppedCanvas({ maxWidth: 800, maxHeight: 800 });
+            const canvas = activeCropper.getCroppedCanvas({ maxWidth: 1920, maxHeight: 1920, imageSmoothingQuality: 'high' });
 
             if (canvas) {
 
-                const dataUrl = canvas.toDataURL('image/jpeg', 0.65);
+                const dataUrl = canvas.toDataURL('image/jpeg', 0.94);
 
                 if (isValidImageSrc(dataUrl)) return dataUrl;
 
@@ -2260,6 +2379,9 @@ export function resetEditorCropperWorkspaces() {
     if (input02) input02.value = '';
 
 }
+if (typeof window !== 'undefined') {
+    window.resetEditorCropperWorkspaces = resetEditorCropperWorkspaces;
+}
 
 let originalCodAtencion = null;
 
@@ -3201,75 +3323,32 @@ export function populateEditorModal(codAtencion) {
     if (typeof window !== 'undefined' && Array.isArray(window.REAL_SUPABASE_PATIENTS)) {
         const bkp = window.REAL_SUPABASE_PATIENTS.find(b => String(b.codAtencion || b.cod_atencion || b.codigo || '').trim().toUpperCase().replace(/[-_\s]/g, '') === pTargetCode);
         if (bkp) {
-            const isCase383 = pTargetCode === '26Q383';
-            if (isCase383 || !patient.paciente || !patient.nombres || !patient.apellidos || !patient.sexo || !patient.edad || !patient.macroDesc || !patient.diagnostico) {
-                if (isCase383 || !patient.paciente) patient.paciente = bkp.paciente || patient.paciente || '';
-                if (isCase383 || !patient.nombres) patient.nombres = bkp.nombres || patient.nombres || '';
-                if (isCase383 || !patient.apellidos) patient.apellidos = bkp.apellidos || patient.apellidos || '';
-                if (isCase383 || !patient.nomPaciente) patient.nomPaciente = bkp.nomPaciente || bkp.nombres || patient.nomPaciente || '';
-                if (isCase383 || !patient.apePaciente) patient.apePaciente = bkp.apePaciente || bkp.apellidos || patient.apePaciente || '';
-                if (isCase383 || patient.edad === undefined || patient.edad === null || patient.edad === '' || patient.edad === '0') patient.edad = bkp.edad !== undefined ? bkp.edad : patient.edad;
-                if (isCase383 || !patient.sexo) patient.sexo = bkp.sexo || patient.sexo;
-                if (isCase383 || !patient.medSolicitante) patient.medSolicitante = bkp.medSolicitante || bkp.med_solicitante || bkp.doctor || patient.medSolicitante || '';
-                if (isCase383 || !patient.med_solicitante) patient.med_solicitante = bkp.med_solicitante || bkp.medSolicitante || patient.med_solicitante || '';
-                if (isCase383 || !patient.fecRegistro) patient.fecRegistro = bkp.fecRegistro || bkp.fecha_ingreso || bkp.fec_registro || bkp.fechaIngreso || patient.fecRegistro || '';
-                if (isCase383 || !patient.fecha_ingreso) patient.fecha_ingreso = bkp.fecha_ingreso || bkp.fecRegistro || patient.fecha_ingreso || '';
-                if (isCase383 || !patient.fecEntrega) patient.fecEntrega = bkp.fecEntrega || bkp.fecha_informe || bkp.fec_entrega || bkp.fechaInforme || patient.fecEntrega || '';
-                if (isCase383 || !patient.fecha_informe) patient.fecha_informe = bkp.fecha_informe || bkp.fecEntrega || patient.fecha_informe || '';
-                if (isCase383 || !patient.especimen) patient.especimen = bkp.especimen || bkp.muestra || patient.especimen || '';
-                if (isCase383 || !patient.macroDesc) patient.macroDesc = bkp.macroDesc || bkp.macro_desc || patient.macroDesc || '';
-                if (isCase383 || !patient.microDesc) patient.microDesc = bkp.microDesc || bkp.micro_desc || patient.microDesc || '';
-                if (isCase383 || !patient.diagnostico) patient.diagnostico = bkp.diagnostico || bkp.diag || patient.diagnostico || '';
-                if (isCase383 || !patient.clinica) patient.clinica = bkp.clinica || patient.clinica || '';
-                if (isCase383 || !patient.dni) patient.dni = bkp.dni || patient.dni || '0';
+                        // Enriquecer solo si el paciente NO ha sido modificado por el doctor
+            if (!patient.modificado) {
+                if (!patient.paciente) patient.paciente = bkp.paciente || '';
+                if (!patient.nombres) patient.nombres = bkp.nombres || '';
+                if (!patient.apellidos) patient.apellidos = bkp.apellidos || '';
+                if (!patient.nomPaciente) patient.nomPaciente = bkp.nomPaciente || bkp.nombres || '';
+                if (!patient.apePaciente) patient.apePaciente = bkp.apePaciente || bkp.apellidos || '';
+                if (patient.edad === undefined || patient.edad === null || patient.edad === '' || patient.edad === '0') patient.edad = bkp.edad !== undefined ? bkp.edad : patient.edad;
+                if (!patient.sexo) patient.sexo = bkp.sexo || patient.sexo;
+                if (!patient.medSolicitante) patient.medSolicitante = bkp.medSolicitante || bkp.med_solicitante || bkp.doctor || '';
+                if (!patient.med_solicitante) patient.med_solicitante = bkp.med_solicitante || bkp.medSolicitante || '';
+                if (!patient.fecRegistro) patient.fecRegistro = bkp.fecRegistro || bkp.fecha_ingreso || bkp.fec_registro || bkp.fechaIngreso || '';
+                if (!patient.fecha_ingreso) patient.fecha_ingreso = bkp.fecha_ingreso || bkp.fecRegistro || '';
+                if (!patient.fecEntrega) patient.fecEntrega = bkp.fecEntrega || bkp.fecha_informe || bkp.fec_entrega || bkp.fechaInforme || '';
+                if (!patient.fecha_informe) patient.fecha_informe = bkp.fecha_informe || bkp.fecEntrega || '';
+                if (!patient.especimen) patient.especimen = bkp.especimen || bkp.muestra || '';
+                if (!patient.macroDesc) patient.macroDesc = bkp.macroDesc || bkp.macro_desc || '';
+                if (!patient.microDesc) patient.microDesc = bkp.microDesc || bkp.micro_desc || '';
+                if (!patient.diagnostico) patient.diagnostico = bkp.diagnostico || bkp.diag || '';
+                if (!patient.clinica) patient.clinica = bkp.clinica || '';
+                if (!patient.dni) patient.dni = bkp.dni || '0';
                 if (!patient.img01 && bkp.img01) patient.img01 = bkp.img01;
                 if (!patient.img01_base64 && bkp.img01_base64) patient.img01_base64 = bkp.img01_base64;
                 if (!patient.foto_macro_url && bkp.foto_macro_url) patient.foto_macro_url = bkp.foto_macro_url;
             }
         }
-    }
-
-
-    
-
-        // FORZADO MILITAR OFICIAL CASO 26Q-383 DESDE EL PDF FIRMADO
-    if (pTargetCode === '26Q383' || pTargetCode === '26Q-383') {
-        patient.codAtencion = '26Q-383';
-        patient.cod_atencion = '26Q-383';
-        patient.codigo = '26Q-383';
-        patient.paciente = 'REYES PEREZ, GABRIEL ACEVEDO';
-        patient.nomPaciente = 'GABRIEL ACEVEDO';
-        patient.apePaciente = 'REYES PEREZ';
-        patient.nombres = 'GABRIEL ACEVEDO';
-        patient.apellidos = 'REYES PEREZ';
-        patient.edad = 47;
-        patient.sexo = 'MASCULINO';
-        patient.dni = '0';
-        patient.medSolicitante = 'DRA. DENNIS ELBA DEL AGUILA';
-        patient.med_solicitante = 'DRA. DENNIS ELBA DEL AGUILA';
-        patient.cmp_medico = '70576';
-        patient.clinica = 'HOSPITAL NACIONAL DANIEL ALCIDES CARRIÓN (HNDAC)';
-        patient.especimen = 'BIOPSIA PLEURAL';
-        patient.organoMuestra = 'BIOPSIA PLEURAL';
-        patient.organo_muestra = 'BIOPSIA PLEURAL';
-        patient.fecRegistro = '2026-11-05';
-        patient.fecha_ingreso = '2026-11-05';
-        patient.fechaIngreso = '2026-11-05';
-        patient.fecEntrega = '2026-11-09';
-        patient.fecha_informe = '2026-11-09';
-        patient.fechaInforme = '2026-11-09';
-        patient.fecProbable = '2026-11-09';
-        patient.casetes = 1;
-        patient.doctor = 'DR. JOSEHP CHRISTOPHER CASTILLO CUENCA';
-        patient.motivoEstudio = 'MASA PULMONAR: D/C NM DE PULMÓN (HOSPITALIZADA CAMA 2511)';
-        patient.macroDesc = 'Se recibe frasco con fragmentos irregulares de tejido pulmonar de color pardo antracótico que en conjunto miden 1.2 x 0.8 x 0.5 cm. Se incluye muestra representativa en casete.';
-        patient.microDesc = 'El examen histológico revela un tejido pleural con fibrosis colágena densa y extensa, que alterna con un infiltrado inflamatorio crónico compuesto por linfocitos maduros, cc plasmáticas e histiocitos.\n\nEn este contexto fibroinflamatorio, se identifican sábanas y agregados de cc linfoides atípicas, de tamaño mediano a grande, con núcleos irregulares, cromatina laxa y nucléolos prominentes, que muestran un patrón de crecimiento infiltrativo y difuso, borrando la arquitectura normal del tejido.\n\nNo se observan cc mesoteliales malignas ni elementos epiteliales atípicos. El componente linfoide atípico presenta un índice mitótico variable y se asocia a áreas de fibrosis reactiva, hallazgo característico de las neoplasias linfoides que surgen en el seno de una inflamación crónica de larga data.';
-        patient.diagnostico = 'BIOPSIA PLEURAL: PLEURITIS CRÓNICA FIBROSANTE DE ETIOLOGÍA INFECCIOSA; NEGATIVO PARA LINFOMA Y PARA NEOPLASIA MALIGNA.';
-        patient.estado = 'Listo';
-        patient.firmado = true;
-        patient.modificado = true;
-        patient.img01 = 'assets/macro/macro_26Q-383_20261102_225603.jpg';
-        patient.foto_macro_url = 'assets/macro/macro_26Q-383_20261102_225603.jpg';
     }
 
     editingCodAtencion = patient.codAtencion || patient.cod_atencion || codAtencion;
@@ -3413,16 +3492,6 @@ export function populateEditorModal(codAtencion) {
 
 
     let normalizedSex = normalizeSexo(patient.sexo, patient.especimen || patient.telContacto, nomVal || patient.paciente);
-    if (pTargetCode === '26Q383') {
-        normalizedSex = 'MASCULINO';
-        patient.sexo = 'MASCULINO';
-        patient.fecEntrega = '2026-11-09';
-        patient.fecha_informe = '2026-11-09';
-        patient.fecRegistro = '2026-11-05';
-        patient.fecha_ingreso = '2026-11-05';
-        patient.firmado = true;
-        patient.estado = 'Listo';
-    }
 
     safeSet('re_sexo', normalizedSex || (patient.sexo ? String(patient.sexo).toUpperCase() : ''));
 
@@ -4429,6 +4498,9 @@ if (typeof window !== 'undefined') {
 
 
 export function closeReportEditor() {
+    if (typeof resetEditorCropperWorkspaces === 'function') {
+        resetEditorCropperWorkspaces();
+    }
     window.activePatientCode = null;
     editingCodAtencion = null;
     const m = document.getElementById('reportEditorModalOverlay');
@@ -7646,26 +7718,24 @@ function bindAiRetouchButtonsGlobally() {
 
 
 
-            // Manejar cambio de código de atención
-
+            // BLINDAJE CLÍNICO: Confirmación modal explícita antes de eliminar o cambiar código de atención
             if (codeChanged) {
-
-                if (typeof window.deletePatient === 'function') {
-
-                    window.deletePatient(originalCodAtencion);
-
+                const confirmarCambio = window.confirm(`ALERTA DE SEGURIDAD CLÍNICA:\n¿Está seguro de cambiar el código de atención de "${originalCodAtencion}" a "${newCodAtencion}"?\nEsta acción reubicará el registro oficial del paciente.`);
+                if (!confirmarCambio) {
+                    targetPatient.codAtencion = originalCodAtencion;
+                    if (document.getElementById('re_codAtencion')) {
+                        document.getElementById('re_codAtencion').value = originalCodAtencion;
+                    }
                 } else {
-
-                    const oldIdx = patientDatabase.findIndex(x => x.codAtencion === originalCodAtencion);
-
-                    if (oldIdx !== -1) patientDatabase.splice(oldIdx, 1);
-
+                    if (typeof window.deletePatient === 'function') {
+                        window.deletePatient(originalCodAtencion);
+                    } else {
+                        const oldIdx = patientDatabase.findIndex(x => x.codAtencion === originalCodAtencion);
+                        if (oldIdx !== -1) patientDatabase.splice(oldIdx, 1);
+                    }
+                    originalCodAtencion = newCodAtencion;
+                    editingCodAtencion = newCodAtencion;
                 }
-
-                originalCodAtencion = newCodAtencion;
-
-                editingCodAtencion = newCodAtencion;
-
             }
 
 
