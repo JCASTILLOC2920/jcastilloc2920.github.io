@@ -268,6 +268,30 @@
             background: #0284C7;
         }
     </style>
+    <!-- Blindaje Ergonómico y Responsivo para Todo Dispositivo (Celulares, Tablets y 4K) -->
+    <style>
+        html, body {
+            overflow-x: hidden !important;
+            max-width: 100vw !important;
+            width: 100% !important;
+            scroll-behavior: smooth;
+        }
+        @media (max-width: 1023px) {
+            body {
+                padding-bottom: 72px !important; /* Espacio para barra táctil inferior en celular */
+            }
+        }
+        /* Touch ripples y botones ergonómicos en móviles */
+        @media (max-width: 640px) {
+            .glass-panel {
+                padding: 1rem !important;
+            }
+            .mobile-stack-btn {
+                width: 100% !important;
+                justify-content: center !important;
+            }
+        }
+    </style>
 </head>
 <body class="bg-darkBg text-slate-100 font-sans selection:bg-cyanCobalt selection:text-white antialiased overflow-x-hidden">
 
@@ -333,13 +357,13 @@
                 <a href="traductor-informes-biopsia.html" class="hover:text-cyan-400 transition-colors">Segunda Opinión</a>
             </nav>
 
-            <!-- Acciones Rápidas -->
+            <!-- Acciones Rápidas de Neurodiseño -->
             <div class="flex items-center gap-2.5 sm:gap-3">
-                <a href="solicitud.html" class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all">
-                    <i class="fa-solid fa-hospital-user text-cyan-400"></i> Portal Médicos
+                <a href="verificar_informe.html" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-extrabold bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-300 text-white shadow-lg shadow-emerald-500/35 transition-all hover:scale-105 border border-emerald-400/40" title="Consultar y Descargar Informe Oficial con DNI">
+                    <i class="fa-solid fa-file-circle-check text-sm"></i> <span>CONSULTAR MI INFORME</span>
                 </a>
-                <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20cotizar%20un%20estudio%20de%20biopsia" target="_blank" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-extrabold bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white shadow-lg shadow-emerald-600/30 transition-all hover:scale-105">
-                    <i class="fa-brands fa-whatsapp text-sm"></i> Cotizar WhatsApp
+                <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20coordinar%20una%20biopsia" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2.5 rounded-lg text-xs font-bold bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700/80 transition-all hover:border-cyan-500/50">
+                    <i class="fa-brands fa-whatsapp text-emerald-400 text-sm"></i> WhatsApp Directo
                 </a>
                 <!-- Mobile button -->
                 <button type="button" onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-lg bg-slate-800 text-slate-300 hover:text-white" aria-label="Menú móvil">
@@ -349,19 +373,29 @@
         </div>
 
         <!-- Mobile Menu Container -->
-        <div id="mobileMenu" class="hidden lg:hidden bg-slate-950/95 border-b border-slate-800 px-4 py-4 space-y-3 text-sm">
-            <a href="#inicio" onclick="toggleMobileMenu()" class="block text-cyan-400 font-bold">Inicio</a>
-            <a href="#wsi-viewer" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-white">Visor WSI 40x Deep Zoom</a>
-            <a href="#trazabilidad" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-white">Trazabilidad Bóveda Quirúrgica</a>
-            <a href="#immunoquery" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-white">ImmunoQuery IA Soberano</a>
-            <a href="#tarifario" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-white">Cartera de Servicios & Tarifario</a>
-            <a href="biopsia-prostata-urologia.html" class="block text-slate-300 hover:text-white">Biopsia de Próstata Tru-Cut</a>
-            <a href="biopsia-gastrica-endoscopia.html" class="block text-slate-300 hover:text-white">Biopsia Gástrica & Endoscópica</a>
-            <a href="inmunohistoquimica-lima.html" class="block text-slate-300 hover:text-white">Inmunohistoquímica Especializada</a>
-            <a href="convenios-clinicas-provincias.html" class="block text-slate-300 hover:text-white">Convenios & Provincias 72h</a>
-            <a href="traductor-informes-biopsia.html" class="block text-slate-300 hover:text-white">Traductor / Segunda Opinión</a>
-            <a href="solicitud.html" class="block text-slate-300 hover:text-white">Portal Cirujanos / Clínicas</a>
-            <a href="verificar_informe.html" class="block text-purple-400 font-bold">Verificar Informe Oficial con QR</a>
+        <div id="mobileMenu" class="hidden lg:hidden bg-slate-950/98 backdrop-blur-2xl border-b border-cyan-500/30 px-5 py-6 space-y-3.5 text-sm shadow-2xl transition-all">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider"><i class="fa-solid fa-compass mr-1.5"></i> Menú de Navegación</span>
+                <button type="button" onclick="toggleMobileMenu()" class="text-slate-400 hover:text-white p-1" aria-label="Cerrar menú">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <a href="verificar_informe.html" onclick="toggleMobileMenu()" class="flex items-center justify-between p-3 rounded-xl bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border border-emerald-500/40 text-emerald-300 font-extrabold">
+                <span class="flex items-center gap-2"><i class="fa-solid fa-file-circle-check text-emerald-400 text-base"></i> Consultar mi Informe con DNI</span>
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+            <a href="#inicio" onclick="toggleMobileMenu()" class="block py-2 text-cyan-300 font-bold hover:text-white"><i class="fa-solid fa-house w-6 text-cyan-400"></i> Inicio</a>
+            <a href="#wsi-viewer" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-white"><i class="fa-solid fa-microscope w-6 text-cyan-400"></i> Visor WSI 40x Deep Zoom</a>
+            <a href="#trazabilidad" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-white"><i class="fa-solid fa-route w-6 text-emerald-400"></i> Trazabilidad de Muestras</a>
+            <a href="#immunoquery" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-white"><i class="fa-solid fa-dna w-6 text-purple-400"></i> ImmunoQuery IA</a>
+            <a href="#tarifario" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-white"><i class="fa-solid fa-tags w-6 text-goldBanner"></i> Servicios y Tiempos 48h</a>
+            <a href="convenios-clinicas-provincias.html" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-white"><i class="fa-solid fa-truck-fast w-6 text-cyan-400"></i> Envíos desde Provincias</a>
+            <a href="traductor-informes-biopsia.html" onclick="toggleMobileMenu()" class="block py-2 text-slate-300 hover:text-white"><i class="fa-solid fa-language w-6 text-indigo-400"></i> Explicación de Biopsias</a>
+            <div class="pt-3 border-t border-slate-800/80">
+                <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20atenci%C3%B3n%20personalizada" target="_blank" class="w-full py-2.5 rounded-xl font-bold text-xs bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center gap-2 shadow-lg">
+                    <i class="fa-brands fa-whatsapp text-sm"></i> Chatear con el Dr. Castillo
+                </a>
+            </div>
         </div>
     </header>
 
@@ -374,9 +408,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
             
             <!-- Badge de Autoridad -->
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold bg-slate-900/90 border border-slate-700/80 text-cyan-300 mb-6 shadow-inner">
-                <i class="fa-solid fa-certificate text-goldBanner"></i>
-                Único Laboratorio en Perú con Servidor Físico WSI 40x y Entrega Certificada en 48-72h
+            <div class="inline-flex items-center gap-2.5 px-5 py-2 rounded-full text-xs font-bold bg-slate-900/95 border border-cyan-500/40 text-cyan-300 mb-6 shadow-lg shadow-cyan-500/10">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>Laboratorio de Anatomía Patológica & WSI 40x &bull; Dr. Joseph C. Castillo (CMP 56435 / RNE 029291)</span>
             </div>
 
             <!-- Titular H1 Supremo -->
@@ -444,10 +478,13 @@
                             </div>
                         </div>
                         <div class="flex-shrink-0 flex flex-col gap-3 w-full md:w-auto">
-                            <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20tengo%20una%20orden%20de%20biopsia%20y%20deseo%20saber%20el%20costo%20y%20recojo" target="_blank" class="px-6 py-4 rounded-xl text-center font-extrabold bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white shadow-xl shadow-emerald-500/25 flex items-center justify-center gap-3 transition-transform hover:scale-105">
-                                <i class="fa-brands fa-whatsapp text-xl"></i> Cotizar Biopsia Inmediata
+                            <a href="verificar_informe.html" class="px-6 py-3.5 rounded-xl text-center font-extrabold bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white shadow-xl shadow-emerald-500/30 flex items-center justify-center gap-2.5 transition-transform hover:scale-105 border border-emerald-400/40">
+                                <i class="fa-solid fa-file-circle-check text-lg"></i> Consultar mi Informe con DNI
                             </a>
-                            <span class="text-[11px] text-slate-400 text-center"><i class="fa-solid fa-truck-medical text-cyan-400"></i> Servicio de recojo motorizado en Lima</span>
+                            <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20tengo%20una%20orden%20de%20biopsia%20y%20deseo%20saber%20el%20costo%20y%20recojo" target="_blank" class="px-6 py-3 rounded-xl text-center font-bold bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700/80 flex items-center justify-center gap-2.5 transition-all hover:border-cyan-500/50">
+                                <i class="fa-brands fa-whatsapp text-emerald-400 text-lg"></i> Coordinar Recojo en Moto
+                            </a>
+                            <span class="text-[11px] text-slate-400 text-center"><i class="fa-solid fa-shield-heart text-cyan-400"></i> Entrega en 48 a 72h con firma digital oficial</span>
                         </div>
                     </div>
                 </div>
@@ -953,7 +990,7 @@
                         <span class="text-[11px] font-bold uppercase tracking-wider text-cyan-400">Entrega en 48 Horas</span>
                         <h3 class="text-lg font-bold text-white mt-1">Biopsias Quirúrgicas Menores & Endoscópicas</h3>
                         <p class="text-xs text-slate-300 mt-3 leading-relaxed">
-                            Muestras gástricas, pólipos colónicos, biopsias de piel (punch/afeitado), cuello uterino, endometrio y mucosa oral.
+                            Muestras gástricas, pólipos colónicos, dermatopatología (punch, rasurado, husos de piel), cuello uterino, endometrio y mucosa oral.
                         </p>
                         <ul class="mt-4 space-y-2 text-xs text-slate-400">
                             <li><i class="fa-solid fa-check text-emerald-400 mr-1.5"></i> Coloración H&E de alta resolución</li>
@@ -1132,7 +1169,7 @@
                         <i class="fa-solid fa-box-tissue"></i>
                     </div>
                     <h4 class="text-base font-bold text-white">¿Cómo enviar tu muestra desde provincia?</h4>
-                    <p class="text-xs text-slate-400">Te enviamos el instructivo formal en PDF y la guía de remisión prepagada para dejarla en la agencia Olva Courier de tu ciudad.</p>
+                    <p class="text-xs text-slate-400">Te enviamos el instructivo formal en PDF y la guía de rotulación para dejarla en la agencia Olva Courier o Shalom de tu ciudad.</p>
                     <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20enviar%20una%20biopsia%20desde%20provincia" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-extrabold bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg transition-transform hover:scale-105">
                         <i class="fa-brands fa-whatsapp"></i> Solicitar Envío desde Provincia
                     </a>
@@ -2236,5 +2273,19 @@
             selectImmunoDilemma('renal');
         });
     </script>
+    <!-- BARRA FLOTANTE TÁCTIL PARA CELULARES (Bottom Action Bar de Élite) -->
+    <nav class="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-slate-950/95 backdrop-blur-xl border-t border-slate-800/90 py-2 px-3 shadow-[0_-5px_20px_rgba(0,0,0,0.7)] flex items-center justify-around gap-2" aria-label="Navegación Móvil de Emergencia">
+        <a href="verificar_informe.html" class="flex-1 py-2 px-2.5 rounded-xl text-center font-extrabold text-[11px] bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-1.5 active:scale-95 transition-transform">
+            <i class="fa-solid fa-file-circle-check text-sm"></i>
+            <span>Ver mi Informe</span>
+        </a>
+        <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20consultar%20sobre%20un%20estudio%20de%20biopsia" target="_blank" class="flex-1 py-2 px-2.5 rounded-xl text-center font-bold text-[11px] bg-slate-900 border border-emerald-500/40 text-emerald-300 flex items-center justify-center gap-1.5 active:scale-95 transition-transform">
+            <i class="fa-brands fa-whatsapp text-sm text-emerald-400"></i>
+            <span>WhatsApp</span>
+        </a>
+        <a href="tel:+51986396733" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-700/80 text-cyan-400 flex items-center justify-center active:scale-95 transition-transform" title="Llamar directamente al laboratorio">
+            <i class="fa-solid fa-phone text-sm"></i>
+        </a>
+    </nav>
 </body>
 </html>

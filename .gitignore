@@ -2,7 +2,6 @@
 # Prohibido subir archivos de agentes, configuraciones y datos medicos privados
 
 .agents/
-.gemini/
 .env
 llaves*.json
 *.log
@@ -29,3 +28,7 @@ groq_vault_local.key.js
 
 CAMBIO_PENDIENTE.json
 REPORTE_ESTUDIO_WEB.md
+
+*.txt
+*.key
+*vault*.key.js
