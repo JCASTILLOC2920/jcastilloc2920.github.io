@@ -110,6 +110,17 @@ window.procesarSolicitudEnEditorConOcrYReniec = async function(base64Data) {
                 } else if (vlmResult && vlmResult.nombres && vlmResult.apellidos) {
                     updateField('re_apePaciente', String(vlmResult.apellidos).trim().toUpperCase(), false);
                     updateField('re_nomPaciente', String(vlmResult.nombres).trim().toUpperCase(), false);
+                } else {
+                    const words = pacStr.trim().split(/\s+/);
+                    if (words.length >= 3) {
+                        updateField('re_apePaciente', `${words[0]} ${words[1]}`.toUpperCase(), false);
+                        updateField('re_nomPaciente', words.slice(2).join(' ').toUpperCase(), false);
+                    } else if (words.length === 2) {
+                        updateField('re_apePaciente', words[0].toUpperCase(), false);
+                        updateField('re_nomPaciente', words[1].toUpperCase(), false);
+                    } else {
+                        updateField('re_nomPaciente', pacStr.toUpperCase(), false);
+                    }
                 }
                 updateField('re_paciente', pacStr.toUpperCase(), false);
             }
