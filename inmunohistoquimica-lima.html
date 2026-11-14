@@ -50,6 +50,10 @@
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
         }
     </style>
+    <style>
+        html, body { overflow-x: hidden !important; max-width: 100vw !important; width: 100% !important; scroll-behavior: smooth; }
+        @media (max-width: 1023px) { body { padding-bottom: 72px !important; } }
+    </style>
 </head>
 <body class="bg-darkBg text-slate-100 font-sans selection:bg-cyanCobalt selection:text-white antialiased overflow-x-hidden">
 
@@ -168,5 +172,19 @@
     </footer>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>AOS.init({ duration: 700, once: true });</script>
+    <!-- BARRA FLOTANTE TÁCTIL PARA CELULARES (Bottom Action Bar de Élite) -->
+    <nav class="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-slate-950/95 backdrop-blur-xl border-t border-slate-800/90 py-2 px-3 shadow-[0_-5px_20px_rgba(0,0,0,0.7)] flex items-center justify-around gap-2" aria-label="Navegación Móvil de Emergencia">
+        <a href="verificar_informe.html" class="flex-1 py-2 px-2.5 rounded-xl text-center font-extrabold text-[11px] bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-1.5 active:scale-95 transition-transform">
+            <i class="fa-solid fa-file-circle-check text-sm"></i>
+            <span>Ver mi Informe</span>
+        </a>
+        <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20consultar%20sobre%20un%20estudio%20de%20biopsia" target="_blank" class="flex-1 py-2 px-2.5 rounded-xl text-center font-bold text-[11px] bg-slate-900 border border-emerald-500/40 text-emerald-300 flex items-center justify-center gap-1.5 active:scale-95 transition-transform">
+            <i class="fa-brands fa-whatsapp text-sm text-emerald-400"></i>
+            <span>WhatsApp</span>
+        </a>
+        <a href="tel:+51986396733" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-700/80 text-cyan-400 flex items-center justify-center active:scale-95 transition-transform" title="Llamar directamente al laboratorio">
+            <i class="fa-solid fa-phone text-sm"></i>
+        </a>
+    </nav>
 </body>
 </html>
