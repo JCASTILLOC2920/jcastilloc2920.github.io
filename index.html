@@ -11,6 +11,8 @@
     <meta name="author" content="Dr. Joseph C. Castillo Cuenca">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://jcastilloc2920.github.io/">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0B1120">
 
     <!-- Open Graph / Redes Sociales -->
     <meta property="og:type" content="website">
@@ -2441,6 +2443,9 @@
             loadWsiCase('prostata');
             selectTraceStep(1);
             selectImmunoDilemma('renal');
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js').catch(() => {});
+            }
         });
     </script>
     <!-- BARRA FLOTANTE TÁCTIL PARA CELULARES (Bottom Action Bar de Élite) -->

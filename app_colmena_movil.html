@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0f172a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>JC PATH LAB • Consola Colmena Móvil</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="css/all.min.css">
+<style>
+:root{--bg:#0b1120;--card:#151f32;--border:#263554;--cyan:#38bdf8;--green:#10b981;--blue:#2563eb;--text:#f8fafc;--muted:#94a3b8;}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);height:100dvh;display:flex;flex-direction:column;overflow:hidden;}
+header.uro-top{background:#ffffff;color:#0f172a;border-bottom:1px solid #cbd5e1;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,0.12);}
+.brand{display:flex;align-items:center;gap:9px;}
+.uro-logo{width:30px;height:30px;border-radius:50%;border:2px solid #f59e0b;background:#fffbeb;color:#0284c7;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.85rem;}
+.brand-title{font-weight:900;font-size:0.95rem;color:#0284c7;letter-spacing:0.3px;}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;margin-left:5px;box-shadow:0 0 6px var(--green);}
+.btn-install{background:linear-gradient(135deg,#2563eb,#0284c7);color:#fff;border:none;padding:6px 11px;border-radius:8px;font-weight:800;font-size:0.72rem;cursor:pointer;}
+.srv-bar{background:#f1f5f9;padding:8px 12px;display:flex;gap:8px;overflow-x:auto;border-bottom:1px solid #cbd5e1;flex-shrink:0;}
+.srv-pill{background:#ffffff;color:#475569;border:1px solid #cbd5e1;padding:6px 12px;border-radius:999px;font-size:0.72rem;font-weight:800;white-space:nowrap;cursor:pointer;display:flex;align-items:center;gap:5px;}
+.srv-pill.active{background:var(--blue);color:#fff;border-color:#1d4ed8;box-shadow:0 2px 8px rgba(37,99,235,0.3);}
+main{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px;}
+.tab-view{display:none;flex-direction:column;height:100%;gap:10px;}
+.tab-view.active{display:flex;}
+.chat-box{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding-bottom:8px;}
+.msg{max-width:88%;padding:10px 13px;border-radius:14px;font-size:0.86rem;line-height:1.42;word-break:break-word;}
+.msg.bot{background:var(--card);border:1px solid var(--border);align-self:flex-start;border-bottom-left-radius:4px;}
+.msg.user{background:linear-gradient(135deg,#0284c7,#2563eb);color:#fff;align-self:flex-end;border-bottom-right-radius:4px;}
+.quick-chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;flex-shrink:0;}
+.chip{background:var(--card);border:1px solid rgba(56,189,248,0.35);color:var(--cyan);padding:6px 10px;border-radius:999px;font-size:0.72rem;font-weight:700;white-space:nowrap;cursor:pointer;}
+.chat-input-bar{display:flex;gap:6px;background:var(--card);border:1px solid var(--border);padding:8px;border-radius:14px;align-items:center;flex-shrink:0;}
+.chat-input-bar input{flex:1;background:transparent;border:none;color:#fff;font-size:0.9rem;outline:none;}
+.icon-btn{width:40px;height:40px;border-radius:10px;border:none;display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer;color:#fff;flex-shrink:0;}
+.btn-mic{background:#334155;}
+.btn-mic.listening{background:#ef4444;animation:pulse 1s infinite;}
+.btn-send{background:var(--green);color:#020617;font-weight:900;}
+.search-bar{display:flex;gap:6px;background:var(--card);border:1px solid var(--border);padding:8px 12px;border-radius:12px;align-items:center;}
+.search-bar input{flex:1;background:transparent;border:none;color:#fff;font-size:0.88rem;outline:none;}
+.patient-list{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:11px;}
+.p-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:13px;display:flex;flex-direction:column;gap:9px;box-shadow:0 6px 18px rgba(0,0,0,0.32);}
+.p-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
+.p-name{font-weight:800;font-size:0.94rem;color:#fff;line-height:1.25;}
+.p-age{font-weight:500;font-size:0.78rem;color:var(--muted);margin-left:4px;}
+.p-status{font-size:0.68rem;font-weight:800;padding:4px 9px;border-radius:99px;white-space:nowrap;}
+.p-status.ok{background:rgba(16,185,129,0.18);color:#34d399;border:1px solid rgba(16,185,129,0.4);}
+.p-status.pend{background:rgba(245,158,11,0.18);color:#fbbf24;border:1px solid rgba(245,158,11,0.4);}
+.uro-pill-white{background:#f8fafc;color:#0f172a;border-radius:10px;padding:7px 10px;display:flex;justify-content:space-between;align-items:center;font-size:0.76rem;font-weight:800;}
+.uro-id-tag{background:#e2e8f0;color:#0f172a;padding:2px 7px;border-radius:6px;font-family:monospace;font-weight:900;}
+.uro-dates{display:flex;justify-content:space-between;font-size:0.7rem;color:var(--muted);}
+.p-meta{font-size:0.73rem;color:#cbd5e1;border-top:1px solid rgba(255,255,255,0.07);padding-top:6px;}
+.p-actions{display:flex;gap:7px;margin-top:2px;}
+.p-btn{flex:1;padding:8px 10px;border-radius:10px;border:none;font-weight:800;font-size:0.76rem;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:center;gap:5px;text-decoration:none;}
+.cam-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px;}
+nav.bottom-nav{background:#ffffff;border-top:1px solid #cbd5e1;display:flex;justify-content:space-around;padding:6px 0 calc(6px + env(safe-area-inset-bottom));flex-shrink:0;}
+.nav-btn{background:transparent;border:none;color:#64748b;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:0.68rem;font-weight:800;cursor:pointer;padding:4px 12px;}
+.nav-btn.active{color:var(--blue);}
+.nav-btn i{font-size:1.1rem;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.5;}}
+</style>
+</head>
+<body>
+<header class="uro-top">
+  <div class="brand">
+    <div class="uro-logo"><i class="fa-solid fa-microscope"></i></div>
+    <div>
+      <span class="brand-title">JCPATHLAB</span><span class="brand-dot" id="connDot"></span>
+    </div>
+  </div>
+  <button class="btn-install" id="btnInstallPwa" onclick="instalarAppMovil()">📲 Instalar App</button>
+</header>
+<div class="srv-bar">
+  <button class="srv-pill active" onclick="filtrarSrv('HE',this)"><i class="fa-solid fa-vial"></i> Serv. muestra HE (<span id="cntHE">0</span>)</button>
+  <button class="srv-pill" onclick="filtrarSrv('CITO',this)"><i class="fa-solid fa-microscope"></i> Serv. Citología (<span id="cntCito">0</span>)</button>
+  <button class="srv-pill" onclick="filtrarSrv('ALL',this)"><i class="fa-solid fa-layer-group"></i> Todos</button>
+</div>
+
+<main>
+  <!-- TAB 1: PACIENTES (VISTA PRINCIPAL IDENTICA A DOSSIER UROSUR PAGINA 2) -->
+  <section class="tab-view active" id="tabInformes">
+    <div class="search-bar">
+      <i class="fa-solid fa-magnifying-glass" style="color:var(--cyan);"></i>
+      <input type="text" id="searchInp" placeholder="Buscar paciente, código (26Q-281), DNI o médico..." oninput="filtrarInformesMovil(this.value)">
+    </div>
+    <div class="patient-list" id="patientList"></div>
+  </section>
+
+  <!-- TAB 2: CHAT DIRECTO CON CONSOLA COLMENA -->
+  <section class="tab-view" id="tabChat">
+    <div class="quick-chips">
+      <button class="chip" onclick="enviarComandoRapido('estado enjambre')">🏛️ Estado Enjambre 6 PCs</button>
+      <button class="chip" onclick="enviarComandoRapido('ejecuta anubis medicos')">🐺 Lanzar Anubis 15m</button>
+      <button class="chip" onclick="enviarComandoRapido('26Q-397')">📄 Ver 26Q-397</button>
+      <button class="chip" onclick="enviarComandoRapido('Dra. Sheyla')">👩‍⚕️ Casos Dra. Sheyla</button>
+    </div>
+    <div class="chat-box" id="chatBox">
+      <div class="msg bot">
+        <strong>👑 Consola Colmena Soberana conectada.</strong><br>
+        Dr. Castillo, puede hablarme por micrófono o escribir:<br>
+        • <em>"Crea el registro 26Q-405 con nombre Juan Perez DNI 12345678 biopsia de próstata Dr. Flores"</em><br>
+        • <em>"Estado enjambre"</em> (ver PCs y GPUs en vivo)<br>
+        • O cualquier código (ej. <em>26Q-397</em>), DNI o apellido de paciente.
+      </div>
+    </div>
+    <div class="chat-input-bar">
+      <button class="icon-btn btn-mic" id="btnMic" onclick="toggleDictadoVoz()" title="Hablar con Consola Colmena"><i class="fa-solid fa-microphone"></i></button>
+      <input type="text" id="chatInp" placeholder="Hable o escriba orden a Consola Colmena..." onkeydown="if(event.key==='Enter')enviarChatMovil()">
+      <button class="icon-btn btn-send" onclick="enviarChatMovil()"><i class="fa-solid fa-paper-plane"></i></button>
+    </div>
+  </section>
+
+  <!-- TAB 3: VISOR 360° & MAPEO 3D + CÁMARA LOCAL (DOSSIER PAGINAS 2 Y 7) -->
+  <section class="tab-view" id="tabCamara">
+    <div class="cam-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <strong style="color:var(--cyan);font-size:0.88rem;"><i class="fa-solid fa-cube"></i> Visor 360° • Mapeo 3D de Márgenes</strong>
+        <span id="badge360" style="background:var(--blue);color:#fff;padding:2px 8px;border-radius:99px;font-size:0.7rem;font-weight:800;">26Q-395</span>
+      </div>
+      <div style="height:190px;background:#090d16;border:1px solid #334155;border-radius:12px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+        <img id="img360" src="icon-512.png" onerror="this.src='icon-192.png'" style="max-height:86%;max-width:86%;transition:transform 0.08s linear;">
+        <button onclick="verPin3d(1)" style="position:absolute;top:56%;left:54%;width:24px;height:24px;border-radius:50%;background:#10b981;color:#fff;border:2px solid #fff;font-weight:900;font-size:0.7rem;cursor:pointer;">1</button>
+        <button onclick="verPin3d(2)" style="position:absolute;top:62%;left:32%;width:24px;height:24px;border-radius:50%;background:#ef4444;color:#fff;border:2px solid #fff;font-weight:900;font-size:0.7rem;cursor:pointer;">2</button>
+        <button onclick="verPin3d(3)" style="position:absolute;top:30%;left:45%;width:24px;height:24px;border-radius:50%;background:#38bdf8;color:#fff;border:2px solid #fff;font-weight:900;font-size:0.7rem;cursor:pointer;">3</button>
+      </div>
+      <input type="range" min="0" max="360" value="0" oninput="document.getElementById('img360').style.transform='perspective(600px) rotateY('+this.value+'deg)'" style="width:100%;accent-color:#38bdf8;">
+      <div id="pin3dInfo" style="background:#0b1120;padding:8px;border-radius:8px;font-size:0.74rem;color:#cbd5e1;"><strong style="color:#10b981;">PIN 1 • ÁPEX / MARGEN:</strong> Tinta china negra indemne en cápsula (Margen R0 libre &gt;3.2 mm).</div>
+    </div>
+    <div class="cam-card">
+      <strong style="color:var(--green);font-size:0.86rem;"><i class="fa-solid fa-camera"></i> Cámara IA Local (RapidOCR ONNX • 0 Llaves Gemini)</strong>
+      <input type="text" id="codMacroCam" placeholder="Código del caso (ej. 26Q-401)" style="background:#020617;border:1px solid var(--border);color:#fff;padding:8px;border-radius:8px;font-size:0.82rem;">
+      <div style="display:flex;gap:8px;">
+        <input type="file" id="fileOrdenCam" accept="image/*" capture="environment" style="display:none" onchange="subirFotoColmena(event,'orden')">
+        <button class="p-btn" style="background:#2563eb;padding:10px;" onclick="document.getElementById('fileOrdenCam').click()"><i class="fa-solid fa-id-card"></i> Orden + RENIEC</button>
+        <input type="file" id="fileMacroCam" accept="image/*" capture="environment" style="display:none" onchange="subirFotoColmena(event,'macro')">
+        <button class="p-btn" style="background:#10b981;padding:10px;" onclick="document.getElementById('fileMacroCam').click()"><i class="fa-solid fa-camera-retro"></i> Foto Macro</button>
+      </div>
+    </div>
+    <div id="camResultBox" class="cam-card" style="display:none;font-size:0.82rem;line-height:1.45;"></div>
+  </section>
+</main>
+
+<nav class="bottom-nav">
+  <button class="nav-btn" onclick="window.location.href='reportes.html'"><i class="fa-solid fa-house"></i><span>Inicio</span></button>
+  <button class="nav-btn active" id="navBtnPac" onclick="cambiarTab('tabInformes',this)"><i class="fa-solid fa-hospital-user"></i><span>Pacientes</span></button>
+  <button class="nav-btn" id="navBtn360" onclick="cambiarTab('tabCamara',this)"><i class="fa-solid fa-arrows-spin"></i><span>Visor 360°</span></button>
+  <button class="nav-btn" id="navBtnChat" onclick="cambiarTab('tabChat',this)"><i class="fa-solid fa-comments"></i><span>Consola IA</span></button>
+</nav>
+
+<script src="real_supabase_backup.js"></script>
+<script>
+const HOST_IP = window.location.hostname || '192.168.100.250';
+const API_5678 = (window.location.protocol === 'https:') ? 'http://192.168.100.250:5678' : `http://${HOST_IP}:5678`;
+const API_8010 = (window.location.protocol === 'https:') ? 'http://192.168.100.250:8010' : `http://${HOST_IP}:8010`;
+let deferredPrompt = null;
+
+window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; });
+function instalarAppMovil() {
+  if (deferredPrompt) { deferredPrompt.prompt(); }
+  else { alert('Para instalar en su celular: toque el menú de Chrome (⋮) o Safari (Compartir) y seleccione "Agregar a la pantalla principal" / "Instalar aplicación".'); }
+}
+
+function cambiarTab(tabId, btn) {
+  document.querySelectorAll('.tab-view').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  btn.classList.add('active');
+  if (tabId === 'tabInformes') filtrarInformesMovil(document.getElementById('searchInp').value);
+}
+
+function obtenerPacientes() {
+  return window.REAL_SUPABASE_PATIENTS || window.REAL_SUPABASE_BACKUP || window.patientDatabase || [];
+}
+
+function agregarMensaje(html, tipo='bot') {
+  const box = document.getElementById('chatBox');
+  const d = document.createElement('div');
+  d.className = 'msg ' + tipo;
+  d.innerHTML = html;
+  box.appendChild(d);
+  box.scrollTop = box.scrollHeight;
+}
+
+function hablarMovil(txt) {
+  if (!('speechSynthesis' in window)) return;
+  try {
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(String(txt).replace(/<[^>]+>/g,' ').replace(/[*#_]/g,''));
+    u.lang = 'es-PE'; u.rate = 0.98;
+    window.speechSynthesis.speak(u);
+  } catch(_) {}
+}
+
+function enviarComandoRapido(cmd) {
+  document.getElementById('chatInp').value = cmd;
+  enviarChatMovil();
+}
+
+async function enviarChatMovil() {
+  const inp = document.getElementById('chatInp');
+  const txt = (inp.value || '').trim();
+  if (!txt) return;
+  inp.value = '';
+  agregarMensaje(txt, 'user');
+
+  // 1. Verificar si es búsqueda rápida local de un código o paciente (0ms)
+  const esOrden = /(estado|enjambre|osiris|anubis|crea|nuevo|abre|descarga|explica|que|como)/i.test(txt);
+  if (!esOrden) {
+    const pts = obtenerPacientes();
+    const q = txt.toLowerCase();
+    const hits = pts.filter(p => p && ((String(p.codAtencion||'').toLowerCase().includes(q)) || (String(p.paciente||'').toLowerCase().includes(q)) || (String(p.dni||'') === q) || (String(p.medSolicitante||'').toLowerCase().includes(q)))).slice(0, 5);
+    if (hits.length > 0) {
+      let hHtml = `<strong>Encontré ${hits.length} caso(s):</strong><br>`;
+      hits.forEach(p => {
+        const c = p.codAtencion || p.cod_atencion || '';
+        const f = p.firmado || String(p.estado||'').toLowerCase().includes('listo');
+        hHtml += `<div style="margin-top:6px;padding:8px;background:#020617;border-radius:8px;border:1px solid #1e293b;">
+          <strong style="color:#38bdf8;">${c}</strong> • ${p.paciente || ''}<br>
+          <span style="font-size:0.74rem;color:#94a3b8;">${p.especimen || ''} | ${f ? '🟢 FIRMADO' : '🔴 EN PROCESO'}</span><br>
+          <a href="imprimir.html?codAtencion=${encodeURIComponent(c)}" target="_blank" style="color:#10b981;font-weight:700;font-size:0.76rem;text-decoration:none;">📄 Abrir PDF Oficial</a>
+        </div>`;
+      });
+      agregarMensaje(hHtml, 'bot');
+      hablarMovil(`Ubicados ${hits.length} casos en la base local.`);
+      return;
+    }
+  }
+
+  // 2. Consultar en vivo a Consola Colmena (Puerto 5678)
+  try {
+    const r = await fetch(`${API_5678}/webhook/chat-cortana`, {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ mensaje: txt, canal: 'APP_MOVIL_DR_CASTILLO' })
+    });
+    if (r.ok) {
+      const d = await r.json();
+      const resp = (d.respuesta || 'Orden procesada por Consola Colmena.').replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/
+/g, '<br>');
+      agregarMensaje(resp, 'bot');
+      hablarMovil(d.respuesta || 'Listo doctor.');
+      if (d.accion && d.accion.tipo === 'CREAR_REGISTRO' && d.accion.datos) {
+        const pts = obtenerPacientes();
+        pts.unshift(d.accion.datos);
+        await fetch(`${API_5678}/webhook/guardar-paciente`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(d.accion.datos) });
+      }
+      return;
+    }
+  } catch (e) {}
+  agregarMensaje('Consola Colmena en PC1 no alcanzada por Wi-Fi. Verifique estar en la red 192.168.100.x.', 'bot');
+}
+
+function toggleDictadoVoz() {
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) { alert('Su navegador móvil no soporta dictado directo.'); return; }
+  const btn = document.getElementById('btnMic');
+  const rec = new SR();
+  rec.lang = 'es-PE';
+  btn.classList.add('listening');
+  rec.onresult = (e) => {
+    const t = e.results[0][0].transcript;
+    document.getElementById('chatInp').value = t;
+    enviarChatMovil();
+  };
+  rec.onend = () => btn.classList.remove('listening');
+  rec.start();
+}
+
+let srvMode = 'HE';
+function esCito(p) {
+  const c = String(p.codAtencion || '').toUpperCase();
+  const e = String(p.especimen || '').toUpperCase();
+  return c.includes('C-') || e.includes('PAP') || e.includes('CITOLOG') || e.includes('BAAF');
+}
+function filtrarSrv(m, btn) {
+  srvMode = m;
+  document.querySelectorAll('.srv-pill').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  filtrarInformesMovil(document.getElementById('searchInp').value);
+}
+function abrir360(cod, imgUri) {
+  document.getElementById('badge360').textContent = cod;
+  document.getElementById('codMacroCam').value = cod;
+  if (imgUri && imgUri.length > 12) document.getElementById('img360').src = imgUri;
+  cambiarTab('tabCamara', document.getElementById('navBtn360'));
+}
+function verPin3d(n) {
+  const m = {
+    1: '<strong style="color:#10b981;">PIN 1 • ÁPEX / MARGEN:</strong> Tinta china negra indemne en cápsula (Margen R0 libre &gt;3.2 mm). Casete B-02.',
+    2: '<strong style="color:#ef4444;">PIN 2 • NÓDULO DOMINANTE:</strong> Zona periférica (1.8 x 1.4 cm). Patrón acinar/cribiforme 40x con conteo mitótico 0-1/10 HPF.',
+    3: '<strong style="color:#38bdf8;">PIN 3 • CUELLO VESICAL:</strong> Margen basal R0 libre (4.8 mm). Muscular propia sin invasión. Casete C-01.'
+  };
+  document.getElementById('pin3dInfo').innerHTML = m[n] || m[1];
+}
+function filtrarInformesMovil(qRaw='') {
+  const list = document.getElementById('patientList');
+  const pts = obtenerPacientes();
+  let nH = 0, nC = 0;
+  pts.forEach(p => { if (p) { if (esCito(p)) nC++; else nH++; } });
+  const elH = document.getElementById('cntHE'); if (elH) elH.textContent = nH;
+  const elC = document.getElementById('cntCito'); if (elC) elC.textContent = nC;
+  const q = (qRaw || '').toLowerCase().trim();
+  const res = pts.filter(p => {
+    if (!p) return false;
+    if (srvMode === 'HE' && esCito(p)) return false;
+    if (srvMode === 'CITO' && !esCito(p)) return false;
+    if (!q) return true;
+    return (String(p.codAtencion||'') + ' ' + String(p.paciente||'') + ' ' + String(p.dni||'') + ' ' + String(p.medSolicitante||'')).toLowerCase().includes(q);
+  }).slice(0, 35);
+  list.innerHTML = res.map(p => {
+    const c = p.codAtencion || p.cod_atencion || '---';
+    const nom = p.paciente || ((p.apellidos||'') + ', ' + (p.nombres||'')).replace(/^,\s*/,'') || '---';
+    const edad = p.edad ? `(${String(p.edad).replace(/años/i,'').trim()} años)` : '';
+    const isF = p.firmado || String(p.estado||'').toLowerCase().includes('listo') || String(p.estado||'').toLowerCase().includes('complet');
+    const esp = (p.especimen || 'Biopsia Quirúrgica').slice(0, 25);
+    const fIng = p.fIngreso || 'Recibido';
+    const fEnt = p.fEntrega || '48-72h';
+    const med = p.medSolicitante || 'Dr. Solicitante';
+    const clin = p.clinica || 'Sede Central';
+    const imgU = (p.img01 || '').replace(/'/g, '');
+    const waMsg = encodeURIComponent(`*JC PATH LAB - DR. JOSÉ CASTILLO*
+Informe *${c}* (${nom}) listo para entrega.`);
+    return `<div class="p-card">
+      <div class="p-top"><div class="p-name">${nom}<span class="p-age">${edad}</span></div><span class="p-status ${isF?'ok':'pend'}"><i class="fa-solid ${isF?'fa-circle-check':'fa-clock'}"></i> ${isF?'Listo para Imprimir':'En Proceso'}</span></div>
+      <div class="uro-pill-white"><span><i class="fa-solid fa-microscope" style="color:#2563eb;"></i> ${esp}</span><span class="uro-id-tag"><i class="fa-solid fa-barcode"></i> ID: ${c}</span></div>
+      <div class="uro-dates"><span><i class="fa-regular fa-calendar"></i> Ingreso: ${fIng}</span><span><i class="fa-regular fa-calendar-check"></i> Entrega: ${fEnt}</span></div>
+      <div class="p-meta"><strong style="font-size:0.65rem;color:#64748b;display:block;text-transform:uppercase;">👤 Médico / Sede</strong>${med} • ${clin}</div>
+      <div class="p-actions">
+        <a class="p-btn" style="background:#10b981;flex:1.4;" href="imprimir.html?codAtencion=${encodeURIComponent(c)}" target="_blank"><i class="fa-regular fa-file-lines"></i> Ver Informe</a>
+        <button class="p-btn" style="background:#1e293b;border:1px solid #334155;flex:1;" onclick="abrir360('${c}','${imgU}')"><i class="fa-solid fa-cube"></i> 360°</button>
+        <a class="p-btn" style="background:#1e293b;border:1px solid #334155;flex:0.4;color:#34d399;" href="https://wa.me/?text=${waMsg}" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+async function subirFotoColmena(ev, modo) {
+  const file = ev.target.files[0];
+  if (!file) return;
+  const box = document.getElementById('camResultBox');
+  box.style.display = 'flex';
+  box.innerHTML = '⚡ Enviando imagen a Consola Colmena (Motor Local)...';
+  const b64 = await new Promise(res => { const r = new FileReader(); r.onload = () => res(r.result); r.readAsDataURL(file); });
+  try {
+    if (modo === 'orden') {
+      const r = await fetch(`${API_8010}/webhook/analizar-orden-imagen`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({imagen_base64:b64}) });
+      const d = await r.json();
+      const dt = d.datos || {};
+      box.innerHTML = `<strong>✅ Orden Analizada + RENIEC:</strong><br>DNI: ${dt.dni||'--'}<br>Paciente: ${dt.apellidos||''}, ${dt.nombres||''}<br>Médico: ${dt.medico_solicitante||'--'}<br>Muestra: ${dt.especimen||'--'}`;
+    } else {
+      const cod = document.getElementById('codMacroCam').value || 'Pieza Quirúrgica';
+      const r = await fetch(`${API_8010}/api/cortana/analizar-macroscopia`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({imagen_base64:b64, especimen:cod}) });
+      const d = await r.json();
+      box.innerHTML = `<strong>✅ Macroscopía Lester/CAP (${cod}):</strong><br>${d.redaccion || 'Procesada.'}`;
+    }
+  } catch (e) {
+    box.innerHTML = '⚠️ Error conectando con Puerto 8010 de Consola Colmena.';
+  }
+}
+
+filtrarInformesMovil('');
+</script>
+</body>
+</html>
