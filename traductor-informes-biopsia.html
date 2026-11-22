@@ -105,6 +105,51 @@
             </div>
         </div>
 
+        <!-- MOTOR INTERACTIVO B2C 24/7: TRADUCTOR DE INFORMES DE BIOPSIA + EMBUDO WHATSAPP -->
+        <div class="glass-panel rounded-2xl p-6 sm:p-8 mb-12 border border-cyan-500/40 shadow-2xl" data-aos="fade-up">
+            <label for="txtBiopsiaPaciente" class="block text-sm font-extrabold text-cyan-400 uppercase tracking-wider mb-2">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Escriba o pegue aquí la conclusión o diagnóstico de su biopsia:
+            </label>
+            <div class="flex flex-col sm:flex-row gap-3">
+                <input id="txtBiopsiaPaciente" type="text" placeholder="Ej: Metaplasia intestinal, LIE de alto grado, Gleason 3+4, HGPIN, Ki-67, Bethesda IV..." class="flex-1 rounded-xl bg-slate-900/90 border border-slate-700 px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-400">
+                <button type="button" onclick="window.traducirBiopsiaEnVivo()" class="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 font-extrabold text-white text-xs uppercase tracking-wider shadow-lg hover:scale-105 transition-all">
+                    <i class="fa-solid fa-magnifying-glass-chart"></i> Explicar mi Resultado
+                </button>
+            </div>
+            <div id="boxResultadoTraductor" class="hidden mt-5 p-5 rounded-xl bg-slate-900/95 border border-emerald-500/40 text-slate-200 text-xs sm:text-sm leading-relaxed"></div>
+        </div>
+        <script>
+        window.traducirBiopsiaEnVivo = async function() {
+            const inp = document.getElementById('txtBiopsiaPaciente');
+            const box = document.getElementById('boxResultadoTraductor');
+            const q = (inp ? inp.value : '').trim();
+            if (!q || !box) return;
+            box.classList.remove('hidden');
+            box.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-cyan-400"></i> Analizando terminología anatomopatológica...';
+            const ql = q.toLowerCase();
+            const DICC = [
+                { k: ['metaplasia', 'helicobacter', 'gastritis', 'sydney', 'atrofia'], t: 'Hallazgo Gástrico / Endoscópico', d: 'Indica adaptación o inflamación de la mucosa del estómago (frecuentemente asociada a Helicobacter pylori). No equivale a cáncer invasor, pero si es metaplasia incompleta o con displasia requiere control endoscópico y tipificación precisa.' },
+                { k: ['gleason', 'isup', 'hgpin', 'asap', 'prostat', 'adenocarcinoma acinar'], t: 'Hallazgo Urológico / Prostático', d: 'En biopsias de próstata, HGPIN y ASAP son lesiones precursoras o sospechosas que a menudo requieren Inmunohistoquímica (p63, AMACR/P504S, CK34betaE12) para confirmar o descartar carcinoma con certeza absoluta.' },
+                { k: ['nic', 'lie', 'cin', 'displasia', 'vph', 'koilocit', 'cervix', 'cérvix', 'papanicolaou', 'asc-us', 'hsil', 'lsil'], t: 'Hallazgo Ginecológico / Cervical', d: 'Corresponde a cambios celulares en el cuello uterino asociados frecuentemente a VPH. La marcación inmunohistoquímica dual con p16 y Ki-67 permite definir con exactitud el grado real de la lesión y evitar cirugías innecesarias.' },
+                { k: ['bethesda', 'tiroides', 'papilar', 'folicular'], t: 'Citología / Biopsia Tiroidea (Sistema Bethesda)', d: 'El sistema Bethesda clasifica los nódulos tiroideos del I al VI. Los grados III y IV (indeterminados) se benefician enormemente de una Segunda Opinión Experta por citopatólogo para decidir entre seguimiento o cirugía.' },
+                { k: ['inmunohistoquimica', 'ki-67', 'ki67', 'her2', 'estrogeno', 'progesterona', 'cd20', 'cd3', 'linfoma', 'sarcoma', 'carcinoma'], t: 'Estudio Oncológico / Inmunohistoquímica', d: 'Los marcadores de Inmunohistoquímica definen el linaje exacto del tumor y su tratamiento dirigido. En JC PATH LAB realizamos paneles completos con entrega en 48-72 horas.' }
+            ];
+            let hit = DICC.find(x => x.k.some(w => ql.includes(w)));
+            let expTxt = hit ? `<strong>${hit.t}:</strong> ${hit.d}` : `<strong>Orientación Anatomopatológica (${q.toUpperCase()}):</strong> Este término describe características microscópicas del tejido evaluado. Para confirmar el diagnóstico definitivo o definir si requiere marcadores de Inmunohistoquímica, se recomienda la revisión directa de las láminas histológicas y bloques de parafina.`;
+            try {
+                const r = await fetch('http://127.0.0.1:8010/webhook/chat-cortana', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ mensaje: 'Explica en 3 lineas sencillas para un paciente que significa este resultado de biopsia y recomienda segunda opinion con el Dr. Jose Castillo: ' + q })
+                });
+                if (r.ok) {
+                    const d = await r.json();
+                    if (d && d.respuesta) expTxt = `<strong>Explicación Médica Clave:</strong> ${d.respuesta}`;
+                }
+            } catch (_) {}
+            const waUrl = 'https://wa.me/51986396733?text=' + encodeURIComponent('Hola Dr. José Castillo, consulté en su web el resultado de mi biopsia (' + q + ') y deseo solicitar una Segunda Opinión / Revisión de Láminas.');
+            box.innerHTML = `<div class="mb-3">${expTxt}</div><div class="pt-3 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3"><span class="text-[11px] text-slate-400">¿Desea que el Dr. Joseph C. Castillo Cuenca (CMP 56435 / RNE 029291) revise sus láminas o tacos de parafina?</span><a href="${waUrl}" target="_blank" class="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs inline-flex items-center gap-1.5"><i class="fa-brands fa-whatsapp"></i> Solicitar Segunda Opinión por WhatsApp</a></div>`;
+        };
+        </script>
         <!-- Glosario Explicativo de los 6 Términos Más Buscados en Perú -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16" data-aos="fade-up">
             <div class="glass-panel rounded-2xl p-6">

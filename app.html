@@ -1,1671 +1,366 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>JC PATH LAB - Aplicativo Móvil Quirúrgico</title>
-  <!-- Google Fonts: Inter & JetBrains Mono -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
-  <!-- FontAwesome 6 Pro CDN -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Base de datos Soberana de 1,185 Pacientes (100% Offline) -->
-  <script src="pacientes_data.js"></script>
-
-  <style>
-    :root {
-      --bg-dark: #050b18;
-      --card-bg: rgba(15, 23, 42, 0.85);
-      --card-border: rgba(56, 189, 248, 0.22);
-      --accent-cyan: #38bdf8;
-      --accent-blue: #0284c7;
-      --accent-green: #10b981;
-      --accent-amber: #f59e0b;
-      --accent-purple: #a855f7;
-      --text-muted: #94a3b8;
-      --text-dim: #64748b;
-      --nav-bg: #090e1a;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      -webkit-tap-highlight-color: transparent;
-      user-select: none;
-    }
-
-    body {
-      background-color: #020617;
-      color: #f8fafc;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0;
-      overflow-x: hidden;
-    }
-
-    /* FRAME DEL SMARTPHONE */
-    .mobile-frame-wrapper {
-      width: 100%;
-      max-width: 440px;
-      height: 100vh;
-      max-height: 940px;
-      background: var(--bg-dark);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 40px rgba(56, 189, 248, 0.15);
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    @media (max-width: 480px) {
-      .mobile-frame-wrapper {
-        max-width: 100%;
-        height: 100vh;
-        max-height: 100vh;
-        border: none;
-        border-radius: 0;
-      }
-      .status-bar {
-        display: none !important;
-      }
-    }
-
-    /* STATUS BAR SUPERIOR */
-    .status-bar {
-      height: 38px;
-      padding: 0 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.76rem;
-      font-weight: 700;
-      color: #cbd5e1;
-      background: rgba(5, 11, 24, 0.95);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      z-index: 40;
-    }
-
-    .status-bar-icons {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 0.72rem;
-    }
-
-    /* HEADER DE LA APP */
-    .app-header {
-      padding: 10px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(10, 18, 36, 0.95);
-      border-bottom: 1px solid rgba(56, 189, 248, 0.2);
-      z-index: 30;
-      backdrop-filter: blur(8px);
-    }
-
-    .brand-group {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .brand-logo-badge {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    .brand-logo-text {
-      font-size: 1.05rem;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      background: linear-gradient(135deg, #ffffff 30%, #38bdf8 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .live-dot-pulse {
-      width: 7px;
-      height: 7px;
-      background-color: var(--accent-green);
-      border-radius: 50%;
-      box-shadow: 0 0 8px var(--accent-green);
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-      70% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-    }
-
-    .header-actions {
-      display: flex;
-      gap: 8px;
-    }
-
-    .header-btn {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #94a3b8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .header-btn:hover, .header-btn:active {
-      color: var(--accent-cyan);
-      border-color: var(--accent-cyan);
-      background: rgba(56, 189, 248, 0.1);
-    }
-
-    /* BANNER RBAC / SESIÓN */
-    .rbac-session-banner {
-      background: linear-gradient(90deg, rgba(2, 132, 199, 0.15) 0%, rgba(15, 23, 42, 0.7) 100%);
-      border-bottom: 1px solid rgba(56, 189, 248, 0.15);
-      padding: 6px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.74rem;
-    }
-
-    .session-info {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      overflow: hidden;
-    }
-
-    .role-badge {
-      font-size: 0.62rem;
-      font-weight: 800;
-      padding: 2px 7px;
-      border-radius: 6px;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .role-admin {
-      background: linear-gradient(135deg, #f59e0b, #d97706);
-      color: #000;
-      box-shadow: 0 0 10px rgba(245, 158, 11, 0.35);
-    }
-
-    .role-doctor {
-      background: linear-gradient(135deg, #0284c7, #2563eb);
-      color: #fff;
-    }
-
-    .session-user-name {
-      color: #e2e8f0;
-      font-weight: 700;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .btn-switch-user {
-      background: rgba(56, 189, 248, 0.12);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      color: var(--accent-cyan);
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 3px 9px;
-      border-radius: 8px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      transition: background 0.2s;
-      white-space: nowrap;
-    }
-
-    /* SEGMENTED CONTROL / TABS SUPERIORES */
-    .services-segment-wrapper {
-      padding: 10px 14px 6px 14px;
-      display: flex;
-      gap: 8px;
-      background: rgba(5, 11, 24, 0.85);
-    }
-
-    .service-segment-tab {
-      flex: 1;
-      padding: 9px 8px;
-      border-radius: 12px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      cursor: pointer;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      background: rgba(15, 23, 42, 0.7);
-      color: #94a3b8;
-    }
-
-    .service-segment-tab.active {
-      background: linear-gradient(135deg, rgba(2, 132, 199, 0.35) 0%, rgba(14, 165, 233, 0.15) 100%);
-      border-color: var(--accent-cyan);
-      color: #ffffff;
-      box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
-    }
-
-    .service-segment-tab .tab-count {
-      font-size: 0.7rem;
-      padding: 1px 6px;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.1);
-      color: #cbd5e1;
-    }
-
-    .service-segment-tab.active .tab-count {
-      background: rgba(56, 189, 248, 0.3);
-      color: #38bdf8;
-      font-weight: 800;
-    }
-
-    /* BARRA DE BÚSQUEDA INSTANTÁNEA */
-    .search-bar-wrapper {
-      padding: 6px 14px 8px 14px;
-      background: rgba(5, 11, 24, 0.85);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .search-input-box {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      border-radius: 12px;
-      padding: 7px 12px;
-      transition: all 0.2s;
-    }
-
-    .search-input-box:focus-within {
-      border-color: var(--accent-cyan);
-      box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
-    }
-
-    .search-input-box i {
-      color: #94a3b8;
-      font-size: 0.82rem;
-    }
-
-    .search-input-box input {
-      flex: 1;
-      background: transparent;
-      border: none;
-      outline: none;
-      color: #ffffff;
-      font-size: 0.8rem;
-      font-family: inherit;
-    }
-
-    .search-input-box input::placeholder {
-      color: #64748b;
-      font-size: 0.76rem;
-    }
-
-    .btn-clear-search {
-      background: transparent;
-      border: none;
-      color: #64748b;
-      cursor: pointer;
-      font-size: 0.8rem;
-      padding: 2px 4px;
-      display: none;
-    }
-
-    .records-counter-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 6px;
-      font-size: 0.68rem;
-      color: #94a3b8;
-    }
-
-    .badge-db-soberana {
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid rgba(16, 185, 129, 0.35);
-      color: #34d399;
-      padding: 2px 6px;
-      border-radius: 6px;
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    /* CONTENEDOR DE TARJETAS (SCROLL) */
-    .content-scroll-area {
-      flex: 1;
-      overflow-y: auto;
-      padding: 10px 14px 80px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .content-scroll-area::-webkit-scrollbar {
-      width: 4px;
-    }
-    .content-scroll-area::-webkit-scrollbar-thumb {
-      background: rgba(56, 189, 248, 0.25);
-      border-radius: 4px;
-    }
-
-    /* TARJETA DE PACIENTE (CLON 1:1) */
-    .patient-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 9px;
-      position: relative;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-      transition: transform 0.2s, border-color 0.2s;
-    }
-
-    .patient-card:hover {
-      border-color: rgba(56, 189, 248, 0.45);
-    }
-
-    .card-top-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 8px;
-    }
-
-    .patient-name-block {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .patient-full-name {
-      font-size: 0.88rem;
-      font-weight: 800;
-      color: #ffffff;
-      line-height: 1.25;
-    }
-
-    .patient-age-label {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    .ready-badge {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid rgba(16, 185, 129, 0.4);
-      color: #34d399;
-      font-size: 0.65rem;
-      font-weight: 700;
-      padding: 3px 7px;
-      border-radius: 8px;
-      white-space: nowrap;
-    }
-
-    /* FILA DE PASTILLAS (PILLS) */
-    .pills-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      align-items: center;
-    }
-
-    .procedure-pill {
-      background: rgba(2, 132, 199, 0.18);
-      border: 1px solid rgba(56, 189, 248, 0.4);
-      color: #7dd3fc;
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 8px;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .id-sample-pill {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #94a3b8;
-      font-size: 0.68rem;
-      font-family: 'JetBrains Mono', monospace;
-      padding: 3px 7px;
-      border-radius: 8px;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    /* FILA DE FECHAS */
-    .dates-grid-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(0, 0, 0, 0.35);
-      border-radius: 8px;
-      padding: 5px 10px;
-      font-size: 0.7rem;
-      color: #94a3b8;
-    }
-
-    .date-item {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .date-dot-green {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent-green);
-    }
-
-    /* FILA DE MÉDICO Y SEDE */
-    .doctor-sede-row {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.7rem;
-      color: #cbd5e1;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .doctor-sede-row i {
-      color: var(--accent-cyan);
-      font-size: 0.74rem;
-    }
-
-    /* FILA DE BOTONES DE ACCIÓN */
-    .card-actions-row {
-      display: flex;
-      gap: 7px;
-      margin-top: 3px;
-    }
-
-    .btn-ver-informe {
-      flex: 1;
-      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-      color: #ffffff;
-      border: 1px solid rgba(56, 189, 248, 0.4);
-      font-weight: 700;
-      font-size: 0.75rem;
-      padding: 8px 12px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
-      transition: all 0.2s;
-    }
-
-    .btn-ver-informe:active {
-      transform: scale(0.97);
-    }
-
-    .btn-action-360 {
-      background: rgba(56, 189, 248, 0.12);
-      border: 1px solid rgba(56, 189, 248, 0.35);
-      color: var(--accent-cyan);
-      padding: 8px 11px;
-      border-radius: 10px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .btn-action-more {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #94a3b8;
-      width: 34px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 0.8rem;
-    }
-
-    /* BOTÓN CARGAR MÁS INFORMES */
-    .load-more-container {
-      padding: 8px 0 16px 0;
-      text-align: center;
-    }
-
-    .btn-load-more {
-      width: 100%;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px dashed rgba(56, 189, 248, 0.4);
-      color: var(--accent-cyan);
-      font-size: 0.78rem;
-      font-weight: 700;
-      padding: 10px;
-      border-radius: 12px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: all 0.2s;
-    }
-
-    .btn-load-more:hover {
-      background: rgba(56, 189, 248, 0.15);
-      border-style: solid;
-    }
-
-    /* BARRA INFERIOR DE NAVEGACIÓN */
-    .bottom-nav-bar {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 62px;
-      background: rgba(9, 14, 26, 0.98);
-      border-top: 1px solid rgba(56, 189, 248, 0.2);
-      backdrop-filter: blur(12px);
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      padding: 0 8px;
-      z-index: 50;
-    }
-
-    .nav-bar-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 3px;
-      color: #64748b;
-      font-size: 0.65rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: color 0.2s;
-    }
-
-    .nav-bar-item i {
-      font-size: 1.05rem;
-    }
-
-    .nav-bar-item.active {
-      color: var(--accent-cyan);
-    }
-
-    .center-nav-360-btn {
-      width: 44px;
-      height: 44px;
-      background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      font-size: 1.15rem;
-      box-shadow: 0 0 16px rgba(56, 189, 248, 0.5);
-      border: 2px solid #050b18;
-      cursor: pointer;
-      transform: translateY(-8px);
-    }
-
-    /* MODALES */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(4, 8, 16, 0.85);
-      backdrop-filter: blur(10px);
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-    }
-
-    .modal-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .modal-card {
-      width: 100%;
-      max-width: 420px;
-      max-height: 85vh;
-      background: #0b1329;
-      border: 1px solid rgba(56, 189, 248, 0.4);
-      border-radius: 20px;
-      overflow-y: auto;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .modal-header {
-      padding: 14px 18px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      background: #0b1329;
-      z-index: 10;
-    }
-
-    .modal-title {
-      font-size: 0.92rem;
-      font-weight: 800;
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    .btn-close-modal {
-      background: transparent;
-      border: none;
-      color: #94a3b8;
-      font-size: 1.25rem;
-      cursor: pointer;
-    }
-
-    .modal-body {
-      padding: 16px 18px;
-    }
-
-    /* VISOR 360 */
-    .viewport-360 {
-      width: 100%;
-      height: 220px;
-      background: radial-gradient(circle at center, #0f1d38 0%, #060b18 100%);
-      border-radius: 14px;
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      touch-action: none;
-      cursor: grab;
-      overflow: hidden;
-    }
-
-    .sphere-360-specimen {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, #cbd5e1 0%, #64748b 45%, #1e293b 80%, #0f172a 100%);
-      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.9), 0 0 25px rgba(56, 189, 248, 0.35);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    .sphere-specimen-grid {
-      position: absolute;
-      inset: 6px;
-      border-radius: 50%;
-      border: 1px dashed rgba(255, 255, 255, 0.35);
-    }
-
-    .specimen-tag-360 {
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid #38bdf8;
-      color: #ffffff;
-      font-size: 0.72rem;
-      font-weight: 800;
-      padding: 3px 10px;
-      border-radius: 6px;
-    }
-
-    .hud-rotation-angle {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: rgba(0, 0, 0, 0.6);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      padding: 3px 8px;
-      border-radius: 20px;
-      font-size: 0.68rem;
-      font-family: 'JetBrains Mono', monospace;
-      color: #38bdf8;
-    }
-
-    .empty-state-card {
-      text-align: center;
-      padding: 40px 20px;
-      color: #94a3b8;
-    }
-
-    .empty-state-card i {
-      font-size: 2.6rem;
-      color: #64748b;
-      margin-bottom: 12px;
-    }
-
-    /* SELECTOR DE MÉDICOS (DESPLEGABLE / BUSCADOR) */
-    .doctor-search-box {
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      border-radius: 10px;
-      padding: 6px 10px;
-    }
-
-    .doctor-search-box input {
-      background: transparent;
-      border: none;
-      outline: none;
-      color: #fff;
-      font-size: 0.78rem;
-      width: 100%;
-    }
-
-    .doctors-list-scroll {
-      max-height: 280px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-  
-    /* VISOR PDF CLÍNICO DIRECTO */
-    .pdf-viewer-overlay {
-      position: fixed;
-      inset: 0;
-      background: #0f172a;
-      z-index: 200;
-      display: none;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    .pdf-viewer-overlay.active {
-      display: flex;
-    }
-
-    .pdf-toolbar {
-      height: 52px;
-      background: #090e1a;
-      border-bottom: 1px solid rgba(56, 189, 248, 0.3);
-      padding: 0 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: #fff;
-      font-size: 0.85rem;
-      font-weight: 700;
-      z-index: 10;
-      gap: 6px;
-    }
-
-    #pdfToolbarTitle {
-      display: inline-block;
-      max-width: 110px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      font-size: 0.78rem;
-    }
-
-    .pdf-toolbar-actions {
-      display: flex;
-      gap: 5px;
-      align-items: center;
-      flex-shrink: 0;
-    }
-
-    .btn-pdf-action {
-      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-      color: #fff;
-      border: 1px solid rgba(56, 189, 248, 0.4);
-      padding: 6px 9px;
-      border-radius: 8px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      white-space: nowrap;
-    }
-
-    .btn-pdf-close {
-      background: rgba(255, 255, 255, 0.08);
-      color: #94a3b8;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 6px 10px;
-      border-radius: 8px;
-      font-size: 0.8rem;
-      cursor: pointer;
-    }
-
-    .pdf-paper-container {
-      flex: 1;
-      overflow-y: auto;
-      background: #334155;
-      padding: 16px 10px 40px 10px;
-      display: flex;
-      justify-content: center;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .pdf-page-sheet {
-      width: 100%;
-      max-width: 580px;
-      background: #ffffff;
-      color: #0f172a;
-      padding: 24px 20px;
-      border-radius: 6px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      font-family: Arial, sans-serif;
-      font-size: 11px;
-      line-height: 1.4;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0f172a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>JC PATH LAB • Consola Colmena Móvil</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="css/all.min.css">
+<style>
+:root{--bg:#0b1120;--card:#151f32;--border:#263554;--cyan:#38bdf8;--green:#10b981;--blue:#2563eb;--text:#f8fafc;--muted:#94a3b8;}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);height:100dvh;display:flex;flex-direction:column;overflow:hidden;}
+header.uro-top{background:#ffffff;color:#0f172a;border-bottom:1px solid #cbd5e1;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,0.12);}
+.brand{display:flex;align-items:center;gap:9px;}
+.uro-logo{width:30px;height:30px;border-radius:50%;border:2px solid #f59e0b;background:#fffbeb;color:#0284c7;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.85rem;}
+.brand-title{font-weight:900;font-size:0.95rem;color:#0284c7;letter-spacing:0.3px;}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;margin-left:5px;box-shadow:0 0 6px var(--green);}
+.btn-install{background:linear-gradient(135deg,#2563eb,#0284c7);color:#fff;border:none;padding:6px 11px;border-radius:8px;font-weight:800;font-size:0.72rem;cursor:pointer;}
+.srv-bar{background:#f1f5f9;padding:8px 12px;display:flex;gap:8px;overflow-x:auto;border-bottom:1px solid #cbd5e1;flex-shrink:0;}
+.srv-pill{background:#ffffff;color:#475569;border:1px solid #cbd5e1;padding:6px 12px;border-radius:999px;font-size:0.72rem;font-weight:800;white-space:nowrap;cursor:pointer;display:flex;align-items:center;gap:5px;}
+.srv-pill.active{background:var(--blue);color:#fff;border-color:#1d4ed8;box-shadow:0 2px 8px rgba(37,99,235,0.3);}
+main{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:10px;}
+.tab-view{display:none;flex-direction:column;height:100%;gap:10px;}
+.tab-view.active{display:flex;}
+.chat-box{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding-bottom:8px;}
+.msg{max-width:88%;padding:10px 13px;border-radius:14px;font-size:0.86rem;line-height:1.42;word-break:break-word;}
+.msg.bot{background:var(--card);border:1px solid var(--border);align-self:flex-start;border-bottom-left-radius:4px;}
+.msg.user{background:linear-gradient(135deg,#0284c7,#2563eb);color:#fff;align-self:flex-end;border-bottom-right-radius:4px;}
+.quick-chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;flex-shrink:0;}
+.chip{background:var(--card);border:1px solid rgba(56,189,248,0.35);color:var(--cyan);padding:6px 10px;border-radius:999px;font-size:0.72rem;font-weight:700;white-space:nowrap;cursor:pointer;}
+.chat-input-bar{display:flex;gap:6px;background:var(--card);border:1px solid var(--border);padding:8px;border-radius:14px;align-items:center;flex-shrink:0;}
+.chat-input-bar input{flex:1;background:transparent;border:none;color:#fff;font-size:0.9rem;outline:none;}
+.icon-btn{width:40px;height:40px;border-radius:10px;border:none;display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer;color:#fff;flex-shrink:0;}
+.btn-mic{background:#334155;}
+.btn-mic.listening{background:#ef4444;animation:pulse 1s infinite;}
+.btn-send{background:var(--green);color:#020617;font-weight:900;}
+.search-bar{display:flex;gap:6px;background:var(--card);border:1px solid var(--border);padding:8px 12px;border-radius:12px;align-items:center;}
+.search-bar input{flex:1;background:transparent;border:none;color:#fff;font-size:0.88rem;outline:none;}
+.patient-list{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:11px;}
+.p-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:13px;display:flex;flex-direction:column;gap:9px;box-shadow:0 6px 18px rgba(0,0,0,0.32);}
+.p-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
+.p-name{font-weight:800;font-size:0.94rem;color:#fff;line-height:1.25;}
+.p-age{font-weight:500;font-size:0.78rem;color:var(--muted);margin-left:4px;}
+.p-status{font-size:0.68rem;font-weight:800;padding:4px 9px;border-radius:99px;white-space:nowrap;}
+.p-status.ok{background:rgba(16,185,129,0.18);color:#34d399;border:1px solid rgba(16,185,129,0.4);}
+.p-status.pend{background:rgba(245,158,11,0.18);color:#fbbf24;border:1px solid rgba(245,158,11,0.4);}
+.uro-pill-white{background:#f8fafc;color:#0f172a;border-radius:10px;padding:7px 10px;display:flex;justify-content:space-between;align-items:center;font-size:0.76rem;font-weight:800;}
+.uro-id-tag{background:#e2e8f0;color:#0f172a;padding:2px 7px;border-radius:6px;font-family:monospace;font-weight:900;}
+.uro-dates{display:flex;justify-content:space-between;font-size:0.7rem;color:var(--muted);}
+.p-meta{font-size:0.73rem;color:#cbd5e1;border-top:1px solid rgba(255,255,255,0.07);padding-top:6px;}
+.p-actions{display:flex;gap:7px;margin-top:2px;}
+.p-btn{flex:1;padding:8px 10px;border-radius:10px;border:none;font-weight:800;font-size:0.76rem;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:center;gap:5px;text-decoration:none;}
+.cam-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px;}
+nav.bottom-nav{background:#ffffff;border-top:1px solid #cbd5e1;display:flex;justify-content:space-around;padding:6px 0 calc(6px + env(safe-area-inset-bottom));flex-shrink:0;}
+.nav-btn{background:transparent;border:none;color:#64748b;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:0.68rem;font-weight:800;cursor:pointer;padding:4px 12px;}
+.nav-btn.active{color:var(--blue);}
+.nav-btn i{font-size:1.1rem;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.5;}}
+</style>
 </head>
 <body>
-
-  <!-- FRAME DEL SMARTPHONE -->
-  <div class="mobile-frame-wrapper">
-    
-    <!-- STATUS BAR -->
-    <div class="status-bar">
-      <span>1:17</span>
-      <div class="status-bar-icons">
-        <i class="fa-solid fa-wifi"></i>
-        <i class="fa-solid fa-signal"></i>
-        <span>95%</span>
-        <i class="fa-solid fa-battery-three-quarters"></i>
-      </div>
-    </div>
-
-    <!-- HEADER DE LA APP -->
-    <header class="app-header">
-      <div class="brand-group">
-        <div class="brand-logo-badge">
-          <span class="brand-logo-text"><i class="fa-solid fa-microscope" style="color: #38bdf8;"></i> JCPATHLAB</span>
-          <div class="live-dot-pulse" title="Sistema Soberano En Línea"></div>
-        </div>
-      </div>
-      <div class="header-actions">
-        <button class="header-btn" id="btnSwitchUser" title="Cambiar Médico / Administrador">
-          <i class="fa-solid fa-user-doctor"></i>
-        </button>
-        <button class="header-btn" title="Blindaje Cero Créditos Activo">
-          <i class="fa-solid fa-shield-halved" style="color: #38bdf8;"></i>
-        </button>
-      </div>
-    </header>
-
-    <!-- BANNER DE SESIÓN Y CONTROL DE ACCESO (RBAC) -->
-    <div class="rbac-session-banner">
-      <div class="session-info">
-        <span class="role-badge role-admin" id="sessionRoleBadge">ADMIN</span>
-        <span class="session-user-name" id="sessionUserName">Dr. José Castillo (Acceso Total)</span>
-      </div>
-      <button class="btn-switch-user" id="btnQuickSwitch">
-        <i class="fa-solid fa-repeat"></i> Cambiar
-      </button>
-    </div>
-
-    <!-- TABS DE SERVICIO -->
-    <div class="services-segment-wrapper">
-      <div class="service-segment-tab active" id="tabServiceHE">
-        <i class="fa-solid fa-microscope"></i>
-        <span>Serv. muestra HE (Q)</span>
-        <span class="tab-count" id="badgeCountQ">971</span>
-      </div>
-      <div class="service-segment-tab" id="tabServiceCito">
-        <i class="fa-solid fa-vial-virus"></i>
-        <span>Serv. Citología (C)</span>
-        <span class="tab-count" id="badgeCountC">214</span>
-      </div>
-    </div>
-
-    <!-- BARRA DE BÚSQUEDA Y CONTADOR DE BASE DE DATOS -->
-    <div class="search-bar-wrapper">
-      <div class="search-input-box">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" id="searchPacienteInput" placeholder="Buscar paciente, código (ej: 26Q-345), médico, diagnóstico..." autocomplete="off">
-        <button class="btn-clear-search" id="btnClearSearch" onclick="limpiarBusqueda()" title="Limpiar"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="records-counter-bar">
-        <span id="txtContadorResultados"><i class="fa-solid fa-list-check"></i> Mostrando 20 de 971</span>
-        <span class="badge-db-soberana"><i class="fa-solid fa-database"></i> 1,185 Casos n8n/SQLite</span>
-      </div>
-    </div>
-
-    <!-- ÁREA DE CONTENIDO DINÁMICO DE PACIENTES -->
-    <main class="content-scroll-area" id="patientCardsContainer">
-      <!-- Se puebla mediante JavaScript según búsqueda, filtro y RBAC -->
-    </main>
-
-    <!-- BARRA INFERIOR DE NAVEGACIÓN (BOTTOM BAR) -->
-    <nav class="bottom-nav-bar">
-      <div class="nav-bar-item" onclick="mostrarAlerta('Sección Inicio • JC PATH LAB')">
-        <i class="fa-solid fa-house"></i>
-        <span>Inicio</span>
-      </div>
-      <div class="nav-bar-item active">
-        <i class="fa-solid fa-user-group"></i>
-        <span>Pacientes</span>
-      </div>
-      <div class="center-nav-360-btn" onclick="abrirVisor360Generico()" title="Abrir Visor Macroscópico 360°">
-        <i class="fa-solid fa-arrows-rotate"></i>
-      </div>
-      <div class="nav-bar-item" onclick="abrirSelectorMedicos()">
-        <i class="fa-solid fa-hospital-user"></i>
-        <span>Médico</span>
-      </div>
-      <div class="nav-bar-item" onclick="mostrarAlerta('Seguridad Soberana • 0 Créditos • n8n Local')">
-        <i class="fa-solid fa-gear"></i>
-        <span>Ajustes</span>
-      </div>
-    </nav>
-
-  </div>
-
-  <!-- MODAL: VISOR DE INFORME OFICIAL -->
-  <div class="modal-overlay" id="modalInforme">
-    <div class="modal-card">
-      <div class="modal-header">
-        <div class="modal-title">
-          <i class="fa-solid fa-file-medical" style="color: #38bdf8;"></i> <span id="modalReportCodigo">26Q-281</span>
-        </div>
-        <button class="btn-close-modal" onclick="cerrarModales()">&times;</button>
-      </div>
-      <div class="modal-body" id="modalReportBody">
-        <!-- Contenido dinámico -->
-      </div>
+<header class="uro-top">
+  <div class="brand">
+    <div class="uro-logo"><i class="fa-solid fa-microscope"></i></div>
+    <div>
+      <span class="brand-title">JCPATHLAB</span><span class="brand-dot" id="connDot"></span>
     </div>
   </div>
+  <button class="btn-install" id="btnInstallPwa" onclick="instalarAppMovil()">📲 Instalar App</button>
+</header>
+<div class="srv-bar">
+  <button class="srv-pill active" onclick="filtrarSrv('HE',this)"><i class="fa-solid fa-vial"></i> Serv. muestra HE (<span id="cntHE">0</span>)</button>
+  <button class="srv-pill" onclick="filtrarSrv('CITO',this)"><i class="fa-solid fa-microscope"></i> Serv. Citología (<span id="cntCito">0</span>)</button>
+  <button class="srv-pill" onclick="filtrarSrv('ALL',this)"><i class="fa-solid fa-layer-group"></i> Todos</button>
+</div>
 
-  <!-- MODAL: VISOR MACROSCÓPICO 360 -->
-  <div class="modal-overlay" id="modal360">
-    <div class="modal-card">
-      <div class="modal-header">
-        <div class="modal-title">
-          <i class="fa-solid fa-cube" style="color: #38bdf8;"></i> Visor Macroscópico 360°
-        </div>
-        <button class="btn-close-modal" onclick="cerrarModales()">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div class="viewport-360" id="viewport360">
-          <div class="hud-rotation-angle" id="hudAngle">Ángulo: 0°</div>
-          <div class="sphere-360-specimen" id="sphereSpecimen">
-            <div class="sphere-specimen-grid"></div>
-            <div class="specimen-tag-360" id="specimenTag">TINTA CHINA (+)</div>
-          </div>
-        </div>
-        <div style="margin-top: 14px;">
-          <h4 style="font-size: 0.88rem; color: #fff; margin-bottom: 4px;" id="desc360Title">Espécimen Quirúrgico Tallado</h4>
-          <p style="font-size: 0.76rem; color: #94a3b8;" id="desc360Text">Gire con el dedo o mouse para examinar la orientación espacial, peso y delimitación de márgenes con tinta china.</p>
-        </div>
+<main>
+  <!-- TAB 1: PACIENTES (VISTA PRINCIPAL IDENTICA A DOSSIER UROSUR PAGINA 2) -->
+  <section class="tab-view active" id="tabInformes">
+    <div class="search-bar">
+      <i class="fa-solid fa-magnifying-glass" style="color:var(--cyan);"></i>
+      <input type="text" id="searchInp" placeholder="Buscar paciente, código (26Q-281), DNI o médico..." oninput="filtrarInformesMovil(this.value)">
+    </div>
+    <div class="patient-list" id="patientList"></div>
+  </section>
+
+  <!-- TAB 2: CHAT DIRECTO CON CONSOLA COLMENA -->
+  <section class="tab-view" id="tabChat">
+    <div class="quick-chips">
+      <button class="chip" onclick="enviarComandoRapido('estado enjambre')">🏛️ Estado Enjambre 6 PCs</button>
+      <button class="chip" onclick="enviarComandoRapido('ejecuta anubis medicos')">🐺 Lanzar Anubis 15m</button>
+      <button class="chip" onclick="enviarComandoRapido('26Q-397')">📄 Ver 26Q-397</button>
+      <button class="chip" onclick="enviarComandoRapido('Dra. Sheyla')">👩‍⚕️ Casos Dra. Sheyla</button>
+    </div>
+    <div class="chat-box" id="chatBox">
+      <div class="msg bot">
+        <strong>👑 Consola Colmena Soberana conectada.</strong><br>
+        Dr. Castillo, puede hablarme por micrófono o escribir:<br>
+        • <em>"Crea el registro 26Q-405 con nombre Juan Perez DNI 12345678 biopsia de próstata Dr. Flores"</em><br>
+        • <em>"Estado enjambre"</em> (ver PCs y GPUs en vivo)<br>
+        • O cualquier código (ej. <em>26Q-397</em>), DNI o apellido de paciente.
       </div>
     </div>
-  </div>
+    <div class="chat-input-bar">
+      <button class="icon-btn btn-mic" id="btnMic" onclick="toggleDictadoVoz()" title="Hablar con Consola Colmena"><i class="fa-solid fa-microphone"></i></button>
+      <input type="text" id="chatInp" placeholder="Hable o escriba orden a Consola Colmena..." onkeydown="if(event.key==='Enter')enviarChatMovil()">
+      <button class="icon-btn btn-send" onclick="enviarChatMovil()"><i class="fa-solid fa-paper-plane"></i></button>
+    </div>
+  </section>
 
-  <!-- MODAL: SELECTOR DE CUENTAS / ROLES (RBAC) -->
-  <div class="modal-overlay" id="modalRBAC">
-    <div class="modal-card">
-      <div class="modal-header">
-        <div class="modal-title">
-          <i class="fa-solid fa-users-gear" style="color: #38bdf8;"></i> Control de Acceso Médico (RBAC)
-        </div>
-        <button class="btn-close-modal" onclick="cerrarModales()">&times;</button>
+  <!-- TAB 3: VISOR 360° & MAPEO 3D + CÁMARA LOCAL (DOSSIER PAGINAS 2 Y 7) -->
+  <section class="tab-view" id="tabCamara">
+    <div class="cam-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <strong style="color:var(--cyan);font-size:0.88rem;"><i class="fa-solid fa-cube"></i> Visor 360° • Mapeo 3D de Márgenes</strong>
+        <span id="badge360" style="background:var(--blue);color:#fff;padding:2px 8px;border-radius:99px;font-size:0.7rem;font-weight:800;">26Q-395</span>
       </div>
-      <div class="modal-body" style="display: flex; flex-direction: column; gap: 10px;">
-        <p style="font-size: 0.78rem; color: #94a3b8; margin-bottom: 4px;">
-          El Administrador tiene acceso total a todos los informes; cada médico especialista SOLO puede ver los pacientes a su nombre.
-        </p>
-
-        <!-- BUSCADOR RÁPIDO DE MÉDICO -->
-        <div class="doctor-search-box">
-          <i class="fa-solid fa-magnifying-glass" style="color:#94a3b8;font-size:0.75rem;"></i>
-          <input type="text" id="inputBuscarMedicoModal" placeholder="Buscar médico por nombre o especialidad..." oninput="filtrarMedicosModal()">
-        </div>
-
-        <div class="doctors-list-scroll" id="listaMedicosModal">
-          <!-- OPCIÓN 1: ADMINISTRADOR -->
-          <div onclick="setUsuario('admin')" style="background: rgba(245, 158, 11, 0.12); border: 1px solid #f59e0b; padding: 10px 12px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
-            <div>
-              <strong style="color: #f59e0b; display: block; font-size: 0.85rem;">Dr. José Castillo (Administrador)</strong>
-              <span style="font-size: 0.72rem; color: #cbd5e1;">Director Médico • Acceso Total a los 1,185 Informes</span>
-            </div>
-            <i class="fa-solid fa-crown" style="color: #f59e0b;"></i>
-          </div>
-
-          <!-- OPCIÓN 2: DR. FLORES SIERRA, BRYAN -->
-          <div onclick="setUsuario('flores')" style="background: rgba(2, 132, 199, 0.12); border: 1px solid #0284c7; padding: 10px 12px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
-            <div>
-              <strong style="color: #38bdf8; display: block; font-size: 0.85rem;">Dr. Flores Sierra, Bryan</strong>
-              <span style="font-size: 0.72rem; color: #cbd5e1;">Urología • Clínica Carrión / UROSUR (Casos prostáticos)</span>
-            </div>
-            <i class="fa-solid fa-user-doctor" style="color: #38bdf8;"></i>
-          </div>
-
-          <!-- OPCIÓN 3: DR. JUAN JESÚS MARREROS LLOCLLA -->
-          <div onclick="setUsuario('marreros')" style="background: rgba(16, 185, 129, 0.12); border: 1px solid #10b981; padding: 10px 12px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
-            <div>
-              <strong style="color: #34d399; display: block; font-size: 0.85rem;">Dr. Juan Jesús Marreros Lloclla</strong>
-              <span style="font-size: 0.72rem; color: #cbd5e1;">Ginecología • Clínica de la Mujer (Cérvix / Citología)</span>
-            </div>
-            <i class="fa-solid fa-user-doctor" style="color: #34d399;"></i>
-          </div>
-
-          <!-- OPCIÓN 4: DR. JHON VILCA -->
-          <div onclick="setUsuario('vilca')" style="background: rgba(168, 85, 247, 0.12); border: 1px solid #a855f7; padding: 10px 12px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
-            <div>
-              <strong style="color: #c084fc; display: block; font-size: 0.85rem;">Dr. Jhon Vilca</strong>
-              <span style="font-size: 0.72rem; color: #cbd5e1;">Cirugía • Clínica La Luz (Pacientes asignados)</span>
-            </div>
-            <i class="fa-solid fa-user-doctor" style="color: #c084fc;"></i>
-          </div>
-        </div>
+      <div style="height:190px;background:#090d16;border:1px solid #334155;border-radius:12px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+        <img id="img360" src="icon-512.png" onerror="this.src='icon-192.png'" style="max-height:86%;max-width:86%;transition:transform 0.08s linear;">
+        <button onclick="verPin3d(1)" style="position:absolute;top:56%;left:54%;width:24px;height:24px;border-radius:50%;background:#10b981;color:#fff;border:2px solid #fff;font-weight:900;font-size:0.7rem;cursor:pointer;">1</button>
+        <button onclick="verPin3d(2)" style="position:absolute;top:62%;left:32%;width:24px;height:24px;border-radius:50%;background:#ef4444;color:#fff;border:2px solid #fff;font-weight:900;font-size:0.7rem;cursor:pointer;">2</button>
+        <button onclick="verPin3d(3)" style="position:absolute;top:30%;left:45%;width:24px;height:24px;border-radius:50%;background:#38bdf8;color:#fff;border:2px solid #fff;font-weight:900;font-size:0.7rem;cursor:pointer;">3</button>
+      </div>
+      <input type="range" min="0" max="360" value="0" oninput="document.getElementById('img360').style.transform='perspective(600px) rotateY('+this.value+'deg)'" style="width:100%;accent-color:#38bdf8;">
+      <div id="pin3dInfo" style="background:#0b1120;padding:8px;border-radius:8px;font-size:0.74rem;color:#cbd5e1;"><strong style="color:#10b981;">PIN 1 • ÁPEX / MARGEN:</strong> Tinta china negra indemne en cápsula (Margen R0 libre &gt;3.2 mm).</div>
+    </div>
+    <div class="cam-card">
+      <strong style="color:var(--green);font-size:0.86rem;"><i class="fa-solid fa-camera"></i> Cámara IA Local (RapidOCR ONNX • 0 Llaves Gemini)</strong>
+      <input type="text" id="codMacroCam" placeholder="Código del caso (ej. 26Q-401)" style="background:#020617;border:1px solid var(--border);color:#fff;padding:8px;border-radius:8px;font-size:0.82rem;">
+      <div style="display:flex;gap:8px;">
+        <input type="file" id="fileOrdenCam" accept="image/*" capture="environment" style="display:none" onchange="subirFotoColmena(event,'orden')">
+        <button class="p-btn" style="background:#2563eb;padding:10px;" onclick="document.getElementById('fileOrdenCam').click()"><i class="fa-solid fa-id-card"></i> Orden + RENIEC</button>
+        <input type="file" id="fileMacroCam" accept="image/*" capture="environment" style="display:none" onchange="subirFotoColmena(event,'macro')">
+        <button class="p-btn" style="background:#10b981;padding:10px;" onclick="document.getElementById('fileMacroCam').click()"><i class="fa-solid fa-camera-retro"></i> Foto Macro</button>
       </div>
     </div>
-  </div>
+    <div id="camResultBox" class="cam-card" style="display:none;font-size:0.82rem;line-height:1.45;"></div>
+  </section>
+</main>
 
-  <script>
-    // =========================================================================
-    // BASE DE DATOS MAESTRA OFICIAL DE JC PATH LAB (1,185 REGISTROS REALES)
-    // =========================================================================
-    const PACIENTES_MASTER = (typeof window.PACIENTES_MASTER_FULL !== 'undefined' && Array.isArray(window.PACIENTES_MASTER_FULL) && window.PACIENTES_MASTER_FULL.length > 0)
-      ? window.PACIENTES_MASTER_FULL
-      : [
-        {
-          id: 1,
-          codigo: '26Q-281',
-          service: 'Q',
-          paciente: 'Avalos Valenzuela, Carlos Antonio',
-          edad: 70,
-          sexo: 'M',
-          procedimiento: 'Enucleación Prostática',
-          especimen: 'PRÓSTATA (ENUCLEACIÓN CON LÁSER HOLMIUM / UROSUR)',
-          fec_ingreso: '28/08/26',
-          fec_entrega: '01/09/26',
-          medico: 'Dr. Flores Sierra, Bryan',
-          sede: 'Clínica Carrión',
-          estado: 'Listo para Imprimir',
-          peso: '65.0 g',
-          dimensiones: '8.5 x 7.2 x 5.5 cm',
-          casetes: 6,
-          macro: 'Se recibe espécimen quirúrgico rotulado como "Enucleación prostática", conformado por fragmentos adenomatosos multinodulares de consistencia elástica y coloración blanquecina-parduzca que en conjunto pesan 65.0 gramos. Se incluyen 6 casetes representativos.',
-          micro: 'Los cortes histológicos muestran parénquima prostático constituido por hiperplasia nodular mixta sin atipia citológica. Glándulas con doble hilera celular conservada (células basales p63+). Ausencia de adenocarcinoma.',
-          diagnostico: 'PRÓSTATA (ENUCLEACIÓN PROSTÁTICA):\n- HIPERPLASIA NODULAR PROSTÁTICA BENIGNA (COMPONENTE GLANDULAR Y FIBROMUSCULAR).\n- PROSTATITIS CRÓNICA LINFOHISTIOCITARIA LEVE INESPECÍFICA.\n- NEGATIVO PARA NEOPLASIA INTRAEPITELIAL PROSTÁTICA DE ALTO GRADO (HGPIN) O ADENOCARCINOMA.'
-        }
-      ];
+<nav class="bottom-nav">
+  <button class="nav-btn" onclick="window.location.href='reportes.html'"><i class="fa-solid fa-house"></i><span>Inicio</span></button>
+  <button class="nav-btn active" id="navBtnPac" onclick="cambiarTab('tabInformes',this)"><i class="fa-solid fa-hospital-user"></i><span>Pacientes</span></button>
+  <button class="nav-btn" id="navBtn360" onclick="cambiarTab('tabCamara',this)"><i class="fa-solid fa-arrows-spin"></i><span>Visor 360°</span></button>
+  <button class="nav-btn" id="navBtnChat" onclick="cambiarTab('tabChat',this)"><i class="fa-solid fa-comments"></i><span>Consola IA</span></button>
+</nav>
 
-    // ESTADO DE LA APLICACIÓN
-    let currentRole = 'admin'; // 'admin' o 'doctor'
-    let currentDoctorName = 'Dr. José Castillo (Acceso Total)';
-    let currentDoctorFilter = ''; // Vacío para ver todos
-    let activeServiceTab = 'Q'; // 'Q' para Quirúrgico HE, 'C' para Citología
-    let searchQuery = '';
-    let currentPage = 1;
-    const itemsPerPage = 20;
+<script src="real_supabase_backup.js"></script>
+<script>
+const HOST_IP = window.location.hostname || '192.168.100.250';
+const API_5678 = (window.location.protocol === 'https:') ? 'http://192.168.100.250:5678' : `http://${HOST_IP}:5678`;
+const API_8010 = (window.location.protocol === 'https:') ? 'http://192.168.100.250:8010' : `http://${HOST_IP}:8010`;
+let deferredPrompt = null;
 
-    // INICIALIZACIÓN AL CARGAR EL DOM
-    document.addEventListener('DOMContentLoaded', () => {
-      actualizarBadgesConteo();
-      renderCards();
-      setupTabs();
-      setupSearch();
-      setup360Viewer();
-      poblarListaMedicosModal();
+window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; });
+function instalarAppMovil() {
+  if (deferredPrompt) { deferredPrompt.prompt(); }
+  else { alert('Para instalar en su celular: toque el menú de Chrome (⋮) o Safari (Compartir) y seleccione "Agregar a la pantalla principal" / "Instalar aplicación".'); }
+}
 
-      document.getElementById('btnSwitchUser').addEventListener('click', abrirSelectorMedicos);
-      document.getElementById('btnQuickSwitch').addEventListener('click', abrirSelectorMedicos);
+function cambiarTab(tabId, btn) {
+  document.querySelectorAll('.tab-view').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  btn.classList.add('active');
+  if (tabId === 'tabInformes') filtrarInformesMovil(document.getElementById('searchInp').value);
+}
+
+function obtenerPacientes() {
+  return window.REAL_SUPABASE_PATIENTS || window.REAL_SUPABASE_BACKUP || window.patientDatabase || [];
+}
+
+function agregarMensaje(html, tipo='bot') {
+  const box = document.getElementById('chatBox');
+  const d = document.createElement('div');
+  d.className = 'msg ' + tipo;
+  d.innerHTML = html;
+  box.appendChild(d);
+  box.scrollTop = box.scrollHeight;
+}
+
+function hablarMovil(txt) {
+  if (!('speechSynthesis' in window)) return;
+  try {
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(String(txt).replace(/<[^>]+>/g,' ').replace(/[*#_]/g,''));
+    u.lang = 'es-PE'; u.rate = 0.98;
+    window.speechSynthesis.speak(u);
+  } catch(_) {}
+}
+
+function enviarComandoRapido(cmd) {
+  document.getElementById('chatInp').value = cmd;
+  enviarChatMovil();
+}
+
+async function enviarChatMovil() {
+  const inp = document.getElementById('chatInp');
+  const txt = (inp.value || '').trim();
+  if (!txt) return;
+  inp.value = '';
+  agregarMensaje(txt, 'user');
+
+  // 1. Verificar si es búsqueda rápida local de un código o paciente (0ms)
+  const esOrden = /(estado|enjambre|osiris|anubis|crea|nuevo|abre|descarga|explica|que|como)/i.test(txt);
+  if (!esOrden) {
+    const pts = obtenerPacientes();
+    const q = txt.toLowerCase();
+    const hits = pts.filter(p => p && ((String(p.codAtencion||'').toLowerCase().includes(q)) || (String(p.paciente||'').toLowerCase().includes(q)) || (String(p.dni||'') === q) || (String(p.medSolicitante||'').toLowerCase().includes(q)))).slice(0, 5);
+    if (hits.length > 0) {
+      let hHtml = `<strong>Encontré ${hits.length} caso(s):</strong><br>`;
+      hits.forEach(p => {
+        const c = p.codAtencion || p.cod_atencion || '';
+        const f = p.firmado || String(p.estado||'').toLowerCase().includes('listo');
+        hHtml += `<div style="margin-top:6px;padding:8px;background:#020617;border-radius:8px;border:1px solid #1e293b;">
+          <strong style="color:#38bdf8;">${c}</strong> • ${p.paciente || ''}<br>
+          <span style="font-size:0.74rem;color:#94a3b8;">${p.especimen || ''} | ${f ? '🟢 FIRMADO' : '🔴 EN PROCESO'}</span><br>
+          <a href="imprimir.html?codAtencion=${encodeURIComponent(c)}" target="_blank" style="color:#10b981;font-weight:700;font-size:0.76rem;text-decoration:none;">📄 Abrir PDF Oficial</a>
+        </div>`;
+      });
+      agregarMensaje(hHtml, 'bot');
+      hablarMovil(`Ubicados ${hits.length} casos en la base local.`);
+      return;
+    }
+  }
+
+  // 2. Consultar en vivo a Consola Colmena (Puerto 5678)
+  try {
+    const r = await fetch(`${API_5678}/webhook/chat-cortana`, {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ mensaje: txt, canal: 'APP_MOVIL_DR_CASTILLO' })
     });
-
-    // ACTUALIZAR CONTADORES EN LOS TABS
-    function actualizarBadgesConteo() {
-      const totalQ = PACIENTES_MASTER.filter(p => p.service === 'Q').length;
-      const totalC = PACIENTES_MASTER.filter(p => p.service === 'C').length;
-      const bQ = document.getElementById('badgeCountQ');
-      const bC = document.getElementById('badgeCountC');
-      if (bQ) bQ.textContent = totalQ;
-      if (bC) bC.textContent = totalC;
-    }
-
-    // CONFIGURAR BÚSQUEDA INSTANTÁNEA
-    function setupSearch() {
-      const input = document.getElementById('searchPacienteInput');
-      const btnClear = document.getElementById('btnClearSearch');
-
-      input.addEventListener('input', (e) => {
-        searchQuery = (e.target.value || '').trim().toLowerCase();
-        btnClear.style.display = searchQuery ? 'block' : 'none';
-        currentPage = 1;
-        renderCards();
-      });
-    }
-
-    function limpiarBusqueda() {
-      const input = document.getElementById('searchPacienteInput');
-      input.value = '';
-      searchQuery = '';
-      document.getElementById('btnClearSearch').style.display = 'none';
-      currentPage = 1;
-      renderCards();
-      input.focus();
-    }
-
-    // RENDERIZADO DE TARJETAS CON PAGINACIÓN Y FILTRADO RBAC
-    function renderCards() {
-      const container = document.getElementById('patientCardsContainer');
-      container.innerHTML = '';
-
-      // 1. Filtrar por servicio (HE o Citología)
-      let filtrados = PACIENTES_MASTER.filter(p => p.service === activeServiceTab);
-
-      // 2. Filtrar por Control de Acceso (RBAC):
-      if (currentRole === 'doctor' && currentDoctorFilter) {
-        filtrados = filtrados.filter(p => 
-          (p.medico || '').toLowerCase().includes(currentDoctorFilter.toLowerCase())
-        );
+    if (r.ok) {
+      const d = await r.json();
+      const resp = (d.respuesta || 'Orden procesada por Consola Colmena.').replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/
+/g, '<br>');
+      agregarMensaje(resp, 'bot');
+      hablarMovil(d.respuesta || 'Listo doctor.');
+      if (d.accion && d.accion.tipo === 'CREAR_REGISTRO' && d.accion.datos) {
+        const pts = obtenerPacientes();
+        pts.unshift(d.accion.datos);
+        await fetch(`${API_5678}/webhook/guardar-paciente`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(d.accion.datos) });
       }
-
-      // 3. Filtrar por búsqueda de texto instantánea
-      if (searchQuery) {
-        filtrados = filtrados.filter(p => {
-          const pac = (p.paciente || '').toLowerCase();
-          const cod = (p.codigo || '').toLowerCase();
-          const med = (p.medico || '').toLowerCase();
-          const proc = (p.procedimiento || '').toLowerCase();
-          const diag = (p.diagnostico || '').toLowerCase();
-          const sede = (((p.medico || '').toUpperCase().includes('VILCA')) ? 'clínica la luz' : (p.sede || '')).toLowerCase();
-          return pac.includes(searchQuery) || cod.includes(searchQuery) || 
-                 med.includes(searchQuery) || proc.includes(searchQuery) || 
-                 diag.includes(searchQuery) || sede.includes(searchQuery);
-        });
-      }
-
-      const totalResultados = filtrados.length;
-      const limiteMostrar = Math.min(currentPage * itemsPerPage, totalResultados);
-
-      // Actualizar texto del contador
-      const txtContador = document.getElementById('txtContadorResultados');
-      if (txtContador) {
-        txtContador.innerHTML = `<i class="fa-solid fa-list-check"></i> Mostrando ${limiteMostrar} de ${totalResultados}`;
-      }
-
-      // Estado vacío
-      if (totalResultados === 0) {
-        container.innerHTML = `
-          <div class="empty-state-card">
-            <i class="fa-solid fa-folder-open"></i>
-            <h3 style="color: #fff; font-size: 0.95rem; margin-bottom: 6px;">No se encontraron informes</h3>
-            <p style="font-size: 0.78rem;">${searchQuery ? 'No hay coincidencias con la búsqueda realizada.' : 'No existen pacientes bajo este servicio asignados al médico actual (' + currentDoctorName + ').'}</p>
-          </div>
-        `;
-        return;
-      }
-
-      // Renderizar el lote actual
-      const itemsLote = filtrados.slice(0, limiteMostrar);
-      itemsLote.forEach(p => {
-        const card = document.createElement('div');
-        card.className = 'patient-card';
-        card.innerHTML = `
-          <div class="card-top-header">
-            <div class="patient-name-block">
-              <div class="patient-full-name">${escapeHtml(p.paciente)}</div>
-              <div class="patient-age-label">(${p.edad || '--'} años • ${p.sexo || '-'})</div>
-            </div>
-            <div class="ready-badge">
-              <i class="fa-solid fa-circle-check"></i> ${escapeHtml(p.estado || 'Listo para Imprimir')}
-            </div>
-          </div>
-
-          <div class="pills-row">
-            <div class="procedure-pill">
-              <i class="fa-solid fa-microscope"></i> ${escapeHtml(p.procedimiento || 'Estudio Histopatológico')}
-            </div>
-            <div class="id-sample-pill">
-              <i class="fa-solid fa-barcode"></i> ID: ${escapeHtml(p.codigo)}
-            </div>
-          </div>
-
-          <div class="dates-grid-row">
-            <div class="date-item">
-              <i class="fa-regular fa-calendar-days"></i> Ingreso: ${escapeHtml(p.fec_ingreso || '--')}
-            </div>
-            <div class="date-item">
-              <div class="date-dot-green"></div> Entrega: ${escapeHtml(p.fec_entrega || '--')}
-            </div>
-          </div>
-
-          <div class="doctor-sede-row">
-            <i class="fa-solid fa-hospital-user"></i>
-            <span><strong>${escapeHtml(p.medico || 'Dr. Médico Tratante')}</strong> • ${escapeHtml(((p.medico || '').toUpperCase().includes('VILCA')) ? 'CLÍNICA LA LUZ' : (p.sede || 'JC PATH LAB'))}</span>
-          </div>
-
-          <div class="card-actions-row">
-            <button class="btn-ver-informe" onclick="verInforme('${escapeHtml(p.codigo)}')">
-              <i class="fa-solid fa-file-pdf"></i> Ver Informe
-            </button>
-            <button class="btn-action-360" onclick="abrirVisor360('${escapeHtml(p.codigo)}')">
-              <i class="fa-solid fa-arrows-rotate"></i> 360°
-            </button>
-            <button class="btn-action-more" onclick="abrirOpciones('${escapeHtml(p.codigo)}')">
-              <i class="fa-solid fa-ellipsis-vertical"></i>
-            </button>
-          </div>
-        `;
-        container.appendChild(card);
-      });
-
-      // Botón "Cargar más informes" si quedan pendientes
-      if (limiteMostrar < totalResultados) {
-        const pendientes = totalResultados - limiteMostrar;
-        const loadMoreDiv = document.createElement('div');
-        loadMoreDiv.className = 'load-more-container';
-        loadMoreDiv.innerHTML = `
-          <button class="btn-load-more" onclick="cargarMasInformes()">
-            <i class="fa-solid fa-circle-chevron-down"></i> Cargar más informes (${pendientes} pendientes)
-          </button>
-        `;
-        container.appendChild(loadMoreDiv);
-      }
+      return;
     }
+  } catch (e) {}
+  agregarMensaje('Consola Colmena en PC1 no alcanzada por Wi-Fi. Verifique estar en la red 192.168.100.x.', 'bot');
+}
 
-    function cargarMasInformes() {
-      currentPage++;
-      renderCards();
-    }
+function toggleDictadoVoz() {
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) { alert('Su navegador móvil no soporta dictado directo.'); return; }
+  const btn = document.getElementById('btnMic');
+  const rec = new SR();
+  rec.lang = 'es-PE';
+  btn.classList.add('listening');
+  rec.onresult = (e) => {
+    const t = e.results[0][0].transcript;
+    document.getElementById('chatInp').value = t;
+    enviarChatMovil();
+  };
+  rec.onend = () => btn.classList.remove('listening');
+  rec.start();
+}
 
-    // MANEJO DE TABS DE SERVICIO
-    function setupTabs() {
-      const tabHE = document.getElementById('tabServiceHE');
-      const tabCito = document.getElementById('tabServiceCito');
-
-      tabHE.addEventListener('click', () => {
-        tabHE.classList.add('active');
-        tabCito.classList.remove('active');
-        activeServiceTab = 'Q';
-        currentPage = 1;
-        renderCards();
-      });
-
-      tabCito.addEventListener('click', () => {
-        tabCito.classList.add('active');
-        tabHE.classList.remove('active');
-        activeServiceTab = 'C';
-        currentPage = 1;
-        renderCards();
-      });
-    }
-
-    // GESTIÓN DE ROLES (RBAC)
-    function setUsuario(tipo, nombreCustom = '') {
-      if (tipo === 'admin') {
-        currentRole = 'admin';
-        currentDoctorName = 'Dr. José Castillo (Acceso Total)';
-        currentDoctorFilter = '';
-        document.getElementById('sessionRoleBadge').className = 'role-badge role-admin';
-        document.getElementById('sessionRoleBadge').textContent = 'ADMIN';
-      } else if (tipo === 'flores') {
-        currentRole = 'doctor';
-        currentDoctorName = 'Dr. Flores Sierra, Bryan';
-        currentDoctorFilter = 'Flores';
-        document.getElementById('sessionRoleBadge').className = 'role-badge role-doctor';
-        document.getElementById('sessionRoleBadge').textContent = 'URÓLOGO';
-      } else if (tipo === 'marreros') {
-        currentRole = 'doctor';
-        currentDoctorName = 'Dr. Juan Jesús Marreros Lloclla';
-        currentDoctorFilter = 'Marreros';
-        document.getElementById('sessionRoleBadge').className = 'role-badge role-doctor';
-        document.getElementById('sessionRoleBadge').textContent = 'GINECÓLOGO';
-      } else if (tipo === 'vilca') {
-        currentRole = 'doctor';
-        currentDoctorName = 'Dr. Jhon Vilca';
-        currentDoctorFilter = 'Vilca';
-        document.getElementById('sessionRoleBadge').className = 'role-badge role-doctor';
-        document.getElementById('sessionRoleBadge').textContent = 'CIRUJANO';
-      } else if (tipo === 'custom' && nombreCustom) {
-        currentRole = 'doctor';
-        currentDoctorName = nombreCustom;
-        currentDoctorFilter = nombreCustom;
-        document.getElementById('sessionRoleBadge').className = 'role-badge role-doctor';
-        document.getElementById('sessionRoleBadge').textContent = 'MÉDICO';
-      }
-
-      document.getElementById('sessionUserName').textContent = currentDoctorName;
-      cerrarModales();
-      currentPage = 1;
-      renderCards();
-    }
-
-    function abrirSelectorMedicos() {
-      document.getElementById('modalRBAC').classList.add('active');
-    }
-
-    // POBLAR LISTA DE MÉDICOS EN EL MODAL DE RBAC
-    function poblarListaMedicosModal() {
-      const medicosSet = new Set();
-      PACIENTES_MASTER.forEach(p => {
-        if (p.medico && p.medico.trim().length > 3) {
-          medicosSet.add(p.medico.trim());
-        }
-      });
-
-      const lista = document.getElementById('listaMedicosModal');
-      const medicosArray = Array.from(medicosSet).sort();
-
-      // Guardar lista completa para filtro
-      window.MEDICOS_REGISTRADOS = medicosArray;
-    }
-
-    function filtrarMedicosModal() {
-      const q = (document.getElementById('inputBuscarMedicoModal').value || '').toLowerCase().trim();
-      const lista = document.getElementById('listaMedicosModal');
-      
-      // Mantener los 4 fijos arriba y añadir los resultados dinámicos
-      let htmlFijos = `
-        <!-- OPCIÓN 1: ADMINISTRADOR -->
-        <div onclick="setUsuario('admin')" style="background: rgba(245, 158, 11, 0.12); border: 1px solid #f59e0b; padding: 10px 12px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
-          <div>
-            <strong style="color: #f59e0b; display: block; font-size: 0.85rem;">Dr. José Castillo (Administrador)</strong>
-            <span style="font-size: 0.72rem; color: #cbd5e1;">Director Médico • Acceso Total a los 1,185 Informes</span>
-          </div>
-          <i class="fa-solid fa-crown" style="color: #f59e0b;"></i>
-        </div>
-
-        <!-- OPCIÓN 2: DR. FLORES SIERRA, BRYAN -->
-        <div onclick="setUsuario('flores')" style="background: rgba(2, 132, 199, 0.12); border: 1px solid #0284c7; padding: 10px 12px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
-          <div>
-            <strong style="color: #38bdf8; display: block; font-size: 0.85rem;">Dr. Flores Sierra, Bryan</strong>
-            <span style="font-size: 0.72rem; color: #cbd5e1;">Urología • Clínica Carrión / UROSUR (Casos prostáticos)</span>
-          </div>
-          <i class="fa-solid fa-user-doctor" style="color: #38bdf8;"></i>
-        </div>
-
-        <!-- OPCIÓN 3: DR. JUAN JESÚS MARREROS LLOCLLA -->
-        <div onclick="setUsuario('marreros')" style="background: rgba(16, 185, 129, 0.12); border: 1px solid #10b981; padding: 10px 12px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
-          <div>
-            <strong style="color: #34d399; display: block; font-size: 0.85rem;">Dr. Juan Jesús Marreros Lloclla</strong>
-            <span style="font-size: 0.72rem; color: #cbd5e1;">Ginecología • Clínica de la Mujer (Cérvix / Citología)</span>
-          </div>
-          <i class="fa-solid fa-user-doctor" style="color: #34d399;"></i>
-        </div>
-
-        <!-- OPCIÓN 4: DR. JHON VILCA -->
-        <div onclick="setUsuario('vilca')" style="background: rgba(168, 85, 247, 0.12); border: 1px solid #a855f7; padding: 10px 12px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
-          <div>
-            <strong style="color: #c084fc; display: block; font-size: 0.85rem;">Dr. Jhon Vilca</strong>
-            <span style="font-size: 0.72rem; color: #cbd5e1;">Cirugía • Clínica La Luz (Pacientes asignados)</span>
-          </div>
-          <i class="fa-solid fa-user-doctor" style="color: #c084fc;"></i>
-        </div>
-      `;
-
-      if (q && window.MEDICOS_REGISTRADOS) {
-        const filtrados = window.MEDICOS_REGISTRADOS.filter(m => m.toLowerCase().includes(q));
-        let htmlDinamicos = '';
-        filtrados.slice(0, 10).forEach(m => {
-          htmlDinamicos += `
-            <div onclick="setUsuario('custom', '${escapeHtml(m)}')" style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(56, 189, 248, 0.25); padding: 9px 12px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
-              <div>
-                <strong style="color: #e2e8f0; display: block; font-size: 0.82rem;">${escapeHtml(m)}</strong>
-                <span style="font-size: 0.68rem; color: #94a3b8;">Médico Registrado en Base Histopatológica</span>
-              </div>
-              <i class="fa-solid fa-chevron-right" style="color: #38bdf8; font-size: 0.75rem;"></i>
-            </div>
-          `;
-        });
-        lista.innerHTML = htmlFijos + '<hr style="border:0;border-top:1px solid rgba(255,255,255,0.08);margin:6px 0;">' + (htmlDinamicos || '<p style="font-size:0.75rem;color:#64748b;text-align:center;">No hay más médicos coincidentes</p>');
-      } else {
-        lista.innerHTML = htmlFijos;
-      }
-    }
-
-    // MODAL DE INFORME MÉDICO OFICIAL
-    
-    let pacientePDFActivo = null;
-
-    function verInforme(codigo) {
-      const p = PACIENTES_MASTER.find(x => x.codigo === codigo);
-      if (!p) return;
-      pacientePDFActivo = p;
-
-      document.getElementById('pdfToolbarTitle').textContent = p.codigo + ' • ' + p.paciente;
-      const sheet = document.getElementById('pdfPageSheet');
-      sheet.innerHTML = `
-        <!-- CABECERA INSTITUCIONAL JC PATH LAB -->
-        <div style="border-bottom: 2px solid #0284c7; padding-bottom: 8px; display: flex; justify-content: space-between; align-items: flex-start;">
-          <div>
-            <div style="font-size: 15px; font-weight: 800; color: #0284c7; letter-spacing: -0.3px;">JC PATH LAB</div>
-            <div style="font-size: 9px; font-weight: bold; color: #475569; text-transform: uppercase;">Laboratorio de Anatomía Patológica & Citopatología de Precisión</div>
-            <div style="font-size: 8.5px; color: #64748b; margin-top: 2px;">Jardines de Chillón Mz. M2 Lote 13, Puente Piedra, Lima • Cel: +51 986 396 733</div>
-          </div>
-          <div style="text-align: right;">
-            <div style="font-size: 13px; font-weight: 800; color: #0f172a; font-family: monospace;">INFORME N°: ${escapeHtml(p.codigo)}</div>
-            <div style="font-size: 9px; color: #475569; margin-top: 2px;">Fecha Emisión: <strong>${escapeHtml(p.fec_entrega || '2026-10-27')}</strong></div>
-          </div>
-        </div>
-
-        <!-- CUADRO DE DATOS FILIATORIOS Y MUESTRA -->
-        <table style="width: 100%; border-collapse: collapse; font-size: 9.5px; margin-top: 4px;">
-          <tr style="background: #f1f5f9;">
-            <td style="padding: 4px 6px; border: 1px solid #cbd5e1; width: 15%;"><strong>PACIENTE:</strong></td>
-            <td style="padding: 4px 6px; border: 1px solid #cbd5e1; width: 45%; font-weight: bold; color: #0f172a;">${escapeHtml(p.paciente)}</td>
-            <td style="padding: 4px 6px; border: 1px solid #cbd5e1; width: 15%;"><strong>EDAD / SEXO:</strong></td>
-            <td style="padding: 4px 6px; border: 1px solid #cbd5e1; width: 25%; font-weight: bold;">${p.edad || '--'} años / ${p.sexo || '-'}</td>
-          </tr>
-          <tr>
-            <td style="padding: 4px 6px; border: 1px solid #cbd5e1;"><strong>MÉDICO:</strong></td>
-            <td style="padding: 4px 6px; border: 1px solid #cbd5e1; font-weight: 600;">${escapeHtml(p.medico || '')}</td>
-            <td style="padding: 4px 6px; border: 1px solid #cbd5e1;"><strong>SEDE / CLÍNICA:</strong></td>
-            <td style="padding: 4px 6px; border: 1px solid #cbd5e1;">${escapeHtml(((p.medico || '').toUpperCase().includes('VILCA')) ? 'CLÍNICA LA LUZ' : (p.sede || ''))}</td>
-          </tr>
-          <tr style="background: #f1f5f9;">
-            <td style="padding: 4px 6px; border: 1px solid #cbd5e1;"><strong>ESPÉCIMEN:</strong></td>
-            <td colspan="3" style="padding: 4px 6px; border: 1px solid #cbd5e1; font-weight: bold; color: #0369a1;">${escapeHtml(p.especimen || p.procedimiento || '')}</td>
-          </tr>
-        </table>
-
-        <!-- DESCRIPCIÓN MACROSCÓPICA -->
-        <div style="margin-top: 6px;">
-          <div style="font-size: 10px; font-weight: bold; color: #0284c7; text-transform: uppercase; border-bottom: 1px solid #e2e8f0; padding-bottom: 2px; margin-bottom: 4px;">
-            1. DESCRIPCIÓN MACROSCÓPICA:
-          </div>
-          <div style="font-size: 9.5px; color: #334155; text-align: justify; line-height: 1.45;">
-            ${escapeHtml(p.macro || 'Se recibe espécimen para estudio patológico estándar.')}
-          </div>
-        </div>
-
-        <!-- DESCRIPCIÓN MICROSCÓPICA -->
-        <div style="margin-top: 6px;">
-          <div style="font-size: 10px; font-weight: bold; color: #0284c7; text-transform: uppercase; border-bottom: 1px solid #e2e8f0; padding-bottom: 2px; margin-bottom: 4px;">
-            2. DESCRIPCIÓN MICROSCÓPICA (COLORACIÓN H&E 40X / CRITERIOS OMS):
-          </div>
-          <div style="font-size: 9.5px; color: #334155; text-align: justify; line-height: 1.45;">
-            ${escapeHtml(p.micro || 'Cortes histológicos seriados evaluados minuciosamente bajo microscopía óptica de alta resolución.')}
-          </div>
-        </div>
-
-        <!-- DIAGNÓSTICO HISTOPATOLÓGICO DESTACADO -->
-        <div style="margin-top: 8px; background: #f0fdf4; border: 1.5px solid #16a34a; border-radius: 6px; padding: 10px;">
-          <div style="font-size: 10.5px; font-weight: 800; color: #15803d; text-transform: uppercase; margin-bottom: 4px; letter-spacing: 0.3px;">
-            DIAGNÓSTICO HISTOPATOLÓGICO:
-          </div>
-          <div style="font-size: 10px; color: #0f172a; font-weight: bold; white-space: pre-wrap; line-height: 1.45;">
-            ${escapeHtml(p.diagnostico || 'INFORME EN PROCESO')}
-          </div>
-        </div>
-
-        <!-- FIRMA Y SELLO PROFESIONAL -->
-        <div style="margin-top: 24px; display: flex; justify-content: space-between; align-items: flex-end;">
-          <div style="font-size: 8px; color: #64748b;">
-            Documento médico oficial verificado mediante trazabilidad soberana JC PATH LAB.<br>
-            Cero créditos de nube • Válido para entrega al paciente e interconsulta médica.
-          </div>
-          <div style="text-align: center; width: 220px; border-top: 1px solid #0f172a; padding-top: 4px;">
-            <div style="font-size: 10px; font-weight: 800; color: #0f172a;">DR. JOSÉ CASTILLO CUENCA</div>
-            <div style="font-size: 8.5px; color: #475569;">Médico Especialista en Anatomía Patológica</div>
-            <div style="font-size: 8px; color: #0284c7; font-weight: bold;">C.M.P. 56214 • R.N.E. 28912</div>
-          </div>
-        </div>
-      `;
-
-      document.getElementById('pdfViewerOverlay').classList.add('active');
-    }
-
-    function cerrarVisorPDF() {
-      document.getElementById('pdfViewerOverlay').classList.remove('active');
-    }
-
-    function imprimirPDFActual() {
-      window.print();
-    }
-
-    function descargarPDFActual() {
-      if (!pacientePDFActivo) return;
-      window.print();
-    }
-
-    function compartirWhatsAppPDF() {
-      if (!pacientePDFActivo) return;
-      const texto = `Estimado paciente ${pacientePDFActivo.paciente}, se adjunta el resultado oficial de su informe ${pacientePDFActivo.codigo} emitido por JC PATH LAB (Dr. José Castillo).`;
-      window.open(`https://wa.me/?text=${encodeURIComponent(texto)}`, '_blank');
-    }
-
-
-    // VISOR 360 INTERACTIVO
-    let currentAngle = 0;
-    let isDragging = false;
-    let startX = 0;
-
-    function setup360Viewer() {
-      const vp = document.getElementById('viewport360');
-      const sphere = document.getElementById('sphereSpecimen');
-      const hudAngle = document.getElementById('hudAngle');
-
-      vp.addEventListener('pointerdown', (e) => {
-        isDragging = true;
-        startX = e.clientX;
-        vp.setPointerCapture(e.pointerId);
-      });
-
-      vp.addEventListener('pointermove', (e) => {
-        if (!isDragging) return;
-        const delta = e.clientX - startX;
-        startX = e.clientX;
-        currentAngle = (currentAngle + delta * 0.8) % 360;
-        if (currentAngle < 0) currentAngle += 360;
-        sphere.style.transform = `rotateY(${currentAngle}deg)`;
-        hudAngle.textContent = `Ángulo: ${Math.round(currentAngle)}°`;
-      });
-
-      vp.addEventListener('pointerup', () => { isDragging = false; });
-      vp.addEventListener('pointercancel', () => { isDragging = false; });
-    }
-
-    function abrirVisor360(codigo) {
-      const p = PACIENTES_MASTER.find(x => x.codigo === codigo);
-      if (p) {
-        document.getElementById('desc360Title').textContent = p.especimen || p.procedimiento || 'Espécimen Quirúrgico';
-        document.getElementById('desc360Text').textContent = `Peso: ${p.peso || '35.0 g'} • Dimensiones: ${p.dimensiones || '6.0 x 4.5 x 3.0 cm'}. Márgenes entintados con tinta china negra para evaluación microscópica.`;
-        document.getElementById('specimenTag').textContent = `ID: ${p.codigo}`;
-      }
-      document.getElementById('modal360').classList.add('active');
-    }
-
-    function abrirVisor360Generico() {
-      abrirVisor360('26Q-281');
-    }
-
-    function abrirOpciones(codigo) {
-      alert(`Opciones del espécimen ${codigo}:\n- Trazabilidad y cadena de custodia Olva 72h\n- Re-muestreo histológico\n- Interconsulta multidisciplinaria`);
-    }
-
-    function cerrarModales() {
-      document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('active'));
-    }
-
-    function mostrarAlerta(msg) {
-      alert(msg);
-    }
-
-    function escapeHtml(str) {
-      if (!str) return '';
-      return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
-    }
-  </script>
-
-  <!-- VISOR DIRECTO DE INFORME PDF CLÍNICO OFICIAL -->
-  <div class="pdf-viewer-overlay" id="pdfViewerOverlay">
-    <div class="pdf-toolbar">
-      <div style="display:flex;align-items:center;gap:6px;min-width:0;flex:1;">
-        <i class="fa-solid fa-file-pdf" style="color:#ef4444;font-size:1.1rem;flex-shrink:0;"></i>
-        <span id="pdfToolbarTitle">Informe Histopatológico</span>
+let srvMode = 'HE';
+function esCito(p) {
+  const c = String(p.codAtencion || '').toUpperCase();
+  const e = String(p.especimen || '').toUpperCase();
+  return c.includes('C-') || e.includes('PAP') || e.includes('CITOLOG') || e.includes('BAAF');
+}
+function filtrarSrv(m, btn) {
+  srvMode = m;
+  document.querySelectorAll('.srv-pill').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  filtrarInformesMovil(document.getElementById('searchInp').value);
+}
+function abrir360(cod, imgUri) {
+  document.getElementById('badge360').textContent = cod;
+  document.getElementById('codMacroCam').value = cod;
+  if (imgUri && imgUri.length > 12) document.getElementById('img360').src = imgUri;
+  cambiarTab('tabCamara', document.getElementById('navBtn360'));
+}
+function verPin3d(n) {
+  const m = {
+    1: '<strong style="color:#10b981;">PIN 1 • ÁPEX / MARGEN:</strong> Tinta china negra indemne en cápsula (Margen R0 libre &gt;3.2 mm). Casete B-02.',
+    2: '<strong style="color:#ef4444;">PIN 2 • NÓDULO DOMINANTE:</strong> Zona periférica (1.8 x 1.4 cm). Patrón acinar/cribiforme 40x con conteo mitótico 0-1/10 HPF.',
+    3: '<strong style="color:#38bdf8;">PIN 3 • CUELLO VESICAL:</strong> Margen basal R0 libre (4.8 mm). Muscular propia sin invasión. Casete C-01.'
+  };
+  document.getElementById('pin3dInfo').innerHTML = m[n] || m[1];
+}
+function filtrarInformesMovil(qRaw='') {
+  const list = document.getElementById('patientList');
+  const pts = obtenerPacientes();
+  let nH = 0, nC = 0;
+  pts.forEach(p => { if (p) { if (esCito(p)) nC++; else nH++; } });
+  const elH = document.getElementById('cntHE'); if (elH) elH.textContent = nH;
+  const elC = document.getElementById('cntCito'); if (elC) elC.textContent = nC;
+  const q = (qRaw || '').toLowerCase().trim();
+  const res = pts.filter(p => {
+    if (!p) return false;
+    if (srvMode === 'HE' && esCito(p)) return false;
+    if (srvMode === 'CITO' && !esCito(p)) return false;
+    if (!q) return true;
+    return (String(p.codAtencion||'') + ' ' + String(p.paciente||'') + ' ' + String(p.dni||'') + ' ' + String(p.medSolicitante||'')).toLowerCase().includes(q);
+  }).slice(0, 35);
+  list.innerHTML = res.map(p => {
+    const c = p.codAtencion || p.cod_atencion || '---';
+    const nom = p.paciente || ((p.apellidos||'') + ', ' + (p.nombres||'')).replace(/^,\s*/,'') || '---';
+    const edad = p.edad ? `(${String(p.edad).replace(/años/i,'').trim()} años)` : '';
+    const isF = p.firmado || String(p.estado||'').toLowerCase().includes('listo') || String(p.estado||'').toLowerCase().includes('complet');
+    const esp = (p.especimen || 'Biopsia Quirúrgica').slice(0, 25);
+    const fIng = p.fIngreso || 'Recibido';
+    const fEnt = p.fEntrega || '48-72h';
+    const med = p.medSolicitante || 'Dr. Solicitante';
+    const clin = p.clinica || 'Sede Central';
+    const imgU = (p.img01 || '').replace(/'/g, '');
+    const waMsg = encodeURIComponent(`*JC PATH LAB - DR. JOSÉ CASTILLO*
+Informe *${c}* (${nom}) listo para entrega.`);
+    return `<div class="p-card">
+      <div class="p-top"><div class="p-name">${nom}<span class="p-age">${edad}</span></div><span class="p-status ${isF?'ok':'pend'}"><i class="fa-solid ${isF?'fa-circle-check':'fa-clock'}"></i> ${isF?'Listo para Imprimir':'En Proceso'}</span></div>
+      <div class="uro-pill-white"><span><i class="fa-solid fa-microscope" style="color:#2563eb;"></i> ${esp}</span><span class="uro-id-tag"><i class="fa-solid fa-barcode"></i> ID: ${c}</span></div>
+      <div class="uro-dates"><span><i class="fa-regular fa-calendar"></i> Ingreso: ${fIng}</span><span><i class="fa-regular fa-calendar-check"></i> Entrega: ${fEnt}</span></div>
+      <div class="p-meta"><strong style="font-size:0.65rem;color:#64748b;display:block;text-transform:uppercase;">👤 Médico / Sede</strong>${med} • ${clin}</div>
+      <div class="p-actions">
+        <a class="p-btn" style="background:#10b981;flex:1.4;" href="imprimir.html?codAtencion=${encodeURIComponent(c)}" target="_blank"><i class="fa-regular fa-file-lines"></i> Ver Informe</a>
+        <button class="p-btn" style="background:#1e293b;border:1px solid #334155;flex:1;" onclick="abrir360('${c}','${imgU}')"><i class="fa-solid fa-cube"></i> 360°</button>
+        <a class="p-btn" style="background:#1e293b;border:1px solid #334155;flex:0.4;color:#34d399;" href="https://wa.me/?text=${waMsg}" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
       </div>
-      <div class="pdf-toolbar-actions">
-        <button class="btn-pdf-action" onclick="imprimirPDFActual()"><i class="fa-solid fa-print"></i> Imprimir</button>
-        <button class="btn-pdf-action" style="background:#0284c7;border-color:#38bdf8;" onclick="descargarPDFActual()"><i class="fa-solid fa-download"></i> Guardar</button>
-        <button class="btn-pdf-action" style="background:#10b981;border-color:#34d399;" onclick="compartirWhatsAppPDF()"><i class="fa-brands fa-whatsapp"></i></button>
-        <button class="btn-pdf-close" onclick="cerrarVisorPDF()"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-    </div>
-    <div class="pdf-paper-container" id="pdfPaperContainer">
-      <div class="pdf-page-sheet" id="pdfPageSheet">
-        <!-- Contenido clínico oficial del PDF -->
-      </div>
-    </div>
-  </div>
+    </div>`;
+  }).join('');
+}
 
+async function subirFotoColmena(ev, modo) {
+  const file = ev.target.files[0];
+  if (!file) return;
+  const box = document.getElementById('camResultBox');
+  box.style.display = 'flex';
+  box.innerHTML = '⚡ Enviando imagen a Consola Colmena (Motor Local)...';
+  const b64 = await new Promise(res => { const r = new FileReader(); r.onload = () => res(r.result); r.readAsDataURL(file); });
+  try {
+    if (modo === 'orden') {
+      const r = await fetch(`${API_8010}/webhook/analizar-orden-imagen`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({imagen_base64:b64}) });
+      const d = await r.json();
+      const dt = d.datos || {};
+      box.innerHTML = `<strong>✅ Orden Analizada + RENIEC:</strong><br>DNI: ${dt.dni||'--'}<br>Paciente: ${dt.apellidos||''}, ${dt.nombres||''}<br>Médico: ${dt.medico_solicitante||'--'}<br>Muestra: ${dt.especimen||'--'}`;
+    } else {
+      const cod = document.getElementById('codMacroCam').value || 'Pieza Quirúrgica';
+      const r = await fetch(`${API_8010}/api/cortana/analizar-macroscopia`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({imagen_base64:b64, especimen:cod}) });
+      const d = await r.json();
+      box.innerHTML = `<strong>✅ Macroscopía Lester/CAP (${cod}):</strong><br>${d.redaccion || 'Procesada.'}`;
+    }
+  } catch (e) {
+    box.innerHTML = '⚠️ Error conectando con Puerto 8010 de Consola Colmena.';
+  }
+}
+
+filtrarInformesMovil('');
+</script>
 </body>
 </html>
