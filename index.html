@@ -292,7 +292,7 @@
             }
         }
     </style>
-</head>
+<style id='jc-60fps-wsi-shield'>*,*::before,*::after{backdrop-filter:none !important;-webkit-backdrop-filter:none !important;}</style></head>
 <body class="bg-darkBg text-slate-100 font-sans selection:bg-cyanCobalt selection:text-white antialiased overflow-x-hidden">
 
     <!-- 0. TOP BANNER SUPREMO DE ESTADO TÉCNICO & PROTOCOLO -->
@@ -342,6 +342,12 @@
                 <a href="#inicio" class="hover:text-cyan-400 text-cyan-400 font-bold transition-colors">Inicio</a>
                 <a href="#wsi-viewer" class="hover:text-cyan-400 transition-colors flex items-center gap-1">
                     <i class="fa-solid fa-expand text-cyan-400 text-[10px]"></i> Visor WSI 40x
+                </a>
+                <a href="#mapeo-3d-morfometria" class="hover:text-cyan-400 transition-colors flex items-center gap-1">
+                    <i class="fa-solid fa-cube text-amber-400 text-[10px]"></i> Mapeo 3D & Morfometría
+                </a>
+                <a href="app.html" class="hover:text-cyan-400 transition-colors flex items-center gap-1">
+                    <i class="fa-solid fa-mobile-screen-button text-emerald-400 text-[10px]"></i> App Móvil
                 </a>
                 <a href="#trazabilidad" class="hover:text-cyan-400 transition-colors flex items-center gap-1">
                     <i class="fa-solid fa-route text-emerald-400 text-[10px]"></i> Trazabilidad Bóveda
@@ -694,6 +700,111 @@
                 </div>
 
             </div>
+        </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 3.5. MORFOMETRÍA COMPUTACIONAL 40x & MAPEO 3D DE PIEZA QUIRÚRGICA 360°    -->
+    <!-- ========================================================================= -->
+    <section id="mapeo-3d-morfometria" class="py-24 relative bg-slate-950 border-t border-slate-800 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+            
+            <!-- BLOQUE A: COMPARADOR INTERACTIVO ANTES/DESPUÉS MORFOMETRÍA IA 40X (DOSSIER PÁG 4) -->
+            <div class="glass-panel rounded-3xl p-6 sm:p-10 border-cyanCobalt/30 shadow-2xl" data-aos="fade-up">
+                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-8">
+                    <div>
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-cyan-500/15 text-cyan-400 border border-cyan-500/30 uppercase tracking-wider">
+                            <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Eje Tecnológico • Morfometría Computacional 40x
+                        </span>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-2">Del Campo Óptico H&E 40x a la Cuantificación Celular Objetiva</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 mt-1">Deslice el divisor central para comparar la histología convencional H&E contra el filtro algorítmico de segmentación nuclear CAP/OMS.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 text-xs font-mono">
+                        <span class="px-3 py-1.5 rounded-xl bg-slate-900 border border-emerald-500/40 text-emerald-400 font-bold">519 Células Cuantificadas</span>
+                        <span class="px-3 py-1.5 rounded-xl bg-slate-900 border border-cyan-500/40 text-cyan-300 font-bold">Ratio N/C: 39%</span>
+                        <span class="px-3 py-1.5 rounded-xl bg-slate-900 border border-purple-500/40 text-purple-300 font-bold">Mitosis: 0-1 / 10 HPF</span>
+                    </div>
+                </div>
+
+                <!-- Visor Split-Screen Before / After -->
+                <div class="relative w-full h-[320px] sm:h-[420px] rounded-2xl overflow-hidden border border-slate-700 select-none bg-slate-900">
+                    <!-- Imagen Fondo: Morfometría IA Segmentada -->
+                    <img src="carcinoma_acinar_ia_mitosis_pleomorfismo.webp" onerror="this.src='morfologia_ia_pleomorfismo.jpg'" alt="Morfometría Computacional IA 40x" class="absolute inset-0 w-full h-full object-cover">
+                    <span class="absolute top-3 right-3 z-10 px-3 py-1 rounded-lg text-[11px] font-mono font-bold bg-emerald-500/90 text-slate-950 shadow-lg">FILTRO ALGORÍTMICO IA ACTIVO (Pleomorfismo CAP Grado 1 • 97.3%)</span>
+
+                    <!-- Imagen Frontal Recortada: H&E Convencional -->
+                    <div id="morphBeforeClip" class="absolute inset-y-0 left-0 overflow-hidden" style="width: 50%; border-right: 3px solid #00f2fe;">
+                        <img src="carcinoma_acinar_he.webp" onerror="this.src='morfologia_he_original.jpg'" alt="Campo Histológico H&E 40x" class="w-full h-full object-cover" style="width: 100vw; max-width: 1200px;">
+                        <span class="absolute top-3 left-3 z-10 px-3 py-1 rounded-lg text-[11px] font-mono font-bold bg-slate-950/90 text-cyan-300 border border-cyan-500/40">CAMPO ÓPTICO H&E 40x SIN FILTRO</span>
+                    </div>
+
+                    <!-- Slider Control -->
+                    <input type="range" min="5" max="95" value="50" oninput="document.getElementById('morphBeforeClip').style.width=this.value+'%'" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20" aria-label="Comparar antes y después de Morfometría IA">
+                </div>
+            </div>
+
+            <!-- BLOQUE B: MAPEO 3D DE PIEZA QUIRÚRGICA EN 360° & CORRELACIÓN MACRO-MICRO (DOSSIER PÁG 7) -->
+            <div class="glass-panel rounded-3xl p-6 sm:p-10 border-purpleHemato/40 shadow-2xl" data-aos="fade-up">
+                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-8">
+                    <div>
+                        <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/15 text-amber-400 border border-amber-500/30 uppercase tracking-wider">
+                            <i class="fa-solid fa-cube mr-1"></i> Innovación Quirúrgica Exclusiva • Correlación Macro-Micro
+                        </span>
+                        <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-2">Mapeo de la Pieza Quirúrgica en 3D (Rotación 360° & Pines R0/R1)</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 mt-1">Rote la pieza quirúrgica 360° y pulse cada pin anatómico (1, 2, 3, 4) para inspeccionar el margen con tinta china y su corte WSI.</p>
+                    </div>
+                    <a href="app.html" class="px-4 py-2.5 rounded-xl font-extrabold text-xs bg-gradient-to-r from-cyanCobalt to-blue-600 text-white shadow-lg flex items-center gap-2">
+                        <i class="fa-solid fa-mobile-screen-button"></i> Abrir en Aplicativo Móvil Quirúrgico
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <!-- Escenario 360° Interactivo -->
+                    <div class="lg:col-span-6 bg-slate-950 rounded-2xl border border-slate-800 p-5 relative">
+                        <div class="flex justify-between items-center mb-3 text-xs font-mono">
+                            <span class="px-2.5 py-1 rounded bg-cyan-500/20 text-cyan-300 font-bold">ROTACIÓN ORBITAL 360°</span>
+                            <span class="text-slate-400" id="lblAngle360">Ángulo: 0°</span>
+                        </div>
+                        <div class="relative h-[280px] sm:h-[320px] flex items-center justify-center overflow-hidden rounded-xl bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-800/80">
+                            <img id="webImg360Stage" src="MACRO1.jpg" onerror="this.src='assets/fotos_hd/area_de_macroscopia.jpg'" alt="Espécimen Quirúrgico 360" class="max-h-[85%] max-w-[85%] object-contain rounded-xl transition-transform duration-75">
+                            <!-- Pines Anatómicos Interactivos -->
+                            <button type="button" onclick="selectPin3dWeb(1)" class="absolute top-[55%] left-[58%] w-8 h-8 rounded-full bg-emerald-500 text-slate-950 font-extrabold text-xs border-2 border-white shadow-xl hover:scale-125 transition-transform">1</button>
+                            <button type="button" onclick="selectPin3dWeb(2)" class="absolute top-[60%] left-[32%] w-8 h-8 rounded-full bg-rose-500 text-white font-extrabold text-xs border-2 border-white shadow-xl hover:scale-125 transition-transform">2</button>
+                            <button type="button" onclick="selectPin3dWeb(3)" class="absolute top-[30%] left-[44%] w-8 h-8 rounded-full bg-cyan-400 text-slate-950 font-extrabold text-xs border-2 border-white shadow-xl hover:scale-125 transition-transform">3</button>
+                            <button type="button" onclick="selectPin3dWeb(4)" class="absolute top-[72%] left-[68%] w-8 h-8 rounded-full bg-purple-500 text-white font-extrabold text-xs border-2 border-white shadow-xl hover:scale-125 transition-transform">4</button>
+                        </div>
+                        <div class="mt-4 flex items-center gap-3">
+                            <i class="fa-solid fa-arrows-rotate text-cyan-400 text-xs"></i>
+                            <input type="range" min="0" max="360" value="0" oninput="document.getElementById('webImg360Stage').style.transform='perspective(700px) rotateY('+this.value+'deg)';document.getElementById('lblAngle360').innerText='Ángulo: '+this.value+'°';" class="w-full accent-cyan-400 cursor-pointer">
+                        </div>
+                    </div>
+
+                    <!-- Tarjetas de Pines Anatómicos 1, 2, 3, 4 -->
+                    <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                        <div id="webPinCard1" onclick="selectPin3dWeb(1)" class="p-4 rounded-2xl bg-slate-900/90 border-2 border-emerald-500/80 cursor-pointer transition-all space-y-1.5">
+                            <span class="text-emerald-400 font-extrabold block">PIN 1 • ÁPEX PROSTÁTICO</span>
+                            <strong class="text-white block">Veredicto: Margen R0 Libre (&gt;3.2 mm)</strong>
+                            <p class="text-slate-300 text-[11px]">• Tinta china negra indemne en cápsula.<br>• Sin solución de continuidad capsular.<br>• Correlación WSI en Casete B-02.</p>
+                        </div>
+                        <div id="webPinCard2" onclick="selectPin3dWeb(2)" class="p-4 rounded-2xl bg-slate-900/60 border border-rose-500/40 cursor-pointer transition-all space-y-1.5">
+                            <span class="text-rose-400 font-extrabold block">PIN 2 • NÓDULO DOMINANTE</span>
+                            <strong class="text-white block">ISUP Grado 4 (Gleason 4+4=8)</strong>
+                            <p class="text-slate-300 text-[11px]">• Zona periférica derecha (1.8 x 1.4 cm).<br>• Fusión glandular y patrón cribiforme.<br>• Conteo mitótico: 0-1 / 10 HPF.</p>
+                        </div>
+                        <div id="webPinCard3" onclick="selectPin3dWeb(3)" class="p-4 rounded-2xl bg-slate-900/60 border border-cyan-500/40 cursor-pointer transition-all space-y-1.5">
+                            <span class="text-cyan-400 font-extrabold block">PIN 3 • CUELLO VESICAL</span>
+                            <strong class="text-white block">Margen Basal: R0 Libre (4.8 mm)</strong>
+                            <p class="text-slate-300 text-[11px]">• Epitelio urotelial conservado.<br>• Músculo detrusor sin invasión.<br>• Casete C-01 verificado a 40x.</p>
+                        </div>
+                        <div id="webPinCard4" onclick="selectPin3dWeb(4)" class="p-4 rounded-2xl bg-slate-900/60 border border-purple-500/40 cursor-pointer transition-all space-y-1.5">
+                            <span class="text-purple-400 font-extrabold block">PIN 4 • FASCÍCULO NEUROVASCULAR</span>
+                            <strong class="text-white block">PNI Negativo • pT2c Órgano-Confinado</strong>
+                            <p class="text-slate-300 text-[11px]">• Cápsula prostática continua y respetada.<br>• Filetes nerviosos periféricos indemnes.<br>• Éxito oncológico de preservación.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -1963,7 +2074,7 @@
                 label.innerText = "Pausar Recorrido Guiado";
                 icon.className = "fa-solid fa-pause";
                 btn.className = "px-5 py-2.5 rounded-xl font-extrabold text-xs bg-slate-800 text-slate-200 border border-slate-700 flex items-center gap-2 transition-all";
-                traceTourInterval = setInterval(() => {
+                traceTourInterval = setInterval(() => { if (document.hidden) return;
                     let next = currentTraceStep + 1;
                     if (next > 5) next = 1;
                     selectTraceStep(next);
@@ -2174,8 +2285,19 @@
         // ==========================================
         // 5. CHATBOT FLOTANTE CON CORTANA IA & n8n
         // ==========================================
-        const N8N_WEBHOOK_URL = "http://127.0.0.1:8766/api/chat_consultas";
+        const N8N_WEBHOOK_URL = (window.location.hostname && window.location.hostname !== 'jcastilloc2920.github.io') ? `http://${window.location.hostname}:5678/webhook/chat-cortana` : "http://127.0.0.1:5678/webhook/chat-cortana";
         let sessionIdGenerado = "web_" + Math.random().toString(36).substring(2, 10);
+
+        function selectPin3dWeb(pinNum) {
+            const colors = {1: 'border-emerald-500/80', 2: 'border-rose-500/80', 3: 'border-cyan-500/80', 4: 'border-purple-500/80'};
+            for (let i = 1; i <= 4; i++) {
+                const el = document.getElementById('webPinCard' + i);
+                if (!el) continue;
+                el.className = (i === pinNum)
+                    ? `p-4 rounded-2xl bg-slate-900 border-2 ${colors[i]} cursor-pointer transition-all space-y-1.5 scale-[1.02] shadow-xl`
+                    : 'p-4 rounded-2xl bg-slate-900/50 border border-slate-800 cursor-pointer transition-all space-y-1.5 opacity-80';
+            }
+        }
 
         function toggleChatWindow() {
             const win = document.getElementById('chatWindow');
@@ -2224,7 +2346,7 @@
                 const res = await fetch(N8N_WEBHOOK_URL, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ chatInput: mensajeUsuario, sessionId: sessionIdGenerado })
+                    body: JSON.stringify({ mensaje: mensajeUsuario, chatInput: mensajeUsuario, sessionId: sessionIdGenerado })
                 });
                 
                 const waitEl = document.getElementById(idWait);
@@ -2232,8 +2354,8 @@
 
                 if (res.ok) {
                     const data = await res.json();
-                    const respuesta = data.output || data.text || data.message || "Tu consulta ha sido registrada.";
-                    appendMessage('bot', respuesta);
+                    const respuesta = data.respuesta || data.output || data.text || data.message || "Tu consulta ha sido procesada por Consola Colmena.";
+                    appendMessage('bot', respuesta.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>'));
                 } else {
                     throw new Error('Servidor IA no disponible');
                 }
