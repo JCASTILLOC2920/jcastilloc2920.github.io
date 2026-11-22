@@ -292,7 +292,46 @@
             }
         }
     </style>
-<style id='jc-60fps-wsi-shield'>*,*::before,*::after{backdrop-filter:none !important;-webkit-backdrop-filter:none !important;}</style></head>
+<style id='jc-60fps-wsi-shield'>*,*::before,*::after{backdrop-filter:none !important;-webkit-backdrop-filter:none !important;}</style>
+    <style id="krypton-ultra-eficiencia-responsiva">
+        /* KRYPTON SOBERANO v2.0: Ahorro CPU/RAM + Adaptacion Universal (Movil, 1366x768, 1080p, 2K/4K) */
+        html { overflow-x: clip; text-size-adjust: 100%; }
+        body { overflow-x: clip; }
+        section:not(:first-of-type) {
+            content-visibility: auto;
+            contain-intrinsic-size: auto 720px;
+        }
+        img, video, canvas, svg { max-width: 100%; height: auto; }
+        /* Laptops compactas 1366x768 */
+        @media (max-width: 1400px) and (max-height: 820px) {
+            html { font-size: 15px; }
+        }
+        /* Moviles pequenos (320px - 480px) */
+        @media (max-width: 480px) {
+            html { font-size: 14.5px; }
+            button, a { min-height: 40px; }
+        }
+        /* Monitores 2K / QHD (1800px+) */
+        @media (min-width: 1800px) {
+            html { font-size: 17px; }
+            .max-w-7xl { max-width: 90rem !important; }
+        }
+        /* Monitores 4K / Ultrawide (2400px+) */
+        @media (min-width: 2400px) {
+            html { font-size: 18.5px; }
+            .max-w-7xl { max-width: 100rem !important; }
+        }
+        /* Ahorro automatico de bateria/CPU en equipos con animacion reducida */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
 <body class="bg-darkBg text-slate-100 font-sans selection:bg-cyanCobalt selection:text-white antialiased overflow-x-hidden">
 
     <!-- 0. TOP BANNER SUPREMO DE ESTADO TÉCNICO & PROTOCOLO -->
@@ -1640,9 +1679,18 @@
     <!-- ========================================================================= -->
     <!-- SCRIPTS INTERACTIVOS: WSI ENGINE, TRAZABILIDAD, IMMUNOQUERY BAYES, AOS    -->
     <!-- ========================================================================= -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
     <script>
-        AOS.init({ duration: 750, once: true });
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.AOS) {
+                AOS.init({ duration: 550, once: true, disable: () => window.matchMedia('(prefers-reduced-motion: reduce)').matches });
+            }
+            document.querySelectorAll('img').forEach((im, idx) => {
+                im.decoding = 'async';
+                if (idx === 0) { im.setAttribute('fetchpriority', 'high'); }
+                else if (!im.hasAttribute('loading')) { im.loading = 'lazy'; }
+            });
+        });
 
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
