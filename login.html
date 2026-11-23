@@ -11,41 +11,7 @@
                 return;
             }
 
-            // Soporte de Acceso Móvil Directo (1-Clic para Clínicas y Médicos vía WhatsApp / Enlace Seguro)
-            const targetUser = urlParams.get('user') || urlParams.get('u');
-            const targetKey = urlParams.get('key') || urlParams.get('k') || urlParams.get('token');
-            if (targetUser && targetKey) {
-                try {
-                    // Importación diferida resuelta en línea para auto-login instantáneo
-                    const rawUsers = [
-                        { perfil: 'Usuario', nombres: 'CLINICA LA MUJER', usuario: 'Mujersegura', clave: '212523' },
-                        { perfil: 'Usuario', nombres: 'CLÍNICA CARRIÓN', usuario: 'clinicacarrion', clave: '212523' },
-                        { perfil: 'Usuario', nombres: 'CLÍNICA SAN CLEMENTE', usuario: 'sanclemente', clave: '112603' },
-                        { perfil: 'Usuario', nombres: 'CLÍNICA ALFA PREVENIR', usuario: 'alfaprevenir', clave: 'alfa2026' },
-                        { perfil: 'Usuario', nombres: 'CLÍNICA CARRIÓN VENTANILLA', usuario: 'carrionventanilla', clave: '212523' },
-                        { perfil: 'Usuario', nombres: 'CLÍNICA LA LUZ', usuario: 'clinicalaluz', clave: 'luz2026', clinica: 'CLÍNICA LA LUZ' },
-                        { perfil: 'Usuario', nombres: 'UROSERV - CENTRO UROLÓGICO ESPECIALIZADO', usuario: 'uroserv', clave: 'uroserv2026', clinica: 'UROSERV' },
-                        { perfil: 'Usuario', nombres: 'DR. JHON VILCA', usuario: 'drjhonvilca', clave: 'jhon2026', clinica: 'CLÍNICA LA LUZ' },
-                        { perfil: 'Usuario', nombres: 'DR. JORGE ALBERTO MUÑANTE ARZAPALO', usuario: 'drjorgemunante', clave: 'munante2026' },
-                        { perfil: 'Usuario', nombres: 'DR. JAIME VICTOR BECERRA ULFE', usuario: 'drjaimebecerra', clave: 'becerra2026' },
-                        { perfil: 'Usuario', nombres: 'DR. VICTOR CASTAÑEDA ROBLES', usuario: 'drvictorcastaneda', clave: 'castaneda2026' },
-                        { perfil: 'Usuario', nombres: 'DR. MANUEL RENATO SANCHEZ ORELLANA', usuario: 'drmanuelsanchez', clave: 'sanchez2026' },
-                        { perfil: 'Usuario', nombres: 'DR. ALEJANDRO ESCALANTE ÁLVARO', usuario: 'dralejandroescalante', clave: 'escalante2026' },
-                        { perfil: 'Usuario', nombres: 'DR. BRYAN FLORES SIERRA', usuario: 'bryanflores', clave: '112603' },
-                        { perfil: 'Usuario', nombres: 'DR. DIEGO ALONSO CHUNGUI BRAVO', usuario: 'drdiegochungui', clave: 'diego2026' },
-                        { perfil: 'Usuario', nombres: 'SR JUNCO', usuario: 'JUNCO2026', clave: 'JUNCO2026' }
-                    ];
-                    const matchedUser = rawUsers.find(u => 
-                        u.usuario.toLowerCase() === targetUser.toLowerCase() && 
-                        (u.clave === targetKey || targetKey === 'direct2026' || targetKey === 'master')
-                    );
-                    if (matchedUser) {
-                        localStorage.setItem('currentUser', JSON.stringify(matchedUser));
-                        window.location.replace('reportes.html');
-                        return;
-                    }
-                } catch(e) {}
-            }
+            // [BLINDAJE SEGURIDAD LEY 29733]: Auto-login por URL y claves en texto plano eliminados. Acceso solo mediante formulario SHA-256.
 
             let currentUser = null;
             try {
