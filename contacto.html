@@ -211,7 +211,7 @@
                 Sede Central & <span class="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Canales de Contacto</span>
             </h1>
             <p class="text-slate-400 text-sm sm:text-base">
-                Coordinación directa con el Dr. Josehp Castillo para entrega de muestras, interconsultas patológicas y convenios institucionales. Entrega en <strong>4 días hábiles</strong>.
+                Coordinación directa con el Dr. Joseph Castillo para entrega de muestras, interconsultas patológicas y convenios institucionales. Entrega en <strong>48 a 72 horas</strong>.
             </p>
         </div>
 
@@ -286,16 +286,22 @@
                         </a>
                     </div>
 
-                    <div class="relative w-full flex-1 min-h-[380px] bg-slate-900">
-                        <iframe 
-                            src="https://maps.google.com/maps?q=-11.932875410741605,-77.08458192781275&z=17&output=embed"
-                            class="absolute inset-0 w-full h-full border-0"
-                            allowfullscreen="" 
-                            loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"
-                            title="Ubicación de JC PATH LAB en Google Maps">
-                        </iframe>
-                    </div>
+                    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+                    <div id="jc-mapa-sede" class="relative w-full flex-1 min-h-[380px] bg-slate-900 z-10"></div>
+                    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+                    <script>
+                      (function(){
+                        if (typeof L === 'undefined') return;
+                        var m = L.map('jc-mapa-sede').setView([-11.932875, -77.084582], 16);
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                          maxZoom: 19,
+                          attribution: '&copy; OpenStreetMap'
+                        }).addTo(m);
+                        L.marker([-11.932875, -77.084582]).addTo(m)
+                          .bindPopup('<strong>JC PATH LAB</strong><br>Mz M2 Lote 13, Jardines de Chillón<br>Puente Piedra, Lima<br>WhatsApp: +51 986 396 733')
+                          .openPopup();
+                      })();
+                    </script>
 
                     <div class="bg-slate-950 px-5 py-2.5 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
                         <span>Coordenadas: -11.9328, -77.0845</span>
