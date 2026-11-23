@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App Dr. Castillo — IA KRYPTON & Informes Móviles | JC PATH LAB</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0B1120">
+  <link rel="stylesheet" href="jcpathlab_design.css">
+  <style>
+    .tab-bar { display:flex; gap:.5rem; margin:1rem 0; }
+    .tab-btn { flex:1; padding:.75rem; border-radius:10px; border:1px solid var(--jc-border); background:var(--jc-surface); color:var(--jc-text); font-weight:700; cursor:pointer; }
+    .tab-btn.active { background:var(--jc-primary); border-color:var(--jc-primary-light); color:#fff; }
+    .panel { display:none; }
+    .panel.active { display:block; }
+    .field { width:100%; padding:.75rem; margin:.35rem 0 .85rem; border-radius:10px; border:1px solid var(--jc-border); background:#0F172A; color:#F8FAFC; font-size:.95rem; font-family:inherit; }
+    .out-box { background:#0F172A; border:1px solid var(--jc-border); border-radius:10px; padding:1rem; min-height:110px; white-space:pre-wrap; font-size:.9rem; color:#E2E8F0; }
+    .badge-ok { display:inline-block; padding:.2rem .6rem; border-radius:99px; background:#064E3B; color:#34D399; font-size:.78rem; font-weight:700; }
+  </style>
+</head>
+<body class="jc-body">
+  <header class="jc-header">
+    <div class="jc-wrap jc-nav">
+      <a class="jc-brand" href="index.html">JC PATH LAB · APP PRIVADA DR. CASTILLO</a>
+      <span id="connBadge" class="badge-ok">Servidor Configurable</span>
+    </div>
+  </header>
+
+  <main class="jc-wrap" style="padding-bottom:3rem;">
+    <section class="jc-card" style="margin-top:1rem;">
+      <label style="font-size:.82rem;color:var(--jc-muted);font-weight:700;">SERVIDOR DE LA COLMENA (Wi-Fi Laboratorio o Túnel HTTPS Remoto):</label>
+      <div style="display:flex;gap:.5rem;margin-top:.35rem;">
+        <input id="apiBase" class="field" style="margin:0;flex:1;" value="http://192.168.100.250:5678" placeholder="https://tu-tunel.trycloudflare.com o http://192.168.100.250:5678">
+        <button class="jc-btn jc-btn-primary" style="width:auto;" onclick="guardarApi()">Conectar</button>
+      </div>
+    </section>
+
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="verTab('informe', this)">📝 Hacer Informe</button>
+      <button class="tab-btn" onclick="verTab('krypton', this)">🧠 IA KRYPTON</button>
+    </div>
+
+    <section id="tab-informe" class="panel active jc-card">
+      <h3>Nuevo / Editar Informe Patológico desde Celular</h3>
+      <input id="codAtencion" class="field" placeholder="Código Atención (ej. 26Q-410)">
+      <input id="paciente" class="field" placeholder="Apellidos y Nombres del Paciente">
+      <input id="clinica" class="field" placeholder="Clínica / Médico Solicitante">
+      <input id="especimen" class="field" placeholder="Espécimen (ej. Biopsia de Próstata Tru-Cut)">
+      <textarea id="macroDesc" class="field" rows="3" placeholder="Descripción Macroscópica (dicta por teclado de voz del celular)..."></textarea>
+      <textarea id="microDesc" class="field" rows="3" placeholder="Descripción Microscópica..."></textarea>
+      <textarea id="diagnostico" class="field" rows="3" placeholder="Diagnóstico Anatomopatológico Final..."></textarea>
+      <div class="jc-cta-row">
+        <button class="jc-btn jc-btn-wa" onclick="guardarInforme()">💾 Guardar en Base JC Path Lab</button>
+        <button class="jc-btn jc-btn-ghost" onclick="cargarInforme()">🔎 Buscar Código</button>
+      </div>
+      <div id="resInforme" class="out-box" style="margin-top:1rem;">Listo para registrar o editar informes desde su celular.</div>
+    </section>
+
+    <section id="tab-krypton" class="panel jc-card">
+      <h3>Consulta Directa a KRYPTON / La Colmena</h3>
+      <textarea id="promptK" class="field" rows="4" placeholder="Escribe o dicta tu consulta clínica, diferencial IHQ o instrucción para KRYPTON..."></textarea>
+      <button class="jc-btn jc-btn-primary" onclick="consultarKrypton()">⚡ Enviar a KRYPTON</button>
+      <div id="resKrypton" class="out-box" style="margin-top:1rem;">Esperando consulta...</div>
+    </section>
+  </main>
+
+  <footer class="jc-footer">App #1 Privada — Dr. Joseph C. Castillo Cuenca (CMP 56435 / RNE 029291) · Instalable como PWA/APK</footer>
+
+  <script>
+    const saved = localStorage.getItem('jc_api_base');
+    if (saved) document.getElementById('apiBase').value = saved;
+    function getBase(){ return document.getElementById('apiBase').value.trim().replace(/\/+$/, ''); }
+    function guardarApi(){
+      localStorage.setItem('jc_api_base', getBase());
+      fetch(getBase() + '/panel').then(r => {
+        document.getElementById('connBadge').textContent = r.ok ? 'ONLINE ✅' : 'HTTP ' + r.status;
+      }).catch(() => { document.getElementById('connBadge').textContent = 'Sin enlace (revisa Wi-Fi/Túnel)'; });
+    }
+    function verTab(id, btn){
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + id).classList.add('active');
+      btn.classList.add('active');
+    }
+    async function guardarInforme(){
+      const payload = {
+        codAtencion: document.getElementById('codAtencion').value.trim(),
+        paciente: document.getElementById('paciente').value.trim(),
+        clinica: document.getElementById('clinica').value.trim(),
+        especimen: document.getElementById('especimen').value.trim(),
+        macroDesc: document.getElementById('macroDesc').value.trim(),
+        microDesc: document.getElementById('microDesc').value.trim(),
+        diagnostico: document.getElementById('diagnostico').value.trim(),
+        doctor: 'DR. JOSEPH C. CASTILLO CUENCA (CMP 56435 / RNE 029291)'
+      };
+      if (!payload.codAtencion) { document.getElementById('resInforme').textContent = 'Ingrese el Código de Atención.'; return; }
+      document.getElementById('resInforme').textContent = 'Guardando en PC1 Master...';
+      try {
+        const r = await fetch(getBase() + '/webhook/guardar-paciente', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+        document.getElementById('resInforme').textContent = await r.text();
+      } catch(e){ document.getElementById('resInforme').textContent = 'Error de conexión con ' + getBase() + ': ' + e.message; }
+    }
+    async function cargarInforme(){
+      const cod = document.getElementById('codAtencion').value.trim();
+      if (!cod) return;
+      try {
+        const r = await fetch(getBase() + '/webhook/obtener-pacientes?cod=' + encodeURIComponent(cod));
+        const d = await r.json();
+        const item = Array.isArray(d) ? d[0] : (d.data ? d.data[0] : d);
+        if (item){
+          document.getElementById('paciente').value = item.paciente || '';
+          document.getElementById('clinica').value = item.clinica || '';
+          document.getElementById('especimen').value = item.especimen || '';
+          document.getElementById('macroDesc').value = item.macroDesc || '';
+          document.getElementById('microDesc').value = item.microDesc || '';
+          document.getElementById('diagnostico').value = item.diagnostico || '';
+          document.getElementById('resInforme').textContent = 'Informe ' + cod + ' cargado.';
+        } else { document.getElementById('resInforme').textContent = 'No encontrado: ' + cod; }
+      } catch(e){ document.getElementById('resInforme').textContent = 'Error: ' + e.message; }
+    }
+    async function consultarKrypton(){
+      const q = document.getElementById('promptK').value.trim();
+      if (!q) return;
+      document.getElementById('resKrypton').textContent = 'Consultando a KRYPTON...';
+      try {
+        const r = await fetch(getBase() + '/api/panel/accion', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({accion:'krypton_hibrido', consulta:q}) });
+        const d = await r.json();
+        document.getElementById('resKrypton').textContent = d.salida || d.respuesta || JSON.stringify(d, null, 2);
+      } catch(e){ document.getElementById('resKrypton').textContent = 'Error de conexión: ' + e.message; }
+    }
+    if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
+  </script>
+</body>
+</html>

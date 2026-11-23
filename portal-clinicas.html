@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal de Informes para Clínicas y Médicos | JC PATH LAB</title>
+  <meta name="description" content="Consulta y descarga de informes de Anatomía Patológica e Inmunohistoquímica para clínicas y médicos referentes de todo el Perú.">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0B1120">
+  <link rel="stylesheet" href="jcpathlab_design.css">
+  <style>
+    .field { width:100%; padding:.8rem; margin:.35rem 0 .9rem; border-radius:10px; border:1px solid var(--jc-border); background:#0F172A; color:#F8FAFC; font-size:.95rem; }
+    .report-box { background:#0F172A; border:1px solid var(--jc-border); border-radius:12px; padding:1.1rem; margin-top:1rem; }
+  </style>
+</head>
+<body class="jc-body">
+  <header class="jc-header">
+    <div class="jc-wrap jc-nav">
+      <a class="jc-brand" href="index.html">JC PATH LAB · PORTAL CLÍNICAS Y MÉDICOS</a>
+      <div class="jc-links">
+        <a href="cobertura-peru.html">Cobertura Perú</a>
+        <a href="validar.html">Validar QR</a>
+        <a href="https://wa.me/51986396733" target="_blank" rel="noopener">WhatsApp +51 986 396 733</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="jc-wrap">
+    <section class="jc-hero">
+      <h1>Consulta de Informes para Clínicas y Médicos</h1>
+      <p>Acceda desde su celular a los resultados histopatológicos y de inmunohistoquímica de sus pacientes firmados por el Dr. Joseph C. Castillo Cuenca (CMP 56435 / RNE 029291).</p>
+      <div class="jc-cta-row">
+        <a class="jc-btn jc-btn-primary" href="verificar_informe.html">🔒 Consulta Criptográfica por Código / QR</a>
+        <a class="jc-btn jc-btn-wa" href="https://wa.me/51986396733?text=Hola%20JC%20PATH%20LAB%2C%20solicito%20acceso%20al%20portal%20de%20informes%20para%20mi%20cl%C3%ADnica." target="_blank" rel="noopener">Solicitar Acceso para mi Clínica</a>
+      </div>
+    </section>
+
+    <section class="jc-card">
+      <h3>Búsqueda Directa de Informe (Servidor Institucional)</h3>
+      <label style="font-size:.82rem;color:var(--jc-muted);">Código de Atención o DNI del Paciente:</label>
+      <input id="qCod" class="field" placeholder="Ej. 26Q-370 o DNI">
+      <label style="font-size:.82rem;color:var(--jc-muted);">Endpoint Institucional HTTPS / Red Local (provisto por JC PATH LAB):</label>
+      <input id="srvClinica" class="field" value="https://jcastilloc2920.github.io" placeholder="URL del servidor de informes">
+      <button class="jc-btn jc-btn-primary" onclick="buscarInformeClinica()">🔎 Consultar Estado del Informe</button>
+      <div id="salidaClinica" class="report-box">
+        Para máxima confidencialidad médica, los informes firmados se verifican por código QR en <a href="validar.html" style="color:#38BDF8;">validar.html</a> o mediante su enlace privado institucional asignado a cada clínica.
+      </div>
+    </section>
+
+    <div class="jc-grid">
+      <div class="jc-card">
+        <h3>⚡ Entrega Digital 48–72h</h3>
+        <p>Notificación directa al médico tratante y a la clínica con microfotografías HD calibradas.</p>
+      </div>
+      <div class="jc-card">
+        <h3>🔐 Verificación Zero-Trust</h3>
+        <p>Cada informe PDF lleva firma médica colegiada y código QR anti-falsificación.</p>
+      </div>
+      <div class="jc-card">
+        <h3>📦 Envíos desde 25 Regiones</h3>
+        <p>Recepción de biopsias, bloques de parafina y paneles IHQ desde todo el Perú.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="jc-footer">
+    JC PATH LAB — Dr. Joseph C. Castillo Cuenca (CMP 56435 / RNE 029291) · Mz M2 Lote 13, Jardines de Chillón, Puente Piedra, Lima · WhatsApp: +51 986 396 733
+  </footer>
+
+  <script>
+    async function buscarInformeClinica(){
+      const cod = document.getElementById('qCod').value.trim();
+      const srv = document.getElementById('srvClinica').value.trim().replace(/\/+$/, '');
+      const box = document.getElementById('salidaClinica');
+      if (!cod) { box.textContent = 'Ingrese un código de atención o DNI.'; return; }
+      if (srv.includes('github.io')) {
+        window.location.href = 'verificar_informe.html?cod=' + encodeURIComponent(cod);
+        return;
+      }
+      box.textContent = 'Consultando servidor de informes...';
+      try {
+        const r = await fetch(srv + '/webhook/obtener-pacientes?cod=' + encodeURIComponent(cod));
+        const d = await r.json();
+        const it = Array.isArray(d) ? d[0] : (d.data ? d.data[0] : d);
+        if (it && it.codAtencion) {
+          box.innerHTML = '<strong>Informe ' + it.codAtencion + '</strong> — Estado: ' + (it.estado || 'Procesado') + '<br>Paciente: ' + (it.paciente || '--') + '<br>Espécimen: ' + (it.especimen || '--') + '<br><br><em>Diagnóstico:</em><br>' + (it.diagnostico || 'En evaluación patológica');
+        } else {
+          box.textContent = 'No se encontró un informe público con ese código. Verifique con el laboratorio al +51 986 396 733.';
+        }
+      } catch(e) {
+        box.textContent = 'No se pudo contactar al servidor institucional (' + srv + '). Use verificar_informe.html o escriba al WhatsApp +51 986 396 733.';
+      }
+    }
+    if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
+  </script>
+</body>
+</html>
