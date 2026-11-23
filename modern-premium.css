@@ -437,3 +437,93 @@ header {
 .btn-premium-lux.secondary-lux:hover {
     box-shadow: 0 15px 35px -5px rgba(13, 148, 136, 0.5);
 }
+/* JCPATHLAB_FIX_ARTICULOS_MAIN_V1 */
+main.nav-container {
+    display: block !important;
+    max-width: 860px !important;
+    width: auto !important;
+    margin: 2rem auto !important;
+    padding: 2rem 1.5rem !important;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
+    line-height: 1.78;
+    color: #1e293b;
+}
+main.nav-container h1,
+main.nav-container h2,
+main.nav-container h3 {
+    display: block !important;
+    color: #0f172a;
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+}
+main.nav-container p {
+    display: block !important;
+    margin-bottom: 1.1rem;
+    font-size: 1.05rem;
+}
+main.nav-container ul,
+main.nav-container ol {
+    display: block !important;
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+}
+main.nav-container li {
+    margin-bottom: 0.65rem;
+}
+@media (max-width: 768px) {
+    main.nav-container {
+        margin: 1rem 0.75rem !important;
+        padding: 1.25rem 1rem !important;
+        border-radius: 12px;
+    }
+}
+
+/* JCPATHLAB_FIX_ARTICULOS_MAIN_V2 */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { max-width: 100vw !important; overflow-x: hidden !important; }
+header .nav-container { max-width: 100% !important; padding-left: 1rem !important; padding-right: 1rem !important; }
+main.nav-container {
+    display: block !important;
+    max-width: 860px !important;
+    width: auto !important;
+    margin: 2rem auto !important;
+    padding: 2rem 1.5rem !important;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
+    line-height: 1.78;
+    color: #1e293b;
+}
+main.nav-container h1,
+main.nav-container h2,
+main.nav-container h3 {
+    display: block !important;
+    color: #0f172a;
+    margin-top: 1.75rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+}
+main.nav-container p {
+    display: block !important;
+    margin-bottom: 1.1rem;
+    font-size: 1.05rem;
+}
+main.nav-container ul,
+main.nav-container ol {
+    display: block !important;
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+}
+main.nav-container li {
+    margin-bottom: 0.65rem;
+}
+@media (max-width: 768px) {
+    main.nav-container {
+        margin: 1rem 0.75rem !important;
+        padding: 1.25rem 1rem !important;
+        border-radius: 12px;
+    }
+}
