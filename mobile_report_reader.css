@@ -1,0 +1,1308 @@
+/* ==========================================================================
+   MOBILE REPORT READER (Boceto 3 - Lector Diagnóstico Mobile-First)
+   Diseñado para lectura médica ultra-legible en teléfonos y tablets
+   ========================================================================== */
+
+:root {
+    color-scheme: dark;
+    --mrr-bg-deep: #070d19;
+    --mrr-bg-surface: #0f172a;
+    --mrr-bg-card: #131f37;
+    --mrr-bg-card-hover: #192744;
+    --mrr-border-subtle: rgba(255, 255, 255, 0.08);
+    --mrr-border-highlight: rgba(56, 189, 248, 0.25);
+    --mrr-cyan: #38bdf8;
+    --mrr-blue: #0284c7;
+    --mrr-emerald: #10b981;
+    --mrr-amber: #f59e0b;
+    --mrr-rose: #f43f5e;
+    --mrr-purple: #a855f7;
+    --mrr-text-main: #f8fafc;
+    --mrr-text-sub: #94a3b8;
+    --mrr-text-muted: #64748b;
+    --mrr-shadow-fap: 0 10px 25px -4px rgba(16, 185, 129, 0.5), 0 4px 10px rgba(0, 0, 0, 0.4);
+    --mrr-shadow-card: 0 8px 24px -6px rgba(0, 0, 0, 0.45);
+}
+
+/* Soporte Impecable para Modo Claro en Móvil */
+body.light-theme .mrr-overlay {
+    --mrr-bg-deep: #f8fafc;
+    --mrr-bg-surface: #ffffff;
+    --mrr-bg-card: #ffffff;
+    --mrr-bg-card-hover: #f1f5f9;
+    --mrr-border-subtle: rgba(0, 0, 0, 0.08);
+    --mrr-border-highlight: rgba(2, 132, 199, 0.35);
+    --mrr-text-main: #0f172a;
+    --mrr-text-sub: #475569;
+    --mrr-text-muted: #64748b;
+}
+body.light-theme .mrr-header,
+body.light-theme .mrr-top-bar {
+    background: #ffffff !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+body.light-theme .mrr-share-sheet {
+    background: #ffffff !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+body.light-theme .mrr-back-btn {
+    background: #f1f5f9 !important;
+    border-color: #cbd5e1 !important;
+    color: #0f172a !important;
+}
+body.light-theme .mrr-header-btn {
+    background: #f1f5f9 !important;
+    border-color: #cbd5e1 !important;
+    color: #334155 !important;
+}
+body.light-theme .mrr-header-pdf-btn {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%) !important;
+    color: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 2px 8px rgba(220, 38, 38, 0.35) !important;
+}
+body.light-theme .mrr-diag-card {
+    background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%) !important;
+    border-color: #bae6fd !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06) !important;
+}
+body.light-theme .mrr-diag-text-body {
+    color: #0f172a !important;
+}
+body.light-theme .mrr-specimen-title {
+    color: #0f172a !important;
+    border-bottom-color: rgba(0, 0, 0, 0.08) !important;
+}
+body.light-theme .mrr-clinical-badge {
+    background: #fef2f2 !important;
+    border-color: #fca5a5 !important;
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.1) !important;
+}
+body.light-theme .mrr-clinical-badge-text {
+    color: #991b1b !important;
+}
+body.light-theme .mrr-clinical-badge.badge-benign {
+    background: #ecfdf5 !important;
+    border-color: #6ee7b7 !important;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1) !important;
+}
+body.light-theme .mrr-clinical-badge.badge-benign .mrr-clinical-badge-text {
+    color: #065f46 !important;
+}
+body.light-theme .mrr-clinical-badge.badge-alert {
+    background: #fffbeb !important;
+    border-color: #fcd34d !important;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.1) !important;
+}
+body.light-theme .mrr-clinical-badge.badge-alert .mrr-clinical-badge-text {
+    color: #92400e !important;
+}
+body.light-theme .mrr-accordion-card {
+    background: #ffffff !important;
+    border-color: #e2e8f0 !important;
+}
+body.light-theme .mrr-acc-label {
+    color: #1e293b !important;
+}
+body.light-theme .mrr-synoptic-table td.col-value {
+    color: #0f172a !important;
+}
+body.light-theme .mrr-synoptic-table td.col-param {
+    color: #64748b !important;
+}
+body.light-theme .mrr-bethesda-table div,
+body.light-theme .mrr-bethesda-table span {
+    color: #0f172a !important;
+}
+body.light-theme .mrr-bethesda-table span[style*="color: #94a3b8"] {
+    color: #475569 !important;
+}
+body.light-theme .mrr-diag-text-body,
+body.light-theme .mrr-diag-text-body * {
+    color: #0f172a !important;
+}
+body.light-theme .mrr-diag-text-body b,
+body.light-theme .mrr-diag-text-body strong {
+    color: #0369a1 !important;
+}
+body.light-theme .mrr-diag-footer span {
+    color: #475569 !important;
+}
+body.light-theme .mrr-section-heading .mrr-section-title {
+    color: #0f172a !important;
+}
+body.light-theme .mrr-accordion-content {
+    color: #0f172a !important;
+}
+body.light-theme #mrrMacroText,
+body.light-theme #mrrMicroText {
+    color: #0f172a !important;
+}
+
+/* ==========================================================================
+   MODAL OVERLAY (Fullscreen Sheet Mobile)
+   ========================================================================== */
+.mrr-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    background: #080e1e;
+    background-image: 
+        radial-gradient(at 15% 15%, rgba(14, 165, 233, 0.18) 0px, transparent 50%), 
+        radial-gradient(at 85% 20%, rgba(99, 102, 241, 0.18) 0px, transparent 50%), 
+        radial-gradient(at 50% 80%, rgba(6, 182, 212, 0.14) 0px, transparent 55%);
+    background-attachment: fixed;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 99995;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(12px);
+    transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.22s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.mrr-overlay.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+}
+
+/* ==========================================================================
+   ENCABEZADO SUPERIOR FIJO (Header)
+   ========================================================================== */
+.mrr-header,
+.mrr-top-bar {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.88) !important;
+    backdrop-filter: blur(16px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    padding: 10px 14px;
+    padding-top: max(10px, env(safe-area-inset-top, 10px));
+    padding-left: max(14px, env(safe-area-inset-left, 14px));
+    padding-right: max(14px, env(safe-area-inset-right, 14px));
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.mrr-back-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--mrr-border-subtle);
+    color: #f1f5f9;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    touch-action: manipulation;
+}
+
+.mrr-back-btn:active {
+    background: rgba(56, 189, 248, 0.2);
+    transform: scale(0.94);
+}
+
+.mrr-header-patient-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.mrr-header-title {
+    font-size: 0.96rem;
+    font-weight: 700;
+    color: var(--mrr-text-main);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 0.2px;
+}
+
+.mrr-header-meta {
+    font-size: 0.74rem;
+    color: var(--mrr-cyan);
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 2px;
+}
+
+.mrr-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.mrr-header-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--mrr-border-subtle);
+    color: #e2e8f0;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.98rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    touch-action: manipulation;
+}
+
+.mrr-header-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.mrr-header-btn:active {
+    transform: scale(0.92);
+}
+
+.mrr-header-btn.share-btn {
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.12);
+    border-color: rgba(56, 189, 248, 0.3);
+}
+
+.mrr-header-btn.download-btn {
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.12);
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.mrr-header-pdf-btn {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    border: 1px solid rgba(52, 211, 153, 0.4);
+    color: #ffffff !important;
+    font-size: 0.8rem;
+    font-weight: 700;
+    height: 38px;
+    padding: 0 12px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(5, 150, 105, 0.45);
+    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+    touch-action: manipulation;
+    text-decoration: none;
+}
+
+.mrr-header-pdf-btn:hover {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.6);
+    transform: translateY(-1px);
+    color: #ffffff !important;
+}
+
+.mrr-header-pdf-btn:active {
+    transform: scale(0.95);
+}
+
+/* ==========================================================================
+   SCROLLABLE CONTENT AREA (Cuerpo con Scroll Táctil Nativo)
+   ========================================================================== */
+.mrr-scroll-body {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+    padding: 14px;
+    padding-top: 14px;
+    padding-bottom: calc(96px + env(safe-area-inset-bottom, 24px));
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 780px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+    overscroll-behavior-y: contain;
+    scroll-behavior: smooth;
+}
+
+/* ==========================================================================
+   CARD: DIAGNÓSTICO HISTOPATOLÓGICO (DESTACADA Y ULTRA-LEGIBLE)
+   ========================================================================== */
+.mrr-diag-card {
+    background: linear-gradient(180deg, rgba(19, 33, 60, 0.88) 0%, rgba(13, 23, 40, 0.94) 100%) !important;
+    backdrop-filter: blur(14px) !important;
+    -webkit-backdrop-filter: blur(14px) !important;
+    border: 1.5px solid rgba(56, 189, 248, 0.45) !important;
+    border-radius: 16px;
+    padding: 18px 16px 20px 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 24px rgba(56, 189, 248, 0.12) !important;
+    position: relative;
+    overflow: hidden;
+    scroll-margin-top: 14px;
+    flex-shrink: 0;
+}
+
+.mrr-diag-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #0284c7 0%, #38bdf8 50%, #10b981 100%);
+}
+
+.mrr-diag-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.mrr-diag-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.14);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    padding: 5px 11px;
+    border-radius: 6px;
+}
+
+.mrr-validation-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: #34d399;
+    background: rgba(16, 185, 129, 0.16);
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    padding: 4px 10px;
+    border-radius: 999px;
+}
+
+.mrr-specimen-title {
+    font-size: 0.92rem;
+    font-weight: 800;
+    color: #f1f5f9;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-bottom: 12px;
+    line-height: 1.45;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 10px;
+    word-break: break-word;
+}
+
+/* Badge Clínico de Diagnóstico (Boceto 3) con Glassmorphism */
+.mrr-clinical-badge {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.18) 0%, rgba(185, 28, 28, 0.3) 100%);
+    border: 1.5px solid rgba(248, 113, 113, 0.5);
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 14px rgba(220, 38, 38, 0.18);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.2s ease;
+}
+
+.mrr-clinical-badge.badge-malignant {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.22) 0%, rgba(185, 28, 28, 0.35) 100%);
+    border-color: rgba(248, 113, 113, 0.6);
+    box-shadow: 0 4px 16px rgba(239, 68, 68, 0.25);
+}
+
+.mrr-clinical-badge.badge-malignant .mrr-clinical-badge-icon {
+    background: rgba(239, 68, 68, 0.3);
+    color: #fca5a5;
+}
+
+.mrr-clinical-badge.badge-malignant .mrr-clinical-badge-text {
+    color: #fee2e2;
+}
+
+.mrr-clinical-badge.badge-benign {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.18) 0%, rgba(5, 150, 105, 0.3) 100%);
+    border-color: rgba(52, 211, 153, 0.55);
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.2);
+}
+
+.mrr-clinical-badge.badge-benign .mrr-clinical-badge-icon {
+    background: rgba(16, 185, 129, 0.3);
+    color: #6ee7b7;
+}
+
+.mrr-clinical-badge.badge-benign .mrr-clinical-badge-text {
+    color: #d1fae5;
+}
+
+.mrr-clinical-badge.badge-alert {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.18) 0%, rgba(180, 83, 9, 0.3) 100%);
+    border-color: rgba(251, 191, 36, 0.55);
+    box-shadow: 0 4px 16px rgba(245, 158, 11, 0.2);
+}
+
+.mrr-clinical-badge.badge-alert .mrr-clinical-badge-icon {
+    background: rgba(245, 158, 11, 0.3);
+    color: #fcd34d;
+}
+
+.mrr-clinical-badge.badge-alert .mrr-clinical-badge-text {
+    color: #fef3c7;
+}
+
+.mrr-clinical-badge-icon {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    border-radius: 9px;
+    background: rgba(239, 68, 68, 0.25);
+    color: #f87171;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.mrr-clinical-badge-text {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #fecaca;
+    line-height: 1.35;
+    letter-spacing: 0.2px;
+    word-break: break-word;
+}
+
+/* Tipografía Grande, Nítida y Ultra-Legible para Dispositivos Móviles */
+.mrr-diag-text-body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 1.06rem;
+    line-height: 1.72;
+    color: #ffffff;
+    font-weight: 500;
+    white-space: pre-wrap;
+    word-break: break-word;
+    letter-spacing: 0.2px;
+    padding: 6px 0 10px 0;
+}
+
+.mrr-diag-text-body b, 
+.mrr-diag-text-body strong {
+    color: #38bdf8;
+    font-weight: 700;
+}
+
+.mrr-diag-text-body p {
+    margin: 6px 0;
+}
+
+.mrr-diag-text-body p:first-child {
+    margin-top: 0;
+}
+
+.mrr-diag-text-body p:last-child {
+    margin-bottom: 0;
+}
+
+.mrr-diag-footer {
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.74rem;
+    color: var(--mrr-text-sub);
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+/* ==========================================================================
+   RESUMEN SINÓPTICO CAP EN ACORDEONES INTERACTIVOS (Boceto 3)
+   ========================================================================== */
+.mrr-section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.mrr-section-title {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #cbd5e1;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.mrr-section-title i {
+    color: #a855f7;
+}
+
+.mrr-accordions-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mrr-accordion-card {
+    background: rgba(15, 23, 42, 0.75) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.10) !important;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mrr-accordion-card.active {
+    border-color: rgba(56, 189, 248, 0.4) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35) !important;
+}
+
+.mrr-accordion-header {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    color: var(--mrr-text-main);
+    cursor: pointer;
+    text-align: left;
+    touch-action: manipulation;
+}
+
+.mrr-accordion-header:active {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.mrr-acc-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+}
+
+.mrr-acc-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+    background: rgba(56, 189, 248, 0.12);
+    color: #38bdf8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+.mrr-accordion-card:nth-child(2) .mrr-acc-icon {
+    background: rgba(245, 158, 11, 0.15);
+    color: #fbbf24;
+}
+
+.mrr-accordion-card:nth-child(3) .mrr-acc-icon {
+    background: rgba(168, 85, 247, 0.15);
+    color: #c084fc;
+}
+
+.mrr-accordion-card:nth-child(4) .mrr-acc-icon {
+    background: rgba(16, 185, 129, 0.15);
+    color: #34d399;
+}
+
+.mrr-acc-label {
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    letter-spacing: 0.1px;
+    line-height: 1.3;
+}
+
+.mrr-acc-chevron {
+    color: var(--mrr-text-muted);
+    font-size: 0.82rem;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    flex-shrink: 0;
+}
+
+.mrr-accordion-card.active .mrr-acc-chevron {
+    transform: rotate(180deg);
+    color: #38bdf8;
+}
+
+.mrr-accordion-content {
+    display: none;
+    padding: 0 14px 14px 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(11, 19, 36, 0.65);
+}
+
+.mrr-accordion-card.active .mrr-accordion-content {
+    display: block;
+    animation: mrrSlideDown 0.22s ease-out;
+}
+
+@keyframes mrrSlideDown {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   TABLA ESTRUCTURADA LIMPIA (Clean Synoptic Table)
+   ========================================================================== */
+.mrr-synoptic-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+    font-size: 0.84rem;
+}
+
+.mrr-synoptic-table tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mrr-synoptic-table tr:last-child {
+    border-bottom: none;
+}
+
+.mrr-synoptic-table td {
+    padding: 9px 4px;
+    vertical-align: middle;
+}
+
+.mrr-synoptic-table td.col-param {
+    font-weight: 600;
+    color: #94a3b8;
+    width: 44%;
+    padding-right: 8px;
+}
+
+.mrr-synoptic-table td.col-value {
+    font-weight: 700;
+    color: #ffffff;
+    width: 56%;
+    text-align: right;
+}
+
+.mrr-synoptic-badge {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+}
+
+.mrr-synoptic-badge.score-amber {
+    background: rgba(245, 158, 11, 0.18);
+    color: #fbbf24;
+    border-color: rgba(245, 158, 11, 0.35);
+}
+
+.mrr-synoptic-badge.score-green {
+    background: rgba(16, 185, 129, 0.18);
+    color: #34d399;
+    border-color: rgba(16, 185, 129, 0.35);
+}
+
+.mrr-synoptic-badge.score-rose {
+    background: rgba(244, 63, 94, 0.18);
+    color: #fb7185;
+    border-color: rgba(244, 63, 94, 0.35);
+}
+
+/* ==========================================================================
+   GALERÍA DE MICROFOTOGRAFÍAS H&E (Touch Gallery)
+   ========================================================================== */
+.mrr-gallery-card {
+    background: var(--mrr-bg-card);
+    border: 1px solid var(--mrr-border-subtle);
+    border-radius: 12px;
+    padding: 14px;
+}
+
+.mrr-gallery-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.mrr-gallery-title {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #e2e8f0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.mrr-gallery-title i {
+    color: #f43f5e;
+}
+
+.mrr-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+}
+
+.mrr-gallery-thumb-item {
+    background: #090f1d;
+    border: 1.5px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    touch-action: manipulation;
+}
+
+.mrr-gallery-thumb-item:active {
+    transform: scale(0.97);
+    border-color: #38bdf8;
+}
+
+.mrr-thumb-aspect {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    position: relative;
+    overflow: hidden;
+    background: #020617;
+}
+
+.mrr-thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.mrr-thumb-tag {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.2px;
+}
+
+.mrr-thumb-expand-icon {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    width: 24px;
+    height: 24px;
+    background: rgba(2, 132, 199, 0.85);
+    color: #ffffff;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.mrr-thumb-caption {
+    padding: 7px 8px;
+    font-size: 0.74rem;
+    color: #94a3b8;
+    line-height: 1.35;
+    font-weight: 500;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   BOTÓN FLOTANTE (FAP) EN LA ZONA DEL PULGAR (Thumb Zone)
+   ========================================================================== */
+.mrr-fap-container {
+    position: fixed;
+    bottom: max(16px, env(safe-area-inset-bottom, 16px));
+    right: 16px;
+    left: 16px;
+    max-width: 520px;
+    margin: 0 auto;
+    z-index: 1000;
+    pointer-events: none;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.mrr-fap-btn {
+    pointer-events: auto;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border: 1.5px solid rgba(167, 243, 208, 0.4);
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    padding: 13px 22px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: var(--mrr-shadow-fap);
+    cursor: pointer;
+    transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.18s ease;
+    touch-action: manipulation;
+    user-select: none;
+}
+
+.mrr-fap-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+
+.mrr-fap-btn i.fa-whatsapp {
+    font-size: 1.25rem;
+    color: #ffffff;
+}
+
+.mrr-fap-btn i.fa-share-nodes {
+    font-size: 0.95rem;
+    opacity: 0.85;
+}
+
+/* ==========================================================================
+   LIGHTBOX FULLSCREEN TÁCTIL CON ZOOM (Fullscreen Viewer)
+   ========================================================================== */
+.mrr-lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    background-color: #000000;
+    z-index: 100000;
+    display: none;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    user-select: none;
+    touch-action: none;
+}
+
+.mrr-lightbox.active {
+    display: flex !important;
+    opacity: 1 !important;
+}
+
+.mrr-lightbox-header {
+    background: #0a0a0a;
+    padding: 10px 14px;
+    padding-top: max(10px, env(safe-area-inset-top, 10px));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mrr-lightbox-title {
+    color: #ffffff;
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+.mrr-lightbox-counter {
+    font-size: 0.76rem;
+    color: #94a3b8;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 8px;
+    border-radius: 999px;
+    margin-left: 8px;
+}
+
+.mrr-lightbox-close {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #ffffff;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.mrr-lightbox-close:active {
+    transform: scale(0.9);
+}
+
+.mrr-lightbox-viewport {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: none;
+}
+
+.mrr-lightbox-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transform-origin: center center;
+    transition: transform 0.1s ease-out;
+    cursor: grab;
+    will-change: transform;
+}
+
+.mrr-lightbox-img:active,
+.mrr-lightbox.panning .mrr-lightbox-img,
+.mrr-lightbox-viewport.panning .mrr-lightbox-img {
+    cursor: grabbing;
+    transition: none !important;
+}
+
+/* Barra de Herramientas de Zoom Flotante */
+.mrr-lightbox-toolbar {
+    position: absolute;
+    bottom: max(20px, env(safe-area-inset-bottom, 20px));
+    left: 50%;
+    transform: translateX(-50%);
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    padding: 6px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 10;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.mrr-zoom-btn {
+    background: transparent;
+    border: none;
+    color: #f1f5f9;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.mrr-zoom-btn:active {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.mrr-zoom-level-text {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #38bdf8;
+    min-width: 44px;
+    text-align: center;
+}
+
+/* ==========================================================================
+   BOTTOM SHEET DE COMPARTIR (Fallback si navigator.share no está activo)
+   ========================================================================== */
+.mrr-sheet-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 100010;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.mrr-sheet-backdrop.active {
+    display: block !important;
+    opacity: 1 !important;
+}
+
+.mrr-share-sheet {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #0f172a;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 22px 22px 0 0;
+    padding: 16px 18px;
+    padding-left: max(18px, env(safe-area-inset-left, 18px));
+    padding-right: max(18px, env(safe-area-inset-right, 18px));
+    padding-bottom: max(20px, env(safe-area-inset-bottom, 20px));
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.65);
+    z-index: 100020;
+    transform: translateY(100%);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+.mrr-share-sheet.active {
+    transform: translateY(0) !important;
+}
+
+.mrr-sheet-handle {
+    width: 40px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    margin: 0 auto 14px auto;
+}
+
+.mrr-sheet-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.mrr-sheet-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mrr-sheet-item {
+    width: 100%;
+    background: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #f8fafc;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    touch-action: manipulation;
+}
+
+.mrr-sheet-item:active {
+    background: #334155;
+}
+
+.mrr-sheet-item i {
+    font-size: 1.15rem;
+    width: 24px;
+    text-align: center;
+}
+
+.mrr-sheet-item.whatsapp-item i {
+    color: #25d366;
+}
+
+.mrr-sheet-item.download-item i {
+    color: #38bdf8;
+}
+
+.mrr-sheet-item.copy-item i {
+    color: #a855f7;
+}
+
+.mrr-sheet-close-btn {
+    width: 100%;
+    margin-top: 10px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
+    padding: 10px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.88rem;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   BOTÓN EN TARJETAS MÓVILES (En la lista de pacientes)
+   ========================================================================== */
+.action-btn.mobile-reader-btn {
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+    border-color: rgba(56, 189, 248, 0.4) !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    box-shadow: 0 2px 8px rgba(2, 132, 199, 0.35) !important;
+}
+
+.action-btn.mobile-reader-btn:hover {
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%) !important;
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.45) !important;
+}
+
+.action-btn.mobile-reader-btn:active {
+    transform: scale(0.95);
+}
+
+.action-btn.mobile-reader-btn .btn-mobile-label {
+    display: inline;
+    font-size: 0.85rem;
+}
+
+@media (min-width: 769px) {
+    .action-btn.mobile-reader-btn .btn-mobile-label {
+        display: none; /* En desktop el botón es compacto con ícono */
+    }
+}
+
+@media (max-width: 768px) {
+    .action-hybrid-wrapper {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 8px !important;
+        width: 100% !important;
+        margin-top: 4px;
+    }
+    .action-btn.mobile-reader-btn {
+        flex: 2 !important;
+        min-height: 42px !important;
+        padding: 8px 14px !important;
+        font-size: 0.88rem !important;
+        background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+        border: 1px solid #38bdf8 !important;
+        color: #ffffff !important;
+        box-shadow: 0 4px 10px rgba(2, 132, 199, 0.4) !important;
+    }
+    .action-btn.edit-btn,
+    .action-btn.preview-pdf-btn {
+        flex: 1 !important;
+        min-height: 42px !important;
+    }
+    .action-btn.kebab-btn {
+        flex: 0 0 42px !important;
+        min-height: 42px !important;
+        width: 42px !important;
+    }
+}
+
+/* Pantallas Móviles Compactas (<= 480px) */
+@media (max-width: 480px) {
+    .mrr-header-actions {
+        gap: 4px;
+    }
+    .mrr-header-btn {
+        width: 34px;
+        height: 34px;
+        font-size: 0.88rem;
+    }
+    .mrr-header-pdf-btn {
+        height: 34px;
+        padding: 0 8px;
+        font-size: 0.75rem;
+        gap: 4px;
+    }
+    .mrr-header-info {
+        max-width: calc(100vw - 200px);
+    }
+    .mrr-header-name {
+        font-size: 0.92rem;
+    }
+}
+
+/* Pantallas Extra Estrechas (<= 375px) */
+@media (max-width: 375px) {
+    .mrr-header-actions {
+        gap: 3px;
+    }
+    .mrr-header-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 0.80rem;
+    }
+    .mrr-header-pdf-btn {
+        height: 30px;
+        padding: 0 6px;
+        font-size: 0.70rem;
+    }
+    .mrr-header-pdf-btn span {
+        display: none; /* Dejar ícono de PDF en pantallas microscópicas para evitar cualquier corte */
+    }
+    .mrr-header-info {
+        max-width: calc(100vw - 160px);
+    }
+}

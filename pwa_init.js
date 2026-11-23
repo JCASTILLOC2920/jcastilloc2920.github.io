@@ -31,8 +31,9 @@
     // 1. Registro del Service Worker Médico con Bypass de Caché y Autocontrol
     if ('serviceWorker' in navigator) {
         let refreshing = false;
+        const hadController = !!navigator.serviceWorker.controller;
         navigator.serviceWorker.addEventListener('controllerchange', function() {
-            if (!refreshing) {
+            if (hadController && !refreshing) {
                 refreshing = true;
                 console.log(`[PWA Medical] Nuevo Service Worker activo (${APP_BUILD_VERSION}). Actualizando interfaz automáticamente...`);
                 localStorage.setItem('app_version', APP_BUILD_VERSION);
