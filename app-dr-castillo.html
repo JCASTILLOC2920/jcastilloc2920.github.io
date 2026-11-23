@@ -31,7 +31,7 @@
     <section class="jc-card" style="margin-top:1rem;">
       <label style="font-size:.82rem;color:var(--jc-muted);font-weight:700;">SERVIDOR DE LA COLMENA (Wi-Fi Laboratorio o Túnel HTTPS Remoto):</label>
       <div style="display:flex;gap:.5rem;margin-top:.35rem;">
-        <input id="apiBase" class="field" style="margin:0;flex:1;" value="http://192.168.100.250:5678" placeholder="https://tu-tunel.trycloudflare.com o http://192.168.100.250:5678">
+        <input id="apiBase" class="field" style="margin:0;flex:1;" value="https://ball-reports-mature-mass.trycloudflare.com" placeholder="https://tu-tunel.trycloudflare.com o http://192.168.100.250:5678">
         <button class="jc-btn jc-btn-primary" style="width:auto;" onclick="guardarApi()">Conectar</button>
       </div>
     </section>
@@ -73,7 +73,7 @@
     function getBase(){ return document.getElementById('apiBase').value.trim().replace(/\/+$/, ''); }
     function guardarApi(){
       localStorage.setItem('jc_api_base', getBase());
-      fetch(getBase() + '/panel').then(r => {
+      fetch(getBase() + '/api/panel-status').then(r => {
         document.getElementById('connBadge').textContent = r.ok ? 'ONLINE ✅' : 'HTTP ' + r.status;
       }).catch(() => { document.getElementById('connBadge').textContent = 'Sin enlace (revisa Wi-Fi/Túnel)'; });
     }
@@ -105,9 +105,10 @@
       const cod = document.getElementById('codAtencion').value.trim();
       if (!cod) return;
       try {
-        const r = await fetch(getBase() + '/webhook/obtener-pacientes?cod=' + encodeURIComponent(cod));
+        const r = await fetch(getBase() + '/api/pacientes-recientes');
         const d = await r.json();
-        const item = Array.isArray(d) ? d[0] : (d.data ? d.data[0] : d);
+        const lista = d.pacientes || [];
+        const item = lista.find(p => String(p.codAtencion||p.cod_atencion||'').toLowerCase().includes(cod.toLowerCase()) || String(p.dni||'').includes(cod));
         if (item){
           document.getElementById('paciente').value = item.paciente || '';
           document.getElementById('clinica').value = item.clinica || '';
@@ -124,7 +125,7 @@
       if (!q) return;
       document.getElementById('resKrypton').textContent = 'Consultando a KRYPTON...';
       try {
-        const r = await fetch(getBase() + '/api/panel/accion', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({accion:'krypton_hibrido', consulta:q}) });
+        const r = await fetch(getBase() + '/api/panel-action?cmd=krypton_hibrido&q=' + encodeURIComponent(q));
         const d = await r.json();
         document.getElementById('resKrypton').textContent = d.salida || d.respuesta || JSON.stringify(d, null, 2);
       } catch(e){ document.getElementById('resKrypton').textContent = 'Error de conexión: ' + e.message; }
