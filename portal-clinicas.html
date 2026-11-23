@@ -79,9 +79,10 @@
       }
       box.textContent = 'Consultando servidor de informes...';
       try {
-        const r = await fetch(srv + '/webhook/obtener-pacientes?cod=' + encodeURIComponent(cod));
+        const r = await fetch(srv + '/api/pacientes-recientes');
         const d = await r.json();
-        const it = Array.isArray(d) ? d[0] : (d.data ? d.data[0] : d);
+        const lista = d.pacientes || [];
+        const it = lista.find(p => String(p.codAtencion||p.cod_atencion||'').toLowerCase().includes(cod.toLowerCase()) || String(p.dni||'').includes(cod));
         if (it && it.codAtencion) {
           box.innerHTML = '<strong>Informe ' + it.codAtencion + '</strong> — Estado: ' + (it.estado || 'Procesado') + '<br>Paciente: ' + (it.paciente || '--') + '<br>Espécimen: ' + (it.especimen || '--') + '<br><br><em>Diagnóstico:</em><br>' + (it.diagnostico || 'En evaluación patológica');
         } else {
