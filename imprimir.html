@@ -92,13 +92,7 @@
 
     <script src="real_supabase_backup.js?v=20261105_v674" defer></script>
 
-    <!-- Bóveda Offline Soberana de Blobs Multimedia (Fotos / Órdenes en IndexedDB) -->
-
-    <script src="media_blobs_seed.js?v=20261105_v674" defer></script>
-
-    <!-- Motor de Robustez y Fallbacks Clínicos de Reportes -->
-
-    <script src="reportes.js?v=v628"></script>
+    <!-- Scripts obsoletos media_blobs_seed.js y reportes.js removidos (0 errores 404) -->
 
     <!-- Librería html2pdf.js?v=v628 para Descarga Directa Transparente de PDF -->
 
@@ -2329,7 +2323,7 @@
 
                                         <div class="sig-block">
 
-                                            <img src="firma_sello.webp" class="sig-img" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='firma_sello.png';">
+                                            <img src="firma_sello.png" class="sig-img" loading="lazy" decoding="async">
 
                                         </div>
 
@@ -3292,63 +3286,42 @@ if (paramCodAtencion && typeof window.REAL_SUPABASE_PATIENTS !== 'undefined' && 
 
                     
 
-                    const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error("Supabase Timeout")), 2500));
+                    const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error("Supabase Timeout")), 10000));
 
                     const res = await Promise.race([supabasePromise, timeoutPromise]);
 
-                    
-
                     if (res && res.data) {
-
                         const data = res.data;
+                        const diagRawCloud = String(data.diagnostico || data.conclusion || data.diag || patient?.diagnostico || '');
+                        const diagCleanCloud = diagRawCloud.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+                        const diagUpperCloud = diagCleanCloud.toUpperCase();
+                        const isDraftDiag = !diagCleanCloud || diagCleanCloud.length < 20 || diagUpperCloud.includes('EN PROCESO') || diagUpperCloud.includes('PENDIENTE DE') || diagUpperCloud.includes('SIN DIAGNOSTICO') || diagUpperCloud.includes('SIN DIAGNÓSTICO');
+                        const cloudSignedReady = (data.firmado === true || patient?.firmado === true || !isDraftDiag);
 
                         patient = {
-
                             ...(patient || {}),
-
                             codAtencion: data.cod_atencion || patient?.codAtencion,
-
                             dni: data.dni || patient?.dni,
-
                             nombres: data.nombres || patient?.nombres,
-
                             apellidos: data.apellidos || patient?.apellidos,
-
                             paciente: data.paciente || patient?.paciente,
-
                             edad: data.edad || patient?.edad,
-
                             sexo: normalizeGender(data.sexo || patient?.sexo, data.especimen || patient?.especimen, data.nombres || data.paciente || patient?.nombres),
-
                             fecRegistro: data.fec_registro || patient?.fecRegistro,
-
                             fecEntrega: data.fec_entrega || patient?.fecEntrega,
-
                             medSolicitante: data.med_solicitante || patient?.medSolicitante,
-
                             especimen: data.especimen || patient?.especimen,
-
                             motivoEstudio: data.motivo_estudio || patient?.motivoEstudio,
-
                             macroDesc: data.macro_desc || patient?.macroDesc || '',
-
                             microDesc: data.micro_desc || patient?.microDesc || '',
-
-                            diagnostico: data.diagnostico || data.conclusion || data.diag || patient?.diagnostico || '',
-
+                            diagnostico: diagRawCloud,
                             img01: data.img01 || patient?.img01,
-
                             img02: data.img02 || patient?.img02,
-
                             macro360: data.macro360 || patient?.macro360,
-
                             service: data.service || patient?.service,
-
-                            clinica: data.clinica || data.procedencia || patient?.clinica || '',
-
-                            firmado: data.firmado === true || patient?.firmado === true,
-
-                            estado: data.estado || patient?.estado || 'Pendiente',
+                            clinica: data.clinica || data.f_contacto || data.procedencia || patient?.clinica || '',
+                            firmado: cloudSignedReady,
+                            estado: data.estado || (cloudSignedReady ? 'Completado' : (patient?.estado || 'Pendiente')),
 
                             modificado: data.modificado === true || patient?.modificado === true,
 

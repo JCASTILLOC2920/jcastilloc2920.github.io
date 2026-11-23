@@ -99,8 +99,11 @@
                 }
             });
 
-            // 3. Conexión SSE Server-Sent Events (sincronizador_tiempo_real_clinicas.py)
-            const syncHost = window.location.hostname || 'localhost';
+            // 3. Conexión SSE Server-Sent Events (solo en entorno local del laboratorio; en GitHub Pages usa Supabase Realtime)
+            const syncHost = window.location.hostname || '';
+            if (window.location.protocol === 'https:' || !['localhost', '127.0.0.1'].includes(syncHost)) {
+                return;
+            }
             const sseUrl = `http://${syncHost}:${SYNC_PORT}/api/stream`;
 
             function conectarSSE() {

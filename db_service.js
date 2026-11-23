@@ -271,10 +271,14 @@ export function safeMergePatientRecords(baseRecord, incomingRecord) {
     let isMod = false;
     let finalState = 'Pendiente';
 
-    // BLINDAJE MILITAR DE FIRMA MÉDICA (JC PATH LAB):
-    // Un informe SOLO se considera firmado si fue explícitamente firmado por el patólogo (firmado === true).
-    // La presencia de texto diagnóstico por sí sola NO confiere validez de informe firmado.
-    const isExplicitlySigned = incomingRecord.firmado === true || incomingRecord.firmado === 1 || String(incomingRecord.firmado).toLowerCase() === 'true' || (incomingRecord.firmado === undefined && (baseRecord.firmado === true || baseRecord.firmado === 1 || String(baseRecord.firmado).toLowerCase() === 'true'));
+    const cleanDiagMerged = cleanText(mergedDiagText);
+    const isDraftMerged = /^(borrador|pendiente|en proceso|en evaluaci[oó]n|por confirmar|sin diagn[oó]stico)/i.test(cleanDiagMerged);
+    const explicitlyUnlocked = incomingRecord.firmado !== false && incomingRecord.firmado !== 0 && String(incomingRecord.firmado).toLowerCase() !== 'false';
+    const isExplicitlySigned = (
+        incomingRecord.firmado === true || incomingRecord.firmado === 1 || String(incomingRecord.firmado).toLowerCase() === 'true' ||
+        (incomingRecord.firmado === undefined && (baseRecord.firmado === true || baseRecord.firmado === 1 || String(baseRecord.firmado).toLowerCase() === 'true')) ||
+        (hasDiag && cleanDiagMerged.length >= 20 && !isDraftMerged && explicitlyUnlocked)
+    );
 
     if (isExplicitlySigned && hasDiag) {
         isFirm = true;
@@ -3919,6 +3923,11 @@ export function getPatientSlaStatus(item) {
     const hasDraftText = hasMacroText || hasMicroText;
 
     // Regla de Semáforo de Estado: Vinculado al campo real de estado ('firmado' / 'estado_firma')
+    // Nota de esquema Supabase: la tabla 'pacientes' no posee columna 'firmado'; cuando el informe en nube
+    // tiene diagnóstico definitivo real (>= 20 caracteres, sin marca de borrador/pendiente) y no está bloqueado
+    // explícitamente (firmado !== false), se habilita como Completado para descarga de clínicas.
+    const isDraftDiag = /^(borrador|pendiente|en proceso|en evaluaci[oó]n|por confirmar|sin diagn[oó]stico)/i.test(cleanDiag);
+    const hasCompletedCloudDiag = hasDiagText && cleanDiag.length >= 20 && !isDraftDiag && item.firmado !== false && item.firmado !== 0 && String(item.firmado).toLowerCase() !== 'false';
     const isSigned = (
         item.firmado === true || 
         item.firmado === 1 || 
@@ -3927,7 +3936,8 @@ export function getPatientSlaStatus(item) {
         String(item.estado_firma || '').toLowerCase() === 'validado' ||
         String(item.estado || '').toLowerCase() === 'completado' ||
         String(item.estado || '').toLowerCase() === 'listo' ||
-        String(item.estado || '').toLowerCase() === 'firmado'
+        String(item.estado || '').toLowerCase() === 'firmado' ||
+        hasCompletedCloudDiag
     );
 
     if (isSigned) {
@@ -4034,16 +4044,20 @@ export function mapDbToPatient(dbRecord) {
         updatedAt: dbRecord.updated_at || null
     };
 
-    // Preservar Clínica ingresada manualmente. Si está vacía o es 'Sin Clínica', aplicar reglas por Médico Solicitante, Espécimen o Motivo
-    const existingClinica = (dbRecord.clinica || '').trim();
-    if (existingClinica && existingClinica.toLowerCase() !== 'sin clinica') {
+    // Preservar Clínica ingresada manualmente (clinica o f_contacto en Supabase). Si está vacía o es 'Sin Clínica', aplicar reglas por Médico/Espécimen
+    const existingClinica = String(dbRecord.clinica || dbRecord.f_contacto || '').trim();
+    if (existingClinica && !['sin clinica', 'sin clínica', '---', '--'].includes(existingClinica.toLowerCase())) {
         res.clinica = existingClinica;
     } else {
         const medNorm = (res.medSolicitante || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
         const espNorm = (res.especimen || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
         const motNorm = (res.motivoEstudio || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
-        if (medNorm.includes('marreros') || medNorm.includes('lloclla') || espNorm.includes('mujer') || motNorm.includes('mujer')) {
+        if (medNorm.includes('uroserv') || motNorm.includes('uroserv') || medNorm.includes('romero') || (medNorm.includes('escalante') && (espNorm.includes('prostat') || espNorm.includes('morcel')))) {
+            res.clinica = 'UROSERV';
+        } else if (medNorm.includes('alcala') || medNorm.includes('ventanilla') || motNorm.includes('ventanilla')) {
+            res.clinica = 'CLÍNICA CARRIÓN VENTANILLA';
+        } else if (medNorm.includes('marreros') || medNorm.includes('lloclla') || espNorm.includes('mujer') || motNorm.includes('mujer')) {
             res.clinica = 'CLINICA LA MUJER';
         } else if (medNorm.includes('escalante') || espNorm.includes('clemente') || motNorm.includes('clemente')) {
             res.clinica = 'CLÍNICA SAN CLEMENTE';
@@ -4054,7 +4068,7 @@ export function mapDbToPatient(dbRecord) {
         } else if (medNorm.includes('sanchez') || medNorm.includes('becerra') || medNorm.includes('ulfe') || medNorm.includes('carrion') || medNorm.includes('munante') || medNorm.includes('arzapalo') || medNorm.includes('flores') || medNorm.includes('sierra')) {
             res.clinica = 'CLÍNICA CARRIÓN';
         } else {
-            res.clinica = (existingClinica && existingClinica.toLowerCase() !== 'sin clinica') ? existingClinica : '';
+            res.clinica = '';
         }
     }
 
