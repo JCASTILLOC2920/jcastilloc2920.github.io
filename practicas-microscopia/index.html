@@ -233,5 +233,82 @@
 
 <!-- JCPATHLAB_WA_FLOTANTE_V1 -->
 <a href="https://wa.me/51986396733?text=Hola%20JC%20PATH%20LAB%2C%20deseo%20informaci%C3%B3n%20sobre%20biopsias%20o%20resultados." target="_blank" rel="noopener" aria-label="WhatsApp JC PATH LAB" style="position:fixed;right:18px;bottom:18px;z-index:9999;background:#10b981;color:#052e16;font-family:system-ui,sans-serif;font-weight:800;font-size:14px;padding:11px 16px;border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.28);text-decoration:none;">WhatsApp +51 986 396 733</a>
+
+<!-- KRYPTON_PIZARRA_TUTOR_UNI_V1 -->
+<style>
+  #btnPizarraKrypton { position:fixed; left:18px; bottom:18px; z-index:9998; background:linear-gradient(135deg,#0284c7,#7c3aed); color:#fff; border:none; border-radius:999px; padding:12px 18px; font-weight:800; font-size:14px; cursor:pointer; box-shadow:0 8px 24px rgba(0,0,0,.35); font-family:system-ui,sans-serif; }
+  #modalPizarraKrypton { display:none; position:fixed; inset:0; z-index:10000; background:rgba(2,6,23,.86); backdrop-filter:blur(6px); padding:16px; overflow:auto; font-family:system-ui,sans-serif; }
+  .pk-box { max-width:1100px; margin:12px auto; background:#0f172a; border:1px solid rgba(56,189,248,.35); border-radius:16px; padding:18px; color:#f1f5f9; }
+  .pk-top { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px; }
+  .pk-tools { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px; align-items:center; }
+  .pk-tools button { background:#1e293b; color:#f8fafc; border:1px solid #475569; border-radius:8px; padding:6px 12px; cursor:pointer; font-weight:700; font-size:12.5px; }
+  #canvasPizarraK { width:100%; height:360px; background:#ffffff; border-radius:12px; cursor:crosshair; touch-action:none; display:block; }
+  .pk-tutor { margin-top:14px; display:grid; gap:10px; }
+  .pk-row { display:flex; gap:8px; flex-wrap:wrap; }
+  .pk-row input { flex:1; min-width:220px; padding:10px 12px; border-radius:10px; border:1px solid #334155; background:#020617; color:#f8fafc; font-size:14px; }
+  #respTutorK { background:#020617; border:1px solid #334155; border-radius:10px; padding:12px; min-height:76px; white-space:pre-wrap; font-size:13.5px; color:#cbd5e1; line-height:1.55; }
+</style>
+<button id="btnPizarraKrypton" onclick="document.getElementById('modalPizarraKrypton').style.display='block';initPizarraK();">🎨 Pizarra + Tutor KRYPTON</button>
+<div id="modalPizarraKrypton">
+  <div class="pk-box">
+    <div class="pk-top">
+      <div><strong style="color:#38bdf8;font-size:1.1rem;">Pizarra Interactiva Histológica &amp; Tutor KRYPTON (UNMSM)</strong><div style="font-size:12px;color:#94a3b8;">Dibuja estructuras tisulares en clase y desarrolla preguntas clínicas con Robbins &amp; KRYPTON</div></div>
+      <button onclick="document.getElementById('modalPizarraKrypton').style.display='none'" style="background:#ef4444;color:#fff;border:none;border-radius:8px;padding:7px 14px;font-weight:800;cursor:pointer;">Cerrar ✕</button>
+    </div>
+    <div class="pk-tools">
+      <button onclick="setColorK('#6d28d9')" style="border-color:#a855f7;">🟣 Hematoxilina</button>
+      <button onclick="setColorK('#ec4899')" style="border-color:#f472b6;">🩷 Eosina</button>
+      <button onclick="setColorK('#0284c7')" style="border-color:#38bdf8;">🔵 Azul</button>
+      <button onclick="setColorK('#dc2626')" style="border-color:#f87171;">🔴 Flecha/Lesión</button>
+      <button onclick="setColorK('#0f172a')">⚫ Negro</button>
+      <button onclick="limpiarPizarraK()">🧹 Limpiar Pizarra</button>
+      <button onclick="descargarPizarraK()">💾 Guardar PNG</button>
+    </div>
+    <canvas id="canvasPizarraK" width="1060" height="360"></canvas>
+    <div class="pk-tutor">
+      <div class="pk-row">
+        <input id="srvTutorK" value="https://ball-reports-mature-mass.trycloudflare.com" placeholder="Servidor KRYPTON (opcional para IA en vivo)" style="max-width:340px;font-size:12px;">
+        <input id="pregTutorK" placeholder="Escribe una pregunta de Patología Especial o lámina para desarrollar en clase...">
+        <button onclick="preguntarKryptonUni()" style="background:#10b981;color:#052e16;border:none;border-radius:10px;padding:10px 18px;font-weight:800;cursor:pointer;">Resolver con KRYPTON</button>
+      </div>
+      <div id="respTutorK">Listo para clase práctica. Dibuja en la pizarra superior o escribe una pregunta diagnóstica para que KRYPTON la desarrolle paso a paso (Robbins / OMS / CAP).</div>
+    </div>
+  </div>
+</div>
+<script>
+let _pkInit=false,_pkDraw=false,_pkColor='#6d28d9',_pkCtx=null,_pkCv=null;
+function initPizarraK(){
+  if(_pkInit) return;
+  _pkCv=document.getElementById('canvasPizarraK');
+  _pkCtx=_pkCv.getContext('2d');
+  _pkCtx.fillStyle='#ffffff'; _pkCtx.fillRect(0,0,_pkCv.width,_pkCv.height);
+  _pkCtx.lineCap='round'; _pkCtx.lineWidth=3.5;
+  const pos=(e)=>{const r=_pkCv.getBoundingClientRect();const t=e.touches?e.touches[0]:e;return {x:(t.clientX-r.left)*(_pkCv.width/r.width),y:(t.clientY-r.top)*(_pkCv.height/r.height)};};
+  const ini=(e)=>{_pkDraw=true;const p=pos(e);_pkCtx.beginPath();_pkCtx.moveTo(p.x,p.y);e.preventDefault();};
+  const mov=(e)=>{if(!_pkDraw)return;const p=pos(e);_pkCtx.strokeStyle=_pkColor;_pkCtx.lineTo(p.x,p.y);_pkCtx.stroke();e.preventDefault();};
+  const fin=()=>{_pkDraw=false;};
+  _pkCv.addEventListener('mousedown',ini);_pkCv.addEventListener('mousemove',mov);window.addEventListener('mouseup',fin);
+  _pkCv.addEventListener('touchstart',ini,{passive:false});_pkCv.addEventListener('touchmove',mov,{passive:false});window.addEventListener('touchend',fin);
+  _pkInit=true;
+}
+function setColorK(c){_pkColor=c;}
+function limpiarPizarraK(){if(!_pkCtx)return;_pkCtx.fillStyle='#ffffff';_pkCtx.fillRect(0,0,_pkCv.width,_pkCv.height);}
+function descargarPizarraK(){if(!_pkCv)return;const a=document.createElement('a');a.download='pizarra_patologia_krypton.png';a.href=_pkCv.toDataURL('image/png');a.click();}
+async function preguntarKryptonUni(){
+  const q=document.getElementById('pregTutorK').value.trim();
+  const srv=document.getElementById('srvTutorK').value.trim().replace(/\/+$/,'');
+  const out=document.getElementById('respTutorK');
+  if(!q){out.textContent='Escribe una pregunta para KRYPTON.';return;}
+  out.textContent='KRYPTON desarrollando respuesta docente (Robbins / OMS)...';
+  try{
+    const r=await fetch(srv+'/api/panel-action?cmd=krypton_hibrido&q='+encodeURIComponent('Modo Docente Patologia Especial UNMSM (desarrollo claro paso a paso): '+q));
+    const d=await r.json();
+    out.textContent=d.salida||d.respuesta||JSON.stringify(d);
+  }catch(e){
+    out.textContent='No se pudo conectar al servidor KRYPTON ('+srv+'). Verifica el túnel activo o revisa las perlas diagnósticas locales de la lámina.';
+  }
+}
+</script>
+
 </body>
 </html>
