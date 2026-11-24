@@ -334,6 +334,18 @@
         }
     </style>
   <link rel="stylesheet" href="jcpathlab_design.css">
+<style id='jc-light-clinical-theme'>
+  :root { color-scheme: light !important; }
+  html, body { background-color: #F8FAFC !important; color: #0F172A !important; }
+  header, .glass-panel, nav, footer { background: #FFFFFF !important; border-color: #E2E8F0 !important; color: #0F172A !important; box-shadow: 0 2px 12px rgba(15,23,42,0.06) !important; }
+  section, main, .bg-darkBg, [class*='bg-slate-9'], [class*='bg-gray-9'], [class*='bg-[#0'] { background-color: #FFFFFF !important; background-image: none !important; color: #0F172A !important; }
+  [class*='bg-slate-8'], [class*='bg-slate-900/'] { background-color: #F8FAFC !important; border-color: #CBD5E1 !important; color: #0F172A !important; }
+  h1, h2, h3, h4, strong, .text-white, [class*='text-slate-1'], [class*='text-slate-2'] { color: #0F172A !important; -webkit-text-fill-color: #0F172A !important; }
+  p, li, span, [class*='text-slate-3'], [class*='text-slate-4'] { color: #334155 !important; }
+  a[class*='from-emerald'], a[class*='from-cyan'], a[class*='bg-sky'], .btn-laminario-sep, .btn-laminario-sep * { color: #FFFFFF !important; -webkit-text-fill-color: #FFFFFF !important; }
+  #wsi-viewer, #mapeo-3d-morfometria, #immunoquery, #trazabilidad, nav a[href='#wsi-viewer'], nav a[href='#mapeo-3d-morfometria'], nav a[href='#immunoquery'], nav a[href='#trazabilidad'], nav a[href='app.html'] { display: none !important; }
+  #mobileMenu { background: #FFFFFF !important; color: #0F172A !important; border-color: #CBD5E1 !important; }
+</style>
 </head>
 <body class="bg-darkBg text-slate-100 font-sans selection:bg-cyanCobalt selection:text-white antialiased overflow-x-hidden">
 
@@ -405,12 +417,13 @@
                 <a href="traductor-informes-biopsia.html" class="hover:text-cyan-400 transition-colors">Segunda Opinión</a>
             </nav>
 
-            <!-- Acciones Rápidas de Neurodiseño -->
+            <!-- Botón Separado LAMINARIO + Acciones Rápidas -->
+            <a href='practicas-microscopia/index.html' class='btn-laminario-sep inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-extrabold bg-sky-600 hover:bg-sky-700 text-white shadow-md transition-all' title='Abrir Laminario Virtual UNMSM y Microscopía'><i class='fa-solid fa-microscope text-sm'></i> <span>LAMINARIO</span></a>
             <div class="flex items-center gap-2.5 sm:gap-3">
                 <a href="verificar_informe.html" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-extrabold bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-300 text-white shadow-lg shadow-emerald-500/35 transition-all hover:scale-105 border border-emerald-400/40" title="Consultar y Descargar Informe Oficial con DNI">
                     <i class="fa-solid fa-file-circle-check text-sm"></i> <span>CONSULTAR MI INFORME</span>
                 </a>
-                <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo,%20deseo%20coordinar%20una%20biopsia" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2.5 rounded-lg text-xs font-bold bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700/80 transition-all hover:border-cyan-500/50">
+                <a href="https://wa.me/51986396733?text=Hola%20Dr.%20Castillo%2C%20vengo%20de%20la%20web%20JC%20PATH%20LAB%20en%20Google%20y%20deseo%20coordinar%20una%20biopsia" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2.5 rounded-lg text-xs font-bold bg-slate-900/90 hover:bg-slate-800 text-slate-200 border border-slate-700/80 transition-all hover:border-cyan-500/50">
                     <i class="fa-brands fa-whatsapp text-emerald-400 text-sm"></i> WhatsApp Directo
                 </a>
                 <!-- Mobile button -->
