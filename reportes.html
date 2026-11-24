@@ -1078,7 +1078,7 @@ function parseAtencionSortKey(cod) {
 
 
 
-                currentUser = { nombres: 'DR. JOSEPH CASTILLO', perfil: 'Administrador', usuario: 'admin' };
+                try { localStorage.removeItem('currentUser'); } catch(e) {} window.location.replace('login.html'); return;
 
 
 
