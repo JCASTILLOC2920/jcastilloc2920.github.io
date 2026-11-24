@@ -4,12 +4,12 @@
 
     // Guardián de versión y auto-purga para sincronización multi-dispositivo
     const APP_BUILD_VERSION = '20261105_v674';
-    const savedVersion = localStorage.getItem('app_version');
+    const savedVersion = localStorage.getItem('app_version_web');
     if (savedVersion !== APP_BUILD_VERSION) {
         console.warn(`[PWA Version Guard] Versión previa detectada (${savedVersion} vs ${APP_BUILD_VERSION}). Purgando cachés y sincronizando...`);
-        localStorage.setItem('app_version', APP_BUILD_VERSION);
+        localStorage.setItem('app_version_web', APP_BUILD_VERSION);
         if ('caches' in window) {
-            caches.keys().then(names => names.forEach(n => caches.delete(n)));
+            caches.keys().then(names => names.filter(n => n.startsWith('jcpathlab-web-') || n.startsWith('jcpathlab-pwa-')).forEach(n => caches.delete(n)));
         }
         // Directiva Suprema: NUNCA purgar patientDatabaseLocal ni pacientesDB del almacenamiento local
     }
@@ -18,7 +18,7 @@
     if (typeof window !== 'undefined' && 'caches' in window) {
         caches.keys().then(function(cacheNames) {
             cacheNames.forEach(function(name) {
-                if (name !== 'reportes-cache-v20261023-futuristic-v655') {
+                if (name !== 'jcpathlab-web-v20261124' && (name.startsWith('jcpathlab-web-') || name.startsWith('jcpathlab-pwa-'))) {
                     console.log('[PWA Medical] Purgando caché obsoleta cliente:', name);
                     caches.delete(name);
                 }
@@ -36,7 +36,7 @@
             if (hadController && !refreshing) {
                 refreshing = true;
                 console.log(`[PWA Medical] Nuevo Service Worker activo (${APP_BUILD_VERSION}). Actualizando interfaz automáticamente...`);
-                localStorage.setItem('app_version', APP_BUILD_VERSION);
+                localStorage.setItem('app_version_web', APP_BUILD_VERSION);
                 window.location.reload();
             }
         });
@@ -181,7 +181,7 @@
     function triggerAutoRepair() {
         try {
             if ('caches' in window) {
-                caches.keys().then(names => names.forEach(n => caches.delete(n)));
+                caches.keys().then(names => names.filter(n => n.startsWith('jcpathlab-web-') || n.startsWith('jcpathlab-pwa-')).forEach(n => caches.delete(n)));
             }
             localStorage.removeItem('app_cache');
 
