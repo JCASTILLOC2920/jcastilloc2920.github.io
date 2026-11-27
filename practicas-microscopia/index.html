@@ -195,15 +195,20 @@
 
     function poblarCategorias() {
       const sel = document.getElementById('categoryFilter');
+      const cnt = document.getElementById('totalSlidesCount');
       const cats = Array.from(new Set(allSlides.map(s => s.category || 'Raíz'))).sort();
-      sel.innerHTML = '<option value="">Todas las Carpetas (' + allSlides.length + ')</option>' +
-        cats.map(c => `<option value="${c}">${c}</option>`).join('');
-      document.getElementById('totalSlidesCount').textContent = allSlides.length;
+      if (sel) {
+        sel.innerHTML = '<option value="">Todas las Carpetas (' + allSlides.length + ')</option>' +
+          cats.map(c => `<option value="${c}">${c}</option>`).join('');
+      }
+      if (cnt) cnt.textContent = allSlides.length;
     }
 
     function filtrarCatalogo() {
-      const q = (document.getElementById('searchSlideInput').value || '').toLowerCase().trim();
-      const cat = document.getElementById('categoryFilter').value;
+      const inpQ = document.getElementById('searchSlideInput');
+      const inpC = document.getElementById('categoryFilter');
+      const q = (inpQ ? inpQ.value : '').toLowerCase().trim();
+      const cat = inpC ? inpC.value : '';
       const filtradas = allSlides.filter(s => {
         if (cat && (s.category || 'Raíz') !== cat) return false;
         if (!q) return true;
@@ -263,22 +268,28 @@
       filtrarCatalogo();
 
       const ov = document.getElementById('slideInfoOverlay');
-      ov.style.display = 'block';
-      document.getElementById('ovTitle').textContent = slide.title;
-      document.getElementById('ovMeta').textContent = `${slide.category} • ${Number(slide.size_mb || 0).toFixed(2)} MB • ${(slide.format || 'tif').toUpperCase()}`;
+      const ovT = document.getElementById('ovTitle');
+      const ovM = document.getElementById('ovMeta');
+      if (ov) ov.style.display = 'block';
+      if (ovT) ovT.textContent = slide.title;
+      if (ovM) ovM.textContent = `${slide.category} • ${Number(slide.size_mb || 0).toFixed(2)} MB • ${(slide.format || 'tif').toUpperCase()}`;
 
       const base = getBaseUrl();
       const ph = document.getElementById('offlinePlaceholder');
       if (base) {
-        ph.style.display = 'none';
+        if (ph) ph.style.display = 'none';
         abrirVisorDZI(base + '/dzi/' + slide.id + '.dzi');
       } else {
-        ph.style.display = 'flex';
-        document.getElementById('phTitle').textContent = slide.title;
-        document.getElementById('phDesc').textContent = 'Lámina catalogada en su disco F:\\. Conecte el Túnel WSI de su computadora para visualizarla con zoom histológico 40x.';
+        if (ph) ph.style.display = 'flex';
+        const phT = document.getElementById('phTitle');
+        const phD = document.getElementById('phDesc');
+        if (phT) phT.textContent = slide.title;
+        if (phD) phD.textContent = 'Lámina catalogada en su disco F:\\. Conecte el Túnel WSI de su computadora para visualizarla con zoom histológico 40x.';
         const mb = document.getElementById('phMetaBox');
-        mb.style.display = 'block';
-        mb.innerHTML = `<strong>Carpeta:</strong> ${slide.category}<br><strong>Peso Real:</strong> ${Number(slide.size_mb || 0).toFixed(2)} MB<br><strong>Archivo:</strong> ${slide.relative_path || slide.filename}`;
+        if (mb) {
+          mb.style.display = 'block';
+          mb.innerHTML = `<strong>Carpeta:</strong> ${slide.category}<br><strong>Peso Real:</strong> ${Number(slide.size_mb || 0).toFixed(2)} MB<br><strong>Archivo:</strong> ${slide.relative_path || slide.filename}`;
+        }
       }
     }
 
@@ -305,12 +316,18 @@
     }
 
     function abrirModalTunel() {
-      document.getElementById('tunnelUrlInput').value = tunnelUrl;
-      document.getElementById('tunnelModal').classList.add('open');
+      const inp = document.getElementById('tunnelUrlInput');
+      const mod = document.getElementById('tunnelModal');
+      if (inp) inp.value = tunnelUrl;
+      if (mod) mod.classList.add('open');
     }
-    function cerrarModalTunel() { document.getElementById('tunnelModal').classList.remove('open'); }
+    function cerrarModalTunel() {
+      const mod = document.getElementById('tunnelModal');
+      if (mod) mod.classList.remove('open');
+    }
     async function guardarYConectarTunel() {
-      const val = document.getElementById('tunnelUrlInput').value.trim().replace(/\/+$/, '');
+      const inp = document.getElementById('tunnelUrlInput');
+      const val = (inp ? inp.value : '').trim().replace(/\/+$/, '');
       tunnelUrl = val;
       localStorage.setItem('jc_wsi_tunnel_url', val);
       cerrarModalTunel();
